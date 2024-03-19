@@ -158,7 +158,7 @@ Blockly.JavaScript[blockName] = function (block) {
         }, \n`
     }
     if (this.inputs_[9]) {
-        timestamp = `timestamp: new date(String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[9], Blockly.JavaScript.ORDER_NONE)})),`
+        timestamp = `timestamp: new Date(String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[9], Blockly.JavaScript.ORDER_NONE)})),`
     }
     if (this.inputs_[10]) {
         footer = Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[10], Blockly.JavaScript.ORDER_ATOMIC)
