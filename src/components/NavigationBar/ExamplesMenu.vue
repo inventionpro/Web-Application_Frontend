@@ -695,7 +695,7 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
     height: 200px;
     border: 2px solid lightgray;
     border-radius: 0.25em;
-    margin: 0.25em 0.25em;
+    margin: 0.25em;
     padding: 0.5em;
     background-color: white;
     position: relative;
