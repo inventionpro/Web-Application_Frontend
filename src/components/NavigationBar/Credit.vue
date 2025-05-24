@@ -15,7 +15,7 @@ export default {
                 width: "1000px",
                 html: `
                 <h1><span>Developers of </span><span style="color:#15a9e8">Scratch For Discord!</span></h1>
-                    <h2><b>Preview 474:</b></h2>
+                    <h2><b>New:</b></h2>
                     <b><p>
                     <span style="color:#4f4954">inventionpro</span>
                     <h2><b>Preview 469:</b></h2>
