@@ -2,7 +2,7 @@
 
 🐱 Make your Discord bot using Scratch blocks! [Scratch For Discord](https://scratch-for-discord.com) is an advanced fork of [discord-blocks](https://discordblocks.leondrolio.com/) and a continuation to the original [469](https://github.com/scratch-for-discord/Web-Application_Frontend/). Thanks to [7coil](https://github.com/7coil) for their great work!
 
-S4D 474 is forked from [469](https://github.com/scratch-for-discord/Web-Application_Frontend/) and [the original S4D](https://scratch-for-discord.netlify.app) made by Androz2091
+S4D New is forked from [469](https://github.com/scratch-for-discord/Web-Application_Frontend/) and [the original S4D](https://scratch-for-discord.netlify.app) made by Androz2091
 ## Features
 
 * 🖥️ No code knowledge required!  

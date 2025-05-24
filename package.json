@@ -2,28 +2,11 @@
   "name": "scratch-for-discord",
   "version": "469.13.0",
   "private": true,
-  "licenses": [
-    {
-      "your mom": "https://discord.gg/8Eteb7Pp3j"
-    },
-    {
-      "s4d": "https://scratch-for-discord.netlify.app/"
-    },
-    {
-      "this is a joke writen by": "redman13"
-    },
-    {
-      "jeremy happy": "https://cdn.discordapp.com/emojis/1011199683537948722.png"
-    },
-    {
-      "bruh": "there is infact a license field yarn"
-    }
-  ],
   "scripts": {
-    "audit": "npm audit fix",
-    "update": "npm update",
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
+    "audit": "npm audit fix",
+    "update": "npm update",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -106,19 +89,19 @@
     "> 1%",
     "last 2 versions"
   ],
-  "description": "🐱 Make your Discord bot using Scratch blocks! [Scratch For Discord](https://scratch-for-discord.netlify.com) is an advanced fork of [discord-blocks](https://discordblocks.leondrolio.com/). Thanks to [7coil](https://github.com/7coil) for their great work!",
+  "description": "🐱 Make your Discord bot using Scratch blocks! [Scratch For Discord](https://scratch-for-discord.com/) is an advanced fork of [discord-blocks](https://discordblocks.leondrolio.com/). Thanks to [7coil](https://github.com/7coil) for their great work!",
   "main": "babel.config.js",
   "directories": {
     "example": "examples"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrredo-and-josetrindade1/scratch-for-discord.git"
+    "url": "git+https://github.com/inventionpro/Web-Application_Frontend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mrredo-and-josetrindade1/scratch-for-discord/issues"
+    "url": "https://github.com/inventionpro/Web-Application_Frontend/issues"
   },
-  "homepage": "https://github.com/mrredo-and-josetrindade1/scratch-for-discord#readme"
+  "homepage": "https://github.com/inventionpro/Web-Application_Frontend#readme"
 }
