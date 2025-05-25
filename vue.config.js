@@ -14,5 +14,17 @@ module.exports = defineConfig({
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
       })
     ]
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .tap(options => {
+        options.compilerOptions = {
+          ...options.compilerOptions,
+          isCustomElement: tag => ['field', 'block', 'category', 'xml', 'mutation', 'value', 'sep'].includes(tag)
+        };
+        return options;
+      });
   }
 });

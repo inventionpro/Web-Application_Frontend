@@ -12,7 +12,6 @@ import savenload from './save-load';
 
 const app = createApp(App);
 
-
 import {
   BModal,
   BNavItem,
@@ -47,9 +46,6 @@ app.use(VueToast);
 app.use(VueSwal);
 app.use(bootstrapPlugin);
 app.use(modalManagerPlugin);
-
-app.config.productionTip = false;
-app.config.ignoredElements = ["field", "block", "category", "xml", "mutation", "value", "sep"];
 
 import r from "./require";
 
