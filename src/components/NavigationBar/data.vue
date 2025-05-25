@@ -17,21 +17,16 @@
                 document.querySelector("#load-s4dData-code").click();
             },
             dld() {
-                this.$swal({
+                this.$swal.fire({
                     title: 'WARNING!',
-                    text: 'this contains all your data including sensitive data like your forum password',
-                    buttons: {
-                        cancel: 'cancel',
-                        continue: {
-                            text: 'continue',
-                            value: true
-                        }
-                    },
-                    closeOnClickOutside: false
+                    text: 'This contains all your data including sensitive data',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Continue',
+                    cancelButtonText: 'Cancel',
+                    allowOutsideClick: false
                 }).then(result => {
-                    if(typeof result == "object"){
-                        return;
-                    }
+                    if (!result.isConfirmed) return;
                     const zip = new JSZip();
                     localforage.keys().then(async(data) => {
                         let out = {}

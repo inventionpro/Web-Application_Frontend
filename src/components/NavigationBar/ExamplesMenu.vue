@@ -85,42 +85,34 @@ function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption
 </div>
 `
     let previewWorkspace = false
-    swal({
+    swal.fire({
         //title: "Load this example?",
-        content: lkjgenwhikgu4ewkjn,
-        className: "swal-userExamples-preview-popup",
-        buttons: {
-            cancel: "Cancel",
-            confirm: {
-                text: "Load",
-                value: "load"
-            }
+        html: lkjgenwhikgu4ewkjn,
+        customClass: {
+            popup: 'swal-userExamples-preview-popup'
         },
+        showCancelButton: true,
+        confirmButtonText: 'Load',
+        cancelButtonText: 'Cancel'
     }).then(async (result) => {
         console.log("disposing of workspace")
         if (previewWorkspace) previewWorkspace.dispose()
         console.log("disposed of workspace")
-        if (String(result) != "load") return
-        swal({
+        if (!result.isConfirmed) return
+        swal.fire({
             title: "Delete current blocks?",
             text: "Would you like to remove the current blocks before importing the example?",
-            buttons: {
-                cancel: "Cancel",
-                no: {
-                    text: "No",
-                    value: false,
-                    className: "red-button"
-                },
-                yes: {
-                    text: "Yes",
-                    value: true
-                }
-            },
-            closeOnClickOutside: false
+            icon: "warning",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: "No",
+            cancelButtonText: "Cancel",
+            allowOutsideClick: false
         }).then(result => {
-            if (typeof result == "object") {
+            if (result.isDismissed) {
                 return;
-            } else if (result) {
+            } else if (result.isConfirmed) {
                 workspace.getAllBlocks().forEach((block) => block.dispose());
             }
             let exampleXml = ""
@@ -217,26 +209,23 @@ export default {
     },
     methods: {
         load(example) {
-            this.$swal({
+            this.$swal.fire({
                 title: this.$t('examples.confirm.title'),
                 text: this.$t('examples.confirm.text'),
-                buttons: {
-                    cancel: this.$t('examples.confirm.cancel'),
-                    no: {
-                        text: this.$t('examples.confirm.no'),
-                        value: false,
-                        className: "red-button"
-                    },
-                    yes: {
-                        text: this.$t('examples.confirm.yes'),
-                        value: true
-                    }
-                },
-                closeOnClickOutside: false
+                icon: 'warning',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: this.$t('examples.confirm.yes'),
+                denyButtonText: this.$t('examples.confirm.no'),
+                cancelButtonText: this.$t('examples.confirm.cancel'),
+                allowOutsideClick: false,
+                customClass: {
+                    denyButton: "red-button"
+                }
             }).then(result => {
-                if (typeof result == "object") {
+                if (result.isDismissed) {
                     return;
-                } else if (result) {
+                } else if (result.isConfirmed) {
                     this.$store.state.workspace.getAllBlocks().forEach((block) => block.dispose());
                 }
                 const exampleXml = examples[example];
@@ -261,37 +250,31 @@ export default {
                 if (!url.endsWith("/")) url += "/"
             }
             const SERVER = url
-            this.$swal({
-                title: "User Examples",
-                text: "What would you like to do here?",
-                buttons: {
-                    cancel: "Cancel",
-                    upload: {
-                        text: "Upload an Example",
-                        value: "upload"
-                    },
-                    seeall: {
-                        text: "View Examples",
-                        value: "seeall"
+            this.$swal.fire({
+                title: 'User Examples',
+                html: `<p>What would you like to do here?</p>
+<button id="upload-btn" class="swal2-confirm swal2-styled">Upload an Example</button>
+<button id="seeall-btn" class="swal2-confirm swal2-styled">View Examples</button>
+<button id="cancel-btn" class="swal2-cancel swal2-styled">Cancel</button>`,
+                showConfirmButton: false,
+                showCancelButton: false,
+                didOpen: async() => {
+                    let checkSessionIDsExistence = await localforage.getItem("EXAMPLE_SESSION_ID")
+                    if (checkSessionIDsExistence == null) {
+                        const usableChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_", "=", "+", "[", "]", "(", ")"]
+                        let sesid = ""
+                        for (let i = 0; i < 55; i++) {
+                            let character = usableChars[(Math.round(Math.random() * (usableChars.length - 1)))]
+                            sesid += character
+                        }
+                        await localforage.setItem("EXAMPLE_SESSION_ID", String(sesid))
                     }
-                },
-                closeOnClickOutside: false
-            }).then(async result => {
-                let checkSessionIDsExistence = await localforage.getItem("EXAMPLE_SESSION_ID")
-                if (checkSessionIDsExistence == null) {
-                    const usableChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_", "=", "+", "[", "]", "(", ")"]
-                    let sesid = ""
-                    for (let i = 0; i < 55; i++) {
-                        let character = usableChars[(Math.round(Math.random() * (usableChars.length - 1)))]
-                        sesid += character
-                    }
-                    await localforage.setItem("EXAMPLE_SESSION_ID", String(sesid))
-                }
-                if (String(result) == "upload") {
-                    const name = encodeURIComponent(document.querySelector("#docName").textContent).replace(/%20/g, ' ').replaceAll("\n", "").replaceAll(/[^a-z 0-9]/gmi, "")
-                    const wrapper = document.createElement('div');
-                    const blockCounts = workspace.getAllBlocks().length
-                    wrapper.innerHTML = `<h5>The content of the example is going to be the blocks you've placed.</h5>
+                    document.getElementById('upload-btn').onclick = () => {
+                        this.$swal.close();
+                        const name = encodeURIComponent(document.querySelector("#docName").textContent).replace(/%20/g, ' ').replaceAll("\n", "").replaceAll(/[^a-z 0-9]/gmi, "")
+                        const wrapper = document.createElement('div');
+                        const blockCounts = workspace.getAllBlocks().length
+                        wrapper.innerHTML = `<h5>The content of the example is going to be the blocks you've placed.</h5>
 <label for="name">Name of your Example </label>
 <input type="text" id="UserExampleName" value="${name == "Untitled document" ? "Untitled example" : name}" maxlength="50">
 <label for="author">Author of the Example </label>
@@ -300,85 +283,79 @@ export default {
 <label style="font-weight: bold;" for="name">Describe your Example...</label>
 <textarea id="UserExampleDescription" rows="4" cols="50" maxlength="500"></textarea>
 <p>Your example has <b>${blockCounts} block${blockCounts == 1 ? "" : "s"}</b> in it.</p>
-${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading near empty examples is not encouraged.</p>` : ''}
-`
-                    this.$swal({
-                        title: "Upload an example",
-                        content: wrapper,
-                        buttons: {
-                            cancel: "Cancel",
-                            upload: {
-                                text: "Upload",
-                                value: "upload"
-                            }
-                        },
-                        closeOnClickOutside: false
-                    }).then(async result2 => {
-                        if (String(result2) != "upload") {
-                            return
-                        }
-                        const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace))
-                        let sessionIDe = await localforage.getItem("EXAMPLE_SESSION_ID")
-                        if (sessionIDe == null) {
-                            const usableChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_", "=", "+", "[", "]", "(", ")"]
-                            let sesid = ""
-                            for (let i = 0; i < 55; i++) {
-                                let character = usableChars[(Math.round(Math.random() * (usableChars.length - 1)))]
-                                sesid += character
-                            }
-                            await localforage.setItem("EXAMPLE_SESSION_ID", String(sesid))
-                            sessionIDe = String(sesid)
-                        }
-                        console.log(sessionIDe)
-                        const requestOptions = {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                name: String(document.getElementById("UserExampleName").value),
-                                desc: String(document.getElementById("UserExampleDescription").value),
-                                xml: String(xmlContent),
-                                count: workspace.getAllBlocks().length,
-                                author: String(document.getElementById("UserExampleAuthor").value),
-                                sessionID: String(sessionIDe)
-                            })
-                        };
-                        fetch(SERVER + 'api/upload', requestOptions)
-                            .then(async (response) => {
-                                console.log(response)
-                                console.log("S4D sent a request, the response status code is", response.status)
-                                if (response.status != 200) {
-                                    const responseHTML = document.createElement('div');
-                                    responseHTML.innerHTML = `Failed to load message`
-                                    response.json().then((json) => {
-                                        responseHTML.innerHTML = `${String(json.error)}`
-                                    })
-                                    this.$swal({
-                                        title: "An error occurred uploading the example!",
-                                        content: responseHTML,
-                                        icon: "error"
-                                    })
-                                    return
+${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading near empty examples is not encouraged.</p>` : ''}`
+                        this.$swal.fire({
+                            title: "Upload an example",
+                            html: wrapper,
+                            showCancelButton: true,
+                            confirmButtonText: "upload",
+                            cancelButtonText: "Cancel",
+                            closeOnClickOutside: false
+                        }).then(async result2 => {
+                            if (!result2.isConfirmed) return;
+                            const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace))
+                            let sessionIDe = await localforage.getItem("EXAMPLE_SESSION_ID")
+                            if (sessionIDe == null) {
+                                const usableChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_", "=", "+", "[", "]", "(", ")"]
+                                let sesid = ""
+                                for (let i = 0; i < 55; i++) {
+                                    let character = usableChars[(Math.round(Math.random() * (usableChars.length - 1)))]
+                                    sesid += character
                                 }
-                                const responseHTML = document.createElement('div');
-                                responseHTML.innerHTML = `The example was uploaded!`
-                                this.$swal({
-                                    title: "Congrats!",
-                                    content: responseHTML,
-                                    icon: "success"
+                                await localforage.setItem("EXAMPLE_SESSION_ID", String(sesid))
+                                sessionIDe = String(sesid)
+                            }
+                            console.log(sessionIDe)
+                            const requestOptions = {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    name: String(document.getElementById("UserExampleName").value),
+                                    desc: String(document.getElementById("UserExampleDescription").value),
+                                    xml: String(xmlContent),
+                                    count: workspace.getAllBlocks().length,
+                                    author: String(document.getElementById("UserExampleAuthor").value),
+                                    sessionID: String(sessionIDe)
                                 })
-                            })
-                    });
-                } else if (String(result) == "seeall") {
-                    fetch(SERVER + 'api/examples')
-                        .then(async (response) => {
+                            };
+                            fetch(SERVER + 'api/upload', requestOptions)
+                                .then(async (response) => {
+                                    console.log(response)
+                                    console.log("S4D sent a request, the response status code is", response.status)
+                                    if (response.status != 200) {
+                                        const responseHTML = document.createElement('div');
+                                        responseHTML.innerHTML = `Failed to load message`
+                                        response.json().then((json) => {
+                                            responseHTML.innerHTML = `${String(json.error)}`
+                                        })
+                                        this.$swal.fire({
+                                            title: "An error occurred uploading the example!",
+                                            html: responseHTML,
+                                            icon: "error"
+                                        })
+                                        return
+                                    }
+                                    const responseHTML = document.createElement('div');
+                                    responseHTML.innerHTML = `The example was uploaded!`
+                                    this.$swal.fire({
+                                        title: "Congrats!",
+                                        html: responseHTML,
+                                        icon: "success"
+                                    })
+                                })
+                        });
+                    };
+                    document.getElementById('seeall-btn').onclick = () => {
+                        this.$swal.close();
+                        fetch(SERVER + 'api/examples').then(async (response) => {
                             console.log(response)
                             console.log("S4D sent a request, the response status code is", response.status)
                             if (response.status != 200) {
-                                this.$swal({
+                                this.$swal.fire({
                                     title: "An unexpected error occurred!",
                                     icon: "error"
                                 })
-                                return
+                                return;
                             }
                             const responseHTML = document.createElement('div');
                             response.json().then(async (json) => {
@@ -497,20 +474,15 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
     display: none;
 }
 </style>`
-                                //console.log("a") 
-                                this.$swal({
+                                this.$swal.fire({
                                     title: "Pick an Example",
-                                    content: responseHTML,
-                                    className: "swal-wide",
-                                    buttons: {
-                                        cancel: "Cancel",
-                                        confirm: {
-                                            text: "Import Selected Example",
-                                            value: "import"
-                                        }
-                                    },
+                                    html: responseHTML,
+                                    customClass: "swal-wide",
+                                    showCancelButton: true,
+                                    cancelButtonText: "Cancel",
+                                    confirmButtonText: "Import Selected Example"
                                 }).then(async (result) => {
-                                    if (String(result) != "import") return
+                                    if (!result.isConfirmed) return
                                     const selectedOption = document.querySelector('input[name="pickThisExampleToImportButton"]:checked')?.id
                                     if (selectedOption == null) return
                                     console.log(selectedOption)
@@ -663,14 +635,18 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
                         .catch(err => {
                             const responseHTML = document.createElement('div');
                             responseHTML.innerHTML = String(err)
-                            this.$swal({
+                            this.$swal.fire({
                                 title: "An unexpected error occurred!",
                                 content: responseHTML,
                                 icon: "error"
                             })
                         })
+                    };
+                    document.getElementById('cancel-btn').onclick = () => {
+                        this.$swal.close();
+                    };
                 }
-            });
+            })
         }
     }
 }

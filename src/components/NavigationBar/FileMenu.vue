@@ -171,8 +171,8 @@ export default {
   methods: {
     copy() {
       var url = beautify.js(this.getWorkspaceCode(), {
-        indent_size: 4,
-        space_in_empty_paren: true,
+        indent_size: 2,
+        space_in_empty_paren: true
       });
       navigator.clipboard.writeText(url);
     },
@@ -183,26 +183,23 @@ export default {
       document.querySelector("#load-code").click();
     },
     async load() {
-      this.$swal({
+      this.$swal.fire({
         title: this.$t("file.confirm.title"),
         text: this.$t("file.confirm.text"),
-        buttons: {
-          cancel: this.$t("file.confirm.cancel"),
-          no: {
-            text: this.$t("file.confirm.no"),
-            value: false,
-            className: "red-button",
-          },
-          yes: {
-            text: this.$t("file.confirm.yes"),
-            value: true,
-          },
+        icon: 'warning',
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonText: this.$t("file.confirm.yes"),
+        cancelButtonText: this.$t("file.confirm.cancel"),
+        denyButtonText: this.$t("file.confirm.no"),
+        customClass: {
+          denyButton: 'red-button'
         },
-        closeOnClickOutside: false,
+        allowOutsideClick: false
       }).then(async (result) => {
-        if (typeof result == "object") {
+        if (result.isDismissed) {
           return;
-        } else if (result) {
+        } else if (result.isConfirmed) {
           window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e.clear();
         }
         const file = document.getElementById("load-code").files[0];

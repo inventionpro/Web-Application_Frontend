@@ -11,7 +11,7 @@ import Blockly from "blockly";
 import NavBarComponent from "./components/NavigationBar/NavigationBar.vue";
 import BlocklyComponent from "./components/BlocklyComponent.vue";
 
-console.log("User is currently on platform", navigator.userAgent)
+console.log("User is currently on platform", navigator.userAgent);
 
 
 Blockly.Tooltip.HOVER_MS = 100;
@@ -146,12 +146,9 @@ import "./blocks/JeremyGamer13/jimpBlocks"
 import "./blocks/JeremyGamer13/fileEdit"
 
 // Farf things
-
 import "./blocks/charts/";
 import "./blocks/tictactoe/";
 import "./blocks/dashboard";
-
-
 
 // afgrh4t5h5453j
 import "./blocks/example-t/"
@@ -191,14 +188,14 @@ export default {
         this.$root.$i18n.locale = this.$store.state.blocklyLocale;
     },
     mounted() {
-        console.log("...wait a second... a user?")
-        console.log("i gotta tell them!")
+        console.log("...wait a second... a user?");
+        console.log("i gotta tell them!");
         console.log(
             "%cCAREFUL WHAT YOU TYPE IN CONSOLE! %cbarry and johnathan are watching all of your moves...",
             "color:red;font-family:system-ui;font-size:2rem;-webkit-text-stroke: 1px black;font-weight:bold",
             "color:DarkRed;font-family:system-ui;font-size:2rem;-webkit-text-stroke: 1px black;font-weight:bold"
-        )
-        console.log("...")
+        );
+        console.log("...");
         if (!("ScratchNative" in window) && window.parent?.ScratchNative) window.ScratchNative = window.parent.ScratchNative;
         const tourDone = localStorage.getItem('tourDone');
         if (tourDone !== null) this.$store.commit('setTour', {

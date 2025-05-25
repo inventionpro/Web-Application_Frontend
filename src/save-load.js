@@ -67,28 +67,7 @@ export default async function register(self) {
 			});
 		}, 1000)
 	}
-	/* Domain change swal */
-	if (/*window.location.hostname == "scratch-for-discord.com"*/false) {
-		Swal.fire({
-			title: 'Hey this domain is going to be removed',
-			text: "Do you want to be taken to the new domain?",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes!',
-			cancelButtonText: 'No.'
-		}).then((result) => {
-			if (result.isConfirmed) {
-				console.log('redirecting...');
-				window.location.assign("https://s4d.discodes.xyz");
-			} else {
-				autoSave()
-			};
-		});
-	} else {
-		autoSave()
-	}
+	autoSave();
 }
 
 async function handle(workspace) {

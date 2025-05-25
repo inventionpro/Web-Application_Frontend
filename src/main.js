@@ -1,26 +1,55 @@
-import Vue from 'vue';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import { createApp } from 'vue';
+import { bootstrapPlugin, modalManagerPlugin } from 'bootstrap-vue-next';
 import App from './App.vue';
 import store from './store';
-import VueSwal from 'vue-swal';
-import Vuei18n from 'vue-i18n';
+import VueSwal from 'vue-sweetalert2';
+import { createI18n } from 'vue-i18n';
 import Blockly from "blockly";
 import VueToast from 'vue-toast-notification';
-import VueTour from 'vue-tour';
+import VueTour from 'vue3-tour';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import savenload from './save-load';
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+const app = createApp(App);
 
-Vue.use(VueTour);
-Vue.use(VueToast);
-Vue.use(Vuei18n);
-Vue.use(VueSwal);
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
 
-Vue.config.productionTip = false;
-Vue.config.ignoredElements = ["field", "block", "category", "xml", "mutation", "value", "sep"];
+import {
+  BModal,
+  BNavItem,
+  BNavItemDropdown,
+  BNavbar,
+  BNavbarNav,
+  BNavbarBrand,
+  BNavbarToggle,
+  BButton,
+  BDropdownItem,
+  BDropdownDivider,
+  BCollapse,
+  vBModal
+} from 'bootstrap-vue-next';
+app.component('b-modal', BModal);
+app.directive('b-modal', vBModal);
+app.component('b-nav-item', BNavItem);
+app.component('b-nav-item-dropdown', BNavItemDropdown);
+app.component('b-navbar', BNavbar);
+app.component('b-navbar-nav', BNavbarNav);
+app.component('b-navbar-brand', BNavbarBrand);
+app.component('b-navbar-toggle', BNavbarToggle);
+app.component('BButton', BButton);
+app.component('b-dropdown-item', BDropdownItem);
+app.component('b-dropdown-divider', BDropdownDivider);
+app.component('b-collapse', BCollapse);
+
+app.component('font-awesome-icon', FontAwesomeIcon)
+
+app.use(VueTour);
+app.use(VueToast);
+app.use(VueSwal);
+app.use(bootstrapPlugin);
+app.use(modalManagerPlugin);
+
+app.config.productionTip = false;
+app.config.ignoredElements = ["field", "block", "category", "xml", "mutation", "value", "sep"];
 
 import r from "./require";
 
@@ -37,16 +66,19 @@ const messages = {
     fr: customLocaleFR.websiteMessages,
     pt: customLocalePT.websiteMessages
 };
-const i18n = new Vuei18n({
-    locale: (messages[navigator.language.split("-")[0]] ? navigator.language.split("-")[0] : "en"),
-    messages: messages
+const i18n = createI18n({
+  legacy: true,
+  globalInjection: true,
+  locale: (messages[navigator.language.split("-")[0]] ? navigator.language.split("-")[0] : "en"),
+  fallbackLocale: 'en',
+  messages
 });
 
 import toolbox from "./toolbox";
 
 //import {Backpack} from '@blockly/workspace-backpack';
 import Theme from '@blockly/theme-dark';
-Vue.mixin({
+app.mixin({
     methods: {
         async reloadWorkspace() {
             let val = await localforage.getItem("fav") === null ? null : await localforage.getItem("fav")
@@ -140,13 +172,13 @@ Vue.mixin({
     const { exec } = require("child_process")
     const logs = require("discord-logs")
     const Discord = require("discord.js")
-    const { 
-        MessageEmbed, 
-        MessageButton, 
-        MessageActionRow, 
-        Intents, 
-        Permissions, 
-        MessageSelectMenu 
+    const {
+        MessageEmbed,
+        MessageButton,
+        MessageActionRow,
+        Intents,
+        Permissions,
+        MessageSelectMenu
     }= require("discord.js")
     const fs = require('fs');
     let process = require('process');
@@ -154,7 +186,7 @@ Vue.mixin({
 
     // block imports
     ${requires.join("\n    ")}
-    
+
     // define s4d components (pretty sure 90% of these arnt even used/required)
     let s4d = {
         Discord,
@@ -228,17 +260,19 @@ Vue.mixin({
 }
 );
 
+app.use(store);
+app.use(i18n);
 
-new Vue({
-    store,
-    render: h => h(App),
-    i18n,
-    mounted() {
-        savenload(this);
-    },
-}).$mount("#app");
+app.mixin({
+  mounted() {
+    savenload(this);
+  }
+});
+
+app.mount('#app');
 
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'vue-toast-notification/dist/theme-default.css';
-import 'vue-tour/dist/vue-tour.css';
+import 'vue3-tour/dist/vue3-tour.css';

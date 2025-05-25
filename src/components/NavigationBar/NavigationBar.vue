@@ -35,20 +35,20 @@
                 </b-button>
                 <!-- border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em -->
                 <b-button id="v-step-4" style="border-right-color: #161719; border-radius: 0em" @click="runbot">
-                    <b-icon-play></b-icon-play>
+                    <i class="bi bi-play"></i>
                 </b-button>
                 <!--
                 <b-button id="v-step-5" style="border-right-color: #161719; border-radius: 0em" @click="console">
-                    <b-icon-newspaper></b-icon-newspaper>
+                    <i class="bi bi-newspaper"></i>
                 </b-button>
                 -->
                 <b-button id="v-step-2" style="border-right-color: #161719; border-radius: 0em" @click="util">
-                    <b-icon-gear></b-icon-gear>
+                    <i class="bi bi-gear"></i>
                 </b-button>
                 <b-button id="v-step-3"
                     style="border-radius: 0em; border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em"
                     @click="exportToCode">
-                    <b-icon-download></b-icon-download>
+                    <i class="bi bi-download"></i>
                 </b-button>
             </b-navbar-nav>
         </b-collapse>
@@ -147,13 +147,11 @@ export default {
         if (String(window.location.pathname).replace(/\//gmi, "") == "spooky") {
             const wrapper = document.createElement('div')
             wrapper.innerHTML = 'Flashing Lights and "jumpscares" appear in this S4D secret. Continue if you are fine with this, and feel free to exit the page now if you aren\'t.'
-            this.$swal({
+            this.$swal.fire({
                 title: "Warning!",
                 icon: "warning",
-                content: wrapper,
-                buttons: {
-                    ok: "I understand"
-                },
+                html: wrapper,
+                confirmButtonText: "I understand"
             })
             function preloadImage(url, appendS4dUrl) {
                 if (appendS4dUrl) url = "https://scratch-for-discord.com/spooky/" + url
@@ -253,14 +251,13 @@ export default {
     width: 35%
 }
 </style>`;
-            this.$swal({
+            this.$swal.fire({
                 title: "Download your bot?",
-                content: wrapper,
-                className: "lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123",
-                buttons: {
-                    cancel: "Cancel",
-                    confirm: "Download"
-                },
+                html: wrapper,
+                customClass: "lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123",
+                showCancelButton: true,
+                confirmButtonText: "Download",
+                cancelButtonText: "Cancel"
             }).then(async result => {
                 let requires = [`"discord.js": "^13.7.0",`,`"process":"^0.11.10",`,`"easy-json-database": "^1.5.0",`,`"discord-logs": "2.0.0",`]
                 let oldrequires = await localforage.getItem("requires")
@@ -269,7 +266,7 @@ export default {
                 if ((requireUsed.charAt(requireUsed.length - 1)) == ",") {
                     requireUsed = requireUsed.substring(0, (requireUsed.length - 1))
                 }
-                if(result){
+                if(result.isConfirmed){
                     const zip = new JSZip();
                     const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
                     const fileName = `${encodeURIComponent(document.querySelector("#docName").textContent).replace(/%20/g, " ")}.zip`;
@@ -278,76 +275,25 @@ export default {
                     if (javascriptContent.includes("queue.join") && javascriptContent.includes("queue.connect")) {
                         swal.fire("Sorry, but Retro and Jose music blocks do not work together.")
                         return;
-                    }/*
-                    if (String(javascriptContent).includes("let serverjs = ")) {
-                        zip.file("server.js", `
-const express = require('express');
-const server = express();
-server.all('/', (req, res)=>{
-    res.send('Your bot is alive!')
-})
-function keepAlive(){
-    server.listen(3000, ()=>{console.log("Server is Ready!")});
-}
-keepAlive()`);
-                        zip.file("boot.js", `const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-async function load(){
-console.log(\`
-entering BIOS please wait....\`)
-console.clear()
-console.log(\`
-██████╗░░█████╗░░█████╗░████████╗██╗███╗░░██╗░██████╗░░░░░░░░░░
-██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██║████╗░██║██╔════╝░░░░░░░░░░
-██████╦╝██║░░██║██║░░██║░░░██║░░░██║██╔██╗██║██║░░██╗░░░░░░░░░░
-██╔══██╗██║░░██║██║░░██║░░░██║░░░██║██║╚████║██║░░╚██╗░░░░░░░░░
-██████╦╝╚█████╔╝╚█████╔╝░░░██║░░░██║██║░╚███║╚██████╔╝██╗██╗██╗
-╚═════╝░░╚════╝░░╚════╝░░░░╚═╝░░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝╚═╝╚═╝\`)
-console.log(\`Code Loaded!\`)
-require("./bot")
-require("./server")
-}
-load()`);
-                    } else {
-                    zip.file("boot.js", `const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-async function load(){
-console.log(\`
-entering BIOS please wait....\`)
-console.clear()
-console.log(\`
-██████╗░░█████╗░░█████╗░████████╗██╗███╗░░██╗░██████╗░░░░░░░░░░
-██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██║████╗░██║██╔════╝░░░░░░░░░░
-██████╦╝██║░░██║██║░░██║░░░██║░░░██║██╔██╗██║██║░░██╗░░░░░░░░░░
-██╔══██╗██║░░██║██║░░██║░░░██║░░░██║██║╚████║██║░░╚██╗░░░░░░░░░
-██████╦╝╚█████╔╝╚█████╔╝░░░██║░░░██║██║░╚███║╚██████╔╝██╗██╗██╗
-╚═════╝░░╚════╝░░╚════╝░░░░╚═╝░░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝╚═╝╚═╝\`)
-console.log(\`Code Loaded!\`)
-require("./bot")
-}
-load()`);
-                    }*/
+                    }
                     zip.file("index.js", javascriptContent);
-                    /*
-                    zip.file(".replit", 'run = "npm start"');
-                  zip.file("database.json", "{}");
-                  */
                     zip.file("package.json", `{\n
-                        "name": "scratch-for-discord-bot",\n
-                        "version": "1.0.0",\n
-                        "main": "index.js",\n
-                        "scripts": {\n
-                            "start": "npm i && node .",\n
-                            "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",\n
-                            "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i"\n
-                        },\n
-                        "dependencies": {\n
-                            "moment": "latest",\n
-                            ${requireUsed}\n
-                            
-                        },\n
-                        "devDependencies": {\n
-                            "node": "^17"\n
-                        }\n
-                    }`)
+    "name": "scratch-for-discord-bot",\n
+    "version": "1.0.0",\n
+    "main": "index.js",\n
+    "scripts": {\n
+        "start": "npm i && node .",\n
+        "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",\n
+        "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i"\n
+    },\n
+    "dependencies": {\n
+        "moment": "latest",\n
+        ${requireUsed}
+    },\n
+    "devDependencies": {\n
+        "node": "^18"\n
+    }\n
+}`)
                     zip.generateAsync({
                         type: "blob"
                     })
@@ -792,10 +738,12 @@ load()`);
                 return;
             }
             const wrapper = document.createElement('div');
-            wrapper.innerHTML = `<h6>Manage S4D content here.</h6>`
+            wrapper.innerHTML = `<h6>Manage S4D content here.</h6>`;
+            // TODO: Just whyyyyyyyyyyyyyyyyyyyy aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            // Convert to swal2
             this.$swal({
                 title: "Utilities",
-                content: wrapper,
+                html: wrapper,
                 buttons: {
                     cancel: "Exit",
                     settings: "Settings",
@@ -810,7 +758,7 @@ load()`);
                 if (String(result) == "clear") {
                     const wrapper = document.createElement('div');
                     wrapper.innerHTML = `Are you sure?`
-                    this.$swal({
+                    this.$swal.fire({
                         title: "Clear autosave",
                         content: wrapper,
                         dangerMode: true,
@@ -857,25 +805,15 @@ load()`);
   <label for="file6"> boot.js</label><br><br>
   <input type="checkbox" id="ZIP">
   <label for="ZIP"> ZIP Files</label>-->`;
-                        //     zip.file(".replit", 'run = "npm start"');
-                        //   zip.file("database.json", "{}");
-                        this.$swal({
+                        this.$swal.fire({
                             title: "Which file are you downloading?",
-                            content: wrapper,
+                            html: wrapper,
                             icon: 'warning',
-                            buttons: {
-                                cancel: "Nevermind...",
-                                confirm: "Download"
-                                //     file1: "bot.js",
-                                //     file2: "package.json",
-                                //     file3: "blocks.xml",
-                                //     file4: ".replit",
-                                //     file5: "database.json",
-                                //     file6: "boot.js"
-                            },
+                            showCancelButton: true,
+                            cancelButtonText: "Nevermind...",
+                            confirmButtonText: "Download"
                         }).then(async (result) => {
-                            console.log(result)
-                            if ((result == true)) {
+                            if (result.isConfirmed) {
                                 var file1 = document.getElementById('file1').checked
                                 var file2 = document.getElementById('file2').checked
                                 var file3 = document.getElementById('file3').checked
@@ -883,12 +821,6 @@ load()`);
                                 // var file5 = document.getElementById('file5').checked
                                 // var file6 = document.getElementById('file6').checked
                                 //var zip = document.getElementById('ZIP').checked
-                                console.log(file1)
-                                console.log(file2)
-                                console.log(file3)
-                                // console.log(file4)
-                                // console.log(file5)
-                                // console.log(file6)
                                 //console.log(zip)
                                 if (file1) {
                                     console.log("barry: hey can you go grab their code")
@@ -917,23 +849,23 @@ load()`);
                                         requireUsed = requireUsed.substring(0, (requireUsed.length - 1))
                                     }
                                     const javascriptContent = `{\n
-                        "name": "scratch-for-discord-bot",\n
-                        "version": "1.0.0",\n
-                        "main": "index.js",\n
-                        "scripts": {\n
-                            "start": "npm i && node .",\n
-                            "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",\n
-                            "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i"\n
-                        },\n
-                        "dependencies": {\n
-                            "moment": "latest",\n
-                            ${requireUsed}\n
-                            
-                        },\n
-                        "devDependencies": {\n
-                            "node": "^17"\n
-                        }\n
-                    }`;
+    "name": "scratch-for-discord-bot",\n
+    "version": "1.0.0",\n
+    "main": "index.js",\n
+    "scripts": {\n
+        "start": "npm i && node .",\n
+        "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",\n
+        "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i"\n
+    },\n
+    "dependencies": {\n
+        "moment": "latest",\n
+        ${requireUsed}\n
+
+    },\n
+    "devDependencies": {\n
+        "node": "^17"\n
+    }\n
+}`;
                                     const blob = new Blob([javascriptContent])
                                     const a = document.createElement("a");
                                     a.style = "display: none";
@@ -1032,55 +964,52 @@ load()`])
                 } else if (String(result) == "manage") {
                     const wrapper = document.createElement('div');
                     wrapper.innerHTML = ``
-                    this.$swal({
+                    this.$swal.fire({
                         title: "Favorites manager",
                         content: wrapper,
-                        dangerMode: true,
-                        buttons: {
-                            cancel: "Cancel",
-                            clF: "Clear Favorites",
-                            mnF: "Manual Favorite"
-                        },
+                        icon: "warning",
+                        showCancelButton: true,
+                        showDenyButton: true,
+                        cancelButtonText: "Cancel",
+                        confirmButtonText: "Manual Favorite",
+                        denyButtonText: "Clear Favorites",
                     }).then(async (result) => {
-                        if (String(result) == "clF") {
-                            localforage.setItem("fav", null)
-                            console.log("Favorites cleared...")
-                        } else if (String(result) == "mnF") {
+                        if (result.isDenied) {
+                            localforage.setItem("fav", null);
+                            console.log("Favorites cleared...");
+                        } else if (result.isConfirmed) {
                             const wrapper = document.createElement('div');
                             wrapper.innerHTML = `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`
-                            this.$swal({
+                            this.$swal.fire({
                                 title: "Add a block to favorites",
-                                content: wrapper,
-                                buttons: {
-                                    cancel: "Cancel",
-                                    confirm: "Add"
-                                },
+                                html: wrapper,
+                                showCancelButton: true,
+                                cancelButtonText:  "Cancel",
+                                confirmButtonText: "Add"
                             }).then(async (result) => {
-                                if (result) {
-                                    localforage.getItem("fav").then((favs) => {
-                                        let block = document.getElementById("block").value.replaceAll(" ", "_").replaceAll("<", "_").replaceAll(">", "_").replaceAll("/", "_")
-                                        console.log("Adding block", block, "to favorites")
-                                        console.log(favs)
-                                        if (favs != null) {
-                                            let newArray = favs
-                                            newArray.push(block)
-                                            localforage.setItem("fav", newArray)
-                                        } else {
-                                            localforage.setItem("fav", [block])
-                                        }
-                                    })
-                                }
+                                if (!result.isConfirmed) return;
+                                localforage.getItem("fav").then((favs) => {
+                                    let block = document.getElementById("block").value.replaceAll(" ", "_").replaceAll("<", "_").replaceAll(">", "_").replaceAll("/", "_")
+                                    console.log("Adding block", block, "to favorites")
+                                    console.log(favs)
+                                    if (favs != null) {
+                                        let newArray = favs
+                                        newArray.push(block)
+                                        localforage.setItem("fav", newArray)
+                                    } else {
+                                        localforage.setItem("fav", [block])
+                                    }
+                                })
                             })
                         }
                     })
                 } else if (String(result) == "tokendb") {
                     const wrapper = document.createElement('div');
                     wrapper.innerHTML = `Token Database can be used to store your tokens so you don't need to go back to the Discord Developer Portal to get them.`
+                    // TODO: yet another, swal 2
                     this.$swal({
                         title: "Token Database",
                         content: wrapper,
-                        // content: `Token Database can be used to store your tokens so you don't need to go back to the Discord Developer Portal to get them.`,
-                        // dangerMode: true,
                         buttons: {
                             cancel: "Cancel",
                             delete: "Delete Token",
@@ -1114,12 +1043,10 @@ load()`])
                         }
                         swal.fire({
                             title: this.$t("token.deletee.title"),
-                            html: `
-        ${this.$t("token.deletee.text")}<br><br>
-        <select class="custom-select" id="restore-select">
-            ${keys.map((key) => `<option><b>${key.replace("token-", "")}</b></option>`)}
-        </select>
-      `,
+                            html: `${this.$t("token.deletee.text")}<br><br>
+<select class="custom-select" id="restore-select">
+    ${keys.map((key) => `<option><b>${key.replace("token-", "")}</b></option>`)}
+</select>`,
                             showCancelButton: true,
                             cancelButtonText: this.$t("token.deletee.cancel"),
                             confirmButtonText: this.$t("token.deletee.load"),
@@ -1282,6 +1209,7 @@ load()`])
                 } else if (String(result) == "prebuilds") {
                     const wrapper = document.createElement('div');
                     wrapper.innerHTML = `Prebuilds can be used to save your projects in browser to load them later.`
+                    // TODO: swal 2
                     this.$swal({
                         title: "Prebuilds",
                         content: wrapper,
@@ -1534,15 +1462,14 @@ load()`])
                 } else if (String(result) == "optimizations") {
                     const wrapper = document.createElement('div');
                     wrapper.innerHTML = `<h6>Most of these optimizations are minor, but can help if you have a good amount of blocks.</h6><h4><b>These do require a refresh to fully work.</b></h4>`
-                    this.$swal({
+                    this.$swal.fire({
                         title: "Site Optimizations",
-                        content: wrapper,
-                        buttons: {
-                            cancel: "Cancel",
-                            dbc: "Toggle Block Counter"
-                        },
+                        html: wrapper,
+                        showCancelButton: true,
+                        cancelButtonText: "Cancel",
+                        confirmButtonText: "Toggle Block Counter"
                     }).then(async (result) => {
-                        if (String(result) == "dbc") {
+                        if (result.isConfirmed) {
                             localforage.getItem("hide-blockcount").then((item) => {
                                 if (item == null) {
                                     localforage.setItem("hide-blockcount", true)
@@ -1560,6 +1487,7 @@ load()`])
                 } else if (String(result) == "settings") {
                     const wrapper = document.createElement('div');
                     wrapper.innerHTML = `Toggle shortcuts being enabled and change the theme!`
+                    // TODO: swal 2
                     this.$swal({
                         title: "S4D Site Settings",
                         content: wrapper,
@@ -1574,7 +1502,7 @@ load()`])
                             localforage.getItem("utilitiesShortcuts").then(item => {
                                 localforage.setItem("utilitiesShortcuts", (item == null ? false : null)).then(() => {
                                     localforage.getItem("utilitiesShortcuts").then(item => {
-                                        this.$swal({
+                                        this.$swal.fire({
                                             title: "Updated shortcuts!",
                                             text: `Shortcuts have been toggled ${item == null ? "on" : "off"}. Please refresh the page.`,
                                             icon: "success"
@@ -1676,30 +1604,28 @@ load()`])
                                     localforage.setItem("utilitiesTheme", "gray")
                                     break
                                 case "t6":
-                                    this.$swal({
+                                    this.$swal.fire({
                                         title: "Performance Warning!",
                                         text: "This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?",
                                         icon: "warning",
-                                        buttons: {
-                                            cancel: "Cancel",
-                                            ye: "Use this theme"
-                                        },
+                                        showCancelButton: true,
+                                        cancelButtonText: "Cancel",
+                                        confirmButtonText: "Use this theme"
                                     }).then(async result => {
-                                        if (String(result) != "ye") return
+                                        if (!result.isConfirmed) return;
                                         localforage.setItem("utilitiesTheme", "glow")
                                     })
                                     break
                                 case "t7":
-                                    this.$swal({
+                                    this.$swal.fire({
                                         title: "Warning!",
                                         text: "This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?",
                                         icon: "warning",
-                                        buttons: {
-                                            cancel: "Cancel",
-                                            ye: "Use this theme"
-                                        },
+                                        showCancelButton: true,
+                                        cancelButtonText: "Cancel",
+                                        confirmButtonText: "Use this theme"
                                     }).then(async result => {
-                                        if (String(result) != "ye") return
+                                        if (!result.isConfirmed) return;
                                         localforage.setItem("utilitiesTheme", "scratch-top")
                                     })
                                     break
@@ -1707,16 +1633,15 @@ load()`])
                                     localforage.setItem("utilitiesTheme", "full-colors")
                                     break
                                 case "t9":
-                                    this.$swal({
+                                    this.$swal.fire({
                                         title: "Warning!",
                                         text: "This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?",
                                         icon: "warning",
-                                        buttons: {
-                                            cancel: "Cancel",
-                                            ye: "Use this theme"
-                                        },
+                                        showCancelButton: true,
+                                        cancelButtonText: "Cancel",
+                                        confirmButtonText: "Use this theme"
                                     }).then(async result => {
-                                        if (String(result) != "ye") return
+                                        if (!result.isConfirmed) return;
                                         localforage.setItem("utilitiesTheme", "text-only")
                                     })
                                     break
@@ -1730,154 +1655,119 @@ load()`])
             })
         },
         runbot(){
-            // const wrapper = document.createElement('div');
-            // wrapper.innerHTML = `<!--<h6>Run your bot?</h6>
-            // <ul>
-            //     <li style='text-align:left'>${this.$t('download.content.unzipFile')}</li>
-            //     <li style='text-align:left'>${this.$t('download.content.node')}</li>
-            //     <li style='text-align:left'>${this.$t('download.content.start')}</li>
-            //     <li style='text-align:left'>${this.$t('download.content.done')}</li>
-            // </ul>-->`;
             const wrapper = document.createElement('div');
             wrapper.innerHTML = `<h6>You will have to manually stop your bot in Discord!</h6>You also might not get a response until the bot gets an error, or stops.`
-            this.$swal({
+            this.$swal.fire({
                 title: "Start your bot?",
+                html: wrapper,
                 icon: "warning",
-                content: wrapper,
-                buttons: {
-                    cancel: "Cancel",
-                    run: "Yes!"
-                },
+                showCancelButton: true,
+                cancelButtonText: "Cancel",
+                confirmButtonText: "Yes!"
             }).then(async (result) => {
-                if (result == "run") {
-                    console.log("johnathan: run the bot bro")
-                    console.log("barry: mk lemme just package up the code they made")
-                    console.log("johnathan: ok tell me when your done")
-                    console.log("barry: ok")
-                    const javascriptContent = this.getWorkspaceCode();
-                    // http.createServer((req, res) => {
-                    // let serverjs = 'true'
-                    const workspace = this.$store.state.workspace
-                    const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-                    // block type="frost_env"
-                    // block type="frost_webserver"
-                    // const banned_music_blocks = [
-                    //     `<block type="first_track"`,
-                    //     `<block type="track_start"`,
-                    //     `<block type="empty"`,
-                    //     `<block type="kicked"`,
-                    //     `<block type="queue_error"`,
-                    //     `<block type="track_added"`,
-                    //     `<block type="discord_connect"`,
-                    //     `<block type="better_stop"`,
-                    //     `<block type="better_play"`,
-                    // ]
-                    // jg_express_start_website_then_using_port
-                    function customBlocksHasAMcxdondalldakdoij9() {
-                        let epic = false
-                        window.customBlocks.forEach(name => {
-                            workspace.getAllBlocks().forEach(block => {
-                                if (block.type == name) epic = true
-                            })
+                if (!result.isConfirmed) return;
+                console.log("johnathan: run the bot bro")
+                console.log("barry: mk lemme just package up the code they made")
+                console.log("johnathan: ok tell me when your done")
+                console.log("barry: ok")
+                const javascriptContent = this.getWorkspaceCode();
+                const workspace = this.$store.state.workspace
+                const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+                function customBlocksHasAMcxdondalldakdoij9() {
+                    let epic = false
+                    window.customBlocks.forEach(name => {
+                        workspace.getAllBlocks().forEach(block => {
+                            if (block.type == name) epic = true
                         })
-                        return epic
+                    })
+                    return epic
+                }
+                if (
+                    javascriptContent.includes("process.env") ||
+                    javascriptContent.includes("http.createServer((req, res) => {") ||
+                    xmlContent.includes("block type=\"frost_webserver\"") ||
+                    xmlContent.includes("block type=\"frost_env\"")
+                ) {
+                    swal.fire("Your bot contains a replit block. Please remove it before continuing.", "You may have a process.env block or a webserver block placed somewhere.", "error")
+                    console.log("barry: ok so i finished but the user has incompatible blocks")
+                    console.log("johnathan: damn")
+                    console.error("barry and johnathan found replit blocks...")
+                    return;
+                } else if (
+                    xmlContent.includes("block type=\"blank_code\"") ||
+                    xmlContent.includes("block type=\"s4d_eval\"") ||
+                    xmlContent.includes("block type=\"s4d_eval2\"") ||
+                    xmlContent.includes("block type=\"s4d_exec\"") ||
+                    xmlContent.includes("block type=\"jg_s4d_other_run_code_inside_file\"")
+                ) {
+                    swal.fire("Your bot contains blocks that run or insert code.", "Remove any \"insert code\" or \"run code\" blocks before running.", "error")
+                    console.log("barry: ok so i finished but the user has custom code blocks")
+                    console.log("johnathan: damn")
+                    console.error("barry and johnathan found insert or run code blocks...")
+                    return;
+                } else if (
+                    xmlContent.includes("block type=\"simple_host_auth\"")
+                ) {
+                    swal.fire("Your bot contains blocks for Simple Host.", "Remove any \"Simple Host Auth\" blocks before running.", "error")
+                    console.log("barry: ok so i finished but the user uses simple host")
+                    console.log("johnathan: LMAOOOOOOOOOOOOOOOOOOOOOOOO")
+                    console.error("barry and johnathan found out you use simple host...")
+                    return;
+                } else if (
+                    xmlContent.includes("block type=\"jg_express_start_website_then_using_port\"")
+                ) {
+                    swal.fire("Your bot contains blocks for starting websites.", "Remove any \"start website\" blocks before running.", "error")
+                    console.log("barry: ok so i finished but the user has website block")
+                    console.log("johnathan: zamn")
+                    console.error("barry and johnathan found out you have a website...")
+                    return;
+                } else if (
+                    customBlocksHasAMcxdondalldakdoij9()
+                ) {
+                    swal.fire("Your bot contains custom blocks.", "Custom blocks are currently unsupported for the run button. Please remove them before continuing.", "error")
+                    console.log("barry: this mf got custom blocks")
+                    console.log("johnathan: dayumm")
+                    console.error("barry and johnathan found out you are epic gamer...")
+                    return;
+                } else if (
+                    window.isInS4DDebugMode == true
+                ) {
+                    swal.fire("S4D is currently in debug mode.", "Please disable debug mode to run your bot.", "error")
+                    console.log("barry: placeholder")
+                    console.log("johnathan: placeholder")
+                    console.error("placeholder")
+                    return;
+                }
+                let api_key = process.env.VUE_APP_KEY
+                let modifiedJScontent = javascriptContent.replaceAll("const S4D_APP_RUN_BUTTON = false", "const S4D_APP_RUN_BUTTON = true")
+                console.log("barry: done")
+                console.log("johnathan: ok go send the post request")
+                console.log("barry: ok")
+                console.log("epic server: now going to be sending POST request to JeremyGamer13s dumb and insecure API!!1!1!!")
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        key: api_key,
+                        code: modifiedJScontent,
+                        update: "2"
+                    })
+                };
+                try {
+                    if (api_key == null) {
+                        swal.fire(
+                            "Cool! However..",
+                            `The bot would have been sent,<br><aew3f2 style="color:#188DC8">but the server S4D is currently running on does not have an API key present.</aew3f2><br><br><p>Using Netlify? <a href="https://scratch-for-discord-469.vercel.app/">Click here to go to Vercel!</a></p><!--<br><h6 style="color:#188DC8">This menu popped up because the API key is not present.</h6>-->`,
+                            "info"
+                        )
+                        console.log("epic server: POST request pretended to be sent to JeremyGamer13s dumb and insecure API😀😁😀👍😁👍👍👍")
+                        console.log("barry: technically done")
+                        console.log("johnathan: nice, now lets get back to work")
+                        console.log("Code that would have been sent:")
+                        console.log(modifiedJScontent)
+                        return;
                     }
-                    if (
-                        javascriptContent.includes("process.env") ||
-                        javascriptContent.includes("http.createServer((req, res) => {") ||
-                        xmlContent.includes("block type=\"frost_webserver\"") ||
-                        xmlContent.includes("block type=\"frost_env\"")
-                    ) {
-                        swal.fire("Your bot contains a replit block. Please remove it before continuing.", "You may have a process.env block or a webserver block placed somewhere.", "error")
-                        console.log("barry: ok so i finished but the user has incompatible blocks")
-                        console.log("johnathan: damn")
-                        console.error("barry and johnathan found replit blocks...")
-                        return;
-                    } else if (
-                        xmlContent.includes("block type=\"blank_code\"") ||
-                        xmlContent.includes("block type=\"s4d_eval\"") ||
-                        xmlContent.includes("block type=\"s4d_eval2\"") ||
-                        xmlContent.includes("block type=\"s4d_exec\"") ||
-                        xmlContent.includes("block type=\"jg_s4d_other_run_code_inside_file\"")
-                    ) {
-                        swal.fire("Your bot contains blocks that run or insert code.", "Remove any \"insert code\" or \"run code\" blocks before running.", "error")
-                        console.log("barry: ok so i finished but the user has custom code blocks")
-                        console.log("johnathan: damn")
-                        console.error("barry and johnathan found insert or run code blocks...")
-                        return;
-                    } else if (
-                        xmlContent.includes("block type=\"simple_host_auth\"")
-                    ) {
-                        swal.fire("Your bot contains blocks for Simple Host.", "Remove any \"Simple Host Auth\" blocks before running.", "error")
-                        console.log("barry: ok so i finished but the user uses simple host")
-                        console.log("johnathan: LMAOOOOOOOOOOOOOOOOOOOOOOOO")
-                        console.error("barry and johnathan found out you use simple host...")
-                        return;
-                    } else if (
-                        xmlContent.includes("block type=\"jg_express_start_website_then_using_port\"")
-                    ) {
-                        swal.fire("Your bot contains blocks for starting websites.", "Remove any \"start website\" blocks before running.", "error")
-                        console.log("barry: ok so i finished but the user has website block")
-                        console.log("johnathan: zamn")
-                        console.error("barry and johnathan found out you have a website...")
-                        return;
-                    } else if (
-                        customBlocksHasAMcxdondalldakdoij9()
-                    ) {
-                        swal.fire("Your bot contains custom blocks.", "Custom blocks are currently unsupported for the run button. Please remove them before continuing.", "error")
-                        console.log("barry: this mf got custom blocks")
-                        console.log("johnathan: dayumm")
-                        console.error("barry and johnathan found out you are epic gamer...")
-                        return;
-                    } else if (
-                        window.isInS4DDebugMode == true
-                    ) {
-                        swal.fire("S4D is currently in debug mode.", "Please disable debug mode to run your bot.", "error")
-                        console.log("barry: placeholder")
-                        console.log("johnathan: placeholder")
-                        console.error("placeholder")
-                        return;
-                    }
-                    //  else if (
-                    //     banned_music_blocks.includes(xmlContent)
-                    // ) {
-                    //     swal.fire("Your bot contains Music blocks.", "Remove any music blocks before running.", "error")
-                    //     console.log("barry: ok so i finished but the user has music blocks")
-                    //     console.log("johnathan: bruh")
-                    //     console.error("barry and johnathan found music blocks...")
-                    //     return;
-                    // }
-                    let api_key = process.env.VUE_APP_KEY
-                    let modifiedJScontent = javascriptContent.replaceAll("const S4D_APP_RUN_BUTTON = false", "const S4D_APP_RUN_BUTTON = true")
-                    console.log("barry: done")
-                    console.log("johnathan: ok go send the post request")
-                    console.log("barry: ok")
-                    console.log("epic server: now going to be sending POST request to JeremyGamer13s dumb and insecure API!!1!1!!")
-                    const requestOptions = {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            key: api_key,
-                            code: modifiedJScontent,
-                            update: "2"
-                        })
-                    };
-                    try {
-                        if (api_key == null) {
-                            swal.fire(
-                                "Cool! However..",
-                                `The bot would have been sent,<br><aew3f2 style="color:#188DC8">but the server S4D is currently running on does not have an API key present.</aew3f2><br><br><p>Using Netlify? <a href="https://scratch-for-discord-469.vercel.app/">Click here to go to Vercel!</a></p><!--<br><h6 style="color:#188DC8">This menu popped up because the API key is not present.</h6>-->`,
-                                "info"
-                            )
-                            console.log("epic server: POST request pretended to be sent to JeremyGamer13s dumb and insecure API😀😁😀👍😁👍👍👍")
-                            console.log("barry: technically done")
-                            console.log("johnathan: nice, now lets get back to work")
-                            console.log("Code that would have been sent:")
-                            console.log(modifiedJScontent)
-                            return;
-                        }
-                        fetch('https://469runtest.jeremygamer13.repl.co/?imbored=true', requestOptions)
-                        // fetch('https://469runtest.jeremygamer13.repl.co/?imbored=true')
+                    fetch('https://469runtest.jeremygamer13.repl.co/?imbored=true', requestOptions)
                         .then(async (response) => {
                             console.log(response)
                             console.log("S4D sent a request, the response status code is", response.status)
@@ -1915,9 +1805,7 @@ load()`])
                                 )
                             }
                         })
-                    }
-                    catch (err)
-                    {
+                    } catch (err) {
                         swal.fire(
                             "An error occurred!",
                             String(err),
@@ -1930,10 +1818,6 @@ load()`])
                         console.log("johnathan: damn we gotta get back to work barry")
                         console.log("barry: sorry epic server but we gotta go for now")
                     }
-                    // .then(response => response.json())
-                    // .then(data => element.innerHTML = data.id );
-                    
-                }
             })
         },
         console(){
