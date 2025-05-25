@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" style="background-color:#161719;user-select:none;" id="navbar nav-main">
+    <b-navbar toggleable="lg" style="background-color:#161719!important;user-select:none;" id="navbar nav-main" class="navbar-dark bg-dark">
         <b-navbar-brand style="font-size: 120%;">
             <button id="hideAllGuiElements" class="hide-gui-button"><img :src="decideNavBarImage" width="35" draggable="false" id="navigationBarS4DImage"></button>
             Scratch For Discord
@@ -21,7 +21,7 @@
                 <shortcuts style="font-size: small;"></shortcuts>
                 <Credit style="font-size: small;"></Credit>
             </b-navbar-nav>
-            <b-navbar-nav class="ml-auto">
+            <b-navbar-nav class="ms-auto">
                 <div id="block-counter" style="margin-right: 5px; font-size: 90%">
                     <p id="block-counter-textParagraph" style="color:rgb(182, 182, 182);">0 blocks</p>
                 </div>
