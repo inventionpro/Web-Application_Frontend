@@ -1,2 +1,2 @@
-import "./info"
-import "./info2"
+import './info';
+import './info2';

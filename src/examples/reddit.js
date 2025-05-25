@@ -78,4 +78,4 @@ export default `
       </block>
     </statement>
   </block>
-</xml>`
+</xml>`;

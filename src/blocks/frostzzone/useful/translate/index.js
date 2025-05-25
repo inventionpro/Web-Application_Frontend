@@ -1,1 +1,1 @@
-import "./translate"
+import './translate';

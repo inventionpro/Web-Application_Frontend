@@ -1,3 +1,3 @@
-import "./when"
-import "./leave"
-import "./switch"
+import './when';
+import './leave';
+import './switch';

@@ -1,1 +1,1 @@
-import "./No Code"
+import './No Code';

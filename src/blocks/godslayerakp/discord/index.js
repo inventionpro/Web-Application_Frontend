@@ -1,4 +1,4 @@
-import "./embeds"
-import "./modals"
-import "./roles"
-import "./banner"
+import './embeds';
+import './modals';
+import './roles';
+import './banner';

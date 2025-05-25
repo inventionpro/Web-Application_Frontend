@@ -1,2 +1,2 @@
-import "./name";
-import "./on_delete.js"
+import './name';
+import './on_delete.js';

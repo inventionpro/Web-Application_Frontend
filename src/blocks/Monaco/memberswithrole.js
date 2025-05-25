@@ -1,26 +1,26 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "monaco_members_with_role";
+const blockName = 'monaco_members_with_role';
 
 const blockData = {
-  "type": "monaco_members_with_role",
-  "message0": "get all members with role %1",
-  "args0": [
+  type: 'monaco_members_with_role',
+  message0: 'get all members with role %1',
+  args0: [
     {
-      "type": "input_value",
-      "name": "role",
-      "check": "Role"
+      type: 'input_value',
+      name: 'role',
+      check: 'Role'
     }
   ],
-  "colour": "#4C97FF",
-  "output": "Members",
-  "inputsInline": true,
-  "tooltip": "Get all members with role",
-  "helpUrl": ""
+  colour: '#4C97FF',
+  output: 'Members',
+  inputsInline: true,
+  tooltip: 'Get all members with role',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-  init: function () {
+  init: function() {
     this.jsonInit(blockData);
   }
 };

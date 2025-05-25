@@ -1,45 +1,46 @@
-import * as Blockly from "blockly";
-const blockName = "ahq-mod";
+import * as Blockly from 'blockly';
+const blockName = 'ahq-mod';
 
 const blockData = {
-    "type": "block_type",
-    "message0": "Create an all in one mod bot %1 Anti-nsfw %2 anti-nsfw (deepai) api token %3",
-    "args0": [
+  type: 'block_type',
+  message0: 'Create an all in one mod bot %1 Anti-nsfw %2 anti-nsfw (deepai) api token %3',
+  args0: [
     {
-        "type": "input_dummy"
+      type: 'input_dummy'
     },
     {
-        "type": "input_value",
-        "name": "anti-nsfw",
-        "check": "Boolean"
+      type: 'input_value',
+      name: 'anti-nsfw',
+      check: 'Boolean'
     },
     {
-        "type": "input_value",
-        "name": "deepai",
-        "check": "String"
-    }],
-    "colour": '#ff0000',
-    "tooltip": "If you want to get anti-nsfw (deepai) api key go to https://deepai.org/ and register an account for api key",
-    "helpUrl": "https://deepai.org/"
+      type: 'input_value',
+      name: 'deepai',
+      check: 'String'
+    }
+  ],
+  colour: '#ff0000',
+  tooltip: 'If you want to get anti-nsfw (deepai) api key go to https://deepai.org/ and register an account for api key',
+  helpUrl: 'https://deepai.org/'
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 Blockly.JavaScript[blockName] = function(block) {
-    const f = Blockly.JavaScript.valueToCode(block, "anti-nsfw", Blockly.JavaScript.ORDER_NONE);
-    const e = Blockly.JavaScript.valueToCode(block, "deepai", Blockly.JavaScript.ORDER_NONE);
-    let token = "";
-    let extra = "";
-    if ((f || "false") == "false") {
-        token = ""
-    } else {
-        token = e
-    }
-    if (token !== "") {
-        extra = `
+  const f = Blockly.JavaScript.valueToCode(block, 'anti-nsfw', Blockly.JavaScript.ORDER_NONE);
+  const e = Blockly.JavaScript.valueToCode(block, 'deepai', Blockly.JavaScript.ORDER_NONE);
+  let token = '';
+  let extra = '';
+  if ((f || 'false') == 'false') {
+    token = '';
+  } else {
+    token = e;
+  }
+  if (token !== '') {
+    extra = `
         const deepai = require('deepai');
         deepai.setApiKey(${token});
         async function nsfw(test, reply) {
@@ -75,9 +76,9 @@ Blockly.JavaScript[blockName] = function(block) {
     }
 }
     s4d.client.on("messageCreate", async(m) => m.attachments.forEach(a => nsfw(a, m)));
-    `
-    }
-    let code =  `//ahq mod api
+    `;
+  }
+  let code = `//ahq mod api
     ${extra}
     const {AntiRaid} = require('discord-antiraid');
     const antiraid = new AntiRaid(s4d.client, {
@@ -138,5 +139,5 @@ Blockly.JavaScript[blockName] = function(block) {
         }
     });
     `;
-    return code;
+  return code;
 };

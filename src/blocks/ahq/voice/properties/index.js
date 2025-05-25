@@ -1,1 +1,1 @@
-import "./prop"
+import './prop';

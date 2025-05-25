@@ -1,2 +1,2 @@
-import "./on_stickerupdate";
-import "./name";
+import './on_stickerupdate';
+import './name';

@@ -1,1 +1,1 @@
-import "./on_ban_remove"
+import './on_ban_remove';

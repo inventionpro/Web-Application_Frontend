@@ -1,3 +1,3 @@
-import "./events/"
-import "./properties/"
-import "./functions/"
+import './events/';
+import './properties/';
+import './functions/';

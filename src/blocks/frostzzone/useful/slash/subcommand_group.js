@@ -1,39 +1,39 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "frost_slash_sub_command_group";
+const blockName = 'frost_slash_sub_command_group';
 
 const blockData = {
-    "message0": "Create slash Sub Command group Name %1 Description %2 %3 Sub Commands %4",
-  "args0": [
+  message0: 'Create slash Sub Command group Name %1 Description %2 %3 Sub Commands %4',
+  args0: [
     {
-      "type": "input_value",
-      "name": "NAME",
-      "check": "String"
+      type: 'input_value',
+      name: 'NAME',
+      check: 'String'
     },
     {
-      "type": "input_value",
-      "name": "DESC",
-      "check": "String"
+      type: 'input_value',
+      name: 'DESC',
+      check: 'String'
     },
     {
-      "type": "input_dummy"
+      type: 'input_dummy'
     },
     {
-      "type": "input_statement",
-      "name": "OPTIONS"
+      type: 'input_statement',
+      name: 'OPTIONS'
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
-  "colour": "#4180d9",
-  "tooltip": "",
-  "helpUrl": ""
+  previousStatement: null,
+  nextStatement: null,
+  colour: '#4180d9',
+  tooltip: '',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript[blockName] = function(block) {

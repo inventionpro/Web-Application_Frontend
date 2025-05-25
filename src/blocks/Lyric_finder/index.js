@@ -1,2 +1,2 @@
-import "./find_lyric_than"
-import "./lyric"
+import './find_lyric_than';
+import './lyric';

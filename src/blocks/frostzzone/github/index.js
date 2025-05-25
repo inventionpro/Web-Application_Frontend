@@ -1,2 +1,2 @@
-import "./profile"
-import "./get"
+import './profile';
+import './get';

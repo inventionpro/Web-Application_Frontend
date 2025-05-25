@@ -1,21 +1,20 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "slash_message_channel";
+const blockName = 'slash_message_channel';
 
 const blockData = {
-    "message0": "[Slash] Message channel",
-    "colour":"#d14081",
-		"args0": [
-		],
-    "tooltip": null,
-    "output": "Channel",
-    "helpUrl": ""
+  message0: '[Slash] Message channel',
+  colour: '#d14081',
+  args0: [],
+  tooltip: null,
+  output: 'Channel',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript[blockName] = function() {

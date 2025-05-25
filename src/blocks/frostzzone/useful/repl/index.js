@@ -1,2 +1,2 @@
-import "./env"
-import "./webserver"
+import './env';
+import './webserver';

@@ -1,4 +1,4 @@
-import "./textisboolean"
-import "./booleanoftext"
-import "./texthasnumbers"
-import "./randomletterofstring"
+import './textisboolean';
+import './booleanoftext';
+import './texthasnumbers';
+import './randomletterofstring';

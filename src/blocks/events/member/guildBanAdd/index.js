@@ -1,1 +1,1 @@
-import "./on_ban"
+import './on_ban';

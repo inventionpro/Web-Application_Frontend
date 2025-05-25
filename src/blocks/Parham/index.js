@@ -1,3 +1,3 @@
-import "./Other"
-import "./Slash"
-import "./Replit DB"
+import './Other';
+import './Slash';
+import './Replit DB';

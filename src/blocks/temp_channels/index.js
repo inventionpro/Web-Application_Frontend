@@ -1,3 +1,3 @@
-import "./register"
-import "./member_name"
-import "./unregister"
+import './register';
+import './member_name';
+import './unregister';

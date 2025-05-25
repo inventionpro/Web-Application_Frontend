@@ -1,6 +1,6 @@
 module.exports = {
-    LoadEvents: "const guildEvent = (event) => require(`../events/guild/${event}`);\nconst Discord = require('discord.js');\nfunction loadEvents(s4d) {\n  const cooldowns = new Discord.Collection();\ns4d.client.on('messageCreate', (m) => guildEvent('messageCreate')(m, cooldowns));\n}module.exports = {\n  loadEvents, \n};",
-    LoadCommands: `function loadCommands(s4d) {
+  LoadEvents: "const guildEvent = (event) => require(`../events/guild/${event}`);\nconst Discord = require('discord.js');\nfunction loadEvents(s4d) {\n  const cooldowns = new Discord.Collection();\ns4d.client.on('messageCreate', (m) => guildEvent('messageCreate')(m, cooldowns));\n}module.exports = {\n  loadEvents, \n};",
+  LoadCommands: `function loadCommands(s4d) {
           const fs = require("fs");
             const array = []       
             const commandFolders = fs.readdirSync("./Commands");    
@@ -28,7 +28,7 @@ module.exports = {
             module.exports = {    
               loadCommands  
             };`,
-    messageCreate: `
+  messageCreate: `
     const smessage = require('../../settingMessages.js')
     const escapeRegex = (str) => str.replace(/[.*+?$^{}()|[]\\]/g, "\\$&");
     const { Collection, Discord } = require("discord.js")
@@ -162,7 +162,7 @@ module.exports = {
         message.channel.send({ content: msg("There was an error executing that command.") }).catch(console.error);
       }
     };`,
-    settings: `
+  settings: `
     module.exports = {
       OWNER_ID: '000000000000000',
       DEFAULT_PREFIX: '!',
@@ -176,4 +176,4 @@ module.exports = {
       COOLDOWN: 'You are on a cooldown, please wait!'
   }
     `
-}
+};

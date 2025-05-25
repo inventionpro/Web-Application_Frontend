@@ -1,2 +1,2 @@
-import "./getm"
-import "./rm"
+import './getm';
+import './rm';

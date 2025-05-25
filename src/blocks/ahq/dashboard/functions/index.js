@@ -1,5 +1,5 @@
-import "./text"
-import "./color"
-import "./boolean"
-import "./server"
-import "./value"
+import './text';
+import './color';
+import './boolean';
+import './server';
+import './value';

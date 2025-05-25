@@ -1,2 +1,2 @@
-import "./disc"
-import "./ch"
+import './disc';
+import './ch';

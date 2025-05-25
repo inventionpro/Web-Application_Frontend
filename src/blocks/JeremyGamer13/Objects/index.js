@@ -1,2 +1,2 @@
-import "./getObjVar"
-import "./blocks"
+import './getObjVar';
+import './blocks';

@@ -1,23 +1,22 @@
-import Blockly from "blockly/core";
+import Blockly from 'blockly/core';
 
-const blockName = "s4d_track_views";
+const blockName = 's4d_track_views';
 
 const blockData = {
-    "message0": "%{BKY_TRACK_VIEWS}",
-    "args0": [
-    ],
-    "output": "String",
-    "colour": "#a55b80",
-    "tooltip": "",
-    "helpUrl": ""
+  message0: '%{BKY_TRACK_VIEWS}',
+  args0: [],
+  output: 'String',
+  colour: '#a55b80',
+  tooltip: '',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript[blockName] = function() {
-    return [`track.views`, Blockly.JavaScript.ORDER_NONE ];
+  return [`track.views`, Blockly.JavaScript.ORDER_NONE];
 };

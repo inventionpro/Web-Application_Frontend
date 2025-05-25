@@ -1,2 +1,2 @@
-import "./xmltojson"
-import "./trololololol"
+import './xmltojson';
+import './trololololol';

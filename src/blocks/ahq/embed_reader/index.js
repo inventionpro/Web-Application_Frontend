@@ -1,2 +1,2 @@
-import "./is_embed"
-import "./embed"
+import './is_embed';
+import './embed';

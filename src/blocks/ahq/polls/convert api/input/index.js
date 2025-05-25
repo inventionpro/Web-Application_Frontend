@@ -1,2 +1,2 @@
-import "./button"
-import "./embed"
+import './button';
+import './embed';

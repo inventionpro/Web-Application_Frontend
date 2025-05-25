@@ -1,2 +1,2 @@
-import "./filled-bar";
-import "./split-bar";
+import './filled-bar';
+import './split-bar';

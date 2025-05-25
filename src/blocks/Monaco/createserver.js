@@ -1,32 +1,31 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "monaco_create_server";
-
+const blockName = 'monaco_create_server';
 
 const blockData = {
-    "message0": "create server with name %1 then %2",
-    "args0": [
-       {
-      "type": "input_value",
-      "name": "create",
-      "check": "String"
+  message0: 'create server with name %1 then %2',
+  args0: [
+    {
+      type: 'input_value',
+      name: 'create',
+      check: 'String'
     },
     {
-      "type": "input_statement",
-      "name": "then"
+      type: 'input_statement',
+      name: 'then'
     }
-    ],
-    "colour": "#4C97FF",
-"previousStatement": null,
-"nextStatement": null,
-    "tooltip": "Create a discord server. Only available if the bot is in fewer than 10 servers.",
-    "helpUrl": ""
+  ],
+  colour: '#4C97FF',
+  previousStatement: null,
+  nextStatement: null,
+  tooltip: 'Create a discord server. Only available if the bot is in fewer than 10 servers.',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript['monaco_create_server'] = function(block) {

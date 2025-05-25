@@ -1,3 +1,3 @@
-import "./on_create"
-import "./name";
-import "./channel";
+import './on_create';
+import './name';
+import './channel';

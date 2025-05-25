@@ -1,7 +1,7 @@
 /* eslint-disable no-import-assign */
 /**
  * @license
- * 
+ *
  * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,36 +22,35 @@
  * @author abbychau@gmail.com (Abby Chau)
  */
 
-
 import * as Blockly from 'blockly/core';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
-var renameVar = function (name) {
-	return name;
+var renameVar = function(name) {
+  return name;
 };
 
-const isMobile = function () {
-	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-}
+const isMobile = function() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
 
-Blockly.dialog.prompt = function (msg, defaultValue, callback) {
-	if (isMobile()) {
-		callback(renameVar(prompt("Variable:")))
-		return
-	}
-	Swal.fire({
-		title: "Variable:",
-		input: "text",
-		inputAttributes: {
-			autocapitalize: "off"
-		},
-		showCancelButton: true,
-		confirmButtonText: "Confirm",
-		showLoaderOnConfirm: true,
-		allowOutsideClick: () => !Swal.isLoading()
-	}).then(result => {
-		if (result.value) {
-			callback(renameVar(result.value));
-		}
-	});
+Blockly.dialog.prompt = function(msg, defaultValue, callback) {
+  if (isMobile()) {
+    callback(renameVar(prompt('Variable:')));
+    return;
+  }
+  Swal.fire({
+    title: 'Variable:',
+    input: 'text',
+    inputAttributes: {
+      autocapitalize: 'off'
+    },
+    showCancelButton: true,
+    confirmButtonText: 'Confirm',
+    showLoaderOnConfirm: true,
+    allowOutsideClick: () => !Swal.isLoading()
+  }).then(result => {
+    if (result.value) {
+      callback(renameVar(result.value));
+    }
+  });
 };

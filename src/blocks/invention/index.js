@@ -1,3 +1,3 @@
-import "./fsh/"
-import "./Other/"
-import "./Fivem/"
+import './fsh/';
+import './Other/';
+import './Fivem/';

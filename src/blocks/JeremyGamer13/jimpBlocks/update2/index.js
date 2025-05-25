@@ -1,1 +1,1 @@
-import "./drawtextaligned"
+import './drawtextaligned';

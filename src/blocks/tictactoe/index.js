@@ -1,2 +1,2 @@
-import "./start_game";
-import "./slash_start_game";
+import './start_game';
+import './slash_start_game';

@@ -1,29 +1,29 @@
-import Blockly from "blockly/core";
+import Blockly from 'blockly/core';
 
-const blockName = "inv_backup_list_get";
+const blockName = 'inv_backup_list_get';
 
 const blockData = {
-  "message0": "Get list of backups %1 %2",
-  "args0": [
+  message0: 'Get list of backups %1 %2',
+  args0: [
     {
-      "type": "input_dummy"
+      type: 'input_dummy'
     },
     {
-      "type": "input_statement",
-      "name": "code"
+      type: 'input_statement',
+      name: 'code'
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
-  "colour": "#4C97FF",
-  "tooltip": "Gets a list of backup ids",
-  "helpUrl": ""
+  previousStatement: null,
+  nextStatement: null,
+  colour: '#4C97FF',
+  tooltip: 'Gets a list of backup ids',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript[blockName] = function(block) {

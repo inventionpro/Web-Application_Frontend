@@ -1,1 +1,1 @@
-import "./start_db";
+import './start_db';

@@ -1,19 +1,18 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "url_image";
+const blockName = 'url_image';
 
 const blockData = {
- 
-  "message0": "Image URL",
-  "name": "url",
-  "output": ["String"],
-  "colour": "#05a386",
-  "tooltip": "",
-  "helpUrl": ""
-}
+  message0: 'Image URL',
+  name: 'url',
+  output: ['String'],
+  colour: '#05a386',
+  tooltip: '',
+  helpUrl: ''
+};
 
 Blockly.Blocks[blockName] = {
-  init: function () {
+  init: function() {
     this.jsonInit(blockData);
   }
 };

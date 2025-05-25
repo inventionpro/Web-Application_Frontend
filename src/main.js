@@ -4,28 +4,15 @@ import App from './App.vue';
 import store from './store';
 import VueSwal from 'vue-sweetalert2';
 import { createI18n } from 'vue-i18n';
-import Blockly from "blockly";
+import Blockly from 'blockly';
 import VueToast from 'vue-toast-notification';
 import VueTour from 'vue3-tour';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import savenload from './save-load';
 
 const app = createApp(App);
 
-import {
-  BModal,
-  BNavItem,
-  BNavItemDropdown,
-  BNavbar,
-  BNavbarNav,
-  BNavbarBrand,
-  BNavbarToggle,
-  BButton,
-  BDropdownItem,
-  BDropdownDivider,
-  BCollapse,
-  vBModal
-} from 'bootstrap-vue-next';
+import { BModal, BNavItem, BNavItemDropdown, BNavbar, BNavbarNav, BNavbarBrand, BNavbarToggle, BButton, BDropdownItem, BDropdownDivider, BCollapse, vBModal } from 'bootstrap-vue-next';
 app.component('b-modal', BModal);
 app.directive('b-modal', vBModal);
 app.component('b-nav-item', BNavItem);
@@ -39,7 +26,7 @@ app.component('b-dropdown-item', BDropdownItem);
 app.component('b-dropdown-divider', BDropdownDivider);
 app.component('b-collapse', BCollapse);
 
-app.component('font-awesome-icon', FontAwesomeIcon)
+app.component('font-awesome-icon', FontAwesomeIcon);
 
 app.use(VueTour);
 app.use(VueToast);
@@ -47,122 +34,121 @@ app.use(VueSwal);
 app.use(bootstrapPlugin);
 app.use(modalManagerPlugin);
 
-import r from "./require";
+import r from './require';
 
-import blocklyLocaleEN from "blockly/msg/en";
-import blocklyLocaleFR from "blockly/msg/fr";
-import blocklyLocalePT from "blockly/msg/pt";
+import blocklyLocaleEN from 'blockly/msg/en';
+import blocklyLocaleFR from 'blockly/msg/fr';
+import blocklyLocalePT from 'blockly/msg/pt';
 
 import customLocaleEN from './locales/en';
 import customLocaleFR from './locales/fr';
 import customLocalePT from './locales/pt';
-import localforage from "localforage";
+import localforage from 'localforage';
 const messages = {
-    en: customLocaleEN.websiteMessages,
-    fr: customLocaleFR.websiteMessages,
-    pt: customLocalePT.websiteMessages
+  en: customLocaleEN.websiteMessages,
+  fr: customLocaleFR.websiteMessages,
+  pt: customLocalePT.websiteMessages
 };
 const i18n = createI18n({
   legacy: true,
   globalInjection: true,
-  locale: (messages[navigator.language.split("-")[0]] ? navigator.language.split("-")[0] : "en"),
+  locale: messages[navigator.language.split('-')[0]] ? navigator.language.split('-')[0] : 'en',
   fallbackLocale: 'en',
   messages
 });
 
-import toolbox from "./toolbox";
+import toolbox from './toolbox';
 
 //import {Backpack} from '@blockly/workspace-backpack';
 import Theme from '@blockly/theme-dark';
 app.mixin({
-    methods: {
-        async reloadWorkspace() {
-            let val = await localforage.getItem("fav") === null ? null : await localforage.getItem("fav")
-            // Get current workspace
-            let workspace = this.$store.state.workspace;
-            // Convert it to a dom string
-            const dom = Blockly.Xml.workspaceToDom(workspace);
-            // Delete the current workspace
-            workspace.dispose();
-            // Create a new workspace (with the good language)
-            const newWorkspace = Blockly.inject(document.getElementById("blocklyDiv"), {
-                grid: {
-                    spacing: 25,
-                    length: 3,
-                    colour: "#ccc",
-                },
-                renderer: "zelos",
-                theme: Theme,
-                zoom: {
-                    controls: true,
-                    startScale: 0.9,
-                    maxScale: 3,
-                    minScale: 0.3,
-                    scaleSpeed: 1.2
-                },
-                move: {
-                    scrollbars: {
-                        horizontal: true,
-                        vertical: true
-                    },
-                    drag: true,
-                    wheel: true
-                },
-                toolbox: toolbox(val)
-            });
-
-            Blockly.Xml.domToWorkspace(dom, newWorkspace);
-            // Update the workspace in the vuex store
-            this.$store.commit("setWorkspace", {
-                workspace: newWorkspace
-            })
-                ;
-
-            // Return the workspace
-            return workspace;
+  methods: {
+    async reloadWorkspace() {
+      let val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
+      // Get current workspace
+      let workspace = this.$store.state.workspace;
+      // Convert it to a dom string
+      const dom = Blockly.Xml.workspaceToDom(workspace);
+      // Delete the current workspace
+      workspace.dispose();
+      // Create a new workspace (with the good language)
+      const newWorkspace = Blockly.inject(document.getElementById('blocklyDiv'), {
+        grid: {
+          spacing: 25,
+          length: 3,
+          colour: '#ccc'
         },
-        setLanguage(locale) {
-            switch (locale) {
-                case "en":
-                    // Change Blockly language for default blocks
-                    Blockly.setLocale(blocklyLocaleEN);
-                    // Change Blockly language for custom blocks
-                    customLocaleEN.applyBlocklyLocale();
-                    // Change website languages (navbar, etc...)
-                    this.$root.$i18n.locale = "en";
-                    break;
-                case "fr":
-                    // Change Blockly language for default blocks
-                    Blockly.setLocale(blocklyLocaleFR);
-                    // Change Blockly language for custom blocks
-                    customLocaleFR.applyBlocklyLocale();
-                    // Change website languages (navbar, etc...)
-                    this.$root.$i18n.locale = "fr";
-                    break;
-                case "pt":
-                    // Change Blockly language for default blocks
-                    Blockly.setLocale(blocklyLocalePT);
-                    // Change Blockly language for custom blocks
-                    customLocalePT.applyBlocklyLocale();
-                    // Change website languages (navbar, etc...)
-                    this.$root.$i18n.locale = "pt";
-                    break;
-                default:
-                    break;
-            }
+        renderer: 'zelos',
+        theme: Theme,
+        zoom: {
+          controls: true,
+          startScale: 0.9,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2
         },
-        getWorkspaceCode() {
-            const workspace = this.$store.state.workspace
-            if (!workspace) return "";
-            let requires = []
-            let requiresjscode = []
-            let xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace))
-            r(requires, requiresjscode, Blockly.JavaScript.workspaceToCode(workspace), xml)
-            setTimeout(async () => {
-                await localforage.setItem("requires", requires)
-            }, 1000)
+        move: {
+          scrollbars: {
+            horizontal: true,
+            vertical: true
+          },
+          drag: true,
+          wheel: true
+        },
+        toolbox: toolbox(val)
+      });
 
-            return `(async()=>{
+      Blockly.Xml.domToWorkspace(dom, newWorkspace);
+      // Update the workspace in the vuex store
+      this.$store.commit('setWorkspace', {
+        workspace: newWorkspace
+      });
+
+      // Return the workspace
+      return workspace;
+    },
+    setLanguage(locale) {
+      switch (locale) {
+        case 'en':
+          // Change Blockly language for default blocks
+          Blockly.setLocale(blocklyLocaleEN);
+          // Change Blockly language for custom blocks
+          customLocaleEN.applyBlocklyLocale();
+          // Change website languages (navbar, etc...)
+          this.$root.$i18n.locale = 'en';
+          break;
+        case 'fr':
+          // Change Blockly language for default blocks
+          Blockly.setLocale(blocklyLocaleFR);
+          // Change Blockly language for custom blocks
+          customLocaleFR.applyBlocklyLocale();
+          // Change website languages (navbar, etc...)
+          this.$root.$i18n.locale = 'fr';
+          break;
+        case 'pt':
+          // Change Blockly language for default blocks
+          Blockly.setLocale(blocklyLocalePT);
+          // Change Blockly language for custom blocks
+          customLocalePT.applyBlocklyLocale();
+          // Change website languages (navbar, etc...)
+          this.$root.$i18n.locale = 'pt';
+          break;
+        default:
+          break;
+      }
+    },
+    getWorkspaceCode() {
+      const workspace = this.$store.state.workspace;
+      if (!workspace) return '';
+      let requires = [];
+      let requiresjscode = [];
+      let xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+      r(requires, requiresjscode, Blockly.JavaScript.workspaceToCode(workspace), xml);
+      setTimeout(async () => {
+        await localforage.setItem('requires', requires);
+      }, 1000);
+
+      return `(async()=>{
     // default imports
     const events = require('events');
     const { exec } = require("child_process")
@@ -181,7 +167,7 @@ app.mixin({
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     // block imports
-    ${requires.join("\n    ")}
+    ${requires.join('\n    ')}
 
     // define s4d components (pretty sure 90% of these arnt even used/required)
     let s4d = {
@@ -244,17 +230,17 @@ app.mixin({
     logs(s4d.client);
 
     // pre blockly code
-    ${requiresjscode.join("\n    ")}
+    ${requiresjscode.join('\n    ')}
 
     // blockly code
-    ${Blockly.JavaScript.workspaceToCode(workspace).split('\n').join('\n    ')}
+    ${Blockly.JavaScript.workspaceToCode(workspace)
+      .split('\n')
+      .join('\n    ')}
     return s4d
-})();`
-
-        }
+})();`;
     }
-}
-);
+  }
+});
 
 app.use(store);
 app.use(i18n);

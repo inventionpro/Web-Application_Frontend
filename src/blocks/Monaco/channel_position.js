@@ -1,27 +1,26 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "monaco_position_of_channel";
-
+const blockName = 'monaco_position_of_channel';
 
 const blockData = {
-  "type": "monaco_position_of_channel",
-  "message0": "Position of channel %1",
-  "args0": [
+  type: 'monaco_position_of_channel',
+  message0: 'Position of channel %1',
+  args0: [
     {
-      "type": "input_value",
-      "name": "channel",
-      "check": "Channel"
+      type: 'input_value',
+      name: 'channel',
+      check: 'Channel'
     }
   ],
-  "colour": "#4C97FF",
-  "output": "Number",
-  "inputsInline": true,
-  "tooltip": "Gets the position of any channel.",
-  "helpUrl": ""
+  colour: '#4C97FF',
+  output: 'Number',
+  inputsInline: true,
+  tooltip: 'Gets the position of any channel.',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-  init: function () {
+  init: function() {
     this.jsonInit(blockData);
   }
 };

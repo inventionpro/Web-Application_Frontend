@@ -1,26 +1,26 @@
-import Blockly from "blockly/core";
+import Blockly from 'blockly/core';
 
-const blockName = "inv_fsh_api_censor";
+const blockName = 'inv_fsh_api_censor';
 
 const blockData = {
-  "message0": "in text %1 censor bad words",
-  "args0": [
+  message0: 'in text %1 censor bad words',
+  args0: [
     {
-      "type": "input_value",
-      "name": "NAME"
+      type: 'input_value',
+      name: 'NAME'
     }
   ],
-  "inputsInline": true,
-  "output": "String",
-  "colour": "#1a75ba",
-  "tooltip": "Responds with censored version of text inputed",
-  "helpUrl": ""
+  inputsInline: true,
+  output: 'String',
+  colour: '#1a75ba',
+  tooltip: 'Responds with censored version of text inputed',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript[blockName] = function(block) {

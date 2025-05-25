@@ -1,21 +1,127 @@
-import * as Blockly from "blockly/core";
-const ahqcolor = ['#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A',
-'#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A',
-'#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A',
-'#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A',
-'#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A',
-'#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A',
-'#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', 
-'#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A', '#40BF4A'];
+import * as Blockly from 'blockly/core';
+const ahqcolor = [
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A',
+  '#40BF4A'
+];
 function listsGetRandomItem(list, remove) {
-    var x = Math.floor(Math.random() * list.length);
-    if (remove) {
-        return list.splice(x, 1)[0];
-    } else {
-        return list[x];
-    }
+  var x = Math.floor(Math.random() * list.length);
+  if (remove) {
+    return list.splice(x, 1)[0];
+  } else {
+    return list[x];
+  }
 }
-const blockName = "world_history";
+const blockName = 'world_history';
 // We got a number one Victory Royale
 // Yeah, Fortnite, we 'bout to get down (get down)
 // Ten kills on the board right now
@@ -77,22 +183,22 @@ The amount of money they got was so much, William used it to test his engineerin
 Amen
 */
 
-
 const blockData = {
-    "message0": "History of the world!",
-    "colour": listsGetRandomItem(ahqcolor, false),
-    "output": ["String"],
-    "tooltip": "Peepee",
-    "helpUrl": ""
+  message0: 'History of the world!',
+  colour: listsGetRandomItem(ahqcolor, false),
+  output: ['String'],
+  tooltip: 'Peepee',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
-Blockly.JavaScript[blockName] = function(){
-    const code = [`\`s4d means scratch for discord
+Blockly.JavaScript[blockName] = function() {
+  const code = [
+    `\`s4d means scratch for discord
     earth was created 4.3 billion years ago
     androz was the creator of this planet
     s4d was created mainly by Androz
@@ -113,6 +219,8 @@ Blockly.JavaScript[blockName] = function(){
     14. https://www.youtube.com/watch?v=dQw4w9WgXcQ
     
     Official s4d4d4s4ds44ds server:- https://discord.gg/cB2g5f4Ypq
-    s4r34 69 furry segs official server:- https://discord.gg/furry\``, Blockly.JavaScript.ORDER_LOGICAL_OR];
-    return code;
+    s4r34 69 furry segs official server:- https://discord.gg/furry\``,
+    Blockly.JavaScript.ORDER_LOGICAL_OR
+  ];
+  return code;
 };

@@ -1,2 +1,2 @@
-import "./new_regex";
-import "./test_regex";
+import './new_regex';
+import './test_regex';

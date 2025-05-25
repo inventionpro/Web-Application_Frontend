@@ -1,2 +1,2 @@
-import "./badword";
-import "./censor";
+import './badword';
+import './censor';

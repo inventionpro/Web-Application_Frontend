@@ -1,1 +1,1 @@
-import "./new_image";
+import './new_image';

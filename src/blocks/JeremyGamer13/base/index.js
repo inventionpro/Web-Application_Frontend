@@ -1,3 +1,3 @@
-import "./whenrun"
-import "./isrunbutton"
-import "./botuser"
+import './whenrun';
+import './isrunbutton';
+import './botuser';

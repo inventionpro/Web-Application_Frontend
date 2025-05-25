@@ -1,38 +1,37 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "monaco_delete_invite";
-
+const blockName = 'monaco_delete_invite';
 
 const blockData = {
-    "message0": "delete invite %1 with reason %2 in server %3",
-    "inputsInline": true,
-    "args0": [
+  message0: 'delete invite %1 with reason %2 in server %3',
+  inputsInline: true,
+  args0: [
     {
-      "type": "input_value",
-      "name": "invite"
+      type: 'input_value',
+      name: 'invite'
     },
     {
-       "type": "input_value",
-      "name": "reason",
-      "check": "String"
+      type: 'input_value',
+      name: 'reason',
+      check: 'String'
     },
     {
-        "type": "input_value",
-      "name": "server",
-      "check": "Server"
+      type: 'input_value',
+      name: 'server',
+      check: 'Server'
     }
   ],
-    "colour": "#0c97f0",
-"previousStatement": null,
-"nextStatement": null,
-    "tooltip": "Delete an invite.",
-    "helpUrl": ""
+  colour: '#0c97f0',
+  previousStatement: null,
+  nextStatement: null,
+  tooltip: 'Delete an invite.',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript['monaco_delete_invite'] = function(block) {

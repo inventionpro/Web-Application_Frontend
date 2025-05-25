@@ -1,1 +1,1 @@
-import "./push_to_list";
+import './push_to_list';

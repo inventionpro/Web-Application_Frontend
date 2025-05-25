@@ -1,81 +1,88 @@
 <template>
-    <b-nav-item-dropdown id="v-step-0" text="Examples" right>
-        <b-dropdown-item @click="userexamples()"><i class="fa-solid fa-user"></i> &#8226; Online Examples</b-dropdown-item>
-        <b-dropdown-divider></b-dropdown-divider>
-        <p style="text-align:center"><b>Built-in:</b></p>
-        <div style="height:8.75em;overflow:auto">
-            <b-dropdown-item @click="load('ping-pong')">Ping-Pong Command</b-dropdown-item>
-            <b-dropdown-item @click="load('command-parsing')">Command Handler</b-dropdown-item>
-            <b-dropdown-item @click="load('bettercmd')">Prefix Command Handler</b-dropdown-item>
-            <b-dropdown-item @click="load('leveling')">Basic Leveling System</b-dropdown-item>
-            <b-dropdown-item @click="load('music')">Music System</b-dropdown-item>
-            <b-dropdown-item @click="load('image-gen')">Image Generation</b-dropdown-item>
-            <b-dropdown-item @click="load('economy')">Economy System</b-dropdown-item>
-            <b-dropdown-item @click="load('leaderboard')">Leaderboard from Database</b-dropdown-item>
-            <b-dropdown-item @click="load('backup')">Backups</b-dropdown-item>
-            <b-dropdown-item @click="load('random')">Random Responses</b-dropdown-item>
-            <b-dropdown-item @click="load('cooldown')">Cooldowns</b-dropdown-item>
-            <b-dropdown-item @click="load('button')">Buttons & Button rows</b-dropdown-item>
-            <b-dropdown-item @click="load('slash')">Slash Commands</b-dropdown-item>
-            <b-dropdown-item @click="load('advjsonreq')">Advanced JSON Request</b-dropdown-item>
-            <b-dropdown-item @click="load('regex')">RegEx: Finding specific text</b-dropdown-item>
-            <b-dropdown-item @click="load('embed example')">Using Embeds Category</b-dropdown-item>
-        </div>
-    </b-nav-item-dropdown>
+  <b-nav-item-dropdown id="v-step-0" text="Examples" right>
+    <b-dropdown-item @click="userexamples()"><i class="fa-solid fa-user"></i> &#8226; Online Examples</b-dropdown-item>
+    <b-dropdown-divider></b-dropdown-divider>
+    <p style="text-align:center"><b>Built-in:</b></p>
+    <div style="height:8.75em;overflow:auto">
+      <b-dropdown-item @click="load('ping-pong')">Ping-Pong Command</b-dropdown-item>
+      <b-dropdown-item @click="load('command-parsing')">Command Handler</b-dropdown-item>
+      <b-dropdown-item @click="load('bettercmd')">Prefix Command Handler</b-dropdown-item>
+      <b-dropdown-item @click="load('leveling')">Basic Leveling System</b-dropdown-item>
+      <b-dropdown-item @click="load('music')">Music System</b-dropdown-item>
+      <b-dropdown-item @click="load('image-gen')">Image Generation</b-dropdown-item>
+      <b-dropdown-item @click="load('economy')">Economy System</b-dropdown-item>
+      <b-dropdown-item @click="load('leaderboard')">Leaderboard from Database</b-dropdown-item>
+      <b-dropdown-item @click="load('backup')">Backups</b-dropdown-item>
+      <b-dropdown-item @click="load('random')">Random Responses</b-dropdown-item>
+      <b-dropdown-item @click="load('cooldown')">Cooldowns</b-dropdown-item>
+      <b-dropdown-item @click="load('button')">Buttons & Button rows</b-dropdown-item>
+      <b-dropdown-item @click="load('slash')">Slash Commands</b-dropdown-item>
+      <b-dropdown-item @click="load('advjsonreq')">Advanced JSON Request</b-dropdown-item>
+      <b-dropdown-item @click="load('regex')">RegEx: Finding specific text</b-dropdown-item>
+      <b-dropdown-item @click="load('embed example')">Using Embeds Category</b-dropdown-item>
+    </div>
+  </b-nav-item-dropdown>
 </template>
 
 <script>
-import Blockly from "blockly";
+import Blockly from 'blockly';
 
-import PingPongExample from "../../examples/ping-pong";
-import CommandParsingExample from "../../examples/command-parsing";
-import bettercmd from "../../examples/bettercmd";
-import LevelingExample from "../../examples/leveling";
-import MusicExample from "../../examples/music";
-import ImageGen from "../../examples/image_gen";
-import Economy from "../../examples/economy";
-import backup from "../../examples/backup";
-import random from "../../examples/random";
-import aki from "../../examples/aki";
-import reddit from "../../examples/reddit";
-import ticket from "../../examples/ticket";
-import button from "../../examples/button";
-import cooldown from "../../examples/cooldown";
-import slash from "../../examples/slash";
-import advjsonreq from "../../examples/advjsonreq.js";
-import regex from "../../examples/regex.js";
-import leaderboard from "../../examples/leaderboard.js";
-import embed from "../../examples/embed example.js";
+import PingPongExample from '../../examples/ping-pong';
+import CommandParsingExample from '../../examples/command-parsing';
+import bettercmd from '../../examples/bettercmd';
+import LevelingExample from '../../examples/leveling';
+import MusicExample from '../../examples/music';
+import ImageGen from '../../examples/image_gen';
+import Economy from '../../examples/economy';
+import backup from '../../examples/backup';
+import random from '../../examples/random';
+import aki from '../../examples/aki';
+import reddit from '../../examples/reddit';
+import ticket from '../../examples/ticket';
+import button from '../../examples/button';
+import cooldown from '../../examples/cooldown';
+import slash from '../../examples/slash';
+import advjsonreq from '../../examples/advjsonreq.js';
+import regex from '../../examples/regex.js';
+import leaderboard from '../../examples/leaderboard.js';
+import embed from '../../examples/embed example.js';
 import localforage from 'localforage';
 
 const examples = {
-    "ping-pong": PingPongExample,
-    "command-parsing": CommandParsingExample,
-    "bettercmd": bettercmd,
-    "leveling": LevelingExample,
-    "music": MusicExample,
-    "image-gen": ImageGen,
-    "economy": Economy,
-    "backup": backup,
-    "random": random,
-    "aki": aki,
-    "reddit": reddit,
-    "ticket": ticket,
-    "button": button,
-    "cooldown": cooldown,
-    "slash": slash,
-    "advjsonreq": advjsonreq,
-    "regex": regex,
-    "leaderboard": leaderboard,
-    "embed example": embed
+  'ping-pong': PingPongExample,
+  'command-parsing': CommandParsingExample,
+  bettercmd: bettercmd,
+  leveling: LevelingExample,
+  music: MusicExample,
+  'image-gen': ImageGen,
+  economy: Economy,
+  backup: backup,
+  random: random,
+  aki: aki,
+  reddit: reddit,
+  ticket: ticket,
+  button: button,
+  cooldown: cooldown,
+  slash: slash,
+  advjsonreq: advjsonreq,
+  regex: regex,
+  leaderboard: leaderboard,
+  'embed example': embed
 };
 
 function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, swal, workspace, toast) {
-    lkjgenwhikgu4ewkjn.innerHTML = `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${json.example[0].replaceAll("<", "").replaceAll("/", "").replaceAll("\\", "")}</b>${json.example[5] == null || json.example[5] == "" ? "" : ` &#8226 <i class="fa-solid fa-star"></i>`}</h2>
-<i class="fa-solid fa-user-shield"></i> <b>${json.example[6].replaceAll("\\", "").replaceAll("<", "").replaceAll(">", "").replaceAll("/", "")}</b>
+  lkjgenwhikgu4ewkjn.innerHTML = `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${json.example[0]
+    .replaceAll('<', '')
+    .replaceAll('/', '')
+    .replaceAll('\\', '')}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"></i>`}</h2>
+<i class="fa-solid fa-user-shield"></i> <b>${json.example[6]
+    .replaceAll('\\', '')
+    .replaceAll('<', '')
+    .replaceAll('>', '')
+    .replaceAll('/', '')}</b>
 &#8226
 <i class="fa-solid fa-cube"></i> <b><em>${Number(json.example[3])}</em></b>
-<p style="color:rgb(45,45,45)"><i class="fa-solid fa-file-lines"></i> &#8226 <i>${json.example[1].replaceAll("<", "").replaceAll("\\", "")}</i></p>
+<p style="color:rgb(45,45,45)"><i class="fa-solid fa-file-lines"></i> &#8226 <i>${json.example[1].replaceAll('<', '').replaceAll('\\', '')}</i></p>
 <div id="swal_popup_BlocklyUserExampleViewer"></div>
 <div class="swal_popup_BlocklyUserExampleViewer_bottom_left_div">
     <i class="fa-solid fa-id-badge"></i> &#8226 ${selectedOption}<br>
@@ -83,300 +90,326 @@ function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption
         <i class="fa-solid fa-share-from-square"></i> &#8226 Share a link to this Example
     </div>
 </div>
-`
-    let previewWorkspace = false
-    swal.fire({
-        //title: "Load this example?",
-        html: lkjgenwhikgu4ewkjn,
-        customClass: {
-            popup: 'swal-userExamples-preview-popup'
-        },
-        showCancelButton: true,
-        confirmButtonText: 'Load',
-        cancelButtonText: 'Cancel'
-    }).then(async (result) => {
-        console.log("disposing of workspace")
-        if (previewWorkspace) previewWorkspace.dispose()
-        console.log("disposed of workspace")
-        if (!result.isConfirmed) return
-        swal.fire({
-            title: "Delete current blocks?",
-            text: "Would you like to remove the current blocks before importing the example?",
-            icon: "warning",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Yes",
-            denyButtonText: "No",
-            cancelButtonText: "Cancel",
-            allowOutsideClick: false
-        }).then(result => {
-            if (result.isDismissed) {
-                return;
-            } else if (result.isConfirmed) {
-                workspace.getAllBlocks().forEach((block) => block.dispose());
-            }
-            let exampleXml = ""
-            fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then(result => result.text().then(xml => {
-                exampleXml = String(xml)
-                Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), workspace);
-                setTimeout(() => {
-                    toast.open({
-                        message: "Loaded a custom example!",
-                        type: "success",
-                        dismissible: true,
-                        duration: 10000
-                    });
-                }, (200));
-            }))
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    id: selectedOption,
-                })
-            }
-            fetch(`${SERVER}api/examples/updateDownloads`, requestOptions)
-        });
+`;
+  let previewWorkspace = false;
+  swal
+    .fire({
+      //title: "Load this example?",
+      html: lkjgenwhikgu4ewkjn,
+      customClass: {
+        popup: 'swal-userExamples-preview-popup'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Load',
+      cancelButtonText: 'Cancel'
     })
-    const copyToClipboardButton = document.getElementById("userExamplesButton_menu2_shareLinkToExample")
-    copyToClipboardButton.onclick = () => {
-        copyToClipboardButton.innerHTML = `<i class="fa-solid fa-paste"></i> &#8226 Copying...`
-        let likesPercentage = Math.round((Number(json.example[8]) / (Number(json.example[8]) + Number(json.example[9]))) * 100)
-        navigator.clipboard.writeText(`Check out this User Uploaded Example at https://scratch-for-discord.com/?exampleid=${selectedOption}
-> **${json.example[0].replaceAll("<", "").replaceAll("/", "").replaceAll("\\", "")}**
-> ${json.example[1].replaceAll("<", "").replaceAll("/", "").replaceAll("\\", "").replaceAll("\n", "\n> ")}
-> -----
-> 🚹: ${json.example[6].replaceAll("<", "").replaceAll("/", "").replaceAll("\\", "")}
-> 🧱: ${Number(json.example[3])} blocks
-> 👍: ${likesPercentage ? likesPercentage + "% of people liked this example" : "No likes or dislikes have been placed on this example"}`)
-        console.log(json.example)
-        copyToClipboardButton.innerHTML = `<i class="fa-solid fa-clipboard-check"></i> &#8226 Copied to clipboard!`
-    }
-    const userExamplesPreviewMenu = document.getElementById("swal_popup_BlocklyUserExampleViewer")
-    previewWorkspace = Blockly.inject(userExamplesPreviewMenu, {
-        readOnly: true,
-        grid: {
-            spacing: 25,
-            length: 3,
-            colour: "#ccc",
-        },
-        renderer: "zelos",
-        //theme: theme,
-        zoom: {
-            controls: true,
-            startScale: 0.9,
-            maxScale: 3,
-            minScale: 0.3,
-            scaleSpeed: 1.2
-        },
-        move: {
-            scrollbars: {
-                horizontal: true,
-                vertical: true
-            },
-            drag: true,
-            wheel: true
-        }
+    .then(async result => {
+      console.log('disposing of workspace');
+      if (previewWorkspace) previewWorkspace.dispose();
+      console.log('disposed of workspace');
+      if (!result.isConfirmed) return;
+      swal
+        .fire({
+          title: 'Delete current blocks?',
+          text: 'Would you like to remove the current blocks before importing the example?',
+          icon: 'warning',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Yes',
+          denyButtonText: 'No',
+          cancelButtonText: 'Cancel',
+          allowOutsideClick: false
+        })
+        .then(result => {
+          if (result.isDismissed) {
+            return;
+          } else if (result.isConfirmed) {
+            workspace.getAllBlocks().forEach(block => block.dispose());
+          }
+          let exampleXml = '';
+          fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then(result =>
+            result.text().then(xml => {
+              exampleXml = String(xml);
+              Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), workspace);
+              setTimeout(() => {
+                toast.open({
+                  message: 'Loaded a custom example!',
+                  type: 'success',
+                  dismissible: true,
+                  duration: 10000
+                });
+              }, 200);
+            })
+          );
+          const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: selectedOption
+            })
+          };
+          fetch(`${SERVER}api/examples/updateDownloads`, requestOptions);
+        });
     });
-    console.log("injected workspace")
-    console.log("loading xml for workspace")
-    let currentMS = new Date().getTime()
-    fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then(result => result.text().then(xml => {
-        const exampleXml = String(xml)
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), previewWorkspace);
-        console.log("loaded xml for workspace in", ((new Date().getTime() - currentMS) + "ms"))
-    }))
-
+  const copyToClipboardButton = document.getElementById('userExamplesButton_menu2_shareLinkToExample');
+  copyToClipboardButton.onclick = () => {
+    copyToClipboardButton.innerHTML = `<i class="fa-solid fa-paste"></i> &#8226 Copying...`;
+    let likesPercentage = Math.round((Number(json.example[8]) / (Number(json.example[8]) + Number(json.example[9]))) * 100);
+    navigator.clipboard.writeText(`Check out this User Uploaded Example at https://scratch-for-discord.com/?exampleid=${selectedOption}
+> **${json.example[0]
+      .replaceAll('<', '')
+      .replaceAll('/', '')
+      .replaceAll('\\', '')}**
+> ${json.example[1]
+      .replaceAll('<', '')
+      .replaceAll('/', '')
+      .replaceAll('\\', '')
+      .replaceAll('\n', '\n> ')}
+> -----
+> 🚹: ${json.example[6]
+      .replaceAll('<', '')
+      .replaceAll('/', '')
+      .replaceAll('\\', '')}
+> 🧱: ${Number(json.example[3])} blocks
+> 👍: ${likesPercentage ? likesPercentage + '% of people liked this example' : 'No likes or dislikes have been placed on this example'}`);
+    console.log(json.example);
+    copyToClipboardButton.innerHTML = `<i class="fa-solid fa-clipboard-check"></i> &#8226 Copied to clipboard!`;
+  };
+  const userExamplesPreviewMenu = document.getElementById('swal_popup_BlocklyUserExampleViewer');
+  previewWorkspace = Blockly.inject(userExamplesPreviewMenu, {
+    readOnly: true,
+    grid: {
+      spacing: 25,
+      length: 3,
+      colour: '#ccc'
+    },
+    renderer: 'zelos',
+    //theme: theme,
+    zoom: {
+      controls: true,
+      startScale: 0.9,
+      maxScale: 3,
+      minScale: 0.3,
+      scaleSpeed: 1.2
+    },
+    move: {
+      scrollbars: {
+        horizontal: true,
+        vertical: true
+      },
+      drag: true,
+      wheel: true
+    }
+  });
+  console.log('injected workspace');
+  console.log('loading xml for workspace');
+  let currentMS = new Date().getTime();
+  fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then(result =>
+    result.text().then(xml => {
+      const exampleXml = String(xml);
+      Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), previewWorkspace);
+      console.log('loaded xml for workspace in', new Date().getTime() - currentMS + 'ms');
+    })
+  );
 }
 
 export default {
-    name: "editmenu",
-    computed: {
-    },
-    mounted() {
-        setTimeout(() => {
-            let urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('exampleid')) {
-                fetch(`https://s4d-examples.fsh.plus/api/getExample?id=${urlParams.get("exampleid")}`)
-                    .then(async (result) => {
-                        result.json().then((json) => {
-                            const lkjgenwhikgu4ewkjn = document.createElement('div');
-                            displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, urlParams.get("exampleid"), "https://s4d-examples.fsh.plus/", this.$swal, this.$store.state.workspace, this.$toast)
-                        })
-                    })
-            }
-        }, 500);
-    },
-    methods: {
-        load(example) {
-            this.$swal.fire({
-                title: this.$t('examples.confirm.title'),
-                text: this.$t('examples.confirm.text'),
-                icon: 'warning',
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: this.$t('examples.confirm.yes'),
-                denyButtonText: this.$t('examples.confirm.no'),
-                cancelButtonText: this.$t('examples.confirm.cancel'),
-                allowOutsideClick: false,
-                customClass: {
-                    denyButton: "red-button"
-                }
-            }).then(result => {
-                if (result.isDismissed) {
-                    return;
-                } else if (result.isConfirmed) {
-                    this.$store.state.workspace.getAllBlocks().forEach((block) => block.dispose());
-                }
-                const exampleXml = examples[example];
-                Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), this.$store.state.workspace);
-                setTimeout(() => {
-                    this.$toast.open({
-                        message: this.$t('examples.loaded', {
-                            example
-                        }),
-                        type: "success",
-                        dismissible: true,
-                        duration: 10000
-                    });
-                }, (200));
+  name: 'editmenu',
+  computed: {},
+  mounted() {
+    setTimeout(() => {
+      let urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('exampleid')) {
+        fetch(`https://s4d-examples.fsh.plus/api/getExample?id=${urlParams.get('exampleid')}`).then(async result => {
+          result.json().then(json => {
+            const lkjgenwhikgu4ewkjn = document.createElement('div');
+            displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, urlParams.get('exampleid'), 'https://s4d-examples.fsh.plus/', this.$swal, this.$store.state.workspace, this.$toast);
+          });
+        });
+      }
+    }, 500);
+  },
+  methods: {
+    load(example) {
+      this.$swal
+        .fire({
+          title: this.$t('examples.confirm.title'),
+          text: this.$t('examples.confirm.text'),
+          icon: 'warning',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: this.$t('examples.confirm.yes'),
+          denyButtonText: this.$t('examples.confirm.no'),
+          cancelButtonText: this.$t('examples.confirm.cancel'),
+          allowOutsideClick: false,
+          customClass: {
+            denyButton: 'red-button'
+          }
+        })
+        .then(result => {
+          if (result.isDismissed) {
+            return;
+          } else if (result.isConfirmed) {
+            this.$store.state.workspace.getAllBlocks().forEach(block => block.dispose());
+          }
+          const exampleXml = examples[example];
+          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), this.$store.state.workspace);
+          setTimeout(() => {
+            this.$toast.open({
+              message: this.$t('examples.loaded', {
+                example
+              }),
+              type: 'success',
+              dismissible: true,
+              duration: 10000
             });
-        },
-        userexamples() {
-            const workspace = this.$store.state.workspace
-            let url = "https://s4d-examples.fsh.plus/"
-            if (window.isInS4DDebugMode) {
-                url = prompt("Examples server URL to use?", "https://s4d-examples.fsh.plus/")
-                if (!url.endsWith("/")) url += "/"
-            }
-            const SERVER = url
-            this.$swal.fire({
-                title: 'User Examples',
-                html: `<p>What would you like to do here?</p>
+          }, 200);
+        });
+    },
+    userexamples() {
+      const workspace = this.$store.state.workspace;
+      let url = 'https://s4d-examples.fsh.plus/';
+      if (window.isInS4DDebugMode) {
+        url = prompt('Examples server URL to use?', 'https://s4d-examples.fsh.plus/');
+        if (!url.endsWith('/')) url += '/';
+      }
+      const SERVER = url;
+      this.$swal.fire({
+        title: 'User Examples',
+        html: `<p>What would you like to do here?</p>
 <button id="upload-btn" class="swal2-confirm swal2-styled">Upload an Example</button>
 <button id="seeall-btn" class="swal2-confirm swal2-styled">View Examples</button>
 <button id="cancel-btn" class="swal2-cancel swal2-styled">Cancel</button>`,
-                showConfirmButton: false,
-                showCancelButton: false,
-                didOpen: async() => {
-                    let checkSessionIDsExistence = await localforage.getItem("EXAMPLE_SESSION_ID")
-                    if (checkSessionIDsExistence == null) {
-                        const usableChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_", "=", "+", "[", "]", "(", ")"]
-                        let sesid = ""
-                        for (let i = 0; i < 55; i++) {
-                            let character = usableChars[(Math.round(Math.random() * (usableChars.length - 1)))]
-                            sesid += character
-                        }
-                        await localforage.setItem("EXAMPLE_SESSION_ID", String(sesid))
-                    }
-                    document.getElementById('upload-btn').onclick = () => {
-                        this.$swal.close();
-                        const name = encodeURIComponent(document.querySelector("#docName").textContent).replace(/%20/g, ' ').replaceAll("\n", "").replaceAll(/[^a-z 0-9]/gmi, "")
-                        const wrapper = document.createElement('div');
-                        const blockCounts = workspace.getAllBlocks().length
-                        wrapper.innerHTML = `<h5>The content of the example is going to be the blocks you've placed.</h5>
+        showConfirmButton: false,
+        showCancelButton: false,
+        didOpen: async () => {
+          let checkSessionIDsExistence = await localforage.getItem('EXAMPLE_SESSION_ID');
+          if (checkSessionIDsExistence == null) {
+            const usableChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '-', '_', '=', '+', '[', ']', '(', ')'];
+            let sesid = '';
+            for (let i = 0; i < 55; i++) {
+              let character = usableChars[Math.round(Math.random() * (usableChars.length - 1))];
+              sesid += character;
+            }
+            await localforage.setItem('EXAMPLE_SESSION_ID', String(sesid));
+          }
+          document.getElementById('upload-btn').onclick = () => {
+            this.$swal.close();
+            const name = encodeURIComponent(document.querySelector('#docName').textContent)
+              .replace(/%20/g, ' ')
+              .replaceAll('\n', '')
+              .replaceAll(/[^a-z 0-9]/gim, '');
+            const wrapper = document.createElement('div');
+            const blockCounts = workspace.getAllBlocks().length;
+            wrapper.innerHTML = `<h5>The content of the example is going to be the blocks you've placed.</h5>
 <label for="name">Name of your Example </label>
-<input type="text" id="UserExampleName" value="${name == "Untitled document" ? "Untitled example" : name}" maxlength="50">
+<input type="text" id="UserExampleName" value="${name == 'Untitled document' ? 'Untitled example' : name}" maxlength="50">
 <label for="author">Author of the Example </label>
 <input type="text" id="UserExampleAuthor" value="Anonymous" maxlength="20">
 <br>
 <label style="font-weight: bold;" for="name">Describe your Example...</label>
 <textarea id="UserExampleDescription" rows="4" cols="50" maxlength="500"></textarea>
-<p>Your example has <b>${blockCounts} block${blockCounts == 1 ? "" : "s"}</b> in it.</p>
-${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading near empty examples is not encouraged.</p>` : ''}`
-                        this.$swal.fire({
-                            title: "Upload an example",
-                            html: wrapper,
-                            showCancelButton: true,
-                            confirmButtonText: "upload",
-                            cancelButtonText: "Cancel",
-                            closeOnClickOutside: false
-                        }).then(async result2 => {
-                            if (!result2.isConfirmed) return;
-                            const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace))
-                            let sessionIDe = await localforage.getItem("EXAMPLE_SESSION_ID")
-                            if (sessionIDe == null) {
-                                const usableChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", "_", "=", "+", "[", "]", "(", ")"]
-                                let sesid = ""
-                                for (let i = 0; i < 55; i++) {
-                                    let character = usableChars[(Math.round(Math.random() * (usableChars.length - 1)))]
-                                    sesid += character
-                                }
-                                await localforage.setItem("EXAMPLE_SESSION_ID", String(sesid))
-                                sessionIDe = String(sesid)
-                            }
-                            console.log(sessionIDe)
-                            const requestOptions = {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    name: String(document.getElementById("UserExampleName").value),
-                                    desc: String(document.getElementById("UserExampleDescription").value),
-                                    xml: String(xmlContent),
-                                    count: workspace.getAllBlocks().length,
-                                    author: String(document.getElementById("UserExampleAuthor").value),
-                                    sessionID: String(sessionIDe)
-                                })
-                            };
-                            fetch(SERVER + 'api/upload', requestOptions)
-                                .then(async (response) => {
-                                    console.log(response)
-                                    console.log("S4D sent a request, the response status code is", response.status)
-                                    if (response.status != 200) {
-                                        const responseHTML = document.createElement('div');
-                                        responseHTML.innerHTML = `Failed to load message`
-                                        response.json().then((json) => {
-                                            responseHTML.innerHTML = `${String(json.error)}`
-                                        })
-                                        this.$swal.fire({
-                                            title: "An error occurred uploading the example!",
-                                            html: responseHTML,
-                                            icon: "error"
-                                        })
-                                        return
-                                    }
-                                    const responseHTML = document.createElement('div');
-                                    responseHTML.innerHTML = `The example was uploaded!`
-                                    this.$swal.fire({
-                                        title: "Congrats!",
-                                        html: responseHTML,
-                                        icon: "success"
-                                    })
-                                })
-                        });
-                    };
-                    document.getElementById('seeall-btn').onclick = () => {
-                        this.$swal.close();
-                        fetch(SERVER + 'api/examples').then(async (response) => {
-                            console.log(response)
-                            console.log("S4D sent a request, the response status code is", response.status)
-                            if (response.status != 200) {
-                                this.$swal.fire({
-                                    title: "An unexpected error occurred!",
-                                    icon: "error"
-                                })
-                                return;
-                            }
-                            const responseHTML = document.createElement('div');
-                            response.json().then(async (json) => {
-                                const examples = JSON.parse(JSON.stringify(json))
-                                responseHTML.innerHTML = `${JSON.stringify(json)}`
-                                const names = []
-                                let boxes = ''
-                                Object.entries(examples).forEach((i) => {
-                                    // console.log("Found example with name", i[1][0])
-                                    let name = i[1][0]
-                                    names.push([name, i[1][3], i[1][4], i[1][6], i[1][1], i[1][8], i[1][9], i[1][10], i[1][11], i[1][12]])
-                                })
-                                /* eslint-disable */
-                                let voteButtonSessionList = {}
-                                names.forEach((name) => {
-                                    voteButtonSessionList[String(name[2])] = {likes: name[8], dislikes: name[9]}
-                                    boxes += `<label name="pickThisExampleToImportButton" style="width: 48%;">
+<p>Your example has <b>${blockCounts} block${blockCounts == 1 ? '' : 's'}</b> in it.</p>
+${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading near empty examples is not encouraged.</p>` : ''}`;
+            this.$swal
+              .fire({
+                title: 'Upload an example',
+                html: wrapper,
+                showCancelButton: true,
+                confirmButtonText: 'upload',
+                cancelButtonText: 'Cancel',
+                closeOnClickOutside: false
+              })
+              .then(async result2 => {
+                if (!result2.isConfirmed) return;
+                const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+                let sessionIDe = await localforage.getItem('EXAMPLE_SESSION_ID');
+                if (sessionIDe == null) {
+                  const usableChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '-', '_', '=', '+', '[', ']', '(', ')'];
+                  let sesid = '';
+                  for (let i = 0; i < 55; i++) {
+                    let character = usableChars[Math.round(Math.random() * (usableChars.length - 1))];
+                    sesid += character;
+                  }
+                  await localforage.setItem('EXAMPLE_SESSION_ID', String(sesid));
+                  sessionIDe = String(sesid);
+                }
+                console.log(sessionIDe);
+                const requestOptions = {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    name: String(document.getElementById('UserExampleName').value),
+                    desc: String(document.getElementById('UserExampleDescription').value),
+                    xml: String(xmlContent),
+                    count: workspace.getAllBlocks().length,
+                    author: String(document.getElementById('UserExampleAuthor').value),
+                    sessionID: String(sessionIDe)
+                  })
+                };
+                fetch(SERVER + 'api/upload', requestOptions).then(async response => {
+                  console.log(response);
+                  console.log('S4D sent a request, the response status code is', response.status);
+                  if (response.status != 200) {
+                    const responseHTML = document.createElement('div');
+                    responseHTML.innerHTML = `Failed to load message`;
+                    response.json().then(json => {
+                      responseHTML.innerHTML = `${String(json.error)}`;
+                    });
+                    this.$swal.fire({
+                      title: 'An error occurred uploading the example!',
+                      html: responseHTML,
+                      icon: 'error'
+                    });
+                    return;
+                  }
+                  const responseHTML = document.createElement('div');
+                  responseHTML.innerHTML = `The example was uploaded!`;
+                  this.$swal.fire({
+                    title: 'Congrats!',
+                    html: responseHTML,
+                    icon: 'success'
+                  });
+                });
+              });
+          };
+          document.getElementById('seeall-btn').onclick = () => {
+            this.$swal.close();
+            fetch(SERVER + 'api/examples')
+              .then(async response => {
+                console.log(response);
+                console.log('S4D sent a request, the response status code is', response.status);
+                if (response.status != 200) {
+                  this.$swal.fire({
+                    title: 'An unexpected error occurred!',
+                    icon: 'error'
+                  });
+                  return;
+                }
+                const responseHTML = document.createElement('div');
+                response.json().then(async json => {
+                  const examples = JSON.parse(JSON.stringify(json));
+                  responseHTML.innerHTML = `${JSON.stringify(json)}`;
+                  const names = [];
+                  let boxes = '';
+                  Object.entries(examples).forEach(i => {
+                    // console.log("Found example with name", i[1][0])
+                    let name = i[1][0];
+                    names.push([name, i[1][3], i[1][4], i[1][6], i[1][1], i[1][8], i[1][9], i[1][10], i[1][11], i[1][12]]);
+                  });
+                  /* eslint-disable */
+                  let voteButtonSessionList = {};
+                  names.forEach(name => {
+                    voteButtonSessionList[String(name[2])] = { likes: name[8], dislikes: name[9] };
+                    boxes += `<label name="pickThisExampleToImportButton" style="width: 48%;">
     <div class="box">
         <input type="radio" id="${name[2]}" name="pickThisExampleToImportButton" class="sr-only-basic">
             <center>
-                <h4>${name[0].replaceAll("<", "").replaceAll(">", "").replaceAll("/", "").replaceAll("\\", "")}</h4>
+                <h4>${name[0]
+                  .replaceAll('<', '')
+                  .replaceAll('>', '')
+                  .replaceAll('/', '')
+                  .replaceAll('\\', '')}</h4>
                 <p><i class="fas fa-user-shield"></i> Creator: ${name[3]} &#8226 <i class="fas fa-id-badge"></i> ID: ${name[2]}</p>
                 <p style="font-style: italic;font-size:small;" title="${name[4]}">${name[4]}</p>
             </center>
@@ -397,10 +430,10 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
         </div>
     </div>
 </label>
-<br>`
-                                })
-                                /* eslint-disable */
-                                responseHTML.innerHTML = `<!-- buttons to search & stuff -->
+<br>`;
+                  });
+                  /* eslint-disable */
+                  responseHTML.innerHTML = `<!-- buttons to search & stuff -->
 <div style="margin-bottom: 0.5em;">
     <i class="fa-solid fa-magnifying-glass"></i>
     <input type="text" size="75" id="swal_dialog_box_searchForUserExamples" placeholder="Search for an Example">
@@ -473,63 +506,69 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
     width: 1px;
     display: none;
 }
-</style>`
-                                this.$swal.fire({
-                                    title: "Pick an Example",
-                                    html: responseHTML,
-                                    customClass: "swal-wide",
-                                    showCancelButton: true,
-                                    cancelButtonText: "Cancel",
-                                    confirmButtonText: "Import Selected Example"
-                                }).then(async (result) => {
-                                    if (!result.isConfirmed) return
-                                    const selectedOption = document.querySelector('input[name="pickThisExampleToImportButton"]:checked')?.id
-                                    if (selectedOption == null) return
-                                    console.log(selectedOption)
-                                    const lkjgenwhikgu4ewkjn = document.createElement('div');
-                                    fetch(SERVER + `api/getExample?id=${selectedOption}`)
-                                        .then(async (result) => {
-                                            result.json().then((json) => {
-                                                displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, this.$swal, workspace, this.$toast)
-                                            })
-                                        })
-                                })
-                                console.log("EPIC CLIENT: Running examples scripts for the buttons mm nmmmayay")
-                                let elements = document.getElementsByClassName("sr-only-basic")
-                                for (let i = 0; i < elements.length; i++) {
-                                    let current = elements.item(i)
-                                    current.setAttribute("onclick", `let parent = this.parentElement
+</style>`;
+                  this.$swal
+                    .fire({
+                      title: 'Pick an Example',
+                      html: responseHTML,
+                      customClass: 'swal-wide',
+                      showCancelButton: true,
+                      cancelButtonText: 'Cancel',
+                      confirmButtonText: 'Import Selected Example'
+                    })
+                    .then(async result => {
+                      if (!result.isConfirmed) return;
+                      const selectedOption = document.querySelector('input[name="pickThisExampleToImportButton"]:checked')?.id;
+                      if (selectedOption == null) return;
+                      console.log(selectedOption);
+                      const lkjgenwhikgu4ewkjn = document.createElement('div');
+                      fetch(SERVER + `api/getExample?id=${selectedOption}`).then(async result => {
+                        result.json().then(json => {
+                          displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, this.$swal, workspace, this.$toast);
+                        });
+                      });
+                    });
+                  console.log('EPIC CLIENT: Running examples scripts for the buttons mm nmmmayay');
+                  let elements = document.getElementsByClassName('sr-only-basic');
+                  for (let i = 0; i < elements.length; i++) {
+                    let current = elements.item(i);
+                    current.setAttribute(
+                      'onclick',
+                      `let parent = this.parentElement
 let elements = document.getElementsByClassName("sr-only-basic")
 for (let i = 0; i < elements.length; i++) {
     let current = elements.item(i).parentElement
     if (current.getAttribute("style")) current.removeAttribute("style")
 }
-parent.setAttribute("style", "border-color:#00aaff")`)
-                                }
-                                let usableClasses = ["examplesMenuBox_Likes", "examplesMenuBox_Dislikes"]
-                                for (let i = 0; i < usableClasses.length; i++) {
-                                    let cur = usableClasses[i]
-                                    let elements = document.getElementsByClassName(cur)
-                                    for (let i = 0; i < elements.length; i++) {
-                                        let element = elements.item(i)
-                                        let icon = element.getElementsByTagName("i").item(0)
-                                        let baseIcon = icon.getAttribute("class")
-                                        let originalCount = Number(icon.innerText)
-                                        let likeButton = element.getAttribute("name") == "like"
-                                        let sessionID = await localforage.getItem("EXAMPLE_SESSION_ID")
-                                        if (voteButtonSessionList[String(element.getAttribute("id"))][likeButton ? "likes" : "dislikes"].includes(sessionID)) {
-                                            originalCount -= 1
-                                            icon.setAttribute("style", "color: #00aaff")
-                                            icon.innerText = " " + (originalCount + 1)
-                                        }
-                                        element.setAttribute("onclick", `let icon = document.getElementsByClassName("${cur}").item(${i}).getElementsByTagName("i").item(0)
+parent.setAttribute("style", "border-color:#00aaff")`
+                    );
+                  }
+                  let usableClasses = ['examplesMenuBox_Likes', 'examplesMenuBox_Dislikes'];
+                  for (let i = 0; i < usableClasses.length; i++) {
+                    let cur = usableClasses[i];
+                    let elements = document.getElementsByClassName(cur);
+                    for (let i = 0; i < elements.length; i++) {
+                      let element = elements.item(i);
+                      let icon = element.getElementsByTagName('i').item(0);
+                      let baseIcon = icon.getAttribute('class');
+                      let originalCount = Number(icon.innerText);
+                      let likeButton = element.getAttribute('name') == 'like';
+                      let sessionID = await localforage.getItem('EXAMPLE_SESSION_ID');
+                      if (voteButtonSessionList[String(element.getAttribute('id'))][likeButton ? 'likes' : 'dislikes'].includes(sessionID)) {
+                        originalCount -= 1;
+                        icon.setAttribute('style', 'color: #00aaff');
+                        icon.innerText = ' ' + (originalCount + 1);
+                      }
+                      element.setAttribute(
+                        'onclick',
+                        `let icon = document.getElementsByClassName("${cur}").item(${i}).getElementsByTagName("i").item(0)
 icon.setAttribute("class", "fa-solid fa-ellipsis")
 const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-        liking: ${element.getAttribute("name") == "like"},
-        id: ${element.getAttribute("id")},
+        liking: ${element.getAttribute('name') == 'like'},
+        id: ${element.getAttribute('id')},
         session: "${sessionID}"
     })
 };
@@ -556,180 +595,181 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
     icon.setAttribute("class", "fa-solid fa-triangle-exclamation")
     icon.setAttribute("style", "color: #ff0000")
 })
-`)
-                                    }
-                                }
-                                // let selectMenu = document.getElementById("swal_dialog_box_sortUserExamples")
-                                // selectMenu.onchange = function () {
-                                //     console.log()
-                                // }
-                                let searchBox = document.getElementById("swal_dialog_box_searchForUserExamples")
-                                let caseSensitive = false
-                                let caseSensitiveButton = document.getElementById("swal_menu_CaseSensitiveUserExampleSearch")
-                                caseSensitiveButton.onclick = function () {
-                                    caseSensitive = !caseSensitive
-                                    caseSensitive ?
-                                        caseSensitiveButton.setAttribute("style", "background-color: Transparent;border: none;color:#00aaff")
-                                    :
-                                        caseSensitiveButton.setAttribute("style", "background-color: Transparent;border: none;")
-                                    searchBox.oninput()
-                                }
-                                let gridSize3 = false
-                                let gridSizeButton = document.getElementById("swal_menu_ChangeBoxSizeUserExamples")
-                                gridSizeButton.onclick = function () {
-                                    gridSize3 = !gridSize3
-                                    let icon = gridSizeButton.getElementsByTagName("i").item(0)
-                                    if (gridSize3) {
-                                        icon.setAttribute("class", "fa-solid fa-table-cells")
-                                    } else {
-                                        icon.setAttribute("class", "fa-solid fa-table-cells-large")
-                                    }
-                                    let size = 48 - (Number(gridSize3) * 18)
-                                    let labels = document.getElementById("swal_user_examples_dialog_box-form_area").getElementsByTagName("label")
-                                    for (let i = 0; i < labels.length; i++) {
-                                        let current = labels.item(i)
-                                        if (!current.getAttribute("style").includes("display: none")) {
-                                            current.setAttribute("style", `width: ${size}%;`)
-                                        }
-                                    }
-                                }
-                                let unsearchedHtml = document.getElementById("swal_user_examples_dialog_box-form_area").innerHTML
-                                searchBox.oninput = function () {
-                                    let area = document.getElementById("swal_user_examples_dialog_box-form_area")
-                                    area.innerHTML = unsearchedHtml
-                                    if (gridSize3) {
-                                        gridSize3 = false
-                                        gridSizeButton.onclick()
-                                    }
-                                    let boxes = area.getElementsByTagName("label")
-                                    let kept = boxes.length
-                                    for (let i = 0; i < boxes.length; i++) {
-                                        let current = boxes.item(i)
-                                        let name = current.getElementsByClassName("box").item(0)
-                                            .getElementsByTagName("center").item(0)
-                                            .getElementsByTagName("h4").item(0)
-                                            .innerText
-                                        let searchingInside = String(name)
-                                        let searchingWith = String(searchBox.value)
-                                        if (!caseSensitive) {
-                                            searchingInside = searchingInside.toLowerCase()
-                                            searchingWith = searchingWith.toLowerCase()
-                                        }
-                                        if (!searchingInside.includes(searchingWith)) {
-                                            current.setAttribute("style", "display: none")
-                                            kept--
-                                        }
-                                    }
-                                    if (kept <= 0) {
-                                        area.innerHTML = `<div style="display: grid">
+`
+                      );
+                    }
+                  }
+                  // let selectMenu = document.getElementById("swal_dialog_box_sortUserExamples")
+                  // selectMenu.onchange = function () {
+                  //     console.log()
+                  // }
+                  let searchBox = document.getElementById('swal_dialog_box_searchForUserExamples');
+                  let caseSensitive = false;
+                  let caseSensitiveButton = document.getElementById('swal_menu_CaseSensitiveUserExampleSearch');
+                  caseSensitiveButton.onclick = function() {
+                    caseSensitive = !caseSensitive;
+                    caseSensitive ? caseSensitiveButton.setAttribute('style', 'background-color: Transparent;border: none;color:#00aaff') : caseSensitiveButton.setAttribute('style', 'background-color: Transparent;border: none;');
+                    searchBox.oninput();
+                  };
+                  let gridSize3 = false;
+                  let gridSizeButton = document.getElementById('swal_menu_ChangeBoxSizeUserExamples');
+                  gridSizeButton.onclick = function() {
+                    gridSize3 = !gridSize3;
+                    let icon = gridSizeButton.getElementsByTagName('i').item(0);
+                    if (gridSize3) {
+                      icon.setAttribute('class', 'fa-solid fa-table-cells');
+                    } else {
+                      icon.setAttribute('class', 'fa-solid fa-table-cells-large');
+                    }
+                    let size = 48 - Number(gridSize3) * 18;
+                    let labels = document.getElementById('swal_user_examples_dialog_box-form_area').getElementsByTagName('label');
+                    for (let i = 0; i < labels.length; i++) {
+                      let current = labels.item(i);
+                      if (!current.getAttribute('style').includes('display: none')) {
+                        current.setAttribute('style', `width: ${size}%;`);
+                      }
+                    }
+                  };
+                  let unsearchedHtml = document.getElementById('swal_user_examples_dialog_box-form_area').innerHTML;
+                  searchBox.oninput = function() {
+                    let area = document.getElementById('swal_user_examples_dialog_box-form_area');
+                    area.innerHTML = unsearchedHtml;
+                    if (gridSize3) {
+                      gridSize3 = false;
+                      gridSizeButton.onclick();
+                    }
+                    let boxes = area.getElementsByTagName('label');
+                    let kept = boxes.length;
+                    for (let i = 0; i < boxes.length; i++) {
+                      let current = boxes.item(i);
+                      let name = current
+                        .getElementsByClassName('box')
+                        .item(0)
+                        .getElementsByTagName('center')
+                        .item(0)
+                        .getElementsByTagName('h4')
+                        .item(0).innerText;
+                      let searchingInside = String(name);
+                      let searchingWith = String(searchBox.value);
+                      if (!caseSensitive) {
+                        searchingInside = searchingInside.toLowerCase();
+                        searchingWith = searchingWith.toLowerCase();
+                      }
+                      if (!searchingInside.includes(searchingWith)) {
+                        current.setAttribute('style', 'display: none');
+                        kept--;
+                      }
+                    }
+                    if (kept <= 0) {
+                      area.innerHTML = `<div style="display: grid">
     <br>
     <br>
     <em style="color:gray">No examples were found.</em>
     <br>
     <i class="fa-solid fa-circle-question fa-2xl"></i>
-</div>`
-                                    }
-                                }
-                            })
-                        })
-                        .catch(err => {
-                            const responseHTML = document.createElement('div');
-                            responseHTML.innerHTML = String(err)
-                            this.$swal.fire({
-                                title: "An unexpected error occurred!",
-                                content: responseHTML,
-                                icon: "error"
-                            })
-                        })
-                    };
-                    document.getElementById('cancel-btn').onclick = () => {
-                        this.$swal.close();
-                    };
-                }
-            })
+</div>`;
+                    }
+                  };
+                });
+              })
+              .catch(err => {
+                const responseHTML = document.createElement('div');
+                responseHTML.innerHTML = String(err);
+                this.$swal.fire({
+                  title: 'An unexpected error occurred!',
+                  content: responseHTML,
+                  icon: 'error'
+                });
+              });
+          };
+          document.getElementById('cancel-btn').onclick = () => {
+            this.$swal.close();
+          };
         }
+      });
     }
-}
+  }
+};
 </script>
 <style>
-
 .swal-wide {
-    width: 900px;
+  width: 900px;
 }
 
 .swal-wide form {
-    height: 30em;
-    overflow: auto;
+  height: 30em;
+  overflow: auto;
 }
 
 .swal-wide h4 {
-    font-weight: bold;
-    color: rgba(0, 0, 0, .65);
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .box {
-    height: 200px;
-    border: 2px solid lightgray;
-    border-radius: 0.25em;
-    margin: 0.25em;
-    padding: 0.5em;
-    background-color: white;
-    position: relative;
+  height: 200px;
+  border: 2px solid lightgray;
+  border-radius: 0.25em;
+  margin: 0.25em;
+  padding: 0.5em;
+  background-color: white;
+  position: relative;
 }
 
 .box:hover {
-    border: 2px solid lightblue;
+  border: 2px solid lightblue;
 }
 
 .box:active {
-    border: 3px solid lightblue;
-    padding: 0.75em;
+  border: 3px solid lightblue;
+  padding: 0.75em;
 }
 
 .box p {
-    color: gray;
-    margin-top: -0.5em;
+  color: gray;
+  margin-top: -0.5em;
 }
 
-input[type="radio"]:checked {
-    background: lightblue;
+input[type='radio']:checked {
+  background: lightblue;
 }
 
 .searchButton {
-    background-color: Transparent;
-    border: none;
+  background-color: Transparent;
+  border: none;
 }
 
-#swal_menu_CaseSensitiveUserExampleSearch:active, #swal_menu_ChangeBoxSizeUserExamples:active {
-    font-size: 120%;
+#swal_menu_CaseSensitiveUserExampleSearch:active,
+#swal_menu_ChangeBoxSizeUserExamples:active {
+  font-size: 120%;
 }
 
 #swal_popup_BlocklyUserExampleViewer {
-    font-family: sans-serif;
-    position: absolute;
-    height: 78%;
-    width: 97.5%;
-    text-align: left;
-    overflow: hidden;
+  font-family: sans-serif;
+  position: absolute;
+  height: 78%;
+  width: 97.5%;
+  text-align: left;
+  overflow: hidden;
 }
 
 .swal-modal.swal-userExamples-preview-popup > .swal-footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .swal-userExamples-preview-popup {
-    width: 90%;
-    height: 95%;
+  width: 90%;
+  height: 95%;
 }
 
 .swal_popup_BlocklyUserExampleViewer_bottom_left_div {
-    color: rgb(120, 120, 120);
-    position: absolute;
-    bottom: 1%;
-    left: 1%;
-    text-align: left;
+  color: rgb(120, 120, 120);
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
+  text-align: left;
 }
 
 /*
@@ -744,5 +784,4 @@ input[type="radio"]:checked {
     width: 100%;
 }
 */
-
 </style>

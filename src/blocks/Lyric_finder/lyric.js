@@ -1,21 +1,20 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "lyric";
+const blockName = 'lyric';
 
 const blockData = {
-    "message0": "Lyric",
-    "colour": "#40BF4A",
-		"args0": [
-		],
-    "tooltip": null,
-    "output": "String",
-    "helpUrl": ""
+  message0: 'Lyric',
+  colour: '#40BF4A',
+  args0: [],
+  tooltip: null,
+  output: 'String',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript[blockName] = function() {

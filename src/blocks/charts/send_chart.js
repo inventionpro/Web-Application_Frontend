@@ -1,24 +1,23 @@
-import Blockly from "blockly/core";
+import Blockly from 'blockly/core';
 
-const blockName = "send_chart";
+const blockName = 'send_chart';
 
 // Block URL = https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#bg6rpk
 
 const blockData = {
-  "type": "send_chart",
-  "message0": "send chart",
-  "output": null,
-  "colour": 75,
-  "tooltip": "",
-  "helpUrl": ""
-}
-
-Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  type: 'send_chart',
+  message0: 'send chart',
+  output: null,
+  colour: 75,
+  tooltip: '',
+  helpUrl: ''
 };
 
+Blockly.Blocks[blockName] = {
+  init: function() {
+    this.jsonInit(blockData);
+  }
+};
 
 Blockly.JavaScript['send_chart'] = function() {
   // TODO: Assemble JavaScript into code variable.

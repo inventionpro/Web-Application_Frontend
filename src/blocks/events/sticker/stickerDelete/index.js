@@ -1,2 +1,2 @@
-import "./on_stickerDelete";
-import "./name";
+import './on_stickerDelete';
+import './name';

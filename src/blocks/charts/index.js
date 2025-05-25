@@ -1,2 +1,2 @@
-import "./create_chart"
-import "./send_chart"
+import './create_chart';
+import './send_chart';

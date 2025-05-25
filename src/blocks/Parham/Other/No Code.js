@@ -1,29 +1,29 @@
-import * as Blockly from "blockly";
+import * as Blockly from 'blockly';
 
-const blockName = "parham_other_nocode";
+const blockName = 'parham_other_nocode';
 
 const blockData = {
-  "message0": "No Code %1 : %2",
-  "args0": [
+  message0: 'No Code %1 : %2',
+  args0: [
     {
-      "type": "input_dummy"
+      type: 'input_dummy'
     },
     {
-      "type": "input_statement",
-      "name": "code"
+      type: 'input_statement',
+      name: 'code'
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
-  "colour": "#D14081",
-  "tooltip": "The Blocks You Put On This Block Will Not Exported In Code",
-  "helpUrl": ""
+  previousStatement: null,
+  nextStatement: null,
+  colour: '#D14081',
+  tooltip: 'The Blocks You Put On This Block Will Not Exported In Code',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript[blockName] = function() {

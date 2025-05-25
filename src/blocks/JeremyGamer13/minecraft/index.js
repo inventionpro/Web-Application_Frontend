@@ -1,11 +1,11 @@
-import "./getjavaserver"
-import "./javamotd"
-import "./javaplayers"
-import "./javaversionname"
-import "./javafavicon"
-import "./query"
-import "./javadata"
+import './getjavaserver';
+import './javamotd';
+import './javaplayers';
+import './javaversionname';
+import './javafavicon';
+import './query';
+import './javadata';
 // RCON stuff
-import "./rcon"
+import './rcon';
 // bedrock s
-import "./bedrock"
+import './bedrock';

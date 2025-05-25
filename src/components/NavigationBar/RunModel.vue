@@ -1,35 +1,35 @@
 <template>
-    <b-modal id="run-modal" hide-footer :title="$t('run_modal.title')">
-        <div class="d-block">
-            <b-container>
-                <b-row v-if="!electronApp">
-                    <i18n path="run_modal.disabled" tag="h5">
-                        <template v-slot:here>
-                            <a href="https://ahqsoftwares.github.io/scratch-for-discord-app/" target="_blank">{{ $t('run_modal.here') }}</a>
-                        </template>
-                    </i18n>
-                </b-row>
-                <hr>
-                <b-row>
-                    <b-col sm="12" lg="8">
-                        <div class="botinfos">
-                            <b-overlay :show="botStarting" class="d-inline-block" rounded="circle">
-                                <div :style="getBotImageStyle()"></div>
-                            </b-overlay>
-                            <span :class="getUsernameSpanClass()">Logged in as {{ botTag || "Unknown#0000" }}</span>
-                        </div>
-                    </b-col>
-                    <b-col>
-                        <div class="handlebuttondiv">
-                            <b-overlay :show="botStarting" rounded opacity="0.6" spinner-small spinner-variant="primary" class="d-inline-block" ref="button" @hidden="onHidden">
-                                <b-button :class="getHandleButtonClass()" @click="handle()" v-b-tooltip.hover :title="getTooltipContent()" ><font-awesome-icon icon="power-off" /></b-button>
-                            </b-overlay>
-                        </div>
-                    </b-col>
-                </b-row>
-            </b-container>
-        </div>
-    </b-modal>
+  <b-modal id="run-modal" hide-footer :title="$t('run_modal.title')">
+    <div class="d-block">
+      <b-container>
+        <b-row v-if="!electronApp">
+          <i18n path="run_modal.disabled" tag="h5">
+            <template v-slot:here>
+              <a href="https://ahqsoftwares.github.io/scratch-for-discord-app/" target="_blank">{{ $t('run_modal.here') }}</a>
+            </template>
+          </i18n>
+        </b-row>
+        <hr />
+        <b-row>
+          <b-col sm="12" lg="8">
+            <div class="botinfos">
+              <b-overlay :show="botStarting" class="d-inline-block" rounded="circle">
+                <div :style="getBotImageStyle()"></div>
+              </b-overlay>
+              <span :class="getUsernameSpanClass()">Logged in as {{ botTag || 'Unknown#0000' }}</span>
+            </div>
+          </b-col>
+          <b-col>
+            <div class="handlebuttondiv">
+              <b-overlay :show="botStarting" rounded opacity="0.6" spinner-small spinner-variant="primary" class="d-inline-block" ref="button" @hidden="onHidden">
+                <b-button :class="getHandleButtonClass()" @click="handle()" v-b-tooltip.hover :title="getTooltipContent()"><font-awesome-icon icon="power-off"/></b-button>
+              </b-overlay>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
+  </b-modal>
 </template>
 
 <script>
@@ -55,7 +55,7 @@
                     import { Player,QueueRepeatMode } from "discord-player"
                     import {NodeVM} from 'vm2'
                     import beautify from "js-beautify";
-                    
+
 export default {
     name: "editmenu",
     data: function () {
@@ -146,7 +146,7 @@ export default {
                 }, 5000);
         },
         stop(){
-            
+
         },
         handle(){
             if(this.botStarted){
@@ -163,50 +163,50 @@ export default {
 </script>
 <style>
 .btn-space {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 .botinfos {
-    border-width: 10px;
-    border-color: grey;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  border-width: 10px;
+  border-color: grey;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 .botname {
-    margin-left: 10px;
-    font-weight: 600;
-    font-size: 20px;
-    color: grey;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  color: grey;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .handlebuttondiv {
-    margin-right: 0%;
-    margin-left: 40%;
-    height:100%;
-    display: flex;
-    align-items: center;
-    justify-content: center
+  margin-right: 0%;
+  margin-left: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .handlebutton {
-    width:100px;
+  width: 100px;
 }
 #run-container:after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    z-index: 5; /* Make sure this value is higher than the .form class  */
-    top: 0;
-    left: 0;
-    background-color: rgb(169, 169, 169, 0.5)
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  z-index: 5; /* Make sure this value is higher than the .form class  */
+  top: 0;
+  left: 0;
+  background-color: rgb(169, 169, 169, 0.5);
 }
 .unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 </style>

@@ -1,2 +1,2 @@
-import "./on_update";
-import "./name";
+import './on_update';
+import './name';

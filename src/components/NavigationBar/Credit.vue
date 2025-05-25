@@ -1,19 +1,19 @@
 <template>
-        <b-nav-item @click="credit">Credit</b-nav-item>
+  <b-nav-item @click="credit">Credit</b-nav-item>
 </template>
 
 <script>
 // import localforage from 'localforage';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 export default {
-    name: "credit",
-    methods: {
-        credit() {
-            Swal.fire({
-                position: 'center',
-                icon: 'info',
-                width: "1000px",
-                html: `
+  name: 'credit',
+  methods: {
+    credit() {
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        width: '1000px',
+        html: `
                 <h1><span>Developers of </span><span style="color:#15a9e8">Scratch For Discord!</span></h1>
                     <h2><b>New:</b></h2>
                     <b><p>
@@ -60,11 +60,11 @@ export default {
 
                     </p></b>
                 `,
-                showConfirmButton: true
-            })
-        },
+        showConfirmButton: true
+      });
     }
-}
+  }
+};
 /*
 title: 'Androz, snowflake107 - Original S4D\n7coil - Discord Blocks\nJose and mrredo - Preview 454',
 text: 'frostzzone, RetroBTW, cat soup, AHQ, JeremyGamer13, LimeNade, henpokpok, AlexCdDg, Eruption - Preview 469',

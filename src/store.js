@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     workspace: 0,
-    blocklyLocale: (["en", "fr"].includes(navigator.language.split("-")[0]) ? navigator.language.split("-")[0] : "en"),
+    blocklyLocale: ['en', 'fr'].includes(navigator.language.split('-')[0]) ? navigator.language.split('-')[0] : 'en',
     tourDone: false
   },
   mutations: {

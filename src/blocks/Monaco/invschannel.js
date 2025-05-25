@@ -1,32 +1,31 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "monaco_invites_channels";
-
+const blockName = 'monaco_invites_channels';
 
 const blockData = {
-  "type": "monaco_invites_channels",
-  "message0": "all invites of channel %1 in server %2",
-  "args0": [
-     {
-      "type": "input_value",
-      "name": "channel",
-      "check": "Channel"
+  type: 'monaco_invites_channels',
+  message0: 'all invites of channel %1 in server %2',
+  args0: [
+    {
+      type: 'input_value',
+      name: 'channel',
+      check: 'Channel'
     },
     {
-      "type": "input_value",
-      "name": "server",
-      "check": "Server"
+      type: 'input_value',
+      name: 'server',
+      check: 'Server'
     }
   ],
-  "colour": "#4C97FF",
-  "output": "Invites",
-  "inputsInline": true,
-  "tooltip": "Get all invites of a specific channel in a specific server.",
-  "helpUrl": ""
+  colour: '#4C97FF',
+  output: 'Invites',
+  inputsInline: true,
+  tooltip: 'Get all invites of a specific channel in a specific server.',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-  init: function () {
+  init: function() {
     this.jsonInit(blockData);
   }
 };

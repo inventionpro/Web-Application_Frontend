@@ -1,1 +1,1 @@
-import "./getcurrent"
+import './getcurrent';

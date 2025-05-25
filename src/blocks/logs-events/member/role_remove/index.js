@@ -1,1 +1,1 @@
-import "./on_remove"
+import './on_remove';

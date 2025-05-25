@@ -1,317 +1,200 @@
-
-
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 import '@blockly/field-grid-dropdown';
-const blockName = "server_attributes"
+const blockName = 'server_attributes';
 
 const blockData = {
-    "type": "server_attributes",
-    "message0": "On the server %1 get the %2",
-    "args0": [
-        {
-            "type": "input_value",
-            "name": "server"
-        },
-        {
-            "type": "field_grid_dropdown",
-            "name": "attributes",
-            "options": [
-                [
-                    "AFK channel",
-                    "AFK_CHANNEL"
-                ],
-                [
-                    "AFK channel ID",
-                    "AFK_CHANNEL_ID"
-                ],
-                [
-                    "AFK timeout",
-                    "AFK_TIMEOUT"
-                ],
-                [
-                    "banner",
-                    "BANNER"
-                ],
-                [
-                    "creation date",
-                    "CREATED_AT"
-                ],
-                [
-                    "default message notifications",
-                    "DEFAULT_MSG_NOTIF"
-                ],
-                [
-                    "description",
-                    "DESCRIPTION"
-                ],
-                [
-                    "discovery splash",
-                    "DISCOVERY_SPLASH"
-                ],
-                [
-                    "explicit content filter",
-                    "EXPLICIT_CONTENT_FILTER"
-                ],
-                [
-                    "icon",
-                    "ICON"
-                ],
-                [
-                    "ID",
-                    "ID"
-                ],
-                [
-                    "maximum Bitrate",
-                    "MAX_BITRATE"
-                ],
-                [
-                    "maximum members",
-                    "MAX_MEMBERS"
-                ],
-                [
-                    "maximum presences",
-                    "MAX_PRESENCES"
-                ],
-                [
-                    "member count",
-                    "MEMBER_COUNT"
-                ],
-                [
-                    "mfa level",
-                    "MFA_LEVEL"
-                ],
-                [
-                    "name",
-                    "NAME"
-                ],
-                [
-                    "name acronym",
-                    "NAME_ACRONYM"
-                ],
-                [
-                    "NSFW level",
-                    "NSFW_LEVEL"
-                ],
-                [
-                    "owner ID",
-                    "OWNER_ID"
-                ],
-                [
-                    "partnered",
-                    "PARTNERED"
-                ],
-                [
-                    "prefered locale",
-                    "PREFERED_LOCALE"
-                ],
-                [
-                    "boost progress bar enabled",
-                    "PREMIUM_PROGRESS_BAR_ENABLED"
-                ],
-                [
-                    "number of boosts",
-                    "SUBSCRIPTION_COUNT"
-                ], [
-                    "boost level",
-                    "BOOST_LEVEL"
-                ],
-                [
-                    "rules channel",
-                    "RULES_CHANNEL"
-                ],
-                [
-                    "rules channel ID",
-                    "RULES_CHANNEL_ID"
-                ],
-                [
-                    "system channel",
-                    "SYS_CHANNEL"
-                ],
-                [
-                    "system channel ID",
-                    "SYS_CHANNEL_ID"
-                ],
-                [
-                    "verification level",
-                    "VERFIF_LEVEL"
-                ],
-                [
-                    "verified status",
-                    "VERIFIED"
-                ]
-            ]
-        }
-    ],
-    "inputsInline": true,
-    "colour": "#e07e6c",
-    "output": null,
-    "tooltip": "",
-    "helpUrl": ""
-}
-
-Blockly.Blocks[blockName] = {
-    init: function () {
-        this.jsonInit(blockData);
+  type: 'server_attributes',
+  message0: 'On the server %1 get the %2',
+  args0: [
+    {
+      type: 'input_value',
+      name: 'server'
+    },
+    {
+      type: 'field_grid_dropdown',
+      name: 'attributes',
+      options: [
+        ['AFK channel', 'AFK_CHANNEL'],
+        ['AFK channel ID', 'AFK_CHANNEL_ID'],
+        ['AFK timeout', 'AFK_TIMEOUT'],
+        ['banner', 'BANNER'],
+        ['creation date', 'CREATED_AT'],
+        ['default message notifications', 'DEFAULT_MSG_NOTIF'],
+        ['description', 'DESCRIPTION'],
+        ['discovery splash', 'DISCOVERY_SPLASH'],
+        ['explicit content filter', 'EXPLICIT_CONTENT_FILTER'],
+        ['icon', 'ICON'],
+        ['ID', 'ID'],
+        ['maximum Bitrate', 'MAX_BITRATE'],
+        ['maximum members', 'MAX_MEMBERS'],
+        ['maximum presences', 'MAX_PRESENCES'],
+        ['member count', 'MEMBER_COUNT'],
+        ['mfa level', 'MFA_LEVEL'],
+        ['name', 'NAME'],
+        ['name acronym', 'NAME_ACRONYM'],
+        ['NSFW level', 'NSFW_LEVEL'],
+        ['owner ID', 'OWNER_ID'],
+        ['partnered', 'PARTNERED'],
+        ['prefered locale', 'PREFERED_LOCALE'],
+        ['boost progress bar enabled', 'PREMIUM_PROGRESS_BAR_ENABLED'],
+        ['number of boosts', 'SUBSCRIPTION_COUNT'],
+        ['boost level', 'BOOST_LEVEL'],
+        ['rules channel', 'RULES_CHANNEL'],
+        ['rules channel ID', 'RULES_CHANNEL_ID'],
+        ['system channel', 'SYS_CHANNEL'],
+        ['system channel ID', 'SYS_CHANNEL_ID'],
+        ['verification level', 'VERFIF_LEVEL'],
+        ['verified status', 'VERIFIED']
+      ]
     }
+  ],
+  inputsInline: true,
+  colour: '#e07e6c',
+  output: null,
+  tooltip: '',
+  helpUrl: ''
 };
 
-Blockly.JavaScript['server_attributes'] = function (block) {
-    var server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
-    var attributes = block.getFieldValue('attributes');
-    var code = '';
+Blockly.Blocks[blockName] = {
+  init: function() {
+    this.jsonInit(blockData);
+  }
+};
 
-    switch (attributes) {
-        case 'AFK_CHANNEL':
-            code = `${server}.afkChannel`
-            break;
+Blockly.JavaScript['server_attributes'] = function(block) {
+  var server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
+  var attributes = block.getFieldValue('attributes');
+  var code = '';
 
-        case 'AFK_CHANNEL_ID':
-            code = `${server}.afkChannelId`
-            break;
+  switch (attributes) {
+    case 'AFK_CHANNEL':
+      code = `${server}.afkChannel`;
+      break;
 
-        case 'AFK_TIMEOUT':
-            code = `${server}.afkTimeout`
-            break;
+    case 'AFK_CHANNEL_ID':
+      code = `${server}.afkChannelId`;
+      break;
 
-        case 'BANNER':
-            code = `${server}.banner`
-            break;
+    case 'AFK_TIMEOUT':
+      code = `${server}.afkTimeout`;
+      break;
 
-        case 'CREATED_AT':
-            code = `${server}.createdAt`
-            break;
+    case 'BANNER':
+      code = `${server}.banner`;
+      break;
 
-        case 'super idol':
-            code = `${server}.banner`
-            break;
+    case 'CREATED_AT':
+      code = `${server}.createdAt`;
+      break;
 
-        case 'DEFAULT_MSG_NOTIF':
-            code = `${server}.defaultMessageNotifications`
-            break; //in bad
+    case 'super idol':
+      code = `${server}.banner`;
+      break;
 
-        case 'DESCRIPTION':
-            code = `${server}.description`
-            break;
+    case 'DEFAULT_MSG_NOTIF':
+      code = `${server}.defaultMessageNotifications`;
+      break; //in bad
 
-        case 'DISCOVERY_SPLASH':
-            code = `${server}.discoverySplash`
-            break;
+    case 'DESCRIPTION':
+      code = `${server}.description`;
+      break;
 
-        case 'EXPLICIT_CONTENT_FILTER':
-            code = `${server}.explicitContentFilter`
-            break;
+    case 'DISCOVERY_SPLASH':
+      code = `${server}.discoverySplash`;
+      break;
 
-        case 'ID':
-            code = `${server}.id`
-            break;
+    case 'EXPLICIT_CONTENT_FILTER':
+      code = `${server}.explicitContentFilter`;
+      break;
 
-        case 'ICON':
-            code = `${server}.icon`
-            break;
+    case 'ID':
+      code = `${server}.id`;
+      break;
 
-        case 'MAX_BITRATE':
-            code = `${server}.maximumBitratemaximumMembers`
-            break;
+    case 'ICON':
+      code = `${server}.icon`;
+      break;
 
-        case 'MAX_MEMBERS':
-            code = `${server}.maximumMembers`
-            break;
+    case 'MAX_BITRATE':
+      code = `${server}.maximumBitratemaximumMembers`;
+      break;
 
-        case 'MAX_PRESENCES':
-            code = `${server}.maximumPresences`
-            break;
+    case 'MAX_MEMBERS':
+      code = `${server}.maximumMembers`;
+      break;
 
-        case 'MEMBER_COUNT':
-            code = `${server}.memberCount`
-            break;
+    case 'MAX_PRESENCES':
+      code = `${server}.maximumPresences`;
+      break;
 
-        case 'MFA_LEVEL':
-            code = `${server}.mfaLevel`
-            break;
+    case 'MEMBER_COUNT':
+      code = `${server}.memberCount`;
+      break;
 
-        case 'NAME':
-            code = `${server}.name`
-            break;
+    case 'MFA_LEVEL':
+      code = `${server}.mfaLevel`;
+      break;
 
-        case 'NAME_ACRONYM':
-            code = `${server}.nameAcronym`
-            break;
+    case 'NAME':
+      code = `${server}.name`;
+      break;
 
-        case 'NSFW_LEVEL':
-            code = `${server}.nsfwLevel`
-            break;
+    case 'NAME_ACRONYM':
+      code = `${server}.nameAcronym`;
+      break;
 
-        case 'OWNER_ID':
-            code = `${server}.ownerId`
-            break;
+    case 'NSFW_LEVEL':
+      code = `${server}.nsfwLevel`;
+      break;
 
-        case 'PARTNERED':
-            code = `${server}.partnered`
-            break;
+    case 'OWNER_ID':
+      code = `${server}.ownerId`;
+      break;
 
-        case 'PREFERED_LOCALE':
-            code = `${server}.preferredLocale`
-            break;
+    case 'PARTNERED':
+      code = `${server}.partnered`;
+      break;
 
-        case 'PREMIUM_PROGRESS_BAR_ENABLED':
-            code = `${server}.premiumProgressBarEnabled`
-            break;
+    case 'PREFERED_LOCALE':
+      code = `${server}.preferredLocale`;
+      break;
 
-        case 'SUBSCRIPTION_COUNT':
-            code = `${server}.premiumSubscriptionCount`
-            break;
+    case 'PREMIUM_PROGRESS_BAR_ENABLED':
+      code = `${server}.premiumProgressBarEnabled`;
+      break;
 
-        case 'RULES_CHANNEL':
-            code = `${server}.rulesChannel`
-            break;
+    case 'SUBSCRIPTION_COUNT':
+      code = `${server}.premiumSubscriptionCount`;
+      break;
 
-        case 'RULES_CHANNEL_ID':
-            code = `${server}.rulesChannelId`
-            break;
+    case 'RULES_CHANNEL':
+      code = `${server}.rulesChannel`;
+      break;
 
-        case 'BOOST_LEVEL':
-            code = `${server}.premiumTier`
-            break;
+    case 'RULES_CHANNEL_ID':
+      code = `${server}.rulesChannelId`;
+      break;
 
-        case 'SYS_CHANNEL':
-            code = `${server}.systemChannel`
-            break;
+    case 'BOOST_LEVEL':
+      code = `${server}.premiumTier`;
+      break;
 
-        case 'SYS_CHANNEL_ID':
-            code = `${server}.systemChannelId`
-            break;
+    case 'SYS_CHANNEL':
+      code = `${server}.systemChannel`;
+      break;
 
-        case 'VERIF_LEVEL':
-            code = `${server}.verificationLevel`
-            break;
+    case 'SYS_CHANNEL_ID':
+      code = `${server}.systemChannelId`;
+      break;
 
-        case 'VERIFIED':
-            code = `${server}.verified`
-            break;
+    case 'VERIF_LEVEL':
+      code = `${server}.verificationLevel`;
+      break;
 
+    case 'VERIFIED':
+      code = `${server}.verified`;
+      break;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-    return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };

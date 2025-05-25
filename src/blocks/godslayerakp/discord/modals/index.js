@@ -1,3 +1,3 @@
-import "./modal textbox"
-import "./modal"
-import "./send modal"
+import './modal textbox';
+import './modal';
+import './send modal';

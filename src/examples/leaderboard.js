@@ -336,4 +336,4 @@ export default `
     </statement>
   </block>
 </xml>
-`
+`;

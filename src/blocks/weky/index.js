@@ -1,2 +1,2 @@
-import "./snake";
-import "./calculator";
+import './snake';
+import './calculator';

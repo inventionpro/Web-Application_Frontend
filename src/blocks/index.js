@@ -1,1 +1,1 @@
-import "./collections"
+import './collections';

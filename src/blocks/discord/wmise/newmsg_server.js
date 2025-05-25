@@ -1,23 +1,22 @@
-import Blockly from "blockly/core";
+import Blockly from 'blockly/core';
 
-
-const blockName = "new_message_server";
+const blockName = 'new_message_server';
 
 const blockData = {
-    "message0": "message server",
-    "colour": "#D85E47",
-    "output": "Server",
-    "tooltip": "",
-    "helpUrl": ""
+  message0: 'message server',
+  colour: '#D85E47',
+  output: 'Server',
+  tooltip: '',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function () {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
-Blockly.JavaScript[blockName] = function () {
-    const code = ["newMessage.guild", Blockly.JavaScript.ORDER_NONE];
-    return code;
+Blockly.JavaScript[blockName] = function() {
+  const code = ['newMessage.guild', Blockly.JavaScript.ORDER_NONE];
+  return code;
 };

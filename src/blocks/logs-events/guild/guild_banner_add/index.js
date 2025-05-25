@@ -1,2 +1,2 @@
-import "./on_banner_add";
-import "./banner_url";
+import './on_banner_add';
+import './banner_url';

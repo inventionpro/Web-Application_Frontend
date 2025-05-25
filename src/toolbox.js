@@ -1,5 +1,5 @@
-export default (favorites) => {
-    return `
+export default favorites => {
+  return `
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
     <category name="Search" colour="#42556e" css-icon="customIcon2 fa fa-search">
         <label text="Search category! Version 1.21"/>
@@ -11,7 +11,7 @@ export default (favorites) => {
     </category>
     <category name="Favorites" colour="#FFFF00" css-icon="customIcon fa fa-star">
         <label text="Add your favorite blocks here by right clicking them and pressing &quot;Add to favorite!&quot;"/>
-        ${favorites === null ? "" : favorites.map((c) => `<block type="${c}"/>`)}
+        ${favorites === null ? '' : favorites.map(c => `<block type="${c}"/>`)}
     </category>
     <category name="Custom Blocks" colour="#808080" css-icon="customIcon2 fa fa-gear" hidden="${String(!window.isInS4DDebugMode)}">
         <label text="Custom blocks are currently in testing!"/>
@@ -3488,5 +3488,5 @@ export default (favorites) => {
         <block type="inv_comment_code"/>
     </category>
 </xml>
-`
-}
+`;
+};

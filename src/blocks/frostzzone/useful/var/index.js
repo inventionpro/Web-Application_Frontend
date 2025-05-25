@@ -1,3 +1,3 @@
-import "./blank"
-import "./var"
-import "./var1"
+import './blank';
+import './var';
+import './var1';

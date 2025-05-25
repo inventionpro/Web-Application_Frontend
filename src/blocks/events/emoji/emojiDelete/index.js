@@ -1,2 +1,2 @@
-import "./on_emojiDelete";
-import "./name";
+import './on_emojiDelete';
+import './name';

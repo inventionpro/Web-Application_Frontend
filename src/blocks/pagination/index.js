@@ -1,2 +1,2 @@
-import "./pagination_embed";
-import "./start_pagination";
+import './pagination_embed';
+import './start_pagination';

@@ -1,29 +1,29 @@
 /* Block by lars and inv */
 
-import Blockly from "blockly/core";
+import Blockly from 'blockly/core';
 
-const blockName = "lars-inv_fsh_api_html";
+const blockName = 'lars-inv_fsh_api_html';
 
 const blockData = {
-  "message0": "Get HTML from %1",
-  "args0": [
+  message0: 'Get HTML from %1',
+  args0: [
     {
-      "type": "input_value",
-      "name": "url",
-      "align": "CENTRE"
+      type: 'input_value',
+      name: 'url',
+      align: 'CENTRE'
     }
   ],
-  "inputsInline": true,
-  "output": "String",
-  "colour": "#1a75ba",
-  "tooltip": "Gets the html code of a website (e.g. https://google.com)",
-  "helpUrl": ""
+  inputsInline: true,
+  output: 'String',
+  colour: '#1a75ba',
+  tooltip: 'Gets the html code of a website (e.g. https://google.com)',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
-    init: function() {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
 
 Blockly.JavaScript[blockName] = function(block) {

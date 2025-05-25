@@ -1,2 +1,2 @@
-import "./on_emojiCreate";
-import "./name";
+import './on_emojiCreate';
+import './name';

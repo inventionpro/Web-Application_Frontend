@@ -1,32 +1,35 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-const blockName = "simple_host_auth";
+const blockName = 'simple_host_auth';
 //block working now working
 const blockData = {
-    "type": "block_type",
-    "message0": "load Simple Host auth %1 core config ID %2",
-    "args0": [
-        {
-            "type": "input_dummy"
-        }, {
-            "type": "input_value",
-            "name": "member",
-            "check": "String"
-        },],
-    "colour": '#993399',
-    "tooltip": "Login to access Simple Host Auth",
-    "helpUrl": "https://discord.gg/nJhYCSddVy"
+  type: 'block_type',
+  message0: 'load Simple Host auth %1 core config ID %2',
+  args0: [
+    {
+      type: 'input_dummy'
+    },
+    {
+      type: 'input_value',
+      name: 'member',
+      check: 'String'
+    }
+  ],
+  colour: '#993399',
+  tooltip: 'Login to access Simple Host Auth',
+  helpUrl: 'https://discord.gg/nJhYCSddVy'
 };
-
 
 Blockly.Blocks[blockName] = {
-    init: function () {
-        this.jsonInit(blockData);
-    }
+  init: function() {
+    this.jsonInit(blockData);
+  }
 };
-Blockly.JavaScript[blockName] = function (block) {
-    const a = Blockly.JavaScript.valueToCode(block, "member", Blockly.JavaScript.ORDER_ATOMIC).replace(".user", "").replace(".author", ".member");
-    const code = `
+Blockly.JavaScript[blockName] = function(block) {
+  const a = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC)
+    .replace('.user', '')
+    .replace('.author', '.member');
+  const code = `
     //simple host
     const {error} = require("../../err.js");
     await error({
@@ -49,6 +52,6 @@ Blockly.JavaScript[blockName] = function (block) {
             s4d.client.destroy()
         }
     }
-});`
-    return code;
+});`;
+  return code;
 };
