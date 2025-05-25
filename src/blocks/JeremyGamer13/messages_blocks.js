@@ -312,11 +312,9 @@ Blockly.JavaScript['jg_message_user_replied_to_in_message'] = function(block) {
   const code = [`${msg}.mentions.repliedUser`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };
-// ------------------
-//
+
 // Attachment Blocks
-//
-// ------------------
+
 Blockly.Blocks['jg_attachment_amount_of_attachments_on_message'] = {
   init: function() {
     this.jsonInit({
@@ -410,11 +408,9 @@ Blockly.JavaScript['jg_attachment_get_attachment_property'] = function(block) {
   const code = [`${attach}.${property}`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };
-// ------------------
-//
+
 // back to normal shit
-//
-// ------------------
+
 Blockly.Blocks['jg_message_mentioned_member_number_on_message'] = {
   init: function() {
     this.jsonInit({
@@ -490,14 +486,10 @@ Blockly.JavaScript['jg_message_amount_of_mentioned_members_on_message'] = functi
   const code = [`${msg}.mentions.${type}.size`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };
-// -----------------------------------------------------------------------------------
-//
-//
+
 // T Y P I N G
 // B L O C K S
-//
-//
-// -----------------------------------------------------------------------------------
+
 Blockly.Blocks['jg_typing_typing_attribute'] = {
   init: function() {
     this.jsonInit({
@@ -541,73 +533,6 @@ Blockly.JavaScript['jg_typing_typing_attribute'] = function(block) {
   }
   return code;
 };
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
-
-// my my
 
 Blockly.Blocks['jg_status_does_member_have_a_status_for_device'] = {
   init: function() {
@@ -801,20 +726,7 @@ registerRestrictions('jg_messages_reply_with_allowed_list_of_pings_on_users_on_r
     types: ['s4d_on_message', 'jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bot']
   }
 ]);
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
+
 Blockly.Blocks['jg_messages_respond_with_and_with_allowed_list_of_pings_on_users_on_roles'] = {
   init: function() {
     this.jsonInit({
@@ -927,20 +839,7 @@ registerRestrictions('jg_messages_respond_with_and_with_allowed_list_of_pings_on
     types: ['s4d_on_message', 'jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bot']
   }
 ]);
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
-// AFAFDWTGF^&
+
 Blockly.Blocks['jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_on_roles'] = {
   init: function() {
     this.jsonInit({
@@ -1060,20 +959,6 @@ registerRestrictions('jg_channels_send_in_channel_with_allowed_list_of_pings_on_
     types: ['CHANNEL']
   }
 ]);
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
 
 Blockly.Blocks['jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bot'] = {
   init: function() {
@@ -1135,7 +1020,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
           options: [
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067831064846396/down.png',
+                src: '/down.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down'
@@ -1144,7 +1029,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067832717393940/up.png',
+                src: '/up.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up'
@@ -1153,7 +1038,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067832088231966/right.png',
+                src: '/right.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'right'
@@ -1162,7 +1047,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067831589117952/left.png',
+                src: '/left.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'left'
@@ -1171,39 +1056,39 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067830775427082/dleft.png',
+                src: '/dleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down left'
               },
-              'down left'
+              'down_left'
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067831358427166/dright.png',
+                src: '/dright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down right'
               },
-              'down right'
+              'down_right'
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067832373469254/uleft.png',
+                src: '/uleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up left'
               },
-              'up left'
+              'up_left'
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067832948072458/uright.png',
+                src: '/uright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up right'
               },
-              'up right'
+              'up_right'
             ]
           ]
         }
@@ -1220,8 +1105,8 @@ Blockly.Blocks['jg_comments_floating_image'] = {
   init: function() {
     this.appendDummyInput()
       .appendField('Image URL:')
-      .appendField(new Blockly.FieldTextInput('https://media.discordapp.net/attachments/977302952530305045/984125455881863208/load.png'), 'TEXT');
-    this.appendDummyInput().appendField(new Blockly.FieldImage('https://media.discordapp.net/attachments/977302952530305045/984125455881863208/load.png', 512, 512, { alt: 'Custom Image', flipRtl: 'FALSE' }), 'IMG');
+      .appendField(new Blockly.FieldTextInput('/load.png'), 'TEXT');
+    this.appendDummyInput().appendField(new Blockly.FieldImage('/load.png', 512, 512, { alt: 'Custom Image', flipRtl: 'FALSE' }), 'IMG');
     this.setInputsInline(false);
     this.setColour('#DDAA00');
     this.setTooltip('');
@@ -1280,7 +1165,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
           options: [
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067831064846396/down.png',
+                src: '/down.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down'
@@ -1289,7 +1174,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067832717393940/up.png',
+                src: '/up.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up'
@@ -1298,7 +1183,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067832088231966/right.png',
+                src: '/right.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'right'
@@ -1307,7 +1192,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067831589117952/left.png',
+                src: '/left.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'left'
@@ -1316,39 +1201,39 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067830775427082/dleft.png',
+                src: '/dleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down left'
               },
-              'down left'
+              'down_left'
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067831358427166/dright.png',
+                src: '/dright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down right'
               },
-              'down right'
+              'down_right'
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067832373469254/uleft.png',
+                src: '/uleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up left'
               },
-              'up left'
+              'up_left'
             ],
             [
               {
-                src: 'https://media.discordapp.net/attachments/977302952530305045/984067832948072458/uright.png',
+                src: '/uright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up right'
               },
-              'up right'
+              'up_right'
             ]
           ]
         }
@@ -1367,8 +1252,8 @@ Blockly.Blocks['jg_comments_connected_image'] = {
   init: function() {
     this.appendDummyInput()
       .appendField('Image URL:')
-      .appendField(new Blockly.FieldTextInput('https://media.discordapp.net/attachments/977302952530305045/984125455881863208/load.png'), 'TEXT');
-    this.appendDummyInput().appendField(new Blockly.FieldImage('https://media.discordapp.net/attachments/977302952530305045/984125455881863208/load.png', 512, 256, { alt: 'Custom Image', flipRtl: 'FALSE' }), 'IMG');
+      .appendField(new Blockly.FieldTextInput('/load.png'), 'TEXT');
+    this.appendDummyInput().appendField(new Blockly.FieldImage('/load.png', 512, 256, { alt: 'Custom Image', flipRtl: 'FALSE' }), 'IMG');
     this.setInputsInline(false);
     this.setColour('#DDAA00');
     this.setTooltip('');
@@ -1393,21 +1278,6 @@ Blockly.JavaScript['jg_comments_connected_image'] = function(block) {
     `;
   return code;
 };
-
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
-// abc
 
 Blockly.Blocks['jg_events_all_label'] = {
   init: function() {
@@ -1498,21 +1368,6 @@ Blockly.JavaScript['jg_events_all_label'] = function(block) {
   return code;
 };
 
-// aaaaaaaaaaaaaaa
-//a aaa
-//
-
-//
-
-//
-
-//
-//
-//
-//
-//
-//
-
 Blockly.Blocks['jg_members_list_of_known_member_ids'] = {
   init: function() {
     this.jsonInit({
@@ -1530,15 +1385,6 @@ Blockly.JavaScript['jg_members_list_of_known_member_ids'] = function() {
   const code = [`JSON.parse(JSON.stringify(s4d.client)).users`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };
-//  aaaa
-//
-//
-//
-//
-//
-//
-//
-//
 
 Blockly.Blocks['jg_members_new_list_of_known_ids'] = {
   init: function() {
@@ -1568,15 +1414,6 @@ Blockly.JavaScript['jg_members_new_list_of_known_ids'] = function(block) {
   const code = [`JSON.parse(JSON.stringify(s4d.client)).${type}`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 Blockly.Blocks['jg_members_get_member_by_id'] = {
   init: function() {
@@ -2187,19 +2024,9 @@ Blockly.JavaScript['jg_alex_channels_first_channel_in_server'] = function(block)
   const code = [`${server}.channels.cache.${type}()`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };
-//
-//
-//
-//
-//
-//
+
 // webhooks
-//
-//
-//
-//
-//
-//
+
 Blockly.Blocks['jose_jg_webhooks_get_all_webhooks_in_channel_then'] = {
   init: function() {
     this.jsonInit({
@@ -3898,19 +3725,7 @@ JBlock.createBlock({
   }
 });
 
-//
-//
-//
-//
-//
-
 // Jimp Update 2
-
-//
-//
-//
-//
-//
 
 function ezBlock(name, json, jsCallback) {
   Blockly.Blocks[name] = {
@@ -3979,7 +3794,7 @@ ezBlock(
   }
 );
 restrictToParent(['jg_jimp_update2rd_createNewImage'], 'jg_jimp_update2rd_created_image', `This block can only be used in "create jimp image" blocks!`);
-//
+
 ezBlock(
   'jg_jimp_update2rd_saveImage',
   {
