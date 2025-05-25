@@ -40,7 +40,7 @@
   resolved "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.27.2.tgz"
   integrity sha512-TUtMJYRPyUb/9aU8f3K0mjmjf6M9N5Woshn2CS6nqJSeJtTtQcpLUXjGt9vbF8ZGff0El99sWkLgzwW3VXnxZQ==
 
-"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.12.0", "@babel/core@^7.12.16", "@babel/core@^7.13.0", "@babel/core@^7.4.0 || ^8.0.0-0 <8.0.0", "@babel/core@^7.4.0-0":
+"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.12.0", "@babel/core@^7.12.16", "@babel/core@^7.13.0", "@babel/core@^7.27.1", "@babel/core@^7.4.0 || ^8.0.0-0 <8.0.0", "@babel/core@^7.4.0-0":
   version "7.27.1"
   resolved "https://registry.npmjs.org/@babel/core/-/core-7.27.1.tgz"
   integrity sha512-IaaGWsQqfsQWVLqMn9OB92MNN7zukfVA4s7KKAI0KfrrDsZ0yhi5uV4baBuLuN7n3vsZpwP8asPPcVwApxvjBQ==
@@ -952,40 +952,40 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
-"@blockly/block-test@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.npmjs.org/@blockly/block-test/-/block-test-2.0.5.tgz"
-  integrity sha512-5mdGVCElLfTJYXgx2kHL/6HBOKnMZZzT0/B7l0I3/aUvSJihvtQoEVkfRZaMiDMKVD0ysYRJTm5U2GOJwK5q7A==
+"@blockly/block-test@^2.0.18":
+  version "2.0.18"
+  resolved "https://registry.npmjs.org/@blockly/block-test/-/block-test-2.0.18.tgz"
+  integrity sha512-IujQmkTPwRtbONyJ1nWxSr5FYaoCXByOKuNYsXiLa5TL79DlU6CuapzFCw/AnFF0z6LImY+WlMuiQPo0HhG/Lw==
 
-"@blockly/continuous-toolbox@^2.0.26":
-  version "2.0.26"
-  resolved "https://registry.npmjs.org/@blockly/continuous-toolbox/-/continuous-toolbox-2.0.26.tgz"
-  integrity sha512-26IiklW85AsEfDnqI4GZ3veMoRzNK1x37fX2Q8pCZy7o0EQ/WAfvoa/dsoEAGu+naLD2mWds2ePWdFXCgjM3HA==
+"@blockly/continuous-toolbox@^2.0.40":
+  version "2.0.40"
+  resolved "https://registry.npmjs.org/@blockly/continuous-toolbox/-/continuous-toolbox-2.0.40.tgz"
+  integrity sha512-QN4GG+1OD4ZO2lz/AK8doTtBH4zZmDOjhw7lSxX1AfOOsPASQ/1GhR4/J6WUXFTOC/tIzC2Yss4aF1BvPI94Fw==
 
 "@blockly/field-grid-dropdown@^1.0.47":
   version "1.0.47"
   resolved "https://registry.npmjs.org/@blockly/field-grid-dropdown/-/field-grid-dropdown-1.0.47.tgz"
   integrity sha512-m+6BG+ZjRTsVyJUAU+HeWWt0fP8qvs3L+/y6dD2fXGNxbHUgM6Sdl4IjTjyMjedxxJG2tPRaiOC1f+VziU825Q==
 
-"@blockly/field-slider@^3.0.8":
-  version "3.0.8"
-  resolved "https://registry.npmjs.org/@blockly/field-slider/-/field-slider-3.0.8.tgz"
-  integrity sha512-8vOnhN3MYKFie9ibs9DgUQELtZKMATVBRnxX3YTTWn9uoeW8KDOXlJKUvqR5pGGgm0/6uNFAE3pq899Tt5Y4Jg==
+"@blockly/field-slider@^3.0.22":
+  version "3.0.22"
+  resolved "https://registry.npmjs.org/@blockly/field-slider/-/field-slider-3.0.22.tgz"
+  integrity sha512-ImKkvoy0H4EIgsvkoi1D0QvnTf60sRrvjGMH5gqBJO7aWiwUdgssPkLS9fVAIXKmewQo5Q93Nmbsh1OPUXvwuQ==
 
-"@blockly/plugin-workspace-search@^5.0.13":
-  version "5.0.13"
-  resolved "https://registry.npmjs.org/@blockly/plugin-workspace-search/-/plugin-workspace-search-5.0.13.tgz"
-  integrity sha512-LoQsDGJYNiMRTiXbMej9YRLrJd/Rz4MSzxacwIhnxUEj1n8SdqxNTviV/C9r91QHIgmmV+Lx7yDep719exb8xQ==
+"@blockly/plugin-workspace-search@^5.0.22":
+  version "5.0.22"
+  resolved "https://registry.npmjs.org/@blockly/plugin-workspace-search/-/plugin-workspace-search-5.0.22.tgz"
+  integrity sha512-qNtHbCtzJs2eOlguO+fCLNae/oiSD3JfQ5d3S8v4e0sfApvUHtQ9YVd4CXWuPE0I9EyKx6u1yc0CKA5g+E0o2g==
 
-"@blockly/theme-dark@^3.0.8":
-  version "3.0.8"
-  resolved "https://registry.npmjs.org/@blockly/theme-dark/-/theme-dark-3.0.8.tgz"
-  integrity sha512-36EFsxThu9e4C9yF19GOPmMpxqpnx0yIw9izbk3BRWfx6kKxDvy/MkgIaxScT3/nHcnxIpELlh54sTSli5n7RQ==
+"@blockly/theme-dark@^3.0.17":
+  version "3.0.17"
+  resolved "https://registry.npmjs.org/@blockly/theme-dark/-/theme-dark-3.0.17.tgz"
+  integrity sha512-WxYApZT2vok2k4ba98KrweFTTiL2CS8JvOO8ZaOaI5GSWTU7jO6b+KCPHf5WAEY80iqAspg1gRTeePKliZmgIA==
 
-"@blockly/theme-modern@^2.1.12":
-  version "2.1.12"
-  resolved "https://registry.npmjs.org/@blockly/theme-modern/-/theme-modern-2.1.12.tgz"
-  integrity sha512-42CjQwcSEbPEATg6I9ezgW5NA8cD4jcHngqxYKO29FRrkzDCvg8cqFcrWcuzzmlJzwaXkPzda/1NWlTLH/gEpw==
+"@blockly/theme-modern@^2.1.42":
+  version "2.1.42"
+  resolved "https://registry.npmjs.org/@blockly/theme-modern/-/theme-modern-2.1.42.tgz"
+  integrity sha512-CCS1EYQ3k0N70/ol0ozzEBcb5dYMpmjjOQFOEDWsSzyt8qujKRneFDp8f9+/W1a43jyaY53kZPTYuaXfPaAp0A==
 
 "@blockly/workspace-backpack@^2.0.16":
   version "2.0.16"
@@ -2540,7 +2540,7 @@ bl@^4.1.0:
     inherits "^2.0.4"
     readable-stream "^3.4.0"
 
-blockly@^8.0.2, blockly@>=3.20200123.0, "blockly@>=7 <9", "blockly@7 - 8":
+blockly@^8.0.2, "blockly@>=3.20200123.0 <9", "blockly@>=7 <9":
   version "8.0.2"
   resolved "https://registry.npmjs.org/blockly/-/blockly-8.0.2.tgz"
   integrity sha512-IVhgfb0I6XWwsLJZbtZHydJ2vX+Nu4V6bIn7tYLgDyaBfZQHcKeR3hVPnPbUi/n8+JTQA/a2AAey5qSIzwwBPw==
@@ -3132,7 +3132,21 @@ css-declaration-sorter@^6.3.1:
   resolved "https://registry.npmjs.org/css-declaration-sorter/-/css-declaration-sorter-6.4.1.tgz"
   integrity sha512-rtdthzxKuyq6IzqX6jEcIzQF/YqccluefyCYheovBOLhFT/drQA9zj/UbRAa9J7C0o6EG6u3E6g+vKkay7/k3g==
 
-css-loader@*, css-loader@^6.5.0:
+css-loader@*, css-loader@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.npmjs.org/css-loader/-/css-loader-7.1.2.tgz"
+  integrity sha512-6WvYYn7l/XEGN8Xu2vWFt9nVzrCn39vKyTEFf/ExEyoksJjjSZV/0/35XPlMbpnr6VGhZIUg5yJrL8tGfes/FA==
+  dependencies:
+    icss-utils "^5.1.0"
+    postcss "^8.4.33"
+    postcss-modules-extract-imports "^3.1.0"
+    postcss-modules-local-by-default "^4.0.5"
+    postcss-modules-scope "^3.2.0"
+    postcss-modules-values "^4.0.0"
+    postcss-value-parser "^4.2.0"
+    semver "^7.5.4"
+
+css-loader@^6.5.0:
   version "6.11.0"
   resolved "https://registry.npmjs.org/css-loader/-/css-loader-6.11.0.tgz"
   integrity sha512-CTJ+AEQJjq5NzLga5pE39qdiSV56F8ywCIsqNIRF0r7BDgWsN25aazToqAFg7ZrtA/U016xudB3ffgweORxX7g==
@@ -8309,7 +8323,7 @@ webpack-virtual-modules@^0.4.2:
   resolved "https://registry.npmjs.org/webpack-virtual-modules/-/webpack-virtual-modules-0.4.6.tgz"
   integrity sha512-5tyDlKLqPfMqjT3Q9TAqf2YqjwmnUleZwzJi1A5qXnlBCdj2AtOJ6wAWdglTIDOPgOiOrXeBeFcsQ8+aGQ6QbA==
 
-"webpack@^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0", "webpack@^3.0.0 || ^4.1.0 || ^5.0.0-0", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.1.0 || ^5.0.0-0", "webpack@^4.27.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.54.0, webpack@^5.99.9, webpack@>=2:
+"webpack@^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0", "webpack@^3.0.0 || ^4.1.0 || ^5.0.0-0", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.1.0 || ^5.0.0-0", "webpack@^4.27.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.27.0, webpack@^5.54.0, webpack@^5.99.9, webpack@>=2:
   version "5.99.9"
   resolved "https://registry.npmjs.org/webpack/-/webpack-5.99.9.tgz"
   integrity sha512-brOPwM3JnmOa+7kd3NsmOUOwbDAj8FT9xDsG3IW0MgbN9yZV7Oi/s/+MNQ/EcSMqw7qfoRyXPoeEWT8zLVdVGg==
