@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="lg" style="background-color:#161719!important;user-select:none;" id="navbar nav-main" class="navbar-dark bg-dark">
+  <b-navbar toggleable="lg" style="user-select:none;" id="navbar nav-main" class="navbar-dark bg-dark">
     <b-navbar-brand>
       <button id="hideAllGuiElements" class="hide-gui-button"><img :src="decideNavBarImage" width="35" draggable="false" id="navigationBarS4DImage" /></button>
       Scratch For Discord
@@ -25,7 +25,7 @@
         <div id="block-counter" style="margin-right: 5px; font-size: 90%">
           <p id="block-counter-textParagraph" style="color:rgb(182, 182, 182);">0 blocks</p>
         </div>
-        <b-nav-item class="theme-changer" id="themeSwitchingLD" style="width: 32px; height: 32px; margin-top: 2px; margin-right: 5px;" @click="changeTheme"> </b-nav-item>
+        <b-nav-item class="theme-changer" id="themeSwitchingLD" style="width:32px;height:32px;margin-top:2px;margin-right:5px;" @click="changeTheme"></b-nav-item>
 
         <b-button style="border-right-color: #161719; border-radius: 0em; border-top-left-radius: 0.25em; border-bottom-left-radius: 0.25em">
           <span id="docName" style="font-size: smaller" @click="changeFileName">{{ $t('untitled') }}</span>
@@ -209,13 +209,12 @@ export default {
         if (problems.length > 0 || problematic) {
           newString = `<h2>Hold up!</h2>
 <p>Some problems on the workspace need to be solved before you can get a working download.</p>
-<ul>
-`;
+<ul>`;
           newString += problems.join('');
           if (blockProblems.length > 0) {
             newString += `<details style='text-align:left'>
-    <summary><b>Some blocks have some errors on them.</b></summary>
-    <div>`;
+<summary><b>Some blocks have some errors on them.</b></summary>
+<div>`;
             newString += blockProblems.join('');
             newString += `</div>
 </details>`;
@@ -236,7 +235,7 @@ export default {
 </ul>
 <style>
 .lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123 {
-    width: 35%
+  width: 35%
 }
 </style>`;
       this.$swal
@@ -267,26 +266,23 @@ export default {
               return;
             }
             zip.file('index.js', javascriptContent);
-            zip.file(
-              'package.json',
-              `{\n
-    "name": "scratch-for-discord-bot",\n
-    "version": "1.0.0",\n
-    "main": "index.js",\n
-    "scripts": {\n
-        "start": "npm i && node .",\n
-        "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",\n
-        "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i"\n
-    },\n
-    "dependencies": {\n
-        "moment": "latest",\n
-        ${requireUsed}
-    },\n
-    "devDependencies": {\n
-        "node": "^18"\n
-    }\n
-}`
-            );
+            zip.file('package.json', `{\n
+  "name": "scratch-for-discord-bot",\n
+  "version": "1.0.0",\n
+  "main": "index.js",\n
+  "scripts": {\n
+    "start": "npm i && node .",\n
+    "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",\n
+    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i"\n
+  },\n
+  "dependencies": {\n
+    "moment": "latest",\n
+    ${requireUsed}
+  },\n
+  "devDependencies": {\n
+    "node": "^18"\n
+  }\n
+}`);
             zip
               .generateAsync({
                 type: 'blob'

@@ -28,9 +28,9 @@
 }
 
 .light-them .blocklyTreeIcon {
-			filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%) !important;
-		}
-		
+	filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%) !important;
+}
+
 .light-them #blocklyTreeIcon {
   filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%) !important;
 }
@@ -43,45 +43,44 @@
   filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%) !important;
 }
 
+.blocklyFlyoutLabelText, .blocklyToolboxDiv, .blocklyTreeLabel, .blocklyTreeSeparator, .btgr, .blocklySvg, .blocklyFlyoutBackground, #navSpace, .customIcon2 {
+  transition: background 250ms ease-in-out, fill 250ms ease-in-out, border 250ms ease-in-out, color 250ms ease-in-out;
+}
 
 .light-them .blocklyFlyoutLabelText {
-  transition: all 0.5s ease-in-out;
   fill: #575e75 !important;
 }
 
 .light-them .blocklyToolboxDiv {
-  transition: all 0.5s ease-in-out;
   background-color: #ddd !important;
 }
 
 .light-them .blocklyTreeLabel {
-  transition: all 0.5s ease-in-out;
   color: black !important;
 }
 
 .light-them .blocklyTreeSeparator {
-  transition: all 0.5s ease-in-out;
   border-bottom: solid #ebf0f4 1px;
   height: 0;
   margin: 5px 0;
 }
 
 .light-them .btgr {
-  transition: border-bottom 0.5s ease-in-out;
   border-bottom: solid #bbb 1px !important;
 }
 
 .light-them .blocklySvg {
-  transition: background-color 0.5s ease-in-out;
   background-color: white !important;
 }
 
 .light-them .blocklyFlyoutBackground {
-  transition: fill 0.5s ease-in-out;
-  fill: #e4e4e4!important;
+  fill: #e4e4e4 !important;
+}
+
+:not(.light-them) #navSpace {
+  background-color: rgb(22, 23, 25) !important;
 }
 
 .light-them #navSpace {
-  transition: all 0.5s ease-in-out;
   background-color: #666 !important;
 }
