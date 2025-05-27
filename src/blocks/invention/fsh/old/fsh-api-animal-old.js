@@ -14,7 +14,7 @@ const blockData = {
   output: 'String',
   colour: '#50494e',
   tooltip: 'this is a old version of fsh api animal image block (should still work but will not recive further updates)',
-  helpUrl: 'https://fsh-bot.frostzzone.repl.co/api/animal'
+  helpUrl: 'https://api.fsh.plus/animal'
 };
 
 Blockly.Blocks[blockName] = {
@@ -26,7 +26,7 @@ Blockly.Blocks[blockName] = {
 Blockly.JavaScript[blockName] = function(block) {
   var text_type = block.getFieldValue('TYPE');
 
-  var code = `await _S4D_inventionFSHapi('animal?animal=', ${text_type})`;
+  var code = `await _S4D_inventionFSHapi('animal?animal=', ${text_type}, 'image', '')`;
 
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

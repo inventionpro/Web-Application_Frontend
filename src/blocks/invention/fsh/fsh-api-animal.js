@@ -13,7 +13,7 @@ const blockData = {
   output: 'String',
   colour: '#50494e',
   tooltip: 'Gets a random animal picture (link) from the fsh api',
-  helpUrl: 'https://fsh-bot.frostzzone.repl.co/api/animal'
+  helpUrl: 'https://api.fsh.plus/animal'
 };
 
 Blockly.Blocks[blockName] = {
@@ -23,10 +23,9 @@ Blockly.Blocks[blockName] = {
 };
 
 Blockly.JavaScript[blockName] = function(block) {
-  var text_type = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  //text_type = encodeURIComponent(text_type.toLowerCase());
+  var value_url = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
 
-  var code = `await _S4D_inventionFSHapi('animal?animal=', ${text_type})`;
+  var code = `await _S4D_inventionFSHapi('animal?animal=', ${value_url}, 'image', '')`;
 
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

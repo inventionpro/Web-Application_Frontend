@@ -1,39 +1,36 @@
 export default async function require(array, code, js) {
   if (js.includes('.chat')) {
     array.push(`const smartestchatbot = require('smartestchatbot');
-    const client = new smartestchatbot.Client();
-    `);
+const client = new smartestchatbot.Client();`);
   }
   if (js.includes('new Modal()')) {
     code.push(`const discordModals = require('discord-modals');
-    discordModals(s4d.client);
-    const { Modal, TextInputComponent, showModal } = require('discord-modals');`);
+discordModals(s4d.client);
+const { Modal, TextInputComponent, showModal } = require('discord-modals');`);
   }
   if (js.includes('QRCode.toString')) {
-    array.push(`const QRCode = require('qrcode')`);
+    array.push(`const QRCode = require('qrcode');`);
   }
   if (js.includes('s4d.client.dashboard = new Dashboard')) {
     array.push(`const Dashboard = require('@frostzzone/discord-easy-dashboard');`);
   }
   if (js.includes('tempChannels.registerChannel')) {
     array.push(`const TempChannels = require("discord-temp-channels");`);
-    array.push(`const tcdbpkcgRequirementlolol = require("quick.db")`);
+    array.push(`const tcdbpkcgRequirementlolol = require("quick.db");`);
     array.push(`const db = new tcdbpkcgRequirementlolol.QuickDB({ filePath: "tempChannelsS4D.sqlite" });`);
     code.push(`const tempChannels = new TempChannels(s4d.client);`);
-    code.push(`
-    s4d.client.on("ready", async () => {
-        let thingie = await db.get("temp-channels")
-        if (!thingie) await db.set("temp-channels", []);
-        let arrayofstuff = await db.get("temp-channels")
-        arrayofstuff.forEach((channelData) => {
-            tempChannels.registerChannel(channelData.channelID, channelData.options);
-        });
+    code.push(`s4d.client.on("ready", async()=>{
+    let thingie = await db.get("temp-channels");
+    if (!thingie) await db.set("temp-channels", []);
+    let arrayofstuff = await db.get("temp-channels");
+    arrayofstuff.forEach((channelData) => {
+      tempChannels.registerChannel(channelData.channelID, channelData.options);
     });
-    `);
+});`);
   }
   if (js.includes(`qdb.set`)) {
-    array.push(`const { QuickDB } = require('quick.db')`);
-    code.push(`const qdb = new QuickDB()`);
+    array.push(`const { QuickDB } = require('quick.db');`);
+    code.push(`const qdb = new QuickDB();`);
   }
   if (js.includes('const stream = discordTTS')) {
     array.push(`const discordTTS = require("discord-tts");`);
@@ -42,13 +39,13 @@ export default async function require(array, code, js) {
     code.push(`let audioPlayer=new AudioPlayer();`);
   }
   if (js.includes('Snake') || js.includes('Calculator') || js.includes('Fight')) {
-    array.push(`const { Calculator, Snake, Fight } = require('weky')`);
+    array.push(`const { Calculator, Snake, Fight } = require('weky');`);
   }
   if (js.includes('censor')) {
     array.push("const censor = require('discord-censor');");
   }
   if (js.includes('moment')) {
-    array.push(`let moment  = require("moment")`);
+    array.push(`let moment  = require("moment");`);
   }
   if (js.includes('queue.join')) {
     array.push(`let { Player, RepeatMode } = require("discord-music-player");`);
@@ -71,34 +68,34 @@ export default async function require(array, code, js) {
     array.push(`let Invite = require("discord-inviter-tracker")`);
     code.push('s4d.Inviter = new Invite(s4d.client)');
     code.push(`s4d.Inviter.on("WARN",function(e){
-        console.log('WARN: '+e)
-    })`);
+  console.log('WARN: '+e);
+});`);
   }
   if (js.includes('URL')) {
-    array.push(`let URL = require('url')`);
+    array.push(`let URL = require('url');`);
   }
   if (js.includes('ticket.start')) {
     array.push(`const ticket = require('tickets-discord');`);
     array.push(`const { start, login } = require('tickets-discord');`);
   }
   if (js.includes(`ms`)) {
-    array.push(`const ms = require("ms")`);
+    array.push(`const ms = require("ms");`);
   }
   if (js.includes('antilink')) {
     array.push(`const AntiLinkClient = require("anti-link-for-discord");`);
     code.push(`const antilink = new AntiLinkClient({
-        warnMessage: (message) => '<@'+message.author.id+'>, No links.',
-        muteCount: 5,
-        kickCount: 10,
-        banCount: 15,
-        deleteMessage: true,
-      });`);
+  warnMessage: (message) => '<@'+message.author.id+'>, No links.',
+  muteCount: 5,
+  kickCount: 10,
+  banCount: 15,
+  deleteMessage: true
+});`);
   }
   if (js.includes('DIG')) {
-    array.push(`let DIG = require("discord-image-generation")`);
+    array.push(`let DIG = require("discord-image-generation");`);
   }
   if (js.includes('firebase')) {
-    array.push(`let firebase = require("firebase")`);
+    array.push(`let firebase = require("firebase");`);
   }
   if (js.includes('DB')) {
     array.push(`let { DB } = require("mongquick");`);
@@ -108,71 +105,71 @@ export default async function require(array, code, js) {
         array.push(`const game = new TicTacToe({ language: 'en' })`)
     } */
   if (js.includes('canvas')) {
-    array.push(`let canvas = require("discord-canvas") `);
+    array.push(`let canvas = require("discord-canvas");`);
   }
   if (js.includes('https')) {
-    array.push(`let https = require("https")`);
+    array.push(`let https = require("https");`);
   }
   if (js.includes('s4d.manager')) {
     array.push(`let { GiveawaysManager }= require("discord-giveaways")`);
     code.push(`s4d.manager = new GiveawaysManager(s4d.client, {
-        storage: './giveaways.json',
-        default: {
-            botsCanWin: false,
-            embedColor: '#FF0000',
-            embedColorEnd: '#000000',
-            reaction: '🎉'
-        }
-    });`);
+  storage: './giveaways.json',
+  default: {
+    botsCanWin: false,
+    embedColor: '#FF0000',
+    embedColorEnd: '#000000',
+    reaction: '🎉'
+  }
+});`);
   }
   if (js.includes('s4d.notifer')) {
-    array.push(`let ytnotifier = require("youtube-notification-module")`);
+    array.push(`let ytnotifier = require("youtube-notification-module");`);
     code.push(`s4d.notifer = new ytnotifier({channels: [],checkInterval: 50});`);
   }
   if (js.includes('queue.connect')) {
-    array.push(`let { Player,QueueRepeatMode } = require("discord-player")`); //foi
-    array.push(`let playdl = require("play-dl")`);
-    code.push(`s4d.player = new Player(s4d.client)`);
+    array.push(`let { Player,QueueRepeatMode } = require("discord-player");`);
+    array.push(`let playdl = require("play-dl");`);
+    code.push(`s4d.player = new Player(s4d.client);`);
   }
   if (js.includes('getBadges')) {
-    array.push(`const badges = require("discord-badges");   `);
+    array.push(`const badges = require("discord-badges");`);
     code.push(`function getBadges(user){
-        return badges.badges(user).then((response) => {
-            return response
-        }).catch((e) => {
-            console.log(e);
-        });
-    }  `);
+  return badges.badges(user).then((response) => {
+    return response;
+  }).catch((e) => {
+    console.log(e);
+  });
+}`);
   }
   if (js.includes('s4d.client.discordTogether')) {
     array.push(`const { DiscordTogether } = require('discord-together');`);
     code.push(`s4d.client.discordTogether = new DiscordTogether(s4d.client);`);
   }
   if (js.includes('SnakeGame')) {
-    array.push(`const SnakeGame = require('snakecord')`);
+    array.push(`const SnakeGame = require('snakecord');`);
   }
   if (js.includes('os.sysUptime()')) {
-    array.push(`const miliConverter = require("millisecond-converter")`);
+    array.push(`const miliConverter = require("millisecond-converter");`);
   }
   if (js.includes('Cooldown')) {
-    code.push(`let Cooldown = ""
-    if(s4d.database.has('cooldown')){
-        Cooldown = s4d.database.get('cooldown')
-        setInterval(()=>{
-            s4d.database.set('cooldown',Cooldown)
-        },1000)
-    }else{
-        Cooldown = new Set();
-        setInterval(()=>{
-            s4d.database.set('cooldown',Cooldown)
-        },1000)
-    }`);
+    code.push(`let Cooldown = "";
+if (s4d.database.has('cooldown')) {
+  Cooldown = s4d.database.get('cooldown');
+  setInterval(()=>{
+    s4d.database.set('cooldown', Cooldown);
+  }, 1000)
+} else {
+    Cooldown = new Set();
+    setInterval(()=>{
+      s4d.database.set('cooldown', Cooldown);
+    }, 1000)
+}`);
   }
   if (js.includes('progressbar')) {
-    array.push(`let progressbar = require('string-progressbar')`);
+    array.push(`let progressbar = require('string-progressbar');`);
   }
   if (js.includes('weirdToNormalChars')) {
-    array.push(`const { weirdToNormalChars } = require('weird-to-normal-chars')`);
+    array.push(`const { weirdToNormalChars } = require('weird-to-normal-chars');`);
   }
   if (js.includes('captcha')) {
     array.push(`const Captcha = require("@haileybot/captcha-generator");`);
@@ -181,7 +178,7 @@ export default async function require(array, code, js) {
     array.push(`const paginationEmbed = require('discord-pagination-fixed');`);
   }
   if (js.includes('jimp')) {
-    array.push(`const jimp = require('jimp')`);
+    array.push(`const jimp = require('jimp');`);
   }
   if (js.includes('S4D_APP_write')) {
     array.push("const S4D_APP_write = require('write');");
@@ -205,7 +202,7 @@ export default async function require(array, code, js) {
     array.push(`const xml2json = require('xml-to-json')`);
   }
   if (js.includes('S4D_APP_PKG_axios') || js.includes('_S4D_inventionFSHapi')) {
-    array.push(`const S4D_APP_PKG_axios = require('axios')`);
+    array.push(`const S4D_APP_PKG_axios = require('axios');`);
   }
   if (js.includes('S4D_APP_MC_GET')) {
     array.push(`const S4D_APP_MC_GET = require('minecraft-server-util');`);
@@ -237,17 +234,17 @@ dootabase.setFile("./database.json");`);
     array.push(`const S4D_APP_FFMPEG = require('ffmpeg');`);
   }
   if (js.includes('S4D_APP_Replit_DB')) {
-    array.push(`const S4D_APP_PKG_Replit_DB = require("@replit/database")
-        const S4D_APP_Replit_DB = new S4D_APP_PKG_Replit_DB()`);
+    array.push(`const S4D_APP_PKG_Replit_DB = require("@replit/database");
+const S4D_APP_Replit_DB = new S4D_APP_PKG_Replit_DB();`);
   }
   if (js.includes('S4D_APP_REDDIT_musakui')) {
     array.push(`const S4D_APP_REDDIT_musakui = require('musakui');`);
   }
   if (js.includes('S4D_APP_RUN_BUTTON')) {
-    array.push(`const S4D_APP_RUN_BUTTON = false`);
+    array.push(`const S4D_APP_RUN_BUTTON = false;`);
   }
   if (js.includes('/* IMPORTED - S4D Website Hosting Dependencies */')) {
-    array.push(`const S4D_WEBSITECREATION_EXPRESS = require('express')
+    array.push(`const S4D_WEBSITECREATION_EXPRESS = require('express');
 const S4D_WEBSITECREATION_bodyParser = require('body-parser');
 const S4D_WEBSITECREATION_cors = require('cors');
 var S4D_WEBSITECREATION_path = require('path');
@@ -258,40 +255,43 @@ const S4D_WEBSITECREATION_EXPRESS_app = S4D_WEBSITECREATION_EXPRESS();`);
   }
   if (js.includes('S4D_makeid')) {
     code.push(`function S4D_makeid(length) {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < Number(length); i++) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
-    }
-    return result;
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < Number(length); i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }`);
   }
   if (js.includes('Database')) {
-    array.push('const Database  = require("easy-json-database")');
+    array.push('const Database  = require("easy-json-database");');
   }
   if (js.includes('s4d.database')) {
-    array.push('const Database  = require("easy-json-database")');
-    code.push("s4d.database = new Database('./database.json')");
+    array.push('const Database  = require("easy-json-database");');
+    code.push("s4d.database = new Database('./database.json');");
   }
   if (js.includes('OpenAIApi')) {
     array.push('const OpenAI = require("openai");');
   }
   if (js.includes('_S4D_inventionFSHapi')) {
-    code.push(`async function _S4D_inventionFSHapi(_S4D_fshurl, _S4D_fshquery) {
-            let _S4D_fshresponse;
-            try {
-                _S4D_fshresponse = await S4D_APP_PKG_axios.get('https://fsh-bot.frostzzone.repl.co/api/' + _S4D_fshurl + encodeURIComponent(_S4D_fshquery) + '&plain=1');
-                _S4D_fshresponse = _S4D_fshresponse.data;
-            } catch (error) {
-                // if error return empty and log
-                _S4D_fshresponse = ""
-                console.error('Fsh api error!')
-                console.error(error)
-            }
-            return _S4D_fshresponse;
-        }`);
+    code.push(`async function _S4D_inventionFSHapi(_S4D_fshurl, _S4D_fshquery, _S4D_fshdata, _S4D_fshfallback) {
+  let _S4D_fshresponse;
+  try {
+    _S4D_fshresponse = await fetch('https://api.fsh.plus/' + _S4D_fshurl + encodeURIComponent(_S4D_fshquery));
+    _S4D_fshresponse = await _S4D_fshresponse.text();
+    try {
+      _S4D_fshresponse = JSON.parse(_S4D_fshresponse)[_S4D_fshdata];
+      _S4D_fshresponse ??= _S4D_fshfallback
+    } catch(_err) {}
+  } catch (error) {
+    // if error return fallback and log
+    _S4D_fshresponse = _S4D_fshfallback;
+    console.error('Fsh api error!');
+    console.error(error);
+  }
+  return _S4D_fshresponse;
+}`);
   }
   if (js.includes('__S4D__fivem')) {
     array.push('const __S4D__fivem = require("discord-fivem-api");');

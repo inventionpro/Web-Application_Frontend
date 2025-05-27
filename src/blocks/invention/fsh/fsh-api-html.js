@@ -1,5 +1,3 @@
-/* Block by lars and inv */
-
 import Blockly from 'blockly/core';
 
 const blockName = 'lars-inv_fsh_api_html';
@@ -28,9 +26,8 @@ Blockly.Blocks[blockName] = {
 
 Blockly.JavaScript[blockName] = function(block) {
   var value_url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC);
-  //value_url = encodeURIComponent(value_url.toLowerCase());
 
-  var code = `await _S4D_inventionFSHapi('page?url=', ${value_url})`;
+  var code = `await _S4D_inventionFSHapi('html?url=', ${value_url}, '', '')`;
 
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

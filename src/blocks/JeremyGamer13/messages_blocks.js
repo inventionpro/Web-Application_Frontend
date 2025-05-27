@@ -1020,7 +1020,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
           options: [
             [
               {
-                src: '/down.png',
+                src: '/arrows/down.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down'
@@ -1029,7 +1029,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/up.png',
+                src: '/arrows//up.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up'
@@ -1038,7 +1038,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/right.png',
+                src: '/arrows//right.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'right'
@@ -1047,7 +1047,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/left.png',
+                src: '/arrows//left.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'left'
@@ -1056,7 +1056,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/dleft.png',
+                src: '/arrows//dleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down left'
@@ -1065,7 +1065,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/dright.png',
+                src: '/arrows//dright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down right'
@@ -1074,7 +1074,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/uleft.png',
+                src: '/arrows//uleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up left'
@@ -1083,7 +1083,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/uright.png',
+                src: '/arrows//uright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up right'
@@ -1165,7 +1165,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
           options: [
             [
               {
-                src: '/down.png',
+                src: '/arrows//down.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down'
@@ -1174,7 +1174,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/up.png',
+                src: '/arrows//up.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up'
@@ -1183,7 +1183,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/right.png',
+                src: '/arrows//right.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'right'
@@ -1192,7 +1192,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/left.png',
+                src: '/arrows//left.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'left'
@@ -1201,7 +1201,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/dleft.png',
+                src: '/arrows//dleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down left'
@@ -1210,7 +1210,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/dright.png',
+                src: '/arrows//dright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down right'
@@ -1219,7 +1219,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/uleft.png',
+                src: '/arrows//uleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up left'
@@ -1228,7 +1228,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/uright.png',
+                src: '/arrows//uright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up right'
