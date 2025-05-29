@@ -147,17 +147,17 @@ Blockly.Blocks['jg_s4d_themes_set_navigation_bar_button_color_to'] = {
         navbarColor = [0, 0, 0];
       }
     }
-    const navbarE = document.getElementsByClassName('navbar-nav ml-auto').item(0);
-    let elements = navbarE.getElementsByClassName('btn btn-secondary');
+    const navbarE = document.querySelector('nav');
+    let elements = Array.from(navbarE.querySelectorAll('.btn.btn-secondary'));
     for (let i = 0; i < elements.length; i++) {
-      let current = elements.item(i);
+      let current = elements[i];
       if (current.getAttribute('style') == null) continue;
       if (current.getAttribute('style').includes(`background-color: ${color}`)) continue;
       current.setAttribute('style', current.getAttribute('style') + `background-color: ${color} !important;border-color: ${color} !important;`);
     }
-    elements = navbarE.getElementsByClassName('btn btn-secondary disabled');
+    elements = Array.from(navbarE.querySelectorAll('.btn.btn-secondary.disabled'));
     for (let i = 0; i < elements.length; i++) {
-      let current = elements.item(i);
+      let current = elements[i];
       if (current.getAttribute('style') == null) continue;
       if (current.getAttribute('style').includes(`background-color: ${color}`)) continue;
       const rgb = hexToRgb(color.substring(1));

@@ -909,7 +909,6 @@ export default {
                       }
                     })
                     .then(async result => {
-                      console.log(result);
                       if (result == null || result == false) {
                         return;
                       }
@@ -1353,58 +1352,58 @@ export default {
                     });
                     break;
                     case 'optimizations':
-          this.$swal
-            .fire({
-              title: 'Site Optimizations',
-              html: `<h6>Most of these optimizations are minor, but can help if you have a good amount of blocks.</h6><h4><b>These do require a refresh to fully work.</b></h4>`,
-              showCancelButton: true,
-              cancelButtonText: 'Cancel',
-              confirmButtonText: 'Toggle Block Counter'
-            })
-            .then(async result => {
-              if (result.isConfirmed) {
-                localforage.getItem('hide-blockcount').then(item => {
-                  if (item == null) {
-                    localforage.setItem('hide-blockcount', true);
-                    return;
-                  }
-                  if (String(item) == 'true') {
-                    localforage.setItem('hide-blockcount', false);
-                  } else {
-                    localforage.setItem('hide-blockcount', true);
-                  }
-                  localforage.getItem('hide-blockcount').then(console.log);
-                });
-              }
-            });
-            break;
-            case 'settings':
-          // TODO: swal 2
-          this.$swal({
-            title: 'S4D Site Settings',
-            html: `Toggle shortcuts being enabled and change the theme!`,
-            icon: 'https://media.discordapp.net/attachments/914411539887456296/993734332302770237/setting2.png',
-            buttons: {
-              cancel: 'Cancel',
-              shortcut: 'Toggle shortcuts',
-              theme: 'Set theme'
-            }
-          }).then(async result => {
-            if (String(result) == 'shortcut') {
-              localforage.getItem('utilitiesShortcuts').then(item => {
-                localforage.setItem('utilitiesShortcuts', item == null ? false : null).then(() => {
-                  localforage.getItem('utilitiesShortcuts').then(item => {
-                    this.$swal.fire({
-                      title: 'Updated shortcuts!',
-                      text: `Shortcuts have been toggled ${item == null ? 'on' : 'off'}. Please refresh the page.`,
-                      icon: 'success'
-                    });
-                  });
-                });
-              });
-            } else if (String(result) == 'theme') {
-              const previews = `
-<style>
+                      this.$swal
+                        .fire({
+                          title: 'Site Optimizations',
+                          html: `<span>These optimizations are minor, but can help for big projects.</span><br><b>These require a refresh to fully work.</b>`,
+                          showCancelButton: true,
+                          cancelButtonText: 'Cancel',
+                          confirmButtonText: 'Toggle Block Counter'
+                        })
+                        .then(async result => {
+                          if (result.isConfirmed) {
+                            localforage.getItem('hide-blockcount').then(item => {
+                              if (item == null) {
+                                localforage.setItem('hide-blockcount', true);
+                                return;
+                              }
+                              if (String(item) == 'true') {
+                                localforage.setItem('hide-blockcount', false);
+                              } else {
+                                localforage.setItem('hide-blockcount', true);
+                              }
+                              localforage.getItem('hide-blockcount').then(console.log);
+                            });
+                          }
+                        });
+                      break;
+                    case 'settings':
+                      this.$swal.fire({
+                        title: 'Site Settings',
+                        text: 'Toggle shortcuts and change the theme!',
+                        icon: 'info',
+                        showCancelButton: true,
+                        showDenyButton: true,
+                        cancelButtonText: 'Cancel',
+                        denyButtonText: 'Toggle shortcuts',
+                        confirmButtonText: 'Set theme'
+                      })
+                        .then(async result => {
+                          if (result.isDismissed) return;
+                          if (result.isDenied) {
+                            localforage.getItem('utilitiesShortcuts').then(item => {
+                              localforage.setItem('utilitiesShortcuts', item == null ? false : null).then(() => {
+                                localforage.getItem('utilitiesShortcuts').then(item => {
+                                  this.$swal.fire({
+                                    title: 'Updated shortcuts!',
+                                    text: `Shortcuts have been toggled ${item == null ? 'on' : 'off'}. Please refresh the page.`,
+                                    icon: 'success'
+                                  });
+                                });
+                              });
+                            });
+                          } else if (result.isConfirmed) {
+                            const previews = `<style>
 .row123 {
   display: flex;
 }
@@ -1414,142 +1413,140 @@ export default {
 }
 </style>
 <center>
-    <image src="https://media.discordapp.net/attachments/914411539887456296/993745043741495336/screenshot_11.png?width=1084&height=676" width="213" height="133"></image>
-    <hr>
-    <span>
-        <div class="row123">
-            <div class="column123" name="neo">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/994269048143626433/screenshot_20.png?width=1084&height=676" width="213" height="133"></image>
-            </div>
-            <div class="column123" name="toon">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/993745044907507822/screenshot_12.png?width=1084&height=676" width="213" height="133"></image>
-            </div>
-            <div class="column123" name="invert">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/993745044626493511/screenshot_13.png?width=1084&height=676" width="213" height="133"></image>
-            </div>
-            <div class="column123" name="textless">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/993745044290928640/screenshot_14.png?width=1084&height=676" width="213" height="133"></image>
-            </div>
-        </div>
-    </span>
-    <span>
-        <div class="row123">
-            <div class="column123" name="grayscale">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/994153873214279720/screenshot_16.png?width=1084&height=676" width="213" height="133"></image>
-            </div>
-            <div class="column123" name="glowy">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/994420310352863242/glowy_theme.png?width=981&height=676" width="213" height="133"></image>
-            </div>
-            <div class="column123" name="scratch block top">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/994381648202309672/screenshot_21.png?width=979&height=676" width="213" height="133"></image>
-            </div>
-            <div class="column123" name="full colors">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/994489879830470726/screenshot_22.png?width=981&height=676" width="213" height="133"></image>
-            </div>
-        </div>
-    </span>
-    <span>
-        <div class="row123">
-            <div class="column123" name="textonly">
-                <image src="https://media.discordapp.net/attachments/914411539887456296/1006879208397611048/screenshot_23.png?width=1084&height=676" width="213" height="133"></image>
-            </div>
-        </div>
-    </span>
-    <b>Switching themes may require a refresh to work properly.</b>
-</center>
-`;
-              const { value: result } = await swal.fire({
-                title: 'Basic Themes',
-                iconHtml: `<img style="background-color: white;" src="https://media.discordapp.net/attachments/914411539887456296/993741275104804864/theme.png"/>`,
-                html: previews,
-                input: 'select',
-                inputOptions: {
-                  t1: 'Neo',
-                  t2: 'Toon',
-                  t3: 'Invert',
-                  t4: 'Textless',
-                  t5: 'Grayscale',
-                  t6: 'Glowy',
-                  t7: 'Scratch Block Top',
-                  t8: 'Full Colors',
-                  t9: 'Text only',
-                  none: 'Default'
-                },
-                inputPlaceholder: 'Select a theme',
-                showCancelButton: true,
-                width: '1000px'
-              });
-              switch (String(result)) {
-                case 't1':
-                  localforage.setItem('utilitiesTheme', 'neo');
-                  break;
-                case 't2':
-                  localforage.setItem('utilitiesTheme', 'toon');
-                  break;
-                case 't3':
-                  localforage.setItem('utilitiesTheme', 'invert');
-                  break;
-                case 't4':
-                  localforage.setItem('utilitiesTheme', 'textless');
-                  break;
-                case 't5':
-                  localforage.setItem('utilitiesTheme', 'gray');
-                  break;
-                case 't6':
-                  this.$swal
-                    .fire({
-                      title: 'Performance Warning!',
-                      text: 'This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?',
-                      icon: 'warning',
-                      showCancelButton: true,
-                      cancelButtonText: 'Cancel',
-                      confirmButtonText: 'Use this theme'
-                    })
-                    .then(async result => {
-                      if (!result.isConfirmed) return;
-                      localforage.setItem('utilitiesTheme', 'glow');
-                    });
-                  break;
-                case 't7':
-                  this.$swal
-                    .fire({
-                      title: 'Warning!',
-                      text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
-                      icon: 'warning',
-                      showCancelButton: true,
-                      cancelButtonText: 'Cancel',
-                      confirmButtonText: 'Use this theme'
-                    })
-                    .then(async result => {
-                      if (!result.isConfirmed) return;
-                      localforage.setItem('utilitiesTheme', 'scratch-top');
-                    });
-                  break;
-                case 't8':
-                  localforage.setItem('utilitiesTheme', 'full-colors');
-                  break;
-                case 't9':
-                  this.$swal
-                    .fire({
-                      title: 'Warning!',
-                      text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
-                      icon: 'warning',
-                      showCancelButton: true,
-                      cancelButtonText: 'Cancel',
-                      confirmButtonText: 'Use this theme'
-                    })
-                    .then(async result => {
-                      if (!result.isConfirmed) return;
-                      localforage.setItem('utilitiesTheme', 'text-only');
-                    });
-                  break;
-                case 'none':
-                  localforage.removeItem('utilitiesTheme');
-                  break;
-              }
-            }
-          });
-          break;
+  <image src="/themes/normal.png" width="213" height="133"></image>
+  <hr>
+  <span>
+    <div class="row123">
+      <div class="column123" name="neo">
+        <image src="/themes/neo.png" width="213" height="133"></image>
+      </div>
+      <div class="column123" name="toon">
+        <image src="/themes/toon.png" width="213" height="133"></image>
+      </div>
+      <div class="column123" name="invert">
+        <image src="/themes/invert.png" width="213" height="133"></image>
+      </div>
+      <div class="column123" name="textless">
+        <image src="/themes/textless.png" width="213" height="133"></image>
+      </div>
+    </div>
+  </span>
+  <span>
+    <div class="row123">
+      <div class="column123" name="grayscale">
+        <image src="/themes/grayscale.png" width="213" height="133"></image>
+      </div>
+      <div class="column123" name="glowy">
+        <image src="/themes/glow.png" width="213" height="133"></image>
+      </div>
+      <div class="column123" name="scratch block top">
+        <image src="/themes/scratch.png" width="213" height="133"></image>
+      </div>
+      <div class="column123" name="full colors">
+        <image src="/themes/colors.png" width="213" height="133"></image>
+      </div>
+    </div>
+  </span>
+  <span>
+    <div class="row123">
+      <div class="column123" name="textonly">
+        <image src="/themes/text.png" width="213" height="133"></image>
+      </div>
+    </div>
+  </span>
+  <b>Switching themes may require a refresh to work properly.</b>
+</center>`;
+                            const { value: result } = await swal.fire({
+                              title: 'Themes',
+                              html: previews,
+                              input: 'select',
+                              inputOptions: {
+                                t1: 'Neo',
+                                t2: 'Toon',
+                                t3: 'Invert',
+                                t4: 'Textless',
+                                t5: 'Grayscale',
+                                t6: 'Glowy',
+                                t7: 'Scratch Block Top',
+                                t8: 'Full Colors',
+                                t9: 'Text only',
+                                none: 'Default'
+                              },
+                              inputPlaceholder: 'Select a theme',
+                              showCancelButton: true,
+                              width: '1000px'
+                            });
+                            switch (String(result)) {
+                              case 't1':
+                                localforage.setItem('utilitiesTheme', 'neo');
+                                break;
+                              case 't2':
+                                localforage.setItem('utilitiesTheme', 'toon');
+                                break;
+                              case 't3':
+                                localforage.setItem('utilitiesTheme', 'invert');
+                                break;
+                              case 't4':
+                                localforage.setItem('utilitiesTheme', 'textless');
+                                break;
+                              case 't5':
+                                localforage.setItem('utilitiesTheme', 'gray');
+                                break;
+                              case 't6':
+                                this.$swal
+                                  .fire({
+                                    title: 'Performance Warning!',
+                                    text: 'This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    cancelButtonText: 'Cancel',
+                                    confirmButtonText: 'Use this theme'
+                                  })
+                                  .then(async result => {
+                                    if (!result.isConfirmed) return;
+                                    localforage.setItem('utilitiesTheme', 'glow');
+                                  });
+                                break;
+                              case 't7':
+                                this.$swal
+                                  .fire({
+                                    title: 'Warning!',
+                                    text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    cancelButtonText: 'Cancel',
+                                    confirmButtonText: 'Use this theme'
+                                  })
+                                  .then(async result => {
+                                    if (!result.isConfirmed) return;
+                                    localforage.setItem('utilitiesTheme', 'scratch-top');
+                                  });
+                                break;
+                              case 't8':
+                                localforage.setItem('utilitiesTheme', 'full-colors');
+                                break;
+                              case 't9':
+                                this.$swal
+                                  .fire({
+                                    title: 'Warning!',
+                                    text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    cancelButtonText: 'Cancel',
+                                    confirmButtonText: 'Use this theme'
+                                  })
+                                  .then(async result => {
+                                    if (!result.isConfirmed) return;
+                                    localforage.setItem('utilitiesTheme', 'text-only');
+                                  });
+                                break;
+                              case 'none':
+                                localforage.removeItem('utilitiesTheme');
+                                break;
+                            }
+                          }
+                        });
+                      break;
                 }
               }
             })

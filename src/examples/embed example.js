@@ -211,7 +211,7 @@ export default `
                                                 </value>
                                                 <value name="HYPERLINK">
                                                   <block type="jg_text_remake_paragraph_quotes" id="?hozt;NmcUGV$%XAMP/T">
-                                                    <field name="TEXT">https://scratch-for-discord-469.vercel.app/</field>
+                                                    <field name="TEXT">https://scratch-for-discord.com/</field>
                                                   </block>
                                                 </value>
                                                 <next>
@@ -223,14 +223,14 @@ export default `
                                                     </value>
                                                     <value name="URL">
                                                       <block type="jg_text_remake_paragraph_quotes" id="0{c^$2Y}ShsM.E{@BR]p">
-                                                        <field name="TEXT">https://scratch-for-discord-469.vercel.app/</field>
+                                                        <field name="TEXT">https://scratch-for-discord.com/</field>
                                                       </block>
                                                     </value>
                                                     <next>
                                                       <block type="s4d_m_create_embed_then_set_thumbnail" id="\`[/A-E6ZMrr4UT)8x;@-">
                                                         <value name="THUMBNAIL">
                                                           <block type="jg_text_remake_paragraph_quotes" id="R3lB9Atlg*Z,G[KPXNgQ">
-                                                            <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                            <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                           </block>
                                                         </value>
                                                         <next>
@@ -268,7 +268,7 @@ export default `
                                                                         <comment pinned="false" h="93.8271484375" w="659.7531127929688">this is the image on the embed not to be confused with the thumbnail which is in the top right corner this is on the bottom of the embed</comment>
                                                                         <value name="IMAGE">
                                                                           <block type="jg_text_remake_paragraph_quotes" id="o-t%b)mXWiMii@8Mqw9|">
-                                                                            <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                            <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                           </block>
                                                                         </value>
                                                                         <next>
@@ -280,7 +280,7 @@ export default `
                                                                             </value>
                                                                             <value name="IMAGE">
                                                                               <block type="jg_text_remake_paragraph_quotes" id="_+ii~NFu}Tay_iw$SQTW">
-                                                                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                                <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                               </block>
                                                                             </value>
                                                                             <next>
@@ -375,14 +375,14 @@ i really dot know why
                                                       <block type="s4d_create_embed_then_add_link" id="RhC}zuLjU%)I~De]/C?H">
                                                         <value name="DESCRIPTION">
                                                           <block type="jg_text_remake_paragraph_quotes" id=",~4m*5mBBe;Pjd\`w04Yn">
-                                                            <field name="TEXT">https://scratch-for-discord-469.vercel.app/</field>
+                                                            <field name="TEXT">https://scratch-for-discord.com/</field>
                                                           </block>
                                                         </value>
                                                         <next>
                                                           <block type="s4d_create_embed_then_set_thumbnail" id=",v?VSedxKz?A\`-^zY=OR">
                                                             <value name="THUMBNAIL">
                                                               <block type="jg_text_remake_paragraph_quotes" id="L]N:^UL:OQv,vPSOiJ9o">
-                                                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                               </block>
                                                             </value>
                                                             <next>
@@ -416,7 +416,7 @@ i really dot know why
                                                                           <block type="s4d_create_embed_then_set_image" id="z!1U^!?i==bB(YTHo(Q_">
                                                                             <value name="IMAGE">
                                                                               <block type="jg_text_remake_paragraph_quotes" id="{y_|R~#{%ej!qx!+1+DO">
-                                                                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                                <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                               </block>
                                                                             </value>
                                                                             <next>
@@ -428,7 +428,7 @@ i really dot know why
                                                                                 </value>
                                                                                 <value name="IMAGE">
                                                                                   <block type="jg_text_remake_paragraph_quotes" id="fI0v+Z8A3v,$Ok$!2c,y">
-                                                                                    <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                                    <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                                   </block>
                                                                                 </value>
                                                                                 <next>
@@ -513,7 +513,7 @@ i really dot know why
                                                 </value>
                                                 <value name="URL">
                                                   <block type="jg_text_remake_paragraph_quotes" id="~%+Um.pi7neyE(9d[Gqs">
-                                                    <field name="TEXT">https://scratch-for-discord-469.vercel.app/</field>
+                                                    <field name="TEXT">https://scratch-for-discord.com/</field>
                                                   </block>
                                                 </value>
                                                 <next>
@@ -525,7 +525,7 @@ i really dot know why
                                                     </value>
                                                     <value name="HYPERLINK">
                                                       <block type="jg_text_remake_paragraph_quotes" id="v9.1pi:S!~+me0?s^TUI">
-                                                        <field name="TEXT">https://scratch-for-discord-469.vercel.app/</field>
+                                                        <field name="TEXT">https://scratch-for-discord.com/</field>
                                                       </block>
                                                     </value>
                                                     <next>
@@ -539,7 +539,7 @@ i really dot know why
                                                           <block type="s4d_embed_set_thumb" id="qzGv?0rO2d5K[3o$v|Kj">
                                                             <value name="THUMB">
                                                               <block type="jg_text_remake_paragraph_quotes" id="iPZ4WXQ1k)7O^4(k!}6+">
-                                                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                               </block>
                                                             </value>
                                                             <next>
@@ -566,7 +566,7 @@ i really dot know why
                                                                       <block type="s4d_embed_set_image" id="EwRb-~fOQ3h?e=J#JYRL">
                                                                         <value name="IMAGE">
                                                                           <block type="jg_text_remake_paragraph_quotes" id="e,Qoc2!(}?Hi~7;GV4X;">
-                                                                            <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                            <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                           </block>
                                                                         </value>
                                                                         <next>
@@ -578,7 +578,7 @@ i really dot know why
                                                                             </value>
                                                                             <value name="ICON">
                                                                               <block type="jg_text_remake_paragraph_quotes" id="MBd:FiNcrO@NV6rA)bHB">
-                                                                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                                <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                               </block>
                                                                             </value>
                                                                             <next>
@@ -697,7 +697,7 @@ i really dot know why
                                                       <block type="url_ahq_embed" id="ycj/Ge!+K5mfN^v]/XiR">
                                                         <value name="Label">
                                                           <block type="jg_text_remake_paragraph_quotes" id="wgKDw7B.n-)MO64|fH^.">
-                                                            <field name="TEXT">https://scratch-for-discord-469.vercel.app/</field>
+                                                            <field name="TEXT">https://scratch-for-discord.com/</field>
                                                           </block>
                                                         </value>
                                                         <value name="button name">
@@ -721,7 +721,7 @@ i really dot know why
                                                               <block type="thmb_ahq_embed" id="o(9bNV#\`L\`bKqF(s0/JG">
                                                                 <value name="Label">
                                                                   <block type="jg_text_remake_paragraph_quotes" id="fZe*guWBjG{431X}d!.w">
-                                                                    <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                    <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                   </block>
                                                                 </value>
                                                                 <value name="button name">
@@ -758,7 +758,7 @@ i really dot know why
                                                                           <block type="image_ahq_embed" id="jqZx}WSgzYaQdnvD|?0g">
                                                                             <value name="Label">
                                                                               <block type="jg_text_remake_paragraph_quotes" id="RSCqy;e2Ac}048zD7n@w">
-                                                                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                                <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                               </block>
                                                                             </value>
                                                                             <value name="button name">
@@ -775,7 +775,7 @@ i really dot know why
                                                                                 </value>
                                                                                 <value name="image">
                                                                                   <block type="jg_text_remake_paragraph_quotes" id="dvwp7soL2ErLpIw5hE(a">
-                                                                                    <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                                    <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                                   </block>
                                                                                 </value>
                                                                                 <value name="button name">
@@ -877,7 +877,7 @@ i really dot know why
                                                 </value>
                                                 <value name="url">
                                                   <block type="jg_text_remake_paragraph_quotes" id="StUFUihvjq?AFU.i{}4e">
-                                                    <field name="TEXT">https://scratch-for-discord-469.vercel.app/</field>
+                                                    <field name="TEXT">https://scratch-for-discord.com/</field>
                                                   </block>
                                                 </value>
                                                 <next>
@@ -889,7 +889,7 @@ i really dot know why
                                                     </value>
                                                     <value name="url">
                                                       <block type="jg_text_remake_paragraph_quotes" id="5iXrDMi6q5;iz}q+rVdJ">
-                                                        <field name="TEXT">https://scratch-for-discord-469.vercel.app/</field>
+                                                        <field name="TEXT">https://scratch-for-discord.com/</field>
                                                       </block>
                                                     </value>
                                                     <next>
@@ -903,7 +903,7 @@ i really dot know why
                                                           <block type="gsa_set_embed_thumbnail" id="I4I]Caj_rRu0/=$9MJn+">
                                                             <value name="name">
                                                               <block type="jg_text_remake_paragraph_quotes" id="6Z^2Yp!_log,9OwN#ZB~">
-                                                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                               </block>
                                                             </value>
                                                             <next>
@@ -939,7 +939,7 @@ i really dot know why
                                                                       <block type="gsa_set_embed_image" id="d~kQ_s^P6kOxe3#MYG5%">
                                                                         <value name="name">
                                                                           <block type="jg_text_remake_paragraph_quotes" id="SFl0t0rNCn5-l#./jGHT">
-                                                                            <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                            <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                           </block>
                                                                         </value>
                                                                         <next>
@@ -951,7 +951,7 @@ i really dot know why
                                                                             </value>
                                                                             <value name="icon_url">
                                                                               <block type="jg_text_remake_paragraph_quotes" id="*qR3Fw{ao!fVYZrrbi.@">
-                                                                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/984121680458829835/ef5d4de4c598bda58c6edc09e9478b2d.png</field>
+                                                                                <field name="TEXT">https://scratch-for-discord.com/logo.png</field>
                                                                               </block>
                                                                             </value>
                                                                             <next>

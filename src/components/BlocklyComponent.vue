@@ -1,23 +1,21 @@
 <template>
   <div>
     <div class="blocklyDiv" ref="blocklyDiv" id="blocklyDiv"></div>
-    <xml ref="blocklyToolbox" style="font-family: sans-serif">
+    <xml ref="blocklyToolbox" style="font-family:sans-serif">
       <slot></slot>
     </xml>
   </div>
 </template>
-<!--<script src="./renderers/cwest.js"></script>-->
 
 <script>
-/* eslint-disable */
 import Blockly from 'blockly';
 import swal from 'sweetalert2';
-import * as blocklyModule from '../blocks/blocklyModule';
-import * as customBlockModule from './NavigationBar/cbmodule';
-import { disableUnapplicable } from '../restrictions';
-import toolbox from '../toolbox';
-var renderer = 'zelos';
+import * as blocklyModule from '../blocks/blocklyModule.js';
+import * as customBlockModule from './NavigationBar/cbmodule.js';
+import { disableUnapplicable } from '../restrictions.js';
+import toolbox from '../toolbox.js';
 
+var renderer = 'zelos';
 switch (String(window.location.pathname).replace(/\//gim, '')) {
   case 'rge':
     renderer = 'geras';
@@ -27,9 +25,6 @@ switch (String(window.location.pathname).replace(/\//gim, '')) {
     break;
   case 'rth':
     renderer = 'thrasos';
-    break;
-  case 'rsd':
-    renderer = 'sdeloz';
     break;
 }
 import { Backpack } from '@blockly/workspace-backpack';
@@ -62,7 +57,7 @@ coolbox.forEach(line => {
     if (line.includes('<block') && working.length > 0 && commented < 1) {
       let block = line.split('"');
       const path = "'" + working.join('>') + "'";
-      if (block == null) return;
+      if (block == null) {return;}
       block = block[1];
 
       if (block == 'text') {
@@ -243,137 +238,7 @@ export default {
 
       return String(returned_stuff);
     }
-    window.loadtoolltovobocaopjsd9fuw4fpoewjoiphgf9ewpojndsfoihgew8ninjagoLOllioolo = prepToolbox;
-    window.loadtoolltovobocaopjsd9fuw4fpoewjoiphgf9ewpojndsfoihgew8ninjagoLOllioolo2222222222222 = prepToolbox;
-    async function reloadWorkspace2(workspace, abc) {
-      Blockly.ContextMenuRegistry.registry.unregister('fav');
-      Blockly.ContextMenuRegistry.registry.unregister('refav');
-
-      let val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-      // Convert it to a dom string
-      const dom = Blockly.Xml.workspaceToDom(workspace);
-      // Delete the current workspace
-      workspace.dispose();
-      // Create a new workspace (with the good language)
-      const newWorkspace = Blockly.inject(document.getElementById('blocklyDiv'), {
-        grid: {
-          spacing: 25,
-          length: 3,
-          colour: '#ccc'
-        },
-        renderer: renderer,
-        theme: theme,
-        zoom: {
-          controls: true,
-          startScale: 0.9,
-          maxScale: 3,
-          minScale: 0.3,
-          scaleSpeed: 1.2
-        },
-        move: {
-          scrollbars: {
-            horizontal: true,
-            vertical: true
-          },
-          drag: true,
-          wheel: true
-        },
-        toolbox: prepToolbox(toolbox(val), false, val)
-      });
-      Blockly.ContextMenuRegistry.registry.register({
-        displayText: 'Add to favorite',
-        preconditionFn: function(scope) {
-          let type = scope.block.type;
-          if (val === null) {
-            return 'enabled';
-          }
-          if (val.includes(type)) {
-            return 'disabled';
-          } else {
-            return 'enabled';
-          }
-        },
-        callback: async function(scope) {
-          let type = scope.block.type;
-
-          if (val === null) {
-            await localforage.setItem('fav', [type]);
-            val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-            var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-            workspace.updateToolbox(new_toolbox_xml);
-          } else {
-            val.push(type);
-            await localforage.setItem('fav', val);
-            val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-            var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-            workspace.updateToolbox(new_toolbox_xml);
-          }
-        },
-        scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-        id: 'fav',
-        weight: 100
-      });
-      Blockly.ContextMenuRegistry.registry.register({
-        displayText: 'Remove from favorite',
-        preconditionFn: function(scope) {
-          let type = scope.block.type;
-          if (val === null) {
-            return 'disabled';
-          }
-          if (val.includes(type)) {
-            return 'enabled';
-          } else {
-            return 'disabled';
-          }
-        },
-        callback: async function(scope) {
-          let type = scope.block.type;
-          function arrayRemove(arr, value) {
-            return arr.filter(function(ele) {
-              return ele != value;
-            });
-          }
-          if (arrayRemove(await localforage.getItem('fav'), type).length === 0) {
-            await localforage.setItem('fav', null);
-            val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-            var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-            workspace.updateToolbox(new_toolbox_xml);
-          } else {
-            await localforage.setItem('fav', arrayRemove(await localforage.getItem('fav'), type));
-            val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-            var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-            workspace.updateToolbox(new_toolbox_xml);
-          }
-        },
-        scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-        id: 'refav',
-        weight: 100
-      });
-
-      Blockly.Xml.domToWorkspace(dom, newWorkspace);
-      // Update the workspace in the vuex store
-      if (allow_toolbox_search) {
-        try {
-          Blockly.ContextMenuRegistry.registry.register({
-            displayText: 'Search for block',
-            preconditionFn: function() {
-              return 'enabled';
-            },
-            callback: function() {
-              //    reloadWorkspace2(newWorkspace, true)
-              var new_toolbox_xml = prepToolbox(toolbox(val), true, val);
-              workspace.updateToolbox(new_toolbox_xml);
-            },
-            scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
-            id: 'searchblock',
-            weight: 99
-          });
-        } catch {}
-      }
-    }
+    window.loadtoolboxfuncinternal = prepToolbox;
     async function logtoolblocks(remove_underscore) {
       const toolxml = toolbox([]);
       const toolboxArray = toolxml.split('\n');
@@ -401,134 +266,6 @@ export default {
       }
       console.log(blocks);
     }
-    async function reloadWorkspace(workspace, abc) {
-      Blockly.ContextMenuRegistry.registry.unregister('fav');
-      Blockly.ContextMenuRegistry.registry.unregister('refav');
-
-      let val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-      // Convert it to a dom string
-      const dom = Blockly.Xml.workspaceToDom(workspace);
-      // Delete the current workspace
-      workspace.dispose();
-      // Create a new workspace (with the good language)
-      const newWorkspace = Blockly.inject(document.getElementById('blocklyDiv'), {
-        grid: {
-          spacing: 25,
-          length: 3,
-          colour: '#ccc'
-        },
-        renderer: renderer,
-        theme: theme,
-        zoom: {
-          controls: true,
-          startScale: 0.9,
-          maxScale: 3,
-          minScale: 0.3,
-          scaleSpeed: 1.2
-        },
-        move: {
-          scrollbars: {
-            horizontal: true,
-            vertical: true
-          },
-          drag: true,
-          wheel: true
-        },
-        toolbox: prepToolbox(toolbox(val), false, val)
-      });
-      Blockly.ContextMenuRegistry.registry.register({
-        displayText: 'Add to favorite',
-        preconditionFn: function(scope) {
-          let type = scope.block.type;
-          if (val === null) {
-            return 'enabled';
-          }
-          if (val.includes(type)) {
-            return 'disabled';
-          } else {
-            return 'enabled';
-          }
-        },
-        callback: async function(scope) {
-          let type = scope.block.type;
-
-          if (val === null) {
-            await localforage.setItem('fav', [type]);
-            val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-            var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-            workspace.updateToolbox(new_toolbox_xml);
-          } else {
-            val.push(type);
-            await localforage.setItem('fav', val);
-            val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-            var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-            workspace.updateToolbox(new_toolbox_xml);
-          }
-        },
-        scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-        id: 'fav',
-        weight: 100
-      });
-      Blockly.ContextMenuRegistry.registry.register({
-        displayText: 'Remove from favorite',
-        preconditionFn: function(scope) {
-          let type = scope.block.type;
-          if (val === null) {
-            return 'disabled';
-          }
-          if (val.includes(type)) {
-            return 'enabled';
-          } else {
-            return 'disabled';
-          }
-        },
-        callback: async function(scope) {
-          let type = scope.block.type;
-          function arrayRemove(arr, value) {
-            return arr.filter(function(ele) {
-              return ele != value;
-            });
-          }
-          if (arrayRemove(await localforage.getItem('fav'), type).length === 0) {
-            await localforage.setItem('fav', null);
-            val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-            var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-            workspace.updateToolbox(new_toolbox_xml);
-          } else {
-            await localforage.setItem('fav', arrayRemove(await localforage.getItem('fav'), type));
-            val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-            var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-            workspace.updateToolbox(new_toolbox_xml);
-          }
-        },
-        scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-        id: 'refav',
-        weight: 100
-      });
-      Blockly.Xml.domToWorkspace(dom, newWorkspace);
-      // Update the workspace in the vuex store
-      if (allow_toolbox_search) {
-        try {
-          Blockly.ContextMenuRegistry.registry.register({
-            displayText: 'Search for block',
-            preconditionFn: function() {
-              return 'enabled';
-            },
-            callback: function() {
-              //    reloadWorkspace2(newWorkspace, true)
-              var new_toolbox_xml = prepToolbox(toolbox(val), true, val);
-              workspace.updateToolbox(new_toolbox_xml);
-            },
-            scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
-            id: 'searchblock',
-            weight: 99
-          });
-        } catch {}
-      }
-    }
 
     if (allow_toolbox_search) {
       Blockly.ContextMenuRegistry.registry.register({
@@ -546,41 +283,12 @@ export default {
       });
     }
 
-    /*
-Blockly.WorkspaceSvg.prototype.onMouseDown_ = function(e) {
-  var point = Blockly.mouseToSvg(e, this.getParentSvg(),  this.getInverseScreenCTM());
-  var rel = this.getOriginOffsetInPixels();
-  this.mouseX = (point.x - rel.x) / this.scale;
-  this.mouseY = (point.y - rel.y) / this.scale;
-}
-*/
     localforage.getItem('utilitiesShortcuts').then(item => {
       if (item != false) {
         window.addEventListener('keydown', e => {
-          // console.log(e)
-          // console.log(e.key)
-          /*if (e.shiftKey) {
-        if (e.key == "Y") {
-            console.log(">")
-            Blockly.getMaainWorkspace().getAllBlocks().forEach(block => {
-                console.log("rendered:", block.rendered)
-                console.log(">")
-            })
-        }
-        if (e.key == "U") {
-            Blockly.getMaainWorkspace().getAllBlocks().forEach(block => {
-                block.rendered = !block.rendered
-            })
-        }
-        if (e.key == "B") {
-            Blockly.getMaainWorkspace().getAllBlocks().forEach(block => {
-                console.log(block.width + ",", block.height)
-            })
-        }
-    }*/
           if (e.altKey) {
             console.log(e.key);
-            if (e.key == 't' || e.key == 'n' || e.key == 'm' || e.key == 'c' || e.key == 'e' || e.key == 'a' || e.key == 'w' || e.key == 'b' || e.key == 'i' || e.key == '=' || e.key == 'n' || e.key == 'N' || e.key == 'A') {
+            if (['t','n','m','c','e','a','w','b','i','=','N','A'].includes(e.key)) {
               if (e.key == 't') {
                 var blockToPlace = 'text';
               } else if (e.key == 'm') {
@@ -736,71 +444,34 @@ Blockly.WorkspaceSvg.prototype.onMouseDown_ = function(e) {
       });
     });
 
-    if (window.location.href.includes('deploy-preview-469--scratch-for-discord.netlify.app')) {
-      Blockly.ContextMenuRegistry.registry.register({
-        displayText: 'Go to Vercel',
-        preconditionFn: function() {
-          return 'enabled';
-        },
-        callback: function() {
-          window.location.href = 'https://scratch-for-discord-469.vercel.app/';
-        },
-        scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
-        id: 'vercel',
-        weight: 0
-      });
-
-      Blockly.ContextMenuRegistry.registry.register({
-        displayText: 'Go to Vercel',
-        preconditionFn: function() {
-          return 'enabled';
-        },
-        callback: function() {
-          window.location.href = 'https://scratch-for-discord-469.vercel.app/';
-        },
-        scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-        id: 'vercel2',
-        weight: 0
-      });
-    }
-
     function blockCounter() {
-      const ALLBLOCKS = workspace.getAllBlocks();
       let counter = document.getElementById('block-counter');
-      let blocks = String(ALLBLOCKS.length);
+      let blocks = workspace.getAllBlocks().length;
       var rgb = '182, 182, 182';
       var bold = ['', ''];
-      if (Number(blocks) >= 300) {
+      if (blocks >= 300) {
         rgb = '255, 125, 125';
         bold = ['<b>', '</b>'];
       }
-      if (Number(blocks) >= 750) {
+      if (blocks >= 750) {
         rgb = '255, 60, 60';
         bold = ['<b><strong>', '</strong></b>'];
       }
-      if (Number(blocks) >= 5000) {
+      if (blocks >= 5000) {
         rgb = '255, 35, 35';
         bold = ['<b style="font-size: 110%"><strong>', '</strong></b>'];
       }
-      if (Number(blocks) >= 10000) {
+      if (blocks >= 10000) {
         rgb = '255, 20, 20';
         bold = ['<b style="font-size: 125%"><strong>', '</strong></b>'];
       }
       let s = 's';
-      if (Number(blocks) == 1) {
+      if (blocks == 1) {
         s = '';
       } else {
         s = 's';
       }
-      let iagfbekjf = true;
-      ALLBLOCKS.forEach(block => {
-        if (block.type == 'jg_s4d_themes_set_navigation_bar_button_color_to') {
-          counter.innerHTML = bold[0] + `<p id="block-counter-textParagraph">${blocks} block${s}</p>` + bold[1];
-          iagfbekjf = false;
-          return;
-        }
-      });
-      if (iagfbekjf) counter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="color:rgb(${rgb});">${blocks} block${s}</p>` + bold[1];
+      counter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="color:rgb(${rgb});">${blocks} block${s}</p>` + bold[1];
     }
     localforage.getItem('hide-blockcount').then(item => {
       if (String(item) == 'true') {
@@ -1133,7 +804,7 @@ Blockly.getMaainWorkspace().addChangeListener(blockCounter(Blockly.getMaainWorks
             window.customBlocks.splice(window.customBlocks.indexOf(blockName), 1);
             window.saveCustomBlocksOutput.splice(window.saveCustomBlocksOutput.indexOf(target), 1);
             localforage.setItem('autosave_customBlocks', JSON.stringify(window.saveCustomBlocksOutput));
-            window.loadtoolltovobocaopjsd9fuw4fpoewjoiphgf9ewpojndsfoihgew8ninjagoLOllioolo2222222222222();
+            window.loadtoolboxfuncinternal();
             window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e.toolbox_.clearSelection();
           };
           customBlockDeletorDiv.append(button);
@@ -1261,7 +932,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           workspace.centerOnBlock(block.id);
         });
     });
-    window.loadtoolltovobocaopjsd9fuw4fpoewjoiphgf9ewpojndsfoihgew8ninjagoLOllioolo2222222222222 = () => {
+    window.loadtoolboxfuncinternal = () => {
       let new_toolbox_xml = prepToolbox(toolbox(val), false, val, workspace, null);
       workspace.updateToolbox(new_toolbox_xml);
     };

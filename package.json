@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@blockly/block-test": "^2.0.18",
-    "@blockly/continuous-toolbox": "^2.0.40",
     "@blockly/field-grid-dropdown": "^1.0.47",
     "@blockly/field-slider": "^3.0.22",
     "@blockly/plugin-workspace-search": "^5.0.22",

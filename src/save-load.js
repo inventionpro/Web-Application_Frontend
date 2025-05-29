@@ -16,7 +16,7 @@ export default async function register(self) {
         if (xml.length > 61) {
           Swal.fire({
             title: self.$t('autosave.title2'),
-            html: "Did you not save your project before quitting Scratch For Discord? No problem, you can just click 'Load' to restore your project!",
+            html: "<span>Did you not save your project before quitting Scratch For Discord?</span><br><span>No problem, you can just click 'Load' to restore your project!</span>",
             showDenyButton: true,
             icon: 'question',
             denyButtonText: self.$t('autosave.cancell'),

@@ -116,7 +116,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   window.SharedWorker = bringBack_SharedWorker;
   window.ServiceWorker = bringBack_ServiceWorker;
   if (loadfunc) loadfunc();
-  window.loadtoolltovobocaopjsd9fuw4fpoewjoiphgf9ewpojndsfoihgew8ninjagoLOllioolo2222222222222();
+  window.loadtoolboxfuncinternal();
 }
 window.laodadfcusitomsoanblopocoocksooskfetchCustomBlocksocososc = fetchCustomBlocks;
 export default {

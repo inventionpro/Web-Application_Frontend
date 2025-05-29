@@ -44,7 +44,7 @@ export function createCustomBlock(name, data) {
     }
   }
   localforage.setItem('autosave_customBlocks', JSON.stringify(window.saveCustomBlocksOutput));
-  window.loadtoolltovobocaopjsd9fuw4fpoewjoiphgf9ewpojndsfoihgew8ninjagoLOllioolo2222222222222();
+  window.loadtoolboxfuncinternal();
 }
 // register custom block builder blocks
 const prefix = 'jg_s4d_customBlocks_builder1_';

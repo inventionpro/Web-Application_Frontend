@@ -90,11 +90,6 @@
   resolved "https://registry.npmjs.org/@blockly/block-test/-/block-test-2.0.18.tgz"
   integrity sha512-IujQmkTPwRtbONyJ1nWxSr5FYaoCXByOKuNYsXiLa5TL79DlU6CuapzFCw/AnFF0z6LImY+WlMuiQPo0HhG/Lw==
 
-"@blockly/continuous-toolbox@^2.0.40":
-  version "2.0.40"
-  resolved "https://registry.npmjs.org/@blockly/continuous-toolbox/-/continuous-toolbox-2.0.40.tgz"
-  integrity sha512-QN4GG+1OD4ZO2lz/AK8doTtBH4zZmDOjhw7lSxX1AfOOsPASQ/1GhR4/J6WUXFTOC/tIzC2Yss4aF1BvPI94Fw==
-
 "@blockly/field-grid-dropdown@^1.0.47":
   version "1.0.47"
   resolved "https://registry.npmjs.org/@blockly/field-grid-dropdown/-/field-grid-dropdown-1.0.47.tgz"

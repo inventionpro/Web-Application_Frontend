@@ -54,7 +54,7 @@ window.addEventListener('load', () => {
 });
 window.openS4DDebugMenu = () => {
   window.isInS4DDebugMode = true;
-  window.loadtoolltovobocaopjsd9fuw4fpoewjoiphgf9ewpojndsfoihgew8ninjagoLOllioolo2222222222222();
+  window.loadtoolboxfuncinternal();
   runDebugEvents();
   const menu = blocklyModule.menus.createMenu({
     width: 640,

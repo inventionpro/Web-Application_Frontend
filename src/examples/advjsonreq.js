@@ -1,6 +1,4 @@
-export default `
-
-<xml xmlns="https://developers.google.com/blockly/xml">
+export default `<xml xmlns="https://developers.google.com/blockly/xml">
   <variables>
     <variable id="OZ0l|^XRQH?T?s;b$B%X">arguments</variable>
     <variable id="dN-GQox{6nqmX%so5NT^">command</variable>
@@ -282,7 +280,7 @@ export default `
     <field name="TEXT">This API here wants us to be a real user.&amp;#10;Lets login with what it asks for, an API key.&amp;#10;The API you are using should tell you how to get&amp;#10;this API key. This is usually going to be in&amp;#10;the header, and should be stored in something&amp;#10;like a process.env block to keep it safe.</field>
   </block>
   <block type="jg_comments_floating_image" id="#V15L9skKe8D02L4d@mN" x="1720" y="1002">
-    <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/985798574702997504/unknown.png</field>
+    <field name="TEXT">/builtin_examples/advjsonreq1.png</field>
   </block>
   <block type="jg_comments_floating_arrow" id="C%WMsGUM;0~tejTjQ]e{" x="952" y="1111">
     <field name="arrow">left</field>
@@ -294,8 +292,6 @@ export default `
     <field name="arrow">left</field>
   </block>
   <block type="jg_comments_floating_image" id="X!l(Y3Z7)}Rr~2B=3ej^" x="1044" y="1702">
-    <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/985797162598301736/unknown.png</field>
+    <field name="TEXT">/builtin_examples/advjsonreq2.png</field>
   </block>
-</xml>
-
-`;
+</xml>`;

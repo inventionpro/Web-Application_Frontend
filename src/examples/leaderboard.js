@@ -86,7 +86,7 @@ export default `
                             <field name="TEXT">The Data File will be the database&amp;#10;named "coins.json" in our repl.&amp;#10;This contains our users and their coins.</field>
                             <next>
                               <block type="jg_comments_connected_image" id="B.YfDL*]gp51je9gM$,F">
-                                <field name="TEXT">https://media.discordapp.net/attachments/914411539887456296/991174683288412221/unknown.png</field>
+                                <field name="TEXT">/builtin_examples/leaderboard.png</field>
                                 <next>
                                   <block type="variables_set" id=");/_r?wK~ZCKR{5lIT5.">
                                     <field name="VAR" id="fztpO]@!)|*c81-vAZ)P">coins</field>
