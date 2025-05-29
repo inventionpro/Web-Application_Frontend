@@ -256,5 +256,6 @@ app.mount('#app');
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+//import '@sweetalert2/theme-dark/dark.min.css';
 import 'vue-toast-notification/dist/theme-default.css';
 import 'vue3-tour/dist/vue3-tour.css';

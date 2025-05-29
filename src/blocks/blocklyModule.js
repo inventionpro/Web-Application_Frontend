@@ -1,30 +1,30 @@
-const Blockly = require('blockly/core');
-const BaseBlockly = require('blockly');
+import Blockly from 'blockly/core';
+import BaseBlockly from 'blockly';
 Math.lerp = (n1, n2, a) => {
   let lerped = n1;
   lerped = lerped + (n2 - n1) / (a / (a * a));
   return lerped;
 };
-module.exports.renderWarnings = block => {
+export function renderWarnings(block) {
   if (!block['___blockWarnings-blocklyModule']) block['___blockWarnings-blocklyModule'] = [];
   block.setWarningText(block['___blockWarnings-blocklyModule'].length > 0 ? block['___blockWarnings-blocklyModule'].join('\n') : null);
-};
-module.exports.addWarning = (text, block) => {
+}
+export function addWarning(text, block) {
   if (!block['___blockWarnings-blocklyModule']) block['___blockWarnings-blocklyModule'] = [];
   block['___blockWarnings-blocklyModule'].push(text);
-  module.exports.renderWarnings(block);
-};
-module.exports.removeWarning = (text, block) => {
+  renderWarnings(block);
+}
+export function removeWarning(text, block) {
   if (!block['___blockWarnings-blocklyModule']) block['___blockWarnings-blocklyModule'] = [];
   if (!block['___blockWarnings-blocklyModule'].includes(text)) return;
   block['___blockWarnings-blocklyModule'].splice(block['___blockWarnings-blocklyModule'].indexOf(text), 1);
-  module.exports.renderWarnings(block);
-};
-module.exports.clearWarnings = block => {
+  renderWarnings(block);
+}
+export function clearWarnings(block) {
   block['___blockWarnings-blocklyModule'] = [];
-  module.exports.renderWarnings(block);
-};
-module.exports.getBlockHtmlElement = block => {
+  renderWarnings(block);
+}
+export function getBlockHtmlElement(block) {
   if (!block.id) return null;
   const gs = document.getElementsByTagName('g');
   for (let i = 0; i < gs.length; i++) {
@@ -32,18 +32,18 @@ module.exports.getBlockHtmlElement = block => {
     if (c.getAttribute('data-id') == block.id) return c;
   }
   return null;
-};
-module.exports.generateTextBasedOffOf = name => {
+}
+export function generateTextBasedOffOf(name) {
   const a = String(name).split('');
   let newname = '';
   a.forEach(letter => {
     newname = newname + String(String(letter).charCodeAt(0) * 16);
   });
   return newname;
-};
+}
 const supportedMutators = ['checkbox'];
 const experimentalMutators = [];
-module.exports.createMutatorBlock = (mutator_type, data, exportCodeCallback) => {
+export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
   if (!supportedMutators.includes(mutator_type) && !experimentalMutators.includes(mutator_type)) throw new Error(mutator_type + ' is not a supported mutator type');
   if (experimentalMutators.includes(mutator_type)) console.warn(mutator_type, 'is an experimental mutator type. Behavior & handling of this type may change in the future.');
   if (mutator_type == 'checkbox') {
@@ -64,7 +64,7 @@ module.exports.createMutatorBlock = (mutator_type, data, exportCodeCallback) => 
     // names is the name of that input in the menu and in the final block
     const names = data.names;
     const amountOfInputs = names.length;
-    const menuName = 'BLOCKLY_MODULE_setMutator_' + module.exports.generateTextBasedOffOf(data.menuName) + '_checkboxMutatorMenu';
+    const menuName = 'BLOCKLY_MODULE_setMutator_' + generateTextBasedOffOf(data.menuName) + '_checkboxMutatorMenu';
     if (!data.blockName) throw new Error('blockName not specified in BlocklyModuleMutatorConfig object');
     const blockName = data.blockName;
     Blockly.Blocks[menuName] = {
@@ -144,8 +144,8 @@ module.exports.createMutatorBlock = (mutator_type, data, exportCodeCallback) => 
     };
     Blockly.JavaScript[blockName] = exportCodeCallback;
   }
-};
-module.exports.setMutatorOnBlock = (block, mutator_type, data) => {
+}
+export function setMutatorOnBlock(block, mutator_type, data) {
   if (!supportedMutators.includes(mutator_type) && !experimentalMutators.includes(mutator_type)) throw new Error(mutator_type + ' is not a supported mutator type');
   if (experimentalMutators.includes(mutator_type)) console.warn(mutator_type, 'is an experimental mutator type. Behavior & handling of this type may change in the future.');
   switch (mutator_type) {
@@ -168,7 +168,7 @@ module.exports.setMutatorOnBlock = (block, mutator_type, data) => {
       const names = data.names;
       const amountOfInputs = names.length;
       if (!data.menuId) throw new Error('menuId not specified in BlocklyModuleMutatorConfig object');
-      const menuName = 'BLOCKLY_MODULE_setMutator_' + module.exports.generateTextBasedOffOf(data.menuName) + '_checkboxMutatorMenu' + data.menuId;
+      const menuName = 'BLOCKLY_MODULE_setMutator_' + generateTextBasedOffOf(data.menuName) + '_checkboxMutatorMenu' + data.menuId;
       if (!Blockly.Blocks[menuName]) {
         Blockly.Blocks[menuName] = {
           init: function() {
@@ -239,21 +239,21 @@ module.exports.setMutatorOnBlock = (block, mutator_type, data) => {
       break;
     }
   }
-};
-module.exports.getWorkspace = () => {
+}
+export function getWorkspace() {
   return window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e;
-};
-module.exports.getToolbox = () => {
-  return module.exports.getWorkspace().toolbox_;
-};
-module.exports.workspaceToXml = workspace => {
+}
+export function getToolbox() {
+  return getWorkspace().toolbox_;
+}
+export function workspaceToXml(workspace) {
   return Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-};
-module.exports.xmlToWorkspace = (xml, workspace) => {
+}
+export function xmlToWorkspace(xml, workspace) {
   Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
-};
-module.exports.menus = {};
-module.exports.menus.createMenu = data => {
+}
+export let menus = {};
+menus.createMenu = data => {
   if (!data) throw new Error('Cannot create a menu with no data');
   if (!data.width) throw new Error('Cannot create a menu with no width');
   if (!data.height) throw new Error('Cannot create a menu with no height');
@@ -406,4 +406,4 @@ module.exports.menus.createMenu = data => {
     return button;
   };
   return menu;
-};
+}

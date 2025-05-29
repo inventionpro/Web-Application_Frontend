@@ -1,30 +1,30 @@
-const Blockly = require('blockly');
-const localforage = require('localforage');
+import Blockly from 'blockly';
+import localforage from 'localforage';
 const registered = {};
 function handle(block) {
   const returning = { value: '' };
   eval(registered[block.type].code);
   return returning.value;
 }
-module.exports.bypassStrictModeRegister = (name, code) => {
+export function bypassStrictModeRegister(name, code) {
   registered[name] = { code: code };
   Blockly.JavaScript[name] = handle;
-};
-module.exports.createCustomBlockID = name => {
+}
+export function createCustomBlockID(name) {
   let customId = '';
   const chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '_'];
   for (let i = 0; i < 50; i++) {
     customId += chars[Math.round(Math.random() * (chars.length - 1))];
   }
   return 's4dcb_RESERVEDFORCUSTOMS_' + customId + '_' + String(name).replace(/[^a-zA-Z0-9]/gim, '');
-};
-module.exports.stringToCustomBlockData = str => {
+}
+export function stringToCustomBlockData(str) {
   return {
     blocks: String(str).substring(0, String(str).indexOf('_ \\COPY_ABOVE FUNCTIONS and VARIABLES\\ _')) + String(str).substring(String(str).indexOf('_ \\INIT FUNC\\ _') + 15, String(str).indexOf('_ \\END INIT FUNC\\ _') - 1),
     javascript: String(str).substring(0, String(str).indexOf('_ \\COPY_ABOVE FUNCTIONS and VARIABLES\\ _')) + String(str).substring(String(str).indexOf('_ \\JS FUNC\\ _') + 13, String(str).indexOf('_ \\END JS FUNC\\ _') - 1)
   };
-};
-module.exports.createCustomBlock = (name, data) => {
+}
+export function createCustomBlock(name, data) {
   data.name = name;
   let works = true;
   try {
@@ -33,7 +33,7 @@ module.exports.createCustomBlock = (name, data) => {
         eval(data.blocks);
       }
     };
-    module.exports.bypassStrictModeRegister(name, data.javascript);
+    bypassStrictModeRegister(name, data.javascript);
   } catch (err) {
     console.warn('An error occurred when loading a custom block!', String(err).substring(0, 250));
     works = false;
@@ -45,13 +45,14 @@ module.exports.createCustomBlock = (name, data) => {
   }
   localforage.setItem('autosave_customBlocks', JSON.stringify(window.saveCustomBlocksOutput));
   window.loadtoolltovobocaopjsd9fuw4fpoewjoiphgf9ewpojndsfoihgew8ninjagoLOllioolo2222222222222();
-};
+}
 // register custom block builder blocks
 const prefix = 'jg_s4d_customBlocks_builder1_';
 const color = 120;
-require('./cbblocks').load(Blockly, prefix, color);
+import { load } from './cbblocks.js';
+load(Blockly, prefix, color);
 // toolbox
-module.exports.toolbox = `
+export let toolbox = `
 <xml>
     <category name="Logic" colour="#5b80a5">
         <block type="controls_if"/>

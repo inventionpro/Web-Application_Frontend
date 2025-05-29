@@ -1,7 +1,7 @@
 import Blockly from 'blockly/core';
-import blocklyModule from '../blocklyModule';
-import JBlock from '../jblock1';
-import { registerRestrictions } from '../../restrictions';
+import * as blocklyModule from '../blocklyModule.js';
+import * as JBlock from '../jblock1.js';
+import { registerRestrictions } from '../../restrictions.js';
 import '@blockly/field-grid-dropdown';
 const restrictToParent = function(parents, name, msg) {
   registerRestrictions(name, [

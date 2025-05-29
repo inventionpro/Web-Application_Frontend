@@ -12,8 +12,8 @@
 /* eslint-disable */
 import Blockly from 'blockly';
 import swal from 'sweetalert2';
-const blocklyModule = require('../blocks/blocklyModule');
-const customBlockModule = require('./NavigationBar/cbmodule');
+import * as blocklyModule from '../blocks/blocklyModule';
+import * as customBlockModule from './NavigationBar/cbmodule';
 import { disableUnapplicable } from '../restrictions';
 import toolbox from '../toolbox';
 var renderer = 'zelos';

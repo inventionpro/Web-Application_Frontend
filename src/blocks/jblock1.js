@@ -1,6 +1,6 @@
-const Blockly = require('blockly/core');
+import Blockly from 'blockly/core';
 /* eslint-disable */
-module.exports.OutputType = {
+export const OutputType = {
   STRING: ['String', 'Text'],
   TEXT: ['String', 'Text'],
   NUMBER: ['Number'],
@@ -10,7 +10,7 @@ module.exports.OutputType = {
   ARRAY: ['List', 'Array'],
   OBJECT: ['Object', 'JSON']
 };
-module.exports.createBlock = data => {
+export function createBlock(data) {
   // data = {
   //     id: "blobkaname",
   //     text: "among us [DUMMY] [TROLOLO]",

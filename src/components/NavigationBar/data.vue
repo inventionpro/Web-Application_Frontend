@@ -1,7 +1,9 @@
 <template>
   <b-nav-item-dropdown text="Data" right>
+    <b-dropdown-item @click="ClearAutosave">Clear Autosave</b-dropdown-item>
+    <b-dropdown-divider></b-dropdown-divider>
     <b-dropdown-item @click="askForFile">Load data</b-dropdown-item>
-    <input hidden @change="load" id="load-s4dData-code" type="file" accept=".zip,.data" />
+    <input hidden @change="load" id="load-s4dData-code" type="file" accept=".zip,.data">
     <b-dropdown-item @click="dld">Download data</b-dropdown-item>
   </b-nav-item-dropdown>
 </template>
@@ -13,6 +15,24 @@ export default {
   name: 'userDataExport',
   computed: {},
   methods: {
+    ClearAutosave() {
+      this.$swal
+        .fire({
+          title: 'Clear autosave',
+          text: `Are you sure?`,
+          icon: 'warning',
+          showCancelButton: true,
+          cancelButtonText: 'Cancel',
+          confirmButtonText: 'Confirm'
+        })
+        .then(result => {
+          if (!result.isConfirmed) return;
+          localforage.removeItem('save3');
+          localforage.removeItem('autosaveName');
+          localforage.removeItem('autosave_customBlocks');
+          console.log('Autosave cleared');
+        });
+    },
     askForFile() {
       document.querySelector('#load-s4dData-code').click();
     },

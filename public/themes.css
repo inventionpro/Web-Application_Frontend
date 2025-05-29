@@ -1,22 +1,22 @@
 [specializedCSS=glow] {
-      -webkit-animation: glow 1s ease-in-out infinite alternate;
-      -moz-animation: glow 1s ease-in-out infinite alternate;
-      animation: glow 1s ease-in-out infinite alternate;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffffffc7, 0 0 40px #ffffff79, 0 0 50px rgba(255, 255, 255, 0.295)73, 0 0 60px #ffffff27, 0 0 70px #ffffff02;
-      }
-      to {
-        text-shadow: 0 0 20px #fff, 0 0 30px #ffffffbe, 0 0 40px rgba(255, 255, 255, 0.459), 0 0 50px #ffffff3b, 0 0 60px #ffffff38, 0 0 70px #ffffff1c, 0 0 80px #ffffff11;
-      }
-    }
-    [specializedCSS=darkglow] {
-      -webkit-animation: darkglow 1s ease-in-out infinite alternate;
-      -moz-animation: darkglow 1s ease-in-out infinite alternate;
-      animation: darkglow 1s ease-in-out infinite alternate;
-    }
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffffffc7, 0 0 40px #ffffff79, 0 0 50px rgba(255, 255, 255, 0.295)73, 0 0 60px #ffffff27, 0 0 70px #ffffff02;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ffffffbe, 0 0 40px rgba(255, 255, 255, 0.459), 0 0 50px #ffffff3b, 0 0 60px #ffffff38, 0 0 70px #ffffff1c, 0 0 80px #ffffff11;
+  }
+}
+[specializedCSS=darkglow] {
+  -webkit-animation: darkglow 1s ease-in-out infinite alternate;
+  -moz-animation: darkglow 1s ease-in-out infinite alternate;
+  animation: darkglow 1s ease-in-out infinite alternate;
+}
 
 @keyframes darkglow {
   from {

@@ -1,19 +1,19 @@
-module.exports.load = (Blockly, prefix, color) => {
-  require('../../blocks/JeremyGamer13/Objects');
-  require('../../blocks/godslayerakp/objects');
-  require('../../blocks/frostzzone/useful/jsontostring');
-  require('../../blocks/collections');
-  require('../../blocks/frostzzone/useful/var');
-  require('../../blocks/frostzzone/useful/color');
-  require('../../blocks/regex');
-  require('../../blocks/LaserCat/switch/switch_switch');
-  require('../../blocks/text');
-  require('../../blocks/JeremyGamer13/miscblocks');
-  require('../../blocks/JeremyGamer13/messages_blocks.js');
-  require('../../blocks/other');
-  require('../../blocks/JeremyGamer13/other_err');
-  require('../../blocks/frostzzone/useful/time');
-  require('../../blocks/godslayerakp/index');
+export function load(Blockly, prefix, color) {
+  import('../../blocks/JeremyGamer13/Objects');
+  import('../../blocks/godslayerakp/objects');
+  import('../../blocks/frostzzone/useful/jsontostring');
+  import('../../blocks/collections');
+  import('../../blocks/frostzzone/useful/var');
+  import('../../blocks/frostzzone/useful/color');
+  import('../../blocks/regex');
+  import('../../blocks/LaserCat/switch/switch_switch');
+  import('../../blocks/text');
+  import('../../blocks/JeremyGamer13/miscblocks');
+  import('../../blocks/JeremyGamer13/messages_blocks.js');
+  import('../../blocks/other');
+  import('../../blocks/JeremyGamer13/other_err');
+  import('../../blocks/frostzzone/useful/time');
+  import('../../blocks/godslayerakp/index');
   Blockly.Blocks[prefix + 'exportInit'] = {
     init: function() {
       this.jsonInit({
@@ -788,4 +788,4 @@ _ \\END JS FUNC\\ _`;
     const code = Blockly.JavaScript.valueToCode(block, 'CODE', Blockly.JavaScript.ORDER_ATOMIC);
     return `returning.value = [(${code}), Blockly.JavaScript.ORDER_NONE];\n`;
   };
-};
+}

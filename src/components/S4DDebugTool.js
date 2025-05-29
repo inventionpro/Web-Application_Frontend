@@ -1,6 +1,6 @@
-const Blockly = require('blockly');
-const localforage = require('localforage');
-const blocklyModule = require('../blocks/blocklyModule');
+import Blockly from 'blockly';
+import localforage from 'localforage';
+import * as blocklyModule from '../blocks/blocklyModule';
 window.devBlocklyModule = blocklyModule;
 function valueToDisplayData(value) {
   let appearAs;

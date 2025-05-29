@@ -14,8 +14,8 @@ import Blockly from 'blockly';
 import JSZip from 'jszip';
 import beautify from 'js-beautify';
 import localforage from 'localforage';
-const smm = require('./cbmodule');
-const blocklyModule = require('../../blocks/blocklyModule');
+import * as smm from './cbmodule.js';
+import * as blocklyModule from '../../blocks/blocklyModule.js';
 // let changesAreUnsaved = false
 // let workspaceContent = `<xml xmlns="https://developers.google.com/blockly/xml"></xml>`
 function fetchCustomBlocks(dataobj, loadfunc) {
