@@ -8,9 +8,9 @@ S4D New is forked from [469](https://github.com/scratch-for-discord/Web-Applicat
 * 🖥️ No code knowledge required!  
 * ⏩ Make a bot in less than 2 minutes!  
 
-## Example 
+## Example
 
-![example](./examples/example2.png)
+![example](../examples/example2.png)
 
 ## Installation
 
@@ -25,16 +25,13 @@ To run Scratch For Discord, follow these steps:
 
 The discord.js guide has [instructions for setting up a bot application](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot). Once you've followed the instructions you can paste the bot token into the "Connect to Discord with token..." block. The next page in the guide shows how to invite the bot to a server.
 
-## Desktop Apps
+## Apps
 Not recomended, use web version instead.
-**[Click Here](https://androz2091.github.io/scratch-for-discord/download/index.html)** to download desktop version of **scratch-for-discord**.
-
-## Android App
-Not recomended, use web version instead.
-**[Google Play Store](https://play.google.com/store/apps/details?id=com.snowflakestudio.scratchfordiscord)**
+**[Desktop](https://androz2091.github.io/scratch-for-discord/download/index.html)**
+**[Android](https://play.google.com/store/apps/details?id=com.snowflakestudio.scratchfordiscord)**
 
 ### Preview
-![preview](./examples/preview.png)
+![preview](../examples/preview.png)
 
 ## Credits
 
