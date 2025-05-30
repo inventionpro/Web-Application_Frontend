@@ -10,7 +10,7 @@ S4D New is forked from [469](https://github.com/scratch-for-discord/Web-Applicat
 
 ## Example
 
-![example](../examples/example2.png)
+![example](../examples/example.png)
 
 ## Installation
 
@@ -27,8 +27,8 @@ The discord.js guide has [instructions for setting up a bot application](https:/
 
 ## Apps
 Not recomended, use web version instead.
-**[Desktop](https://androz2091.github.io/scratch-for-discord/download/index.html)**
-**[Android](https://play.google.com/store/apps/details?id=com.snowflakestudio.scratchfordiscord)**
+- **[Desktop](https://androz2091.github.io/scratch-for-discord/download/index.html)**
+- **[Android](https://play.google.com/store/apps/details?id=com.snowflakestudio.scratchfordiscord)**
 
 ### Preview
 ![preview](../examples/preview.png)
