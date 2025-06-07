@@ -16,7 +16,7 @@ export default {
   computed: {
     content: function() {
       return beautify.js(this.getWorkspaceCode(), {
-        indent_size: 4,
+        indent_size: 2,
         space_in_empty_paren: true
       });
     }
@@ -24,7 +24,7 @@ export default {
   methods: {
     copy() {
       var url = beautify.js(this.getWorkspaceCode(), {
-        indent_size: 4,
+        indent_size: 2,
         space_in_empty_paren: true
       });
       navigator.clipboard.writeText(url);
