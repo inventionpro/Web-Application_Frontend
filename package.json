@@ -31,7 +31,7 @@
     "discord-logs": "^2.2.1",
     "easy-json-database-browser": "^2.1.0",
     "jquery": "^3.7.1",
-    "js-beautify": "^1.13.5",
+    "js-beautify": "^1.15.4",
     "jszip": "^3.8.0",
     "localforage": "^1.10.0",
     "node": "^20.19.2",

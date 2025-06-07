@@ -69,11 +69,11 @@ import swal from 'sweetalert2';
 export default {
   name: 'navbar',
   components: {
+    CodeModal,
     FileMenu,
     EditMenu,
     //LanguageMenu,
     ExamplesMenu,
-    CodeModal,
     //ToolboxModal,
     shortcuts,
     Credit,
@@ -1461,15 +1461,15 @@ export default {
                               html: previews,
                               input: 'select',
                               inputOptions: {
-                                t1: 'Neo',
-                                t2: 'Toon',
-                                t3: 'Invert',
-                                t4: 'Textless',
-                                t5: 'Grayscale',
-                                t6: 'Glowy',
-                                t7: 'Scratch Block Top',
-                                t8: 'Full Colors',
-                                t9: 'Text only',
+                                neo: 'Neo',
+                                toon: 'Toon',
+                                invert: 'Invert',
+                                textless: 'Textless',
+                                gray: 'Grayscale',
+                                glow: 'Glowy',
+                                'scratch-top': 'Scratch Block Top',
+                                'full-colors': 'Full Colors',
+                                'text-only': 'Text only',
                                 none: 'Default'
                               },
                               inputPlaceholder: 'Select a theme',
@@ -1477,22 +1477,7 @@ export default {
                               width: '1000px'
                             });
                             switch (String(result)) {
-                              case 't1':
-                                localforage.setItem('utilitiesTheme', 'neo');
-                                break;
-                              case 't2':
-                                localforage.setItem('utilitiesTheme', 'toon');
-                                break;
-                              case 't3':
-                                localforage.setItem('utilitiesTheme', 'invert');
-                                break;
-                              case 't4':
-                                localforage.setItem('utilitiesTheme', 'textless');
-                                break;
-                              case 't5':
-                                localforage.setItem('utilitiesTheme', 'gray');
-                                break;
-                              case 't6':
+                              case 'glow':
                                 this.$swal
                                   .fire({
                                     title: 'Performance Warning!',
@@ -1507,7 +1492,8 @@ export default {
                                     localforage.setItem('utilitiesTheme', 'glow');
                                   });
                                 break;
-                              case 't7':
+                              case 'scratch-top':
+                              case 'text-only':
                                 this.$swal
                                   .fire({
                                     title: 'Warning!',
@@ -1519,29 +1505,14 @@ export default {
                                   })
                                   .then(async result => {
                                     if (!result.isConfirmed) return;
-                                    localforage.setItem('utilitiesTheme', 'scratch-top');
-                                  });
-                                break;
-                              case 't8':
-                                localforage.setItem('utilitiesTheme', 'full-colors');
-                                break;
-                              case 't9':
-                                this.$swal
-                                  .fire({
-                                    title: 'Warning!',
-                                    text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    cancelButtonText: 'Cancel',
-                                    confirmButtonText: 'Use this theme'
-                                  })
-                                  .then(async result => {
-                                    if (!result.isConfirmed) return;
-                                    localforage.setItem('utilitiesTheme', 'text-only');
+                                    localforage.setItem('utilitiesTheme', String(result));
                                   });
                                 break;
                               case 'none':
                                 localforage.removeItem('utilitiesTheme');
+                                break;
+                              default:
+                                localforage.setItem('utilitiesTheme', String(result));
                                 break;
                             }
                           }

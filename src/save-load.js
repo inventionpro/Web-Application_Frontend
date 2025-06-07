@@ -37,7 +37,7 @@ export default async function register(self) {
               console.log('loaded a save!');
               const cb = await localforage.getItem('autosave_customBlocks');
               if (cb && cb != '[]') {
-                await window.laodadfcusitomsoanblopocoocksooskfetchCustomBlocksocososc({
+                await window.fetchCustomBlocks({
                   customBlocks: typeof cb === 'object' ? JSON.stringify(cb) : cb
                 });
               }

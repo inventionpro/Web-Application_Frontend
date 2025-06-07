@@ -16,10 +16,7 @@ import beautify from 'js-beautify';
 import localforage from 'localforage';
 import * as smm from './cbmodule.js';
 import * as blocklyModule from '../../blocks/blocklyModule.js';
-// let changesAreUnsaved = false
-// let workspaceContent = `<xml xmlns="https://developers.google.com/blockly/xml"></xml>`
 function fetchCustomBlocks(dataobj, loadfunc) {
-  //window.isInS4DDebugMode = false
   if (!window.isInS4DDebugMode) {
     const w = blocklyModule.menus.createMenu({
       width: 640,
@@ -118,24 +115,10 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   if (loadfunc) loadfunc();
   window.loadtoolboxfuncinternal();
 }
-window.laodadfcusitomsoanblopocoocksooskfetchCustomBlocksocososc = fetchCustomBlocks;
+window.fetchCustomBlocks = fetchCustomBlocks;
 export default {
   name: 'filemenu',
   mounted() {
-    /*
-        // unsaved changes stuff
-        window.onload = function () {
-            window.addEventListener("beforeunload", function (e) {
-                let currentWorkspaceContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace))
-                changesAreUnsaved = workspaceContent != currentWorkspaceContent
-                if (!changesAreUnsaved) return
-                let confirmationMessage = `You have unsaved blocks! Are you sure?`;
-                (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-                return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-            });
-        }
-        // end of unsaved changes stuff
-        */
     localforage.getItem('utilitiesShortcuts').then(item => {
       if (item == false) return;
       window.addEventListener('keydown', e => {
