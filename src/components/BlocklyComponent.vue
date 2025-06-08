@@ -85,10 +85,10 @@ let blocks = Object.getOwnPropertyNames(resbox); // define blocks so pre search 
 let HIDEN_BLOCKS = ['frost_image', 'frost_drop1', 'colour_picker', 'frost_translate', 'variables_get', 'procedures_callnoreturn', 'procedures_callreturn', 'variables_get_dynamic', 'variables_set_dynamic', 'variables_set', 'math_change', 'procedures_ifreturn', 'procedures_defreturn', 'procedures_defnoreturn', 'controls_ifelse', 'jg_blocklyfp_load_workspace', 'jg_blocklyfp_load_workspace_website', 'lasercat_jg_case_default_INTERNAL_default', 'lasercat_jg_case_default_INTERNAL_case4', 'lasercat_jg_case_default_INTERNAL_case3', 'lasercat_jg_case_default_INTERNAL_case2', 'lasercat_jg_case_default_INTERNAL_case1', 'jg_events_all_label', 'jg_testing_urmother_epic_block_test_deez_mf_nuts'];
 
 let preadded = [];
-BlocklyB.filter(x => {
-  if (Blockly.Blocks[x].isHiden || Blockly.JavaScript[x] == null) {
-    HIDEN_BLOCKS.push(x);
-    preadded.push(x);
+BlocklyB.filter(block => {
+  if (Blockly.Blocks[block].isHiden || Blockly.JavaScript[block] == null) {
+    HIDEN_BLOCKS.push(block);
+    preadded.push(block);
   }
 });
 
@@ -117,21 +117,19 @@ export default {
     };
     function prepToolbox(toolbox_content, searching, favorites, pooopewwweewwww, searchparameter) {
       const default_max_length = 250;
-      let CATEGORYCONTENT = `
-        <label text="Error failed to get block(s)..." web-class="boldtext"></label>
-      `;
+      let CATEGORYCONTENT = `<label text="Error failed to get block(s)..." web-class="boldtext"></label>`;
 
       if (searching == 'baiuyfg8iu4ewf643o8ir') {
-        blocks.forEach(x => {
-          let xml = Blockly.Xml.textToDom(`<block type="${x}"/>`);
-          let block = Blockly.Xml.domToBlock(xml, pooopewwweewwww);
+        blocks.forEach(block => {
+          let xml = Blockly.Xml.textToDom(`<block type="${block}"/>`);
+          block = Blockly.Xml.domToBlock(xml, pooopewwweewwww);
           block.moveBy(Math.round(Math.random() * 5000), Math.round(Math.random() * 5000));
           return;
         });
       }
       if (searching == 'f9u42r8hg329rehsfhoiewgf37') {
-        blocks.forEach(x => {
-          const xml = Blockly.Xml.textToDom(`<xml><block type="${x}"/></xml>`);
+        blocks.forEach(block => {
+          const xml = Blockly.Xml.textToDom(`<xml><block type="${block}"/></xml>`);
           Blockly.Xml.appendDomToWorkspace(xml, pooopewwweewwww);
         });
         return;
@@ -140,22 +138,22 @@ export default {
         // search category controler
         // why are so many blocks not defined before this all runs 😭
         const BlocklyB = Object.getOwnPropertyNames(Blockly.Blocks);
-        blocks = BlocklyB.filter(x => Blockly.Blocks[x].init != null);
+        blocks = BlocklyB.filter(block => Blockly.Blocks[block].init != null);
 
         let warnings = [];
 
-        BlocklyB.filter(x => {
-          if (Blockly.Blocks[x].isHiden && !preadded.includes(x) && HIDEN_BLOCKS.includes(x)) {
-            console.warn(`${x} is already registerd as hiden! either remove ${x} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS" or remove the "isHiden" tag from the block defnintion`);
-            warnings.push(x);
+        BlocklyB.filter(block => {
+          if (Blockly.Blocks[block].isHiden && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
+            console.warn(`${block} is already registerd as hiden! either remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS" or remove the "isHiden" tag from the block defnintion`);
+            warnings.push(block);
           }
-          if (Blockly.JavaScript[x] == null && !preadded.includes(x) && HIDEN_BLOCKS.includes(x)) {
-            console.warn(`${x} doesnt have a export! and thus doesnt need to be in "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"! please remove ${x} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"!`);
-            warnings.push(x);
+          if (Blockly.JavaScript[block] == null && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
+            console.warn(`${block} doesnt have a export! and thus doesnt need to be in "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"! please remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"!`);
+            warnings.push(block);
           }
-          if ((Blockly.Blocks[x].isHiden || Blockly.JavaScript[x] == null) && !HIDEN_BLOCKS.includes(x)) {
-            HIDEN_BLOCKS.push(x);
-            preadded.push(x);
+          if ((Blockly.Blocks[block].isHiden || Blockly.JavaScript[block] == null) && !HIDEN_BLOCKS.includes(block)) {
+            HIDEN_BLOCKS.push(block);
+            preadded.push(block);
           }
         });
         if (warnings.length > 0) {
@@ -163,12 +161,12 @@ export default {
           console.log(`warnings: [${warnings.join('\n  ')}
 ]`);
           console.log(`resulting hiden list: [
-            "${HIDEN_BLOCKS.filter(x => !preadded.includes(x) && !warnings.includes(x)).join('",\n            "')}"
+            "${HIDEN_BLOCKS.filter(block => !preadded.includes(block) && !warnings.includes(block)).join('",\n            "')}"
           ]`);
         }
 
         searchparameter = searchparameter.replaceAll(/[^a-zA-Z0-9_]/gm, '_').toLowerCase();
-        let search_res = blocks.filter(x => (x.includes(searchparameter) && !HIDEN_BLOCKS.includes(x)) || (searchparameter == 'hidden' && HIDEN_BLOCKS.includes(x)));
+        let search_res = blocks.filter(block => (block.includes(searchparameter) && !HIDEN_BLOCKS.includes(block)) || (searchparameter == 'hidden' && HIDEN_BLOCKS.includes(block)));
 
         if (search_res.length < 1) {
           CATEGORYCONTENT = `<label text="No blocks where found with &quot;${searchparameter}&quot; in the name..." web-class="boldtext"></label>`;
@@ -179,37 +177,25 @@ export default {
             <label text="ㅤ" web-class="boldtext"></label>
             ${search_res
               .slice(0, 100)
-              .map(x => {
-                return `<label text="${x.replace(searchparameter, `${searchparameter.toUpperCase()}`)} ${resbox[x] == null ? ' isnt in the toolbox' : 'is in ' + resbox[x].join(' and ')}" web-class="boldtext"></label>
-<block type="${x}"/>`;
+              .map(block => {
+                return `<label text="${block.replace(searchparameter, `${searchparameter.toUpperCase()}`)} ${resbox[block] == null ? ' isnt in the toolbox' : 'is in ' + resbox[block].join(' and ')}" web-class="boldtext"></label>
+<block type="${block}"/>`;
               })
               .join('\n')}`;
         }
       } else {
         const lessthan_350 = blocks.length < default_max_length;
-        let newblocks = (lessthan_350 ? blocks : blocks.slice(0, default_max_length)).filter(x => !HIDEN_BLOCKS.includes(x));
+        let newblocks = (lessthan_350 ? blocks : blocks.slice(0, default_max_length)).filter(block => !HIDEN_BLOCKS.includes(block));
         if (newblocks.length > 0) {
-          CATEGORYCONTENT = `
-            <label text="ㅤ" web-class="boldtext"></label>
-            ${newblocks.map(x => `<block type="${x}"/>`).join('\n')}
-            ${
-              !lessthan_350
-                ? `
-              <label text="${blocks.length - default_max_length} blocks left..." web-class="boldtext"></label>
-            `
-                : ''
-            }
-          `;
+          CATEGORYCONTENT = `<label text="ㅤ" web-class="boldtext"></label>
+${newblocks.map(block => `<block type="${block}"/>`).join('\n')}
+${!lessthan_350 ? `<label text="${blocks.length - default_max_length} blocks left..." web-class="boldtext"></label>` : ''}`;
         }
       }
-      var returned_stuff = toolbox_content.replace(
-        '<!-- CATEGORY_CONTENT_VARIABLE_GOES_HERE_897489712470376894703168263487623 -->',
-        `
-          <label text="There are currently ${blocks.length} blocks in S4D." web-class="boldtext"></label>
-          <label text="ㅤ" web-class="boldtext"></label>
-          ${CATEGORYCONTENT}
-        `
-      );
+      var returned_stuff = toolbox_content.replace('<!-- CATEGORY_CONTENT_VARIABLE_GOES_HERE_897489712470376894703168263487623 -->',
+        `<label text="There are currently ${blocks.length} blocks in S4D." web-class="boldtext"></label>
+<label text="ㅤ" web-class="boldtext"></label>
+${CATEGORYCONTENT}`);
 
       // for custom categories
       let urlParams = new URLSearchParams(window.location.search);
@@ -278,33 +264,34 @@ export default {
 
     localforage.getItem('utilitiesShortcuts').then(item => {
       if (item != false) {
-        window.addEventListener('keydown', e => {
-          if (e.altKey) {
-            if (['t','n','m','c','e','a','w','b','i','=','N','A'].includes(e.key)) {
-              if (e.key == 't') {
-                var blockToPlace = 'text';
-              } else if (e.key == 'm') {
-                var blockToPlace = 's4d_message_content';
-              } else if (e.key == 'c') {
-                var blockToPlace = 'colour_picker';
-              } else if (e.key == 'e') {
-                var blockToPlace = 'frost_other_err';
-              } else if (e.key == 'A' && e.shiftKey) {
-                var blockToPlace = 'logic_operation';
-              } else if (e.key == 'a') {
-                var blockToPlace = 's4d_message_author';
-              } else if (e.key == 'w') {
-                var blockToPlace = 's4d_on_message';
-              } else if (e.key == 'b') {
-                var blockToPlace = 'logic_boolean';
-              } else if (e.key == 'i') {
-                var blockToPlace = 'controls_if';
-              } else if (e.key == '=') {
-                var blockToPlace = 'logic_compare';
-              } else if (e.key == 'N' && e.shiftKey) {
-                var blockToPlace = 'logic_negate';
-              } else if (e.key == 'n') {
-                var blockToPlace = 'math_number';
+        window.addEventListener('keydown', evt => {
+          if (evt.altKey) {
+            if (['t','n','m','c','e','a','w','b','i','=','N','A'].includes(evt.key)) {
+              let blockToPlace = 'text';
+              if (evt.key == 't') {
+                blockToPlace = 'text';
+              } else if (evt.key == 'm') {
+                blockToPlace = 's4d_message_content';
+              } else if (evt.key == 'c') {
+                blockToPlace = 'colour_picker';
+              } else if (evt.key == 'e') {
+                blockToPlace = 'frost_other_err';
+              } else if (evt.key == 'A' && evt.shiftKey) {
+                blockToPlace = 'logic_operation';
+              } else if (evt.key == 'a') {
+                blockToPlace = 's4d_message_author';
+              } else if (evt.key == 'w') {
+                blockToPlace = 's4d_on_message';
+              } else if (evt.key == 'b') {
+                blockToPlace = 'logic_boolean';
+              } else if (evt.key == 'i') {
+                blockToPlace = 'controls_if';
+              } else if (evt.key == '=') {
+                blockToPlace = 'logic_compare';
+              } else if (evt.key == 'N' && evt.shiftKey) {
+                blockToPlace = 'logic_negate';
+              } else if (evt.key == 'n') {
+                blockToPlace = 'math_number';
               }
               let workspace_xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
               let xml_blocks = workspace_xml.split('\n');
@@ -317,24 +304,23 @@ export default {
                   ypos.push(current.substring(current.indexOf('y="') + 3, current.indexOf('">')));
                 }
               }
+              var dx = 0;
+              var dy = 0;
               if (xpos && ypos) {
-                var dx = xpos.slice(-1)[0];
-                var dy = ypos.slice(-1)[0];
-              } else {
-                var dx = 0;
-                var dy = 0;
+                dx = xpos.slice(-1)[0];
+                dy = ypos.slice(-1)[0];
               }
               if (Blockly.selected) {
                 let selected = Blockly.selected.toCopyData();
-                var dx = selected.saveInfo.x;
-                var dy = selected.saveInfo.y;
+                dx = selected.saveInfo.x;
+                dy = selected.saveInfo.y;
               }
               let xml = Blockly.Xml.textToDom(`<block type="${blockToPlace}"></block>`);
               let block = Blockly.Xml.domToBlock(xml, workspace);
               if (Number(dx) && Number(dy)) {
                 block.moveBy(Number(dx), Number(dy));
               }
-            } else if (e.ctrlKey) {
+            } else if (evt.ctrlKey) {
               if (Blockly.selected) {
                 let xml = Blockly.Xml.blockToDom(Blockly.selected);
                 let block = Blockly.Xml.domToBlock(xml, workspace);
@@ -406,12 +392,7 @@ export default {
           workspace.getAllBlocks().forEach(block => {
             try {
               if (color == 'random') {
-                let array = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-                let random = '#';
-                for (let i = 0; i < 6; i++) {
-                  random += array[Math.floor(Math.random() * 15)];
-                }
-                block.setColour(random);
+                block.setColour(Math.floor(Math.random() * 0xffffff).toString(16));
               } else block.setColour(color);
             } catch (err) {
               console.warn(err);
@@ -457,13 +438,13 @@ export default {
         rgb = '255, 20, 20';
         bold = ['<b style="font-size: 125%"><strong>', '</strong></b>'];
       }
-      let s = 's';
+      let plural = 's';
       if (blocks == 1) {
-        s = '';
+        plural = '';
       } else {
-        s = 's';
+        plural = 's';
       }
-      counter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="color:rgb(${rgb});">${blocks} block${s}</p>` + bold[1];
+      counter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="color:rgb(${rgb});">${blocks} block${plural}</p>` + bold[1];
     }
     localforage.getItem('hide-blockcount').then(item => {
       if (String(item) == 'true') {
@@ -487,18 +468,6 @@ export default {
         blockCounter();
       });
     });
-    // EPIC sdeloz renderer code
-    const SDELOZRenderer = function(name) {
-      SDELOZRenderer.superClass_.constructor.call(this, name);
-    };
-    Blockly.utils.object.inherits(SDELOZRenderer, Blockly.zelos.Renderer);
-    Blockly.blockRendering.register('sdeloz', SDELOZRenderer);
-    /*
-Blockly.getMaainWorkspace().addChangeListener(blockCounter(Blockly.getMaainWorkspace()))
-*/
-    // Comment this context menu out later!
-    // 👍
-    // jk no!!
 
     window.s4dDebugEvents.push(() => {
       Blockly.ContextMenuRegistry.registry.register({
@@ -540,9 +509,6 @@ Blockly.getMaainWorkspace().addChangeListener(blockCounter(Blockly.getMaainWorks
         newWidth = Math.round((newWidth / highestCScale) * maxScaleI);
         newHeight = Math.round((newHeight / highestCScale) * maxScaleI);
       }
-
-      // newWidth = 4096
-      // newHeight = 4096
 
       canvas.width = newWidth;
       canvas.height = newHeight;
@@ -755,8 +721,8 @@ Blockly.getMaainWorkspace().addChangeListener(blockCounter(Blockly.getMaainWorks
       blockNameInput.style.width = '100%';
       blockNameInput.type = 'text';
       blockNameInput.oninput = () => {
-        let a = String(customBlockModule.createCustomBlockID(blockNameInput.value));
-        const name = a.substring(a.lastIndexOf('_') + 1, a.length);
+        let block = String(customBlockModule.createCustomBlockID(blockNameInput.value));
+        const name = block.substring(block.lastIndexOf('_') + 1, block.length);
         if (name != blockNameInput.value) blockNameInput.value = name;
       };
       buttonDiv.append(blockNameInput);
@@ -779,19 +745,19 @@ Blockly.getMaainWorkspace().addChangeListener(blockCounter(Blockly.getMaainWorks
         customBlockDeletorDiv.innerHTML = '';
         window.customBlocks.forEach(blockName => {
           const button = document.createElement('button');
-          let a = blockName;
-          const name = String(a.substring(a.lastIndexOf('_') + 1, a.length)).replace(/[^a-zA-Z0-9]/gim, '');
+          let block = blockName;
+          const name = String(block.substring(block.lastIndexOf('_') + 1, block.length)).replace(/[^a-zA-Z0-9]/gim, '');
           button.innerHTML = name;
           button.onclick = () => {
             const usurebro = confirm('Are you sure you want to delete ' + name + '?');
             if (!usurebro) return;
             let target;
-            window.saveCustomBlocksOutput.forEach(b => {
-              if (b.name == blockName) target = b;
+            window.saveCustomBlocksOutput.forEach(bloc => {
+              if (bloc.name == blockName) target = bloc;
             });
             if (!target) return alert('This block does not exist anymore!');
-            window.blocklyWorkspaceGlobalRef.getAllBlocks().forEach(block => {
-              if (block.type == blockName) block.dispose();
+            window.blocklyWorkspaceGlobalRef.getAllBlocks().forEach(bloc => {
+              if (bloc.type == blockName) bloc.dispose();
             });
             window.customBlocks.splice(window.customBlocks.indexOf(blockName), 1);
             window.saveCustomBlocksOutput.splice(window.saveCustomBlocksOutput.indexOf(target), 1);
@@ -844,81 +810,57 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           const eauthorurl = validateForXML(document.getElementById('EmbedAuthorURL').value);
           // blocks are placed even if they arent required because blockly is dumb and has a stupid method of placing multiple blocks inside of statement inputs
           let xml = Blockly.Xml.textToDom(`<block type="s4d_embed_create">
-    <statement name="THEN">
-        <block type="s4d_embed_set_title">
-            <value name="TITLE">
-                ${
-                  etitle
-                    ? `<block type="jg_text_remake_paragraph_quotes">
-                    <field name="TEXT">${etitle}</field>
-                </block>`
-                    : ''
-                }
-            </value>
-            <value name="HYPERLINK">
-                ${
-                  etitleurl
-                    ? `<block type="jg_text_remake_paragraph_quotes">
-                    <field name="TEXT">${etitleurl}</field>
-                </block>`
-                    : ''
-                }
-            </value>
-            <next>
-                <block type="s4d_embed_set_desc">
-                    <value name="DESC">
-                        <block type="jg_text_remake_paragraph_quotes">
-                            <field name="TEXT">${edesc ? edesc : '⠀'}</field>
-                        </block>
-                    </value>
-                    <next>
-                        <block type="s4d_embed_set_color">
-                            <value name="COLOUR">
-                                ${
-                                  etitle
-                                    ? `<block type="fz_color">
-                                    <field name="COLOR">${ecolor}</field>
-                                </block>`
-                                    : ''
-                                }
-                            </value>
-                            <next>
-                                <block type="s4d_embed_set_author">
-                                    <value name="AUTHOR">
-                                        ${
-                                          eauthor
-                                            ? `<block type="jg_text_remake_paragraph_quotes">
-                                            <field name="TEXT">${eauthor}</field>
-                                        </block>`
-                                            : ''
-                                        }
-                                    </value>
-                                    <value name="PROFILE">
-                                        ${
-                                          eauthorpfp
-                                            ? `<block type="jg_text_remake_paragraph_quotes">
-                                            <field name="TEXT">${eauthorpfp}</field>
-                                        </block>`
-                                            : ''
-                                        }
-                                    </value>
-                                    <value name="URL">
-                                        ${
-                                          eauthorurl
-                                            ? `<block type="jg_text_remake_paragraph_quotes">
-                                            <field name="TEXT">${eauthorurl}</field>
-                                        </block>`
-                                            : ''
-                                        }
-                                    </value>
-                                </block>
-                            </next>
-                        </block>
-                    </next>
+  <statement name="THEN">
+    <block type="s4d_embed_set_title">
+      <value name="TITLE">
+        ${etitle ? `<block type="jg_text_remake_paragraph_quotes">
+  <field name="TEXT">${etitle}</field>
+</block>` : ''}
+      </value>
+      <value name="HYPERLINK">
+        ${etitleurl ? `<block type="jg_text_remake_paragraph_quotes">
+  <field name="TEXT">${etitleurl}</field>
+</block>` : ''}
+      </value>
+      <next>
+        <block type="s4d_embed_set_desc">
+          <value name="DESC">
+            <block type="jg_text_remake_paragraph_quotes">
+              <field name="TEXT">${edesc ? edesc : '⠀'}</field>
+            </block>
+          </value>
+          <next>
+            <block type="s4d_embed_set_color">
+              <value name="COLOUR">
+                ${etitle ? `<block type="fz_color">
+  <field name="COLOR">${ecolor}</field>
+</block>` : ''}
+              </value>
+              <next>
+                <block type="s4d_embed_set_author">
+                  <value name="AUTHOR">
+                    ${eauthor ? `<block type="jg_text_remake_paragraph_quotes">
+  <field name="TEXT">${eauthor}</field>
+</block>` : ''}
+                  </value>
+                  <value name="PROFILE">
+                    ${eauthorpfp ? `<block type="jg_text_remake_paragraph_quotes">
+  <field name="TEXT">${eauthorpfp}</field>
+</block>` : ''}
+                  </value>
+                  <value name="URL">
+                    ${eauthorurl ? `<block type="jg_text_remake_paragraph_quotes">
+  <field name="TEXT">${eauthorurl}</field>
+</block>` : ''}
+                  </value>
                 </block>
-            </next>
+              </next>
+            </block>
+          </next>
         </block>
-    </statement>
+      </next>
+    </block>
+  </statement>
 </block>`);
           let block = Blockly.Xml.domToBlock(xml, workspace);
           workspace.centerOnBlock(block.id);
@@ -1045,8 +987,8 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
         let arrByte = new Uint8Array(arrBuff);
         return [arrByte[1], arrByte[2], arrByte[3]];
       }
-      function componentToHex(c) {
-        var hex = c.toString(16);
+      function componentToHex(color) {
+        var hex = color.toString(16);
         return hex.length == 1 ? '0' + hex : hex;
       }
       function rgbToHex(r, g, b) {
@@ -1291,28 +1233,14 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
             themeBlocks('#000000', null, 'toon');
             break;
           case 'invert':
-            themeBlocks(null, null, 'invert');
-            break;
           case 'pastel':
-            themeBlocks(null, null, 'pastel');
-            break;
           case 'textless':
-            themeBlocks(null, null, 'textless');
-            break;
           case 'gray':
-            themeBlocks(null, null, 'gray');
-            break;
           case 'glow':
-            themeBlocks(null, null, 'glow');
-            break;
           case 'scratch-top':
-            themeBlocks(null, null, 'scratch-top');
-            break;
           case 'full-colors':
-            themeBlocks(null, null, 'full-colors');
-            break;
           case 'text-only':
-            themeBlocks(null, null, 'text-only');
+            themeBlocks(null, null, theme);
             break;
         }
       });

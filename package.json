@@ -69,7 +69,15 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "id-length": [
+        "warn",
+        {
+          "min": 2,
+          "max": 35
+        }
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

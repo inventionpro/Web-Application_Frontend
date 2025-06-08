@@ -18,15 +18,15 @@ import * as smm from './cbmodule.js';
 import * as blocklyModule from '../../blocks/blocklyModule.js';
 function fetchCustomBlocks(dataobj, loadfunc) {
   if (!window.isInS4DDebugMode) {
-    const w = blocklyModule.menus.createMenu({
+    const menu = blocklyModule.menus.createMenu({
       width: 640,
       height: 240
     });
-    w.content.style.textAlign = 'center';
-    w.content.append(document.createElement('br'));
+    menu.content.style.textAlign = 'center';
+    menu.content.append(document.createElement('br'));
     const h3 = document.createElement('h3');
     h3.innerHTML = 'Enter Debug Mode to use custom blocks as it is experimental currently.';
-    const clear = w.createDecoratedButton();
+    const clear = menu.createDecoratedButton();
     clear.innerHTML = 'Remove custom blocks from my autosaves';
     clear.onclick = () => {
       clear.innerHTML = 'Removing...';
@@ -39,15 +39,15 @@ function fetchCustomBlocks(dataobj, loadfunc) {
           clear.innerHTML = 'An error occurred';
         });
     };
-    w.content.append(h3);
-    w.content.append(document.createElement('br'));
-    w.content.append(document.createElement('br'));
-    w.content.append(clear);
+    menu.content.append(h3);
+    menu.content.append(document.createElement('br'));
+    menu.content.append(document.createElement('br'));
+    menu.content.append(clear);
     return;
   }
-  let j = {};
+  let customblocks = {};
   try {
-    j = JSON.parse(dataobj.customBlocks);
+    customblocks = JSON.parse(dataobj.customBlocks);
   } catch (err) {
     this.$toast.open({
       message: 'Custom block data for this file is corrupted.',
@@ -59,7 +59,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
     if (loadfunc) loadfunc();
     return;
   }
-  const blocks = j;
+  const blocks = customblocks;
   const bringBack_setTimeout = window.setTimeout;
   const bringBack_setInterval = window.setInterval;
   const bringBack_fetch = window.fetch;
@@ -79,7 +79,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   window.BlocklyService.Blocks = {};
   window.BlocklyService.JavaScript = {};
   window.BlocklyService.JavaScript = Blockly.JavaScript;
-  blocks.forEach(b => {
+  blocks.forEach(block => {
     /* eslint-disable */
     let bringBack_setTimeout;
     let bringBack_setInterval;
@@ -89,19 +89,19 @@ function fetchCustomBlocks(dataobj, loadfunc) {
     let bringBack_ServiceWorker;
     let works = true;
     try {
-      Blockly.Blocks[b.name] = {
+      Blockly.Blocks[block.name] = {
         init: function() {
-          eval(b.blocks);
+          eval(block.blocks);
         }
       };
-      smm.bypassStrictModeRegister(b.name, b.javascript);
+      smm.bypassStrictModeRegister(block.name, block.javascript);
     } catch (err) {
       console.warn('An error occurred when loading a custom block!', String(err).substring(0, 250));
       works = false;
     } finally {
       if (works) {
-        window.customBlocks.push(b.name);
-        window.saveCustomBlocksOutput.push(b);
+        window.customBlocks.push(block.name);
+        window.saveCustomBlocksOutput.push(block);
       }
     }
   });

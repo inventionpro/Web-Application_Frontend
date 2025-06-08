@@ -64,7 +64,6 @@ window.openS4DDebugMenu = () => {
   menu.content.style.overflow = 'auto';
   menu.content.style.height = '720px';
   setTimeout(() => {
-    //blockly
     const blocklyDetails = document.createElement('details');
     const blocklyDetailsSummary = document.createElement('summary');
     blocklyDetailsSummary.innerHTML = 'Blockly';
@@ -1120,15 +1119,15 @@ window.openS4DDebugMenu = () => {
       fetch(url)
         .then(res => {
           waitingLabel.remove();
-          const r = document.createElement('div');
-          r.innerHTML = '<p>' + name + ' <small>(' + url + ')</small></p><h1 style="color:lime;font-size:300%">Online</h1><br><p>' + (new Date().getTime() - reqStartTime) + 'ms to respond; got status <b style="color:' + (res.status >= 200 && res.status < 400 ? 'lime' : 'red') + '">' + res.status + '</b></p>';
-          apiDiv.append(r);
+          const adiv = document.createElement('div');
+          adiv.innerHTML = '<p>' + name + ' <small>(' + url + ')</small></p><h1 style="color:lime;font-size:300%">Online</h1><br><p>' + (new Date().getTime() - reqStartTime) + 'ms to respond; got status <b style="color:' + (res.status >= 200 && res.status < 400 ? 'lime' : 'red') + '">' + res.status + '</b></p>';
+          apiDiv.append(adiv);
         })
         .catch(() => {
           waitingLabel.remove();
-          const r = document.createElement('div');
-          r.innerHTML = '<p>' + name + ' <small>(' + url + ')</small></p><h1 style="color:red;font-size:300%">Offline</h1><br><p>' + (new Date().getTime() - reqStartTime) + 'ms to error</p>';
-          apiDiv.append(r);
+          const adiv = document.createElement('div');
+          adiv.innerHTML = '<p>' + name + ' <small>(' + url + ')</small></p><h1 style="color:red;font-size:300%">Offline</h1><br><p>' + (new Date().getTime() - reqStartTime) + 'ms to error</p>';
+          apiDiv.append(adiv);
         });
     }
     const refreshButton = menu.createDecoratedButton();
@@ -1195,7 +1194,7 @@ window.openS4DDebugMenu = () => {
     evalTool.append(submit);
   }, 0);
 };
-window.addEventListener('keypress', e => {
-  if (!(e.key == '\u0015' && e.shiftKey && e.ctrlKey)) return;
+window.addEventListener('keypress', evt => {
+  if (!(evt.key == '\u0015' && evt.shiftKey && evt.ctrlKey)) return;
   window.openS4DDebugMenu();
 });

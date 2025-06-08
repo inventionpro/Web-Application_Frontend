@@ -88,9 +88,9 @@ function validateRestriction(block, blocks, restriction) {
     case 'toplevelparent':
       return restriction.types.includes(getTopLevelParent(block).type) !== reverse;
     case 'blockexists':
-      return blocks.filter(b => restriction.types.includes(b.type) && !b.disabled).length > 0 !== reverse;
+      return blocks.filter(block => restriction.types.includes(block.type) && !block.disabled).length > 0 !== reverse;
     case 'notblockexists':
-      return blocks.filter(b => restriction.types.includes(b.type) && !b.disabled).length > 0 !== reverse;
+      return blocks.filter(block => restriction.types.includes(block.type) && !block.disabled).length > 0 !== reverse;
     case 'parent':
       return restriction.types.includes(block.getParent().type) !== reverse;
     case 'hasparent':
@@ -99,7 +99,7 @@ function validateRestriction(block, blocks, restriction) {
       for (let type of restriction.types) {
         try {
           if (!block.getInput(type).connection.targetBlock()) return false;
-        } catch (e) {
+        } catch (err) {
           console.log('error happened with restriction (notempty) on', block.type);
         }
       }

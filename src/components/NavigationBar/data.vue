@@ -77,8 +77,8 @@ export default {
     load() {
       const file = document.getElementById('load-s4dData-code').files[0];
       const reader = new FileReader();
-      reader.onload = e => {
-        JSZip.loadAsync(e.target.result).then(data => {
+      reader.onload = evt => {
+        JSZip.loadAsync(evt.target.result).then(data => {
           data
             .file('localForage.json')
             .async('string')

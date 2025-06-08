@@ -34,7 +34,7 @@ app.use(VueSwal);
 app.use(bootstrapPlugin);
 app.use(modalManagerPlugin);
 
-import r from './require';
+import req from './require';
 
 import blocklyLocaleEN from 'blockly/msg/en';
 import blocklyLocaleFR from 'blockly/msg/fr';
@@ -143,7 +143,7 @@ app.mixin({
       let requires = [];
       let requiresjscode = [];
       let xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-      r(requires, requiresjscode, Blockly.JavaScript.workspaceToCode(workspace), xml);
+      req(requires, requiresjscode, Blockly.JavaScript.workspaceToCode(workspace), xml);
       setTimeout(async () => {
         await localforage.setItem('requires', requires);
       }, 1000);
