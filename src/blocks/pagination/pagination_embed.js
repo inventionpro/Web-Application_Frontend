@@ -24,12 +24,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const embed1 = Blockly.JavaScript.valueToCode(block, 'EMBED1', Blockly.JavaScript.ORDER_ATOMIC);
   const embed2 = Blockly.JavaScript.valueToCode(block, 'EMBED2', Blockly.JavaScript.ORDER_ATOMIC);
   const code = [`${embed1},${embed2}`, Blockly.JavaScript.ORDER_NONE];

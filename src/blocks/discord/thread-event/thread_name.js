@@ -19,12 +19,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const thread = Blockly.JavaScript.valueToCode(block, 'THREAD', Blockly.JavaScript.ORDER_ATOMIC);
   return [`${thread}.name`, Blockly.JavaScript.ORDER_NONE];
 };

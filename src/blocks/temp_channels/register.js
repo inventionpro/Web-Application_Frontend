@@ -46,12 +46,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const channel_id = Blockly.JavaScript.valueToCode(block, 'CHANNELID', Blockly.JavaScript.ORDER_ATOMIC);
   const empty = Blockly.JavaScript.valueToCode(block, 'EMPTY', Blockly.JavaScript.ORDER_ATOMIC);
   const max = Blockly.JavaScript.valueToCode(block, 'MAX', Blockly.JavaScript.ORDER_ATOMIC);

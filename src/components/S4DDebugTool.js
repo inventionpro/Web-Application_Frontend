@@ -41,7 +41,7 @@ const s4dDebugEvents = [];
 window.s4dDebugEvents = s4dDebugEvents;
 window.isInS4DDebugMode = false;
 function runDebugEvents() {
-  window.s4dDebugEvents.forEach(event => {
+  window.s4dDebugEvents.forEach((event) => {
     event();
     window.s4dDebugEvents.splice(window.s4dDebugEvents.indexOf(event), 1);
   });
@@ -94,7 +94,7 @@ window.openS4DDebugMenu = () => {
       refreshWorkspaceInformation.onclick = () => {
         const workspace = blocklyModule.getWorkspace();
         workspaceInformation.innerHTML = '';
-        Object.getOwnPropertyNames(workspace).forEach(property => {
+        Object.getOwnPropertyNames(workspace).forEach((property) => {
           const keyValue = document.createElement('p');
           keyValue.style.height = '4em';
           keyValue.style.overflow = 'auto';
@@ -143,7 +143,7 @@ window.openS4DDebugMenu = () => {
       spawnBlockToWorkspaceTextArea.style.height = '5em';
       spawnBlockToWorkspace.onclick = () => {
         const input = spawnBlockToWorkspaceTextArea.value.split('\n');
-        input.forEach(block => {
+        input.forEach((block) => {
           let xml = Blockly.Xml.textToDom('<xml><block type="' + block + '"></block></xml>');
           try {
             Blockly.Xml.appendDomToWorkspace(xml, blocklyModule.getWorkspace());
@@ -470,7 +470,7 @@ window.openS4DDebugMenu = () => {
       refreshToolboxInformation.onclick = () => {
         const toolbox = blocklyModule.getToolbox();
         toolboxInformation.innerHTML = '';
-        Object.getOwnPropertyNames(toolbox).forEach(property => {
+        Object.getOwnPropertyNames(toolbox).forEach((property) => {
           const keyValue = document.createElement('p');
           keyValue.style.height = '4em';
           keyValue.style.overflow = 'auto';
@@ -977,7 +977,7 @@ window.openS4DDebugMenu = () => {
       refreshBlockInformation.onclick = () => {
         const block = getBlock();
         blockInformation.innerHTML = '';
-        Object.getOwnPropertyNames(block).forEach(property => {
+        Object.getOwnPropertyNames(block).forEach((property) => {
           const keyValue = document.createElement('p');
           keyValue.style.height = '4em';
           keyValue.style.overflow = 'auto';
@@ -1034,11 +1034,11 @@ window.openS4DDebugMenu = () => {
           return;
         }
         Blockly.Blocks[blockName] = {
-          init: function() {
+          init: function () {
             this.jsonInit(json);
           }
         };
-        Blockly.JavaScript[blockName] = function() {
+        Blockly.JavaScript[blockName] = function () {
           return '';
         };
       };
@@ -1083,9 +1083,9 @@ window.openS4DDebugMenu = () => {
       keyValuePairsDetails.append(valuePairsDiv);
       function resetKeyvaluepairs() {
         valuePairsDiv.innerHTML = '';
-        localforage.keys().then(keys => {
-          keys.forEach(key => {
-            localforage.getItem(key).then(value => {
+        localforage.keys().then((keys) => {
+          keys.forEach((key) => {
+            localforage.getItem(key).then((value) => {
               const keyValue = document.createElement('p');
               keyValue.style.height = '2em';
               keyValue.style.overflow = 'auto';
@@ -1117,7 +1117,7 @@ window.openS4DDebugMenu = () => {
       apiDiv.append(waitingLabel);
       let reqStartTime = new Date().getTime();
       fetch(url)
-        .then(res => {
+        .then((res) => {
           waitingLabel.remove();
           const adiv = document.createElement('div');
           adiv.innerHTML = '<p>' + name + ' <small>(' + url + ')</small></p><h1 style="color:lime;font-size:300%">Online</h1><br><p>' + (new Date().getTime() - reqStartTime) + 'ms to respond; got status <b style="color:' + (res.status >= 200 && res.status < 400 ? 'lime' : 'red') + '">' + res.status + '</b></p>';
@@ -1194,7 +1194,7 @@ window.openS4DDebugMenu = () => {
     evalTool.append(submit);
   }, 0);
 };
-window.addEventListener('keypress', evt => {
+window.addEventListener('keypress', (evt) => {
   if (!(evt.key == '\u0015' && evt.shiftKey && evt.ctrlKey)) return;
   window.openS4DDebugMenu();
 });

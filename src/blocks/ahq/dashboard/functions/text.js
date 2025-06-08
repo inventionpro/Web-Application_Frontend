@@ -2,7 +2,7 @@ import * as Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'add_text_dash';
-//block working now working
+
 const blockData = {
   type: 'block_type',
   message0: 'Add text input %1 Name %2 %3 Description %4 %5 max length %6 %7 Setter %8 %9 get value %10',
@@ -53,11 +53,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const code = `s4d.client.dashboard.addTextInput(${Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_NONE)}, ${Blockly.JavaScript.valueToCode(block, 'desc', Blockly.JavaScript.ORDER_NONE)}, function(prefix) {
         return (prefix.length <= ${Blockly.JavaScript.valueToCode(block, 'length', Blockly.JavaScript.ORDER_NONE)})
     }, async function(client, guild, value) {${Blockly.JavaScript.statementToCode(block, 'set')}}, async function(client, guild) {

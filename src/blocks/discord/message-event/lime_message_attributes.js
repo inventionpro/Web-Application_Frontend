@@ -29,10 +29,10 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   },
-  onchange: function() {
+  onchange: function () {
     var dropdown = this.getFieldValue('dropdown');
     switch (dropdown) {
       case 'CONTENT':
@@ -77,7 +77,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var dropdown = block.getFieldValue('dropdown');
   var code = '';
 

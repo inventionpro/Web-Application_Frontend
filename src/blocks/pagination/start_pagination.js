@@ -39,12 +39,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC) || null;
   const emoji1 = Blockly.JavaScript.valueToCode(block, 'EMOJI1', Blockly.JavaScript.ORDER_ATOMIC) || null;
   const emoji2 = Blockly.JavaScript.valueToCode(block, 'EMOJI2', Blockly.JavaScript.ORDER_ATOMIC) || null;

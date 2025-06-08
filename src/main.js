@@ -233,9 +233,7 @@ app.mixin({
     ${requiresjscode.join('\n    ')}
 
     // blockly code
-    ${Blockly.JavaScript.workspaceToCode(workspace)
-      .split('\n')
-      .join('\n    ')}
+    ${Blockly.JavaScript.workspaceToCode(workspace).split('\n').join('\n    ')}
     return s4d
 })();`;
     }

@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 const blockName = 'prefix_ahq_hndler';
-//block working now working
+
 const blockData = {
   message0: 'bot prefix (handler)',
   colour: '#33cc00',
@@ -11,11 +11,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = ['(ahqhandler[`prefix`])', Blockly.JavaScript.ORDER_NONE];
   return code;
 };

@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../../../restrictions';
 const blockName = 'convert_button';
-//block working now working
+
 const blockData = {
   message0: 'Button(s) %1',
   args0: [
@@ -18,17 +18,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
-  const code = [
-    Blockly.JavaScript.valueToCode(block, 'buton', Blockly.JavaScript.ORDER_NONE)
-      .replace("'", '')
-      .replace("'", ''),
-    Blockly.JavaScript.ORDER_NONE
-  ];
+Blockly.JavaScript[blockName] = function (block) {
+  const code = [Blockly.JavaScript.valueToCode(block, 'buton', Blockly.JavaScript.ORDER_NONE).replace("'", '').replace("'", ''), Blockly.JavaScript.ORDER_NONE];
   return code;
 };
 registerRestrictions(blockName, [

@@ -105,12 +105,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['initialize_dashboard'] = function(block) {
+Blockly.JavaScript['initialize_dashboard'] = function (block) {
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   var value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
   var value_support_server_url = Blockly.JavaScript.valueToCode(block, 'support_server_url', Blockly.JavaScript.ORDER_ATOMIC);

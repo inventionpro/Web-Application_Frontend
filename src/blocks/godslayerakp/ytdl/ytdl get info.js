@@ -57,7 +57,7 @@ const blockName = 'gsa_ytdl_get_info';
 };*/
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     // this.jsonInit(blockData);
     let thisBlock = this;
     this.appendDummyInput()
@@ -75,7 +75,7 @@ Blockly.Blocks[blockName] = {
             ['upload date', '.videoDetails.publishDate'],
             ['all data (returns object)', 'NOOOOOOOOOL']
           ],
-          function(newMode) {
+          function (newMode) {
             switch (newMode) {
               case 'NOOOOOOOOOL':
                 thisBlock.setOutput(true, 'Object');
@@ -105,7 +105,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const get_data = block.getFieldValue('get_data');
   return [`S4D_APP_YTDL_JSON${get_data}`.replace('NOOOOOOOOOL', ''), Blockly.JavaScript.ORDER_NONE];
 };

@@ -41,12 +41,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
   const game = Blockly.JavaScript.valueToCode(block, 'GAME', Blockly.JavaScript.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');

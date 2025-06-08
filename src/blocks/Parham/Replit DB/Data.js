@@ -13,12 +13,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_Replit_DB_Data`;
   // TODO: Change ORDER_NONE to the correct strength.

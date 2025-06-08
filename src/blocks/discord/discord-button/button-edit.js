@@ -19,12 +19,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const reply = Blockly.JavaScript.valueToCode(block, 'REPLY', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `await i.editReply(${reply})\n`;
   return code;

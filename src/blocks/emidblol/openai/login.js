@@ -28,12 +28,12 @@ registerRestrictions(blockName, [
 ]);
 
 blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-blockly.JavaScript[blockName] = function(block) {
+blockly.JavaScript[blockName] = function (block) {
   const key = blockly.JavaScript.valueToCode(block, 'token', blockly.JavaScript.ORDER_ATOMIC);
   const code = `
         const openai = new OpenAI({

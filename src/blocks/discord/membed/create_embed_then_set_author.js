@@ -30,12 +30,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const author = Blockly.JavaScript.valueToCode(block, 'AUTHOR', Blockly.JavaScript.ORDER_ATOMIC);
   const pfp = Blockly.JavaScript.valueToCode(block, 'PFP', Blockly.JavaScript.ORDER_ATOMIC);
   const hyperlink = Blockly.JavaScript.valueToCode(block, 'HYPERLINK', Blockly.JavaScript.ORDER_ATOMIC);

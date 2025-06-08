@@ -18,7 +18,7 @@ function toShortcut(text) {
   let newtext = '';
   const matches = text.match(/[a-z\-_+]+/gim);
   if (matches) {
-    matches.forEach(match => {
+    matches.forEach((match) => {
       newtext += match == '+' ? ' <i class="fa-solid fa-plus"></i> ' : '<img height=50 src="https://github.com/q2apro/keyboard-keys-speedflips/raw/master/single-keys-blank/400dpi/' + match + '.png">';
     });
   }

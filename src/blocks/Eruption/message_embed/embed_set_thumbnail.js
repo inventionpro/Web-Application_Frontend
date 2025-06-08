@@ -19,12 +19,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const thumbnail = Blockly.JavaScript.valueToCode(block, 'THUMB', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setThumbnail(String(${thumbnail})); \n`;
   return code;

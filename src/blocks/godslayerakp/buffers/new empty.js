@@ -23,13 +23,13 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     this.setInputsInline(true);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const number = Blockly.JavaScript.valueToCode(block, 'number', Blockly.JavaScript.ORDER_ATOMIC);
   const fill = Blockly.JavaScript.valueToCode(block, 'fill', Blockly.JavaScript.ORDER_ATOMIC);
   return [`Buffer.alloc(Number(${number}), ${fill})`, Blockly.JavaScript.ORDER_ATOMIC];

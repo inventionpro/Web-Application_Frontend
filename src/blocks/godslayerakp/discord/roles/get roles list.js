@@ -1,7 +1,7 @@
 import Blockly from 'blockly/core';
 
 Blockly.Blocks['gsa_get_all_roles_on_member'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: "get all role id's on member %1 as a list",
       args0: [
@@ -20,6 +20,6 @@ Blockly.Blocks['gsa_get_all_roles_on_member'] = {
   }
 };
 
-Blockly.JavaScript['gsa_get_all_roles_on_member'] = function(block) {
+Blockly.JavaScript['gsa_get_all_roles_on_member'] = function (block) {
   return [`${Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC)}._roles`, Blockly.JavaScript.ORDER_ATOMIC];
 };

@@ -2,8 +2,8 @@
   <b-nav-item-dropdown id="v-step-0" text="Examples" right>
     <b-dropdown-item @click="userexamples()"><i class="fa-solid fa-user"></i> &#8226; Online Examples</b-dropdown-item>
     <b-dropdown-divider></b-dropdown-divider>
-    <p style="text-align:center"><b>Built-in:</b></p>
-    <div style="height:8.75em;overflow:auto">
+    <p style="text-align: center"><b>Built-in:</b></p>
+    <div style="height: 8.75em; overflow: auto">
       <b-dropdown-item @click="load('ping-pong')">Ping-Pong Command</b-dropdown-item>
       <b-dropdown-item @click="load('command-parsing')">Command Handler</b-dropdown-item>
       <b-dropdown-item @click="load('bettercmd')">Prefix Command Handler</b-dropdown-item>
@@ -71,15 +71,8 @@ const examples = {
 };
 
 function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, swal, workspace, toast) {
-  lkjgenwhikgu4ewkjn.innerHTML = `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${json.example[0]
-    .replaceAll('<', '')
-    .replaceAll('/', '')
-    .replaceAll('\\', '')}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"></i>`}</h2>
-<i class="fa-solid fa-user-shield"></i> <b>${json.example[6]
-    .replaceAll('\\', '')
-    .replaceAll('<', '')
-    .replaceAll('>', '')
-    .replaceAll('/', '')}</b>
+  lkjgenwhikgu4ewkjn.innerHTML = `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${json.example[0].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '')}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"></i>`}</h2>
+<i class="fa-solid fa-user-shield"></i> <b>${json.example[6].replaceAll('\\', '').replaceAll('<', '').replaceAll('>', '').replaceAll('/', '')}</b>
 &#8226
 <i class="fa-solid fa-cube"></i> <b><em>${Number(json.example[3])}</em></b>
 <p style="color:rgb(45,45,45)"><i class="fa-solid fa-file-lines"></i> &#8226 <i>${json.example[1].replaceAll('<', '').replaceAll('\\', '')}</i></p>
@@ -103,7 +96,7 @@ function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption
       confirmButtonText: 'Load',
       cancelButtonText: 'Cancel'
     })
-    .then(async result => {
+    .then(async (result) => {
       console.log('disposing of workspace');
       if (previewWorkspace) previewWorkspace.dispose();
       console.log('disposed of workspace');
@@ -120,15 +113,15 @@ function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption
           cancelButtonText: 'Cancel',
           allowOutsideClick: false
         })
-        .then(result => {
+        .then((result) => {
           if (result.isDismissed) {
             return;
           } else if (result.isConfirmed) {
-            workspace.getAllBlocks().forEach(block => block.dispose());
+            workspace.getAllBlocks().forEach((block) => block.dispose());
           }
           let exampleXml = '';
-          fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then(result =>
-            result.text().then(xml => {
+          fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then((result) =>
+            result.text().then((xml) => {
               exampleXml = String(xml);
               Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), workspace);
               setTimeout(() => {
@@ -156,20 +149,10 @@ function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption
     copyToClipboardButton.innerHTML = `<i class="fa-solid fa-paste"></i> &#8226 Copying...`;
     let likesPercentage = Math.round((Number(json.example[8]) / (Number(json.example[8]) + Number(json.example[9]))) * 100);
     navigator.clipboard.writeText(`Check out this User Uploaded Example at https://scratch-for-discord.com/?exampleid=${selectedOption}
-> **${json.example[0]
-      .replaceAll('<', '')
-      .replaceAll('/', '')
-      .replaceAll('\\', '')}**
-> ${json.example[1]
-      .replaceAll('<', '')
-      .replaceAll('/', '')
-      .replaceAll('\\', '')
-      .replaceAll('\n', '\n> ')}
+> **${json.example[0].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '')}**
+> ${json.example[1].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '').replaceAll('\n', '\n> ')}
 > -----
-> 🚹: ${json.example[6]
-      .replaceAll('<', '')
-      .replaceAll('/', '')
-      .replaceAll('\\', '')}
+> 🚹: ${json.example[6].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '')}
 > 🧱: ${Number(json.example[3])} blocks
 > 👍: ${likesPercentage ? likesPercentage + '% of people liked this example' : 'No likes or dislikes have been placed on this example'}`);
     console.log(json.example);
@@ -204,8 +187,8 @@ function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption
   console.log('injected workspace');
   console.log('loading xml for workspace');
   let currentMS = new Date().getTime();
-  fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then(result =>
-    result.text().then(xml => {
+  fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then((result) =>
+    result.text().then((xml) => {
       const exampleXml = String(xml);
       Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), previewWorkspace);
       console.log('loaded xml for workspace in', new Date().getTime() - currentMS + 'ms');
@@ -220,8 +203,8 @@ export default {
     setTimeout(() => {
       let urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('exampleid')) {
-        fetch(`https://s4d-examples.fsh.plus/api/getExample?id=${urlParams.get('exampleid')}`).then(async result => {
-          result.json().then(json => {
+        fetch(`https://s4d-examples.fsh.plus/api/getExample?id=${urlParams.get('exampleid')}`).then(async (result) => {
+          result.json().then((json) => {
             const lkjgenwhikgu4ewkjn = document.createElement('div');
             displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, urlParams.get('exampleid'), 'https://s4d-examples.fsh.plus/', this.$swal, this.$store.state.workspace, this.$toast);
           });
@@ -246,11 +229,11 @@ export default {
             denyButton: 'red-button'
           }
         })
-        .then(result => {
+        .then((result) => {
           if (result.isDismissed) {
             return;
           } else if (result.isConfirmed) {
-            this.$store.state.workspace.getAllBlocks().forEach(block => block.dispose());
+            this.$store.state.workspace.getAllBlocks().forEach((block) => block.dispose());
           }
           const exampleXml = examples[example];
           Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), this.$store.state.workspace);
@@ -320,7 +303,7 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
                 cancelButtonText: 'Cancel',
                 closeOnClickOutside: false
               })
-              .then(async result2 => {
+              .then(async (result2) => {
                 if (!result2.isConfirmed) return;
                 const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
                 let sessionIDe = await localforage.getItem('EXAMPLE_SESSION_ID');
@@ -347,13 +330,13 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
                     sessionID: String(sessionIDe)
                   })
                 };
-                fetch(SERVER + 'api/upload', requestOptions).then(async response => {
+                fetch(SERVER + 'api/upload', requestOptions).then(async (response) => {
                   console.log(response);
                   console.log('S4D sent a request, the response status code is', response.status);
                   if (response.status != 200) {
                     const responseHTML = document.createElement('div');
                     responseHTML.innerHTML = `Failed to load message`;
-                    response.json().then(json => {
+                    response.json().then((json) => {
                       responseHTML.innerHTML = `${String(json.error)}`;
                     });
                     this.$swal.fire({
@@ -376,7 +359,7 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
           document.getElementById('seeall-btn').onclick = () => {
             this.$swal.close();
             fetch(SERVER + 'api/examples')
-              .then(async response => {
+              .then(async (response) => {
                 console.log(response);
                 console.log('S4D sent a request, the response status code is', response.status);
                 if (response.status != 200) {
@@ -387,29 +370,25 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
                   return;
                 }
                 const responseHTML = document.createElement('div');
-                response.json().then(async json => {
+                response.json().then(async (json) => {
                   const examples = JSON.parse(JSON.stringify(json));
                   responseHTML.innerHTML = `${JSON.stringify(json)}`;
                   const names = [];
                   let boxes = '';
-                  Object.entries(examples).forEach(i => {
+                  Object.entries(examples).forEach((i) => {
                     // console.log("Found example with name", i[1][0])
                     let name = i[1][0];
                     names.push([name, i[1][3], i[1][4], i[1][6], i[1][1], i[1][8], i[1][9], i[1][10], i[1][11], i[1][12]]);
                   });
                   /* eslint-disable */
                   let voteButtonSessionList = {};
-                  names.forEach(name => {
+                  names.forEach((name) => {
                     voteButtonSessionList[String(name[2])] = { likes: name[8], dislikes: name[9] };
                     boxes += `<label name="pickThisExampleToImportButton" style="width: 48%;">
     <div class="box">
         <input type="radio" id="${name[2]}" name="pickThisExampleToImportButton" class="sr-only-basic">
             <center>
-                <h4>${name[0]
-                  .replaceAll('<', '')
-                  .replaceAll('>', '')
-                  .replaceAll('/', '')
-                  .replaceAll('\\', '')}</h4>
+                <h4>${name[0].replaceAll('<', '').replaceAll('>', '').replaceAll('/', '').replaceAll('\\', '')}</h4>
                 <p><i class="fas fa-user-shield"></i> Creator: ${name[3]} &#8226 <i class="fas fa-id-badge"></i> ID: ${name[2]}</p>
                 <p style="font-style: italic;font-size:small;" title="${name[4]}">${name[4]}</p>
             </center>
@@ -516,14 +495,14 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
                       cancelButtonText: 'Cancel',
                       confirmButtonText: 'Import Selected Example'
                     })
-                    .then(async result => {
+                    .then(async (result) => {
                       if (!result.isConfirmed) return;
                       const selectedOption = document.querySelector('input[name="pickThisExampleToImportButton"]:checked')?.id;
                       if (selectedOption == null) return;
                       console.log(selectedOption);
                       const lkjgenwhikgu4ewkjn = document.createElement('div');
-                      fetch(SERVER + `api/getExample?id=${selectedOption}`).then(async result => {
-                        result.json().then(json => {
+                      fetch(SERVER + `api/getExample?id=${selectedOption}`).then(async (result) => {
+                        result.json().then((json) => {
                           displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, this.$swal, workspace, this.$toast);
                         });
                       });
@@ -606,14 +585,14 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
                   let searchBox = document.getElementById('swal_dialog_box_searchForUserExamples');
                   let caseSensitive = false;
                   let caseSensitiveButton = document.getElementById('swal_menu_CaseSensitiveUserExampleSearch');
-                  caseSensitiveButton.onclick = function() {
+                  caseSensitiveButton.onclick = function () {
                     caseSensitive = !caseSensitive;
                     caseSensitive ? caseSensitiveButton.setAttribute('style', 'background-color: Transparent;border: none;color:#00aaff') : caseSensitiveButton.setAttribute('style', 'background-color: Transparent;border: none;');
                     searchBox.oninput();
                   };
                   let gridSize3 = false;
                   let gridSizeButton = document.getElementById('swal_menu_ChangeBoxSizeUserExamples');
-                  gridSizeButton.onclick = function() {
+                  gridSizeButton.onclick = function () {
                     gridSize3 = !gridSize3;
                     let icon = gridSizeButton.getElementsByTagName('i').item(0);
                     if (gridSize3) {
@@ -631,7 +610,7 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
                     }
                   };
                   let unsearchedHtml = document.getElementById('swal_user_examples_dialog_box-form_area').innerHTML;
-                  searchBox.oninput = function() {
+                  searchBox.oninput = function () {
                     let area = document.getElementById('swal_user_examples_dialog_box-form_area');
                     area.innerHTML = unsearchedHtml;
                     if (gridSize3) {
@@ -642,13 +621,7 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
                     let kept = boxes.length;
                     for (let i = 0; i < boxes.length; i++) {
                       let current = boxes.item(i);
-                      let name = current
-                        .getElementsByClassName('box')
-                        .item(0)
-                        .getElementsByTagName('center')
-                        .item(0)
-                        .getElementsByTagName('h4')
-                        .item(0).innerText;
+                      let name = current.getElementsByClassName('box').item(0).getElementsByTagName('center').item(0).getElementsByTagName('h4').item(0).innerText;
                       let searchingInside = String(name);
                       let searchingWith = String(searchBox.value);
                       if (!caseSensitive) {
@@ -672,7 +645,7 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
                   };
                 });
               })
-              .catch(err => {
+              .catch((err) => {
                 const responseHTML = document.createElement('div');
                 responseHTML.innerHTML = String(err);
                 this.$swal.fire({

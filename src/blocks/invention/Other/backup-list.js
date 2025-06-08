@@ -11,12 +11,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   var code = `_S4D_backups`;
 
   return [code, Blockly.JavaScript.ORDER_NONE];

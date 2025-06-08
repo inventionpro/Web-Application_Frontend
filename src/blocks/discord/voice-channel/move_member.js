@@ -24,13 +24,13 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     this.Tooltip = 'for voice channel you use get Channel + voice channel id';
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
   const vc = Blockly.JavaScript.valueToCode(block, 'vc', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `

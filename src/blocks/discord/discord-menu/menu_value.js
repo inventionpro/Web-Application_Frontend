@@ -11,12 +11,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = ['i.values[0]', Blockly.JavaScript.ORDER_NONE];
   return code;
 };

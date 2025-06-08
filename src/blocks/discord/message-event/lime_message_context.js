@@ -25,10 +25,10 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   },
-  onchange: function(event) {
+  onchange: function (event) {
     event;
     var dropdown = this.getFieldValue('dropdown');
 
@@ -56,7 +56,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['lime_s4d_message_context'] = function(block) {
+Blockly.JavaScript['lime_s4d_message_context'] = function (block) {
   var dropdown = block.getFieldValue('dropdown');
   var code = '';
 

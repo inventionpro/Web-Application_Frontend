@@ -18,11 +18,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var name = Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE);
   name = name.split(' ');
   name = name.join('_');

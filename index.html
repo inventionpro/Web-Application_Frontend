@@ -1,191 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="/scratch.png">
-    <link rel="stylesheet" href="/themes.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="/scratch.png" />
+    <link rel="stylesheet" href="/themes.css" />
     <title>Scratch For Discord - Make your own bot using blocks</title>
-    <meta name="description" content="Make your own discord bot in 5 minutes using blocks with no coding required. Try your bot online and export it on your computer or server.">
-    <meta name="keywords" content="discord, bot, no-coding, scratch, blocks">
-    <meta name="author" content="S4D New">
-    <meta name="theme-color" content="#f6bc34">
-    <meta name="og:image" content="https://scratch-for-discord.com/scratch.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Lato:wght@900&family=Oswald&family=Roboto+Slab&display=swap" rel="stylesheet">
+    <meta name="description" content="Make your own discord bot in 5 minutes using blocks with no coding required. Try your bot online and export it on your computer or server." />
+    <meta name="keywords" content="discord, bot, no-coding, scratch, blocks" />
+    <meta name="author" content="S4D New" />
+    <meta name="theme-color" content="#f6bc34" />
+    <meta name="og:image" content="https://scratch-for-discord.com/scratch.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Lato:wght@900&family=Oswald&family=Roboto+Slab&display=swap" rel="stylesheet" />
 
     <style>
-    @font-face {
-      font-family: uni-sans;
-      src: url("/logo-font.otf");
-    }
+      @font-face {
+        font-family: uni-sans;
+        src: url('/logo-font.otf');
+      }
 
-    * {
-      font-family: sans-serif;
-    }
+      * {
+        font-family: sans-serif;
+      }
 
-    div[isS4DMenu=true] {
-      font-family: monospace !important;
-    }
+      div[isS4DMenu='true'] {
+        font-family: monospace !important;
+      }
 
-    div[isS4DMenu=true] * {
-      font-family: monospace !important;
-    }
+      div[isS4DMenu='true'] * {
+        font-family: monospace !important;
+      }
 
-    .navbar-brand {
-      font-family: uni-sans, sans-serif;
-      font-weight: bold;
-      font-size: 125% !important;
-    }
+      .navbar-brand {
+        font-family: uni-sans, sans-serif;
+        font-weight: bold;
+        font-size: 125% !important;
+      }
 
-    h1, h2, h3, h4, h5, h6, .swal-title {
-      font-family: uni-sans, sans-serif !important;
-    }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .swal-title {
+        font-family: uni-sans, sans-serif !important;
+      }
 
-    .v-toast__text {
-      color: #000;
-    }
+      .v-toast__text {
+        color: #000;
+      }
 
-    .v-toast__text::before {
-      font-family: "Font Awesome 6 Free"; font-weight: 900; content: "\f071  ";
-    }
+      .v-toast__text::before {
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        content: '\f071  ';
+      }
 
-		.blocklyTreeSeparator {
-			border-bottom: solid #555555 1px;
-      height: 0;
-      margin: 5px 0;
-		}
+      .blocklyTreeSeparator {
+        border-bottom: solid #555555 1px;
+        height: 0;
+        margin: 5px 0;
+      }
 
-    .blocklyTreeIcon {
-			filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
-		}
+      .blocklyTreeIcon {
+        filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
+      }
 
-		#blocklyTreeIcon {
-			filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
-		}
+      #blocklyTreeIcon {
+        filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
+      }
 
-		.blocklyTreeIconClosed {
-		  filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%)!important;
-		}
+      .blocklyTreeIconClosed {
+        filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
+      }
 
-		#blocklyTreeIconClosed {
-		  filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
-		}
+      #blocklyTreeIconClosed {
+        filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
+      }
 
-    .theme-changer {
-      transition: all 0.5s ease-in-out;
-      background-image: url("/moon.png");
-      filter: invert(0.6);
-      background-size: 24px;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .theme-changer a {
-      width: 32px;
-      height: 32px;
-    }
+      .theme-changer {
+        transition: all 0.5s ease-in-out;
+        background-image: url('/moon.png');
+        filter: invert(0.6);
+        background-size: 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .theme-changer a {
+        width: 32px;
+        height: 32px;
+      }
 
-    .light-them .theme-changer {
-      transition: all 0.5s ease-in-out;
-      background-image: url("/sun.png")
-    }
+      .light-them .theme-changer {
+        transition: all 0.5s ease-in-out;
+        background-image: url('/sun.png');
+      }
 
-    .hideAllGuiElements#navSpace {
-      display: none !important;
-    }
+      .hideAllGuiElements#navSpace {
+        display: none !important;
+      }
 
-    .hideAllGuiElements#blocklySpace {
-      height: 100% !important;
-    }
+      .hideAllGuiElements#blocklySpace {
+        height: 100% !important;
+      }
 
-    .hideAllGuiElements.blocklyToolboxDiv {
-      display: none !important;
-    }
+      .hideAllGuiElements.blocklyToolboxDiv {
+        display: none !important;
+      }
 
-		.customIcon {
-		  padding: 3px;
-		  color: yellow;
-		}
-		.customIcon2 {
-		  padding: 3px;
-		  color: white
-		}
+      .customIcon {
+        padding: 3px;
+        color: yellow;
+      }
+      .customIcon2 {
+        padding: 3px;
+        color: white;
+      }
 
-		.light-them .customIcon2 {
-			color: black
-		}
+      .light-them .customIcon2 {
+        color: black;
+      }
 
-		/* Makes our label white. */
-		.blocklyTreeLabel {
-		  color: white;
-		}
+      /* Makes our label white. */
+      .blocklyTreeLabel {
+        color: white;
+      }
 
-		.light-them .blocklyTreeLabel {
-			color:black
-		}
+      .light-them .blocklyTreeLabel {
+        color: black;
+      }
 
-		/* Adds padding around the group of categories and separators. */
-		.blocklyToolboxContents {
-		  padding: 3px;
-		}
+      /* Adds padding around the group of categories and separators. */
+      .blocklyToolboxContents {
+        padding: 3px;
+      }
 
-		/* Adds space between the categories, adds space around the label. */
-		.blocklyTreeRow {
-		  padding: 0px;
-		  margin-bottom: 3px;
-		}
+      /* Adds space between the categories, adds space around the label. */
+      .blocklyTreeRow {
+        padding: 0px;
+        margin-bottom: 3px;
+      }
 
-		/* Rotate effect */
-   .blocklyTreeIcon {
-      background-position: -32px -1px!important;
-    }
+      /* Rotate effect */
+      .blocklyTreeIcon {
+        background-position: -32px -1px !important;
+      }
 
-    .blocklyTreeIconOpen {
-      transform:rotate(90deg);
-      transition: transform 3s
-    }
+      .blocklyTreeIconOpen {
+        transform: rotate(90deg);
+        transition: transform 3s;
+      }
 
-    .blocklyTreeIcon[style="visibility: visible; display: inline-block;"] {
-      margin-left: 3px;
-      transition-duration: 300ms;
-      filter: invert(100%) sepia(33%) saturate(312%) hue-rotate(55deg) brightness(100%) contrast(106%);
-    }
+      .blocklyTreeIcon[style='visibility: visible; display: inline-block;'] {
+        margin-left: 3px;
+        transition-duration: 300ms;
+        filter: invert(100%) sepia(33%) saturate(312%) hue-rotate(55deg) brightness(100%) contrast(106%);
+      }
 
-    .blocklyTreeSeparator {
-      border-bottom: solid #555555 1px;
-      height: 0;
-      margin: 5px 0;
-    }
+      .blocklyTreeSeparator {
+        border-bottom: solid #555555 1px;
+        height: 0;
+        margin: 5px 0;
+      }
 
-    /* Hovering and selecting categories animation */
-    .blocklyTreeRow:hover, .blocklyTreeRow:focus, .blocklyTreeSelected {
-		  border-radius: 4px;
-    }
+      /* Hovering and selecting categories animation */
+      .blocklyTreeRow:hover,
+      .blocklyTreeRow:focus,
+      .blocklyTreeSelected {
+        border-radius: 4px;
+      }
 
-    /* Others */
-    .bt {
-		  border-bottom: solid #343434 1px;
-		  height: 0;
-		  margin: 5px 0;
-		}
+      /* Others */
+      .bt {
+        border-bottom: solid #343434 1px;
+        height: 0;
+        margin: 5px 0;
+      }
 
-    ::-webkit-scrollbar {
-			width: 0px;
-			height: 0px;
-		}
+      ::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+      }
 
-		::-webkit-scrollbar-thumb {
-			background: #6b6d70;
-		}
+      ::-webkit-scrollbar-thumb {
+        background: #6b6d70;
+      }
 
-		::-webkit-scrollbar-corner {
-			background-color: #161719;
-			color: #161719;
-	  }
-		</style>
+      ::-webkit-scrollbar-corner {
+        background-color: #161719;
+        color: #161719;
+      }
+    </style>
   </head>
   <body style="background-color: black">
     <noscript>
@@ -197,8 +207,8 @@
     <!-- built files will be auto injected -->
     <!--<script async src="https://filehost.jeremygamer13.repl.co/s4d/prism/js"></script>-->
     <script>
-      window.customBlocks = []
-      window.saveCustomBlocksOutput = []
+      window.customBlocks = [];
+      window.saveCustomBlocksOutput = [];
     </script>
     <script type="module" src="/src/main.js"></script>
   </body>

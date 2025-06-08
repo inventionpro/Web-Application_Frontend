@@ -24,13 +24,13 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.setStyle('list_blocks');
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const list = Blockly.JavaScript.valueToCode(block, 'LIST', Blockly.JavaScript.ORDER_ATOMIC);
   const push = Blockly.JavaScript.valueToCode(block, 'PUSH', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `${list}.push(${push});\n`;

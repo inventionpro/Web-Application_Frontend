@@ -44,12 +44,12 @@ registerRestrictions(blockName, [
 ]);
 
 blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-blockly.JavaScript[blockName] = function(block) {
+blockly.JavaScript[blockName] = function (block) {
   const prompt = blockly.JavaScript.valueToCode(block, 'PROMPT', blockly.JavaScript.ORDER_ATOMIC);
   const code = `await openai.createCompletion({
         prompt: ${prompt},

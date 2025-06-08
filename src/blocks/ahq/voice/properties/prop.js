@@ -1,9 +1,8 @@
 import * as Blockly from 'blockly/core';
 const blockName = 'prop_voice';
-//block working now working;
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: '%1 %2',
       args0: [
@@ -39,7 +38,7 @@ Blockly.Blocks[blockName] = {
     });
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const code = [`${block.getFieldValue('a')}.${block.getFieldValue('b')}`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

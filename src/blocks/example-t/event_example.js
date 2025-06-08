@@ -16,11 +16,11 @@ const blockData = {
   helpUrl: ''
 };
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const blocks = Blockly.JavaScript.statementToCode(block, 'BLOCKS');
   const code = `
 ${blocks}

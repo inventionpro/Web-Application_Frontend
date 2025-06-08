@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 const blockName = 's4d_reg_new_options';
-//block working now working
+
 const blockData = {
   message0: 'Add option',
   args0: [],
@@ -11,11 +11,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = `,\n`;
   return code;
 };

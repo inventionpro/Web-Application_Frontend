@@ -30,12 +30,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var value_togglechannel = Blockly.JavaScript.valueToCode(block, 'togglechannel', Blockly.JavaScript.ORDER_ATOMIC);
   var value_locationchannel = Blockly.JavaScript.valueToCode(block, 'locationchannel', Blockly.JavaScript.ORDER_ATOMIC);
   var value_reason = Blockly.JavaScript.valueToCode(block, 'reason', Blockly.JavaScript.ORDER_ATOMIC);

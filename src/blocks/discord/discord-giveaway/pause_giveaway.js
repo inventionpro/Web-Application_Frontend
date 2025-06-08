@@ -24,12 +24,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const statements = Blockly.JavaScript.statementToCode(block, 'THEN');
   const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
   var code = `s4d.manager.pause(${id}).then(async () => {\n${statements}\n});\n`;

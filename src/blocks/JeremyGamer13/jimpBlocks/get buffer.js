@@ -30,12 +30,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('mimeType');
   const then = Blockly.JavaScript.statementToCode(block, 'then');
   const code = `image.getBuffer(jimp.${type}, async (err, buffer) => {
@@ -46,7 +46,7 @@ Blockly.JavaScript[blockName] = function(block) {
 };
 
 Blockly.Blocks[blockName + '_value'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'image buffer',
       colour: 260,
@@ -57,7 +57,7 @@ Blockly.Blocks[blockName + '_value'] = {
   }
 };
 
-Blockly.JavaScript[blockName + '_value'] = function() {
+Blockly.JavaScript[blockName + '_value'] = function () {
   const code = [`buffer`, Blockly.JavaScript.ORDER_ATOMIC];
   return code;
 };

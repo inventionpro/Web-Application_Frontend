@@ -21,17 +21,17 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   },
-  onchange: function() {
+  onchange: function () {
     console.log('something');
     this.setColour(Math.floor(Math.random() * 360));
   },
   isHiden: true
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const A = block.getFieldValue('A');
   const code = `${A}`;
   return code;

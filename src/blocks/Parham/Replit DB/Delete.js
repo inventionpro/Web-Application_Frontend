@@ -26,12 +26,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var value_delete = Blockly.JavaScript.valueToCode(block, 'delete', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_then = Blockly.JavaScript.statementToCode(block, 'then');
   // TODO: Assemble JavaScript into code variable.

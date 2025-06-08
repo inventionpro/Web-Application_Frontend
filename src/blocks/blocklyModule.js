@@ -36,7 +36,7 @@ export function getBlockHtmlElement(block) {
 export function generateTextBasedOffOf(name) {
   const a = String(name).split('');
   let newname = '';
-  a.forEach(letter => {
+  a.forEach((letter) => {
     newname = newname + String(String(letter).charCodeAt(0) * 16);
   });
   return newname;
@@ -53,7 +53,7 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
     // border fields is the name of the input when getting it for the exported code.
     // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
     const BORDER_FIELDS = [];
-    data.fields.forEach(field => {
+    data.fields.forEach((field) => {
       if (BORDER_FIELDS.includes(String(field).toUpperCase())) {
         throw new Error('BlocklyModuleMutatorConfig.fields contains a field (' + field + ') with the same value as another field. Rename both fields and ensure they are not the same lowercase or uppercase.');
       }
@@ -68,13 +68,13 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
     if (!data.blockName) throw new Error('blockName not specified in BlocklyModuleMutatorConfig object');
     const blockName = data.blockName;
     Blockly.Blocks[menuName] = {
-      init: function() {
+      init: function () {
         this.setColour(menuUsesBlockColor ? data.blockData.colour : '#CECDCE');
         this.setTooltip(menuTooltip);
       }
     };
     Blockly.Blocks[blockName] = {
-      init: function() {
+      init: function () {
         this.jsonInit(data.blockData);
         this.setMutator(new Blockly.Mutator([]));
         this.inputs_ = [];
@@ -83,7 +83,7 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
         }
       },
 
-      mutationToDom: function() {
+      mutationToDom: function () {
         if (!this.inputs_) {
           return null;
         }
@@ -94,14 +94,14 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
         return container;
       },
 
-      domToMutation: function(xmlElement) {
+      domToMutation: function (xmlElement) {
         for (let i = 0; i < this.inputs_.length; i++) {
           this.inputs_[i] = xmlElement.getAttribute(BORDER_FIELDS[i].toLowerCase()) == 'true';
         }
         this.updateShape_();
       },
 
-      decompose: function(workspace) {
+      decompose: function (workspace) {
         const containerBlock = workspace.newBlock(menuName);
         for (let i = 0; i < this.inputs_.length; i++) {
           BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
@@ -119,7 +119,7 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
         return containerBlock;
       },
 
-      compose: function(containerBlock) {
+      compose: function (containerBlock) {
         // Set states
         for (let i = 0; i < this.inputs_.length; i++) {
           this.inputs_[i] = containerBlock.getFieldValue(BORDER_FIELDS[i].toUpperCase()) == 'TRUE';
@@ -127,17 +127,14 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
         this.updateShape_();
       },
 
-      updateShape_: function() {
+      updateShape_: function () {
         for (let i = 0; i < this.inputs_.length; i++) {
           if (!this.inputs_[i] && this.getInput(BORDER_FIELDS[i].toUpperCase())) this.removeInput(BORDER_FIELDS[i].toUpperCase());
         }
         for (let i = 0; i < this.inputs_.length; i++) {
           if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
             BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-            this.appendValueInput(BORDER_FIELDS[i].toUpperCase())
-              .setCheck(BORDER_TYPES[i])
-              .setAlign(Blockly.ALIGN_RIGHT)
-              .appendField(names[i]);
+            this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
           }
         }
       }
@@ -156,7 +153,7 @@ export function setMutatorOnBlock(block, mutator_type, data) {
       // border fields is the name of the input when getting it for the exported code.
       // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
       const BORDER_FIELDS = [];
-      data.fields.forEach(field => {
+      data.fields.forEach((field) => {
         if (BORDER_FIELDS.includes(String(field).toUpperCase())) {
           throw new Error('BlocklyModuleMutatorConfig.fields contains a field (' + field + ') with the same value as another field. Rename both fields and ensure they are not the same lowercase or uppercase.');
         }
@@ -171,7 +168,7 @@ export function setMutatorOnBlock(block, mutator_type, data) {
       const menuName = 'BLOCKLY_MODULE_setMutator_' + generateTextBasedOffOf(data.menuName) + '_checkboxMutatorMenu' + data.menuId;
       if (!Blockly.Blocks[menuName]) {
         Blockly.Blocks[menuName] = {
-          init: function() {
+          init: function () {
             this.setColour(menuUsesBlockColor ? data.colour : '#CECDCE');
             this.setTooltip(menuTooltip);
           }
@@ -182,7 +179,7 @@ export function setMutatorOnBlock(block, mutator_type, data) {
       for (let i = 0; i < amountOfInputs; i++) {
         block.inputs_.push(false);
       }
-      block.mutationToDom = function() {
+      block.mutationToDom = function () {
         if (!this.inputs_) {
           return null;
         }
@@ -192,13 +189,13 @@ export function setMutatorOnBlock(block, mutator_type, data) {
         }
         return container;
       };
-      block.domToMutation = function(xmlElement) {
+      block.domToMutation = function (xmlElement) {
         for (let i = 0; i < this.inputs_.length; i++) {
           this.inputs_[i] = xmlElement.getAttribute(BORDER_FIELDS[i].toLowerCase()) == 'true';
         }
         this.updateShape_();
       };
-      block.decompose = function(workspace) {
+      block.decompose = function (workspace) {
         const containerBlock = workspace.newBlock(menuName);
         for (let i = 0; i < this.inputs_.length; i++) {
           BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
@@ -215,24 +212,21 @@ export function setMutatorOnBlock(block, mutator_type, data) {
         containerBlock.initSvg();
         return containerBlock;
       };
-      block.compose = function(containerBlock) {
+      block.compose = function (containerBlock) {
         // Set states
         for (let i = 0; i < this.inputs_.length; i++) {
           this.inputs_[i] = containerBlock.getFieldValue(BORDER_FIELDS[i].toUpperCase()) == 'TRUE';
         }
         this.updateShape_();
       };
-      block.updateShape_ = function() {
+      block.updateShape_ = function () {
         for (let i = 0; i < this.inputs_.length; i++) {
           if (!this.inputs_[i] && this.getInput(BORDER_FIELDS[i].toUpperCase())) this.removeInput(BORDER_FIELDS[i].toUpperCase());
         }
         for (let i = 0; i < this.inputs_.length; i++) {
           if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
             BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-            this.appendValueInput(BORDER_FIELDS[i].toUpperCase())
-              .setCheck(BORDER_TYPES[i])
-              .setAlign(Blockly.ALIGN_RIGHT)
-              .appendField(names[i]);
+            this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
           }
         }
       };
@@ -253,7 +247,7 @@ export function xmlToWorkspace(xml, workspace) {
   Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
 }
 export let menus = {};
-menus.createMenu = data => {
+menus.createMenu = (data) => {
   if (!data) throw new Error('Cannot create a menu with no data');
   if (!data.width) throw new Error('Cannot create a menu with no width');
   if (!data.height) throw new Error('Cannot create a menu with no height');
@@ -406,4 +400,4 @@ menus.createMenu = data => {
     return button;
   };
   return menu;
-}
+};

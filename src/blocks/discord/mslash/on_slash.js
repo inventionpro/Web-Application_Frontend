@@ -17,11 +17,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `s4d.client.on('interactionCreate', async (interaction) => {
         ${statements}

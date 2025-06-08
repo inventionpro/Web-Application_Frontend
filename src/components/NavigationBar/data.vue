@@ -3,7 +3,7 @@
     <b-dropdown-item @click="ClearAutosave">Clear Autosave</b-dropdown-item>
     <b-dropdown-divider></b-dropdown-divider>
     <b-dropdown-item @click="askForFile">Load data</b-dropdown-item>
-    <input hidden @change="load" id="load-s4dData-code" type="file" accept=".zip,.data">
+    <input hidden @change="load" id="load-s4dData-code" type="file" accept=".zip,.data" />
     <b-dropdown-item @click="dld">Download data</b-dropdown-item>
   </b-nav-item-dropdown>
 </template>
@@ -25,7 +25,7 @@ export default {
           cancelButtonText: 'Cancel',
           confirmButtonText: 'Confirm'
         })
-        .then(result => {
+        .then((result) => {
           if (!result.isConfirmed) return;
           localforage.removeItem('save3');
           localforage.removeItem('autosaveName');
@@ -47,10 +47,10 @@ export default {
           cancelButtonText: 'Cancel',
           allowOutsideClick: false
         })
-        .then(result => {
+        .then((result) => {
           if (!result.isConfirmed) return;
           const zip = new JSZip();
-          localforage.keys().then(async data => {
+          localforage.keys().then(async (data) => {
             let out = {};
             for (let i = 0; i < data.length; i++) {
               out[data[i]] = await localforage.getItem(data[i]);
@@ -60,7 +60,7 @@ export default {
               .generateAsync({
                 type: 'blob'
               })
-              .then(blob => {
+              .then((blob) => {
                 const a = document.createElement('a');
                 a.style = 'display: none';
                 document.body.appendChild(a);
@@ -77,16 +77,16 @@ export default {
     load() {
       const file = document.getElementById('load-s4dData-code').files[0];
       const reader = new FileReader();
-      reader.onload = evt => {
-        JSZip.loadAsync(evt.target.result).then(data => {
+      reader.onload = (evt) => {
+        JSZip.loadAsync(evt.target.result).then((data) => {
           data
             .file('localForage.json')
             .async('string')
-            .then(content => {
+            .then((content) => {
               content = JSON.parse(content);
               const conl = Object.getOwnPropertyNames(content);
               for (let i = 0; i < conl.length; i++) {
-                localforage.setItem(conl[i], content[conl[i]], function(err) {
+                localforage.setItem(conl[i], content[conl[i]], function (err) {
                   if (err) {
                     console.warn(err);
                   }

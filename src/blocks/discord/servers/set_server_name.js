@@ -25,12 +25,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
   const newName = Blockly.JavaScript.valueToCode(block, 'NEW_NICKNAME', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `${server}.setName(${newName});\n`;

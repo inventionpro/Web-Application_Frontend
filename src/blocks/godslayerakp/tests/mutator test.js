@@ -1,16 +1,14 @@
 import Blockly from 'blockly/core';
 Blockly.Blocks['gsa_your_mom_lmao_mutator_block_hat'] = {
-  init: function() {
-    this.appendDummyInput()
-      .appendField('has fill color')
-      .appendField(new Blockly.FieldCheckbox('FALSE'), 'check');
+  init: function () {
+    this.appendDummyInput().appendField('has fill color').appendField(new Blockly.FieldCheckbox('FALSE'), 'check');
     this.setInputsInline(false);
     this.setColour('#BA4A9A');
   }
 };
 
 Blockly.Blocks['gsa_your_mom_lmao'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       type: 'block_type',
       message0: 'create new jimp image with size %1 %2 then %3',
@@ -41,16 +39,16 @@ Blockly.Blocks['gsa_your_mom_lmao'] = {
   },
   isFilled: false,
   isHiden: true,
-  mutationToDom: function() {
+  mutationToDom: function () {
     const container = document.createElement('mutation');
     container.setAttribute('return', this.isFilled ? 'true' : 'false');
     return container;
   },
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     this.isFilled = xmlElement.getAttribute('return') == 'true';
     this.updateShape_();
   },
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     // create the main block
     var containerBlock = workspace.newBlock('gsa_create_new_jimp_image_mutator_block_hat');
     containerBlock.setFieldValue(this.isFilled ? 'true' : 'false', 'check');
@@ -58,7 +56,7 @@ Blockly.Blocks['gsa_your_mom_lmao'] = {
 
     return containerBlock;
   },
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     this.isFilled = containerBlock.getFieldValue('check') == 'TRUE';
 
     let topBlock = this.getInputTargetBlock('code');
@@ -67,12 +65,10 @@ Blockly.Blocks['gsa_your_mom_lmao'] = {
 
     topBlock.connect(this.getInput('code'));
   },
-  updateShape_: function() {
+  updateShape_: function () {
     if (this.isFilled && !this.getInput('color')) {
       this.removeInput('code');
-      this.appendValueInput('color')
-        .setCheck('Colour')
-        .appendField('with color');
+      this.appendValueInput('color').setCheck('Colour').appendField('with color');
       this.appendStatementInput('code').appendField('then');
     } else if (!this.isFilled && this.getInput('color')) {
       this.removeInput('color');
@@ -80,7 +76,7 @@ Blockly.Blocks['gsa_your_mom_lmao'] = {
   }
 };
 
-Blockly.JavaScript['gsa_your_mom_lmao'] = function(block) {
+Blockly.JavaScript['gsa_your_mom_lmao'] = function (block) {
   var sizex = Blockly.JavaScript.valueToCode(block, 'sx', Blockly.JavaScript.ORDER_ATOMIC);
   var sizey = Blockly.JavaScript.valueToCode(block, 'sy', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_code = Blockly.JavaScript.statementToCode(block, 'code');

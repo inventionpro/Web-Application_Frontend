@@ -34,21 +34,21 @@ const blockData = {
   nextStatement: null
 };
 Blockly.Blocks[menuName] = {
-  init: function() {
+  init: function () {
     this.setColour(menuUsesBlockColor ? BlockColor : '#CECDCE');
     this.setTooltip(menuTooltip);
     this.setHelpUrl('');
   }
 };
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     this.setMutator(new Blockly.Mutator([]));
     this.inputCount = 0;
     this.defaultCaseEnabled = false;
   },
 
-  mutationToDom: function() {
+  mutationToDom: function () {
     if (!this.inputCount) {
       return null;
     }
@@ -57,12 +57,12 @@ Blockly.Blocks[blockName] = {
     return container;
   },
 
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     this.inputCount = Number(xmlElement.getAttribute(APPEND_FIELD.toLowerCase()));
     this.updateShape_();
   },
 
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     const containerBlock = workspace.newBlock(menuName);
     BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
     containerBlock
@@ -74,16 +74,12 @@ Blockly.Blocks[blockName] = {
       .appendField(new Blockly.FieldCheckbox(false), 'PLUS')
       .appendField('Amount:')
       .appendField(new Blockly.FieldLabel('0'), 'NUMBER');
-    containerBlock
-      .appendDummyInput()
-      .setAlign(Blockly.ALIGN_LEFT)
-      .appendField(new Blockly.FieldCheckbox(false), 'ALLOWDEFAULTCASE')
-      .appendField('default case');
+    containerBlock.appendDummyInput().setAlign(Blockly.ALIGN_LEFT).appendField(new Blockly.FieldCheckbox(false), 'ALLOWDEFAULTCASE').appendField('default case');
     containerBlock.initSvg();
     return containerBlock;
   },
 
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     // Set states
     this.inputCount += containerBlock.getFieldValue('PLUS') == 'TRUE' ? 1 : 0;
     this.inputCount -= containerBlock.getFieldValue('MINUS') == 'TRUE' ? 1 : 0;
@@ -95,7 +91,7 @@ Blockly.Blocks[blockName] = {
     this.updateShape_();
   },
 
-  updateShape_: function() {
+  updateShape_: function () {
     let a = 0;
     while (this.getInput(APPEND_FIELD + a)) {
       if (this.inputCount <= a) this.removeInput(APPEND_FIELD + a);
@@ -112,7 +108,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');

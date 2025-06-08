@@ -32,13 +32,13 @@ export function createBlock(data) {
   if (!data.text) throw new Error('Block text cannot be undefined');
   const inputNames = [];
   let i = 0;
-  const message = String(data.text).replace(/(\[\S+\])+/gim, match => {
+  const message = String(data.text).replace(/(\[\S+\])+/gim, (match) => {
     i++;
     inputNames.push(String(match).replace(/[\[\]]*/gim, ''));
     return '%' + i;
   });
   const argumentss = [];
-  inputNames.forEach(name => {
+  inputNames.forEach((name) => {
     argumentss.push({
       type: data.inputs[name].type,
       check: data.inputs[name].check,
@@ -47,7 +47,7 @@ export function createBlock(data) {
     });
   });
   Blockly.Blocks[data.id] = {
-    init: function() {
+    init: function () {
       this.jsonInit(
         data.floating == true
           ? {
@@ -74,9 +74,9 @@ export function createBlock(data) {
     },
     isHiden: data.hidden
   };
-  Blockly.JavaScript[data.id] = function(block) {
+  Blockly.JavaScript[data.id] = function (block) {
     const args = {};
-    inputNames.forEach(input => {
+    inputNames.forEach((input) => {
       switch (data.inputs[input].type) {
         case 'input_value':
           args[input] = Blockly.JavaScript.valueToCode(block, input, Blockly.JavaScript.ORDER_ATOMIC);
@@ -98,4 +98,4 @@ export function createBlock(data) {
     if (data.output == null) return data.export(block, args);
     return [data.export(block, args), Blockly.JavaScript.ORDER_NONE];
   };
-};
+}

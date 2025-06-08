@@ -42,12 +42,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['member_channel_perms'] = function(block) {
+Blockly.JavaScript['member_channel_perms'] = function (block) {
   var member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
   var dropdown_name = block.getFieldValue('NAME');
   var channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);

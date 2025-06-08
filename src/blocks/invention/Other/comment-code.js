@@ -26,12 +26,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var text_name = block.getFieldValue('NAME');
   var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
   var code = `/*

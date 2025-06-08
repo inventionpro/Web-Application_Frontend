@@ -18,12 +18,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const toload = Blockly.JavaScript.valueToCode(block, 'TOLOAD', Blockly.JavaScript.ORDER_ATOMIC);
   const code = [`new Discord.MessageAttachment(${toload}, "image.png")`, Blockly.JavaScript.ORDER_NONE];
   return code;

@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 const blockName = 'ahq_value_snd';
-//block working now working
+
 const blockData = {
   message0: 'find channel by %1 %2 on server %3 %4',
   args0: [
@@ -38,11 +38,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const ahq = block.getFieldValue('channel');
   const server = block.getFieldValue('server');
   const valch = Blockly.JavaScript.valueToCode(block, 'baluech', Blockly.JavaScript.ORDER_NONE);

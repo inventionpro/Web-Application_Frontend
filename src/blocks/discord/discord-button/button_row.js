@@ -18,12 +18,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const statements = Blockly.JavaScript.statementToCode(block, 'BUTTONS');
   var code = [`new MessageActionRow()\n.addComponents(${statements})`, Blockly.JavaScript.ORDER_NONE];
   return code;

@@ -21,12 +21,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
   const code = `var embed = new Discord.MessageEmbed() \n ${statementThen}\n`;
   return code;

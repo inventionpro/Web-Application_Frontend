@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly';
 
 const blockName = 'disconnect_voice';
-//block working now working
+
 const blockData = {
   message0: 'Disconnect member %1 %2 reason: %3 %4 from voice channel',
   args0: [
@@ -30,11 +30,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const code = `newState.disconnect(${Blockly.JavaScript.valueToCode(block, 'r', Blockly.JavaScript.ORDER_ATOMIC || null)})`;
   return code;
 };

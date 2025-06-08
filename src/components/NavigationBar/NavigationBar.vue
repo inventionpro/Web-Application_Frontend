@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="lg" style="user-select:none;" id="navbar nav-main" class="navbar-dark bg-dark">
+  <b-navbar toggleable="lg" style="user-select: none" id="navbar nav-main" class="navbar-dark bg-dark">
     <b-navbar-brand>
       <button id="hideAllGuiElements" class="hide-gui-button"><img :src="decideNavBarImage" width="35" draggable="false" id="navigationBarS4DImage" /></button>
       Scratch For Discord
@@ -10,22 +10,22 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
         <CodeModal></CodeModal>
-        <FileMenu style="font-size: small;"></FileMenu>
-        <EditMenu style="font-size: small;"></EditMenu>
+        <FileMenu style="font-size: small"></FileMenu>
+        <EditMenu style="font-size: small"></EditMenu>
         <!--<ToolboxModal style="font-size: small;"></ToolboxModal>-->
         <!--<LanguageMenu></LanguageMenu>-->
-        <ExamplesMenu style="font-size: small;"></ExamplesMenu>
-        <Socials style="font-size: small;"></Socials>
-        <DataMenu style="font-size: small;"></DataMenu>
-        <changelog style="font-size: small;"></changelog>
-        <shortcuts style="font-size: small;"></shortcuts>
-        <Credit style="font-size: small;"></Credit>
+        <ExamplesMenu style="font-size: small"></ExamplesMenu>
+        <Socials style="font-size: small"></Socials>
+        <DataMenu style="font-size: small"></DataMenu>
+        <changelog style="font-size: small"></changelog>
+        <shortcuts style="font-size: small"></shortcuts>
+        <Credit style="font-size: small"></Credit>
       </b-navbar-nav>
       <b-navbar-nav class="ms-auto">
         <div id="block-counter" style="margin-right: 5px; font-size: 90%">
-          <p id="block-counter-textParagraph" style="color:rgb(182, 182, 182);">0 blocks</p>
+          <p id="block-counter-textParagraph" style="color: rgb(182, 182, 182)">0 blocks</p>
         </div>
-        <b-nav-item class="theme-changer" id="themeSwitchingLD" style="width:32px;height:32px;margin-top:2px;margin-right:5px;" @click="changeTheme"></b-nav-item>
+        <b-nav-item class="theme-changer" id="themeSwitchingLD" style="width: 32px; height: 32px; margin-top: 2px; margin-right: 5px" @click="changeTheme"></b-nav-item>
 
         <b-button style="border-right-color: #161719; border-radius: 0em; border-top-left-radius: 0.25em; border-bottom-left-radius: 0.25em">
           <span id="docName" style="font-size: smaller" @click="changeFileName">{{ $t('untitled') }}</span>
@@ -87,14 +87,14 @@ export default {
     //             this.$store.state.workspace.getAllBlocks().some((block) => block.type === "s4d_login") &&
     //             this.$store.state.workspace.getAllBlocks().every((block) => !block.disabled && !block.warning);
     // },
-    decideNavBarImage: function() {
+    decideNavBarImage: function () {
       return window.location.origin + '/scratch.png';
     }
   },
   mounted() {
     document.getElementById('docName').addEventListener(
       'input',
-      function() {
+      function () {
         if (document.querySelector('#docName').textContent == '') {
           document.querySelector('#docName').textContent = 'Untitled document';
         }
@@ -111,7 +111,7 @@ export default {
     });
     this.setLanguage('en');
     let url = window.location.href;
-    window.onload = function() {
+    window.onload = function () {
       if (url.includes('#snd=')) {
         let soundlink = url
           .substring(url.indexOf('#snd=') + 5, url.lastIndexOf('#'))
@@ -119,10 +119,10 @@ export default {
           .replaceAll('\n', '');
         const audio = new Audio(soundlink);
         let audio_played = false;
-        audio.onended = function() {
+        audio.onended = function () {
           audio.play();
         };
-        window.onclick = function() {
+        window.onclick = function () {
           if (!audio_played) if (audio.play()) audio_played = true;
         };
       }
@@ -179,7 +179,7 @@ export default {
         pl.innerHTML = '<source src="' + url + '">';
         document.body.append(pl);
       }
-      ['emptyObject_inVent.png', 'emptyObject.gif', 'glitch1.png', 'glitch2.png', 'gottenThread_inVent.png', 'gottenThread.gif', 'history.gif', 'night2.png', 'office_door_left.png', 'office_door_right.png', 'office_shine.png', 'office_unlit.png', 'power.png', 'powerMeter_back.png', 'powerMeter_filled.png', 'static.gif'].forEach(img => {
+      ['emptyObject_inVent.png', 'emptyObject.gif', 'glitch1.png', 'glitch2.png', 'gottenThread_inVent.png', 'gottenThread.gif', 'history.gif', 'night2.png', 'office_door_left.png', 'office_door_right.png', 'office_shine.png', 'office_unlit.png', 'power.png', 'powerMeter_back.png', 'powerMeter_filled.png', 'static.gif'].forEach((img) => {
         preloadImage(img, true);
       });
       preloadAudio('glitchare.mp3', true);
@@ -192,10 +192,10 @@ export default {
         let problematic = false;
         let blockProblems = [];
         let allBlocks = workspace.getAllBlocks();
-        if (!allBlocks.some(block => block.type === 's4d_login')) {
+        if (!allBlocks.some((block) => block.type === 's4d_login')) {
           problems.push(`<li style='text-align:left'>The <b>Connect to Discord</b> block is missing.</li>`);
         }
-        allBlocks.forEach(block => {
+        allBlocks.forEach((block) => {
           if (block.warning) {
             blockProblems.push(`<li style='text-align:left'>` + block.warning.getText() + `</li>`);
             problematic = true;
@@ -243,7 +243,7 @@ export default {
           confirmButtonText: 'Download',
           cancelButtonText: 'Cancel'
         })
-        .then(async result => {
+        .then(async (result) => {
           let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "2.0.0",`];
           let oldrequires = await localforage.getItem('requires');
           r(requires, oldrequires);
@@ -262,7 +262,9 @@ export default {
               return;
             }
             zip.file('index.js', javascriptContent);
-            zip.file('package.json', `{\n
+            zip.file(
+              'package.json',
+              `{\n
   "name": "scratch-for-discord-bot",\n
   "version": "1.0.0",\n
   "main": "index.js",\n
@@ -278,12 +280,13 @@ export default {
   "devDependencies": {\n
     "node": "^18"\n
   }\n
-}`);
+}`
+            );
             zip
               .generateAsync({
                 type: 'blob'
               })
-              .then(blob => {
+              .then((blob) => {
                 const a = document.createElement('a');
                 a.style = 'display: none';
                 document.body.appendChild(a);
@@ -625,10 +628,13 @@ export default {
             office.doors.updateDoor(0, false);
             office.doors.updateDoor(1, false);
             clearInterval(powerDecreaseInterval);
-            setTimeout(() => {
-              powerDownsound.pause();
-              playJumpscare('history');
-            }, Math.round(Math.random() * 10000));
+            setTimeout(
+              () => {
+                powerDownsound.pause();
+                playJumpscare('history');
+              },
+              Math.round(Math.random() * 10000)
+            );
           }, 4000);
           setInterval(() => {
             if (!generatorEnabled) return;
@@ -740,18 +746,17 @@ export default {
           document.getElementById('btn-cancel').onclick = () => {
             this.$swal.close();
           };
-          Array.from(document.querySelectorAll('.swal2-container button.swal2-confirm'))
-            .forEach(btn=>{
-              btn.onclick = async () => {
-                switch (btn.id.replace('btn-','')) {
-                  case 'dfi':
-                    console.log('barry: hey what file do you want to download?');
-                    console.log('johnathan: dude they cant hear us'); // The voices, im starting to hear them -inv
-                    console.log('barry: oh right i forgot');
-                    this.$swal
-                      .fire({
-                        title: 'Which file are you downloading?',
-                        html: `<h6>Explanations:</h6>
+          Array.from(document.querySelectorAll('.swal2-container button.swal2-confirm')).forEach((btn) => {
+            btn.onclick = async () => {
+              switch (btn.id.replace('btn-', '')) {
+                case 'dfi':
+                  console.log('barry: hey what file do you want to download?');
+                  console.log('johnathan: dude they cant hear us'); // The voices, im starting to hear them -inv
+                  console.log('barry: oh right i forgot');
+                  this.$swal
+                    .fire({
+                      title: 'Which file are you downloading?',
+                      html: `<h6>Explanations:</h6>
 <ul>
   <li style='text-align:left'>"index.js" contains your bot's code.</li>
   <li style='text-align:left'>"package.json" contains all of the packages needed for hosting on your computer.</li>
@@ -763,43 +768,43 @@ export default {
 <label for="file2"> package.json </label>
 <input type="checkbox" id="file3">
 <label for="file3"> blocks.xml</label>`,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        cancelButtonText: 'Nevermind...',
-                        confirmButtonText: 'Download'
-                      })
-                      .then(async result => {
-                        if (result.isConfirmed) {
-                          var file1 = document.getElementById('file1').checked;
-                          var file2 = document.getElementById('file2').checked;
-                          var file3 = document.getElementById('file3').checked;
-                          if (file1) {
-                            console.log('barry: hey can you go grab their code');
-                            console.log('johnathan: ok');
-                            const javascriptContent = this.getWorkspaceCode();
-                            const blob = new Blob([javascriptContent]);
-                            const a = document.createElement('a');
-                            a.style = 'display: none';
-                            document.body.appendChild(a);
-                            const url = window.URL.createObjectURL(blob);
-                            a.href = url;
-                            a.download = 'index.js';
-                            a.click();
-                            window.URL.revokeObjectURL(url);
-                            document.body.removeChild(a);
-                            console.log('johnathan: done');
+                      icon: 'warning',
+                      showCancelButton: true,
+                      cancelButtonText: 'Nevermind...',
+                      confirmButtonText: 'Download'
+                    })
+                    .then(async (result) => {
+                      if (result.isConfirmed) {
+                        var file1 = document.getElementById('file1').checked;
+                        var file2 = document.getElementById('file2').checked;
+                        var file3 = document.getElementById('file3').checked;
+                        if (file1) {
+                          console.log('barry: hey can you go grab their code');
+                          console.log('johnathan: ok');
+                          const javascriptContent = this.getWorkspaceCode();
+                          const blob = new Blob([javascriptContent]);
+                          const a = document.createElement('a');
+                          a.style = 'display: none';
+                          document.body.appendChild(a);
+                          const url = window.URL.createObjectURL(blob);
+                          a.href = url;
+                          a.download = 'index.js';
+                          a.click();
+                          window.URL.revokeObjectURL(url);
+                          document.body.removeChild(a);
+                          console.log('johnathan: done');
+                        }
+                        if (file2) {
+                          console.log('johnathan: hey can you grab the packages');
+                          console.log('barry: on it');
+                          let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`];
+                          let oldrequires = await localforage.getItem('requires');
+                          r(requires, oldrequires);
+                          var requireUsed = requires.join('\n');
+                          if (requireUsed.charAt(requireUsed.length - 1) == ',') {
+                            requireUsed = requireUsed.substring(0, requireUsed.length - 1);
                           }
-                          if (file2) {
-                            console.log('johnathan: hey can you grab the packages');
-                            console.log('barry: on it');
-                            let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`];
-                            let oldrequires = await localforage.getItem('requires');
-                            r(requires, oldrequires);
-                            var requireUsed = requires.join('\n');
-                            if (requireUsed.charAt(requireUsed.length - 1) == ',') {
-                              requireUsed = requireUsed.substring(0, requireUsed.length - 1);
-                            }
-                            const javascriptContent = `{\n
+                          const javascriptContent = `{\n
   "name": "scratch-for-discord-bot",\n
   "version": "1.0.0",\n
   "main": "index.js",\n
@@ -816,466 +821,261 @@ export default {
     "node": "^17"\n
   }\n
 }`;
-                            const blob = new Blob([javascriptContent]);
-                            const a = document.createElement('a');
-                            a.style = 'display: none';
-                            document.body.appendChild(a);
-                            const url = window.URL.createObjectURL(blob);
-                            a.href = url;
-                            a.download = 'package.json';
-                            a.click();
-                            window.URL.revokeObjectURL(url);
-                            document.body.removeChild(a);
-                            console.log('barry: done');
-                          }
-                          if (file3) {
-                            console.log('barry: im gonna start getting their blocks');
-                            console.log('johnathan: ok');
-                            const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-                            const blob = new Blob([xmlContent]);
-                            const a = document.createElement('a');
-                            a.style = 'display: none';
-                            document.body.appendChild(a);
-                            const url = window.URL.createObjectURL(blob);
-                            a.href = url;
-                            a.download = 'blocks.xml';
-                            a.click();
-                            window.URL.revokeObjectURL(url);
-                            document.body.removeChild(a);
-                            console.log('barry: finished');
-                          }
-                          console.log('barry: welp guess we are done');
-                          console.log('johnathan: lets get back to work, shall we?');
+                          const blob = new Blob([javascriptContent]);
+                          const a = document.createElement('a');
+                          a.style = 'display: none';
+                          document.body.appendChild(a);
+                          const url = window.URL.createObjectURL(blob);
+                          a.href = url;
+                          a.download = 'package.json';
+                          a.click();
+                          window.URL.revokeObjectURL(url);
+                          document.body.removeChild(a);
+                          console.log('barry: done');
                         }
-                      });
-                    break;
-                  case 'manage':
-                    this.$swal
-                      .fire({
-                        title: 'Favorites manager',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        showDenyButton: true,
-                        cancelButtonText: 'Cancel',
-                        confirmButtonText: 'Manual Favorite',
-                        denyButtonText: 'Clear Favorites'
-                      })
-                      .then(async result => {
-                        if (result.isDenied) {
-                          localforage.setItem('fav', null);
-                          console.log('Favorites cleared...');
-                        } else if (result.isConfirmed) {
-                          this.$swal
-                            .fire({
-                              title: 'Add a block to favorites',
-                              html: `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`,
-                              showCancelButton: true,
-                              cancelButtonText: 'Cancel',
-                              confirmButtonText: 'Add'
-                            })
-                            .then(async result => {
-                              if (!result.isConfirmed) return;
-                              localforage.getItem('fav').then(favs => {
-                                let block = document
-                                  .getElementById('block')
-                                  .value.replaceAll(' ', '_')
-                                  .replaceAll('<', '_')
-                                  .replaceAll('>', '_')
-                                  .replaceAll('/', '_');
-                                console.log('Adding block', block, 'to favorites');
-                                if (favs != null) {
-                                  let newArray = favs;
-                                  newArray.push(block);
-                                  localforage.setItem('fav', newArray);
-                                } else {
-                                  localforage.setItem('fav', [block]);
-                                }
-                              });
-                            });
+                        if (file3) {
+                          console.log('barry: im gonna start getting their blocks');
+                          console.log('johnathan: ok');
+                          const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+                          const blob = new Blob([xmlContent]);
+                          const a = document.createElement('a');
+                          a.style = 'display: none';
+                          document.body.appendChild(a);
+                          const url = window.URL.createObjectURL(blob);
+                          a.href = url;
+                          a.download = 'blocks.xml';
+                          a.click();
+                          window.URL.revokeObjectURL(url);
+                          document.body.removeChild(a);
+                          console.log('barry: finished');
                         }
-                      });
-                    break;
-                  case 'tokendb':
-                    // TODO: yet another, swal 2
-                    this.$swal({
-                      title: 'Token Database',
-                      text: `Token Database can be used to store your tokens so you don't need to go back to the Discord Developer Portal to get them.`,
-                      buttons: {
-                        cancel: 'Cancel',
-                        delete: 'Delete Token',
-                        save: 'Save Token',
-                        load: 'Load Token'
-                      }
-                    })
-                    .then(async result => {
-                      if (result == null || result == false) {
-                        return;
-                      }
-                      if (String(result) == 'delete') {
-                        let keys = await localforage.getItem('tokens');
-                        if (keys === null) {
-                          const Toast = swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: toast => {
-                              toast.addEventListener('mouseenter', swal.stopTimer);
-                              toast.addEventListener('mouseleave', swal.resumeTimer);
-                            }
-                          });
-                          Toast.fire({
-                            icon: 'error',
-                            title: this.$t('token.erros')
-                          });
-                          return;
-                        }
-                        swal.fire({
-                          title: this.$t('token.deletee.title'),
-                          html: `${this.$t('token.deletee.text')}<br><br>
-<select class="custom-select" id="restore-select">
-  ${keys.map(key => `<option><b>${key.replace('token-', '')}</b></option>`)}
-</select>`,
-                          showCancelButton: true,
-                          cancelButtonText: this.$t('token.deletee.cancel'),
-                          confirmButtonText: this.$t('token.deletee.load'),
-                          preConfirm: async () => {
-                            const select = document.getElementById('restore-select');
-                            await localforage.removeItem(`token-${select.value}`);
-                            let tokens = await localforage.getItem('tokens');
-                            function arrayRemove(arr, value) {
-                              return arr.filter(function(ele) {
-                                return ele != value;
-                              });
-                            }
-                            if (arrayRemove(tokens, `token-${select.value}`).length === 0) {
-                              await localforage.setItem('tokens', null);
-                            } else {
-                              await localforage.setItem('tokens', arrayRemove(tokens, `token-${select.value}`));
-                            }
-                            const Toast = swal.mixin({
-                              toast: true,
-                              position: 'top-end',
-                              showConfirmButton: false,
-                              timer: 3000,
-                              timerProgressBar: true,
-                              didOpen: toast => {
-                                toast.addEventListener('mouseenter', swal.stopTimer);
-                                toast.addEventListener('mouseleave', swal.resumeTimer);
-                              }
-                            });
-                            let a = this.$t('token.deletee.success');
-                            Toast.fire({
-                              icon: 'success',
-                              title: `${a}`
-                            });
-                          }
-                        });
+                        console.log('barry: welp guess we are done');
+                        console.log('johnathan: lets get back to work, shall we?');
                       }
                     });
-                    break;
-                  case 'load':
-                    let keys = await localforage.getItem('tokens');
-                    if (keys === null) {
-                      const Toast = swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: toast => {
-                          toast.addEventListener('mouseenter', swal.stopTimer);
-                          toast.addEventListener('mouseleave', swal.resumeTimer);
-                        }
-                      });
-                      Toast.fire({
-                        icon: 'error',
-                        title: this.$t('token.erros')
-                      });
+                  break;
+                case 'manage':
+                  this.$swal
+                    .fire({
+                      title: 'Favorites manager',
+                      icon: 'warning',
+                      showCancelButton: true,
+                      showDenyButton: true,
+                      cancelButtonText: 'Cancel',
+                      confirmButtonText: 'Manual Favorite',
+                      denyButtonText: 'Clear Favorites'
+                    })
+                    .then(async (result) => {
+                      if (result.isDenied) {
+                        localforage.setItem('fav', null);
+                        console.log('Favorites cleared...');
+                      } else if (result.isConfirmed) {
+                        this.$swal
+                          .fire({
+                            title: 'Add a block to favorites',
+                            html: `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`,
+                            showCancelButton: true,
+                            cancelButtonText: 'Cancel',
+                            confirmButtonText: 'Add'
+                          })
+                          .then(async (result) => {
+                            if (!result.isConfirmed) return;
+                            localforage.getItem('fav').then((favs) => {
+                              let block = document.getElementById('block').value.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
+                              console.log('Adding block', block, 'to favorites');
+                              if (favs != null) {
+                                let newArray = favs;
+                                newArray.push(block);
+                                localforage.setItem('fav', newArray);
+                              } else {
+                                localforage.setItem('fav', [block]);
+                              }
+                            });
+                          });
+                      }
+                    });
+                  break;
+                case 'tokendb':
+                  // TODO: yet another, swal 2
+                  this.$swal({
+                    title: 'Token Database',
+                    text: `Token Database can be used to store your tokens so you don't need to go back to the Discord Developer Portal to get them.`,
+                    buttons: {
+                      cancel: 'Cancel',
+                      delete: 'Delete Token',
+                      save: 'Save Token',
+                      load: 'Load Token'
+                    }
+                  }).then(async (result) => {
+                    if (result == null || result == false) {
                       return;
                     }
-                    swal.fire({
-                      title: this.$t('token.load2'),
-                      html: `${this.$t('token.text4')}<br><br>
-<select class="custom-select" id="restore-select">
-  ${keys.map(key => `<option><b>${key.replace('token-', '')}</b></option>`)}
-</select>`,
-                      showCancelButton: true,
-                      cancelButtonText: this.$t('token.cancels'),
-                      confirmButtonText: this.$t('token.loadss'),
-                      preConfirm: async () => {
-                        const select = document.getElementById('restore-select');
-                        const token = await localforage.getItem(`token-${select.value}`);
+                    if (String(result) == 'delete') {
+                      let keys = await localforage.getItem('tokens');
+                      if (keys === null) {
                         const Toast = swal.mixin({
                           toast: true,
                           position: 'top-end',
                           showConfirmButton: false,
                           timer: 3000,
                           timerProgressBar: true,
-                          didOpen: toast => {
+                          didOpen: (toast) => {
                             toast.addEventListener('mouseenter', swal.stopTimer);
                             toast.addEventListener('mouseleave', swal.resumeTimer);
                           }
                         });
-                        let a = this.$t('token.successs');
                         Toast.fire({
-                          icon: 'success',
-                          title: `${a}`
+                          icon: 'error',
+                          title: this.$t('token.erros')
                         });
-                        navigator.clipboard.writeText(token);
-                      }
-                    });
-                    break;
-                  case 'save':
-                    swal
-                      .fire({
-                        title: this.$t('token.text2'),
-                        input: 'text',
-                        inputAttributes: {
-                          autocapitalize: 'off'
-                        },
-                        showCancelButton: true,
-                        confirmButtonText: this.$t('token.save2'),
-                        showLoaderOnConfirm: true,
-                        preConfirm: async file => {
-                          let maybe = await localforage.getItem('token-' + file);
-                          if (maybe === null) {
-                            return file;
-                          } else {
-                            swal.showValidationMessage(this.$t('token.error'));
-                          }
-                        },
-                        allowOutsideClick: () => !swal.isLoading()
-                      })
-                      .then(result2 => {
-                        if (result2.isConfirmed) {
-                          let name = result2.value;
-                          swal
-                            .fire({
-                              title: this.$t('token.text3'),
-                              input: 'text',
-                              inputAttributes: {
-                                autocapitalize: 'off'
-                              },
-                              showCancelButton: true,
-                              confirmButtonText: this.$t('token.save3'),
-                              showLoaderOnConfirm: true,
-                              preConfirm: file2 => {
-                                return file2;
-                              },
-                              allowOutsideClick: () => !swal.isLoading()
-                            })
-                            .then(async result => {
-                              if (result.isConfirmed) {
-                                let token = result.value;
-                                //token
-                                await localforage.setItem(`token-${name}`, token);
-                                let tokens = await localforage.getItem('tokens');
-                                if (tokens === null) {
-                                  await localforage.setItem('tokens', [`token-${name}`]);
-                                } else {
-                                  tokens.push(`token-${name}`);
-                                  await localforage.setItem('tokens', tokens);
-                                }
-                                const Toast = swal.mixin({
-                                  toast: true,
-                                  position: 'top-end',
-                                  showConfirmButton: false,
-                                  timer: 3000,
-                                  timerProgressBar: true,
-                                  didOpen: toast => {
-                                    toast.addEventListener('mouseenter', swal.stopTimer);
-                                    toast.addEventListener('mouseleave', swal.resumeTimer);
-                                  }
-                                });
-                                let a = this.$t('token.success');
-                                Toast.fire({
-                                  icon: 'success',
-                                  title: `${a}${name}`
-                                });
-                              }
-                            });
-                        }
-                      });
-                    break;
-                  case 'prebuilds':
-                    // TODO: swal 2
-                    this.$swal({
-                      title: 'Prebuilds',
-                      text: `Prebuilds can be used to save your projects in browser to load them later.`,
-                      buttons: {
-                        cancel: 'Cancel',
-                        delete: 'Delete Prebuild',
-                        download: 'Download Prebuild',
-                        save: 'Save Prebuild',
-                        load: 'Load Prebuild'
-                      }
-                    }).then(async result => {
-                      if (result == null || result == false) {
                         return;
                       }
-                      if (String(result) == 'delete') {
-                        let keys = await localforage.getItem('prebuilds');
-                        if (keys === null) {
+                      swal.fire({
+                        title: this.$t('token.deletee.title'),
+                        html: `${this.$t('token.deletee.text')}<br><br>
+<select class="custom-select" id="restore-select">
+  ${keys.map((key) => `<option><b>${key.replace('token-', '')}</b></option>`)}
+</select>`,
+                        showCancelButton: true,
+                        cancelButtonText: this.$t('token.deletee.cancel'),
+                        confirmButtonText: this.$t('token.deletee.load'),
+                        preConfirm: async () => {
+                          const select = document.getElementById('restore-select');
+                          await localforage.removeItem(`token-${select.value}`);
+                          let tokens = await localforage.getItem('tokens');
+                          function arrayRemove(arr, value) {
+                            return arr.filter(function (ele) {
+                              return ele != value;
+                            });
+                          }
+                          if (arrayRemove(tokens, `token-${select.value}`).length === 0) {
+                            await localforage.setItem('tokens', null);
+                          } else {
+                            await localforage.setItem('tokens', arrayRemove(tokens, `token-${select.value}`));
+                          }
                           const Toast = swal.mixin({
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
-                            didOpen: toast => {
+                            didOpen: (toast) => {
                               toast.addEventListener('mouseenter', swal.stopTimer);
                               toast.addEventListener('mouseleave', swal.resumeTimer);
                             }
                           });
+                          let a = this.$t('token.deletee.success');
                           Toast.fire({
-                            icon: 'error',
-                            title: this.$t('prebuild.erros')
+                            icon: 'success',
+                            title: `${a}`
                           });
-                          return;
                         }
-                        swal.fire({
-                          title: this.$t('prebuild.deletee.title'),
-                          html: `${this.$t('prebuild.deletee.text')}<br><br>
+                      });
+                    }
+                  });
+                  break;
+                case 'load':
+                  let keys = await localforage.getItem('tokens');
+                  if (keys === null) {
+                    const Toast = swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', swal.stopTimer);
+                        toast.addEventListener('mouseleave', swal.resumeTimer);
+                      }
+                    });
+                    Toast.fire({
+                      icon: 'error',
+                      title: this.$t('token.erros')
+                    });
+                    return;
+                  }
+                  swal.fire({
+                    title: this.$t('token.load2'),
+                    html: `${this.$t('token.text4')}<br><br>
 <select class="custom-select" id="restore-select">
-  ${keys.map(key => `<option><b>${key.replace('prebuild-', '')}</b></option>`)}
+  ${keys.map((key) => `<option><b>${key.replace('token-', '')}</b></option>`)}
 </select>`,
-                          showCancelButton: true,
-                          cancelButtonText: this.$t('prebuild.deletee.cancel'),
-                          confirmButtonText: this.$t('prebuild.deletee.load'),
-                          preConfirm: async () => {
-                            const select = document.getElementById('restore-select');
-                            await localforage.removeItem(`prebuild-${select.value}`);
-                            let tokens = await localforage.getItem('prebuilds');
-                            function arrayRemove(arr, value) {
-                              return arr.filter(function(ele) {
-                                return ele != value;
-                              });
-                            }
-                            if (arrayRemove(tokens, `prebuild-${select.value}`).length === 0) {
-                              await localforage.setItem('prebuilds', null);
-                            } else {
-                              await localforage.setItem('prebuilds', arrayRemove(tokens, `prebuild-${select.value}`));
-                            }
-                            const Toast = swal.mixin({
-                              toast: true,
-                              position: 'top-end',
-                              showConfirmButton: false,
-                              timer: 3000,
-                              timerProgressBar: true,
-                              didOpen: toast => {
-                                toast.addEventListener('mouseenter', swal.stopTimer);
-                                toast.addEventListener('mouseleave', swal.resumeTimer);
-                              }
-                            });
-                            let a = this.$t('prebuild.deletee.success');
-                            Toast.fire({
-                              icon: 'success',
-                              title: `${a}`
-                            });
-                          }
-                        });
-                      } else if (String(result) == 'download') {
-                        let keys = await localforage.getItem('prebuilds');
-                        if (keys === null) {
-                          const Toast = swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: toast => {
-                              toast.addEventListener('mouseenter', swal.stopTimer);
-                              toast.addEventListener('mouseleave', swal.resumeTimer);
-                            }
-                          });
-                          Toast.fire({
-                            icon: 'error',
-                            title: this.$t('prebuild.erros')
-                          });
-                          return;
+                    showCancelButton: true,
+                    cancelButtonText: this.$t('token.cancels'),
+                    confirmButtonText: this.$t('token.loadss'),
+                    preConfirm: async () => {
+                      const select = document.getElementById('restore-select');
+                      const token = await localforage.getItem(`token-${select.value}`);
+                      const Toast = swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', swal.stopTimer);
+                          toast.addEventListener('mouseleave', swal.resumeTimer);
                         }
-                        swal.fire({
-                          title: this.$t('prebuild.download.load2'),
-                          html: `${this.$t('prebuild.download.text4')}<br><br>
-<select class="custom-select" id="restore-select">
-  ${keys.map(key => `<option><b>${key.replace('prebuild-', '')}</b></option>`)}
-</select>`,
-                          showCancelButton: true,
-                          cancelButtonText: this.$t('prebuild.download.cancels'),
-                          confirmButtonText: this.$t('prebuild.download.loadss'),
-                          preConfirm: async () => {
-                            const select = document.getElementById('restore-select');
-                            const token = await localforage.getItem(`prebuild-${select.value}`);
-                            const Toast = swal.mixin({
-                              toast: true,
-                              position: 'top-end',
-                              showConfirmButton: false,
-                              timer: 3000,
-                              timerProgressBar: true,
-                              didOpen: toast => {
-                                toast.addEventListener('mouseenter', swal.stopTimer);
-                                toast.addEventListener('mouseleave', swal.resumeTimer);
-                              }
-                            });
-                            let a = this.$t('prebuild.download.successs');
-                            Toast.fire({
-                              icon: 'success',
-                              title: `${a}`
-                            });
-                            const zip = new JSZip();
-                            const fileName = `${select.value}.s4d`;
-                            zip.file('blocks.xml', token);
-                            zip
-                              .generateAsync({
-                                type: 'blob'
-                              })
-                              .then(blob => {
-                                const a = document.createElement('a');
-                                a.style = 'display: none';
-                                document.body.appendChild(a);
-                                const url = window.URL.createObjectURL(blob);
-                                a.href = url;
-                                a.download = fileName;
-                                a.click();
-                                window.URL.revokeObjectURL(url);
-                                document.body.removeChild(a);
-                              });
-                          }
-                        });
-                      } else if (String(result) == 'save') {
+                      });
+                      let a = this.$t('token.successs');
+                      Toast.fire({
+                        icon: 'success',
+                        title: `${a}`
+                      });
+                      navigator.clipboard.writeText(token);
+                    }
+                  });
+                  break;
+                case 'save':
+                  swal
+                    .fire({
+                      title: this.$t('token.text2'),
+                      input: 'text',
+                      inputAttributes: {
+                        autocapitalize: 'off'
+                      },
+                      showCancelButton: true,
+                      confirmButtonText: this.$t('token.save2'),
+                      showLoaderOnConfirm: true,
+                      preConfirm: async (file) => {
+                        let maybe = await localforage.getItem('token-' + file);
+                        if (maybe === null) {
+                          return file;
+                        } else {
+                          swal.showValidationMessage(this.$t('token.error'));
+                        }
+                      },
+                      allowOutsideClick: () => !swal.isLoading()
+                    })
+                    .then((result2) => {
+                      if (result2.isConfirmed) {
+                        let name = result2.value;
                         swal
                           .fire({
-                            title: this.$t('prebuild.text2'),
+                            title: this.$t('token.text3'),
                             input: 'text',
                             inputAttributes: {
                               autocapitalize: 'off'
                             },
                             showCancelButton: true,
-                            confirmButtonText: this.$t('prebuild.save2'),
+                            confirmButtonText: this.$t('token.save3'),
                             showLoaderOnConfirm: true,
-                            preConfirm: async file => {
-                              let maybe = await localforage.getItem('prebuild-' + file);
-                              if (maybe === null) {
-                                return file;
-                              } else {
-                                swal.showValidationMessage(this.$t('prebuild.error'));
-                              }
+                            preConfirm: (file2) => {
+                              return file2;
                             },
                             allowOutsideClick: () => !swal.isLoading()
                           })
-                          .then(async result2 => {
-                            if (result2.isConfirmed) {
-                              let name = result2.value;
-                              const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-                              await localforage.setItem(`prebuild-${name}`, xmlContent);
-                              let tokens = await localforage.getItem('prebuilds');
+                          .then(async (result) => {
+                            if (result.isConfirmed) {
+                              let token = result.value;
+                              //token
+                              await localforage.setItem(`token-${name}`, token);
+                              let tokens = await localforage.getItem('tokens');
                               if (tokens === null) {
-                                await localforage.setItem('prebuilds', [`prebuild-${name}`]);
+                                await localforage.setItem('tokens', [`token-${name}`]);
                               } else {
-                                tokens.push(`prebuild-${name}`);
-                                await localforage.setItem('prebuilds', tokens);
+                                tokens.push(`token-${name}`);
+                                await localforage.setItem('tokens', tokens);
                               }
                               const Toast = swal.mixin({
                                 toast: true,
@@ -1283,124 +1083,324 @@ export default {
                                 showConfirmButton: false,
                                 timer: 3000,
                                 timerProgressBar: true,
-                                didOpen: toast => {
+                                didOpen: (toast) => {
                                   toast.addEventListener('mouseenter', swal.stopTimer);
                                   toast.addEventListener('mouseleave', swal.resumeTimer);
                                 }
                               });
-                              let a = this.$t('prebuild.success');
+                              let a = this.$t('token.success');
                               Toast.fire({
                                 icon: 'success',
                                 title: `${a}${name}`
                               });
                             }
                           });
-                      } else if (String(result) == 'load') {
-                        let keys = await localforage.getItem('prebuilds');
-                        if (keys === null) {
+                      }
+                    });
+                  break;
+                case 'prebuilds':
+                  // TODO: swal 2
+                  this.$swal({
+                    title: 'Prebuilds',
+                    text: `Prebuilds can be used to save your projects in browser to load them later.`,
+                    buttons: {
+                      cancel: 'Cancel',
+                      delete: 'Delete Prebuild',
+                      download: 'Download Prebuild',
+                      save: 'Save Prebuild',
+                      load: 'Load Prebuild'
+                    }
+                  }).then(async (result) => {
+                    if (result == null || result == false) {
+                      return;
+                    }
+                    if (String(result) == 'delete') {
+                      let keys = await localforage.getItem('prebuilds');
+                      if (keys === null) {
+                        const Toast = swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', swal.stopTimer);
+                            toast.addEventListener('mouseleave', swal.resumeTimer);
+                          }
+                        });
+                        Toast.fire({
+                          icon: 'error',
+                          title: this.$t('prebuild.erros')
+                        });
+                        return;
+                      }
+                      swal.fire({
+                        title: this.$t('prebuild.deletee.title'),
+                        html: `${this.$t('prebuild.deletee.text')}<br><br>
+<select class="custom-select" id="restore-select">
+  ${keys.map((key) => `<option><b>${key.replace('prebuild-', '')}</b></option>`)}
+</select>`,
+                        showCancelButton: true,
+                        cancelButtonText: this.$t('prebuild.deletee.cancel'),
+                        confirmButtonText: this.$t('prebuild.deletee.load'),
+                        preConfirm: async () => {
+                          const select = document.getElementById('restore-select');
+                          await localforage.removeItem(`prebuild-${select.value}`);
+                          let tokens = await localforage.getItem('prebuilds');
+                          function arrayRemove(arr, value) {
+                            return arr.filter(function (ele) {
+                              return ele != value;
+                            });
+                          }
+                          if (arrayRemove(tokens, `prebuild-${select.value}`).length === 0) {
+                            await localforage.setItem('prebuilds', null);
+                          } else {
+                            await localforage.setItem('prebuilds', arrayRemove(tokens, `prebuild-${select.value}`));
+                          }
                           const Toast = swal.mixin({
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
-                            didOpen: toast => {
+                            didOpen: (toast) => {
                               toast.addEventListener('mouseenter', swal.stopTimer);
                               toast.addEventListener('mouseleave', swal.resumeTimer);
                             }
                           });
+                          let a = this.$t('prebuild.deletee.success');
                           Toast.fire({
-                            icon: 'error',
-                            title: this.$t('prebuild.erros')
+                            icon: 'success',
+                            title: `${a}`
                           });
-                          return;
                         }
-                        swal.fire({
-                          title: this.$t('prebuild.load2'),
-                          html: `${this.$t('prebuild.text4')}<br><br>
+                      });
+                    } else if (String(result) == 'download') {
+                      let keys = await localforage.getItem('prebuilds');
+                      if (keys === null) {
+                        const Toast = swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', swal.stopTimer);
+                            toast.addEventListener('mouseleave', swal.resumeTimer);
+                          }
+                        });
+                        Toast.fire({
+                          icon: 'error',
+                          title: this.$t('prebuild.erros')
+                        });
+                        return;
+                      }
+                      swal.fire({
+                        title: this.$t('prebuild.download.load2'),
+                        html: `${this.$t('prebuild.download.text4')}<br><br>
 <select class="custom-select" id="restore-select">
-  ${keys.map(key => `<option><b>${key.replace('prebuild-', '')}</b></option>`)}
+  ${keys.map((key) => `<option><b>${key.replace('prebuild-', '')}</b></option>`)}
 </select>`,
+                        showCancelButton: true,
+                        cancelButtonText: this.$t('prebuild.download.cancels'),
+                        confirmButtonText: this.$t('prebuild.download.loadss'),
+                        preConfirm: async () => {
+                          const select = document.getElementById('restore-select');
+                          const token = await localforage.getItem(`prebuild-${select.value}`);
+                          const Toast = swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', swal.stopTimer);
+                              toast.addEventListener('mouseleave', swal.resumeTimer);
+                            }
+                          });
+                          let a = this.$t('prebuild.download.successs');
+                          Toast.fire({
+                            icon: 'success',
+                            title: `${a}`
+                          });
+                          const zip = new JSZip();
+                          const fileName = `${select.value}.s4d`;
+                          zip.file('blocks.xml', token);
+                          zip
+                            .generateAsync({
+                              type: 'blob'
+                            })
+                            .then((blob) => {
+                              const a = document.createElement('a');
+                              a.style = 'display: none';
+                              document.body.appendChild(a);
+                              const url = window.URL.createObjectURL(blob);
+                              a.href = url;
+                              a.download = fileName;
+                              a.click();
+                              window.URL.revokeObjectURL(url);
+                              document.body.removeChild(a);
+                            });
+                        }
+                      });
+                    } else if (String(result) == 'save') {
+                      swal
+                        .fire({
+                          title: this.$t('prebuild.text2'),
+                          input: 'text',
+                          inputAttributes: {
+                            autocapitalize: 'off'
+                          },
                           showCancelButton: true,
-                          cancelButtonText: this.$t('prebuild.cancels'),
-                          confirmButtonText: this.$t('prebuild.loadss'),
-                          preConfirm: async () => {
-                            const select = document.getElementById('restore-select');
-                            const token = await localforage.getItem(`prebuild-${select.value}`);
+                          confirmButtonText: this.$t('prebuild.save2'),
+                          showLoaderOnConfirm: true,
+                          preConfirm: async (file) => {
+                            let maybe = await localforage.getItem('prebuild-' + file);
+                            if (maybe === null) {
+                              return file;
+                            } else {
+                              swal.showValidationMessage(this.$t('prebuild.error'));
+                            }
+                          },
+                          allowOutsideClick: () => !swal.isLoading()
+                        })
+                        .then(async (result2) => {
+                          if (result2.isConfirmed) {
+                            let name = result2.value;
+                            const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+                            await localforage.setItem(`prebuild-${name}`, xmlContent);
+                            let tokens = await localforage.getItem('prebuilds');
+                            if (tokens === null) {
+                              await localforage.setItem('prebuilds', [`prebuild-${name}`]);
+                            } else {
+                              tokens.push(`prebuild-${name}`);
+                              await localforage.setItem('prebuilds', tokens);
+                            }
                             const Toast = swal.mixin({
                               toast: true,
                               position: 'top-end',
                               showConfirmButton: false,
                               timer: 3000,
                               timerProgressBar: true,
-                              didOpen: toast => {
+                              didOpen: (toast) => {
                                 toast.addEventListener('mouseenter', swal.stopTimer);
                                 toast.addEventListener('mouseleave', swal.resumeTimer);
                               }
                             });
-                            let a = this.$t('prebuild.successs');
+                            let a = this.$t('prebuild.success');
                             Toast.fire({
                               icon: 'success',
-                              title: `${a}`
+                              title: `${a}${name}`
                             });
-                            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(token), this.$store.state.workspace);
+                          }
+                        });
+                    } else if (String(result) == 'load') {
+                      let keys = await localforage.getItem('prebuilds');
+                      if (keys === null) {
+                        const Toast = swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', swal.stopTimer);
+                            toast.addEventListener('mouseleave', swal.resumeTimer);
+                          }
+                        });
+                        Toast.fire({
+                          icon: 'error',
+                          title: this.$t('prebuild.erros')
+                        });
+                        return;
+                      }
+                      swal.fire({
+                        title: this.$t('prebuild.load2'),
+                        html: `${this.$t('prebuild.text4')}<br><br>
+<select class="custom-select" id="restore-select">
+  ${keys.map((key) => `<option><b>${key.replace('prebuild-', '')}</b></option>`)}
+</select>`,
+                        showCancelButton: true,
+                        cancelButtonText: this.$t('prebuild.cancels'),
+                        confirmButtonText: this.$t('prebuild.loadss'),
+                        preConfirm: async () => {
+                          const select = document.getElementById('restore-select');
+                          const token = await localforage.getItem(`prebuild-${select.value}`);
+                          const Toast = swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', swal.stopTimer);
+                              toast.addEventListener('mouseleave', swal.resumeTimer);
+                            }
+                          });
+                          let a = this.$t('prebuild.successs');
+                          Toast.fire({
+                            icon: 'success',
+                            title: `${a}`
+                          });
+                          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(token), this.$store.state.workspace);
+                        }
+                      });
+                    }
+                  });
+                  break;
+                case 'optimizations':
+                  this.$swal
+                    .fire({
+                      title: 'Site Optimizations',
+                      html: `<span>These optimizations are minor, but can help for big projects.</span><br><b>These require a refresh to fully work.</b>`,
+                      showCancelButton: true,
+                      cancelButtonText: 'Cancel',
+                      confirmButtonText: 'Toggle Block Counter'
+                    })
+                    .then(async (result) => {
+                      if (result.isConfirmed) {
+                        localforage.getItem('hide-blockcount').then((item) => {
+                          if (item == null) {
+                            localforage.setItem('hide-blockcount', true);
+                            return;
+                          }
+                          if (String(item) == 'true') {
+                            localforage.setItem('hide-blockcount', false);
+                          } else {
+                            localforage.setItem('hide-blockcount', true);
                           }
                         });
                       }
                     });
-                    break;
-                    case 'optimizations':
-                      this.$swal
-                        .fire({
-                          title: 'Site Optimizations',
-                          html: `<span>These optimizations are minor, but can help for big projects.</span><br><b>These require a refresh to fully work.</b>`,
-                          showCancelButton: true,
-                          cancelButtonText: 'Cancel',
-                          confirmButtonText: 'Toggle Block Counter'
-                        })
-                        .then(async result => {
-                          if (result.isConfirmed) {
-                            localforage.getItem('hide-blockcount').then(item => {
-                              if (item == null) {
-                                localforage.setItem('hide-blockcount', true);
-                                return;
-                              }
-                              if (String(item) == 'true') {
-                                localforage.setItem('hide-blockcount', false);
-                              } else {
-                                localforage.setItem('hide-blockcount', true);
-                              }
-                            });
-                          }
-                        });
-                      break;
-                    case 'settings':
-                      this.$swal.fire({
-                        title: 'Site Settings',
-                        text: 'Toggle shortcuts and change the theme!',
-                        icon: 'info',
-                        showCancelButton: true,
-                        showDenyButton: true,
-                        cancelButtonText: 'Cancel',
-                        denyButtonText: 'Toggle shortcuts',
-                        confirmButtonText: 'Set theme'
-                      })
-                        .then(async result => {
-                          if (result.isDismissed) return;
-                          if (result.isDenied) {
-                            localforage.getItem('utilitiesShortcuts').then(item => {
-                              localforage.setItem('utilitiesShortcuts', item == null ? false : null).then(() => {
-                                localforage.getItem('utilitiesShortcuts').then(item => {
-                                  this.$swal.fire({
-                                    title: 'Updated shortcuts!',
-                                    text: `Shortcuts have been toggled ${item == null ? 'on' : 'off'}. Please refresh the page.`,
-                                    icon: 'success'
-                                  });
-                                });
+                  break;
+                case 'settings':
+                  this.$swal
+                    .fire({
+                      title: 'Site Settings',
+                      text: 'Toggle shortcuts and change the theme!',
+                      icon: 'info',
+                      showCancelButton: true,
+                      showDenyButton: true,
+                      cancelButtonText: 'Cancel',
+                      denyButtonText: 'Toggle shortcuts',
+                      confirmButtonText: 'Set theme'
+                    })
+                    .then(async (result) => {
+                      if (result.isDismissed) return;
+                      if (result.isDenied) {
+                        localforage.getItem('utilitiesShortcuts').then((item) => {
+                          localforage.setItem('utilitiesShortcuts', item == null ? false : null).then(() => {
+                            localforage.getItem('utilitiesShortcuts').then((item) => {
+                              this.$swal.fire({
+                                title: 'Updated shortcuts!',
+                                text: `Shortcuts have been toggled ${item == null ? 'on' : 'off'}. Please refresh the page.`,
+                                icon: 'success'
                               });
                             });
-                          } else if (result.isConfirmed) {
-                            const previews = `<style>
+                          });
+                        });
+                      } else if (result.isConfirmed) {
+                        const previews = `<style>
 .row123 {
   display: flex;
 }
@@ -1453,71 +1453,71 @@ export default {
   </span>
   <b>Switching themes may require a refresh to work properly.</b>
 </center>`;
-                            const { value: result } = await swal.fire({
-                              title: 'Themes',
-                              html: previews,
-                              input: 'select',
-                              inputOptions: {
-                                neo: 'Neo',
-                                toon: 'Toon',
-                                invert: 'Invert',
-                                textless: 'Textless',
-                                gray: 'Grayscale',
-                                glow: 'Glowy',
-                                'scratch-top': 'Scratch Block Top',
-                                'full-colors': 'Full Colors',
-                                'text-only': 'Text only',
-                                none: 'Default'
-                              },
-                              inputPlaceholder: 'Select a theme',
-                              showCancelButton: true,
-                              width: '1000px'
-                            });
-                            switch (String(result)) {
-                              case 'glow':
-                                this.$swal
-                                  .fire({
-                                    title: 'Performance Warning!',
-                                    text: 'This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?',
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    cancelButtonText: 'Cancel',
-                                    confirmButtonText: 'Use this theme'
-                                  })
-                                  .then(async result => {
-                                    if (!result.isConfirmed) return;
-                                    localforage.setItem('utilitiesTheme', 'glow');
-                                  });
-                                break;
-                              case 'scratch-top':
-                              case 'text-only':
-                                this.$swal
-                                  .fire({
-                                    title: 'Warning!',
-                                    text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    cancelButtonText: 'Cancel',
-                                    confirmButtonText: 'Use this theme'
-                                  })
-                                  .then(async result => {
-                                    if (!result.isConfirmed) return;
-                                    localforage.setItem('utilitiesTheme', String(result));
-                                  });
-                                break;
-                              case 'none':
-                                localforage.removeItem('utilitiesTheme');
-                                break;
-                              default:
-                                localforage.setItem('utilitiesTheme', String(result));
-                                break;
-                            }
-                          }
+                        const { value: result } = await swal.fire({
+                          title: 'Themes',
+                          html: previews,
+                          input: 'select',
+                          inputOptions: {
+                            neo: 'Neo',
+                            toon: 'Toon',
+                            invert: 'Invert',
+                            textless: 'Textless',
+                            gray: 'Grayscale',
+                            glow: 'Glowy',
+                            'scratch-top': 'Scratch Block Top',
+                            'full-colors': 'Full Colors',
+                            'text-only': 'Text only',
+                            none: 'Default'
+                          },
+                          inputPlaceholder: 'Select a theme',
+                          showCancelButton: true,
+                          width: '1000px'
                         });
-                      break;
-                }
+                        switch (String(result)) {
+                          case 'glow':
+                            this.$swal
+                              .fire({
+                                title: 'Performance Warning!',
+                                text: 'This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                cancelButtonText: 'Cancel',
+                                confirmButtonText: 'Use this theme'
+                              })
+                              .then(async (result) => {
+                                if (!result.isConfirmed) return;
+                                localforage.setItem('utilitiesTheme', 'glow');
+                              });
+                            break;
+                          case 'scratch-top':
+                          case 'text-only':
+                            this.$swal
+                              .fire({
+                                title: 'Warning!',
+                                text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                cancelButtonText: 'Cancel',
+                                confirmButtonText: 'Use this theme'
+                              })
+                              .then(async (result) => {
+                                if (!result.isConfirmed) return;
+                                localforage.setItem('utilitiesTheme', String(result));
+                              });
+                            break;
+                          case 'none':
+                            localforage.removeItem('utilitiesTheme');
+                            break;
+                          default:
+                            localforage.setItem('utilitiesTheme', String(result));
+                            break;
+                        }
+                      }
+                    });
+                  break;
               }
-            })
+            };
+          });
         }
       });
     },
@@ -1531,7 +1531,7 @@ export default {
           cancelButtonText: 'Cancel',
           confirmButtonText: 'Yes!'
         })
-        .then(async result => {
+        .then(async (result) => {
           if (!result.isConfirmed) return;
           console.log('johnathan: run the bot bro');
           console.log('barry: mk lemme just package up the code they made');
@@ -1542,7 +1542,7 @@ export default {
           const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
           function HasCustomBlocks() {
             let epic = false;
-            workspace.getAllBlocks().forEach(block => {
+            workspace.getAllBlocks().forEach((block) => {
               if (!epic && window.customBlocks.includes(block.type)) epic = true;
             });
             return epic;
@@ -1609,7 +1609,7 @@ export default {
               console.log(modifiedJScontent);
               return;
             }
-            fetch('https://469runtest.jeremygamer13.repl.co/?imbored=true', requestOptions).then(async response => {
+            fetch('https://469runtest.jeremygamer13.repl.co/?imbored=true', requestOptions).then(async (response) => {
               console.log(response);
               console.log('S4D sent a request, the response status code is', response.status);
               if (response.status >= 300 && response.status < 400) {
@@ -1624,7 +1624,7 @@ export default {
                 console.log('johnathan: :(');
                 console.log('barry: :(');
                 let morestuffIDK = response;
-                response.text().then(repons => {
+                response.text().then((repons) => {
                   swal.fire('Whoops!', `Something went wrong with the request. The server responded with status code <b>${String(morestuffIDK.status)}</b>. You may need to refresh the page or try again later as the server could be down.<br><br>Server Response:<br><code>${repons}</code>`, 'error');
                 });
               } else {
@@ -1649,7 +1649,7 @@ export default {
       // const wrapper = document.createElement('div');
       var temp1, temp2;
       console.log('fetching RBS console...');
-      const showMenu = function(content) {
+      const showMenu = function (content) {
         swal.fire({
           title: 'Public Error Console (used by the Run Button)',
           width: '1500px',
@@ -1662,8 +1662,8 @@ export default {
       };
       try {
         fetch('https://469runtest.jeremygamer13.repl.co/console')
-          .then(response => response.json())
-          .then(async data => {
+          .then((response) => response.json())
+          .then(async (data) => {
             var serverResponse = 'No response from the RBS... maybe try again later?';
             temp1 = String(data.code).replaceAll('□', '\n');
             temp2 = String(temp1).replaceAll('▣', '"');
@@ -1706,7 +1706,7 @@ if (localStorage.getItem('theme') == null) {
   if (localStorage.getItem('theme') === 'light') {
     document.querySelector('html').classList.add('light-them');
   } else {
-    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     await delay(1 * 1000);
     document.querySelector('html').classList.remove('light-them');
   }

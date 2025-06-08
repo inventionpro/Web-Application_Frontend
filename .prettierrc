@@ -1,9 +1,9 @@
 {
-    "tabWidth": 2,
-    "useTabs": false,
-    "semi": true,
-    "trailingComma": "none",
-    "printWidth": 800,
-    "singleQuote": true,
-    "proseWrap": "never"
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "trailingComma": "none",
+  "printWidth": 800,
+  "singleQuote": true,
+  "proseWrap": "never"
 }

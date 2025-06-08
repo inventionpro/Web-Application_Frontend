@@ -27,15 +27,13 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
-  var key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC)
-    .replaceAll("'", '')
-    .replaceAll('"', '');
+Blockly.JavaScript[blockName] = function (block) {
+  var key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC).replaceAll("'", '').replaceAll('"', '');
   if (key.charAt(0) == '(') {
     key.replace('(', '');
   }

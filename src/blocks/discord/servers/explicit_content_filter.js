@@ -24,12 +24,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['explicit_content_filter'] = function(block) {
+Blockly.JavaScript['explicit_content_filter'] = function (block) {
   var dropdown = block.getFieldValue('NAME');
   var code = dropdown;
   return [code, Blockly.JavaScript.ORDER_NONE];

@@ -20,12 +20,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['unbanned_event'] = function(block) {
+Blockly.JavaScript['unbanned_event'] = function (block) {
   var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
 
   var code = `s4d.client.on('guildBanRemove', async (unban) => {\n ${statements_code} \n });\n`;

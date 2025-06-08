@@ -24,12 +24,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const hash = Blockly.JavaScript.valueToCode(block, 'hash', Blockly.JavaScript.ORDER_ATOMIC);
   const text = Blockly.JavaScript.valueToCode(block, 'test', Blockly.JavaScript.ORDER_ATOMIC);
   return [`bcrypt.compareSync(${text}, ${hash})`, Blockly.JavaScript.ORDER_NONE];

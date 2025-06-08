@@ -9,7 +9,7 @@ import './functions';
 import Blockly from 'blockly/core';
 
 Blockly.Blocks['gsa_make_db_with_path_x'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'create a new db with path %1 .json',
       args0: [
@@ -28,13 +28,13 @@ Blockly.Blocks['gsa_make_db_with_path_x'] = {
   }
 };
 
-Blockly.JavaScript['gsa_make_db_with_path_x'] = function(block) {
+Blockly.JavaScript['gsa_make_db_with_path_x'] = function (block) {
   const path = Blockly.JavaScript.valueToCode(block, 'path', Blockly.JavaScript.ORDER_ATOMIC);
   return [`new Database(String(${path + '.json'}))`, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Blocks['gsa_bypass_type'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'force %1',
       args0: [
@@ -52,12 +52,12 @@ Blockly.Blocks['gsa_bypass_type'] = {
   }
 };
 
-Blockly.JavaScript['gsa_bypass_type'] = function(block) {
+Blockly.JavaScript['gsa_bypass_type'] = function (block) {
   return [Blockly.JavaScript.valueToCode(block, 'path', Blockly.JavaScript.ORDER_ATOMIC), Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Blocks['gsa_format_time'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'make time stamp from %1 with format %2',
       args0: [
@@ -81,12 +81,12 @@ Blockly.Blocks['gsa_format_time'] = {
   }
 };
 
-Blockly.JavaScript['gsa_format_time'] = function(block) {
+Blockly.JavaScript['gsa_format_time'] = function (block) {
   return [`String(moment(${Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC)}).format(${Blockly.JavaScript.valueToCode(block, 'format', Blockly.JavaScript.ORDER_ATOMIC)}))`, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Blocks['gsa_async'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       type: 'block_type',
       message0: 'async %1 %2',
@@ -108,7 +108,7 @@ Blockly.Blocks['gsa_async'] = {
   }
 };
 
-Blockly.JavaScript['gsa_async'] = function(block) {
+Blockly.JavaScript['gsa_async'] = function (block) {
   var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
   var code = `
 (async () => {
@@ -119,17 +119,15 @@ Blockly.JavaScript['gsa_async'] = function(block) {
 };
 
 Blockly.Blocks['gsa_create_new_jimp_image_mutator_block_hat'] = {
-  init: function() {
-    this.appendDummyInput()
-      .appendField('has fill color')
-      .appendField(new Blockly.FieldCheckbox('FALSE'), 'check');
+  init: function () {
+    this.appendDummyInput().appendField('has fill color').appendField(new Blockly.FieldCheckbox('FALSE'), 'check');
     this.setInputsInline(false);
     this.setColour('#BA4A9A');
   }
 };
 
 Blockly.Blocks['gsa_create_new_jimp_image'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       type: 'block_type',
       message0: 'create new jimp image with size %1 %2 then %3',
@@ -159,16 +157,16 @@ Blockly.Blocks['gsa_create_new_jimp_image'] = {
     this.setMutator(new Blockly.Mutator([]));
     this.isFilled = false;
   },
-  mutationToDom: function() {
+  mutationToDom: function () {
     const container = document.createElement('mutation');
     container.setAttribute('return', this.isFilled ? 'true' : 'false');
     return container;
   },
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     this.isFilled = xmlElement.getAttribute('return') == 'true';
     this.updateShape_();
   },
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     // create the main block
     var containerBlock = workspace.newBlock('gsa_create_new_jimp_image_mutator_block_hat');
     containerBlock.setFieldValue(this.isFilled ? 'true' : 'false', 'check');
@@ -176,17 +174,15 @@ Blockly.Blocks['gsa_create_new_jimp_image'] = {
 
     return containerBlock;
   },
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     this.isFilled = containerBlock.getFieldValue('check') == 'TRUE';
 
     this.updateShape_();
   },
-  updateShape_: function() {
+  updateShape_: function () {
     if (this.isFilled && !this.getInput('color')) {
       this.removeInput('code');
-      this.appendValueInput('color')
-        .setCheck('Colour')
-        .appendField('with color');
+      this.appendValueInput('color').setCheck('Colour').appendField('with color');
       this.appendStatementInput('code').appendField('then');
     } else if (!this.isFilled && this.getInput('color')) {
       this.removeInput('color');
@@ -194,7 +190,7 @@ Blockly.Blocks['gsa_create_new_jimp_image'] = {
   }
 };
 
-Blockly.JavaScript['gsa_create_new_jimp_image'] = function(block) {
+Blockly.JavaScript['gsa_create_new_jimp_image'] = function (block) {
   var sizex = Blockly.JavaScript.valueToCode(block, 'sx', Blockly.JavaScript.ORDER_ATOMIC);
   var sizey = Blockly.JavaScript.valueToCode(block, 'sy', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
@@ -207,7 +203,7 @@ new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${Blockly.JavaScript.valueToCode
 };
 
 Blockly.Blocks['gsa_typeof'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'type of %1',
       args0: [
@@ -225,7 +221,7 @@ Blockly.Blocks['gsa_typeof'] = {
   }
 };
 
-Blockly.JavaScript['gsa_typeof'] = function(block) {
+Blockly.JavaScript['gsa_typeof'] = function (block) {
   const thing = Blockly.JavaScript.valueToCode(block, 'thing', Blockly.JavaScript.ORDER_ATOMIC);
   return [`typeof ${thing}`, Blockly.JavaScript.ORDER_ATOMIC];
 };

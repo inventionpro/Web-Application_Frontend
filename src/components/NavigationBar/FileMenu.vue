@@ -79,7 +79,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   window.BlocklyService.Blocks = {};
   window.BlocklyService.JavaScript = {};
   window.BlocklyService.JavaScript = Blockly.JavaScript;
-  blocks.forEach(block => {
+  blocks.forEach((block) => {
     /* eslint-disable */
     let bringBack_setTimeout;
     let bringBack_setInterval;
@@ -90,7 +90,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
     let works = true;
     try {
       Blockly.Blocks[block.name] = {
-        init: function() {
+        init: function () {
           eval(block.blocks);
         }
       };
@@ -119,9 +119,9 @@ window.fetchCustomBlocks = fetchCustomBlocks;
 export default {
   name: 'filemenu',
   mounted() {
-    localforage.getItem('utilitiesShortcuts').then(item => {
+    localforage.getItem('utilitiesShortcuts').then((item) => {
       if (item == false) return;
-      window.addEventListener('keydown', e => {
+      window.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key == 's') {
           e.preventDefault();
           if (e.altKey) {
@@ -164,7 +164,7 @@ export default {
           },
           allowOutsideClick: false
         })
-        .then(async result => {
+        .then(async (result) => {
           if (result.isDismissed) {
             return;
           } else if (result.isConfirmed) {
@@ -174,7 +174,7 @@ export default {
           const documentName = file.name.split('.').slice(0, file.name.split('.').length - 1);
           document.querySelector('#docName').textContent = documentName;
           const reader = new FileReader();
-          reader.onload = async e => {
+          reader.onload = async (e) => {
             if (file.type == 'text/xml') {
               const decoder = new TextDecoder('utf-8');
               const raw = decoder.decode(e.target.result);
@@ -183,7 +183,7 @@ export default {
               return;
             }
             JSZip.loadAsync(e.target.result)
-              .then(async data => {
+              .then(async (data) => {
                 const dataObject = {};
                 if (data.file('blocks.xml')) {
                   dataObject.xml = await data.file('blocks.xml').async('string');
@@ -193,7 +193,7 @@ export default {
                 }
                 return dataObject;
               })
-              .then(dataobj => {
+              .then((dataobj) => {
                 if (dataobj.xml == null) return;
                 function load() {
                   const xml = Blockly.Xml.textToDom(dataobj.xml);
@@ -205,7 +205,7 @@ export default {
                 }
                 fetchCustomBlocks(dataobj, load);
               })
-              .catch(err => {
+              .catch((err) => {
                 this.$toast.open({
                   message: this.$t('load.error'),
                   type: 'error',
@@ -234,7 +234,7 @@ export default {
         .generateAsync({
           type: 'blob'
         })
-        .then(blob => {
+        .then((blob) => {
           const a = document.createElement('a');
           a.style = 'display: none';
           document.body.appendChild(a);
@@ -260,7 +260,7 @@ export default {
         .generateAsync({
           type: 'blob'
         })
-        .then(async blob => {
+        .then(async (blob) => {
           const fileHandle = await window.showSaveFilePicker({
             types: [
               {

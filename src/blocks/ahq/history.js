@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 const blockName = 's4d_history';
-//block working now working
+
 const blockData = {
   message0: 'History of s4d!',
   colour: '#40BF4A',
@@ -11,11 +11,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = [
     `\`s4d means scratch for discord
     s4d was created mainly by \\\`Androz\\\`

@@ -29,12 +29,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
   const what = Blockly.JavaScript.valueToCode(block, 'what', Blockly.JavaScript.ORDER_ATOMIC);
   const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');

@@ -12,12 +12,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = [`Object.keys(JSONdataS4D).length`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

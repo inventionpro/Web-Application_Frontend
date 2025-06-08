@@ -21,10 +21,10 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   },
-  onchange: function() {
+  onchange: function () {
     let A = this.getFieldValue('A');
     console.log(A);
     if (A != 1) {
@@ -36,7 +36,7 @@ Blockly.Blocks[blockName] = {
   isHiden: true
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const A = block.getFieldValue('A');
   const code = `${A}`;
   return code;

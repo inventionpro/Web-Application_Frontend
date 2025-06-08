@@ -21,12 +21,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var statements_then = Blockly.JavaScript.statementToCode(block, 'then');
   // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_Replit_DB.list().then(async (S4D_APP_Replit_DB_Data) => {${statements_then}});;\n`;

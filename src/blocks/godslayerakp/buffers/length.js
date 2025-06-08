@@ -18,13 +18,13 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     this.setInputsInline(true);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const buf = Blockly.JavaScript.valueToCode(block, 'buffer', Blockly.JavaScript.ORDER_ATOMIC);
   return [`${buf}.length`, Blockly.JavaScript.ORDER_ATOMIC];
 };

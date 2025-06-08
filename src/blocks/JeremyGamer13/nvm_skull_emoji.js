@@ -1,6 +1,6 @@
 import Blockly from 'blockly/core';
 Blockly.Blocks['jg_api_express_main'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'Create express site on port %3 then %1 %2',
       colour: '#4abc79',
@@ -23,7 +23,7 @@ Blockly.Blocks['jg_api_express_main'] = {
   }
 };
 
-Blockly.JavaScript['jg_api_express_main'] = function(block) {
+Blockly.JavaScript['jg_api_express_main'] = function (block) {
   const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
   const port = Blockly.JavaScript.valueToCode(block, 'PORT', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `let S4D_APP_EXPRESS = require('express')

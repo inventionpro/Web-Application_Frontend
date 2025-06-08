@@ -29,12 +29,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const LABEL = block.getFieldValue('LABEL');
   const STATEMENTS = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `${LABEL.replaceAll(' ', '_').replace(/[!@#\$%\^&\*\(\)-=\]\[\|{}\+`~'":;\?\/\.<>,\/]/g, '_')}: {

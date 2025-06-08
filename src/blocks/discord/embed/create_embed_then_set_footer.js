@@ -25,12 +25,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const footer = Blockly.JavaScript.valueToCode(block, 'FOOTER', Blockly.JavaScript.ORDER_ATOMIC);
   const footerimage = Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `embed.setFooter(${footer},${footerimage});\n`;

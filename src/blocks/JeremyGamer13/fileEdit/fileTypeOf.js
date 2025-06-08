@@ -18,12 +18,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 //String(('input'.slice((('input'.lastIndexOf('.') + 1 + 1) - 1), 'input'.length).toLowerCase()))
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   // stuff    return `fs.readFileSync(` + fileName + `, 'utf8')`;
   const fileName = Blockly.JavaScript.valueToCode(block, 'fileName', Blockly.JavaScript.ORDER_ATOMIC);
   const code = [`${fileName}.substring(${fileName}.lastIndexOf('.'))`, Blockly.JavaScript.ORDER_NONE];

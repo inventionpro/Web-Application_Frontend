@@ -27,12 +27,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const statements = Blockly.JavaScript.statementToCode(block, 'THEN');
   const URL = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `QRCode.toString(${URL}, { type: "image" }, async (err, QR) => {

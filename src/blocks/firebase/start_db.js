@@ -55,12 +55,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const apiKey = Blockly.JavaScript.valueToCode(block, 'apiKey', Blockly.JavaScript.ORDER_ATOMIC);
   const authDomain = Blockly.JavaScript.valueToCode(block, 'authDomain', Blockly.JavaScript.ORDER_ATOMIC);
   const databaseURL = Blockly.JavaScript.valueToCode(block, 'databaseURL', Blockly.JavaScript.ORDER_ATOMIC);

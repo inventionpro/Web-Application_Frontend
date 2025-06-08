@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 const blockName = 'not_perms_ahq_hndler';
-//block working now working
+
 const blockData = {
   message0: 'Not MOD Perms Message',
   colour: '#33cc00',
@@ -11,11 +11,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = ['(ahqhandler[`not-perms`])', Blockly.JavaScript.ORDER_NONE];
   return code;
 };

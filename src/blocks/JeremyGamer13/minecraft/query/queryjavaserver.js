@@ -31,12 +31,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const ip = Blockly.JavaScript.valueToCode(block, 'IP', Blockly.JavaScript.ORDER_ATOMIC);
   const port = Blockly.JavaScript.valueToCode(block, 'PORT', Blockly.JavaScript.ORDER_ATOMIC);
   const then = Blockly.JavaScript.statementToCode(block, 'THEN');

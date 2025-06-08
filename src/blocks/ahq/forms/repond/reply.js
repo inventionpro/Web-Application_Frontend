@@ -25,12 +25,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 Blockly.Blocks['s4d_ahq_mutator_t'] = {
-  init: function() {
+  init: function () {
     this.setColour('#CECDCE');
     this.setTooltip('');
     this.setHelpUrl('');
@@ -39,7 +39,7 @@ Blockly.Blocks['s4d_ahq_mutator_t'] = {
 const BORDER_MUTATOR_MIXIN = {
   inputs_: [false, false, false],
 
-  mutationToDom: function() {
+  mutationToDom: function () {
     if (!this.inputs_) {
       return null;
     }
@@ -50,14 +50,14 @@ const BORDER_MUTATOR_MIXIN = {
     return container;
   },
 
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     for (let i = 0; i < this.inputs_.length; i++) {
       this.inputs_[i] = xmlElement.getAttribute(BORDER_FIELDS[i].toLowerCase()) == 'true';
     }
     this.updateShape_();
   },
 
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     const containerBlock = workspace.newBlock('s4d_ahq_mutator_t');
     for (let i = 0; i < this.inputs_.length; i++) {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
@@ -71,7 +71,7 @@ const BORDER_MUTATOR_MIXIN = {
     return containerBlock;
   },
 
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     // Set states
     for (let i = 0; i < this.inputs_.length; i++) {
       this.inputs_[i] = containerBlock.getFieldValue(BORDER_FIELDS[i].toUpperCase()) == 'TRUE';
@@ -79,24 +79,21 @@ const BORDER_MUTATOR_MIXIN = {
     this.updateShape_();
   },
 
-  updateShape_: function() {
+  updateShape_: function () {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.getInput(BORDER_FIELDS[i].toUpperCase())) this.removeInput(BORDER_FIELDS[i].toUpperCase());
     }
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase())
-          .setCheck(BORDER_TYPES[i])
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
       }
     }
   }
 };
 
 Blockly.Extensions.registerMutator('s4d_ahq_mutator_t', BORDER_MUTATOR_MIXIN, null, ['']);
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   let code = [`await i.reply({`];
   const Id = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_NONE);
   const Lavbel = Blockly.JavaScript.valueToCode(block, 'EMBED', Blockly.JavaScript.ORDER_NONE);
@@ -108,12 +105,7 @@ Blockly.JavaScript[blockName] = function(block) {
     code.push(`embeds: [${Lavbel.replace("'", '').replace("'", '')}],`);
   }
   if (Style) {
-    code.push(
-      `components: [new MessageActionRow().addComponents(${Style.replace("'", '')
-        .replace("'", '')
-        .replace('(', '')
-        .replace(')', '')})],`
-    );
+    code.push(`components: [new MessageActionRow().addComponents(${Style.replace("'", '').replace("'", '').replace('(', '').replace(')', '')})],`);
   }
   code.push(`ephemeral: ${Blockly.JavaScript.valueToCode(block, 'ephemeral', Blockly.JavaScript.ORDER_NONE)}\n})`);
   return code.join('\n');

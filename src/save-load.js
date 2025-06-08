@@ -48,7 +48,7 @@ export default async function register(self) {
           });
         }
       }
-      workspace.addChangeListener(event => {
+      workspace.addChangeListener((event) => {
         if (DISABLED_EVENTS.includes(event.type)) return;
         handle(workspace);
       });

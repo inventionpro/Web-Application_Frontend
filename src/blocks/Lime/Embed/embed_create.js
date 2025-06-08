@@ -25,12 +25,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['s4d_embed_create'] = function(block) {
+Blockly.JavaScript['s4d_embed_create'] = function (block) {
   let name_value = Blockly.JavaScript.valueToCode(block, 'name_value', Blockly.JavaScript.ORDER_ATOMIC);
   let statements_then = Blockly.JavaScript.statementToCode(block, 'THEN');
   name_value = name_value.split(' ');

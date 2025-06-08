@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 const blockName = 'server_form_ahq';
-//block working now working
+
 const blockData = {
   message0: 'Form Server',
   colour: '#33cc00',
@@ -10,11 +10,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = ['(i.guild)', Blockly.JavaScript.ORDER_NONE];
   return code;
 };

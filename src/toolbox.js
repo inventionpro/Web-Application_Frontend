@@ -1,4 +1,4 @@
-export default favorites => {
+export default (favorites) => {
   return `<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
   <category name="Search" colour="#42556e" css-icon="customIcon2 fa fa-search">
     <label text="Search category!"/>
@@ -8,13 +8,13 @@ export default favorites => {
   </category>
   <category name="Favorites" colour="#FFFF00" css-icon="customIcon fa fa-star">
     <label text="Add your favorite blocks here by right clicking them and pressing &quot;Add to favorite!&quot;"/>
-    ${favorites === null ? '' : favorites.map(fav => `<block type="${fav}"/>`)}
+    ${favorites === null ? '' : favorites.map((fav) => `<block type="${fav}"/>`)}
   </category>
   <category name="Custom Blocks" colour="#808080" css-icon="customIcon2 fa fa-gear" hidden="${String(!window.isInS4DDebugMode)}">
     <label text="Custom blocks are currently in testing!"/>
     <label text="If you found any vulnerabilities or bugs, let us know!"/>
     <button text="Create block..." callbacs="LAUNCHCUSTOMBLOCKBUILDER"/>
-    ${window.customBlocks.map(custom => `<block type="${custom}"/>`).join('\n')}
+    ${window.customBlocks.map((custom) => `<block type="${custom}"/>`).join('\n')}
   </category>
   <sep class="bt"/>
   <category name="Logic" colour="#5b80a5">

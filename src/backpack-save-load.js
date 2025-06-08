@@ -10,7 +10,7 @@ export default async function Load(backpack) {
 }
 async function Save(backpack) {
   // TODO: Save only when necessary
-  setInterval(async function() {
+  setInterval(async function () {
     console.log('saving backpack');
     localforage.setItem('backpack3', backpack.getContents());
   }, 1000);

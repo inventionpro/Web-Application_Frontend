@@ -24,12 +24,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
   const code = [`result_java.motd.${type}`, Blockly.JavaScript.ORDER_NONE];
   return code;

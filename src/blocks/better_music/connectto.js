@@ -19,12 +19,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const voice = Blockly.JavaScript.valueToCode(block, 'VOICECHANNEL', Blockly.JavaScript.ORDER_ATOMIC) || 's4dmessage.member.voice.channel';
   const code = `
     await queue.join(${voice});

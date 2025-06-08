@@ -12,11 +12,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   return ['await qdb.all()\n', Blockly.JavaScript.ORDER_ATOMIC];
 };

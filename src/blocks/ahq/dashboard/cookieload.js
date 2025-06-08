@@ -2,7 +2,7 @@ import * as Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'load_cookie';
-//block working now working
+
 const blockData = {
   message0: 'cookie',
   colour: '#0EB22B',
@@ -12,11 +12,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = [`cookies_config`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

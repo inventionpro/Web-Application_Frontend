@@ -3,11 +3,11 @@ import Blockly from 'blockly/core';
 const blockName = 'get_reaction_member';
 
 Blockly.Blocks[blockName] = {
-  validate: function(newValue) {
+  validate: function (newValue) {
     this.getSourceBlock().updateConnections(newValue);
     return newValue;
   },
-  init: function() {
+  init: function () {
     //this.jsonInit(blockData);
     var options = [
       ['first', 'first'],
@@ -22,7 +22,7 @@ Blockly.Blocks[blockName] = {
     this.setInputsInline(true);
     this.setColour('#187795');
   },
-  updateConnections: function(newValue) {
+  updateConnections: function (newValue) {
     this.removeInput('mtype', true);
     this.removeInput('ee', true);
     if (newValue == 'first') {
@@ -38,7 +38,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('type');
   const cmem = Blockly.JavaScript.valueToCode(block, 'mtype', Blockly.JavaScript.ORDER_ATOMIC);
 

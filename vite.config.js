@@ -1,12 +1,12 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
   plugins: [
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: tag => ['field', 'block', 'category', 'xml', 'mutation', 'value', 'sep'].includes(tag)
+          isCustomElement: (tag) => ['field', 'block', 'category', 'xml', 'mutation', 'value', 'sep'].includes(tag)
         }
       }
     })
@@ -20,4 +20,4 @@ export default defineConfig({
     compress: true,
     host: true
   }
-})
+});

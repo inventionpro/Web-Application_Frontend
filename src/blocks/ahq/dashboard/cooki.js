@@ -2,7 +2,7 @@ import * as Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'make_cookie';
-//block working now working
+
 const blockData = {
   type: 'block_type',
   message0: 'make cookie %1 Mongo URL %2 ',
@@ -22,11 +22,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const code = `var cookieParser = require('cookie-parser');
     var session = require('express-session');
     var MongoStore = require('connect-mongo');

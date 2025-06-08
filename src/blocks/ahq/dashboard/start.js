@@ -8,7 +8,7 @@ const BORDER_TYPES = ['String', 'String', 'String', 'String', 'String', 'String'
 const names = ['Bot Name', 'Bot Description', 'Support Server URL', 'Bot Invite URL', 'Replit Base URL', 'Client Secret', 'Access Permissions', 'Mongo DB URL (cookies)'];
 
 const blockName = 'start_ahq_dash';
-//block working now working
+
 const blockData = {
   type: 'block_type',
   message0: 'start dashboard',
@@ -19,12 +19,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 Blockly.Blocks['dash_setup'] = {
-  init: function() {
+  init: function () {
     this.setColour('#CECDCE');
     this.setTooltip('');
     this.setHelpUrl('');
@@ -33,7 +33,7 @@ Blockly.Blocks['dash_setup'] = {
 const BORDER_MUTATOR_MIXIN = {
   inputs_: [true, true, true, true, true, true, false, false],
 
-  mutationToDom: function() {
+  mutationToDom: function () {
     if (!this.inputs_) {
       return null;
     }
@@ -44,14 +44,14 @@ const BORDER_MUTATOR_MIXIN = {
     return container;
   },
 
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     for (let i = 0; i < this.inputs_.length; i++) {
       this.inputs_[i] = xmlElement.getAttribute(BORDER_FIELDS[i].toLowerCase()) == 'true';
     }
     this.updateShape_();
   },
 
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     const containerBlock = workspace.newBlock('dash_setup');
     for (let i = 0; i < this.inputs_.length; i++) {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
@@ -65,7 +65,7 @@ const BORDER_MUTATOR_MIXIN = {
     return containerBlock;
   },
 
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     // Set states
     for (let i = 0; i < this.inputs_.length; i++) {
       this.inputs_[i] = containerBlock.getFieldValue(BORDER_FIELDS[i].toUpperCase()) == 'TRUE';
@@ -73,17 +73,14 @@ const BORDER_MUTATOR_MIXIN = {
     this.updateShape_();
   },
 
-  updateShape_: function() {
+  updateShape_: function () {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.getInput(BORDER_FIELDS[i].toUpperCase())) this.removeInput(BORDER_FIELDS[i].toUpperCase());
     }
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase())
-          .setCheck(BORDER_TYPES[i])
-          .setAlign(Blockly.ALIGN_LEFT)
-          .appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_LEFT).appendField(names[i]);
       }
     }
   }
@@ -95,7 +92,7 @@ const BORDER_MUTATOR_MIXIN = {
 // const names = ["Bot Name", "Bot Description", "Support Server URL", "Bot Invite URL", "Replit Base URL", "Client Secret", "Access Permissions", "Mongo DB URL (cookies)"];
 //const types = [true, true, true, true, true, true, false, false]
 Blockly.Extensions.registerMutator('dash_setup', BORDER_MUTATOR_MIXIN, null, ['']);
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   let extra = [];
   if (Blockly.JavaScript.valueToCode(block, 'P_D_PERMS', Blockly.JavaScript.ORDER_NONE)) {
     extra.push(`,\npermissions: ${Blockly.JavaScript.valueToCode(block, 'P_D_PERMS', Blockly.JavaScript.ORDER_NONE)}`);

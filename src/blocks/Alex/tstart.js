@@ -18,12 +18,12 @@ const blockData = {
   helpUrl: ''
 };
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const then = Blockly.JavaScript.statementToCode(block, 'THEN');
   const code = `s4d.client.on('typingStart', async (s4dTyping) => {\n${then}\n});\n`;
   return code;

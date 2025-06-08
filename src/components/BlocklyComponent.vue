@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="blocklyDiv" ref="blocklyDiv" id="blocklyDiv"></div>
-    <xml ref="blocklyToolbox" style="font-family:sans-serif">
+    <xml ref="blocklyToolbox" style="font-family: sans-serif">
       <slot></slot>
     </xml>
   </div>
@@ -39,25 +39,22 @@ let coolbox = toolbox([]).split('\n');
 let resbox = {};
 let working = [];
 let commented = 0;
-coolbox.forEach(line => {
+coolbox.forEach((line) => {
   if (line.includes('<!--')) commented++;
   if (line.includes('-->')) commented--;
   if (line.includes('-->') && line.includes('<!--')) commented++;
   if (commented < 0) commented = 0;
   if (commented < 1) {
     if (line.includes('<category name="') && !line.includes('"/>')) {
-      let temp = line
-        .replaceAll(' ', '%20')
-        .replaceAll('"', '" ')
-        .replaceAll('=" ', '"')
-        .split('"')[1]
-        .replaceAll('%20', ' ');
+      let temp = line.replaceAll(' ', '%20').replaceAll('"', '" ').replaceAll('=" ', '"').split('"')[1].replaceAll('%20', ' ');
       working.push(temp);
     }
     if (line.includes('<block') && working.length > 0 && commented < 1) {
       let block = line.split('"');
       const path = "'" + working.join('>') + "'";
-      if (block == null) {return;}
+      if (block == null) {
+        return;
+      }
       block = block[1];
 
       if (block == 'text') {
@@ -85,7 +82,7 @@ let blocks = Object.getOwnPropertyNames(resbox); // define blocks so pre search 
 let HIDEN_BLOCKS = ['frost_image', 'frost_drop1', 'colour_picker', 'frost_translate', 'variables_get', 'procedures_callnoreturn', 'procedures_callreturn', 'variables_get_dynamic', 'variables_set_dynamic', 'variables_set', 'math_change', 'procedures_ifreturn', 'procedures_defreturn', 'procedures_defnoreturn', 'controls_ifelse', 'jg_blocklyfp_load_workspace', 'jg_blocklyfp_load_workspace_website', 'lasercat_jg_case_default_INTERNAL_default', 'lasercat_jg_case_default_INTERNAL_case4', 'lasercat_jg_case_default_INTERNAL_case3', 'lasercat_jg_case_default_INTERNAL_case2', 'lasercat_jg_case_default_INTERNAL_case1', 'jg_events_all_label', 'jg_testing_urmother_epic_block_test_deez_mf_nuts'];
 
 let preadded = [];
-BlocklyB.filter(block => {
+BlocklyB.filter((block) => {
   if (Blockly.Blocks[block].isHiden || Blockly.JavaScript[block] == null) {
     HIDEN_BLOCKS.push(block);
     preadded.push(block);
@@ -105,22 +102,18 @@ export default {
   },
   async mounted() {
     const allow_toolbox_search = false;
-    const isMobile = function() {
+    const isMobile = function () {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     };
-    const validateForXML = function(text) {
-      return String(text)
-        .replaceAll('&', '&amp;')
-        .replaceAll('\n', '&amp;#10;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;');
+    const validateForXML = function (text) {
+      return String(text).replaceAll('&', '&amp;').replaceAll('\n', '&amp;#10;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
     };
     function prepToolbox(toolbox_content, searching, favorites, pooopewwweewwww, searchparameter) {
       const default_max_length = 250;
       let CATEGORYCONTENT = `<label text="Error failed to get block(s)..." web-class="boldtext"></label>`;
 
       if (searching == 'baiuyfg8iu4ewf643o8ir') {
-        blocks.forEach(block => {
+        blocks.forEach((block) => {
           let xml = Blockly.Xml.textToDom(`<block type="${block}"/>`);
           block = Blockly.Xml.domToBlock(xml, pooopewwweewwww);
           block.moveBy(Math.round(Math.random() * 5000), Math.round(Math.random() * 5000));
@@ -128,7 +121,7 @@ export default {
         });
       }
       if (searching == 'f9u42r8hg329rehsfhoiewgf37') {
-        blocks.forEach(block => {
+        blocks.forEach((block) => {
           const xml = Blockly.Xml.textToDom(`<xml><block type="${block}"/></xml>`);
           Blockly.Xml.appendDomToWorkspace(xml, pooopewwweewwww);
         });
@@ -138,11 +131,11 @@ export default {
         // search category controler
         // why are so many blocks not defined before this all runs 😭
         const BlocklyB = Object.getOwnPropertyNames(Blockly.Blocks);
-        blocks = BlocklyB.filter(block => Blockly.Blocks[block].init != null);
+        blocks = BlocklyB.filter((block) => Blockly.Blocks[block].init != null);
 
         let warnings = [];
 
-        BlocklyB.filter(block => {
+        BlocklyB.filter((block) => {
           if (Blockly.Blocks[block].isHiden && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
             console.warn(`${block} is already registerd as hiden! either remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS" or remove the "isHiden" tag from the block defnintion`);
             warnings.push(block);
@@ -161,23 +154,23 @@ export default {
           console.log(`warnings: [${warnings.join('\n  ')}
 ]`);
           console.log(`resulting hiden list: [
-            "${HIDEN_BLOCKS.filter(block => !preadded.includes(block) && !warnings.includes(block)).join('",\n            "')}"
+            "${HIDEN_BLOCKS.filter((block) => !preadded.includes(block) && !warnings.includes(block)).join('",\n            "')}"
           ]`);
         }
 
         searchparameter = searchparameter.replaceAll(/[^a-zA-Z0-9_]/gm, '_').toLowerCase();
-        let search_res = blocks.filter(block => (block.includes(searchparameter) && !HIDEN_BLOCKS.includes(block)) || (searchparameter == 'hidden' && HIDEN_BLOCKS.includes(block)));
+        let search_res = blocks.filter((block) => (block.includes(searchparameter) && !HIDEN_BLOCKS.includes(block)) || (searchparameter == 'hidden' && HIDEN_BLOCKS.includes(block)));
 
         if (search_res.length < 1) {
           CATEGORYCONTENT = `<label text="No blocks where found with &quot;${searchparameter}&quot; in the name..." web-class="boldtext"></label>`;
         }
         if (search_res.length > 0) {
           CATEGORYCONTENT = `
-            <label text="Found ${search_res.length} blocks with &quot;${searchparameter}&quot; in there name${search_res.length>100?' showing first 100':''}" web-class="boldtext"></label>
+            <label text="Found ${search_res.length} blocks with &quot;${searchparameter}&quot; in there name${search_res.length > 100 ? ' showing first 100' : ''}" web-class="boldtext"></label>
             <label text="ㅤ" web-class="boldtext"></label>
             ${search_res
               .slice(0, 100)
-              .map(block => {
+              .map((block) => {
                 return `<label text="${block.replace(searchparameter, `${searchparameter.toUpperCase()}`)} ${resbox[block] == null ? ' isnt in the toolbox' : 'is in ' + resbox[block].join(' and ')}" web-class="boldtext"></label>
 <block type="${block}"/>`;
               })
@@ -185,17 +178,19 @@ export default {
         }
       } else {
         const lessthan_350 = blocks.length < default_max_length;
-        let newblocks = (lessthan_350 ? blocks : blocks.slice(0, default_max_length)).filter(block => !HIDEN_BLOCKS.includes(block));
+        let newblocks = (lessthan_350 ? blocks : blocks.slice(0, default_max_length)).filter((block) => !HIDEN_BLOCKS.includes(block));
         if (newblocks.length > 0) {
           CATEGORYCONTENT = `<label text="ㅤ" web-class="boldtext"></label>
-${newblocks.map(block => `<block type="${block}"/>`).join('\n')}
+${newblocks.map((block) => `<block type="${block}"/>`).join('\n')}
 ${!lessthan_350 ? `<label text="${blocks.length - default_max_length} blocks left..." web-class="boldtext"></label>` : ''}`;
         }
       }
-      var returned_stuff = toolbox_content.replace('<!-- CATEGORY_CONTENT_VARIABLE_GOES_HERE_897489712470376894703168263487623 -->',
+      var returned_stuff = toolbox_content.replace(
+        '<!-- CATEGORY_CONTENT_VARIABLE_GOES_HERE_897489712470376894703168263487623 -->',
         `<label text="There are currently ${blocks.length} blocks in S4D." web-class="boldtext"></label>
 <label text="ㅤ" web-class="boldtext"></label>
-${CATEGORYCONTENT}`);
+${CATEGORYCONTENT}`
+      );
 
       // for custom categories
       let urlParams = new URLSearchParams(window.location.search);
@@ -227,14 +222,7 @@ ${CATEGORYCONTENT}`);
       var repeat_end = toolboxArray.length;
       for (var count = 0; count < repeat_end; count++) {
         if (toolboxArray[loop].includes('<block type="')) {
-          pushed = toolboxArray[loop]
-            .replaceAll(' ', '')
-            .replaceAll('blocktype="', '')
-            .replaceAll('/', '')
-            .replaceAll('<', '')
-            .replaceAll('"', '')
-            .replaceAll("'", '')
-            .replaceAll('\t', '');
+          pushed = toolboxArray[loop].replaceAll(' ', '').replaceAll('blocktype="', '').replaceAll('/', '').replaceAll('<', '').replaceAll('"', '').replaceAll("'", '').replaceAll('\t', '');
           pushed = pushed.slice(0, pushed.indexOf('>'));
           if (remove_underscore) {
             pushed = pushed.replaceAll('_', ' ');
@@ -249,10 +237,10 @@ ${CATEGORYCONTENT}`);
     if (allow_toolbox_search) {
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Search for block',
-        preconditionFn: function() {
+        preconditionFn: function () {
           return 'enabled';
         },
-        callback: function() {
+        callback: function () {
           var new_toolbox_xml = prepToolbox(toolbox(val), true, val);
           workspace.updateToolbox(new_toolbox_xml);
         },
@@ -262,11 +250,11 @@ ${CATEGORYCONTENT}`);
       });
     }
 
-    localforage.getItem('utilitiesShortcuts').then(item => {
+    localforage.getItem('utilitiesShortcuts').then((item) => {
       if (item != false) {
-        window.addEventListener('keydown', evt => {
+        window.addEventListener('keydown', (evt) => {
           if (evt.altKey) {
-            if (['t','n','m','c','e','a','w','b','i','=','N','A'].includes(evt.key)) {
+            if (['t', 'n', 'm', 'c', 'e', 'a', 'w', 'b', 'i', '=', 'N', 'A'].includes(evt.key)) {
               let blockToPlace = 'text';
               if (evt.key == 't') {
                 blockToPlace = 'text';
@@ -338,10 +326,10 @@ ${CATEGORYCONTENT}`);
     window.s4dDebugEvents.push(() => {
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn block via Internal name',
-        preconditionFn: function() {
+        preconditionFn: function () {
           return 'enabled';
         },
-        callback: function() {
+        callback: function () {
           let input = prompt('Block Internal Name');
           if (!input) {
             return;
@@ -360,10 +348,10 @@ ${CATEGORYCONTENT}`);
       });
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn all toolblocks',
-        preconditionFn: function() {
+        preconditionFn: function () {
           return 'enabled';
         },
-        callback: function() {
+        callback: function () {
           prepToolbox(toolbox(val), 'baiuyfg8iu4ewf643o8ir', null, workspace);
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -372,10 +360,10 @@ ${CATEGORYCONTENT}`);
       });
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn all toolblocks (ordered)',
-        preconditionFn: function() {
+        preconditionFn: function () {
           return 'enabled';
         },
-        callback: function() {
+        callback: function () {
           prepToolbox(toolbox(val), 'f9u42r8hg329rehsfhoiewgf37', null, workspace);
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -384,12 +372,12 @@ ${CATEGORYCONTENT}`);
       });
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Recolor all blocks',
-        preconditionFn: function() {
+        preconditionFn: function () {
           return 'enabled';
         },
-        callback: function() {
+        callback: function () {
           let color = prompt('New color?');
-          workspace.getAllBlocks().forEach(block => {
+          workspace.getAllBlocks().forEach((block) => {
             try {
               if (color == 'random') {
                 block.setColour(Math.floor(Math.random() * 0xffffff).toString(16));
@@ -405,10 +393,10 @@ ${CATEGORYCONTENT}`);
       });
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Log Workspace XML',
-        preconditionFn: function() {
+        preconditionFn: function () {
           return 'enabled';
         },
-        callback: function() {
+        callback: function () {
           console.log(Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace)));
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -446,14 +434,14 @@ ${CATEGORYCONTENT}`);
       }
       counter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="color:rgb(${rgb});">${blocks} block${plural}</p>` + bold[1];
     }
-    localforage.getItem('hide-blockcount').then(item => {
+    localforage.getItem('hide-blockcount').then((item) => {
       if (String(item) == 'true') {
         let counter = document.getElementById('block-counter');
         counter.remove();
       }
     });
     window.addEventListener('click', () => {
-      localforage.getItem('hide-blockcount').then(item => {
+      localforage.getItem('hide-blockcount').then((item) => {
         if (String(item) == 'true') {
           return;
         }
@@ -461,7 +449,7 @@ ${CATEGORYCONTENT}`);
       });
     });
     window.addEventListener('keydown', () => {
-      localforage.getItem('hide-blockcount').then(item => {
+      localforage.getItem('hide-blockcount').then((item) => {
         if (String(item) == 'true') {
           return;
         }
@@ -472,10 +460,10 @@ ${CATEGORYCONTENT}`);
     window.s4dDebugEvents.push(() => {
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Log all Toolbox blocks',
-        preconditionFn: function() {
+        preconditionFn: function () {
           return 'enabled';
         },
-        callback: function() {
+        callback: function () {
           logtoolblocks(true);
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -512,7 +500,7 @@ ${CATEGORYCONTENT}`);
 
       canvas.width = newWidth;
       canvas.height = newHeight;
-      img.onload = function() {
+      img.onload = function () {
         context.drawImage(img, 0, 0, width, height, 0, 0, canvas.width, canvas.height);
         try {
           var dataUri = canvas.toDataURL('image/png');
@@ -554,10 +542,10 @@ ${CATEGORYCONTENT}`);
 
       var css = [].slice
         .call(document.head.querySelectorAll('style'))
-        .filter(function(el) {
+        .filter(function (el) {
           return /\.blocklySvg/.test(el.innerText) || el.id.indexOf('blockly-') === 0;
         })
-        .map(function(el) {
+        .map(function (el) {
           return el.innerText;
         })
         .join('\n');
@@ -572,8 +560,8 @@ ${CATEGORYCONTENT}`);
       svgToPng_(data, width, height, callback);
     }
 
-    Blockly.downloadScreenshot = function(workspace) {
-      workspaceToSvg_(workspace, function(datauri) {
+    Blockly.downloadScreenshot = function (workspace) {
+      workspaceToSvg_(workspace, function (datauri) {
         var a = document.createElement('a');
         a.download = 'screenshot.png';
         a.target = '_self';
@@ -661,7 +649,7 @@ ${CATEGORYCONTENT}`);
             toolbox.refreshSelection()
         });
         */
-    workspace.registerButtonCallback('LAUNCHCUSTOMBLOCKBUILDER', function() {
+    workspace.registerButtonCallback('LAUNCHCUSTOMBLOCKBUILDER', function () {
       const menu = blocklyModule.menus.createMenu({
         width: 1280,
         height: 720,
@@ -743,7 +731,7 @@ ${CATEGORYCONTENT}`);
         if (customBlocksInMemory == window.customBlocks.length) return;
         console.log('updated custom block list!');
         customBlockDeletorDiv.innerHTML = '';
-        window.customBlocks.forEach(blockName => {
+        window.customBlocks.forEach((blockName) => {
           const button = document.createElement('button');
           let block = blockName;
           const name = String(block.substring(block.lastIndexOf('_') + 1, block.length)).replace(/[^a-zA-Z0-9]/gim, '');
@@ -752,11 +740,11 @@ ${CATEGORYCONTENT}`);
             const usurebro = confirm('Are you sure you want to delete ' + name + '?');
             if (!usurebro) return;
             let target;
-            window.saveCustomBlocksOutput.forEach(bloc => {
+            window.saveCustomBlocksOutput.forEach((bloc) => {
               if (bloc.name == blockName) target = bloc;
             });
             if (!target) return alert('This block does not exist anymore!');
-            window.blocklyWorkspaceGlobalRef.getAllBlocks().forEach(bloc => {
+            window.blocklyWorkspaceGlobalRef.getAllBlocks().forEach((bloc) => {
               if (bloc.type == blockName) bloc.dispose();
             });
             window.customBlocks.splice(window.customBlocks.indexOf(blockName), 1);
@@ -775,10 +763,10 @@ ${CATEGORYCONTENT}`);
       buttonDiv.append(customBlockDeletorDiv);
       inlineDiv.append(buttonDiv);
     });
-    workspace.registerButtonCallback('FFMPEG', function() {
+    workspace.registerButtonCallback('FFMPEG', function () {
       swal.fire('Hey uhh..', "This isn't quite done yet...", 'info');
     });
-    workspace.registerButtonCallback('EMBED_GUI_POPUP', function() {
+    workspace.registerButtonCallback('EMBED_GUI_POPUP', function () {
       swal
         .fire({
           title: 'Create an embed!',
@@ -799,7 +787,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           showConfirmButton: true,
           confirmButtonText: 'Import to Workspace'
         })
-        .then(async result => {
+        .then(async (result) => {
           if (!result.isConfirmed) return;
           const edesc = validateForXML(document.getElementById('EmbedDescription').value);
           const etitle = validateForXML(document.getElementById('EmbedTitle').value);
@@ -813,14 +801,22 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
   <statement name="THEN">
     <block type="s4d_embed_set_title">
       <value name="TITLE">
-        ${etitle ? `<block type="jg_text_remake_paragraph_quotes">
+        ${
+          etitle
+            ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${etitle}</field>
-</block>` : ''}
+</block>`
+            : ''
+        }
       </value>
       <value name="HYPERLINK">
-        ${etitleurl ? `<block type="jg_text_remake_paragraph_quotes">
+        ${
+          etitleurl
+            ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${etitleurl}</field>
-</block>` : ''}
+</block>`
+            : ''
+        }
       </value>
       <next>
         <block type="s4d_embed_set_desc">
@@ -832,26 +828,42 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           <next>
             <block type="s4d_embed_set_color">
               <value name="COLOUR">
-                ${etitle ? `<block type="fz_color">
+                ${
+                  etitle
+                    ? `<block type="fz_color">
   <field name="COLOR">${ecolor}</field>
-</block>` : ''}
+</block>`
+                    : ''
+                }
               </value>
               <next>
                 <block type="s4d_embed_set_author">
                   <value name="AUTHOR">
-                    ${eauthor ? `<block type="jg_text_remake_paragraph_quotes">
+                    ${
+                      eauthor
+                        ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${eauthor}</field>
-</block>` : ''}
+</block>`
+                        : ''
+                    }
                   </value>
                   <value name="PROFILE">
-                    ${eauthorpfp ? `<block type="jg_text_remake_paragraph_quotes">
+                    ${
+                      eauthorpfp
+                        ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${eauthorpfp}</field>
-</block>` : ''}
+</block>`
+                        : ''
+                    }
                   </value>
                   <value name="URL">
-                    ${eauthorurl ? `<block type="jg_text_remake_paragraph_quotes">
+                    ${
+                      eauthorurl
+                        ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${eauthorurl}</field>
-</block>` : ''}
+</block>`
+                        : ''
+                    }
                   </value>
                 </block>
               </next>
@@ -870,16 +882,12 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       let new_toolbox_xml = prepToolbox(toolbox(val), false, val, workspace, null);
       workspace.updateToolbox(new_toolbox_xml);
     };
-    workspace.registerButtonCallback('SEARCH', function() {
+    workspace.registerButtonCallback('SEARCH', function () {
       // const wrapper = document.createElement('div');
       // wrapper.innerHTML = `<input type="text" id="block">`
       if (isMobile()) {
         let res = String(prompt('Search for a block:'));
-        let block = res
-          .replaceAll(' ', '_')
-          .replaceAll('<', '_')
-          .replaceAll('>', '_')
-          .replaceAll('/', '_');
+        let block = res.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
         let new_toolbox_xml = prepToolbox(toolbox(val), true, val, workspace, block);
         workspace.toolbox_.clearSelection();
         workspace.updateToolbox(new_toolbox_xml);
@@ -895,14 +903,9 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           showConfirmButton: true,
           confirmButtonText: 'Search'
         })
-        .then(async result => {
+        .then(async (result) => {
           if (result) {
-            let block = document
-              .getElementById('block')
-              .value.replaceAll(' ', '_')
-              .replaceAll('<', '_')
-              .replaceAll('>', '_')
-              .replaceAll('/', '_');
+            let block = document.getElementById('block').value.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
             let new_toolbox_xml = prepToolbox(toolbox(val), true, val, workspace, block);
             workspace.toolbox_.clearSelection();
             workspace.updateToolbox(new_toolbox_xml);
@@ -1224,7 +1227,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
     }
     setInterval(themeSwitchingHandler, 50);
     function themeSwitchingHandler() {
-      localforage.getItem('utilitiesTheme').then(theme => {
+      localforage.getItem('utilitiesTheme').then((theme) => {
         switch (theme) {
           case 'neo':
             themeBlocks(null, '#202020', 'neo');
@@ -1261,7 +1264,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
 
     Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Add to favorite',
-      preconditionFn: function(scope) {
+      preconditionFn: function (scope) {
         let type = scope.block.type;
         if (val === null) {
           return 'enabled';
@@ -1272,7 +1275,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           return 'enabled';
         }
       },
-      callback: async function(scope) {
+      callback: async function (scope) {
         let type = scope.block.type;
 
         if (val === null) {
@@ -1296,10 +1299,10 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
     });
     Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Download Workspace Image',
-      preconditionFn: function() {
+      preconditionFn: function () {
         return 'enabled';
       },
-      callback: function() {
+      callback: function () {
         Blockly.downloadScreenshot(workspace);
       },
       scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -1313,7 +1316,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
 
     Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Remove from favorite',
-      preconditionFn: function(scope) {
+      preconditionFn: function (scope) {
         let type = scope.block.type;
         if (val === null) {
           return 'disabled';
@@ -1324,10 +1327,10 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           return 'disabled';
         }
       },
-      callback: async function(scope) {
+      callback: async function (scope) {
         let type = scope.block.type;
         function arrayRemove(arr, value) {
-          return arr.filter(function(ele) {
+          return arr.filter(function (ele) {
             return ele != value;
           });
         }
@@ -1373,18 +1376,18 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       window.setInterval(() => {
         disableUnapplicable(this.$store.state.workspace);
         const getAllBlocksInWorkspace = this.$store.state.workspace.getAllBlocks();
-        const loginBlock = getAllBlocksInWorkspace.some(block => block.type === 's4d_login');
-        const db1 = getAllBlocksInWorkspace.some(block => block.type == 's4d_add_data_new');
-        const db2 = getAllBlocksInWorkspace.some(block => block.type == 's4d_database_create_new');
-        const db3 = getAllBlocksInWorkspace.some(block => block.type == 's4d_delete_all_data_new');
-        const db4 = getAllBlocksInWorkspace.some(block => block.type == 's4d_delete_data_new');
-        const db5 = getAllBlocksInWorkspace.some(block => block.type == 's4d_get_all_data_new');
-        const db6 = getAllBlocksInWorkspace.some(block => block.type == 's4d_get_data_new');
-        const db7 = getAllBlocksInWorkspace.some(block => block.type == 's4d_has_data_new');
-        const db8 = getAllBlocksInWorkspace.some(block => block.type == 's4d_set_data_new');
-        const db9 = getAllBlocksInWorkspace.some(block => block.type == 's4d_subtract_data_new');
+        const loginBlock = getAllBlocksInWorkspace.some((block) => block.type === 's4d_login');
+        const db1 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_add_data_new');
+        const db2 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_database_create_new');
+        const db3 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_delete_all_data_new');
+        const db4 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_delete_data_new');
+        const db5 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_get_all_data_new');
+        const db6 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_get_data_new');
+        const db7 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_has_data_new');
+        const db8 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_set_data_new');
+        const db9 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_subtract_data_new');
         let registerBlockCount = 0;
-        getAllBlocksInWorkspace.some(block => {
+        getAllBlocksInWorkspace.some((block) => {
           if (block.type === 'frost_slash_register') registerBlockCount++;
         });
         if (!loginBlock) {

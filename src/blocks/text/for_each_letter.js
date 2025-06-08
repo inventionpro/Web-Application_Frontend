@@ -1,7 +1,7 @@
 import Blockly from 'blockly/core';
 import { registerRestrictions } from '../../restrictions';
 Blockly.Blocks['jg_text_for_each_letter_in_text_do'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'for each letter in text %1 %2 do %3',
       colour: '%{BKY_TEXTS_HUE}',
@@ -25,7 +25,7 @@ Blockly.Blocks['jg_text_for_each_letter_in_text_do'] = {
     });
   }
 };
-Blockly.JavaScript['jg_text_for_each_letter_in_text_do'] = function(block) {
+Blockly.JavaScript['jg_text_for_each_letter_in_text_do'] = function (block) {
   const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
   const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `[...String(${text})].forEach(async (letter_inText) => {
@@ -35,7 +35,7 @@ Blockly.JavaScript['jg_text_for_each_letter_in_text_do'] = function(block) {
   return code;
 };
 Blockly.Blocks['jg_text_for_each_letter_in_text_do_letter'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'letter',
       args0: [],
@@ -47,7 +47,7 @@ Blockly.Blocks['jg_text_for_each_letter_in_text_do_letter'] = {
   }
 };
 
-Blockly.JavaScript['jg_text_for_each_letter_in_text_do_letter'] = function() {
+Blockly.JavaScript['jg_text_for_each_letter_in_text_do_letter'] = function () {
   return [`letter_inText`, Blockly.JavaScript.ORDER_NONE];
 };
 registerRestrictions('jg_text_for_each_letter_in_text_do_letter', [

@@ -14,12 +14,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['send_chart'] = function() {
+Blockly.JavaScript['send_chart'] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = `{files: [{attachment: chart.toURL(), name: 'chart.png'}],}`;
   // TODO: Change ORDER_NONE to the correct strength.

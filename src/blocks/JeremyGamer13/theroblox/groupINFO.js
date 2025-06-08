@@ -32,12 +32,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
   const code = [`roblox_group_info.${type}`, Blockly.JavaScript.ORDER_NONE];
   return code;

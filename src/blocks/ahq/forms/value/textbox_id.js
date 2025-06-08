@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'id_textbox_ahq';
-//block working now working
+
 const blockData = {
   message0: 'TextBox Value; Id: %1',
   args0: [
@@ -18,11 +18,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const code = [`(i.getTextInputValue(${Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_NONE)}))`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

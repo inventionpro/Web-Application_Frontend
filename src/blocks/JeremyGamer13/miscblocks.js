@@ -5,13 +5,11 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
    * Block for if/elseif/else condition.
    * @this Blockly.Block
    */
-  init: function() {
+  init: function () {
     this.setHelpUrl('');
     this.setInputsInline(true);
     this.setColour('#8B48A3');
-    this.appendValueInput('IF0')
-      .setCheck(null)
-      .appendField('case');
+    this.appendValueInput('IF0').setCheck(null).appendField('case');
     this.appendStatementInput('DO0');
     //.appendField(Blockly.Msg.CONTROLS_IF_MSG_THEN);
     this.setPreviousStatement(true);
@@ -19,7 +17,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     this.setMutator(new Blockly.Mutator(['lasercat_jg_case_default_INTERNAL_case2', 'lasercat_jg_case_default_INTERNAL_case3', 'lasercat_jg_case_default_INTERNAL_case4', 'lasercat_jg_case_default_INTERNAL_default']));
     // Assign 'this' to a variable for use in the tooltip closure below.
     //var thisBlock = this;
-    this.setTooltip(function() {
+    this.setTooltip(function () {
       /*
             if (!thisBlock.elseifCount_ && !thisBlock.elseCount_) {
                 return Blockly.Msg.CONTROLS_IF_TOOLTIP_1;
@@ -43,7 +41,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
    * @return {Element} XML storage element.
    * @this Blockly.Block
    */
-  mutationToDom: function() {
+  mutationToDom: function () {
     if (!this.elseifCount_ && !this.elseCount_) {
       return null;
     }
@@ -62,7 +60,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
    * @param {!Element} xmlElement XML storage element.
    * @this Blockly.Block
    */
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     this.elseifCount_ = parseInt(xmlElement.getAttribute('elseif'), 10) || 0;
     this.elseCount_ = parseInt(xmlElement.getAttribute('else'), 10) || 0;
     let menutypes = xmlElement.getAttribute('mutatorblocks')?.split(',');
@@ -76,7 +74,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
  66    * @return {!Blockly.Block} Root block in mutator.
  67    * @this Blockly.Block
  68    */
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     var containerBlock = workspace.newBlock('lasercat_jg_case_default_INTERNAL_case1');
     containerBlock.initSvg();
     var connection = containerBlock.nextConnection;
@@ -98,7 +96,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
  88    * @param {!Blockly.Block} containerBlock Root block in mutator.
  89    * @this Blockly.Block
  90    */
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
     // Count number of inputs.
     this.elseifCount_ = 0;
@@ -139,7 +137,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
   126    * @param {!Blockly.Block} containerBlock Root block in mutator.
   127    * @this Blockly.Block
   128    */
-  saveConnections: function(containerBlock) {
+  saveConnections: function (containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
     var i = 1;
     while (clauseBlock) {
@@ -170,7 +168,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
   157    * @private
   158    * @this Blockly.Block
   159    */
-  updateShape_: function() {
+  updateShape_: function () {
     // Delete everything.
     if (this.getInput('ELSE')) {
       this.removeInput('asvutdgyhebkf');
@@ -221,7 +219,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
   }
 };
 
-Blockly.JavaScript['lasercat_jg_case_default'] = function(block) {
+Blockly.JavaScript['lasercat_jg_case_default'] = function (block) {
   var n = 0;
   var code = '',
     branchCode,
@@ -244,7 +242,7 @@ Blockly.JavaScript['lasercat_jg_case_default'] = function(block) {
 // "previousStatement": null,
 // "nextStatement": null,
 Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case1'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'case',
       args0: [],
@@ -255,7 +253,7 @@ Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case1'] = {
   }
 };
 Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case2'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'case',
       args0: [],
@@ -267,7 +265,7 @@ Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case2'] = {
   }
 };
 Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case3'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'case or',
       args0: [],
@@ -279,7 +277,7 @@ Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case3'] = {
   }
 };
 Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case4'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'case continue with',
       args0: [],
@@ -291,7 +289,7 @@ Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case4'] = {
   }
 };
 Blockly.Blocks['lasercat_jg_case_default_INTERNAL_default'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'default',
       args0: [],
@@ -301,26 +299,26 @@ Blockly.Blocks['lasercat_jg_case_default_INTERNAL_default'] = {
     });
   }
 };
-Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_case1'] = function() {
+Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_case1'] = function () {
   return '';
 };
-Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_case2'] = function() {
+Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_case2'] = function () {
   return '';
 };
-Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_case3'] = function() {
+Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_case3'] = function () {
   return '';
 };
-Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_case4'] = function() {
+Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_case4'] = function () {
   return '';
 };
-Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_default'] = function() {
+Blockly.JavaScript['lasercat_jg_case_default_INTERNAL_default'] = function () {
   return '';
 };
 let rainbow_color = 0;
 let loaded_workspace_state = 0;
 let loaded_workspace_state2 = 0;
 Blockly.Blocks['jg_blocklyfp_load_workspace'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'workspace %1 %2 load? %3',
       inputsInline: false,
@@ -343,7 +341,7 @@ Blockly.Blocks['jg_blocklyfp_load_workspace'] = {
       helpUrl: ''
     });
   },
-  onchange: function() {
+  onchange: function () {
     let work = this.getFieldValue('WORKSPACE');
     let bool = this.getFieldValue('LOAD');
     if (String(bool) == 'TRUE' && loaded_workspace_state != 2) loaded_workspace_state = 1;
@@ -364,7 +362,7 @@ Blockly.Blocks['jg_blocklyfp_load_workspace'] = {
   }
 };
 Blockly.Blocks['jg_blocklyfp_load_workspace_website'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'workspace URL %1 %2 load? %3',
       inputsInline: false,
@@ -387,7 +385,7 @@ Blockly.Blocks['jg_blocklyfp_load_workspace_website'] = {
       helpUrl: ''
     });
   },
-  onchange: function() {
+  onchange: function () {
     let work = this.getFieldValue('WORKSPACE');
     let bool = this.getFieldValue('LOAD');
     if (String(bool) == 'TRUE' && loaded_workspace_state2 != 2) loaded_workspace_state2 = 1;
@@ -405,11 +403,11 @@ Blockly.Blocks['jg_blocklyfp_load_workspace_website'] = {
       };
       try {
         fetch(work, requestOptions)
-          .then(response => {
+          .then((response) => {
             let xml = Blockly.Xml.textToDom(response);
             Blockly.Xml.appendDomToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
           })
-          .catch(err => {
+          .catch((err) => {
             window.alert(err);
             console.log(err);
           });
@@ -421,9 +419,9 @@ Blockly.Blocks['jg_blocklyfp_load_workspace_website'] = {
     }
   }
 };
-Blockly.JavaScript['jg_blocklyfp_load_workspace'] = function() {
+Blockly.JavaScript['jg_blocklyfp_load_workspace'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_blocklyfp_load_workspace_website'] = function() {
+Blockly.JavaScript['jg_blocklyfp_load_workspace_website'] = function () {
   return '';
 };

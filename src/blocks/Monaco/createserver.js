@@ -23,12 +23,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['monaco_create_server'] = function(block) {
+Blockly.JavaScript['monaco_create_server'] = function (block) {
   var value_create = Blockly.JavaScript.valueToCode(block, 'create', Blockly.JavaScript.ORDER_ATOMIC);
   var statements = Blockly.JavaScript.statementToCode(block, 'then');
   // TODO: Assemble JavaScript into code variable.

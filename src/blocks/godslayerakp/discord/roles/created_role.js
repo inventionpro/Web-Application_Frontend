@@ -1,7 +1,7 @@
 import Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../../restrictions';
 Blockly.Blocks['gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'created role',
       colour: '#2EB66B',
@@ -10,7 +10,7 @@ Blockly.Blocks['gsa_jg_create_role_with_name_in_server_with_color_then_do_create
     });
   }
 };
-Blockly.JavaScript['gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role'] = function() {
+Blockly.JavaScript['gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role'] = function () {
   const code = [`s4d_create_role_then_role`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

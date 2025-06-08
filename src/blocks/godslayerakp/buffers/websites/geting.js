@@ -24,12 +24,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const https = Blockly.JavaScript.valueToCode(block, 'HTTPS', Blockly.JavaScript.ORDER_ATOMIC);
   const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
   const code = `https.get(${https}, async resp => {
@@ -46,7 +46,7 @@ Blockly.JavaScript[blockName] = function(block) {
 };
 
 Blockly.Blocks['gsa_get_https_response_buffer'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'buffer',
       output: 'buffer',
@@ -57,6 +57,6 @@ Blockly.Blocks['gsa_get_https_response_buffer'] = {
   }
 };
 
-Blockly.JavaScript['gsa_get_https_response_buffer'] = function() {
+Blockly.JavaScript['gsa_get_https_response_buffer'] = function () {
   return [`data`, Blockly.JavaScript.ORDER_ATOMIC];
 };

@@ -19,12 +19,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const datafile = Blockly.JavaScript.valueToCode(block, 'datafile', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `var JSONdataS4D = JSON.parse(fs.readFileSync(${datafile}));\n`;
   return code;

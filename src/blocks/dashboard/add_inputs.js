@@ -21,12 +21,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['add_inputs'] = function(block) {
+Blockly.JavaScript['add_inputs'] = function (block) {
   var statements_blocks = Blockly.JavaScript.statementToCode(block, 'blocks');
   var code = `${statements_blocks}`;
   return code;

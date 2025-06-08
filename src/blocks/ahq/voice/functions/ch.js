@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly';
 
 const blockName = 'act_voice';
-//block working now working
+
 const blockData = {
   message0: '%1 member %2 %3 to channel/mute status %4',
   args0: [
@@ -36,11 +36,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const code = `newState.${block.getFieldValue('action')}(${Blockly.JavaScript.valueToCode(block, 'r', Blockly.JavaScript.ORDER_ATOMIC || null)})`;
   return code;
 };

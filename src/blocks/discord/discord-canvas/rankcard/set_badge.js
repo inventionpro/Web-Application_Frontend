@@ -34,12 +34,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const number = block.getFieldValue('SLIDER');
   const type = block.getFieldValue('TYPE');
   return `.setBadge(${number}, "${type}")`;

@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 const blockName = 'ahq_presence';
-//block working now working
+
 const blockData = {
   message0: 'presence of member %1',
   args0: [
@@ -17,14 +17,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
-  const a = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC)
-    .replace('.user', '')
-    .replace('.author', '.member');
+Blockly.JavaScript[blockName] = function (block) {
+  const a = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC).replace('.user', '').replace('.author', '.member');
   const code = [`String(${a}.presence.status || "offline")`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

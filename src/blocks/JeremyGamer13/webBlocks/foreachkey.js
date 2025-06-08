@@ -21,12 +21,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
   let code = `Object.keys(JSONdataS4D).forEach( async s4dkey => {
 ${statementThen} 

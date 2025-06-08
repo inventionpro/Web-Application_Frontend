@@ -11,19 +11,17 @@ Blockly.Blocks['controls_if'] = {
    * Block for if/elseif/else condition.
    * @this Blockly.Block
    */
-  init: function() {
+  init: function () {
     this.setHelpUrl(Blockly.Msg.CONTROLS_IF_HELPURL);
     this.setColour('%{BKY_LOGIC_HUE}');
-    this.appendValueInput('IF0')
-      .setCheck('Boolean')
-      .appendField(Blockly.Msg.CONTROLS_IF_MSG_IF);
+    this.appendValueInput('IF0').setCheck('Boolean').appendField(Blockly.Msg.CONTROLS_IF_MSG_IF);
     this.appendStatementInput('DO0').appendField(Blockly.Msg.CONTROLS_IF_MSG_THEN);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setMutator(new Blockly.Mutator(['controls_if_elseif', 'controls_if_else']));
     // Assign 'this' to a variable for use in the tooltip closure below.
     var thisBlock = this;
-    this.setTooltip(function() {
+    this.setTooltip(function () {
       if (!thisBlock.elseifCount_ && !thisBlock.elseCount_) {
         return Blockly.Msg.CONTROLS_IF_TOOLTIP_1;
       } else if (!thisBlock.elseifCount_ && thisBlock.elseCount_) {
@@ -43,7 +41,7 @@ Blockly.Blocks['controls_if'] = {
    * @return {Element} XML storage element.
    * @this Blockly.Block
    */
-  mutationToDom: function() {
+  mutationToDom: function () {
     if (!this.elseifCount_ && !this.elseCount_) {
       return null;
     }
@@ -61,7 +59,7 @@ Blockly.Blocks['controls_if'] = {
    * @param {!Element} xmlElement XML storage element.
    * @this Blockly.Block
    */
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     this.elseifCount_ = parseInt(xmlElement.getAttribute('elseif'), 10) || 0;
     this.elseCount_ = parseInt(xmlElement.getAttribute('else'), 10) || 0;
     this.updateShape_();
@@ -72,7 +70,7 @@ Blockly.Blocks['controls_if'] = {
  66    * @return {!Blockly.Block} Root block in mutator.
  67    * @this Blockly.Block
  68    */
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     var containerBlock = workspace.newBlock('controls_if_if');
     containerBlock.initSvg();
     var connection = containerBlock.nextConnection;
@@ -94,7 +92,7 @@ Blockly.Blocks['controls_if'] = {
  88    * @param {!Blockly.Block} containerBlock Root block in mutator.
  89    * @this Blockly.Block
  90    */
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
     // Count number of inputs.
     this.elseifCount_ = 0;
@@ -131,7 +129,7 @@ Blockly.Blocks['controls_if'] = {
 126    * @param {!Blockly.Block} containerBlock Root block in mutator.
 127    * @this Blockly.Block
 128    */
-  saveConnections: function(containerBlock) {
+  saveConnections: function (containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
     var i = 1;
     while (clauseBlock) {
@@ -158,7 +156,7 @@ Blockly.Blocks['controls_if'] = {
 157    * @private
 158    * @this Blockly.Block
 159    */
-  updateShape_: function() {
+  updateShape_: function () {
     // Delete everything.
     if (this.getInput('ELSE')) {
       this.removeInput('ELSE');
@@ -182,7 +180,7 @@ Blockly.Blocks['controls_if'] = {
   }
 };
 
-Blockly.JavaScript['controls_if'] = function(block) {
+Blockly.JavaScript['controls_if'] = function (block) {
   // If/elseif/else condition.
   var n = 0;
   var code = '',

@@ -25,12 +25,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['entitytype'] = function(block) {
+Blockly.JavaScript['entitytype'] = function (block) {
   var dropdown_name = block.getFieldValue('NAME');
   var code = '';
   switch (dropdown_name) {

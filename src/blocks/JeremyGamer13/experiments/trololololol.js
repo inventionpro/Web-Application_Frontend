@@ -16,10 +16,10 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   },
-  onchange: function() {
+  onchange: function () {
     let oopsie = this.getFieldValue('key');
     if (String(oopsie) == 'Y E S') {
       window.location.href = 'https://www.youtube.com/watch?v=xvFZjo5PgG0';
@@ -27,6 +27,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   return ``;
 };

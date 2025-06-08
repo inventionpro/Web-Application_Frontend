@@ -12,7 +12,7 @@ import beautify from 'js-beautify';
 export default {
   name: 'editmenu',
   computed: {
-    content: function() {
+    content: function () {
       return beautify.js(this.getWorkspaceCode(), {
         indent_size: 2,
         space_in_empty_paren: true

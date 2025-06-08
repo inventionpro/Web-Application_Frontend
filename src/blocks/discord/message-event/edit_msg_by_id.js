@@ -30,23 +30,19 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
   const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
   let edit = Blockly.JavaScript.valueToCode(block, 'EDIT', Blockly.JavaScript.ORDER_ATOMIC);
   if (!String(edit).includes('embeds: [')) {
     edit = `content: String(${edit})`;
   } else {
-    edit = edit
-      .replaceAll('{', '')
-      .replaceAll('(', '')
-      .replaceAll('}', '')
-      .replaceAll(')', '');
+    edit = edit.replaceAll('{', '').replaceAll('(', '').replaceAll('}', '').replaceAll(')', '');
   }
   const code = `${channel}.messages.fetch(${id}).then(async (msg) => {
        msg.edit({

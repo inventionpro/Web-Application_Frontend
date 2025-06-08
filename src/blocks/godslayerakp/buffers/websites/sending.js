@@ -2,7 +2,7 @@ import Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../../restrictions';
 
 Blockly.Blocks['gsa_express_website_respond_with_buffer'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'respond with buffer %1',
       args0: [
@@ -20,7 +20,7 @@ Blockly.Blocks['gsa_express_website_respond_with_buffer'] = {
     });
   }
 };
-Blockly.JavaScript['gsa_express_website_respond_with_buffer'] = function(block) {
+Blockly.JavaScript['gsa_express_website_respond_with_buffer'] = function (block) {
   const text = Blockly.JavaScript.valueToCode(block, 'buffer', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `res.send(${text})
 `;

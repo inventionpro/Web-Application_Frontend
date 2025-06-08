@@ -36,7 +36,7 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
    * @return {!Element} XML storage element.
    * @this {Blockly.Block}
    */
-  mutationToDom: function() {
+  mutationToDom: function () {
     var container = Blockly.utils.xml.createElement('mutation');
     var divisorInput = this.getFieldValue('MODE') == 'CUSTOM';
     container.setAttribute('divisor_input', divisorInput);
@@ -47,7 +47,7 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
    * @param {!Element} xmlElement XML storage element.
    * @this {Blockly.Block}
    */
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     var divisorInput = xmlElement.getAttribute('divisor_input') == 'true';
     this.updateShape_(divisorInput);
   },
@@ -57,7 +57,7 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
    * @private
    * @this {Blockly.Block}
    */
-  updateShape_: function(divisorInput) {
+  updateShape_: function (divisorInput) {
     // Add or remove a Value Input.
     var inputExists = this.getInput('DATE');
     if (divisorInput) {
@@ -69,8 +69,8 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
     }
   }
 };
-Blockly.constants.IS_DIVISIBLE_MUTATOR_EXTENSION = function() {
-  this.getField('MODE').setValidator(function(option) {
+Blockly.constants.IS_DIVISIBLE_MUTATOR_EXTENSION = function () {
+  this.getField('MODE').setValidator(function (option) {
     var divisorInput = option == 'CUSTOM';
     this.getSourceBlock().updateShape_(divisorInput);
   });
@@ -78,12 +78,12 @@ Blockly.constants.IS_DIVISIBLE_MUTATOR_EXTENSION = function() {
 
 Blockly.Extensions.registerMutator('embed_set_timestamp_mutator', Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN, Blockly.constants.IS_DIVISIBLE_MUTATOR_EXTENSION);
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const date = Blockly.JavaScript.valueToCode(block, 'DATE', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setTimestamp(new Date(${date})); \n`;
   return code;

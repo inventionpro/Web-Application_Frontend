@@ -32,7 +32,7 @@ const blockData = {
   helpUrl: ''
 };
 Blockly.Blocks[menuName] = {
-  init: function() {
+  init: function () {
     this.setColour(menuUsesBlockColor ? BlockColor : '#CECDCE');
     this.setTooltip(menuTooltip);
     this.setHelpUrl('');
@@ -40,7 +40,7 @@ Blockly.Blocks[menuName] = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     this.setMutator(new Blockly.Mutator([]));
     this.inputs_ = [];
@@ -49,7 +49,7 @@ Blockly.Blocks[blockName] = {
     }
   },
 
-  mutationToDom: function() {
+  mutationToDom: function () {
     if (!this.inputs_) {
       return null;
     }
@@ -60,14 +60,14 @@ Blockly.Blocks[blockName] = {
     return container;
   },
 
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     for (let i = 0; i < this.inputs_.length; i++) {
       this.inputs_[i] = xmlElement.getAttribute(BORDER_FIELDS[i].toLowerCase()) == 'true';
     }
     this.updateShape_();
   },
 
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     const containerBlock = workspace.newBlock(menuName);
     for (let i = 0; i < this.inputs_.length; i++) {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
@@ -81,7 +81,7 @@ Blockly.Blocks[blockName] = {
     return containerBlock;
   },
 
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     // Set states
     for (let i = 0; i < this.inputs_.length; i++) {
       this.inputs_[i] = containerBlock.getFieldValue(BORDER_FIELDS[i].toUpperCase()) == 'TRUE';
@@ -89,23 +89,20 @@ Blockly.Blocks[blockName] = {
     this.updateShape_();
   },
 
-  updateShape_: function() {
+  updateShape_: function () {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (!this.inputs_[i] && this.getInput(BORDER_FIELDS[i].toUpperCase())) this.removeInput(BORDER_FIELDS[i].toUpperCase());
     }
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase())
-          .setCheck(BORDER_TYPES[i])
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
       }
     }
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const name = block.getFieldValue('NAME');
   const name2 = name
     .replace(/, /g, 'asgasdgasdgasegqehh')

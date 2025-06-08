@@ -13,12 +13,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = `
             let embed = new Discord.MessageEmbed()
         embed.setImage('https://c.tenor.com/UVAk99QaOTsAAAAC/fart-experiment.gif');

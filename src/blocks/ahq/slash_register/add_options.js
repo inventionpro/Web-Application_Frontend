@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 const blockName = 's4d_reg_slash_options';
-//block working now working
+
 const blockData = {
   message0: 'Set slash cmd options name %1 %2 set Description %3 %4 required? %5 %6 type %7',
   args0: [
@@ -52,11 +52,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const bl = Blockly.JavaScript.valueToCode(block, 'ahq', Blockly.JavaScript.ORDER_ATOMIC);
   const server = Blockly.JavaScript.valueToCode(block, 'Server', Blockly.JavaScript.ORDER_ATOMIC);
   const des = Blockly.JavaScript.valueToCode(block, 'args', Blockly.JavaScript.ORDER_ATOMIC);

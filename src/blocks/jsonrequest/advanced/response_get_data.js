@@ -18,15 +18,13 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC)
-    .replaceAll("'", '')
-    .replaceAll('"', '');
+Blockly.JavaScript[blockName] = function (block) {
+  const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC).replaceAll("'", '').replaceAll('"', '');
   const code = [`response.data.${value}`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

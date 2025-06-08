@@ -36,12 +36,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var dropdown_get = block.getFieldValue('get');
   var statements_then = Blockly.JavaScript.statementToCode(block, 'then');
   var code = `__S4D__fivem_server.${dropdown_get}().then(async (__S4D__${dropdown_get}) => {

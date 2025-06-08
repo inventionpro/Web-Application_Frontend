@@ -56,12 +56,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['server_attributes'] = function(block) {
+Blockly.JavaScript['server_attributes'] = function (block) {
   var server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
   var attributes = block.getFieldValue('attributes');
   var code = '';

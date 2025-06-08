@@ -16,7 +16,7 @@ function rgbToHex(r, g, b) {
 }
 
 Blockly.Blocks['jg_s4d_themes_top_name_block'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: '%1',
       args0: [
@@ -33,7 +33,7 @@ Blockly.Blocks['jg_s4d_themes_top_name_block'] = {
   isHiden: true
 };
 Blockly.Blocks['jg_s4d_themes_set_navigation_bar_color_to'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'set navigation bar color to %1',
       args0: [
@@ -50,16 +50,11 @@ Blockly.Blocks['jg_s4d_themes_set_navigation_bar_color_to'] = {
       tooltip: "Set the Navigation Bar's color at the top of the page to a hex color."
     });
   },
-  onchange: function() {
+  onchange: function () {
     if (!this.isEnabled()) return;
-    const color = String(this.getFieldValue('COLOR'))
-      .toUpperCase()
-      .substring(0, 7);
+    const color = String(this.getFieldValue('COLOR')).toUpperCase().substring(0, 7);
     document.getElementById('navSpace').style = `background-color: ${color} !important;`;
-    const elements = document
-      .getElementsByClassName('navbar-nav ml-auto')
-      .item(0)
-      .getElementsByTagName('button');
+    const elements = document.getElementsByClassName('navbar-nav ml-auto').item(0).getElementsByTagName('button');
     for (let i = 0; i < elements.length; i++) {
       let current = elements.item(i);
       if (current.getAttribute('style') == null) continue;
@@ -69,7 +64,7 @@ Blockly.Blocks['jg_s4d_themes_set_navigation_bar_color_to'] = {
   isHiden: true
 };
 Blockly.Blocks['jg_s4d_themes_set_connect_to_discord_warning_color_to'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'set Connect to Discord warning color to %1',
       args0: [
@@ -86,11 +81,9 @@ Blockly.Blocks['jg_s4d_themes_set_connect_to_discord_warning_color_to'] = {
       tooltip: 'Set the warning color of the "Connect to Discord" modal at the bottom of the page to a hex color.'
     });
   },
-  onchange: function() {
+  onchange: function () {
     if (!this.isEnabled()) return;
-    const color = String(this.getFieldValue('COLOR'))
-      .toUpperCase()
-      .substring(0, 7);
+    const color = String(this.getFieldValue('COLOR')).toUpperCase().substring(0, 7);
     const modal = document.getElementsByClassName('v-toast__item v-toast__item--warning v-toast__item--bottom-right').item(0);
     if (modal == null) return;
     modal.style = `background-color: ${color} !important;`;
@@ -98,7 +91,7 @@ Blockly.Blocks['jg_s4d_themes_set_connect_to_discord_warning_color_to'] = {
   isHiden: true
 };
 Blockly.Blocks['jg_s4d_themes_set_navigation_bar_button_color_to'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'set navigation bar button color to %1 %2 set extra buttons to grayscale color %3',
       args0: [
@@ -123,23 +116,18 @@ Blockly.Blocks['jg_s4d_themes_set_navigation_bar_button_color_to'] = {
       tooltip: 'Set the Navigation Bar Button color at the top of the page to a hex color. This also includes the block counter.'
     });
   },
-  onchange: function() {
+  onchange: function () {
     if (!this.isEnabled()) return;
-    const color = String(this.getFieldValue('COLOR'))
-      .toUpperCase()
-      .substring(0, 7);
+    const color = String(this.getFieldValue('COLOR')).toUpperCase().substring(0, 7);
     const grayColor = Number(this.getFieldValue('COLOR2'));
-    let navbarColor = document
-      .getElementById('navSpace')
-      .style['background-color'].replace('rgb(', '')
-      .replace(')', '');
+    let navbarColor = document.getElementById('navSpace').style['background-color'].replace('rgb(', '').replace(')', '');
     if (navbarColor.startsWith('#')) {
       navbarColor = hexToRgb(navbarColor.substring(1));
     } else {
       const navbarArray = [];
       const check = navbarColor.match(/[0-9]{1,3}/gim);
       if (check != null) {
-        check.forEach(item => {
+        check.forEach((item) => {
           navbarArray.push(Number(item));
         });
         navbarColor = navbarArray;
@@ -172,7 +160,7 @@ Blockly.Blocks['jg_s4d_themes_set_navigation_bar_button_color_to'] = {
   isHiden: true
 };
 Blockly.Blocks['jg_s4d_themes_with_background_style_set_back_color_to_set_style_color_to'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'with background style %1 %2 set back color to %3 %4 set style color to %5',
       args0: [
@@ -209,7 +197,7 @@ Blockly.Blocks['jg_s4d_themes_with_background_style_set_back_color_to_set_style_
       tooltip: "Set the background of the workspace to a certain style, then set the background's color and the background element's color."
     });
   },
-  onchange: function() {
+  onchange: function () {
     if (!this.isEnabled()) return;
     const STYLE = this.getFieldValue('STYLE');
     const BGCOLOR = this.getFieldValue('COLOR1').substring(0, 7);
@@ -223,18 +211,18 @@ Blockly.Blocks['jg_s4d_themes_with_background_style_set_back_color_to_set_style_
   },
   isHiden: true
 };
-Blockly.JavaScript['jg_s4d_themes_top_name_block'] = function() {
+Blockly.JavaScript['jg_s4d_themes_top_name_block'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_s4d_themes_set_navigation_bar_color_to'] = function() {
+Blockly.JavaScript['jg_s4d_themes_set_navigation_bar_color_to'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_s4d_themes_set_connect_to_discord_warning_color_to'] = function() {
+Blockly.JavaScript['jg_s4d_themes_set_connect_to_discord_warning_color_to'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_s4d_themes_set_navigation_bar_button_color_to'] = function() {
+Blockly.JavaScript['jg_s4d_themes_set_navigation_bar_button_color_to'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_s4d_themes_with_background_style_set_back_color_to_set_style_color_to'] = function() {
+Blockly.JavaScript['jg_s4d_themes_with_background_style_set_back_color_to_set_style_color_to'] = function () {
   return '';
 };

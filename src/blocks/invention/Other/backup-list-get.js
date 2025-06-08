@@ -21,12 +21,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
   // _S4D_backups expected Output [ "BC5qo", "Jdo91", ...]
   var code = `backup.list().then((_S4D_backups) => {

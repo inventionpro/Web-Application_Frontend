@@ -40,11 +40,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   let extra = '';
   const name = Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE);
   const data = Blockly.JavaScript.valueToCode(block, 'button name', Blockly.JavaScript.ORDER_NONE);
@@ -57,11 +57,7 @@ Blockly.JavaScript[blockName] = function(block) {
   const code = `${name}.send({
         content: String(${data}),
         components: [new MessageActionRow().addComponents(${ahq})],
-        ${extra
-          .replace('`', '')
-          .replace('`', '')
-          .replace("'", '')
-          .replace("'", '')}
+        ${extra.replace('`', '').replace('`', '').replace("'", '').replace("'", '')}
         });`;
   return code;
 };

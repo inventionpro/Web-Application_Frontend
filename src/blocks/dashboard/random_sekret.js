@@ -12,12 +12,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['random_sekret'] = function() {
+Blockly.JavaScript['random_sekret'] = function () {
   var code = `([Math.floor(new Date().getTime() / 1000), 'e', Math.floor(Math.random() * 83490)].join(''))`;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

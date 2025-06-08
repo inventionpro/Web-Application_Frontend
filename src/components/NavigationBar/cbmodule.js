@@ -29,7 +29,7 @@ export function createCustomBlock(name, data) {
   let works = true;
   try {
     Blockly.Blocks[name] = {
-      init: function() {
+      init: function () {
         eval(data.blocks);
       }
     };

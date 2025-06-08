@@ -118,12 +118,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['tictactoe'] = function(block) {
+Blockly.JavaScript['tictactoe'] = function (block) {
   var value_opponent = Blockly.JavaScript.valueToCode(block, 'Opponent', Blockly.JavaScript.ORDER_ATOMIC);
   var value_emb_title = Blockly.JavaScript.valueToCode(block, 'emb_title', Blockly.JavaScript.ORDER_ATOMIC);
   var value_gover_title = Blockly.JavaScript.valueToCode(block, 'gover_title', Blockly.JavaScript.ORDER_ATOMIC);

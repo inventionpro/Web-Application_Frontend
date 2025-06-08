@@ -21,12 +21,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['delete_sch_event'] = function(block) {
+Blockly.JavaScript['delete_sch_event'] = function (block) {
   var amongus = Blockly.JavaScript.valueToCode(block, 'amongus', Blockly.JavaScript.ORDER_ATOMIC);
 
   amongus = amongus.split(' '); // Splits Embed name by space so "Lime Nade" = ["Lime","Nade"]

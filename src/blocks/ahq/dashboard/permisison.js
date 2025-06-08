@@ -50,12 +50,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const permission = block.getFieldValue('PERMISSION');
   const code = [`[Permissions.FLAGS.${permission}]`, Blockly.JavaScript.ORDER_NONE];
   return code;

@@ -25,11 +25,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const f = Blockly.JavaScript.valueToCode(block, 'anti-nsfw', Blockly.JavaScript.ORDER_NONE);
   const e = Blockly.JavaScript.valueToCode(block, 'deepai', Blockly.JavaScript.ORDER_NONE);
   let token = '';

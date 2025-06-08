@@ -28,12 +28,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['lime_s4d_pin'] = function(block) {
+Blockly.JavaScript['lime_s4d_pin'] = function (block) {
   var dropdown = block.getFieldValue('choise');
   var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   var code = ``;

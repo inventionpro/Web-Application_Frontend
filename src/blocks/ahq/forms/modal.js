@@ -49,12 +49,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const name = Blockly.JavaScript.valueToCode(block, 'button name', Blockly.JavaScript.ORDER_NONE) || 'modal';
   const finaln = name.replace("'", '').replace("'", '');
   const statementsThen = Blockly.JavaScript.statementToCode(block, 'STATEMENTS', Blockly.JavaScript.ORDER_ATOMIC);

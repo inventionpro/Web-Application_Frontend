@@ -59,11 +59,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const code = `let job = await cloudConvert.jobs.create({
         "tasks": {
             "import-1": {
@@ -76,11 +76,7 @@ Blockly.JavaScript[blockName] = function(block) {
                     "import-1"
                 ],
                 "output_format": "${block.getFieldValue('to')}",
-                "filename": "${
-                  Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC)
-                    .replace("'", '')
-                    .replace("'", '').toLowerCase
-                }"
+                "filename": "${Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC).replace("'", '').replace("'", '').toLowerCase}"
             },
             "export-1": {
                 "operation": "export/url",

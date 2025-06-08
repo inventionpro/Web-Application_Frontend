@@ -1,6 +1,6 @@
 import Blockly from 'blockly/core';
 Blockly.Blocks['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'create connection to voice %1 channel ID %2 in server ID %3',
       inputsInline: false,
@@ -26,7 +26,7 @@ Blockly.Blocks['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = 
     });
   }
 };
-Blockly.JavaScript['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = function(block) {
+Blockly.JavaScript['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = function (block) {
   const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
   const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
   const code = [
@@ -40,7 +40,7 @@ Blockly.JavaScript['jg_voice_create_connection_to_voice_channel_id_in_server_id'
   return code;
 };
 Blockly.Blocks['jg_voice_disconnect_from_voice_connection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'disconnect from voice connection %1',
       inputsInline: false,
@@ -59,14 +59,14 @@ Blockly.Blocks['jg_voice_disconnect_from_voice_connection'] = {
     });
   }
 };
-Blockly.JavaScript['jg_voice_disconnect_from_voice_connection'] = function(block) {
+Blockly.JavaScript['jg_voice_disconnect_from_voice_connection'] = function (block) {
   const connection = Blockly.JavaScript.valueToCode(block, 'CONNECTION', Blockly.JavaScript.ORDER_ATOMIC);
   const code = `${connection}.destroy()
 `;
   return code;
 };
 Blockly.Blocks['jg_voice_play_audio_file_at_percent_volume_on_connection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'play audio file %1 at volume %2 on connection %3',
       inputsInline: false,
@@ -95,7 +95,7 @@ Blockly.Blocks['jg_voice_play_audio_file_at_percent_volume_on_connection'] = {
     });
   }
 };
-Blockly.JavaScript['jg_voice_play_audio_file_at_percent_volume_on_connection'] = function(block) {
+Blockly.JavaScript['jg_voice_play_audio_file_at_percent_volume_on_connection'] = function (block) {
   const file = Blockly.JavaScript.valueToCode(block, 'FILE', Blockly.JavaScript.ORDER_ATOMIC);
   const volume = Blockly.JavaScript.valueToCode(block, 'VOLUME', Blockly.JavaScript.ORDER_ATOMIC);
   const connection = Blockly.JavaScript.valueToCode(block, 'CONNECTION', Blockly.JavaScript.ORDER_ATOMIC);

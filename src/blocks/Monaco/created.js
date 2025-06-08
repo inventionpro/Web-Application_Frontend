@@ -13,12 +13,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['monaco_created_guild'] = function() {
+Blockly.JavaScript['monaco_created_guild'] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = `newServer`;
   // TODO: Change ORDER_NONE to the correct strength.

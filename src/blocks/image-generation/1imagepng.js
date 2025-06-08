@@ -57,7 +57,7 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
    * @return {!Element} XML storage element.
    * @this {Blockly.Block}
    */
-  mutationToDom: function() {
+  mutationToDom: function () {
     var container = Blockly.utils.xml.createElement('mutation');
     var divisorInput = this.getFieldValue('INFO') == 'Blur';
     container.setAttribute('divisor_input', divisorInput);
@@ -68,7 +68,7 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
    * @param {!Element} xmlElement XML storage element.
    * @this {Blockly.Block}
    */
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     var divisorInput = xmlElement.getAttribute('divisor_input') == 'true';
     this.updateShape_(divisorInput);
   },
@@ -78,7 +78,7 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
    * @private
    * @this {Blockly.Block}
    */
-  updateShape_: function(divisorInput) {
+  updateShape_: function (divisorInput) {
     // Add or remove a Value Input.
     var inputExists = this.getInput('number');
     if (divisorInput) {
@@ -90,8 +90,8 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
     }
   }
 };
-Blockly.constants.IS_DIVISIBLE_MUTATOR_EXTENSION = function() {
-  this.getField('INFO').setValidator(function(option) {
+Blockly.constants.IS_DIVISIBLE_MUTATOR_EXTENSION = function () {
+  this.getField('INFO').setValidator(function (option) {
     var divisorInput = option == 'Blur';
     this.getSourceBlock().updateShape_(divisorInput);
   });
@@ -99,12 +99,12 @@ Blockly.constants.IS_DIVISIBLE_MUTATOR_EXTENSION = function() {
 
 Blockly.Extensions.registerMutator('2imagepng_mutator', Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN, Blockly.constants.IS_DIVISIBLE_MUTATOR_EXTENSION);
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const image = Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC);
   const num = Blockly.JavaScript.valueToCode(block, 'number', Blockly.JavaScript.ORDER_ATOMIC);
   const info2 = block.getFieldValue('INFO');

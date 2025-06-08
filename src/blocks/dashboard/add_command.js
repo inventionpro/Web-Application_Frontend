@@ -29,12 +29,12 @@ const blockData = {
   helpUrl: ''
 };
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['add_command_dash'] = function(block) {
+Blockly.JavaScript['add_command_dash'] = function (block) {
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   var value_desc = Blockly.JavaScript.valueToCode(block, 'DESC', Blockly.JavaScript.ORDER_ATOMIC);
   var value_tutorial = Blockly.JavaScript.valueToCode(block, 'tutorial', Blockly.JavaScript.ORDER_ATOMIC);

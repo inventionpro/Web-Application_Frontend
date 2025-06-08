@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 const blockName = 'nsfw_ahq_hndler';
-//block working now working
+
 const blockData = {
   message0: 'NSFW Channel Warning message',
   args0: [],
@@ -12,11 +12,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = [`(ahqhandler[\`nsfw\`])`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

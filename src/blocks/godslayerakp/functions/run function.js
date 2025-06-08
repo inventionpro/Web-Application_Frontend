@@ -4,22 +4,18 @@ import Blockly from 'blockly/core';
 const blockName = 'gsa_function_item_runer';
 
 Blockly.Blocks[blockName + '_mutator_block_hat'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField('add inputs');
     this.appendStatementInput('value').setCheck(null);
-    this.appendDummyInput()
-      .appendField('return?')
-      .appendField(new Blockly.FieldCheckbox('FALSE'), 'return');
-    this.appendDummyInput()
-      .appendField('await?')
-      .appendField(new Blockly.FieldCheckbox('FALSE'), 'await');
+    this.appendDummyInput().appendField('return?').appendField(new Blockly.FieldCheckbox('FALSE'), 'return');
+    this.appendDummyInput().appendField('await?').appendField(new Blockly.FieldCheckbox('FALSE'), 'await');
     this.setInputsInline(false);
     this.setColour('#D14081');
   }
 };
 
 Blockly.Blocks[blockName + '_mutator_block_input'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput('text').appendField('input');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -30,11 +26,8 @@ Blockly.Blocks[blockName + '_mutator_block_input'] = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
-    this.appendValueInput('function')
-      .appendField(new Blockly.FieldLabelSerializable(''), 'await')
-      .setCheck('Function')
-      .appendField('run function');
+  init: function () {
+    this.appendValueInput('function').appendField(new Blockly.FieldLabelSerializable(''), 'await').setCheck('Function').appendField('run function');
     this.setInputsInline(true);
     this.setColour('#D14081');
     this.setTooltip('');
@@ -44,7 +37,7 @@ Blockly.Blocks[blockName] = {
     this.return = false;
     this.await = false;
   },
-  mutationToDom: function() {
+  mutationToDom: function () {
     if (!this.inputs) {
       return null;
     }
@@ -54,14 +47,14 @@ Blockly.Blocks[blockName] = {
     container.setAttribute('await', this.await ? 'true' : 'false');
     return container;
   },
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     this.inputs = xmlElement.getAttribute('inputs').split(', ');
     this.return = xmlElement.getAttribute('return') == 'true';
     this.await = xmlElement.getAttribute('await') == 'true';
 
     this.updateShape_();
   },
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     // create the main block
     var containerBlock = workspace.newBlock(blockName + '_mutator_block_hat');
     containerBlock.initSvg();
@@ -70,7 +63,7 @@ Blockly.Blocks[blockName] = {
     var connection = containerBlock.getInput('value').connection;
 
     // add every value in this.inputs into the block as a block
-    this.inputs.forEach(i => {
+    this.inputs.forEach((i) => {
       var elseifBlock = workspace.newBlock(blockName + '_mutator_block_input');
       elseifBlock.initSvg();
       connection.connect(elseifBlock.previousConnection);
@@ -78,7 +71,7 @@ Blockly.Blocks[blockName] = {
     });
     return containerBlock;
   },
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     var itemBlock = containerBlock.getInputTargetBlock('value');
 
     // deconstruct block stack and generate a new inputs list with the name field value
@@ -93,7 +86,7 @@ Blockly.Blocks[blockName] = {
 
     this.updateShape_();
   },
-  updateShape_: function() {
+  updateShape_: function () {
     if (this.inputs[0] != 'dummy') this.inputs = [];
 
     let i = 0;
@@ -114,7 +107,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const josh = Blockly.JavaScript.valueToCode(block, 'function', Blockly.JavaScript.ORDER_ATOMIC);
   const await_ = block.await ? 'await ' : '';
   let ecport = [];

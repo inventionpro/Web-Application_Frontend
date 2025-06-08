@@ -34,12 +34,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['banned_objects'] = function(block) {
+Blockly.JavaScript['banned_objects'] = function (block) {
   var dropdown_options = block.getFieldValue('options');
   var code = ``;
   switch (dropdown_options) {

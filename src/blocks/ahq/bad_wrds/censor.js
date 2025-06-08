@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 const blockName = 'ahq_bdwrd_cn';
-//block working now working
+
 const blockData = {
   message0: 'censored version of %1',
   args0: [
@@ -18,11 +18,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const data = Blockly.JavaScript.valueToCode(block, 'BAD', Blockly.JavaScript.ORDER_ATOMIC);
   const code = [`(censor.censor(String(${data})))`, Blockly.JavaScript.ORDER_ATOMIC];
   return code;

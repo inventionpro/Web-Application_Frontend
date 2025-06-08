@@ -11,11 +11,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  validate: function(newValue) {
+  validate: function (newValue) {
     this.getSourceBlock().updateConnections(newValue);
     return newValue;
   },
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     let options = [
       ['A1', '0'],
@@ -24,7 +24,7 @@ Blockly.Blocks[blockName] = {
     ];
     this.appendDummyInput().appendField(new Blockly.FieldDropdown(options, this.validate), 'A');
   },
-  updateConnections: function(newValue) {
+  updateConnections: function (newValue) {
     this.updateShape();
     this.removeInput('B', /* no error */ true);
     this.removeInput('C', /* no error */ true);
@@ -47,7 +47,7 @@ Blockly.Blocks[blockName] = {
   isHiden: true
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const A = block.getFieldValue('A');
   var B = '';
   if (block.getFieldValue('B')) {

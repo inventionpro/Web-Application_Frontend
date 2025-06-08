@@ -12,7 +12,7 @@
 export default {
   name: 'editmenu',
   computed: {
-    blockCount: function() {
+    blockCount: function () {
       return this.$store.state.workspace ? this.$store.state.workspace.getAllBlocks().length : 0;
     }
   },
@@ -25,13 +25,13 @@ export default {
     },
     clearGhost() {
       var allBlocks = this.$store.state.workspace.getAllBlocks();
-      var disabledBlocks = allBlocks.filter(function(block) {
+      var disabledBlocks = allBlocks.filter(function (block) {
         return !block.isEnabled();
       });
       for (var i = 0; i < disabledBlocks.length; i++) disabledBlocks[i].dispose();
     },
     clear() {
-      this.$store.state.workspace.getAllBlocks().forEach(block => block.dispose());
+      this.$store.state.workspace.getAllBlocks().forEach((block) => block.dispose());
     },
     cleanUp() {
       this.$store.state.workspace.cleanUp();

@@ -7,21 +7,19 @@
 import Blockly from 'blockly/core';
 
 Blockly.Blocks['string_length'] = {
-  init: function() {
-    this.appendValueInput('VALUE')
-      .setCheck('String')
-      .appendField('length of');
+  init: function () {
+    this.appendValueInput('VALUE').setCheck('String').appendField('length of');
     this.setOutput(true, 'Number');
     this.setColour(160);
     this.setTooltip('Returns number of letters in the provided text.');
     this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
     // console.log(this)
   },
-  customContextMenu: function(options) {
+  customContextMenu: function (options) {
     var option = {
       enabled: true,
       text: 'Custom option',
-      callback: function() {}.bind(this)
+      callback: function () {}.bind(this)
     };
     options.push(option);
   }

@@ -14,12 +14,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['dash_guild_id'] = function() {
+Blockly.JavaScript['dash_guild_id'] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = 'guild.id';
   // TODO: Change ORDER_NONE to the correct strength.
@@ -42,12 +42,12 @@ const blockData1 = {
 };
 
 Blockly.Blocks[blockName1] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData1);
   }
 };
 
-Blockly.JavaScript['dash_value'] = function() {
+Blockly.JavaScript['dash_value'] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = 'value';
   // TODO: Change ORDER_NONE to the correct strength.

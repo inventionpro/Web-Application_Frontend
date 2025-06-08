@@ -38,12 +38,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const total = Blockly.JavaScript.valueToCode(block, 'TOTAL', Blockly.JavaScript.ORDER_ATOMIC);
   const current = Blockly.JavaScript.valueToCode(block, 'CURRENT', Blockly.JavaScript.ORDER_ATOMIC);
   const size = Blockly.JavaScript.valueToCode(block, 'SIZE', Blockly.JavaScript.ORDER_ATOMIC) || null;

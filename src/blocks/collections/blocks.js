@@ -1,7 +1,7 @@
 import Blockly from 'blockly/core';
 const blockColor = '#a354b3';
 Blockly.Blocks['collections_create_new_collection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'create empty collection',
       inputsInline: true,
@@ -14,11 +14,11 @@ Blockly.Blocks['collections_create_new_collection'] = {
   }
 };
 
-Blockly.JavaScript['collections_create_new_collection'] = function() {
+Blockly.JavaScript['collections_create_new_collection'] = function () {
   return [`new Map()`, Blockly.JavaScript.ORDER_NONE];
 };
 Blockly.Blocks['collections_get_from_collection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'get key %1 from collection %2',
       inputsInline: true,
@@ -42,14 +42,14 @@ Blockly.Blocks['collections_get_from_collection'] = {
   }
 };
 
-Blockly.JavaScript['collections_get_from_collection'] = function(block) {
+Blockly.JavaScript['collections_get_from_collection'] = function (block) {
   const map = Blockly.JavaScript.valueToCode(block, 'MAP', Blockly.JavaScript.ORDER_ATOMIC);
   const key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
   return [`${map}.get(String(${key}))`, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['collections_set_to_key_in_collection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'set %1 to key %2 in collection %3',
       inputsInline: true,
@@ -79,7 +79,7 @@ Blockly.Blocks['collections_set_to_key_in_collection'] = {
   }
 };
 
-Blockly.JavaScript['collections_set_to_key_in_collection'] = function(block) {
+Blockly.JavaScript['collections_set_to_key_in_collection'] = function (block) {
   const map = Blockly.JavaScript.valueToCode(block, 'MAP', Blockly.JavaScript.ORDER_ATOMIC);
   const key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
   const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
@@ -88,7 +88,7 @@ Blockly.JavaScript['collections_set_to_key_in_collection'] = function(block) {
 };
 
 Blockly.Blocks['collections_size_of_collection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'size of collection %1',
       inputsInline: true,
@@ -107,13 +107,13 @@ Blockly.Blocks['collections_size_of_collection'] = {
   }
 };
 
-Blockly.JavaScript['collections_size_of_collection'] = function(block) {
+Blockly.JavaScript['collections_size_of_collection'] = function (block) {
   const map = Blockly.JavaScript.valueToCode(block, 'MAP', Blockly.JavaScript.ORDER_ATOMIC);
   return [`${map}.size`, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['collections_remove_key_in_collection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'remove key %1 in collection %2',
       inputsInline: true,
@@ -138,14 +138,14 @@ Blockly.Blocks['collections_remove_key_in_collection'] = {
   }
 };
 
-Blockly.JavaScript['collections_remove_key_in_collection'] = function(block) {
+Blockly.JavaScript['collections_remove_key_in_collection'] = function (block) {
   const map = Blockly.JavaScript.valueToCode(block, 'MAP', Blockly.JavaScript.ORDER_ATOMIC);
   const key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
   return `${map}.delete(String(${key}))
     `;
 };
 Blockly.Blocks['collections_clear_collection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'clear collection %1',
       inputsInline: true,
@@ -165,14 +165,14 @@ Blockly.Blocks['collections_clear_collection'] = {
   }
 };
 
-Blockly.JavaScript['collections_clear_collection'] = function(block) {
+Blockly.JavaScript['collections_clear_collection'] = function (block) {
   const map = Blockly.JavaScript.valueToCode(block, 'MAP', Blockly.JavaScript.ORDER_ATOMIC);
   return `${map}.clear()
     `;
 };
 
 Blockly.Blocks['collections_collection_has_key'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'collection %1 has key %2?',
       inputsInline: true,
@@ -196,7 +196,7 @@ Blockly.Blocks['collections_collection_has_key'] = {
   }
 };
 
-Blockly.JavaScript['collections_collection_has_key'] = function(block) {
+Blockly.JavaScript['collections_collection_has_key'] = function (block) {
   const map = Blockly.JavaScript.valueToCode(block, 'MAP', Blockly.JavaScript.ORDER_ATOMIC);
   const key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
   return [`${map}.has(String(${key}))`, Blockly.JavaScript.ORDER_NONE];
@@ -212,7 +212,7 @@ Blockly.JavaScript['collections_collection_has_key'] = function(block) {
 // yoy
 
 Blockly.Blocks['jg_collections_convert_database_collection_to_collection'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'convert database collection %1 to collection',
       inputsInline: true,
@@ -231,7 +231,7 @@ Blockly.Blocks['jg_collections_convert_database_collection_to_collection'] = {
   }
 };
 
-Blockly.JavaScript['jg_collections_convert_database_collection_to_collection'] = function(block) {
+Blockly.JavaScript['jg_collections_convert_database_collection_to_collection'] = function (block) {
   const db = Blockly.JavaScript.valueToCode(block, 'DBCOLLECT', Blockly.JavaScript.ORDER_ATOMIC);
   return [`new Map(Object.entries(${db}))`, Blockly.JavaScript.ORDER_NONE];
 };

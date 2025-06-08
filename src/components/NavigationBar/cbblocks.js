@@ -15,7 +15,7 @@ export function load(Blockly, prefix, color) {
   import('../../blocks/frostzzone/useful/time');
   import('../../blocks/godslayerakp/index');
   Blockly.Blocks[prefix + 'exportInit'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'when block is created %1 do %2',
         args0: [
@@ -32,7 +32,7 @@ export function load(Blockly, prefix, color) {
       });
     }
   };
-  Blockly.JavaScript[prefix + 'exportInit'] = block => {
+  Blockly.JavaScript[prefix + 'exportInit'] = (block) => {
     const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
     return `_ \\COPY_ABOVE FUNCTIONS and VARIABLES\\ _
 _ \\INIT FUNC\\ _
@@ -41,7 +41,7 @@ ${statements}
 _ \\END INIT FUNC\\ _`;
   };
   Blockly.Blocks[prefix + 'exportJavascript'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'when export code is being loaded %1 do %2',
         args0: [
@@ -58,7 +58,7 @@ _ \\END INIT FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'exportJavascript'] = block => {
+  Blockly.JavaScript[prefix + 'exportJavascript'] = (block) => {
     const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
     return `_ \\COPY_ABOVE FUNCTIONS and VARIABLES\\ _
 _ \\JS FUNC\\ _
@@ -67,7 +67,7 @@ ${statements}
 _ \\END JS FUNC\\ _`;
   };
   Blockly.Blocks[prefix + 'setColour'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set block color to %1',
         args0: [
@@ -84,12 +84,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setColour'] = block => {
+  Blockly.JavaScript[prefix + 'setColour'] = (block) => {
     const color = Blockly.JavaScript.valueToCode(block, 'COLOR', Blockly.JavaScript.ORDER_ATOMIC);
     return `this.setColour(${color});\n`;
   };
   Blockly.Blocks[prefix + 'setCommentText'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set block comment to %1',
         args0: [
@@ -106,12 +106,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setCommentText'] = block => {
+  Blockly.JavaScript[prefix + 'setCommentText'] = (block) => {
     const TEXT = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return `this.setCommentText(${TEXT});\n`;
   };
   Blockly.Blocks[prefix + 'setHelpUrl'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set block help url to %1',
         args0: [
@@ -128,12 +128,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setHelpUrl'] = block => {
+  Blockly.JavaScript[prefix + 'setHelpUrl'] = (block) => {
     const TEXT = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return `this.setHelpUrl(${TEXT});\n`;
   };
   Blockly.Blocks[prefix + 'setInputsInline'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'align block inputs %1',
         args0: [
@@ -153,12 +153,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setInputsInline'] = block => {
+  Blockly.JavaScript[prefix + 'setInputsInline'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
     return `this.setInputsInline(${ALIGN});\n`;
   };
   Blockly.Blocks[prefix + 'blockConnections'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'allow %1 blocks',
         args0: [
@@ -178,12 +178,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'blockConnections'] = block => {
+  Blockly.JavaScript[prefix + 'blockConnections'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
     return `this.${ALIGN}(true, null);\n`;
   };
   Blockly.Blocks[prefix + 'blockConnectionsType'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'allow %1 blocks of type %2',
         args0: [
@@ -208,13 +208,13 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'blockConnectionsType'] = block => {
+  Blockly.JavaScript[prefix + 'blockConnectionsType'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
     const TYPES = Blockly.JavaScript.valueToCode(block, 'TYPES', Blockly.JavaScript.ORDER_ATOMIC);
     return `this.${ALIGN}(true, ${TYPES});\n`;
   };
   Blockly.Blocks[prefix + 'appendDummyInput'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'append blank input',
         args0: [],
@@ -228,7 +228,7 @@ _ \\END JS FUNC\\ _`;
     return [`this.appendDummyInput()`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'setTooltip'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set block tooltip to %1',
         args0: [
@@ -245,12 +245,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setTooltip'] = block => {
+  Blockly.JavaScript[prefix + 'setTooltip'] = (block) => {
     const TEXT = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return `this.setTooltip(${TEXT});\n`;
   };
   Blockly.Blocks[prefix + 'setOutput'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set block output types to %1',
         args0: [
@@ -267,12 +267,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setOutput'] = block => {
+  Blockly.JavaScript[prefix + 'setOutput'] = (block) => {
     const LIST = Blockly.JavaScript.valueToCode(block, 'LIST', Blockly.JavaScript.ORDER_ATOMIC);
     return `this.setOutput(${LIST});\n`;
   };
   Blockly.Blocks[prefix + 'appendValueInput'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'append value input with id %1',
         args0: [
@@ -288,12 +288,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendValueInput'] = block => {
+  Blockly.JavaScript[prefix + 'appendValueInput'] = (block) => {
     const name = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return [`this.appendValueInput(${name})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'appendStatementInput'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'append function input with id %1',
         args0: [
@@ -309,12 +309,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendStatementInput'] = block => {
+  Blockly.JavaScript[prefix + 'appendStatementInput'] = (block) => {
     const name = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return [`this.appendStatementInput(${name})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'setInputCheck'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set input %1 allowed input types %2',
         args0: [
@@ -336,13 +336,13 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setInputCheck'] = block => {
+  Blockly.JavaScript[prefix + 'setInputCheck'] = (block) => {
     const input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
     const check = Blockly.JavaScript.valueToCode(block, 'CHECK', Blockly.JavaScript.ORDER_ATOMIC);
     return `${input}.setCheck(${check});\n`;
   };
   Blockly.Blocks[prefix + 'setInputFieldAlignment'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set input %1 field alignment %2',
         args0: [
@@ -368,13 +368,13 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setInputFieldAlignment'] = block => {
+  Blockly.JavaScript[prefix + 'setInputFieldAlignment'] = (block) => {
     const input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
     const alignment = block.getFieldValue('ALIGN');
     return `${input}.setAlign(${alignment});\n`;
   };
   Blockly.Blocks[prefix + 'appendField'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'append text %2 to input %1',
         args0: [
@@ -396,13 +396,13 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendField'] = block => {
+  Blockly.JavaScript[prefix + 'appendField'] = (block) => {
     const input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
     const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return `${input}.appendField(${text});\n`;
   };
   Blockly.Blocks[prefix + 'appendFieldType'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'append field item %2 with ID %3 to input %1',
         args0: [
@@ -429,14 +429,14 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendFieldType'] = block => {
+  Blockly.JavaScript[prefix + 'appendFieldType'] = (block) => {
     const input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
     const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
     const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
     return `${input}.appendField(${field}, ${id});\n`;
   };
   Blockly.Blocks[prefix + 'getInputById'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'input with id %1',
         args0: [
@@ -452,12 +452,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'getInputById'] = block => {
+  Blockly.JavaScript[prefix + 'getInputById'] = (block) => {
     const name = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return [`___S4DCB_rALLOW_block_FROM_JS_FUNC___.getInput(${name})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'valueToCode'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'export input ID %1 to code',
         args0: [
@@ -473,12 +473,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'valueToCode'] = block => {
+  Blockly.JavaScript[prefix + 'valueToCode'] = (block) => {
     const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
     return [`Blockly.JavaScript.valueToCode(___S4DCB_rALLOW_block_FROM_JS_FUNC___, ${field}, Blockly.JavaScript.ORDER_ATOMIC)`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'statementToCode'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'export function input ID %1 to code',
         args0: [
@@ -494,12 +494,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'statementToCode'] = block => {
+  Blockly.JavaScript[prefix + 'statementToCode'] = (block) => {
     const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
     return [`Blockly.JavaScript.statementToCode(___S4DCB_rALLOW_block_FROM_JS_FUNC___, ${field})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'variableChoiceToCode'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'export variable choice field ID %1 to code',
         args0: [
@@ -515,12 +515,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'variableChoiceToCode'] = block => {
+  Blockly.JavaScript[prefix + 'variableChoiceToCode'] = (block) => {
     const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
     return [`Blockly.JavaScript.nameDB_.getName(___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}), Blockly.Variables.NAME_TYPE)`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'getFieldValue'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'export field ID %1 to code',
         args0: [
@@ -536,12 +536,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'getFieldValue'] = block => {
+  Blockly.JavaScript[prefix + 'getFieldValue'] = (block) => {
     const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
     return [`(___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "TRUE" || ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "FALSE") ? ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "TRUE" : ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldLabelSerializable'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'text field with label %1',
         args0: [
@@ -557,12 +557,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldLabelSerializable'] = block => {
+  Blockly.JavaScript[prefix + 'FieldFieldLabelSerializable'] = (block) => {
     const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return [`new Blockly.FieldLabelSerializable(${text})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldTextInput'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'text input field with default text %1',
         args0: [
@@ -578,12 +578,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldTextInput'] = block => {
+  Blockly.JavaScript[prefix + 'FieldFieldTextInput'] = (block) => {
     const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return [`new Blockly.FieldTextInput(${text})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldNumber'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'number field with default number %1 minimum %2 maximum %3 precision %4',
         args0: [
@@ -614,7 +614,7 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldNumber'] = block => {
+  Blockly.JavaScript[prefix + 'FieldFieldNumber'] = (block) => {
     const number = Blockly.JavaScript.valueToCode(block, 'NUM', Blockly.JavaScript.ORDER_ATOMIC);
     const min = Blockly.JavaScript.valueToCode(block, 'MIN', Blockly.JavaScript.ORDER_ATOMIC);
     const max = Blockly.JavaScript.valueToCode(block, 'MAX', Blockly.JavaScript.ORDER_ATOMIC);
@@ -622,7 +622,7 @@ _ \\END JS FUNC\\ _`;
     return [`new Blockly.FieldNumber(${number}, ${min}, ${max}, ${prec})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldAngle'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'angle field with default angle %1',
         args0: [
@@ -638,12 +638,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldAngle'] = block => {
+  Blockly.JavaScript[prefix + 'FieldFieldAngle'] = (block) => {
     const number = Blockly.JavaScript.valueToCode(block, 'NUM', Blockly.JavaScript.ORDER_ATOMIC);
     return [`new Blockly.FieldAngle(${number})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldCheckbox'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'checkbox field with check enabled? %1',
         args0: [
@@ -659,12 +659,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldCheckbox'] = block => {
+  Blockly.JavaScript[prefix + 'FieldFieldCheckbox'] = (block) => {
     const bool = Blockly.JavaScript.valueToCode(block, 'BOOL', Blockly.JavaScript.ORDER_ATOMIC);
     return [`new Blockly.FieldCheckbox(${bool} ? "TRUE" : "FALSE")`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldColour'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'color input field with default color %1',
         args0: [
@@ -680,12 +680,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldColour'] = block => {
+  Blockly.JavaScript[prefix + 'FieldFieldColour'] = (block) => {
     const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return [`new Blockly.FieldColour(${text})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldVariable'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'variable choice dropdown with default variable %1',
         args0: [
@@ -701,12 +701,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldVariable'] = block => {
+  Blockly.JavaScript[prefix + 'FieldFieldVariable'] = (block) => {
     const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     return [`new Blockly.FieldVariable(${text})`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldImage'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'image %1 width %2 height %3 alternate text %4',
         args0: [
@@ -737,7 +737,7 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldImage'] = block => {
+  Blockly.JavaScript[prefix + 'FieldFieldImage'] = (block) => {
     const image = Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC);
     const width = Blockly.JavaScript.valueToCode(block, 'WIDTH', Blockly.JavaScript.ORDER_ATOMIC);
     const height = Blockly.JavaScript.valueToCode(block, 'HEIGHT', Blockly.JavaScript.ORDER_ATOMIC);
@@ -745,7 +745,7 @@ _ \\END JS FUNC\\ _`;
     return [`new Blockly.FieldImage(${image}, ${width}, ${height}, { alt: ${alt}, flipRtl: "FALSE" })`, Blockly.JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'setOutputCode'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set function output code to %1',
         args0: [
@@ -762,12 +762,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setOutputCode'] = block => {
+  Blockly.JavaScript[prefix + 'setOutputCode'] = (block) => {
     const code = Blockly.JavaScript.valueToCode(block, 'CODE', Blockly.JavaScript.ORDER_ATOMIC);
     return `returning.value = (${code});\n`;
   };
   Blockly.Blocks[prefix + 'setOutputCode2'] = {
-    init: function() {
+    init: function () {
       this.jsonInit({
         message0: 'set output block code to %1',
         args0: [
@@ -784,7 +784,7 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setOutputCode2'] = block => {
+  Blockly.JavaScript[prefix + 'setOutputCode2'] = (block) => {
     const code = Blockly.JavaScript.valueToCode(block, 'CODE', Blockly.JavaScript.ORDER_ATOMIC);
     return `returning.value = [(${code}), Blockly.JavaScript.ORDER_NONE];\n`;
   };

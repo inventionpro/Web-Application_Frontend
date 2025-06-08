@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'convert_api_file';
-//block working now working
+
 const blockData = {
   message0: 'Filename of converted task',
   args0: [],
@@ -12,11 +12,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = [`file.filename`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

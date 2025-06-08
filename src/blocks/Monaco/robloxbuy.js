@@ -28,12 +28,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['monaco_roblox_buy'] = function(block) {
+Blockly.JavaScript['monaco_roblox_buy'] = function (block) {
   var value_id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_NOBLOX.buy(Number(${value_id}))\n`;

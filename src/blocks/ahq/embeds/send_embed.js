@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 const blockName = 'send_ahq_embed';
-//block working now working
+
 const blockData = {
   message0: 'Send Embeds %1',
   args0: [
@@ -17,16 +17,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
-  const code = [
-    `embeds: [${Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE)
-      .replace("'", '')
-      .replace("'", '')}]`,
-    Blockly.JavaScript.ORDER_ATOMIC
-  ];
+Blockly.JavaScript[blockName] = function (block) {
+  const code = [`embeds: [${Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE).replace("'", '').replace("'", '')}]`, Blockly.JavaScript.ORDER_ATOMIC];
   return code;
 };

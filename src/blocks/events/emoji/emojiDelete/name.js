@@ -27,12 +27,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const info = block.getFieldValue('INFO');
   const code = [`emoji.${info}`, Blockly.JavaScript.ORDER_NONE];
   return code;

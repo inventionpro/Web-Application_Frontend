@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 const blockName = 's4d_get_rndm';
-//block working now working
+
 const blockData = {
   message0: 'Get all member in server %1 then %2',
   args0: [
@@ -20,11 +20,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
   const server = Blockly.JavaScript.valueToCode(block, 'Server', Blockly.JavaScript.ORDER_ATOMIC);
   //i shall try tomorrow as its 11PM here

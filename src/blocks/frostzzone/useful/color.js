@@ -17,12 +17,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     var thisBlock = this;
     thisBlock.setColour(defaultColor);
   },
-  onchange: function() {
+  onchange: function () {
     try {
       if (!this.getFieldValue('COLOR').length) {
         this.setColour(defaultColor);
@@ -35,7 +35,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const color = block.getFieldValue('COLOR');
   const code = [`"${color}"`, Blockly.JavaScript.ORDER_ATOMIC];
   return code;

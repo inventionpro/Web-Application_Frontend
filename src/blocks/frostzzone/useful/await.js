@@ -1,7 +1,7 @@
 import Blockly from 'blockly/core';
 
 Blockly.Blocks['frost_await'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'await %1',
       args0: [
@@ -19,7 +19,7 @@ Blockly.Blocks['frost_await'] = {
   }
 };
 
-Blockly.JavaScript['frost_await'] = function(block) {
+Blockly.JavaScript['frost_await'] = function (block) {
   let input_block = Blockly.JavaScript.valueToCode(block, 'input_block', Blockly.JavaScript.ORDER_ATOMIC);
   let code = `await ${input_block}`;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];

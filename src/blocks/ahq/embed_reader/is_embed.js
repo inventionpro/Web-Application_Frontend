@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 const blockName = 'ahq_embed_is';
-//block working now working
+
 const blockData = {
   message0: 'Is there embed on message %1 ?',
   args0: [
@@ -17,14 +17,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
-  const a = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC)
-    .replace('.user', '')
-    .replace('.author', '.member');
+Blockly.JavaScript[blockName] = function (block) {
+  const a = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC).replace('.user', '').replace('.author', '.member');
   const code = [`(${a}.embeds[0])`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

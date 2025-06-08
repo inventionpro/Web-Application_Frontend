@@ -11,12 +11,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['inv_chart_to_url'] = function() {
+Blockly.JavaScript['inv_chart_to_url'] = function () {
   // this is giving me pain
   var code = `chart.toURL()`;
 

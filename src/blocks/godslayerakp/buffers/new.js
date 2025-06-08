@@ -32,13 +32,13 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     this.setInputsInline(true);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const string = Blockly.JavaScript.valueToCode(block, 'string', Blockly.JavaScript.ORDER_ATOMIC);
   const encode = block.getFieldValue('encode');
   return [`Buffer.from(String(${string}), '${encode}')`, Blockly.JavaScript.ORDER_ATOMIC];

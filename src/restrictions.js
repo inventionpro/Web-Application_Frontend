@@ -7,14 +7,14 @@ export function registerRestrictions(blockName, blockRestrictions) {
   return;
 }
 
-const decode = html => {
+const decode = (html) => {
   const txt = document.createElement('textarea');
   txt.innerHTML = html;
   return txt.value;
 };
 
 let excusedBlocks = ['lasercat_jg_case_default'];
-export const disableUnapplicable = workspace => {
+export const disableUnapplicable = (workspace) => {
   // Gets all blocks in the workspace
   const blocks = workspace.getAllBlocks(false);
 
@@ -88,9 +88,9 @@ function validateRestriction(block, blocks, restriction) {
     case 'toplevelparent':
       return restriction.types.includes(getTopLevelParent(block).type) !== reverse;
     case 'blockexists':
-      return blocks.filter(block => restriction.types.includes(block.type) && !block.disabled).length > 0 !== reverse;
+      return blocks.filter((block) => restriction.types.includes(block.type) && !block.disabled).length > 0 !== reverse;
     case 'notblockexists':
-      return blocks.filter(block => restriction.types.includes(block.type) && !block.disabled).length > 0 !== reverse;
+      return blocks.filter((block) => restriction.types.includes(block.type) && !block.disabled).length > 0 !== reverse;
     case 'parent':
       return restriction.types.includes(block.getParent().type) !== reverse;
     case 'hasparent':

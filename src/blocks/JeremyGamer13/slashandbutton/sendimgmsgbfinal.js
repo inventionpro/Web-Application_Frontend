@@ -45,10 +45,10 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   },
-  onchange: function() {
+  onchange: function () {
     let type = String(this.getFieldValue('TYPE'));
     if (type == 'interaction.editReply') {
       this.setColour('#478ded');
@@ -60,7 +60,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   //embeds: [
   const fileNameandLocation = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   const hidden = Blockly.JavaScript.valueToCode(block, 'HIDE', Blockly.JavaScript.ORDER_ATOMIC);

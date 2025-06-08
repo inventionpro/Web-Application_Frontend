@@ -26,12 +26,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const statements = Blockly.JavaScript.statementToCode(block, 'THEN');
   const name = Blockly.JavaScript.valueToCode(block, 'BUTTON_NAME', Blockly.JavaScript.ORDER_ATOMIC);
   let text1 = name.replace("'", '');

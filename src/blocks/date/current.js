@@ -26,12 +26,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const dataType = block.getFieldValue('DATA_TYPE');
   if (dataType === 'SECOND') {
     return ['(new Date().getSeconds())', Blockly.JavaScript.ORDER_NONE];

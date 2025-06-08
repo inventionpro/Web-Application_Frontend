@@ -22,12 +22,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('type');
   const code = [`line_chart_S4D_generated_992731990318.${type}()`, Blockly.JavaScript.ORDER_NONE];
   return code;

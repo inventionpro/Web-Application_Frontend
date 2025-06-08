@@ -30,12 +30,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['create_new_event'] = function(block) {
+Blockly.JavaScript['create_new_event'] = function (block) {
   var new_event_server = Blockly.JavaScript.valueToCode(block, 'event_server', Blockly.JavaScript.ORDER_ATOMIC);
   var statements = Blockly.JavaScript.statementToCode(block, 'options');
   var event_id = Blockly.JavaScript.valueToCode(block, 'event_id', Blockly.JavaScript.ORDER_ATOMIC);

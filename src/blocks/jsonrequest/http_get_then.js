@@ -24,12 +24,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const https = Blockly.JavaScript.valueToCode(block, 'HTTPS', Blockly.JavaScript.ORDER_ATOMIC);
   const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
   const code = `https.get(${https}, async resp => {\nlet data2 = "";\nresp.on("data",async chunk => {\ndata2 += chunk;\n});\nresp.on("end",async () => {\nlet data = JSON.parse(data2)\n ${statementThen} \n});\n})\n.on("error",async err => {\nconsole.log("Error: " + err.message);\n});\n`;

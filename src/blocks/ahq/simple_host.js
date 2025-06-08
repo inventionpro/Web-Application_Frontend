@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 const blockName = 'simple_host_auth';
-//block working now working
+
 const blockData = {
   type: 'block_type',
   message0: 'load Simple Host auth %1 core config ID %2',
@@ -21,14 +21,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function(block) {
-  const a = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC)
-    .replace('.user', '')
-    .replace('.author', '.member');
+Blockly.JavaScript[blockName] = function (block) {
+  const a = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC).replace('.user', '').replace('.author', '.member');
   const code = `
     //simple host
     const {error} = require("../../err.js");

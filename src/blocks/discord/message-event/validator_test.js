@@ -11,12 +11,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  validate: function(newValue) {
+  validate: function (newValue) {
     this.getSourceBlock().updateConnections(newValue);
     return newValue;
   },
 
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
     var options = [
       ['has neither', 'NEITHER'],
@@ -29,7 +29,7 @@ Blockly.Blocks[blockName] = {
       // Pass the field constructor the options list, the validator, and the name.
       .appendField(new Blockly.FieldDropdown(options, this.validate), 'MODE');
   },
-  updateConnections: function(newValue) {
+  updateConnections: function (newValue) {
     var options = [
       ['amongus', 'NEITHER'],
       ['sussy baka', 'STATEMENT'],

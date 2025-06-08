@@ -18,12 +18,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   var text_type = block.getFieldValue('TYPE');
 
   var code = `await _S4D_inventionFSHapi('animal?animal=', ${text_type}, 'image', '')`;

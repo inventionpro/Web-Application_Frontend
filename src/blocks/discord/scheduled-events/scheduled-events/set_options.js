@@ -16,13 +16,13 @@ const event_set_options = {
 };
 
 Blockly.Blocks['event_set_options'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(event_set_options);
   }
 };
 
 Blockly.Blocks['event_set_options_mutator'] = {
-  init: function() {
+  init: function () {
     this.setColour('#CECDCE');
     this.setTooltip('Right click on the block and click on Help to find the website for the dates!');
     this.setHelpUrl('https://www.unixtimestamp.com/');
@@ -32,7 +32,7 @@ Blockly.Blocks['event_set_options_mutator'] = {
 const BORDER_MUTATOR_MIXIN = {
   inputs_: [true, true, false, true, true, false, false, false, false],
 
-  mutationToDom: function() {
+  mutationToDom: function () {
     if (!this.inputs_) {
       return null;
     }
@@ -43,14 +43,14 @@ const BORDER_MUTATOR_MIXIN = {
     return container;
   },
 
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     for (let i = 0; i < this.inputs_.length; i++) {
       this.inputs_[i] = xmlElement.getAttribute(BORDER_FIELDS[i].toLowerCase()) == 'true';
     }
     this.updateShape_();
   },
 
-  decompose: function(workspace) {
+  decompose: function (workspace) {
     const containerBlock = workspace.newBlock('event_set_options_mutator');
     for (let i = 0; i < this.inputs_.length; i++) {
       containerBlock
@@ -63,7 +63,7 @@ const BORDER_MUTATOR_MIXIN = {
     return containerBlock;
   },
 
-  compose: function(containerBlock) {
+  compose: function (containerBlock) {
     // Set states
     for (let i = 0; i < this.inputs_.length; i++) {
       this.inputs_[i] = containerBlock.getFieldValue(BORDER_FIELDS[i].toUpperCase()) == 'TRUE';
@@ -71,16 +71,13 @@ const BORDER_MUTATOR_MIXIN = {
     this.updateShape_();
   },
 
-  updateShape_: function() {
+  updateShape_: function () {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.getInput(BORDER_FIELDS[i].toUpperCase())) this.removeInput(BORDER_FIELDS[i].toUpperCase());
     }
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase())
-          .setCheck(BORDER_TYPES[i])
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField(BaseBlockly.Msg[BORDER_FIELDS[i]]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(BaseBlockly.Msg[BORDER_FIELDS[i]]);
       }
     }
   }
@@ -88,7 +85,7 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('event_set_options_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
 
-Blockly.JavaScript['event_set_options'] = function(block) {
+Blockly.JavaScript['event_set_options'] = function (block) {
   let name = '';
   let start_date = '';
   let end_date = '';
@@ -112,14 +109,10 @@ Blockly.JavaScript['event_set_options'] = function(block) {
     description = `\ndescription:${Blockly.JavaScript.valueToCode(block, 'S_EVENT_DESC', Blockly.JavaScript.ORDER_ATOMIC)},`;
   }
   if ((Blockly.JavaScript.valueToCode(block, 'S_PRIV_LVL', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    privateLevel = `\n privacyLevel:${Blockly.JavaScript.valueToCode(block, 'S_PRIV_LVL', Blockly.JavaScript.ORDER_ATOMIC)
-      .replace('(', '')
-      .replace(')', '')},`;
+    privateLevel = `\n privacyLevel:${Blockly.JavaScript.valueToCode(block, 'S_PRIV_LVL', Blockly.JavaScript.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
   }
   if ((Blockly.JavaScript.valueToCode(block, 'S_NTITI_TYPE', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    type = `\nentityType:${Blockly.JavaScript.valueToCode(block, 'S_NTITI_TYPE', Blockly.JavaScript.ORDER_ATOMIC)
-      .replace('(', '')
-      .replace(')', '')},`;
+    type = `\nentityType:${Blockly.JavaScript.valueToCode(block, 'S_NTITI_TYPE', Blockly.JavaScript.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
   }
   if ((Blockly.JavaScript.valueToCode(block, 'S_EVENT_CHANNEL', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
     channel = `\nchannel:${Blockly.JavaScript.valueToCode(block, 'S_EVENT_CHANNEL', Blockly.JavaScript.ORDER_ATOMIC)},`;

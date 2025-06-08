@@ -20,12 +20,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['register_commands'] = function(block) {
+Blockly.JavaScript['register_commands'] = function (block) {
   var statements_commands = Blockly.JavaScript.statementToCode(block, 'commands');
   // TODO: Assemble JavaScript into code variable.
   var code = `${statements_commands}`;

@@ -51,12 +51,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['new_session_obj'] = function(block) {
+Blockly.JavaScript['new_session_obj'] = function (block) {
   var value_sekret = Blockly.JavaScript.valueToCode(block, 'sekret', Blockly.JavaScript.ORDER_ATOMIC);
   var value_resave = Blockly.JavaScript.valueToCode(block, 'resave', Blockly.JavaScript.ORDER_ATOMIC);
   var value_saveuninitialized = Blockly.JavaScript.valueToCode(block, 'saveUninitialized', Blockly.JavaScript.ORDER_ATOMIC);

@@ -26,12 +26,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript['set_verification_level'] = function(block) {
+Blockly.JavaScript['set_verification_level'] = function (block) {
   var dropdown = block.getFieldValue('NAME');
   var code = dropdown;
 

@@ -26,12 +26,12 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const log = Blockly.JavaScript.valueToCode(block, 'LOG', Blockly.JavaScript.ORDER_ATOMIC);
   return `
         while(s4d.client && s4d.client.token) {
@@ -45,7 +45,7 @@ Blockly.JavaScript[blockName] = function(block) {
 };
 
 Blockly.Blocks['s4d_forever_nolog'] = {
-  init: function() {
+  init: function () {
     this.jsonInit({
       message0: 'repeat forever %1 do %2 without logging',
       args0: [
@@ -66,7 +66,7 @@ Blockly.Blocks['s4d_forever_nolog'] = {
   }
 };
 
-Blockly.JavaScript['s4d_forever_nolog'] = function(block) {
+Blockly.JavaScript['s4d_forever_nolog'] = function (block) {
   return `
         while(s4d.client && s4d.client.token) {
             await delay(50);

@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'dash_v';
-//block working now working
+
 const blockData = {
   message0: 'Value',
   colour: '#0EB22B',
@@ -11,11 +11,11 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function() {
+Blockly.JavaScript[blockName] = function () {
   const code = [`value`, Blockly.JavaScript.ORDER_NONE];
   return code;
 };

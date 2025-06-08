@@ -17,12 +17,12 @@ const blockData = {
   helpUrl: ''
 };
 Blockly.Blocks[blockName] = {
-  init: function() {
+  init: function () {
     this.jsonInit(blockData);
   }
 };
 
-Blockly.JavaScript[blockName] = function(block) {
+Blockly.JavaScript[blockName] = function (block) {
   const code = Blockly.JavaScript.valueToCode(block, 'EVAL', Blockly.JavaScript.ORDER_ATOMIC);
   return [`eval(${code})`, Blockly.JavaScript.ORDER_NONE];
 };
