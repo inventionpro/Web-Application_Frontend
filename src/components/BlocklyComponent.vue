@@ -160,37 +160,30 @@ export default {
         });
         if (warnings.length > 0) {
           console.log(`please adress all warnings created!`);
-          console.log(`warnings: [${warnings.map(x => {
-            return `
-              ${x}`;
-          })}
-          ]`);
+          console.log(`warnings: [${warnings.join('\n  ')}
+]`);
           console.log(`resulting hiden list: [
             "${HIDEN_BLOCKS.filter(x => !preadded.includes(x) && !warnings.includes(x)).join('",\n            "')}"
           ]`);
         }
 
-        searchparameter = searchparameter.replaceAll(/[^qwertyuiopasdfghjklzxcvbnm1234567890_QWERTYUIOPASDFGHJKLZXCVBNM]/gm, '_').toLowerCase(); // long boi lmao
+        searchparameter = searchparameter.replaceAll(/[^a-zA-Z0-9_]/gm, '_').toLowerCase();
         let search_res = blocks.filter(x => (x.includes(searchparameter) && !HIDEN_BLOCKS.includes(x)) || (searchparameter == 'hidden' && HIDEN_BLOCKS.includes(x)));
 
         if (search_res.length < 1) {
-          CATEGORYCONTENT = `
-            <label text="No blocks where found with ${searchparameter} in the name..." web-class="boldtext"></label>
-          `;
+          CATEGORYCONTENT = `<label text="No blocks where found with &quot;${searchparameter}&quot; in the name..." web-class="boldtext"></label>`;
         }
         if (search_res.length > 0) {
           CATEGORYCONTENT = `
-            <label text="Found ${search_res.length} blocks with ${searchparameter} in there name" web-class="boldtext"></label>
+            <label text="Found ${search_res.length} blocks with &quot;${searchparameter}&quot; in there name${search_res.length>100?' showing first 100':''}" web-class="boldtext"></label>
             <label text="ㅤ" web-class="boldtext"></label>
             ${search_res
+              .slice(0, 100)
               .map(x => {
-                return `
-              <label text="${x.replace(searchparameter, `${searchparameter.toUpperCase()}`)} ${resbox[x] == null ? ' isnt in the toolbox' : 'is in ' + resbox[x].join(' and ')}" web-class="boldtext"></label>
-              <block type="${x}"/>
-            `;
+                return `<label text="${x.replace(searchparameter, `${searchparameter.toUpperCase()}`)} ${resbox[x] == null ? ' isnt in the toolbox' : 'is in ' + resbox[x].join(' and ')}" web-class="boldtext"></label>
+<block type="${x}"/>`;
               })
-              .join('\n')}
-          `;
+              .join('\n')}`;
         }
       } else {
         const lessthan_350 = blocks.length < default_max_length;
@@ -287,7 +280,6 @@ export default {
       if (item != false) {
         window.addEventListener('keydown', e => {
           if (e.altKey) {
-            console.log(e.key);
             if (['t','n','m','c','e','a','w','b','i','=','N','A'].includes(e.key)) {
               if (e.key == 't') {
                 var blockToPlace = 'text';
@@ -656,7 +648,7 @@ Blockly.getMaainWorkspace().addChangeListener(blockCounter(Blockly.getMaainWorks
         toolbox: prepToolbox(toolbox(val), false, val)
       }
     });
-    window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e = workspace;
+    window.blocklyWorkspaceGlobalRef = workspace;
     /*
         let testCategoryXMLContents = `<button text="Create" callbackKey="CREATETESTVARIABLE"></button>`
         workspace.registerToolboxCategoryCallback("VARIABLETESTREMAKE", function () {
@@ -798,14 +790,14 @@ Blockly.getMaainWorkspace().addChangeListener(blockCounter(Blockly.getMaainWorks
               if (b.name == blockName) target = b;
             });
             if (!target) return alert('This block does not exist anymore!');
-            window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e.getAllBlocks().forEach(block => {
+            window.blocklyWorkspaceGlobalRef.getAllBlocks().forEach(block => {
               if (block.type == blockName) block.dispose();
             });
             window.customBlocks.splice(window.customBlocks.indexOf(blockName), 1);
             window.saveCustomBlocksOutput.splice(window.saveCustomBlocksOutput.indexOf(target), 1);
             localforage.setItem('autosave_customBlocks', JSON.stringify(window.saveCustomBlocksOutput));
             window.loadtoolboxfuncinternal();
-            window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e.toolbox_.clearSelection();
+            window.blocklyWorkspaceGlobalRef.toolbox_.clearSelection();
           };
           customBlockDeletorDiv.append(button);
         });

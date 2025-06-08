@@ -141,11 +141,11 @@ export default {
         blocklySpace.classList.remove('hideAllGuiElements');
         blocklyToolboxDiv.classList.remove('hideAllGuiElements');
         showButton.remove();
-        Blockly.svgResize(window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e);
+        Blockly.svgResize(window.blocklyWorkspaceGlobalRef);
       };
       showButton.innerHTML = '<img src="' + window.location.origin + '/scratch.png' + '" width="35" draggable="false">';
       document.body.append(showButton);
-      Blockly.svgResize(window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e);
+      Blockly.svgResize(window.blocklyWorkspaceGlobalRef);
     };
     if (String(window.location.pathname).replace(/\//gim, '') == 'spooky') {
       this.$swal.fire({
@@ -883,7 +883,6 @@ export default {
                                   .replaceAll('>', '_')
                                   .replaceAll('/', '_');
                                 console.log('Adding block', block, 'to favorites');
-                                console.log(favs);
                                 if (favs != null) {
                                   let newArray = favs;
                                   newArray.push(block);
@@ -1113,7 +1112,6 @@ export default {
                         load: 'Load Prebuild'
                       }
                     }).then(async result => {
-                      console.log(result);
                       if (result == null || result == false) {
                         return;
                       }
@@ -1372,7 +1370,6 @@ export default {
                               } else {
                                 localforage.setItem('hide-blockcount', true);
                               }
-                              localforage.getItem('hide-blockcount').then(console.log);
                             });
                           }
                         });
@@ -1543,12 +1540,10 @@ export default {
           const javascriptContent = this.getWorkspaceCode();
           const workspace = this.$store.state.workspace;
           const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-          function customBlocksHasAMcxdondalldakdoij9() {
+          function HasCustomBlocks() {
             let epic = false;
-            window.customBlocks.forEach(name => {
-              workspace.getAllBlocks().forEach(block => {
-                if (block.type == name) epic = true;
-              });
+            workspace.getAllBlocks().forEach(block => {
+              if (!epic && window.customBlocks.includes(block.type)) epic = true;
             });
             return epic;
           }
@@ -1576,7 +1571,7 @@ export default {
             console.log('johnathan: zamn');
             console.error('barry and johnathan found out you have a website...');
             return;
-          } else if (customBlocksHasAMcxdondalldakdoij9()) {
+          } else if (HasCustomBlocks()) {
             swal.fire('Your bot contains custom blocks.', 'Custom blocks are currently unsupported for the run button. Please remove them before continuing.', 'error');
             console.log('barry: this mf got custom blocks');
             console.log('johnathan: dayumm');
@@ -1670,8 +1665,6 @@ export default {
           .then(response => response.json())
           .then(async data => {
             var serverResponse = 'No response from the RBS... maybe try again later?';
-            console.log(data);
-            console.log(data.code);
             temp1 = String(data.code).replaceAll('□', '\n');
             temp2 = String(temp1).replaceAll('▣', '"');
             serverResponse = temp2;
@@ -1699,11 +1692,9 @@ export default {
       if (localStorage.getItem('theme') === 'dark') {
         localStorage.setItem('theme', 'light');
         document.querySelector('html').classList.add('light-them');
-        console.log('changed theme to light');
       } else {
         localStorage.setItem('theme', 'dark');
         document.querySelector('html').classList.remove('light-them');
-        console.log('changed theme to dark');
       }
     }
   }

@@ -9,8 +9,6 @@
 <script>
 import beautify from 'js-beautify';
 
-// https://filehost.jeremygamer13.repl.co/s4d/prism/js
-// https://filehost.jeremygamer13.repl.co/s4d/prism/css
 export default {
   name: 'editmenu',
   computed: {

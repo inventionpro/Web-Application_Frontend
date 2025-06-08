@@ -241,7 +241,7 @@ export function setMutatorOnBlock(block, mutator_type, data) {
   }
 }
 export function getWorkspace() {
-  return window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e;
+  return window.blocklyWorkspaceGlobalRef;
 }
 export function getToolbox() {
   return getWorkspace().toolbox_;

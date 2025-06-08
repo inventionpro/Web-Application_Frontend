@@ -168,19 +168,18 @@ export default {
           if (result.isDismissed) {
             return;
           } else if (result.isConfirmed) {
-            window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e.clear();
+            window.blocklyWorkspaceGlobalRef.clear();
           }
           const file = document.getElementById('load-code').files[0];
           const documentName = file.name.split('.').slice(0, file.name.split('.').length - 1);
           document.querySelector('#docName').textContent = documentName;
           const reader = new FileReader();
           reader.onload = async e => {
-            // console.log(e.target.result)
             if (file.type == 'text/xml') {
               const decoder = new TextDecoder('utf-8');
               const raw = decoder.decode(e.target.result);
               const xml = Blockly.Xml.textToDom(raw);
-              Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e);
+              Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
               return;
             }
             JSZip.loadAsync(e.target.result)
@@ -198,7 +197,7 @@ export default {
                 if (dataobj.xml == null) return;
                 function load() {
                   const xml = Blockly.Xml.textToDom(dataobj.xml);
-                  Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e);
+                  Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
                 }
                 if (dataobj.customBlocks == null) {
                   load();
@@ -224,7 +223,7 @@ export default {
     },
     save() {
       const zip = new JSZip();
-      const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e));
+      const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(window.blocklyWorkspaceGlobalRef));
       const fileName = `${encodeURIComponent(document.querySelector('#docName').textContent).replace(/%20/g, ' ')}.s4d`;
       zip.file('blocks.xml', xmlContent);
       if (window.saveCustomBlocksOutput.length > 0) {
@@ -251,7 +250,7 @@ export default {
     },
     saveas() {
       const zip = new JSZip();
-      const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e));
+      const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(window.blocklyWorkspaceGlobalRef));
       zip.file('blocks.xml', xmlContent);
       if (window.saveCustomBlocksOutput.length > 0) {
         zip.file('customBlocks.json', JSON.stringify(window.saveCustomBlocksOutput));

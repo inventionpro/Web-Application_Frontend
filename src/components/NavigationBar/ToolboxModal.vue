@@ -10,10 +10,10 @@ export default {
   name: 'filemenu',
   methods: {
     hide() {
-      window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e.getToolbox().setVisible(false);
+      window.blocklyWorkspaceGlobalRef.getToolbox().setVisible(false);
     },
     show() {
-      window.blocklyWorkspaceThatIneedtoUseForThingsLaigwef9o8wifnwp4e.getToolbox().setVisible(true);
+      window.blocklyWorkspaceGlobalRef.getToolbox().setVisible(true);
     }
   }
 };
