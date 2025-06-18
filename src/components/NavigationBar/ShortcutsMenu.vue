@@ -26,7 +26,7 @@ function toShortcut(text) {
 }
 const displayable = {};
 export default {
-  name: 'shortcuts',
+  name: 'ShortcutsMenu',
   methods: {
     shortcuts() {
       Swal.fire({

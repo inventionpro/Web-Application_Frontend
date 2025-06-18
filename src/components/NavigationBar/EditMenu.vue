@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'editmenu',
+  name: 'EditMenu',
   computed: {
     blockCount: function () {
       return this.$store.state.workspace ? this.$store.state.workspace.getAllBlocks().length : 0;

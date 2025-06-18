@@ -6,7 +6,7 @@
 // import localforage from 'localforage';
 import Swal from 'sweetalert2';
 export default {
-  name: 'credit',
+  name: 'CreditsMenu',
   methods: {
     credit() {
       Swal.fire({
@@ -56,8 +56,4 @@ export default {
     }
   }
 };
-/*
-title: 'Androz, snowflake107 - Original S4D\n7coil - Discord Blocks\nJose and mrredo - Preview 454',
-text: 'frostzzone, RetroBTW, cat soup, AHQ, JeremyGamer13, LimeNade, henpokpok, AlexCdDg, Eruption - Preview 469',
-*/
 </script>

@@ -6,7 +6,7 @@ const NavExpanded = ref(false);
 <template>
   <b-navbar toggleable="lg" style="user-select: none" id="navbar nav-main" class="navbar-dark bg-dark">
     <b-navbar-brand>
-      <button id="hideAllGuiElements" class="hide-gui-button"><img :src="decideNavBarImage" width="35" draggable="false" id="navigationBarS4DImage" /></button>
+      <button id="hideAllGuiElements" class="hide-gui-button"><img src="/scratch.png" width="35" draggable="false" id="navigationBarS4DImage" /></button>
       Scratch For Discord
     </b-navbar-brand>
 
@@ -17,14 +17,13 @@ const NavExpanded = ref(false);
         <CodeModal></CodeModal>
         <FileMenu style="font-size: small"></FileMenu>
         <EditMenu style="font-size: small"></EditMenu>
-        <!--<ToolboxModal style="font-size: small;"></ToolboxModal>-->
         <!--<LanguageMenu></LanguageMenu>-->
         <ExamplesMenu style="font-size: small"></ExamplesMenu>
-        <Socials style="font-size: small"></Socials>
+        <SocialsMenu style="font-size: small"></SocialsMenu>
         <DataMenu style="font-size: small"></DataMenu>
-        <changelog style="font-size: small"></changelog>
-        <shortcuts style="font-size: small"></shortcuts>
-        <Credit style="font-size: small"></Credit>
+        <ChangelogMenu style="font-size: small"></ChangelogMenu>
+        <ShortcutsMenu style="font-size: small"></ShortcutsMenu>
+        <CreditsMenu style="font-size: small"></CreditsMenu>
       </b-navbar-nav>
       <b-navbar-nav class="ms-auto">
         <div id="block-counter" style="margin-right: 5px; font-size: 90%">
@@ -35,13 +34,9 @@ const NavExpanded = ref(false);
         <b-button style="border-right-color: #161719; border-radius: 0em; border-top-left-radius: 0.25em; border-bottom-left-radius: 0.25em">
           <span id="docName" style="font-size: smaller" @click="changeFileName">{{ $t('untitled') }}</span>
         </b-button>
-        <!-- border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em -->
         <b-button id="v-step-4" style="border-right-color: #161719; border-radius: 0em" @click="runbot">
           <i class="bi bi-play"></i>
         </b-button>
-        <!--<b-button id="v-step-5" style="border-right-color: #161719; border-radius: 0em" @click="console">
-          <i class="bi bi-newspaper"></i>
-        </b-button>-->
         <b-button id="v-step-2" style="border-right-color: #161719; border-radius: 0em" @click="util">
           <i class="bi bi-gear"></i>
         </b-button>
@@ -57,20 +52,21 @@ const NavExpanded = ref(false);
 /* eslint-disable */
 import Blockly from 'blockly';
 import JSZip from 'jszip';
+import localforage from 'localforage';
+import swal from 'sweetalert2';
+import r from './requires';
+
+import CodeModal from './CodeModal.vue';
 import FileMenu from './FileMenu.vue';
 import EditMenu from './EditMenu.vue';
-//import LanguageMenu from "./LanguageMenu.vue";
-import shortcuts from './shortcuts.vue';
+//import LanguageMenu from './LanguageMenu.vue';
 import ExamplesMenu from './ExamplesMenu.vue';
-import CodeModal from './CodeModal.vue';
-//import ToolboxModal from "./ToolboxModal.vue";
-import Socials from './socials.vue';
-import Credit from './Credit.vue';
-import DataMenu from './data.vue';
-import changelog from './changelog.vue';
-import localforage from 'localforage';
-import r from './requires';
-import swal from 'sweetalert2';
+import SocialsMenu from './SocialsMenu.vue';
+import DataMenu from './DataMenu.vue';
+import ChangelogMenu from './ChangelogMenu.vue';
+import ShortcutsMenu from './ShortcutsMenu.vue';
+import CreditsMenu from './CreditsMenu.vue';
+
 export default {
   name: 'navbar',
   components: {
@@ -79,22 +75,11 @@ export default {
     EditMenu,
     //LanguageMenu,
     ExamplesMenu,
-    //ToolboxModal,
-    shortcuts,
-    Credit,
+    SocialsMenu,
     DataMenu,
-    changelog,
-    Socials
-  },
-  computed: {
-    // configurationValidated: function () {
-    //     return  this.$store.state.workspace &&
-    //             this.$store.state.workspace.getAllBlocks().some((block) => block.type === "s4d_login") &&
-    //             this.$store.state.workspace.getAllBlocks().every((block) => !block.disabled && !block.warning);
-    // },
-    decideNavBarImage: function () {
-      return window.location.origin + '/scratch.png';
-    }
+    ChangelogMenu,
+    ShortcutsMenu,
+    CreditsMenu
   },
   mounted() {
     document.getElementById('docName').addEventListener(

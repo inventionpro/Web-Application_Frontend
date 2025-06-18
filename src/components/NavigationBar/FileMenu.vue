@@ -117,7 +117,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
 }
 window.fetchCustomBlocks = fetchCustomBlocks;
 export default {
-  name: 'filemenu',
+  name: 'FileMenu',
   mounted() {
     localforage.getItem('utilitiesShortcuts').then((item) => {
       if (item == false) return;

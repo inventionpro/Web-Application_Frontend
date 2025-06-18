@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'languagemenu',
+  name: 'LanguageMenu',
   methods: {
     changeLanguage(locale) {
       this.$store.commit('setLocale', {
