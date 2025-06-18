@@ -1,3 +1,8 @@
+<script setup>
+import { ref } from 'vue';
+const NavExpanded = ref(false);
+</script>
+
 <template>
   <b-navbar toggleable="lg" style="user-select: none" id="navbar nav-main" class="navbar-dark bg-dark">
     <b-navbar-brand>
@@ -5,9 +10,9 @@
       Scratch For Discord
     </b-navbar-brand>
 
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-navbar-toggle @click="NavExpanded=!NavExpanded"></b-navbar-toggle>
 
-    <b-collapse id="nav-collapse" is-nav>
+    <b-collapse is-nav v-model="NavExpanded">
       <b-navbar-nav>
         <CodeModal></CodeModal>
         <FileMenu style="font-size: small"></FileMenu>
