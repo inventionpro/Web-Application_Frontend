@@ -30,33 +30,29 @@ export default {
   methods: {
     shortcuts() {
       Swal.fire({
-        position: 'center',
-        width: '900px',
-        html: `
-                <h1>Shortcuts</h1>
-                <div style="text-align: left">
-                    <h3 style="text-align:center">Block shortcuts</h3>
-                    <div style="height:18em;overflow:auto;background-color:#e3e3e3">
-                        <p>${toShortcut('alt + t')} - ${displayable.text}</p>
-                        <p>${toShortcut('alt + c')} - ${displayable.color}</p>
-                        <p>${toShortcut('alt + i')}  - ${displayable.if}</p>
-                        <p>${toShortcut('alt + w')} - ${displayable.msgrecieved}</p>
-                        <p>${toShortcut('alt + e')} - ${displayable.error}</p>
-                        <p>${toShortcut('alt + a')} - ${displayable.author}</p>
-                        <p>${toShortcut('alt + b')} - ${displayable.bool}</p>
-                        <p>${toShortcut('alt + n')} - ${displayable.number}</p>
-                        <p>${toShortcut('alt + m')} - ${displayable.msgcontent}</p>
-                        <p>${toShortcut('alt + equals-plus')} - ${displayable.check}</p>
-                    </div>
-                    <h3 style="text-align:center">Non-block shortcuts</h3>
-                    <div style="height:18em;overflow:auto;background-color:#e3e3e3">
-                        <p>${toShortcut('ctrl + s')} - Save</p>
-                        <p>${toShortcut('ctrl + alt + s')} - Save as</p>
-                        <p>${toShortcut('ctrl + shift + c')} - Open the Developer Console</p>
-                        <button style="border-width:0px;outline-width:0px;background-color:transparent;padding:0px;color:inherit" id="s4d_shortcuts_menu_button_opens4ddevelopertools"><p>${toShortcut('ctrl + shift + u')} - Open the S4D Developer Tools</p></button>
-                    </div>
-                </div>
-                `,
+        html: `<h1>Shortcuts</h1>
+<div style="text-align: left">
+  <h3 style="text-align:center">Block shortcuts</h3>
+  <div style="height:18em;overflow:auto;background-color:#e3e3e3">
+    <p>${toShortcut('alt + t')} - ${displayable.text}</p>
+    <p>${toShortcut('alt + c')} - ${displayable.color}</p>
+    <p>${toShortcut('alt + i')}  - ${displayable.if}</p>
+    <p>${toShortcut('alt + w')} - ${displayable.msgrecieved}</p>
+    <p>${toShortcut('alt + e')} - ${displayable.error}</p>
+    <p>${toShortcut('alt + a')} - ${displayable.author}</p>
+    <p>${toShortcut('alt + b')} - ${displayable.bool}</p>
+    <p>${toShortcut('alt + n')} - ${displayable.number}</p>
+    <p>${toShortcut('alt + m')} - ${displayable.msgcontent}</p>
+    <p>${toShortcut('alt + equals-plus')} - ${displayable.check}</p>
+  </div>
+  <h3 style="text-align:center">Non-block shortcuts</h3>
+  <div style="height:18em;overflow:auto;background-color:#e3e3e3">
+    <p>${toShortcut('ctrl + s')} - Save</p>
+    <p>${toShortcut('ctrl + alt + s')} - Save as</p>
+    <p>${toShortcut('ctrl + shift + c')} - Open the Developer Console</p>
+    <button style="border-width:0px;outline-width:0px;background-color:transparent;padding:0px;color:inherit" id="s4d_shortcuts_menu_button_opens4ddevelopertools"><p>${toShortcut('ctrl + shift + u')} - Open the S4D Developer Tools</p></button>
+  </div>
+</div>`,
         confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
         confirmButtonAriaLabel: 'Thumbs up, great!'
       });

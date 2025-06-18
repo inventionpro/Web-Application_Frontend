@@ -19,8 +19,6 @@ export default {
   methods: {
     changelog() {
       Swal.fire({
-        position: 'center',
-        width: '900px',
         html: `<style>
   h2, h3 {
     font-weight: bold;

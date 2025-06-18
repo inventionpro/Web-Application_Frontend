@@ -1475,8 +1475,7 @@ export default {
                             none: 'Default'
                           },
                           inputPlaceholder: 'Select a theme',
-                          showCancelButton: true,
-                          width: '1000px'
+                          showCancelButton: true
                         });
                         switch (String(result)) {
                           case 'glow':
@@ -1657,8 +1656,6 @@ export default {
       const showMenu = function (content) {
         swal.fire({
           title: 'Public Error Console (used by the Run Button)',
-          width: '1500px',
-          heightAuto: true,
           html: content,
           showCancelButton: true,
           showConfirmButton: false,
