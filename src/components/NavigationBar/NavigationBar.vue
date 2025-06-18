@@ -10,7 +10,7 @@ const NavExpanded = ref(false);
       Scratch For Discord
     </b-navbar-brand>
 
-    <b-navbar-toggle @click="NavExpanded=!NavExpanded"></b-navbar-toggle>
+    <b-navbar-toggle @click="NavExpanded = !NavExpanded"></b-navbar-toggle>
 
     <b-collapse is-nav v-model="NavExpanded">
       <b-navbar-nav>

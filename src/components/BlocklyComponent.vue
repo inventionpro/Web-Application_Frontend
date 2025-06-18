@@ -796,14 +796,22 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
   <statement name="THEN">
     <block type="s4d_embed_set_title">
       <value name="TITLE">
-        ${etitle ? `<block type="jg_text_remake_paragraph_quotes">
+        ${
+          etitle
+            ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${etitle}</field>
-</block>` : ''}
+</block>`
+            : ''
+        }
       </value>
       <value name="HYPERLINK">
-        ${etitleurl ? `<block type="jg_text_remake_paragraph_quotes">
+        ${
+          etitleurl
+            ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${etitleurl}</field>
-</block>` : ''}
+</block>`
+            : ''
+        }
       </value>
       <next>
         <block type="s4d_embed_set_desc">
@@ -815,26 +823,42 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           <next>
             <block type="s4d_embed_set_color">
               <value name="COLOUR">
-                ${etitle ? `<block type="fz_color">
+                ${
+                  etitle
+                    ? `<block type="fz_color">
   <field name="COLOR">${ecolor}</field>
-</block>` : ''}
+</block>`
+                    : ''
+                }
               </value>
               <next>
                 <block type="s4d_embed_set_author">
                   <value name="AUTHOR">
-                    ${eauthor ? `<block type="jg_text_remake_paragraph_quotes">
+                    ${
+                      eauthor
+                        ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${eauthor}</field>
-</block>` : ''}
+</block>`
+                        : ''
+                    }
                   </value>
                   <value name="PROFILE">
-                    ${eauthorpfp ? `<block type="jg_text_remake_paragraph_quotes">
+                    ${
+                      eauthorpfp
+                        ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${eauthorpfp}</field>
-</block>` : ''}
+</block>`
+                        : ''
+                    }
                   </value>
                   <value name="URL">
-                    ${eauthorurl ? `<block type="jg_text_remake_paragraph_quotes">
+                    ${
+                      eauthorurl
+                        ? `<block type="jg_text_remake_paragraph_quotes">
   <field name="TEXT">${eauthorurl}</field>
-</block>` : ''}
+</block>`
+                        : ''
+                    }
                   </value>
                 </block>
               </next>
