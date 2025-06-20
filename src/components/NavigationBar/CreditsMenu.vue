@@ -10,6 +10,7 @@ export default {
   methods: {
     credit() {
       Swal.fire({
+        theme: 'auto',
         icon: 'info',
         html: `<h1><span>Developers of </span><span style="color:#15a9e8">Scratch For Discord!</span></h1>
 <b><p>

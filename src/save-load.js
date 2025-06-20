@@ -15,6 +15,7 @@ export default async function register(self) {
       if (xml !== null) {
         if (xml.length > 61) {
           Swal.fire({
+            theme: 'auto',
             icon: 'question',
             title: self.$t('autosave.title2'),
             html: "<span>Did you not save your project before quitting Scratch For Discord?</span><br><span>No problem, you can just click 'Load' to restore your project!</span>",
@@ -31,6 +32,7 @@ export default async function register(self) {
               });
 
               Toast.fire({
+                theme: 'auto',
                 icon: 'success',
                 title: self.$t('autosave.text')
               });

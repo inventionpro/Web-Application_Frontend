@@ -7,11 +7,7 @@ import Swal from 'sweetalert2';
 
 /* eslint-disable */
 function convertBlocklyHTMLElementToDisplayableContent(path, width, height) {
-  let newPath = path;
-  //newPath = path.replace(/transform="translate\([0-9\.\-]*,[0-9\.\-]*\)">/, `transform="translate(0,0)">`)
-  let returned = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklySvg" tabindex="0" width="${width}px" height="${height}px" style="background-color:transparent;display: inline;position: inherit;fill: white;font: bold 16px Helvetica Neue, Segoe UI, Helvetica, sans-serif">` + newPath;
-  returned += '</svg>';
-  return returned;
+  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklySvg" tabindex="0" width="${width}px" height="${height}px" style="background-color:transparent;display:inline;position:inherit;fill:white;font:bold 16px Helvetica Neue, Segoe UI, Helvetica, sans-serif">${path}</svg>`;
 }
 
 function toShortcut(text) {
@@ -30,13 +26,14 @@ export default {
   methods: {
     shortcuts() {
       Swal.fire({
+        theme: 'auto',
         html: `<h1>Shortcuts</h1>
 <div style="text-align: left">
   <h3 style="text-align:center">Block shortcuts</h3>
-  <div style="height:18em;overflow:auto;background-color:#e3e3e3">
+  <div style="height:18em;overflow:auto;background-color:#0003">
     <p>${toShortcut('alt + t')} - ${displayable.text}</p>
     <p>${toShortcut('alt + c')} - ${displayable.color}</p>
-    <p>${toShortcut('alt + i')}  - ${displayable.if}</p>
+    <p>${toShortcut('alt + i')} - ${displayable.if}</p>
     <p>${toShortcut('alt + w')} - ${displayable.msgrecieved}</p>
     <p>${toShortcut('alt + e')} - ${displayable.error}</p>
     <p>${toShortcut('alt + a')} - ${displayable.author}</p>
@@ -46,7 +43,7 @@ export default {
     <p>${toShortcut('alt + equals-plus')} - ${displayable.check}</p>
   </div>
   <h3 style="text-align:center">Non-block shortcuts</h3>
-  <div style="height:18em;overflow:auto;background-color:#e3e3e3">
+  <div style="height:18em;overflow:auto;background-color:#0003">
     <p>${toShortcut('ctrl + s')} - Save</p>
     <p>${toShortcut('ctrl + alt + s')} - Save as</p>
     <p>${toShortcut('ctrl + shift + c')} - Open the Developer Console</p>

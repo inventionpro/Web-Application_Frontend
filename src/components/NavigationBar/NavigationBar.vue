@@ -17,7 +17,7 @@ const NavExpanded = ref(false);
         <CodeModal></CodeModal>
         <FileMenu style="font-size: small"></FileMenu>
         <EditMenu style="font-size: small"></EditMenu>
-        <!--<LanguageMenu></LanguageMenu>-->
+        <!--<LanguageMenu style="font-size: small"></LanguageMenu>-->
         <ExamplesMenu style="font-size: small"></ExamplesMenu>
         <SocialsMenu style="font-size: small"></SocialsMenu>
         <DataMenu style="font-size: small"></DataMenu>
@@ -53,7 +53,7 @@ const NavExpanded = ref(false);
 import Blockly from 'blockly';
 import JSZip from 'jszip';
 import localforage from 'localforage';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import r from './requires';
 
 import CodeModal from './CodeModal.vue';
@@ -138,7 +138,8 @@ export default {
       Blockly.svgResize(window.blocklyWorkspaceGlobalRef);
     };
     if (String(window.location.pathname).replace(/\//gim, '') == 'spooky') {
-      this.$swal.fire({
+      Swal.fire({
+        theme: 'auto',
         title: 'Warning!',
         icon: 'warning',
         text: `Flashing Lights and "jumpscares" appear in this S4D secret. Continue if you are fine with this, and feel free to exit the page now if you aren't.`,
@@ -224,15 +225,15 @@ export default {
   width: 35%
 }
 </style>`;
-      this.$swal
-        .fire({
-          title: 'Download your bot?',
-          html: wrapper,
-          customClass: 'lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123',
-          showCancelButton: true,
-          confirmButtonText: 'Download',
-          cancelButtonText: 'Cancel'
-        })
+      Swal.fire({
+        theme: 'auto',
+        title: 'Download your bot?',
+        html: wrapper,
+        customClass: 'lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123',
+        showCancelButton: true,
+        confirmButtonText: 'Download',
+        cancelButtonText: 'Cancel'
+      })
         .then(async (result) => {
           let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "2.0.0",`];
           let oldrequires = await localforage.getItem('requires');
@@ -248,7 +249,11 @@ export default {
             zip.file('blocks.xml', xmlContent);
             const javascriptContent = this.getWorkspaceCode();
             if (javascriptContent.includes('queue.join') && javascriptContent.includes('queue.connect')) {
-              swal.fire('Sorry, but Retro and Jose music blocks do not work together.');
+              Swal.fire({
+                theme: 'auto',
+                title: 'Sorry, but Retro and Jose music blocks do not work together.',
+                icon: 'error'
+              });
               return;
             }
             zip.file('index.js', javascriptContent);
@@ -720,7 +725,8 @@ export default {
         }
         return;
       }
-      this.$swal({
+      Swal.fire({
+        theme: 'auto',
         title: 'Utilities',
         html: `<h6>Manage S4D content here.</h6>
 <button id="btn-settings" class="swal2-confirm swal2-styled">Settings</button>
@@ -734,7 +740,7 @@ export default {
         showCancelButton: false,
         didOpen: () => {
           document.getElementById('btn-cancel').onclick = () => {
-            this.$swal.close();
+            Swal.close();
           };
           Array.from(document.querySelectorAll('.swal2-container button.swal2-confirm')).forEach((btn) => {
             btn.onclick = async () => {
@@ -743,8 +749,9 @@ export default {
                   console.log('barry: hey what file do you want to download?');
                   console.log('johnathan: dude they cant hear us'); // The voices, im starting to hear them -inv
                   console.log('barry: oh right i forgot');
-                  this.$swal
+                  Swal
                     .fire({
+                      theme: 'auto',
                       title: 'Which file are you downloading?',
                       html: `<h6>Explanations:</h6>
 <ul>
@@ -845,8 +852,9 @@ export default {
                     });
                   break;
                 case 'manage':
-                  this.$swal
+                  Swal
                     .fire({
+                      theme: 'auto',
                       title: 'Favorites manager',
                       icon: 'warning',
                       showCancelButton: true,
@@ -860,8 +868,9 @@ export default {
                         localforage.setItem('fav', null);
                         console.log('Favorites cleared...');
                       } else if (result.isConfirmed) {
-                        this.$swal
+                        Swal
                           .fire({
+                            theme: 'auto',
                             title: 'Add a block to favorites',
                             html: `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`,
                             showCancelButton: true,
@@ -886,8 +895,9 @@ export default {
                     });
                   break;
                 case 'tokendb':
-                  // TODO: yet another, swal 2
-                  this.$swal({
+                  // TODO: yet another, Swal 2
+                  Swal({
+                    theme: 'auto',
                     title: 'Token Database',
                     text: `Token Database can be used to store your tokens so you don't need to go back to the Discord Developer Portal to get them.`,
                     buttons: {
@@ -903,24 +913,26 @@ export default {
                     if (String(result) == 'delete') {
                       let keys = await localforage.getItem('tokens');
                       if (keys === null) {
-                        const Toast = swal.mixin({
+                        const Toast = Swal.mixin({
                           toast: true,
                           position: 'top-end',
                           showConfirmButton: false,
                           timer: 3000,
                           timerProgressBar: true,
                           didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', swal.stopTimer);
-                            toast.addEventListener('mouseleave', swal.resumeTimer);
+                            toast.addEventListener('mouseenter', Swal.stopTimer);
+                            toast.addEventListener('mouseleave', Swal.resumeTimer);
                           }
                         });
                         Toast.fire({
+                          theme: 'auto',
                           icon: 'error',
                           title: this.$t('token.erros')
                         });
                         return;
                       }
-                      swal.fire({
+                      Swal.fire({
+                        theme: 'auto',
                         title: this.$t('token.deletee.title'),
                         html: `${this.$t('token.deletee.text')}<br><br>
 <select class="custom-select" id="restore-select">
@@ -943,19 +955,20 @@ export default {
                           } else {
                             await localforage.setItem('tokens', arrayRemove(tokens, `token-${select.value}`));
                           }
-                          const Toast = swal.mixin({
+                          const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', swal.stopTimer);
-                              toast.addEventListener('mouseleave', swal.resumeTimer);
+                              toast.addEventListener('mouseenter', Swal.stopTimer);
+                              toast.addEventListener('mouseleave', Swal.resumeTimer);
                             }
                           });
                           let a = this.$t('token.deletee.success');
                           Toast.fire({
+                            theme: 'auto',
                             icon: 'success',
                             title: `${a}`
                           });
@@ -967,24 +980,26 @@ export default {
                 case 'load':
                   let keys = await localforage.getItem('tokens');
                   if (keys === null) {
-                    const Toast = swal.mixin({
+                    const Toast = Swal.mixin({
                       toast: true,
                       position: 'top-end',
                       showConfirmButton: false,
                       timer: 3000,
                       timerProgressBar: true,
                       didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', swal.stopTimer);
-                        toast.addEventListener('mouseleave', swal.resumeTimer);
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
                       }
                     });
                     Toast.fire({
+                      theme: 'auto',
                       icon: 'error',
                       title: this.$t('token.erros')
                     });
                     return;
                   }
-                  swal.fire({
+                  Swal.fire({
+                    theme: 'auto',
                     title: this.$t('token.load2'),
                     html: `${this.$t('token.text4')}<br><br>
 <select class="custom-select" id="restore-select">
@@ -996,19 +1011,20 @@ export default {
                     preConfirm: async () => {
                       const select = document.getElementById('restore-select');
                       const token = await localforage.getItem(`token-${select.value}`);
-                      const Toast = swal.mixin({
+                      const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
-                          toast.addEventListener('mouseenter', swal.stopTimer);
-                          toast.addEventListener('mouseleave', swal.resumeTimer);
+                          toast.addEventListener('mouseenter', Swal.stopTimer);
+                          toast.addEventListener('mouseleave', Swal.resumeTimer);
                         }
                       });
                       let a = this.$t('token.successs');
                       Toast.fire({
+                        theme: 'auto',
                         icon: 'success',
                         title: `${a}`
                       });
@@ -1017,8 +1033,9 @@ export default {
                   });
                   break;
                 case 'save':
-                  swal
+                  Swal
                     .fire({
+                      theme: 'auto',
                       title: this.$t('token.text2'),
                       input: 'text',
                       inputAttributes: {
@@ -1032,16 +1049,17 @@ export default {
                         if (maybe === null) {
                           return file;
                         } else {
-                          swal.showValidationMessage(this.$t('token.error'));
+                          Swal.showValidationMessage(this.$t('token.error'));
                         }
                       },
-                      allowOutsideClick: () => !swal.isLoading()
+                      allowOutsideClick: () => !Swal.isLoading()
                     })
                     .then((result2) => {
                       if (result2.isConfirmed) {
                         let name = result2.value;
-                        swal
+                        Swal
                           .fire({
+                            theme: 'auto',
                             title: this.$t('token.text3'),
                             input: 'text',
                             inputAttributes: {
@@ -1053,7 +1071,7 @@ export default {
                             preConfirm: (file2) => {
                               return file2;
                             },
-                            allowOutsideClick: () => !swal.isLoading()
+                            allowOutsideClick: () => !Swal.isLoading()
                           })
                           .then(async (result) => {
                             if (result.isConfirmed) {
@@ -1067,19 +1085,20 @@ export default {
                                 tokens.push(`token-${name}`);
                                 await localforage.setItem('tokens', tokens);
                               }
-                              const Toast = swal.mixin({
+                              const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
                                 timer: 3000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
-                                  toast.addEventListener('mouseenter', swal.stopTimer);
-                                  toast.addEventListener('mouseleave', swal.resumeTimer);
+                                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                                  toast.addEventListener('mouseleave', Swal.resumeTimer);
                                 }
                               });
                               let a = this.$t('token.success');
                               Toast.fire({
+                                theme: 'auto',
                                 icon: 'success',
                                 title: `${a}${name}`
                               });
@@ -1089,8 +1108,9 @@ export default {
                     });
                   break;
                 case 'prebuilds':
-                  // TODO: swal 2
-                  this.$swal({
+                  // TODO: Swal 2
+                  Swal({
+                    theme: 'auto',
                     title: 'Prebuilds',
                     text: `Prebuilds can be used to save your projects in browser to load them later.`,
                     buttons: {
@@ -1107,24 +1127,26 @@ export default {
                     if (String(result) == 'delete') {
                       let keys = await localforage.getItem('prebuilds');
                       if (keys === null) {
-                        const Toast = swal.mixin({
+                        const Toast = Swal.mixin({
                           toast: true,
                           position: 'top-end',
                           showConfirmButton: false,
                           timer: 3000,
                           timerProgressBar: true,
                           didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', swal.stopTimer);
-                            toast.addEventListener('mouseleave', swal.resumeTimer);
+                            toast.addEventListener('mouseenter', Swal.stopTimer);
+                            toast.addEventListener('mouseleave', Swal.resumeTimer);
                           }
                         });
                         Toast.fire({
+                          theme: 'auto',
                           icon: 'error',
                           title: this.$t('prebuild.erros')
                         });
                         return;
                       }
-                      swal.fire({
+                      Swal.fire({
+                        theme: 'auto',
                         title: this.$t('prebuild.deletee.title'),
                         html: `${this.$t('prebuild.deletee.text')}<br><br>
 <select class="custom-select" id="restore-select">
@@ -1147,19 +1169,20 @@ export default {
                           } else {
                             await localforage.setItem('prebuilds', arrayRemove(tokens, `prebuild-${select.value}`));
                           }
-                          const Toast = swal.mixin({
+                          const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', swal.stopTimer);
-                              toast.addEventListener('mouseleave', swal.resumeTimer);
+                              toast.addEventListener('mouseenter', Swal.stopTimer);
+                              toast.addEventListener('mouseleave', Swal.resumeTimer);
                             }
                           });
                           let a = this.$t('prebuild.deletee.success');
                           Toast.fire({
+                            theme: 'auto',
                             icon: 'success',
                             title: `${a}`
                           });
@@ -1168,24 +1191,26 @@ export default {
                     } else if (String(result) == 'download') {
                       let keys = await localforage.getItem('prebuilds');
                       if (keys === null) {
-                        const Toast = swal.mixin({
+                        const Toast = Swal.mixin({
                           toast: true,
                           position: 'top-end',
                           showConfirmButton: false,
                           timer: 3000,
                           timerProgressBar: true,
                           didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', swal.stopTimer);
-                            toast.addEventListener('mouseleave', swal.resumeTimer);
+                            toast.addEventListener('mouseenter', Swal.stopTimer);
+                            toast.addEventListener('mouseleave', Swal.resumeTimer);
                           }
                         });
                         Toast.fire({
+                          theme: 'auto',
                           icon: 'error',
                           title: this.$t('prebuild.erros')
                         });
                         return;
                       }
-                      swal.fire({
+                      Swal.fire({
+                        theme: 'auto',
                         title: this.$t('prebuild.download.load2'),
                         html: `${this.$t('prebuild.download.text4')}<br><br>
 <select class="custom-select" id="restore-select">
@@ -1197,19 +1222,20 @@ export default {
                         preConfirm: async () => {
                           const select = document.getElementById('restore-select');
                           const token = await localforage.getItem(`prebuild-${select.value}`);
-                          const Toast = swal.mixin({
+                          const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', swal.stopTimer);
-                              toast.addEventListener('mouseleave', swal.resumeTimer);
+                              toast.addEventListener('mouseenter', Swal.stopTimer);
+                              toast.addEventListener('mouseleave', Swal.resumeTimer);
                             }
                           });
                           let a = this.$t('prebuild.download.successs');
                           Toast.fire({
+                            theme: 'auto',
                             icon: 'success',
                             title: `${a}`
                           });
@@ -1234,8 +1260,9 @@ export default {
                         }
                       });
                     } else if (String(result) == 'save') {
-                      swal
+                      Swal
                         .fire({
+                          theme: 'auto',
                           title: this.$t('prebuild.text2'),
                           input: 'text',
                           inputAttributes: {
@@ -1249,10 +1276,10 @@ export default {
                             if (maybe === null) {
                               return file;
                             } else {
-                              swal.showValidationMessage(this.$t('prebuild.error'));
+                              Swal.showValidationMessage(this.$t('prebuild.error'));
                             }
                           },
-                          allowOutsideClick: () => !swal.isLoading()
+                          allowOutsideClick: () => !Swal.isLoading()
                         })
                         .then(async (result2) => {
                           if (result2.isConfirmed) {
@@ -1266,19 +1293,20 @@ export default {
                               tokens.push(`prebuild-${name}`);
                               await localforage.setItem('prebuilds', tokens);
                             }
-                            const Toast = swal.mixin({
+                            const Toast = Swal.mixin({
                               toast: true,
                               position: 'top-end',
                               showConfirmButton: false,
                               timer: 3000,
                               timerProgressBar: true,
                               didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', swal.stopTimer);
-                                toast.addEventListener('mouseleave', swal.resumeTimer);
+                                toast.addEventListener('mouseenter', Swal.stopTimer);
+                                toast.addEventListener('mouseleave', Swal.resumeTimer);
                               }
                             });
                             let a = this.$t('prebuild.success');
                             Toast.fire({
+                              theme: 'auto',
                               icon: 'success',
                               title: `${a}${name}`
                             });
@@ -1287,24 +1315,26 @@ export default {
                     } else if (String(result) == 'load') {
                       let keys = await localforage.getItem('prebuilds');
                       if (keys === null) {
-                        const Toast = swal.mixin({
+                        const Toast = Swal.mixin({
                           toast: true,
                           position: 'top-end',
                           showConfirmButton: false,
                           timer: 3000,
                           timerProgressBar: true,
                           didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', swal.stopTimer);
-                            toast.addEventListener('mouseleave', swal.resumeTimer);
+                            toast.addEventListener('mouseenter', Swal.stopTimer);
+                            toast.addEventListener('mouseleave', Swal.resumeTimer);
                           }
                         });
                         Toast.fire({
+                          theme: 'auto',
                           icon: 'error',
                           title: this.$t('prebuild.erros')
                         });
                         return;
                       }
-                      swal.fire({
+                      Swal.fire({
+                        theme: 'auto',
                         title: this.$t('prebuild.load2'),
                         html: `${this.$t('prebuild.text4')}<br><br>
 <select class="custom-select" id="restore-select">
@@ -1316,19 +1346,20 @@ export default {
                         preConfirm: async () => {
                           const select = document.getElementById('restore-select');
                           const token = await localforage.getItem(`prebuild-${select.value}`);
-                          const Toast = swal.mixin({
+                          const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', swal.stopTimer);
-                              toast.addEventListener('mouseleave', swal.resumeTimer);
+                              toast.addEventListener('mouseenter', Swal.stopTimer);
+                              toast.addEventListener('mouseleave', Swal.resumeTimer);
                             }
                           });
                           let a = this.$t('prebuild.successs');
                           Toast.fire({
+                            theme: 'auto',
                             icon: 'success',
                             title: `${a}`
                           });
@@ -1339,8 +1370,9 @@ export default {
                   });
                   break;
                 case 'optimizations':
-                  this.$swal
+                  Swal
                     .fire({
+                      theme: 'auto',
                       title: 'Site Optimizations',
                       html: `<span>These optimizations are minor, but can help for big projects.</span><br><b>These require a refresh to fully work.</b>`,
                       showCancelButton: true,
@@ -1364,8 +1396,9 @@ export default {
                     });
                   break;
                 case 'settings':
-                  this.$swal
+                  Swal
                     .fire({
+                      theme: 'auto',
                       title: 'Site Settings',
                       text: 'Toggle shortcuts and change the theme!',
                       icon: 'info',
@@ -1381,7 +1414,8 @@ export default {
                         localforage.getItem('utilitiesShortcuts').then((item) => {
                           localforage.setItem('utilitiesShortcuts', item == null ? false : null).then(() => {
                             localforage.getItem('utilitiesShortcuts').then((item) => {
-                              this.$swal.fire({
+                              Swal.fire({
+                                theme: 'auto',
                                 title: 'Updated shortcuts!',
                                 text: `Shortcuts have been toggled ${item == null ? 'on' : 'off'}. Please refresh the page.`,
                                 icon: 'success'
@@ -1443,7 +1477,8 @@ export default {
   </span>
   <b>Switching themes may require a refresh to work properly.</b>
 </center>`;
-                        const { value: result } = await swal.fire({
+                        const { value: result } = await Swal.fire({
+                          theme: 'auto',
                           title: 'Themes',
                           html: previews,
                           input: 'select',
@@ -1464,8 +1499,9 @@ export default {
                         });
                         switch (String(result)) {
                           case 'glow':
-                            this.$swal
+                            Swal
                               .fire({
+                                theme: 'auto',
                                 title: 'Performance Warning!',
                                 text: 'This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?',
                                 icon: 'warning',
@@ -1480,8 +1516,9 @@ export default {
                             break;
                           case 'scratch-top':
                           case 'text-only':
-                            this.$swal
+                            Swal
                               .fire({
+                                theme: 'auto',
                                 title: 'Warning!',
                                 text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
                                 icon: 'warning',
@@ -1511,8 +1548,9 @@ export default {
       });
     },
     runbot() {
-      this.$swal
+      Swal
         .fire({
+          theme: 'auto',
           title: 'Start your bot?',
           html: `<h6>You will have to manually stop your bot in Discord!</h6>You also might not get a response until the bot gets an error, or stops.`,
           icon: 'warning',
@@ -1537,37 +1575,67 @@ export default {
             return epic;
           }
           if (javascriptContent.includes('process.env') || javascriptContent.includes('http.createServer((req, res) => {') || xmlContent.includes('block type="frost_webserver"') || xmlContent.includes('block type="frost_env"')) {
-            swal.fire('Your bot contains a replit block. Please remove it before continuing.', 'You may have a process.env block or a webserver block placed somewhere.', 'error');
+            Swal.fire({
+              theme: 'auto',
+              title: 'Your bot contains a replit block. Please remove it before continuing.',
+              text: 'You may have a process.env block or a webserver block placed somewhere.',
+              icon: 'error'
+            });
             console.log('barry: ok so i finished but the user has incompatible blocks');
             console.log('johnathan: damn');
             console.error('barry and johnathan found replit blocks...');
             return;
           } else if (xmlContent.includes('block type="blank_code"') || xmlContent.includes('block type="s4d_eval"') || xmlContent.includes('block type="s4d_eval2"') || xmlContent.includes('block type="s4d_exec"') || xmlContent.includes('block type="jg_s4d_other_run_code_inside_file"')) {
-            swal.fire('Your bot contains blocks that run or insert code.', 'Remove any "insert code" or "run code" blocks before running.', 'error');
+            Swal.fire({
+              theme: 'auto',
+              title: 'Your bot contains blocks that run or insert code.',
+              text: 'Remove any "insert code" or "run code" blocks before running.',
+              icon: 'error'
+            });
             console.log('barry: ok so i finished but the user has custom code blocks');
             console.log('johnathan: damn');
             console.error('barry and johnathan found insert or run code blocks...');
             return;
           } else if (xmlContent.includes('block type="simple_host_auth"')) {
-            swal.fire('Your bot contains blocks for Simple Host.', 'Remove any "Simple Host Auth" blocks before running.', 'error');
+            Swal.fire({
+              theme: 'auto',
+              title: 'Your bot contains blocks for Simple Host.',
+              text: 'Remove any "Simple Host Auth" blocks before running.',
+              icon: 'error'
+            });
             console.log('barry: ok so i finished but the user uses simple host');
             console.log('johnathan: LMAOOOOOOOOOOOOOOOOOOOOOOOO');
             console.error('barry and johnathan found out you use simple host...');
             return;
           } else if (xmlContent.includes('block type="jg_express_start_website_then_using_port"')) {
-            swal.fire('Your bot contains blocks for starting websites.', 'Remove any "start website" blocks before running.', 'error');
+            Swal.fire({
+              theme: 'auto',
+              title: 'Your bot contains blocks for starting websites.',
+              text: 'Remove any "start website" blocks before running.',
+              icon: 'error'
+            });
             console.log('barry: ok so i finished but the user has website block');
             console.log('johnathan: zamn');
             console.error('barry and johnathan found out you have a website...');
             return;
           } else if (HasCustomBlocks()) {
-            swal.fire('Your bot contains custom blocks.', 'Custom blocks are currently unsupported for the run button. Please remove them before continuing.', 'error');
+            Swal.fire({
+              theme: 'auto',
+              title: 'Your bot contains custom blocks.',
+              text: 'Custom blocks are currently unsupported for the run button. Please remove them before continuing.',
+              icon: 'error'
+            });
             console.log('barry: this mf got custom blocks');
             console.log('johnathan: dayumm');
             console.error('barry and johnathan found out you are epic gamer...');
             return;
           } else if (window.isInS4DDebugMode == true) {
-            swal.fire('S4D is currently in debug mode.', 'Please disable debug mode to run your bot.', 'error');
+            Swal.fire({
+              theme: 'auto',
+              title: 'S4D is currently in debug mode.',
+              text: 'Please disable debug mode to run your bot.',
+              icon: 'error'
+            });
             console.log('barry: placeholder');
             console.log('johnathan: placeholder');
             console.error('placeholder');
@@ -1590,7 +1658,12 @@ export default {
           };
           try {
             if (api_key == null) {
-              swal.fire('Cool! However..', `The bot would have been sent,<br><aew3f2 style="color:#188DC8">but the server S4D is currently running on does not have an API key present.</aew3f2><br><br><p>Using Netlify? <a href="https://scratch-for-discord-469.vercel.app/">Click here to go to Vercel!</a></p><!--<br><h6 style="color:#188DC8">This menu popped up because the API key is not present.</h6>-->`, 'info');
+              Swal.fire({
+                theme: 'auto',
+                title: 'Cool! However..',
+                text: `The bot would have been sent,<br><aew3f2 style="color:#188DC8">but the server S4D is currently running on does not have an API key present.</aew3f2><br><br><p>Using Netlify? <a href="https://scratch-for-discord-469.vercel.app/">Click here to go to Vercel!</a></p><!--<br><h6 style="color:#188DC8">This menu popped up because the API key is not present.</h6>-->`,
+                info: 'info'
+              });
               console.log('epic server: POST request pretended to be sent to JeremyGamer13s dumb and insecure API😀😁😀👍😁👍👍👍');
               console.log('barry: technically done');
               console.log('johnathan: nice, now lets get back to work');
@@ -1606,7 +1679,12 @@ export default {
                 console.log('barry: idk something happen');
                 console.log('johnathan: thats not good but we cant do much');
                 console.log('barry: true :(');
-                swal.fire('Uhh..', `Something may have gone wrong with the request. The server responded with status code ${String(response.status)}. You could check if your bot went online? You can also try to refresh.`, 'warning');
+                Swal.fire({
+                  theme: 'auto',
+                  title: 'Uhh..',
+                  text: `Something may have gone wrong with the request. The server responded with status code ${String(response.status)}. You could check if your bot went online? You can also try to refresh.`,
+                  icon: 'warning'
+                });
               } else if (response.status >= 400) {
                 console.log('epic server: broken');
                 console.log('barry: bruh it broken');
@@ -1614,17 +1692,32 @@ export default {
                 console.log('barry: :(');
                 let morestuffIDK = response;
                 response.text().then((repons) => {
-                  swal.fire('Whoops!', `Something went wrong with the request. The server responded with status code <b>${String(morestuffIDK.status)}</b>. You may need to refresh the page or try again later as the server could be down.<br><br>Server Response:<br><code>${repons}</code>`, 'error');
+                  Swal.fire({
+                    theme: 'auto',
+                    title: 'Whoops!',
+                    text: `Something went wrong with the request. The server responded with status code <b>${String(morestuffIDK.status)}</b>. You may need to refresh the page or try again later as the server could be down.<br><br>Server Response:<br><code>${repons}</code>`,
+                    icon: 'error'
+                  });
                 });
               } else {
                 console.log('epic server: POST request sent to JeremyGamer13s dumb and insecure API😀😁😀👍😁👍👍👍');
                 console.log('barry: done');
                 console.log('johnathan: nice, now lets get back to work');
-                swal.fire('Nice!', `Your bot should go online soon.`, 'success');
+                Swal.fire({
+                  theme: 'auto',
+                  title: 'Nice!',
+                  text: `Your bot should go online soon.`,
+                  icon: 'success'
+                });
               }
             });
           } catch (err) {
-            swal.fire('An error occurred!', String(err), 'error');
+            Swal.fire({
+              theme: 'auto',
+              title: 'An error occurred!',
+              text: String(err),
+              icon: 'error'
+            });
             console.log('*zapping sounds come from epic server*');
             console.log('epic server: FUCK AHJGJEUYGE*&TIUG#*&IUKJNGUYEFJE(O');
             console.log('barry: epic server what happened?');
@@ -1639,7 +1732,8 @@ export default {
       var temp1, temp2;
       console.log('fetching RBS console...');
       const showMenu = function (content) {
-        swal.fire({
+        Swal.fire({
+          theme: 'auto',
           title: 'Public Error Console (used by the Run Button)',
           html: content,
           showCancelButton: true,

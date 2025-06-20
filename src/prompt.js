@@ -39,6 +39,7 @@ Blockly.dialog.prompt = function (msg, defaultValue, callback) {
     return;
   }
   Swal.fire({
+    theme: 'auto',
     title: 'Variable:',
     input: 'text',
     inputAttributes: {

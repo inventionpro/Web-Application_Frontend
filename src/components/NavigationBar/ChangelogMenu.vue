@@ -10,6 +10,7 @@ export default {
   methods: {
     changelog() {
       Swal.fire({
+        theme: 'auto',
         html: `<style>
   h2, h3 {
     font-weight: bold;

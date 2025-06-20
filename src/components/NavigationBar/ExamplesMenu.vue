@@ -26,6 +26,7 @@
 
 <script>
 import Blockly from 'blockly';
+import Swal from 'sweetalert2';
 
 import PingPongExample from '../../examples/ping-pong';
 import CommandParsingExample from '../../examples/command-parsing';
@@ -70,7 +71,7 @@ const examples = {
   'embed example': embed
 };
 
-function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, swal, workspace, toast) {
+function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, workspace, toast) {
   lkjgenwhikgu4ewkjn.innerHTML = `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${json.example[0].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '')}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"></i>`}</h2>
 <i class="fa-solid fa-user-shield"></i> <b>${json.example[6].replaceAll('\\', '').replaceAll('<', '').replaceAll('>', '').replaceAll('/', '')}</b>
 &#8226
@@ -85,34 +86,34 @@ function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption
 </div>
 `;
   let previewWorkspace = false;
-  swal
-    .fire({
-      //title: "Load this example?",
-      html: lkjgenwhikgu4ewkjn,
-      customClass: {
-        popup: 'swal-userExamples-preview-popup'
-      },
-      showCancelButton: true,
-      confirmButtonText: 'Load',
-      cancelButtonText: 'Cancel'
-    })
+  Swal.fire({
+    theme: 'auto',
+    //title: "Load this example?",
+    html: lkjgenwhikgu4ewkjn,
+    customClass: {
+      popup: 'swal-userExamples-preview-popup'
+    },
+    showCancelButton: true,
+    confirmButtonText: 'Load',
+    cancelButtonText: 'Cancel'
+  })
     .then(async (result) => {
       console.log('disposing of workspace');
       if (previewWorkspace) previewWorkspace.dispose();
       console.log('disposed of workspace');
       if (!result.isConfirmed) return;
-      swal
-        .fire({
-          title: 'Delete current blocks?',
-          text: 'Would you like to remove the current blocks before importing the example?',
-          icon: 'warning',
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: 'Yes',
-          denyButtonText: 'No',
-          cancelButtonText: 'Cancel',
-          allowOutsideClick: false
-        })
+      Swal.fire({
+        theme: 'auto',
+        title: 'Delete current blocks?',
+        text: 'Would you like to remove the current blocks before importing the example?',
+        icon: 'warning',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No',
+        cancelButtonText: 'Cancel',
+        allowOutsideClick: false
+      })
         .then((result) => {
           if (result.isDismissed) {
             return;
@@ -196,6 +197,20 @@ function displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption
   );
 }
 
+async function getSessionID() {
+  let sessionID = await localforage.getItem('EXAMPLE_SESSION_ID');
+  if (sessionID == null) {
+    const usableChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '-', '_', '=', '+', '[', ']', '(', ')'];
+    let sesid = '';
+    for (let i = 0; i < 55; i++) {
+      sesid += usableChars[Math.floor(Math.random() * usableChars.length)];
+    }
+    await localforage.setItem('EXAMPLE_SESSION_ID', sesid);
+    return sesid;
+  }
+  return sessionID;
+}
+
 export default {
   name: 'editmenu',
   computed: {},
@@ -206,7 +221,7 @@ export default {
         fetch(`https://s4d-examples.fsh.plus/api/getExample?id=${urlParams.get('exampleid')}`).then(async (result) => {
           result.json().then((json) => {
             const lkjgenwhikgu4ewkjn = document.createElement('div');
-            displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, urlParams.get('exampleid'), 'https://s4d-examples.fsh.plus/', this.$swal, this.$store.state.workspace, this.$toast);
+            displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, urlParams.get('exampleid'), 'https://s4d-examples.fsh.plus/', this.$store.state.workspace, this.$toast);
           });
         });
       }
@@ -214,21 +229,21 @@ export default {
   },
   methods: {
     load(example) {
-      this.$swal
-        .fire({
-          title: this.$t('examples.confirm.title'),
-          text: this.$t('examples.confirm.text'),
-          icon: 'warning',
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: this.$t('examples.confirm.yes'),
-          denyButtonText: this.$t('examples.confirm.no'),
-          cancelButtonText: this.$t('examples.confirm.cancel'),
-          allowOutsideClick: false,
-          customClass: {
-            denyButton: 'red-button'
-          }
-        })
+      Swal.fire({
+        theme: 'auto',
+        title: this.$t('examples.confirm.title'),
+        text: this.$t('examples.confirm.text'),
+        icon: 'warning',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: this.$t('examples.confirm.yes'),
+        denyButtonText: this.$t('examples.confirm.no'),
+        cancelButtonText: this.$t('examples.confirm.cancel'),
+        allowOutsideClick: false,
+        customClass: {
+          denyButton: 'red-button'
+        }
+      })
         .then((result) => {
           if (result.isDismissed) {
             return;
@@ -257,7 +272,8 @@ export default {
         if (!url.endsWith('/')) url += '/';
       }
       const SERVER = url;
-      this.$swal.fire({
+      Swal.fire({
+        theme: 'auto',
         title: 'User Examples',
         html: `<p>What would you like to do here?</p>
 <button id="upload-btn" class="swal2-confirm swal2-styled">Upload an Example</button>
@@ -266,25 +282,18 @@ export default {
         showConfirmButton: false,
         showCancelButton: false,
         didOpen: async () => {
-          let checkSessionIDsExistence = await localforage.getItem('EXAMPLE_SESSION_ID');
-          if (checkSessionIDsExistence == null) {
-            const usableChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '-', '_', '=', '+', '[', ']', '(', ')'];
-            let sesid = '';
-            for (let i = 0; i < 55; i++) {
-              let character = usableChars[Math.round(Math.random() * (usableChars.length - 1))];
-              sesid += character;
-            }
-            await localforage.setItem('EXAMPLE_SESSION_ID', String(sesid));
-          }
+          await getSessionID();
           document.getElementById('upload-btn').onclick = () => {
-            this.$swal.close();
+            Swal.close();
             const name = encodeURIComponent(document.querySelector('#docName').textContent)
               .replace(/%20/g, ' ')
               .replaceAll('\n', '')
               .replaceAll(/[^a-z 0-9]/gim, '');
-            const wrapper = document.createElement('div');
             const blockCounts = workspace.getAllBlocks().length;
-            wrapper.innerHTML = `<h5>The content of the example is going to be the blocks you've placed.</h5>
+            Swal.fire({
+              theme: 'auto',
+              title: 'Upload an example',
+              html: `<h5>The content of the example is going to be the blocks you've placed.</h5>
 <label for="name">Name of your Example </label>
 <input type="text" id="UserExampleName" value="${name == 'Untitled document' ? 'Untitled example' : name}" maxlength="50">
 <label for="author">Author of the Example </label>
@@ -293,32 +302,16 @@ export default {
 <label style="font-weight: bold;" for="name">Describe your Example...</label>
 <textarea id="UserExampleDescription" rows="4" cols="50" maxlength="500"></textarea>
 <p>Your example has <b>${blockCounts} block${blockCounts == 1 ? '' : 's'}</b> in it.</p>
-${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading near empty examples is not encouraged.</p>` : ''}`;
-            this.$swal
-              .fire({
-                title: 'Upload an example',
-                html: wrapper,
-                showCancelButton: true,
-                confirmButtonText: 'upload',
-                cancelButtonText: 'Cancel',
-                closeOnClickOutside: false
-              })
+${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading near empty examples is not encouraged.</p>` : ''}`,
+              showCancelButton: true,
+              confirmButtonText: 'upload',
+              cancelButtonText: 'Cancel',
+              closeOnClickOutside: false
+            })
               .then(async (result2) => {
                 if (!result2.isConfirmed) return;
                 const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-                let sessionIDe = await localforage.getItem('EXAMPLE_SESSION_ID');
-                if (sessionIDe == null) {
-                  const usableChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '-', '_', '=', '+', '[', ']', '(', ')'];
-                  let sesid = '';
-                  for (let i = 0; i < 55; i++) {
-                    let character = usableChars[Math.round(Math.random() * (usableChars.length - 1))];
-                    sesid += character;
-                  }
-                  await localforage.setItem('EXAMPLE_SESSION_ID', String(sesid));
-                  sessionIDe = String(sesid);
-                }
-                console.log(sessionIDe);
-                const requestOptions = {
+                fetch(SERVER + 'api/upload', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({
@@ -327,43 +320,42 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
                     xml: String(xmlContent),
                     count: workspace.getAllBlocks().length,
                     author: String(document.getElementById('UserExampleAuthor').value),
-                    sessionID: String(sessionIDe)
+                    sessionID: await getSessionID()
                   })
-                };
-                fetch(SERVER + 'api/upload', requestOptions).then(async (response) => {
-                  console.log(response);
-                  console.log('S4D sent a request, the response status code is', response.status);
-                  if (response.status != 200) {
-                    const responseHTML = document.createElement('div');
-                    responseHTML.innerHTML = `Failed to load message`;
-                    response.json().then((json) => {
-                      responseHTML.innerHTML = `${String(json.error)}`;
+                })
+                  .then(async (response) => {
+                    console.log('S4D sent a request, the response status code is', response.status);
+                    if (response.status != 200) {
+                      const responseHTML = document.createElement('div');
+                      responseHTML.innerHTML = `Failed to load message`;
+                      response.json().then((json) => {
+                        responseHTML.innerHTML = String(json.error);
+                      });
+                      Swal.fire({
+                        theme: 'auto',
+                        title: 'An error occurred uploading the example!',
+                        html: responseHTML,
+                        icon: 'error'
+                      });
+                      return;
+                    }
+                    Swal.fire({
+                      theme: 'auto',
+                      title: 'Congrats!',
+                      html: `The example was uploaded!`,
+                      icon: 'success'
                     });
-                    this.$swal.fire({
-                      title: 'An error occurred uploading the example!',
-                      html: responseHTML,
-                      icon: 'error'
-                    });
-                    return;
-                  }
-                  const responseHTML = document.createElement('div');
-                  responseHTML.innerHTML = `The example was uploaded!`;
-                  this.$swal.fire({
-                    title: 'Congrats!',
-                    html: responseHTML,
-                    icon: 'success'
                   });
-                });
               });
           };
           document.getElementById('seeall-btn').onclick = () => {
-            this.$swal.close();
+            Swal.close();
             fetch(SERVER + 'api/examples')
               .then(async (response) => {
-                console.log(response);
                 console.log('S4D sent a request, the response status code is', response.status);
                 if (response.status != 200) {
-                  this.$swal.fire({
+                  Swal.fire({
+                    theme: 'auto',
                     title: 'An unexpected error occurred!',
                     icon: 'error'
                   });
@@ -376,134 +368,129 @@ ${blockCounts <= 5 ? `<p style="color: darkred; font-weight: bold;">Uploading ne
                   const names = [];
                   let boxes = '';
                   Object.entries(examples).forEach((i) => {
-                    // console.log("Found example with name", i[1][0])
-                    let name = i[1][0];
-                    names.push([name, i[1][3], i[1][4], i[1][6], i[1][1], i[1][8], i[1][9], i[1][10], i[1][11], i[1][12]]);
+                    names.push([i[1][0], i[1][3], i[1][4], i[1][6], i[1][1], i[1][8], i[1][9], i[1][10], i[1][11], i[1][12]]);
                   });
-                  /* eslint-disable */
                   let voteButtonSessionList = {};
                   names.forEach((name) => {
                     voteButtonSessionList[String(name[2])] = { likes: name[8], dislikes: name[9] };
                     boxes += `<label name="pickThisExampleToImportButton" style="width: 48%;">
-    <div class="box">
-        <input type="radio" id="${name[2]}" name="pickThisExampleToImportButton" class="sr-only-basic">
-            <center>
-                <h4>${name[0].replaceAll('<', '').replaceAll('>', '').replaceAll('/', '').replaceAll('\\', '')}</h4>
-                <p><i class="fas fa-user-shield"></i> Creator: ${name[3]} &#8226 <i class="fas fa-id-badge"></i> ID: ${name[2]}</p>
-                <p style="font-style: italic;font-size:small;" title="${name[4]}">${name[4]}</p>
-            </center>
-        </input>
-        <div style="position: absolute;bottom: 0%;left: 0%">
-            <button type="button" name="like" class="examplesMenuBox_Likes" id="${name[2]}" title="Like this example" style="background-color: Transparent;border: none;color:gray">
-                <i class="fa-solid fa-thumbs-up"> ${name[5]}</i>
-            </button>
-            <button type="button" name="dislike" class="examplesMenuBox_Dislikes" id="${name[2]}" title="Dislike this example" style="background-color: Transparent;border: none;color:gray">
-                <i class="fa-solid fa-thumbs-down"> ${name[6]}</i>
-            </button>
-            <button type="button" name="downloads" class="examplesMenuBox_Downloads" id="${name[2]}" title="Total number of Imports" style="background-color: Transparent;border: none;color:gray">
-                <i class="fa-solid fa-file-import"> ${name[7]}</i>
-            </button>
-        </div>
-        <div style="position: absolute; bottom: 0%; right: 0%; color:gray;">
-            <span><i class="fa fa-cube"></i> ${String(name[1])} blocks</span><span style="color:transparent">&#8226</span>
-        </div>
+  <div class="box">
+    <input type="radio" id="${name[2]}" name="pickThisExampleToImportButton" class="sr-only-basic">
+      <center>
+        <h4>${name[0].replaceAll('<', '').replaceAll('>', '').replaceAll('/', '').replaceAll('\\', '')}</h4>
+        <p><i class="fas fa-user-shield"></i> Creator: ${name[3]} &#8226 <i class="fas fa-id-badge"></i> ID: ${name[2]}</p>
+        <p style="font-style: italic;font-size:small;" title="${name[4]}">${name[4]}</p>
+      </center>
+    </input>
+    <div style="position: absolute;bottom: 0%;left: 0%">
+      <button type="button" name="like" class="examplesMenuBox_Likes" id="${name[2]}" title="Like this example" style="background-color: Transparent;border: none;color:gray">
+        <i class="fa-solid fa-thumbs-up"> ${name[5]}</i>
+      </button>
+      <button type="button" name="dislike" class="examplesMenuBox_Dislikes" id="${name[2]}" title="Dislike this example" style="background-color: Transparent;border: none;color:gray">
+        <i class="fa-solid fa-thumbs-down"> ${name[6]}</i>
+      </button>
+      <button type="button" name="downloads" class="examplesMenuBox_Downloads" id="${name[2]}" title="Total number of Imports" style="background-color: Transparent;border: none;color:gray">
+        <i class="fa-solid fa-file-import"> ${name[7]}</i>
+      </button>
     </div>
+    <div style="position: absolute; bottom: 0%; right: 0%; color:gray;">
+      <span><i class="fa fa-cube"></i> ${String(name[1])} blocks</span><span style="color:transparent">&#8226</span>
+    </div>
+  </div>
 </label>
 <br>`;
                   });
-                  /* eslint-disable */
                   responseHTML.innerHTML = `<!-- buttons to search & stuff -->
 <div style="margin-bottom: 0.5em;">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" size="75" id="swal_dialog_box_searchForUserExamples" placeholder="Search for an Example">
-    <button type="button" id="swal_menu_CaseSensitiveUserExampleSearch" title="Case Sensitive Searching" style="background-color: Transparent;border: none;">
-        <i class="fa-solid fa-font"></i>
-    </button>
-    <button type="button" id="swal_menu_FilterUserExampleSearch" title="Filter Search" style="background-color: Transparent;border: none;display: none">
-        <i class="fa-solid fa-filter"></i>
-    </button>
-    <button type="button" id="swal_menu_ChangeBoxSizeUserExamples" title="Change the amount of examples on screen" style="background-color: Transparent;border: none;">
-        <i class="fa-solid fa-table-cells-large"></i>
-    </button>
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="text" size="75" id="swal_dialog_box_searchForUserExamples" placeholder="Search for an Example">
+  <button type="button" id="swal_menu_CaseSensitiveUserExampleSearch" title="Case Sensitive Searching" style="background-color: Transparent;border: none;">
+    <i class="fa-solid fa-font"></i>
+  </button>
+  <button type="button" id="swal_menu_FilterUserExampleSearch" title="Filter Search" style="background-color: Transparent;border: none;display: none">
+    <i class="fa-solid fa-filter"></i>
+  </button>
+  <button type="button" id="swal_menu_ChangeBoxSizeUserExamples" title="Change the amount of examples on screen" style="background-color: Transparent;border: none;">
+    <i class="fa-solid fa-table-cells-large"></i>
+  </button>
 </div>
 <div id="swal_menu_SearchFilterOptionsInUserExamples" style="display: none">
-    <br>
-    <button type="button" id="SearchFilterOptions_name" title="Search by Example name" class="searchButton">
-        <i class="fa-solid fa-file-pen fa-xl"></i>
-    </button>
-    <button type="button" id="SearchFilterOptions_description" title="Search by Example description" class="searchButton">
-        <i class="fa-solid fa-file-lines fa-xl"></i>
-    </button>
-    <button type="button" id="SearchFilterOptions_author" title="Search by Example author" class="searchButton">
-        <i class="fa-solid fa-user-shield fa-xl"></i>
-    </button>
-    <button type="button" id="SearchFilterOptions_id" title="Search by Example ID" class="searchButton">
-        <i class="fa-solid fa-id-badge fa-xl"></i>
-    </button>
-    &#8226
-    <button type="button" id="SearchFilterOptions_likes" title="Search by amount of Likes" class="searchButton">
-        <i class="fa-solid fa-thumbs-up fa-xl"></i>
-    </button>
-    <button type="button" id="SearchFilterOptions_dislikes" title="Search by amount of Dislikes" class="searchButton">
-        <i class="fa-solid fa-thumbs-down fa-xl"></i>
-    </button>
-    <button type="button" id="SearchFilterOptions_imports" title="Search by amount of Imports" class="searchButton">
-        <i class="fa-solid fa-file-import fa-xl"></i>
-    </button>
-    <button type="button" id="SearchFilterOptions_blocks" title="Search by amount of Blocks" class="searchButton">
-        <i class="fa-solid fa-cube fa-xl"></i>
-    </button>
-    <i class="fa-solid fa-angle-right"></i>
-    <input type="text" size="2" id="SearchFilterOptions_amount_min" title="Minimum amount of selected item">
-    <i class="fa-solid fa-minus"></i>
-    <input type="text" size="2" id="SearchFilterOptions_amount_max" title="Maximum amount of selected item">
-    <br>
-    <br>
+  <br>
+  <button type="button" id="SearchFilterOptions_name" title="Search by Example name" class="searchButton">
+    <i class="fa-solid fa-file-pen fa-xl"></i>
+  </button>
+  <button type="button" id="SearchFilterOptions_description" title="Search by Example description" class="searchButton">
+    <i class="fa-solid fa-file-lines fa-xl"></i>
+  </button>
+  <button type="button" id="SearchFilterOptions_author" title="Search by Example author" class="searchButton">
+    <i class="fa-solid fa-user-shield fa-xl"></i>
+  </button>
+  <button type="button" id="SearchFilterOptions_id" title="Search by Example ID" class="searchButton">
+    <i class="fa-solid fa-id-badge fa-xl"></i>
+  </button>
+  &#8226
+  <button type="button" id="SearchFilterOptions_likes" title="Search by amount of Likes" class="searchButton">
+    <i class="fa-solid fa-thumbs-up fa-xl"></i>
+  </button>
+  <button type="button" id="SearchFilterOptions_dislikes" title="Search by amount of Dislikes" class="searchButton">
+    <i class="fa-solid fa-thumbs-down fa-xl"></i>
+  </button>
+  <button type="button" id="SearchFilterOptions_imports" title="Search by amount of Imports" class="searchButton">
+    <i class="fa-solid fa-file-import fa-xl"></i>
+  </button>
+  <button type="button" id="SearchFilterOptions_blocks" title="Search by amount of Blocks" class="searchButton">
+    <i class="fa-solid fa-cube fa-xl"></i>
+  </button>
+  <i class="fa-solid fa-angle-right"></i>
+  <input type="text" size="2" id="SearchFilterOptions_amount_min" title="Minimum amount of selected item">
+  <i class="fa-solid fa-minus"></i>
+  <input type="text" size="2" id="SearchFilterOptions_amount_max" title="Maximum amount of selected item">
+  <br>
+  <br>
 </div>
 <!--<div style="float: right;">
-    <i title="Sort the examples menu" class="fa-solid fa-arrow-down-wide-short">: </i>
-    <select id="swal_dialog_box_sortUserExamples">
-        <option value="new">Newest First</option>
-        <option value="old">Oldest First</option>
-        <option value="liked">Most Liked</option>
-        <option value="hated">Most Hated</option>
-        <option value="mostImports">Most Imported</option>
-        <option value="leastImports">Least Imported</option>
-    </select>
+  <i title="Sort the examples menu" class="fa-solid fa-arrow-down-wide-short">: </i>
+  <select id="swal_dialog_box_sortUserExamples">
+    <option value="new">Newest First</option>
+    <option value="old">Oldest First</option>
+    <option value="liked">Most Liked</option>
+    <option value="hated">Most Hated</option>
+    <option value="mostImports">Most Imported</option>
+    <option value="leastImports">Least Imported</option>
+  </select>
 </div>-->
 <!-- examples area -->
 <center>
-    <form id="swal_user_examples_dialog_box-form_area" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center;">
-        ${boxes}
-    </form>
+  <form id="swal_user_examples_dialog_box-form_area" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center;">
+    ${boxes}
+  </form>
 </center>
 <style>
 .sr-only-basic {
-    clip: rect(0 0 0 0);
-    clip-path: inset(100%);
-    height: 1px;
-    width: 1px;
-    display: none;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  width: 1px;
+  display: none;
 }
 </style>`;
-                  this.$swal
-                    .fire({
-                      title: 'Pick an Example',
-                      html: responseHTML,
-                      customClass: 'swal-wide',
-                      showCancelButton: true,
-                      cancelButtonText: 'Cancel',
-                      confirmButtonText: 'Import Selected Example'
-                    })
+                  Swal.fire({
+                    theme: 'auto',
+                    title: 'Pick an Example',
+                    html: responseHTML,
+                    customClass: 'swal-wide',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancel',
+                    confirmButtonText: 'Import Selected Example'
+                  })
                     .then(async (result) => {
                       if (!result.isConfirmed) return;
                       const selectedOption = document.querySelector('input[name="pickThisExampleToImportButton"]:checked')?.id;
                       if (selectedOption == null) return;
-                      console.log(selectedOption);
                       const lkjgenwhikgu4ewkjn = document.createElement('div');
                       fetch(SERVER + `api/getExample?id=${selectedOption}`).then(async (result) => {
                         result.json().then((json) => {
-                          displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, this.$swal, workspace, this.$toast);
+                          displaySwalPopupForUserExample(json, lkjgenwhikgu4ewkjn, selectedOption, SERVER, workspace, this.$toast);
                         });
                       });
                     });
@@ -648,7 +635,8 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
               .catch((err) => {
                 const responseHTML = document.createElement('div');
                 responseHTML.innerHTML = String(err);
-                this.$swal.fire({
+                Swal.fire({
+                  theme: 'auto',
                   title: 'An unexpected error occurred!',
                   content: responseHTML,
                   icon: 'error'
@@ -656,7 +644,7 @@ fetch("${SERVER + 'api/examples/updateVotes'}", requestOptions)
               });
           };
           document.getElementById('cancel-btn').onclick = () => {
-            this.$swal.close();
+            Swal.close();
           };
         }
       });

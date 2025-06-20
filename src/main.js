@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import { bootstrapPlugin, modalManagerPlugin } from 'bootstrap-vue-next';
 import App from './App.vue';
 import store from './store';
-import VueSwal from 'vue-sweetalert2';
 import { createI18n } from 'vue-i18n';
 import Blockly from 'blockly';
 import VueToast from 'vue-toast-notification';
@@ -30,7 +29,6 @@ app.component('font-awesome-icon', FontAwesomeIcon);
 
 app.use(VueTour);
 app.use(VueToast);
-app.use(VueSwal);
 app.use(bootstrapPlugin);
 app.use(modalManagerPlugin);
 

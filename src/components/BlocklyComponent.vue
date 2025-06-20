@@ -764,13 +764,18 @@ ${CATEGORYCONTENT}`
       inlineDiv.append(buttonDiv);
     });
     workspace.registerButtonCallback('FFMPEG', function () {
-      swal.fire('Hey uhh..', "This isn't quite done yet...", 'info');
+      swal.fire({
+        theme: 'auto',
+        title: 'Hey uhh..',
+        icon: 'info',
+        text: "This isn't quite done yet..."
+      });
     });
     workspace.registerButtonCallback('EMBED_GUI_POPUP', function () {
-      swal
-        .fire({
-          title: 'Create an embed!',
-          html: `<b>Required:</b><br><br>
+      swal.fire({
+        theme: 'auto',
+        title: 'Create an embed!',
+        html: `<b>Required:</b><br><br>
 Description:<br>
 <textarea id="EmbedDescription" rows="4" cols="50"></textarea>
 <br><br><b>Extras:</b><br>
@@ -778,10 +783,10 @@ Description:<br>
 Title: <input type="text" id="EmbedTitle"> URL (?): <input type="text" id="EmbedTitleURL"><br>
 Color: <input type="color" id="EmbedColor" value="#ff0000"><br>
 Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAuthorPFP"> URL (?): <input type="text" id="EmbedAuthorURL"><br>`,
-          showCancelButton: true,
-          showConfirmButton: true,
-          confirmButtonText: 'Import to Workspace'
-        })
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonText: 'Import to Workspace'
+      })
         .then(async (result) => {
           if (!result.isConfirmed) return;
           const edesc = validateForXML(document.getElementById('EmbedDescription').value);
@@ -878,8 +883,6 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       workspace.updateToolbox(new_toolbox_xml);
     };
     workspace.registerButtonCallback('SEARCH', function () {
-      // const wrapper = document.createElement('div');
-      // wrapper.innerHTML = `<input type="text" id="block">`
       if (isMobile()) {
         let res = String(prompt('Search for a block:'));
         let block = res.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
@@ -889,15 +892,14 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
         workspace.toolbox_.clearSelection();
         return;
       }
-      swal
-        .fire({
-          title: 'Search for a block',
-          // html: wrapper,
-          html: `<input type="text" id="block">`,
-          showCancelButton: true,
-          showConfirmButton: true,
-          confirmButtonText: 'Search'
-        })
+      swal.fire({
+        theme: 'auto',
+        title: 'Search for a block',
+        html: `<input type="text" id="block">`,
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonText: 'Search'
+      })
         .then(async (result) => {
           if (result) {
             let block = document.getElementById('block').value.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');

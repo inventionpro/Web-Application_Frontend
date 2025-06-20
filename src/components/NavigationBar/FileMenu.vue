@@ -14,6 +14,7 @@ import Blockly from 'blockly';
 import JSZip from 'jszip';
 import beautify from 'js-beautify';
 import localforage from 'localforage';
+import Swal from 'sweetalert2';
 import * as smm from './cbmodule.js';
 import * as blocklyModule from '../../blocks/blocklyModule.js';
 function fetchCustomBlocks(dataobj, loadfunc) {
@@ -118,7 +119,15 @@ function fetchCustomBlocks(dataobj, loadfunc) {
 window.fetchCustomBlocks = fetchCustomBlocks;
 export default {
   name: 'FileMenu',
-  mounted() {
+  mounted() {/*
+    window.addEventListener('beforeunload', function (evt) {
+      let currentWorkspaceContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+      changesAreUnsaved = workspaceContent != currentWorkspaceContent;
+      if (!changesAreUnsaved) return;
+      evt.preventDefault();
+      evt.returnValue = 'You have unsaved blocks! Are you sure?';
+      return;
+    });*/
     localforage.getItem('utilitiesShortcuts').then((item) => {
       if (item == false) return;
       window.addEventListener('keydown', (e) => {
@@ -149,21 +158,21 @@ export default {
       document.querySelector('#load-code').click();
     },
     async load() {
-      this.$swal
-        .fire({
-          title: this.$t('file.confirm.title'),
-          text: this.$t('file.confirm.text'),
-          icon: 'warning',
-          showCancelButton: true,
-          showDenyButton: true,
-          confirmButtonText: this.$t('file.confirm.yes'),
-          cancelButtonText: this.$t('file.confirm.cancel'),
-          denyButtonText: this.$t('file.confirm.no'),
-          customClass: {
-            denyButton: 'red-button'
-          },
-          allowOutsideClick: false
-        })
+      Swal.fire({
+        theme: 'auto',
+        title: this.$t('file.confirm.title'),
+        text: this.$t('file.confirm.text'),
+        icon: 'warning',
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonText: this.$t('file.confirm.yes'),
+        cancelButtonText: this.$t('file.confirm.cancel'),
+        denyButtonText: this.$t('file.confirm.no'),
+        customClass: {
+          denyButton: 'red-button'
+        },
+        allowOutsideClick: false
+      })
         .then(async (result) => {
           if (result.isDismissed) {
             return;

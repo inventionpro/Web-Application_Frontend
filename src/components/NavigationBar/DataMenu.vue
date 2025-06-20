@@ -11,20 +11,21 @@
 <script>
 import JSZip from 'jszip';
 import localforage from 'localforage';
+import Swal from 'sweetalert2';
 export default {
   name: 'userDataExport',
   computed: {},
   methods: {
     ClearAutosave() {
-      this.$swal
-        .fire({
-          title: 'Clear autosave',
-          text: `Are you sure?`,
-          icon: 'warning',
-          showCancelButton: true,
-          cancelButtonText: 'Cancel',
-          confirmButtonText: 'Confirm'
-        })
+      Swal.fire({
+        theme: 'auto',
+        title: 'Clear autosave',
+        text: `Are you sure?`,
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+        confirmButtonText: 'Confirm'
+      })
         .then((result) => {
           if (!result.isConfirmed) return;
           localforage.removeItem('save3');
@@ -37,16 +38,16 @@ export default {
       document.querySelector('#load-s4dData-code').click();
     },
     dld() {
-      this.$swal
-        .fire({
-          title: 'WARNING!',
-          text: 'This contains all your data including sensitive data',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Continue',
-          cancelButtonText: 'Cancel',
-          allowOutsideClick: false
-        })
+      Swal.fire({
+        theme: 'auto',
+        title: 'WARNING!',
+        text: 'This contains all your data including sensitive data',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Continue',
+        cancelButtonText: 'Cancel',
+        allowOutsideClick: false
+      })
         .then((result) => {
           if (!result.isConfirmed) return;
           const zip = new JSZip();
