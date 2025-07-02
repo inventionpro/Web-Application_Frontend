@@ -233,33 +233,32 @@ export default {
         showCancelButton: true,
         confirmButtonText: 'Download',
         cancelButtonText: 'Cancel'
-      })
-        .then(async (result) => {
-          let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "2.0.0",`];
-          let oldrequires = await localforage.getItem('requires');
-          r(requires, oldrequires);
-          var requireUsed = requires.join('\n');
-          if (requireUsed.charAt(requireUsed.length - 1) == ',') {
-            requireUsed = requireUsed.substring(0, requireUsed.length - 1);
+      }).then(async (result) => {
+        let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "2.0.0",`];
+        let oldrequires = await localforage.getItem('requires');
+        r(requires, oldrequires);
+        var requireUsed = requires.join('\n');
+        if (requireUsed.charAt(requireUsed.length - 1) == ',') {
+          requireUsed = requireUsed.substring(0, requireUsed.length - 1);
+        }
+        if (result.isConfirmed) {
+          const zip = new JSZip();
+          const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+          const fileName = `${encodeURIComponent(document.querySelector('#docName').textContent).replace(/%20/g, ' ')}.zip`;
+          zip.file('blocks.xml', xmlContent);
+          const javascriptContent = this.getWorkspaceCode();
+          if (javascriptContent.includes('queue.join') && javascriptContent.includes('queue.connect')) {
+            Swal.fire({
+              theme: 'auto',
+              title: 'Sorry, but Retro and Jose music blocks do not work together.',
+              icon: 'error'
+            });
+            return;
           }
-          if (result.isConfirmed) {
-            const zip = new JSZip();
-            const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-            const fileName = `${encodeURIComponent(document.querySelector('#docName').textContent).replace(/%20/g, ' ')}.zip`;
-            zip.file('blocks.xml', xmlContent);
-            const javascriptContent = this.getWorkspaceCode();
-            if (javascriptContent.includes('queue.join') && javascriptContent.includes('queue.connect')) {
-              Swal.fire({
-                theme: 'auto',
-                title: 'Sorry, but Retro and Jose music blocks do not work together.',
-                icon: 'error'
-              });
-              return;
-            }
-            zip.file('index.js', javascriptContent);
-            zip.file(
-              'package.json',
-              `{\n
+          zip.file('index.js', javascriptContent);
+          zip.file(
+            'package.json',
+            `{\n
   "name": "scratch-for-discord-bot",\n
   "version": "1.0.0",\n
   "main": "index.js",\n
@@ -276,28 +275,28 @@ export default {
     "node": "^18"\n
   }\n
 }`
-            );
-            zip
-              .generateAsync({
-                type: 'blob'
-              })
-              .then((blob) => {
-                const a = document.createElement('a');
-                a.style = 'display: none';
-                document.body.appendChild(a);
-                const url = window.URL.createObjectURL(blob);
-                a.href = url;
-                a.download = fileName;
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-              });
-            console.log("barry: well we are done, let's get back to managing the blocks");
-            console.log('johnathan: ok');
-          } else {
-            console.log('barry: nvm lol');
-          }
-        });
+          );
+          zip
+            .generateAsync({
+              type: 'blob'
+            })
+            .then((blob) => {
+              const a = document.createElement('a');
+              a.style = 'display: none';
+              document.body.appendChild(a);
+              const url = window.URL.createObjectURL(blob);
+              a.href = url;
+              a.download = fileName;
+              a.click();
+              window.URL.revokeObjectURL(url);
+              document.body.removeChild(a);
+            });
+          console.log("barry: well we are done, let's get back to managing the blocks");
+          console.log('johnathan: ok');
+        } else {
+          console.log('barry: nvm lol');
+        }
+      });
     },
     async util() {
       if (String(window.location.pathname).replace(/\//gim, '') == 'spooky') {
@@ -749,11 +748,10 @@ export default {
                   console.log('barry: hey what file do you want to download?');
                   console.log('johnathan: dude they cant hear us'); // The voices, im starting to hear them -inv
                   console.log('barry: oh right i forgot');
-                  Swal
-                    .fire({
-                      theme: 'auto',
-                      title: 'Which file are you downloading?',
-                      html: `<h6>Explanations:</h6>
+                  Swal.fire({
+                    theme: 'auto',
+                    title: 'Which file are you downloading?',
+                    html: `<h6>Explanations:</h6>
 <ul>
   <li style='text-align:left'>"index.js" contains your bot's code.</li>
   <li style='text-align:left'>"package.json" contains all of the packages needed for hosting on your computer.</li>
@@ -765,43 +763,42 @@ export default {
 <label for="file2"> package.json </label>
 <input type="checkbox" id="file3">
 <label for="file3"> blocks.xml</label>`,
-                      icon: 'warning',
-                      showCancelButton: true,
-                      cancelButtonText: 'Nevermind...',
-                      confirmButtonText: 'Download'
-                    })
-                    .then(async (result) => {
-                      if (result.isConfirmed) {
-                        var file1 = document.getElementById('file1').checked;
-                        var file2 = document.getElementById('file2').checked;
-                        var file3 = document.getElementById('file3').checked;
-                        if (file1) {
-                          console.log('barry: hey can you go grab their code');
-                          console.log('johnathan: ok');
-                          const javascriptContent = this.getWorkspaceCode();
-                          const blob = new Blob([javascriptContent]);
-                          const a = document.createElement('a');
-                          a.style = 'display: none';
-                          document.body.appendChild(a);
-                          const url = window.URL.createObjectURL(blob);
-                          a.href = url;
-                          a.download = 'index.js';
-                          a.click();
-                          window.URL.revokeObjectURL(url);
-                          document.body.removeChild(a);
-                          console.log('johnathan: done');
+                    icon: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'Nevermind...',
+                    confirmButtonText: 'Download'
+                  }).then(async (result) => {
+                    if (result.isConfirmed) {
+                      var file1 = document.getElementById('file1').checked;
+                      var file2 = document.getElementById('file2').checked;
+                      var file3 = document.getElementById('file3').checked;
+                      if (file1) {
+                        console.log('barry: hey can you go grab their code');
+                        console.log('johnathan: ok');
+                        const javascriptContent = this.getWorkspaceCode();
+                        const blob = new Blob([javascriptContent]);
+                        const a = document.createElement('a');
+                        a.style = 'display: none';
+                        document.body.appendChild(a);
+                        const url = window.URL.createObjectURL(blob);
+                        a.href = url;
+                        a.download = 'index.js';
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                        console.log('johnathan: done');
+                      }
+                      if (file2) {
+                        console.log('johnathan: hey can you grab the packages');
+                        console.log('barry: on it');
+                        let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`];
+                        let oldrequires = await localforage.getItem('requires');
+                        r(requires, oldrequires);
+                        var requireUsed = requires.join('\n');
+                        if (requireUsed.charAt(requireUsed.length - 1) == ',') {
+                          requireUsed = requireUsed.substring(0, requireUsed.length - 1);
                         }
-                        if (file2) {
-                          console.log('johnathan: hey can you grab the packages');
-                          console.log('barry: on it');
-                          let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`];
-                          let oldrequires = await localforage.getItem('requires');
-                          r(requires, oldrequires);
-                          var requireUsed = requires.join('\n');
-                          if (requireUsed.charAt(requireUsed.length - 1) == ',') {
-                            requireUsed = requireUsed.substring(0, requireUsed.length - 1);
-                          }
-                          const javascriptContent = `{\n
+                        const javascriptContent = `{\n
   "name": "scratch-for-discord-bot",\n
   "version": "1.0.0",\n
   "main": "index.js",\n
@@ -818,81 +815,77 @@ export default {
     "node": "^17"\n
   }\n
 }`;
-                          const blob = new Blob([javascriptContent]);
-                          const a = document.createElement('a');
-                          a.style = 'display: none';
-                          document.body.appendChild(a);
-                          const url = window.URL.createObjectURL(blob);
-                          a.href = url;
-                          a.download = 'package.json';
-                          a.click();
-                          window.URL.revokeObjectURL(url);
-                          document.body.removeChild(a);
-                          console.log('barry: done');
-                        }
-                        if (file3) {
-                          console.log('barry: im gonna start getting their blocks');
-                          console.log('johnathan: ok');
-                          const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-                          const blob = new Blob([xmlContent]);
-                          const a = document.createElement('a');
-                          a.style = 'display: none';
-                          document.body.appendChild(a);
-                          const url = window.URL.createObjectURL(blob);
-                          a.href = url;
-                          a.download = 'blocks.xml';
-                          a.click();
-                          window.URL.revokeObjectURL(url);
-                          document.body.removeChild(a);
-                          console.log('barry: finished');
-                        }
-                        console.log('barry: welp guess we are done');
-                        console.log('johnathan: lets get back to work, shall we?');
+                        const blob = new Blob([javascriptContent]);
+                        const a = document.createElement('a');
+                        a.style = 'display: none';
+                        document.body.appendChild(a);
+                        const url = window.URL.createObjectURL(blob);
+                        a.href = url;
+                        a.download = 'package.json';
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                        console.log('barry: done');
                       }
-                    });
+                      if (file3) {
+                        console.log('barry: im gonna start getting their blocks');
+                        console.log('johnathan: ok');
+                        const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+                        const blob = new Blob([xmlContent]);
+                        const a = document.createElement('a');
+                        a.style = 'display: none';
+                        document.body.appendChild(a);
+                        const url = window.URL.createObjectURL(blob);
+                        a.href = url;
+                        a.download = 'blocks.xml';
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                        console.log('barry: finished');
+                      }
+                      console.log('barry: welp guess we are done');
+                      console.log('johnathan: lets get back to work, shall we?');
+                    }
+                  });
                   break;
                 case 'manage':
-                  Swal
-                    .fire({
-                      theme: 'auto',
-                      title: 'Favorites manager',
-                      icon: 'warning',
-                      showCancelButton: true,
-                      showDenyButton: true,
-                      cancelButtonText: 'Cancel',
-                      confirmButtonText: 'Manual Favorite',
-                      denyButtonText: 'Clear Favorites'
-                    })
-                    .then(async (result) => {
-                      if (result.isDenied) {
-                        localforage.setItem('fav', null);
-                        console.log('Favorites cleared...');
-                      } else if (result.isConfirmed) {
-                        Swal
-                          .fire({
-                            theme: 'auto',
-                            title: 'Add a block to favorites',
-                            html: `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`,
-                            showCancelButton: true,
-                            cancelButtonText: 'Cancel',
-                            confirmButtonText: 'Add'
-                          })
-                          .then(async (result) => {
-                            if (!result.isConfirmed) return;
-                            localforage.getItem('fav').then((favs) => {
-                              let block = document.getElementById('block').value.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
-                              console.log('Adding block', block, 'to favorites');
-                              if (favs != null) {
-                                let newArray = favs;
-                                newArray.push(block);
-                                localforage.setItem('fav', newArray);
-                              } else {
-                                localforage.setItem('fav', [block]);
-                              }
-                            });
-                          });
-                      }
-                    });
+                  Swal.fire({
+                    theme: 'auto',
+                    title: 'Favorites manager',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    showDenyButton: true,
+                    cancelButtonText: 'Cancel',
+                    confirmButtonText: 'Manual Favorite',
+                    denyButtonText: 'Clear Favorites'
+                  }).then(async (result) => {
+                    if (result.isDenied) {
+                      localforage.setItem('fav', null);
+                      console.log('Favorites cleared...');
+                    } else if (result.isConfirmed) {
+                      Swal.fire({
+                        theme: 'auto',
+                        title: 'Add a block to favorites',
+                        html: `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`,
+                        showCancelButton: true,
+                        cancelButtonText: 'Cancel',
+                        confirmButtonText: 'Add'
+                      }).then(async (result) => {
+                        if (!result.isConfirmed) return;
+                        localforage.getItem('fav').then((favs) => {
+                          let block = document.getElementById('block').value.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
+                          console.log('Adding block', block, 'to favorites');
+                          if (favs != null) {
+                            let newArray = favs;
+                            newArray.push(block);
+                            localforage.setItem('fav', newArray);
+                          } else {
+                            localforage.setItem('fav', [block]);
+                          }
+                        });
+                      });
+                    }
+                  });
                   break;
                 case 'tokendb':
                   // TODO: yet another, Swal 2
@@ -1033,79 +1026,75 @@ export default {
                   });
                   break;
                 case 'save':
-                  Swal
-                    .fire({
-                      theme: 'auto',
-                      title: this.$t('token.text2'),
-                      input: 'text',
-                      inputAttributes: {
-                        autocapitalize: 'off'
-                      },
-                      showCancelButton: true,
-                      confirmButtonText: this.$t('token.save2'),
-                      showLoaderOnConfirm: true,
-                      preConfirm: async (file) => {
-                        let maybe = await localforage.getItem('token-' + file);
-                        if (maybe === null) {
-                          return file;
-                        } else {
-                          Swal.showValidationMessage(this.$t('token.error'));
-                        }
-                      },
-                      allowOutsideClick: () => !Swal.isLoading()
-                    })
-                    .then((result2) => {
-                      if (result2.isConfirmed) {
-                        let name = result2.value;
-                        Swal
-                          .fire({
-                            theme: 'auto',
-                            title: this.$t('token.text3'),
-                            input: 'text',
-                            inputAttributes: {
-                              autocapitalize: 'off'
-                            },
-                            showCancelButton: true,
-                            confirmButtonText: this.$t('token.save3'),
-                            showLoaderOnConfirm: true,
-                            preConfirm: (file2) => {
-                              return file2;
-                            },
-                            allowOutsideClick: () => !Swal.isLoading()
-                          })
-                          .then(async (result) => {
-                            if (result.isConfirmed) {
-                              let token = result.value;
-                              //token
-                              await localforage.setItem(`token-${name}`, token);
-                              let tokens = await localforage.getItem('tokens');
-                              if (tokens === null) {
-                                await localforage.setItem('tokens', [`token-${name}`]);
-                              } else {
-                                tokens.push(`token-${name}`);
-                                await localforage.setItem('tokens', tokens);
-                              }
-                              const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                  toast.addEventListener('mouseenter', Swal.stopTimer);
-                                  toast.addEventListener('mouseleave', Swal.resumeTimer);
-                                }
-                              });
-                              let a = this.$t('token.success');
-                              Toast.fire({
-                                theme: 'auto',
-                                icon: 'success',
-                                title: `${a}${name}`
-                              });
+                  Swal.fire({
+                    theme: 'auto',
+                    title: this.$t('token.text2'),
+                    input: 'text',
+                    inputAttributes: {
+                      autocapitalize: 'off'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: this.$t('token.save2'),
+                    showLoaderOnConfirm: true,
+                    preConfirm: async (file) => {
+                      let maybe = await localforage.getItem('token-' + file);
+                      if (maybe === null) {
+                        return file;
+                      } else {
+                        Swal.showValidationMessage(this.$t('token.error'));
+                      }
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                  }).then((result2) => {
+                    if (result2.isConfirmed) {
+                      let name = result2.value;
+                      Swal.fire({
+                        theme: 'auto',
+                        title: this.$t('token.text3'),
+                        input: 'text',
+                        inputAttributes: {
+                          autocapitalize: 'off'
+                        },
+                        showCancelButton: true,
+                        confirmButtonText: this.$t('token.save3'),
+                        showLoaderOnConfirm: true,
+                        preConfirm: (file2) => {
+                          return file2;
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                      }).then(async (result) => {
+                        if (result.isConfirmed) {
+                          let token = result.value;
+                          //token
+                          await localforage.setItem(`token-${name}`, token);
+                          let tokens = await localforage.getItem('tokens');
+                          if (tokens === null) {
+                            await localforage.setItem('tokens', [`token-${name}`]);
+                          } else {
+                            tokens.push(`token-${name}`);
+                            await localforage.setItem('tokens', tokens);
+                          }
+                          const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer);
+                              toast.addEventListener('mouseleave', Swal.resumeTimer);
                             }
                           });
-                      }
-                    });
+                          let a = this.$t('token.success');
+                          Toast.fire({
+                            theme: 'auto',
+                            icon: 'success',
+                            title: `${a}${name}`
+                          });
+                        }
+                      });
+                    }
+                  });
                   break;
                 case 'prebuilds':
                   // TODO: Swal 2
@@ -1260,58 +1249,56 @@ export default {
                         }
                       });
                     } else if (String(result) == 'save') {
-                      Swal
-                        .fire({
-                          theme: 'auto',
-                          title: this.$t('prebuild.text2'),
-                          input: 'text',
-                          inputAttributes: {
-                            autocapitalize: 'off'
-                          },
-                          showCancelButton: true,
-                          confirmButtonText: this.$t('prebuild.save2'),
-                          showLoaderOnConfirm: true,
-                          preConfirm: async (file) => {
-                            let maybe = await localforage.getItem('prebuild-' + file);
-                            if (maybe === null) {
-                              return file;
-                            } else {
-                              Swal.showValidationMessage(this.$t('prebuild.error'));
-                            }
-                          },
-                          allowOutsideClick: () => !Swal.isLoading()
-                        })
-                        .then(async (result2) => {
-                          if (result2.isConfirmed) {
-                            let name = result2.value;
-                            const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-                            await localforage.setItem(`prebuild-${name}`, xmlContent);
-                            let tokens = await localforage.getItem('prebuilds');
-                            if (tokens === null) {
-                              await localforage.setItem('prebuilds', [`prebuild-${name}`]);
-                            } else {
-                              tokens.push(`prebuild-${name}`);
-                              await localforage.setItem('prebuilds', tokens);
-                            }
-                            const Toast = Swal.mixin({
-                              toast: true,
-                              position: 'top-end',
-                              showConfirmButton: false,
-                              timer: 3000,
-                              timerProgressBar: true,
-                              didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer);
-                                toast.addEventListener('mouseleave', Swal.resumeTimer);
-                              }
-                            });
-                            let a = this.$t('prebuild.success');
-                            Toast.fire({
-                              theme: 'auto',
-                              icon: 'success',
-                              title: `${a}${name}`
-                            });
+                      Swal.fire({
+                        theme: 'auto',
+                        title: this.$t('prebuild.text2'),
+                        input: 'text',
+                        inputAttributes: {
+                          autocapitalize: 'off'
+                        },
+                        showCancelButton: true,
+                        confirmButtonText: this.$t('prebuild.save2'),
+                        showLoaderOnConfirm: true,
+                        preConfirm: async (file) => {
+                          let maybe = await localforage.getItem('prebuild-' + file);
+                          if (maybe === null) {
+                            return file;
+                          } else {
+                            Swal.showValidationMessage(this.$t('prebuild.error'));
                           }
-                        });
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                      }).then(async (result2) => {
+                        if (result2.isConfirmed) {
+                          let name = result2.value;
+                          const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+                          await localforage.setItem(`prebuild-${name}`, xmlContent);
+                          let tokens = await localforage.getItem('prebuilds');
+                          if (tokens === null) {
+                            await localforage.setItem('prebuilds', [`prebuild-${name}`]);
+                          } else {
+                            tokens.push(`prebuild-${name}`);
+                            await localforage.setItem('prebuilds', tokens);
+                          }
+                          const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer);
+                              toast.addEventListener('mouseleave', Swal.resumeTimer);
+                            }
+                          });
+                          let a = this.$t('prebuild.success');
+                          Toast.fire({
+                            theme: 'auto',
+                            icon: 'success',
+                            title: `${a}${name}`
+                          });
+                        }
+                      });
                     } else if (String(result) == 'load') {
                       let keys = await localforage.getItem('prebuilds');
                       if (keys === null) {
@@ -1370,61 +1357,57 @@ export default {
                   });
                   break;
                 case 'optimizations':
-                  Swal
-                    .fire({
-                      theme: 'auto',
-                      title: 'Site Optimizations',
-                      html: `<span>These optimizations are minor, but can help for big projects.</span><br><b>These require a refresh to fully work.</b>`,
-                      showCancelButton: true,
-                      cancelButtonText: 'Cancel',
-                      confirmButtonText: 'Toggle Block Counter'
-                    })
-                    .then(async (result) => {
-                      if (result.isConfirmed) {
-                        localforage.getItem('hide-blockcount').then((item) => {
-                          if (item == null) {
-                            localforage.setItem('hide-blockcount', true);
-                            return;
-                          }
-                          if (String(item) == 'true') {
-                            localforage.setItem('hide-blockcount', false);
-                          } else {
-                            localforage.setItem('hide-blockcount', true);
-                          }
-                        });
-                      }
-                    });
+                  Swal.fire({
+                    theme: 'auto',
+                    title: 'Site Optimizations',
+                    html: `<span>These optimizations are minor, but can help for big projects.</span><br><b>These require a refresh to fully work.</b>`,
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancel',
+                    confirmButtonText: 'Toggle Block Counter'
+                  }).then(async (result) => {
+                    if (result.isConfirmed) {
+                      localforage.getItem('hide-blockcount').then((item) => {
+                        if (item == null) {
+                          localforage.setItem('hide-blockcount', true);
+                          return;
+                        }
+                        if (String(item) == 'true') {
+                          localforage.setItem('hide-blockcount', false);
+                        } else {
+                          localforage.setItem('hide-blockcount', true);
+                        }
+                      });
+                    }
+                  });
                   break;
                 case 'settings':
-                  Swal
-                    .fire({
-                      theme: 'auto',
-                      title: 'Site Settings',
-                      text: 'Toggle shortcuts and change the theme!',
-                      icon: 'info',
-                      showCancelButton: true,
-                      showDenyButton: true,
-                      cancelButtonText: 'Cancel',
-                      denyButtonText: 'Toggle shortcuts',
-                      confirmButtonText: 'Set theme'
-                    })
-                    .then(async (result) => {
-                      if (result.isDismissed) return;
-                      if (result.isDenied) {
-                        localforage.getItem('utilitiesShortcuts').then((item) => {
-                          localforage.setItem('utilitiesShortcuts', item == null ? false : null).then(() => {
-                            localforage.getItem('utilitiesShortcuts').then((item) => {
-                              Swal.fire({
-                                theme: 'auto',
-                                title: 'Updated shortcuts!',
-                                text: `Shortcuts have been toggled ${item == null ? 'on' : 'off'}. Please refresh the page.`,
-                                icon: 'success'
-                              });
+                  Swal.fire({
+                    theme: 'auto',
+                    title: 'Site Settings',
+                    text: 'Toggle shortcuts and change the theme!',
+                    icon: 'info',
+                    showCancelButton: true,
+                    showDenyButton: true,
+                    cancelButtonText: 'Cancel',
+                    denyButtonText: 'Toggle shortcuts',
+                    confirmButtonText: 'Set theme'
+                  }).then(async (result) => {
+                    if (result.isDismissed) return;
+                    if (result.isDenied) {
+                      localforage.getItem('utilitiesShortcuts').then((item) => {
+                        localforage.setItem('utilitiesShortcuts', item == null ? false : null).then(() => {
+                          localforage.getItem('utilitiesShortcuts').then((item) => {
+                            Swal.fire({
+                              theme: 'auto',
+                              title: 'Updated shortcuts!',
+                              text: `Shortcuts have been toggled ${item == null ? 'on' : 'off'}. Please refresh the page.`,
+                              icon: 'success'
                             });
                           });
                         });
-                      } else if (result.isConfirmed) {
-                        const previews = `<style>
+                      });
+                    } else if (result.isConfirmed) {
+                      const previews = `<style>
 .row123 {
   display: flex;
 }
@@ -1477,69 +1460,65 @@ export default {
   </span>
   <b>Switching themes may require a refresh to work properly.</b>
 </center>`;
-                        const { value: result } = await Swal.fire({
-                          theme: 'auto',
-                          title: 'Themes',
-                          html: previews,
-                          input: 'select',
-                          inputOptions: {
-                            neo: 'Neo',
-                            toon: 'Toon',
-                            invert: 'Invert',
-                            textless: 'Textless',
-                            gray: 'Grayscale',
-                            glow: 'Glowy',
-                            'scratch-top': 'Scratch Block Top',
-                            'full-colors': 'Full Colors',
-                            'text-only': 'Text only',
-                            none: 'Default'
-                          },
-                          inputPlaceholder: 'Select a theme',
-                          showCancelButton: true
-                        });
-                        switch (String(result)) {
-                          case 'glow':
-                            Swal
-                              .fire({
-                                theme: 'auto',
-                                title: 'Performance Warning!',
-                                text: 'This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                cancelButtonText: 'Cancel',
-                                confirmButtonText: 'Use this theme'
-                              })
-                              .then(async (result) => {
-                                if (!result.isConfirmed) return;
-                                localforage.setItem('utilitiesTheme', 'glow');
-                              });
-                            break;
-                          case 'scratch-top':
-                          case 'text-only':
-                            Swal
-                              .fire({
-                                theme: 'auto',
-                                title: 'Warning!',
-                                text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                cancelButtonText: 'Cancel',
-                                confirmButtonText: 'Use this theme'
-                              })
-                              .then(async (result) => {
-                                if (!result.isConfirmed) return;
-                                localforage.setItem('utilitiesTheme', String(result));
-                              });
-                            break;
-                          case 'none':
-                            localforage.removeItem('utilitiesTheme');
-                            break;
-                          default:
+                      const { value: result } = await Swal.fire({
+                        theme: 'auto',
+                        title: 'Themes',
+                        html: previews,
+                        input: 'select',
+                        inputOptions: {
+                          neo: 'Neo',
+                          toon: 'Toon',
+                          invert: 'Invert',
+                          textless: 'Textless',
+                          gray: 'Grayscale',
+                          glow: 'Glowy',
+                          'scratch-top': 'Scratch Block Top',
+                          'full-colors': 'Full Colors',
+                          'text-only': 'Text only',
+                          none: 'Default'
+                        },
+                        inputPlaceholder: 'Select a theme',
+                        showCancelButton: true
+                      });
+                      switch (String(result)) {
+                        case 'glow':
+                          Swal.fire({
+                            theme: 'auto',
+                            title: 'Performance Warning!',
+                            text: 'This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            cancelButtonText: 'Cancel',
+                            confirmButtonText: 'Use this theme'
+                          }).then(async (result) => {
+                            if (!result.isConfirmed) return;
+                            localforage.setItem('utilitiesTheme', 'glow');
+                          });
+                          break;
+                        case 'scratch-top':
+                        case 'text-only':
+                          Swal.fire({
+                            theme: 'auto',
+                            title: 'Warning!',
+                            text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            cancelButtonText: 'Cancel',
+                            confirmButtonText: 'Use this theme'
+                          }).then(async (result) => {
+                            if (!result.isConfirmed) return;
                             localforage.setItem('utilitiesTheme', String(result));
-                            break;
-                        }
+                          });
+                          break;
+                        case 'none':
+                          localforage.removeItem('utilitiesTheme');
+                          break;
+                        default:
+                          localforage.setItem('utilitiesTheme', String(result));
+                          break;
                       }
-                    });
+                    }
+                  });
                   break;
               }
             };
@@ -1548,184 +1527,182 @@ export default {
       });
     },
     runbot() {
-      Swal
-        .fire({
-          theme: 'auto',
-          title: 'Start your bot?',
-          html: `<h6>You will have to manually stop your bot in Discord!</h6>You also might not get a response until the bot gets an error, or stops.`,
-          icon: 'warning',
-          showCancelButton: true,
-          cancelButtonText: 'Cancel',
-          confirmButtonText: 'Yes!'
-        })
-        .then(async (result) => {
-          if (!result.isConfirmed) return;
-          console.log('johnathan: run the bot bro');
-          console.log('barry: mk lemme just package up the code they made');
-          console.log('johnathan: ok tell me when your done');
-          console.log('barry: ok');
-          const javascriptContent = this.getWorkspaceCode();
-          const workspace = this.$store.state.workspace;
-          const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-          function HasCustomBlocks() {
-            let epic = false;
-            workspace.getAllBlocks().forEach((block) => {
-              if (!epic && window.customBlocks.includes(block.type)) epic = true;
+      Swal.fire({
+        theme: 'auto',
+        title: 'Start your bot?',
+        html: `<h6>You will have to manually stop your bot in Discord!</h6>You also might not get a response until the bot gets an error, or stops.`,
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+        confirmButtonText: 'Yes!'
+      }).then(async (result) => {
+        if (!result.isConfirmed) return;
+        console.log('johnathan: run the bot bro');
+        console.log('barry: mk lemme just package up the code they made');
+        console.log('johnathan: ok tell me when your done');
+        console.log('barry: ok');
+        const javascriptContent = this.getWorkspaceCode();
+        const workspace = this.$store.state.workspace;
+        const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+        function HasCustomBlocks() {
+          let epic = false;
+          workspace.getAllBlocks().forEach((block) => {
+            if (!epic && window.customBlocks.includes(block.type)) epic = true;
+          });
+          return epic;
+        }
+        if (javascriptContent.includes('process.env') || javascriptContent.includes('http.createServer((req, res) => {') || xmlContent.includes('block type="frost_webserver"') || xmlContent.includes('block type="frost_env"')) {
+          Swal.fire({
+            theme: 'auto',
+            title: 'Your bot contains a replit block. Please remove it before continuing.',
+            text: 'You may have a process.env block or a webserver block placed somewhere.',
+            icon: 'error'
+          });
+          console.log('barry: ok so i finished but the user has incompatible blocks');
+          console.log('johnathan: damn');
+          console.error('barry and johnathan found replit blocks...');
+          return;
+        } else if (xmlContent.includes('block type="blank_code"') || xmlContent.includes('block type="s4d_eval"') || xmlContent.includes('block type="s4d_eval2"') || xmlContent.includes('block type="s4d_exec"') || xmlContent.includes('block type="jg_s4d_other_run_code_inside_file"')) {
+          Swal.fire({
+            theme: 'auto',
+            title: 'Your bot contains blocks that run or insert code.',
+            text: 'Remove any "insert code" or "run code" blocks before running.',
+            icon: 'error'
+          });
+          console.log('barry: ok so i finished but the user has custom code blocks');
+          console.log('johnathan: damn');
+          console.error('barry and johnathan found insert or run code blocks...');
+          return;
+        } else if (xmlContent.includes('block type="simple_host_auth"')) {
+          Swal.fire({
+            theme: 'auto',
+            title: 'Your bot contains blocks for Simple Host.',
+            text: 'Remove any "Simple Host Auth" blocks before running.',
+            icon: 'error'
+          });
+          console.log('barry: ok so i finished but the user uses simple host');
+          console.log('johnathan: LMAOOOOOOOOOOOOOOOOOOOOOOOO');
+          console.error('barry and johnathan found out you use simple host...');
+          return;
+        } else if (xmlContent.includes('block type="jg_express_start_website_then_using_port"')) {
+          Swal.fire({
+            theme: 'auto',
+            title: 'Your bot contains blocks for starting websites.',
+            text: 'Remove any "start website" blocks before running.',
+            icon: 'error'
+          });
+          console.log('barry: ok so i finished but the user has website block');
+          console.log('johnathan: zamn');
+          console.error('barry and johnathan found out you have a website...');
+          return;
+        } else if (HasCustomBlocks()) {
+          Swal.fire({
+            theme: 'auto',
+            title: 'Your bot contains custom blocks.',
+            text: 'Custom blocks are currently unsupported for the run button. Please remove them before continuing.',
+            icon: 'error'
+          });
+          console.log('barry: this mf got custom blocks');
+          console.log('johnathan: dayumm');
+          console.error('barry and johnathan found out you are epic gamer...');
+          return;
+        } else if (window.isInS4DDebugMode == true) {
+          Swal.fire({
+            theme: 'auto',
+            title: 'S4D is currently in debug mode.',
+            text: 'Please disable debug mode to run your bot.',
+            icon: 'error'
+          });
+          console.log('barry: placeholder');
+          console.log('johnathan: placeholder');
+          console.error('placeholder');
+          return;
+        }
+        let api_key = process.env.VUE_APP_KEY;
+        let modifiedJScontent = javascriptContent.replaceAll('const S4D_APP_RUN_BUTTON = false', 'const S4D_APP_RUN_BUTTON = true');
+        console.log('barry: done');
+        console.log('johnathan: ok go send the post request');
+        console.log('barry: ok');
+        console.log('epic server: now going to be sending POST request to JeremyGamer13s dumb and insecure API!!1!1!!');
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            key: api_key,
+            code: modifiedJScontent,
+            update: '2'
+          })
+        };
+        try {
+          if (api_key == null) {
+            Swal.fire({
+              theme: 'auto',
+              title: 'Cool! However..',
+              text: `The bot would have been sent,<br><aew3f2 style="color:#188DC8">but the server S4D is currently running on does not have an API key present.</aew3f2><br><br><p>Using Netlify? <a href="https://scratch-for-discord-469.vercel.app/">Click here to go to Vercel!</a></p><!--<br><h6 style="color:#188DC8">This menu popped up because the API key is not present.</h6>-->`,
+              info: 'info'
             });
-            return epic;
+            console.log('epic server: POST request pretended to be sent to JeremyGamer13s dumb and insecure API😀😁😀👍😁👍👍👍');
+            console.log('barry: technically done');
+            console.log('johnathan: nice, now lets get back to work');
+            console.log('Code that would have been sent:');
+            console.log(modifiedJScontent);
+            return;
           }
-          if (javascriptContent.includes('process.env') || javascriptContent.includes('http.createServer((req, res) => {') || xmlContent.includes('block type="frost_webserver"') || xmlContent.includes('block type="frost_env"')) {
-            Swal.fire({
-              theme: 'auto',
-              title: 'Your bot contains a replit block. Please remove it before continuing.',
-              text: 'You may have a process.env block or a webserver block placed somewhere.',
-              icon: 'error'
-            });
-            console.log('barry: ok so i finished but the user has incompatible blocks');
-            console.log('johnathan: damn');
-            console.error('barry and johnathan found replit blocks...');
-            return;
-          } else if (xmlContent.includes('block type="blank_code"') || xmlContent.includes('block type="s4d_eval"') || xmlContent.includes('block type="s4d_eval2"') || xmlContent.includes('block type="s4d_exec"') || xmlContent.includes('block type="jg_s4d_other_run_code_inside_file"')) {
-            Swal.fire({
-              theme: 'auto',
-              title: 'Your bot contains blocks that run or insert code.',
-              text: 'Remove any "insert code" or "run code" blocks before running.',
-              icon: 'error'
-            });
-            console.log('barry: ok so i finished but the user has custom code blocks');
-            console.log('johnathan: damn');
-            console.error('barry and johnathan found insert or run code blocks...');
-            return;
-          } else if (xmlContent.includes('block type="simple_host_auth"')) {
-            Swal.fire({
-              theme: 'auto',
-              title: 'Your bot contains blocks for Simple Host.',
-              text: 'Remove any "Simple Host Auth" blocks before running.',
-              icon: 'error'
-            });
-            console.log('barry: ok so i finished but the user uses simple host');
-            console.log('johnathan: LMAOOOOOOOOOOOOOOOOOOOOOOOO');
-            console.error('barry and johnathan found out you use simple host...');
-            return;
-          } else if (xmlContent.includes('block type="jg_express_start_website_then_using_port"')) {
-            Swal.fire({
-              theme: 'auto',
-              title: 'Your bot contains blocks for starting websites.',
-              text: 'Remove any "start website" blocks before running.',
-              icon: 'error'
-            });
-            console.log('barry: ok so i finished but the user has website block');
-            console.log('johnathan: zamn');
-            console.error('barry and johnathan found out you have a website...');
-            return;
-          } else if (HasCustomBlocks()) {
-            Swal.fire({
-              theme: 'auto',
-              title: 'Your bot contains custom blocks.',
-              text: 'Custom blocks are currently unsupported for the run button. Please remove them before continuing.',
-              icon: 'error'
-            });
-            console.log('barry: this mf got custom blocks');
-            console.log('johnathan: dayumm');
-            console.error('barry and johnathan found out you are epic gamer...');
-            return;
-          } else if (window.isInS4DDebugMode == true) {
-            Swal.fire({
-              theme: 'auto',
-              title: 'S4D is currently in debug mode.',
-              text: 'Please disable debug mode to run your bot.',
-              icon: 'error'
-            });
-            console.log('barry: placeholder');
-            console.log('johnathan: placeholder');
-            console.error('placeholder');
-            return;
-          }
-          let api_key = process.env.VUE_APP_KEY;
-          let modifiedJScontent = javascriptContent.replaceAll('const S4D_APP_RUN_BUTTON = false', 'const S4D_APP_RUN_BUTTON = true');
-          console.log('barry: done');
-          console.log('johnathan: ok go send the post request');
-          console.log('barry: ok');
-          console.log('epic server: now going to be sending POST request to JeremyGamer13s dumb and insecure API!!1!1!!');
-          const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              key: api_key,
-              code: modifiedJScontent,
-              update: '2'
-            })
-          };
-          try {
-            if (api_key == null) {
+          fetch('https://469runtest.jeremygamer13.repl.co/?imbored=true', requestOptions).then(async (response) => {
+            console.log(response);
+            console.log('S4D sent a request, the response status code is', response.status);
+            if (response.status >= 300 && response.status < 400) {
+              console.log('epic server: oopsie poopsie something happen');
+              console.log('barry: idk something happen');
+              console.log('johnathan: thats not good but we cant do much');
+              console.log('barry: true :(');
               Swal.fire({
                 theme: 'auto',
-                title: 'Cool! However..',
-                text: `The bot would have been sent,<br><aew3f2 style="color:#188DC8">but the server S4D is currently running on does not have an API key present.</aew3f2><br><br><p>Using Netlify? <a href="https://scratch-for-discord-469.vercel.app/">Click here to go to Vercel!</a></p><!--<br><h6 style="color:#188DC8">This menu popped up because the API key is not present.</h6>-->`,
-                info: 'info'
+                title: 'Uhh..',
+                text: `Something may have gone wrong with the request. The server responded with status code ${String(response.status)}. You could check if your bot went online? You can also try to refresh.`,
+                icon: 'warning'
               });
-              console.log('epic server: POST request pretended to be sent to JeremyGamer13s dumb and insecure API😀😁😀👍😁👍👍👍');
-              console.log('barry: technically done');
+            } else if (response.status >= 400) {
+              console.log('epic server: broken');
+              console.log('barry: bruh it broken');
+              console.log('johnathan: :(');
+              console.log('barry: :(');
+              let morestuffIDK = response;
+              response.text().then((repons) => {
+                Swal.fire({
+                  theme: 'auto',
+                  title: 'Whoops!',
+                  text: `Something went wrong with the request. The server responded with status code <b>${String(morestuffIDK.status)}</b>. You may need to refresh the page or try again later as the server could be down.<br><br>Server Response:<br><code>${repons}</code>`,
+                  icon: 'error'
+                });
+              });
+            } else {
+              console.log('epic server: POST request sent to JeremyGamer13s dumb and insecure API😀😁😀👍😁👍👍👍');
+              console.log('barry: done');
               console.log('johnathan: nice, now lets get back to work');
-              console.log('Code that would have been sent:');
-              console.log(modifiedJScontent);
-              return;
+              Swal.fire({
+                theme: 'auto',
+                title: 'Nice!',
+                text: `Your bot should go online soon.`,
+                icon: 'success'
+              });
             }
-            fetch('https://469runtest.jeremygamer13.repl.co/?imbored=true', requestOptions).then(async (response) => {
-              console.log(response);
-              console.log('S4D sent a request, the response status code is', response.status);
-              if (response.status >= 300 && response.status < 400) {
-                console.log('epic server: oopsie poopsie something happen');
-                console.log('barry: idk something happen');
-                console.log('johnathan: thats not good but we cant do much');
-                console.log('barry: true :(');
-                Swal.fire({
-                  theme: 'auto',
-                  title: 'Uhh..',
-                  text: `Something may have gone wrong with the request. The server responded with status code ${String(response.status)}. You could check if your bot went online? You can also try to refresh.`,
-                  icon: 'warning'
-                });
-              } else if (response.status >= 400) {
-                console.log('epic server: broken');
-                console.log('barry: bruh it broken');
-                console.log('johnathan: :(');
-                console.log('barry: :(');
-                let morestuffIDK = response;
-                response.text().then((repons) => {
-                  Swal.fire({
-                    theme: 'auto',
-                    title: 'Whoops!',
-                    text: `Something went wrong with the request. The server responded with status code <b>${String(morestuffIDK.status)}</b>. You may need to refresh the page or try again later as the server could be down.<br><br>Server Response:<br><code>${repons}</code>`,
-                    icon: 'error'
-                  });
-                });
-              } else {
-                console.log('epic server: POST request sent to JeremyGamer13s dumb and insecure API😀😁😀👍😁👍👍👍');
-                console.log('barry: done');
-                console.log('johnathan: nice, now lets get back to work');
-                Swal.fire({
-                  theme: 'auto',
-                  title: 'Nice!',
-                  text: `Your bot should go online soon.`,
-                  icon: 'success'
-                });
-              }
-            });
-          } catch (err) {
-            Swal.fire({
-              theme: 'auto',
-              title: 'An error occurred!',
-              text: String(err),
-              icon: 'error'
-            });
-            console.log('*zapping sounds come from epic server*');
-            console.log('epic server: FUCK AHJGJEUYGE*&TIUG#*&IUKJNGUYEFJE(O');
-            console.log('barry: epic server what happened?');
-            console.log(`epic server: ${err}`);
-            console.log('johnathan: damn we gotta get back to work barry');
-            console.log('barry: sorry epic server but we gotta go for now');
-          }
-        });
+          });
+        } catch (err) {
+          Swal.fire({
+            theme: 'auto',
+            title: 'An error occurred!',
+            text: String(err),
+            icon: 'error'
+          });
+          console.log('*zapping sounds come from epic server*');
+          console.log('epic server: FUCK AHJGJEUYGE*&TIUG#*&IUKJNGUYEFJE(O');
+          console.log('barry: epic server what happened?');
+          console.log(`epic server: ${err}`);
+          console.log('johnathan: damn we gotta get back to work barry');
+          console.log('barry: sorry epic server but we gotta go for now');
+        }
+      });
     },
     console() {
       // const wrapper = document.createElement('div');

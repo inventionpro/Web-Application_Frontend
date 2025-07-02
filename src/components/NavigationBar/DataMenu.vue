@@ -25,14 +25,13 @@ export default {
         showCancelButton: true,
         cancelButtonText: 'Cancel',
         confirmButtonText: 'Confirm'
-      })
-        .then((result) => {
-          if (!result.isConfirmed) return;
-          localforage.removeItem('save3');
-          localforage.removeItem('autosaveName');
-          localforage.removeItem('autosave_customBlocks');
-          console.log('Autosave cleared');
-        });
+      }).then((result) => {
+        if (!result.isConfirmed) return;
+        localforage.removeItem('save3');
+        localforage.removeItem('autosaveName');
+        localforage.removeItem('autosave_customBlocks');
+        console.log('Autosave cleared');
+      });
     },
     askForFile() {
       document.querySelector('#load-s4dData-code').click();
@@ -47,33 +46,32 @@ export default {
         confirmButtonText: 'Continue',
         cancelButtonText: 'Cancel',
         allowOutsideClick: false
-      })
-        .then((result) => {
-          if (!result.isConfirmed) return;
-          const zip = new JSZip();
-          localforage.keys().then(async (data) => {
-            let out = {};
-            for (let i = 0; i < data.length; i++) {
-              out[data[i]] = await localforage.getItem(data[i]);
-            }
-            zip.file('localForage.json', JSON.stringify(out));
-            zip
-              .generateAsync({
-                type: 'blob'
-              })
-              .then((blob) => {
-                const a = document.createElement('a');
-                a.style = 'display: none';
-                document.body.appendChild(a);
-                const url = window.URL.createObjectURL(blob);
-                a.href = url;
-                a.download = 's4d.data';
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-              });
-          });
+      }).then((result) => {
+        if (!result.isConfirmed) return;
+        const zip = new JSZip();
+        localforage.keys().then(async (data) => {
+          let out = {};
+          for (let i = 0; i < data.length; i++) {
+            out[data[i]] = await localforage.getItem(data[i]);
+          }
+          zip.file('localForage.json', JSON.stringify(out));
+          zip
+            .generateAsync({
+              type: 'blob'
+            })
+            .then((blob) => {
+              const a = document.createElement('a');
+              a.style = 'display: none';
+              document.body.appendChild(a);
+              const url = window.URL.createObjectURL(blob);
+              a.href = url;
+              a.download = 's4d.data';
+              a.click();
+              window.URL.revokeObjectURL(url);
+              document.body.removeChild(a);
+            });
         });
+      });
     },
     load() {
       const file = document.getElementById('load-s4dData-code').files[0];

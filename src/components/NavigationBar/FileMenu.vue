@@ -119,7 +119,8 @@ function fetchCustomBlocks(dataobj, loadfunc) {
 window.fetchCustomBlocks = fetchCustomBlocks;
 export default {
   name: 'FileMenu',
-  mounted() {/*
+  mounted() {
+    /*
     window.addEventListener('beforeunload', function (evt) {
       let currentWorkspaceContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
       changesAreUnsaved = workspaceContent != currentWorkspaceContent;
@@ -172,63 +173,62 @@ export default {
           denyButton: 'red-button'
         },
         allowOutsideClick: false
-      })
-        .then(async (result) => {
-          if (result.isDismissed) {
+      }).then(async (result) => {
+        if (result.isDismissed) {
+          return;
+        } else if (result.isConfirmed) {
+          window.blocklyWorkspaceGlobalRef.clear();
+        }
+        const file = document.getElementById('load-code').files[0];
+        const documentName = file.name.split('.').slice(0, file.name.split('.').length - 1);
+        document.querySelector('#docName').textContent = documentName;
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          if (file.type == 'text/xml') {
+            const decoder = new TextDecoder('utf-8');
+            const raw = decoder.decode(e.target.result);
+            const xml = Blockly.Xml.textToDom(raw);
+            Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
             return;
-          } else if (result.isConfirmed) {
-            window.blocklyWorkspaceGlobalRef.clear();
           }
-          const file = document.getElementById('load-code').files[0];
-          const documentName = file.name.split('.').slice(0, file.name.split('.').length - 1);
-          document.querySelector('#docName').textContent = documentName;
-          const reader = new FileReader();
-          reader.onload = async (e) => {
-            if (file.type == 'text/xml') {
-              const decoder = new TextDecoder('utf-8');
-              const raw = decoder.decode(e.target.result);
-              const xml = Blockly.Xml.textToDom(raw);
-              Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
-              return;
-            }
-            JSZip.loadAsync(e.target.result)
-              .then(async (data) => {
-                const dataObject = {};
-                if (data.file('blocks.xml')) {
-                  dataObject.xml = await data.file('blocks.xml').async('string');
-                }
-                if (data.file('customBlocks.json')) {
-                  dataObject.customBlocks = await data.file('customBlocks.json').async('string');
-                }
-                return dataObject;
-              })
-              .then((dataobj) => {
-                if (dataobj.xml == null) return;
-                function load() {
-                  const xml = Blockly.Xml.textToDom(dataobj.xml);
-                  Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
-                }
-                if (dataobj.customBlocks == null) {
-                  load();
-                  return;
-                }
-                fetchCustomBlocks(dataobj, load);
-              })
-              .catch((err) => {
-                this.$toast.open({
-                  message: this.$t('load.error'),
-                  type: 'error',
-                  dismissible: true,
-                  duration: 10000
-                });
-                console.warn('An error occurred when loading a file!', String(err).substring(0, 250));
+          JSZip.loadAsync(e.target.result)
+            .then(async (data) => {
+              const dataObject = {};
+              if (data.file('blocks.xml')) {
+                dataObject.xml = await data.file('blocks.xml').async('string');
+              }
+              if (data.file('customBlocks.json')) {
+                dataObject.customBlocks = await data.file('customBlocks.json').async('string');
+              }
+              return dataObject;
+            })
+            .then((dataobj) => {
+              if (dataobj.xml == null) return;
+              function load() {
+                const xml = Blockly.Xml.textToDom(dataobj.xml);
+                Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
+              }
+              if (dataobj.customBlocks == null) {
+                load();
+                return;
+              }
+              fetchCustomBlocks(dataobj, load);
+            })
+            .catch((err) => {
+              this.$toast.open({
+                message: this.$t('load.error'),
+                type: 'error',
+                dismissible: true,
+                duration: 10000
               });
-          };
-          if (file) {
-            reader.readAsArrayBuffer(file);
-            document.getElementById('load-code').setAttribute('value', '');
-          }
-        });
+              console.warn('An error occurred when loading a file!', String(err).substring(0, 250));
+            });
+        };
+        if (file) {
+          reader.readAsArrayBuffer(file);
+          document.getElementById('load-code').setAttribute('value', '');
+        }
+      });
     },
     save() {
       const zip = new JSZip();
