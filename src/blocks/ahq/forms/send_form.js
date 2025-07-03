@@ -40,15 +40,15 @@ Blockly.JavaScript[blockName] = function (block) {
   const data = Blockly.JavaScript.valueToCode(block, 'form', Blockly.JavaScript.ORDER_NONE);
   const ahq = data.replace("'", '').replace("'", '');
   const code = `showModal(${ahq}, {
-        client: s4d.client,
-        interaction: ${name}
-    })`;
+  client: s4d.client,
+  interaction: ${name}
+});`;
   return code;
 };
 registerRestrictions(blockName, [
   {
     type: 'notempty',
     message: 'RES_MISSING_AHQ_CONTENT',
-    types: ['Label', 'form']
+    types: ['form']
   }
 ]);

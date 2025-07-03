@@ -348,6 +348,7 @@
   "RES_SET_SERVER_NAME_NEW_NICKNAME": "You must specify a new valid name for the server!",
   "REACTION_WAIT_ADDED_REACTION": "wait for reaction of member %1 during (minutes) %2 when reaction is added %3",
   "RES_REACT_NO_MEMBER": "You must specify a valid member!",
+  "RES_REACT_NO_MESSAGE": "You must specify a valid message!",
   "FIND_CHANNEL": "Find a channel",
   "SEND_CHANNEL_LABEL": "Send a message in the found channel",
   "GET_CHANNEL": "get the channel with %2 equal to %1",

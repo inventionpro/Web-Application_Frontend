@@ -34,7 +34,7 @@ Blockly.JavaScript[blockName] = function (block) {
 registerRestrictions(blockName, [
   {
     type: 'notempty',
-    message: 'RES_REACT_NO_MEMBER',
-    types: ['MEMBER']
+    message: 'RES_REACT_NO_MESSAGE',
+    types: ['MESSAGE']
   }
 ]);

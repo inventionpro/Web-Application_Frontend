@@ -4,6 +4,22 @@ import Swal from 'sweetalert2';
 
 const DISABLED_EVENTS = [Blockly.Events.BUBBLE_OPEN, Blockly.Events.BUMP_EVENTS, Blockly.Events.CLICK, Blockly.Events.BLOCK_DRAG, Blockly.Events.FINISHED_LOADING, Blockly.Events.SELECTED, Blockly.Events.THEME_CHANGE, Blockly.Events.TOOLBOX_ITEM_SELECT, Blockly.Events.TRASHCAN_OPEN, Blockly.Events.UI, Blockly.Events.VIEWPORT_CHANGE];
 
+function debounce(func, delay) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+async function handle(workspace) {
+  console.log('saved changes...');
+  const content = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+  await localforage.setItem('save3', content);
+  await localforage.setItem('autosaveName', document.querySelector('#docName').textContent);
+  await localforage.setItem('autosave_customBlocks', JSON.stringify(window.saveCustomBlocksOutput));
+}
+
 export default async function register(app, t) {
   console.log('started!');
 
@@ -51,17 +67,10 @@ export default async function register(app, t) {
         }
       });
     }
+    const debouncedHandle = debounce(handle, 100);
     workspace.addChangeListener((event) => {
       if (DISABLED_EVENTS.includes(event.type)) return;
-      handle(workspace);
+      debouncedHandle(workspace);
     });
   }, 1000);
-}
-
-async function handle(workspace) {
-  console.log('saved changes...');
-  const content = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-  await localforage.setItem('save3', content);
-  await localforage.setItem('autosaveName', document.querySelector('#docName').textContent);
-  await localforage.setItem('autosave_customBlocks', JSON.stringify(window.saveCustomBlocksOutput));
 }
