@@ -26,7 +26,7 @@ The following is a set of guidelines for contributing to Scratch for Discord. Th
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Code of Conduct from the Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html). By participating, you are expected to uphold this code. Please report unacceptable behavior.
+This project and everyone participating in it is governed by the [Code of Conduct](./CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior.
 
 ## What should I know before I get started?
 
@@ -47,8 +47,8 @@ Before creating bug reports, please check [this list](#before-submitting-a-bug-r
 #### Before Submitting A Bug Report
 
 - **Check the [documentation](https://scratch-for-discord.docs.com)** on our support server for answers to many questions. Also check the **#announcements** channel for any recent announcements changes.
-- **Perform a [search](https://github.com/scratch-for-discord/Web-Application_Frontend/issues)** to see if the problem has already been reported. If it has **and the issue is still open**, add a :+1: to the existing issue instead of opening a new one.
-- **Check our [Discord Server](https://discord.gg/TsQPMrNyBv) **Help or Feedback channel\*\*
+- **Perform a [search](https://github.com/inventionpro/Web-Application_Frontend/issues)** to see if the problem has already been reported. If it has **and the issue is still open**, add a :+1: to the existing issue instead of opening a new one.
+- **Check our [Discord Server](https://discord.gg/kXyRzypp4e) **Help or Feedback channel\*\*
 
 #### How Do I Submit A (Good) Bug Report?
 

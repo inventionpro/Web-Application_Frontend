@@ -35,7 +35,7 @@
     "jszip": "^3.8.0",
     "localforage": "^1.10.0",
     "node": "^20.19.2",
-    "npm": "^11.4.1",
+    "npm": "^11.4.2",
     "promises": "^0.2.5",
     "save-svg-as-png": "^1.4.17",
     "scratchblocks": "^3.6.4",
