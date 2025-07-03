@@ -81,7 +81,6 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   window.BlocklyService.JavaScript = {};
   window.BlocklyService.JavaScript = Blockly.JavaScript;
   blocks.forEach((block) => {
-    /* eslint-disable */
     let bringBack_setTimeout;
     let bringBack_setInterval;
     let bringBack_fetch;

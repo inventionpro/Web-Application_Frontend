@@ -1,4 +1,3 @@
-/* eslint-disable */
 import Blockly from 'blockly/core';
 
 const blockName = 'gsa_function_item_creator_empty_search_moment_searchMoment';

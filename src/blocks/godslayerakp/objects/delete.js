@@ -1,4 +1,3 @@
-/* eslint-disable */
 import Blockly from 'blockly/core';
 
 const blockName = 'gsa_delete_object_search_moment_searchMoment';

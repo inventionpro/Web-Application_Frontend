@@ -49,7 +49,6 @@ const NavExpanded = ref(false);
 </template>
 
 <script>
-/* eslint-disable */
 import Blockly from 'blockly';
 import JSZip from 'jszip';
 import localforage from 'localforage';

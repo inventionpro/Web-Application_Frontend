@@ -360,7 +360,6 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                 response.json().then(async (json) => {
                   const examples = JSON.parse(JSON.stringify(json));
                   responseHTML.innerHTML = `${JSON.stringify(json)}`;
-                  let boxes = '';
                   let examplesData = [];
                   Object.entries(examples).forEach((i) => {
                     examplesData.push({
@@ -370,22 +369,28 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                       description: i[1][1],
                       likes: i[1][8],
                       dislikes: i[1][9],
+                      likes_users: i[1][11],
+                      dislikes_users: i[1][12],
                       downloads: i[1][10],
-                      blocks: i[1][3],
-                      e8: i[1][11],
-                      n9: i[1][12]
+                      blocks: i[1][3]
                     });
                   });
-                  let voteButtonSessionList = {};
-                  examplesData.forEach((example) => {
-                    voteButtonSessionList[example.id] = { likes: example.e8, dislikes: example.n9 };
-                    boxes += `<label name="pickThisExampleToImportButton" style="width: 48%;">
+                  function examplesToHtml(exampleData) {
+                    if (exampleData.length < 1) {
+                      return `<div style="height:100%;display:flex;gap:1.5em;flex-direction:column;justify-content:center;">
+  <i class="fa-solid fa-circle-question fa-2xl"></i>
+  <em style="color:gray">No examples were found.</em>
+</div>`;
+                    }
+                    return exampleData
+                      .map(
+                        (example) => `<label name="pickThisExampleToImportButton" style="width:${(gridSize3 ?? false) ? '33.33' : '50'}%">
   <div class="box">
     <input type="radio" id="${example.id}" name="pickThisExampleToImportButton" class="sr-only-basic">
       <center>
         <h4>${example.name}</h4>
         <p><i class="fas fa-user-shield"></i> Creator: ${example.creator} &#8226 <i class="fas fa-id-badge"></i> ID: ${example.id}</p>
-        <p style="font-style: italic;font-size:small;" title="${example.description}">${example.description}</p>
+        <p style="font-style:italic;font-size:small;" title="${example.description}">${example.description}</p>
       </center>
     </input>
     <div style="position: absolute;bottom: 0%;left: 0%">
@@ -403,23 +408,11 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
       <span><i class="fa fa-cube"></i> ${example.blocks} blocks</span><span style="color:transparent">&#8226</span>
     </div>
   </div>
-</label>
-<br>`;
-                  });
-                  responseHTML.innerHTML = `<!-- buttons to search & stuff -->
-<style>
-  .examples-top-bar button {
-    color: inherit;
-  }
-  .sr-only-basic {
-    clip: rect(0 0 0 0);
-    clip-path: inset(100%);
-    height: 1px;
-    width: 1px;
-    display: none;
-  }
-</style>
-<div style="margin-bottom: 0.5em;" class="examples-top-bar">
+</label>`
+                      )
+                      .join('');
+                  }
+                  responseHTML.innerHTML = `<div style="margin-bottom: 0.5em;" class="examples-top-bar">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="text" size="75" id="swal_dialog_box_searchForUserExamples" placeholder="Search for an Example">
   <button type="button" id="swal_menu_CaseSensitiveUserExampleSearch" title="Case Sensitive Searching" style="background-color: Transparent;border: none;">
@@ -430,18 +423,18 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
   </button>
   <button type="button" id="swal_menu_ChangeBoxSizeUserExamples" title="Change the amount of examples on screen" style="background-color: Transparent;border: none;">
     <i class="fa-solid fa-table-cells-large"></i>
-  </button><!--
+  </button>
   <i title="Sort the examples menu" class="fa-solid fa-arrow-down-wide-short"> </i>
   <select id="swal_dialog_box_sortUserExamples">
-      <option value="new">Newest First</option>
-      <option value="old">Oldest First</option>
-      <option value="liked">Most Liked</option>
-      <option value="hated">Most Hated</option>
-      <option value="mostImports">Most Imported</option>
-      <option value="leastImports">Least Imported</option>
-      <option value="mostBlocks">Many Blocks</option>
-      <option value="leastBlocks">Not many Blocks</option>
-  </select>-->
+    <option value="new">Newest First</option>
+    <option value="old">Oldest First</option>
+    <option value="liked">Most Liked</option>
+    <option value="hated">Most Hated</option>
+    <option value="mostDownloads">Most Downloaded</option>
+    <option value="leastDownloads">Least Downloaded</option>
+    <option value="mostBlocks">Most Blocks</option>
+    <option value="leastBlocks">Least Blocks</option>
+  </select>
 </div>
 <div id="swal_menu_SearchFilterOptionsInUserExamples" style="display: none">
   <br>
@@ -479,8 +472,8 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
 </div>
 <!-- examples area -->
 <center>
-  <form id="swal_user_examples_dialog_box-form_area" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center;">
-    ${boxes}
+  <form id="swal_user_examples_dialog_box-form_area" style="width:100%;display:flex;flex-wrap:wrap;justify-content:center;align-content:flex-start;">
+    ${examplesToHtml(examplesData)}
   </form>
 </center>`;
                   Swal.fire({
@@ -501,127 +494,137 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                       });
                     });
                   });
-                  // Buttons
-                  document.querySelectorAll('.sr-only-basic').forEach((element) => {
-                    element.onclick = function () {
-                      // Deselect all
-                      document.querySelectorAll('div[style] > .sr-only-basic').forEach((elem) => elem.parentElement.removeAttribute('style'));
-                      // Select current
-                      this.parentElement.setAttribute('style', 'border-color:#00aaff');
-                    };
-                  });
-                  // Likes & Dislikes
-                  document.querySelectorAll('.examplesMenuBox_Likes, .examplesMenuBox_Dislikes').forEach(async (element) => {
-                    let icon = element.getElementsByTagName('i').item(0);
-                    let baseIcon = icon.getAttribute('class');
-                    let originalCount = Number(icon.innerText);
-                    let sessionID = await getSessionID();
-                    if (voteButtonSessionList[element.getAttribute('id')][element.getAttribute('name')].includes(sessionID)) {
-                      originalCount -= 1;
-                      icon.setAttribute('style', 'color: #00aaff');
-                      icon.innerText = ' ' + (originalCount + 1);
-                    }
-                    element.onclick = function () {
-                      icon.setAttribute('class', 'fa-solid fa-ellipsis');
-                      fetch(SERVER + 'api/examples/updateVotes', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                          liking: element.getAttribute('name') == 'likes',
-                          id: element.getAttribute('id'),
-                          session: sessionID
+                  function buttons() {
+                    // Buttons
+                    document.querySelectorAll('.sr-only-basic').forEach((element) => {
+                      element.onclick = function () {
+                        // Deselect all
+                        document.querySelectorAll('div[style] > .sr-only-basic').forEach((elem) => elem.parentElement.removeAttribute('style'));
+                        // Select current
+                        this.parentElement.setAttribute('style', 'border-color:#00aaff');
+                      };
+                    });
+                    // Likes & Dislikes
+                    document.querySelectorAll('.examplesMenuBox_Likes, .examplesMenuBox_Dislikes').forEach(async (element) => {
+                      let icon = element.getElementsByTagName('i').item(0);
+                      let baseIcon = icon.getAttribute('class');
+                      let originalCount = Number(icon.innerText);
+                      let sessionID = await getSessionID();
+                      if (examplesData.find((elem) => elem.id === element.getAttribute('id'))[element.getAttribute('name') + '_users'].includes(sessionID)) {
+                        originalCount -= 1;
+                        icon.setAttribute('style', 'color: #00aaff');
+                        icon.innerText = ' ' + (originalCount + 1);
+                      }
+                      element.onclick = function () {
+                        icon.setAttribute('class', 'fa-solid fa-ellipsis');
+                        fetch(SERVER + 'api/examples/updateVotes', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({
+                            liking: element.getAttribute('name') == 'likes',
+                            id: element.getAttribute('id'),
+                            session: sessionID
+                          })
                         })
-                      })
-                        .then((response) => {
-                          if (response.status != 200) {
-                            console.log('EPIC EXAMPLES SERBER: epic fail');
-                            icon.setAttribute('class', 'fa-solid fa-' + (response.status == 429 ? 'circle-pause' : 'triangle-exclamation'));
-                            icon.setAttribute('style', 'color: #f' + (response.status == 429 ? 'cb103' : '00000'));
-                            return;
-                          }
-                          return response.json();
-                        })
-                        .then((json) => {
-                          icon.setAttribute('class', baseIcon);
-                          icon.removeAttribute('style');
-                          icon.innerText = ' ' + originalCount;
-                          if ((json.liked && this.getAttribute('name') === 'likes') || (json.disliked && this.getAttribute('name') === 'dislikes')) {
-                            icon.setAttribute('style', 'color: #00aaff');
-                            icon.innerText = ' ' + (originalCount + 1);
-                          }
-                        })
-                        .catch((err) => {
-                          icon.setAttribute('class', 'fa-solid fa-triangle-exclamation');
-                          icon.setAttribute('style', 'color: #ff0000');
-                        });
-                    };
-                  });
+                          .then((response) => {
+                            if (response.status != 200) {
+                              console.log('EPIC EXAMPLES SERBER: epic fail');
+                              icon.setAttribute('class', 'fa-solid fa-' + (response.status == 429 ? 'circle-pause' : 'triangle-exclamation'));
+                              icon.setAttribute('style', 'color: #f' + (response.status == 429 ? 'cb103' : '00000'));
+                              return;
+                            }
+                            return response.json();
+                          })
+                          .then((json) => {
+                            icon.setAttribute('class', baseIcon);
+                            icon.removeAttribute('style');
+                            icon.innerText = ' ' + originalCount;
+                            if ((json.liked && this.getAttribute('name') === 'likes') || (json.disliked && this.getAttribute('name') === 'dislikes')) {
+                              icon.setAttribute('style', 'color: #00aaff');
+                              icon.innerText = ' ' + (originalCount + 1);
+                            }
+                            let idx = examplesData.findIndex((elem) => elem.id === element.getAttribute('id'));
+                            examplesData[idx].likes_users = examplesData[idx].likes_users.filter((id) => id !== sessionID);
+                            examplesData[idx].dislikes_users = examplesData[idx].dislikes_users.filter((id) => id !== sessionID);
+                            if (json.liked) examplesData[idx].likes_users.push(sessionID);
+                            if (json.disliked) examplesData[idx].dislikes_users.push(sessionID);
+                            examplesData[idx].likes = examplesData[idx].likes_users.length;
+                            examplesData[idx].dislikes = examplesData[idx].dislikes_users.length;
+                          })
+                          .catch((err) => {
+                            icon.setAttribute('class', 'fa-solid fa-triangle-exclamation');
+                            icon.setAttribute('style', 'color: #ff0000');
+                          });
+                      };
+                    });
+                  }
+                  buttons();
+                  // Search + filters + sorting
                   let searchBox = document.getElementById('swal_dialog_box_searchForUserExamples');
-                  //let sortingType = document.getElementById('swal_dialog_box_sortUserExamples');
-                  //let sortingBy = 'new';
-                  let caseSensitive = false;
-                  let caseSensitiveButton = document.getElementById('swal_menu_CaseSensitiveUserExampleSearch');
+                  let area = document.getElementById('swal_user_examples_dialog_box-form_area');
+                  function search() {
+                    let mutation = structuredClone(examplesData);
+
+                    let query = searchBox.value;
+                    if (!caseSensitive) query = query.toLowerCase();
+
+                    switch (sorting) {
+                      case 'new':
+                        mutation.reverse();
+                        break;
+                      case 'liked':
+                        mutation.sort((a, b) => b.likes - b.dislikes - (a.likes - a.dislikes));
+                        break;
+                      case 'hated':
+                        mutation.sort((a, b) => a.likes - a.dislikes - (b.likes - b.dislikes));
+                        break;
+                      case 'mostDownloads':
+                        mutation.sort((a, b) => b.downloads - a.downloads);
+                        break;
+                      case 'leastDownloads':
+                        mutation.sort((a, b) => a.downloads - b.downloads);
+                        break;
+                      case 'mostBlocks':
+                        mutation.sort((a, b) => b.blocks - a.blocks);
+                        break;
+                      case 'leastBlocks':
+                        mutation.sort((a, b) => a.blocks - b.blocks);
+                        break;
+                    }
+
+                    mutation = mutation.filter((example) => {
+                      if (!caseSensitive) example.name = example.name.toLowerCase();
+                      if (!caseSensitive) example.description = example.description.toLowerCase();
+                      return example.name.includes(query) || example.description.includes(query);
+                    });
+
+                    area.innerHTML = examplesToHtml(mutation);
+                    buttons();
+                  }
+                  searchBox.oninput = search;
+                  // Sort
+                  var sortingButton = document.getElementById('swal_dialog_box_sortUserExamples');
+                  var sorting = 'new';
+                  sortingButton.onchange = (e) => {
+                    sorting = e.target.value;
+                    search();
+                  };
+                  // Case sensitive
+                  var caseSensitiveButton = document.getElementById('swal_menu_CaseSensitiveUserExampleSearch');
+                  var caseSensitive = false;
                   caseSensitiveButton.onclick = function () {
                     caseSensitive = !caseSensitive;
                     caseSensitive ? caseSensitiveButton.setAttribute('style', 'background-color: Transparent;border: none;color:#00aaff') : caseSensitiveButton.setAttribute('style', 'background-color: Transparent;border: none;');
-                    searchBox.oninput();
-                  };/*
-                  sortingType.onchange = (e) => {
-                    sortingBy = e.target.value;
-                    searchBox.oninput();
-                  };*/
-                  let gridSize3 = false;
-                  let gridSizeButton = document.getElementById('swal_menu_ChangeBoxSizeUserExamples');
+                    search();
+                  };
+                  // Grid size
+                  var gridSize3 = false;
+                  var gridSizeButton = document.getElementById('swal_menu_ChangeBoxSizeUserExamples');
                   gridSizeButton.onclick = function () {
                     gridSize3 = !gridSize3;
                     let icon = gridSizeButton.getElementsByTagName('i').item(0);
-                    if (gridSize3) {
-                      icon.setAttribute('class', 'fa-solid fa-table-cells');
-                    } else {
-                      icon.setAttribute('class', 'fa-solid fa-table-cells-large');
-                    }
-                    let size = 48 - Number(gridSize3) * 18;
-                    let labels = document.getElementById('swal_user_examples_dialog_box-form_area').getElementsByTagName('label');
-                    for (let i = 0; i < labels.length; i++) {
-                      let current = labels.item(i);
-                      if (!current.getAttribute('style').includes('display: none')) {
-                        current.setAttribute('style', `width: ${size}%;`);
-                      }
-                    }
-                  };
-                  let unsearchedHtml = document.getElementById('swal_user_examples_dialog_box-form_area').innerHTML;
-                  searchBox.oninput = function () {
-                    let area = document.getElementById('swal_user_examples_dialog_box-form_area');
-                    area.innerHTML = unsearchedHtml;
-                    if (gridSize3) {
-                      gridSize3 = false;
-                      gridSizeButton.onclick();
-                    }
-                    let boxes = area.getElementsByTagName('label');
-                    let kept = boxes.length;
-                    for (let i = 0; i < boxes.length; i++) {
-                      let current = boxes.item(i);
-                      let name = current.getElementsByClassName('box').item(0).getElementsByTagName('center').item(0).getElementsByTagName('h4').item(0).innerText;
-                      let searchingInside = String(name);
-                      let searchingWith = String(searchBox.value);
-                      if (!caseSensitive) {
-                        searchingInside = searchingInside.toLowerCase();
-                        searchingWith = searchingWith.toLowerCase();
-                      }
-                      if (!searchingInside.includes(searchingWith)) {
-                        current.setAttribute('style', 'display: none');
-                        kept--;
-                      }
-                    }
-                    if (kept <= 0) {
-                      area.innerHTML = `<div style="display: grid">
-  <br>
-  <br>
-  <em style="color:gray">No examples were found.</em>
-  <br>
-  <i class="fa-solid fa-circle-question fa-2xl"></i>
-</div>`;
-                    }
+                    icon.setAttribute('class', 'fa-solid fa-table-cells' + (gridSize3 ? '' : '-large'));
+                    search();
                   };
                 });
               })
@@ -658,6 +661,18 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
   color: rgba(0, 0, 0, 0.65);
 }
 
+.examples-top-bar button {
+  color: inherit;
+}
+
+.sr-only-basic {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  width: 1px;
+  display: none;
+}
+
 .box {
   height: 200px;
   border: 2px solid lightgray;
@@ -671,7 +686,6 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
 .box:hover {
   border: 2px solid lightblue;
 }
-
 .box:active {
   border: 3px solid lightblue;
   padding: 0.75em;
@@ -679,7 +693,12 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
 
 .box p {
   color: gray;
-  margin-top: -0.5em;
+  margin: 0;
+}
+
+.box center {
+  height: 100%;
+  overflow: hidden;
 }
 
 input[type='radio']:checked {

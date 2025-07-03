@@ -1,4 +1,3 @@
-/* eslint-disable */
 import Blockly from 'blockly/core';
 
 const blockName = 'gsa_function_item_runer';

@@ -241,13 +241,9 @@ app.mixin({
 app.use(store);
 app.use(i18n);
 
-app.mixin({
-  mounted() {
-    savenload(this);
-  }
-});
-
 app.mount('#app');
+
+savenload(app, i18n.global.t);
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';

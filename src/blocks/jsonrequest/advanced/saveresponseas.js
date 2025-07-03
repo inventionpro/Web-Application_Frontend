@@ -1,5 +1,4 @@
 // S4D_APP_PKG_axios is the axios package!
-/* eslint-disable */
 import Blockly from 'blockly/core';
 import { registerRestrictions } from '../../../restrictions.js';
 

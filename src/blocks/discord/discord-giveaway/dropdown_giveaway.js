@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-/* eslint-disable */
+
 const blockName = 's4d_dd_giveaway';
 
 const blockData = {

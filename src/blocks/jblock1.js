@@ -1,5 +1,5 @@
 import Blockly from 'blockly/core';
-/* eslint-disable */
+
 export const OutputType = {
   STRING: ['String', 'Text'],
   TEXT: ['String', 'Text'],

@@ -5,7 +5,6 @@
 <script>
 import Swal from 'sweetalert2';
 
-/* eslint-disable */
 function convertBlocklyHTMLElementToDisplayableContent(path, width, height) {
   return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklySvg" tabindex="0" width="${width}px" height="${height}px" style="background-color:transparent;display:inline;position:inherit;fill:white;font:bold 16px Helvetica Neue, Segoe UI, Helvetica, sans-serif">${path}</svg>`;
 }
