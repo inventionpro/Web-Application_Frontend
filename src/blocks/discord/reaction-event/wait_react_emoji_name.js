@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_wait_react_emoji_name';
@@ -17,8 +18,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = ['s4dreaction.emoji.name', Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = ['s4dreaction.emoji.name', JavaScript.ORDER_NONE];
   return code;
 };
 

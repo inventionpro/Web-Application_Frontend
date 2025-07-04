@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'edit_msg_by_id';
 
@@ -35,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  let edit = Blockly.JavaScript.valueToCode(block, 'EDIT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+  let edit = JavaScript.valueToCode(block, 'EDIT', JavaScript.ORDER_ATOMIC);
   if (!String(edit).includes('embeds: [')) {
     edit = `content: String(${edit})`;
   } else {

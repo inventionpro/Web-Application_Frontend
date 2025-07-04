@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 's4d_message_embed';
 const menuName = 's4d_message_embed_mutator';
@@ -94,7 +95,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['s4d_message_embed'] = function (block) {
+JavaScript['s4d_message_embed'] = function (block) {
   let title = '';
   let color = '';
   let image = '';
@@ -102,32 +103,32 @@ Blockly.JavaScript['s4d_message_embed'] = function (block) {
   let footer = '';
   let thumbnail = '';
   let field = '';
-  if ((Blockly.JavaScript.valueToCode(block, 'TITLE', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    title = `\n.setTitle(String(${Blockly.JavaScript.valueToCode(block, 'TITLE', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'TITLE', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    title = `\n.setTitle(String(${JavaScript.valueToCode(block, 'TITLE', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'COLOR', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    color = `\n.setColor(String(${Blockly.JavaScript.valueToCode(block, 'COLOR', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'COLOR', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    color = `\n.setColor(String(${JavaScript.valueToCode(block, 'COLOR', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    image = `\n.setImage(String(${Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    image = `\n.setImage(String(${JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    description = `\n.setDescription(String(${Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    description = `\n.setDescription(String(${JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'FOOTER', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    footer = `\n.setFooter(String(${Blockly.JavaScript.valueToCode(block, 'FOOTER', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'FOOTER', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    footer = `\n.setFooter(String(${JavaScript.valueToCode(block, 'FOOTER', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'THUMBNAIL', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    thumbnail = `\n.setThumbnail(String(${Blockly.JavaScript.valueToCode(block, 'THUMBNAIL', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'THUMBNAIL', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    thumbnail = `\n.setThumbnail(String(${JavaScript.valueToCode(block, 'THUMBNAIL', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.statementToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    field = `\n.addFields(${Blockly.JavaScript.statementToCode(block, 'FIELD')})`;
+  if ((JavaScript.statementToCode(block, 'FIELD', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    field = `\n.addFields(${JavaScript.statementToCode(block, 'FIELD')})`;
   }
   return [
     `
             embeds: [new MessageEmbed()${title}${color}${image}${description}${footer}${thumbnail}${field}
             ]
     `,
-    Blockly.JavaScript.ORDER_ATOMIC
+    JavaScript.ORDER_ATOMIC
   ];
 };

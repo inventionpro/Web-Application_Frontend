@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_get_all_role_role';
@@ -18,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  return [`ro`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  return [`ro`, JavaScript.ORDER_NONE];
 };
 registerRestrictions(blockName, [
   {

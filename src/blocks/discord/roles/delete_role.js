@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_delete_role';
 
@@ -24,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const role = Blockly.JavaScript.valueToCode(block, 'ROLE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const role = JavaScript.valueToCode(block, 'ROLE', JavaScript.ORDER_ATOMIC);
   const code = `${role}.delete();\n`;
   return code;
 };

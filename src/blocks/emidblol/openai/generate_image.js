@@ -1,5 +1,5 @@
-// create block for generate_image
-import blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'generate_image_openai';
@@ -48,8 +48,8 @@ blockly.Blocks[blockName] = {
   }
 };
 
-blockly.JavaScript[blockName] = function (block) {
-  const prompt = blockly.JavaScript.valueToCode(block, 'PROMPT', blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const prompt = JavaScript.valueToCode(block, 'PROMPT', JavaScript.ORDER_ATOMIC);
   const size = block.getFieldValue('SIZE');
   const code = `await openai.createImage({
         prompt: ${prompt},
@@ -62,5 +62,5 @@ blockly.JavaScript[blockName] = function (block) {
         return image;
         })
       `;
-  return [code, blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

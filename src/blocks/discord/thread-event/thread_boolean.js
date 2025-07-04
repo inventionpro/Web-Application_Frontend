@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_thread_boolean';
@@ -32,10 +33,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const thread = Blockly.JavaScript.valueToCode(block, 'THREAD', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const thread = JavaScript.valueToCode(block, 'THREAD', JavaScript.ORDER_ATOMIC);
   const boolType = block.getFieldValue('BOOL_TYPE');
-  const code = [`${thread}.${boolType}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${thread}.${boolType}`, JavaScript.ORDER_NONE];
   return code;
 };
 

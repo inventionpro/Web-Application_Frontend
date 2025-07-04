@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 's4d_member_banner';
 
 const blockData = {
@@ -16,7 +17,7 @@ Blockly.Blocks[blockName] = {
   isHiden: true
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = ['banner', Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = ['banner', JavaScript.ORDER_NONE];
   return code;
 };

@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_get_all_server';
 
@@ -26,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
   let code = `s4d.client.guilds.cache.forEach(async (s) =>{ \n ${statementThen} \n})\n`;
   return code;
 };

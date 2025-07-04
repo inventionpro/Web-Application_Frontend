@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_created_thread_on';
@@ -17,8 +18,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = ['s4dThread', Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = ['s4dThread', JavaScript.ORDER_NONE];
   return code;
 };
 

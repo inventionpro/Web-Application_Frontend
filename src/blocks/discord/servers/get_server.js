@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_get_server';
@@ -32,13 +33,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'NAME') {
-    return [`s4d.client.guilds.cache.find((guild) => guild.name === ${value})`, Blockly.JavaScript.ORDER_NONE];
+    return [`s4d.client.guilds.cache.find((guild) => guild.name === ${value})`, JavaScript.ORDER_NONE];
   } else {
-    return [`s4d.client.guilds.cache.get(${value})`, Blockly.JavaScript.ORDER_NONE];
+    return [`s4d.client.guilds.cache.get(${value})`, JavaScript.ORDER_NONE];
   }
 };
 

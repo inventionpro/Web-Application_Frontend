@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_embed_set_desc';
@@ -24,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const description = Blockly.JavaScript.valueToCode(block, 'DESC', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const description = JavaScript.valueToCode(block, 'DESC', JavaScript.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setDescription(String(${description})); \n`;
   return code;
 };

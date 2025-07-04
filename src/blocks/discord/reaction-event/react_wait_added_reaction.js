@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_reaction_wait_added_reaction';
@@ -34,10 +35,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const time = Blockly.JavaScript.valueToCode(block, 'TIME', Blockly.JavaScript.ORDER_ATOMIC) || 5;
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  const time = JavaScript.valueToCode(block, 'TIME', JavaScript.ORDER_ATOMIC) || 5;
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
   let code = `s4dmessage.awaitReactions({(reation,user)=>{user.id === ${member}.id}, time: (${time}*60*1000), max: 1 }).then(async collected => {const s4dreaction = collected.first(); \n ${statementThen} \n});\n`;
   return code;
 };

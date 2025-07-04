@@ -1,5 +1,6 @@
 import BaseBlockly from 'blockly';
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const BORDER_FIELDS = ['S_EVENT_NAME', 'S_EVENT_START', 'S_EVENT_END', 'S_PRIV_LVL', 'S_NTITI_TYPE', 'S_EVENT_DESC', 'S_EVENT_CHANNEL', 'S_METADATA', 'S_REASON'];
 
@@ -85,7 +86,7 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('event_set_options_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
 
-Blockly.JavaScript['event_set_options'] = function (block) {
+JavaScript['event_set_options'] = function (block) {
   let name = '';
   let start_date = '';
   let end_date = '';
@@ -96,32 +97,32 @@ Blockly.JavaScript['event_set_options'] = function (block) {
   let metadata = '';
   let reason = '';
 
-  if ((Blockly.JavaScript.valueToCode(block, 'S_EVENT_NAME', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    name = `\nname: ${Blockly.JavaScript.valueToCode(block, 'S_EVENT_NAME', Blockly.JavaScript.ORDER_ATOMIC)},`;
+  if ((JavaScript.valueToCode(block, 'S_EVENT_NAME', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    name = `\nname: ${JavaScript.valueToCode(block, 'S_EVENT_NAME', JavaScript.ORDER_ATOMIC)},`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'S_EVENT_START', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    start_date = `\nscheduledStartTime:${Blockly.JavaScript.valueToCode(block, 'S_EVENT_START', Blockly.JavaScript.ORDER_ATOMIC)},`;
+  if ((JavaScript.valueToCode(block, 'S_EVENT_START', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    start_date = `\nscheduledStartTime:${JavaScript.valueToCode(block, 'S_EVENT_START', JavaScript.ORDER_ATOMIC)},`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'S_EVENT_END', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    end_date = `\nscheduledEndTime:${Blockly.JavaScript.valueToCode(block, 'S_EVENT_END', Blockly.JavaScript.ORDER_ATOMIC)},`;
+  if ((JavaScript.valueToCode(block, 'S_EVENT_END', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    end_date = `\nscheduledEndTime:${JavaScript.valueToCode(block, 'S_EVENT_END', JavaScript.ORDER_ATOMIC)},`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'S_EVENT_DESC', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    description = `\ndescription:${Blockly.JavaScript.valueToCode(block, 'S_EVENT_DESC', Blockly.JavaScript.ORDER_ATOMIC)},`;
+  if ((JavaScript.valueToCode(block, 'S_EVENT_DESC', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    description = `\ndescription:${JavaScript.valueToCode(block, 'S_EVENT_DESC', JavaScript.ORDER_ATOMIC)},`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'S_PRIV_LVL', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    privateLevel = `\n privacyLevel:${Blockly.JavaScript.valueToCode(block, 'S_PRIV_LVL', Blockly.JavaScript.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
+  if ((JavaScript.valueToCode(block, 'S_PRIV_LVL', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    privateLevel = `\n privacyLevel:${JavaScript.valueToCode(block, 'S_PRIV_LVL', JavaScript.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'S_NTITI_TYPE', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    type = `\nentityType:${Blockly.JavaScript.valueToCode(block, 'S_NTITI_TYPE', Blockly.JavaScript.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
+  if ((JavaScript.valueToCode(block, 'S_NTITI_TYPE', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    type = `\nentityType:${JavaScript.valueToCode(block, 'S_NTITI_TYPE', JavaScript.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'S_EVENT_CHANNEL', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    channel = `\nchannel:${Blockly.JavaScript.valueToCode(block, 'S_EVENT_CHANNEL', Blockly.JavaScript.ORDER_ATOMIC)},`;
+  if ((JavaScript.valueToCode(block, 'S_EVENT_CHANNEL', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    channel = `\nchannel:${JavaScript.valueToCode(block, 'S_EVENT_CHANNEL', JavaScript.ORDER_ATOMIC)},`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'S_METADATA', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    metadata = `\nentityMetadata:${Blockly.JavaScript.valueToCode(block, 'S_METADATA', Blockly.JavaScript.ORDER_ATOMIC)},`;
+  if ((JavaScript.valueToCode(block, 'S_METADATA', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    metadata = `\nentityMetadata:${JavaScript.valueToCode(block, 'S_METADATA', JavaScript.ORDER_ATOMIC)},`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'S_REASON', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    reason = `\nreason:${Blockly.JavaScript.valueToCode(block, 'S_REASON', Blockly.JavaScript.ORDER_ATOMIC)},`;
+  if ((JavaScript.valueToCode(block, 'S_REASON', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    reason = `\nreason:${JavaScript.valueToCode(block, 'S_REASON', JavaScript.ORDER_ATOMIC)},`;
   }
 
   let code = `${name}${start_date}${end_date}${description}${privateLevel}${type}${channel}${metadata}${reason}\n`;

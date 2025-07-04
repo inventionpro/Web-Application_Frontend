@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'Message';
 
@@ -16,7 +17,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = ['s4dmessage', Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = ['s4dmessage', JavaScript.ORDER_NONE];
   return code;
 };

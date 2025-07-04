@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 's4d_set_addon';
@@ -36,8 +37,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const boolean = Blockly.JavaScript.valueToCode(block, 'BOOLEAN', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const boolean = JavaScript.valueToCode(block, 'BOOLEAN', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
   return `.setAddon("${type}",${boolean})`;
 };

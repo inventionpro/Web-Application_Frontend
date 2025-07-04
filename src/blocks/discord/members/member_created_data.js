@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_created_at';
 
@@ -23,7 +24,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`moment(${member}.createdAt).format('LLLL')`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  return [`moment(${member}.createdAt).format('LLLL')`, JavaScript.ORDER_NONE];
 };

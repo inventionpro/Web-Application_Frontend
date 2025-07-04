@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jose_jg_create_webhook_in_channel_with_name_and_profile_picture_url_with_reason_then_do';
 
@@ -47,11 +48,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-  const name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  const url = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC);
-  const reason = Blockly.JavaScript.valueToCode(block, 'REASON', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
+  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  const url = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
+  const reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
   let exported = '';
   let usable = [];
   if (String(url) != null && String(url) != '') {
@@ -72,7 +73,7 @@ Blockly.JavaScript[blockName] = function (block) {
     exported += ' } ';
   }
   //, { avatar: String(${url}) }
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `${channel}.createWebhook(String(${name})${exported})
     .then(async webhook => {
         ${statements}

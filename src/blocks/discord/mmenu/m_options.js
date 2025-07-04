@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'c_options';
 
@@ -27,7 +28,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const searchType = block.getFieldValue('SEARCH');
-  return [`${searchType}`, Blockly.JavaScript.ORDER_NONE];
+  return [`${searchType}`, JavaScript.ORDER_NONE];
 };

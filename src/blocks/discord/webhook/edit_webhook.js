@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_edit_webhook';
@@ -35,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  const avatar = Blockly.JavaScript.valueToCode(block, 'AVATAR', Blockly.JavaScript.ORDER_ATOMIC);
-  const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  const avatar = JavaScript.valueToCode(block, 'AVATAR', JavaScript.ORDER_ATOMIC);
+  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
   return `webhook.edit({name:${name},avatar:${avatar},channel:${channel}.id});\n`;
 };
 registerRestrictions(blockName, [

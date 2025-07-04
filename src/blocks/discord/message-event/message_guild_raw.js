@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_message_guild_raw';
 
@@ -26,13 +27,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['(s4dmessage.guild || {}).id', Blockly.JavaScript.ORDER_NONE];
+    const code = ['(s4dmessage.guild || {}).id', JavaScript.ORDER_NONE];
     return code;
   } else if (searchType === 'NAME') {
-    const code = ['(s4dmessage.guild || {}).name', Blockly.JavaScript.ORDER_NONE];
+    const code = ['(s4dmessage.guild || {}).name', JavaScript.ORDER_NONE];
     return code;
   }
 };

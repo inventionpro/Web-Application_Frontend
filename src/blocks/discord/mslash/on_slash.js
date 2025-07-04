@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'on_slash';
 
@@ -21,8 +22,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript[blockName] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `s4d.client.on('interactionCreate', async (interaction) => {
         ${statements}
     });

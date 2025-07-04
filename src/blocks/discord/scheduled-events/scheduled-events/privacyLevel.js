@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'privacylevel';
 
 const blockData = {
@@ -27,7 +28,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['privacylevel'] = function (block) {
+JavaScript['privacylevel'] = function (block) {
   var dropdown_name = block.getFieldValue('NAME');
   var code = '';
   switch (dropdown_name) {
@@ -39,5 +40,5 @@ Blockly.JavaScript['privacylevel'] = function (block) {
       break;
   }
 
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

@@ -1,5 +1,5 @@
-//create the text_completion block
-import blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'text_completion_openai';
@@ -49,8 +49,8 @@ blockly.Blocks[blockName] = {
   }
 };
 
-blockly.JavaScript[blockName] = function (block) {
-  const prompt = blockly.JavaScript.valueToCode(block, 'PROMPT', blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const prompt = JavaScript.valueToCode(block, 'PROMPT', JavaScript.ORDER_ATOMIC);
   const code = `await openai.createCompletion({
         prompt: ${prompt},
         model: "${block.getFieldValue('MODEL')}",
@@ -59,5 +59,5 @@ blockly.JavaScript[blockName] = function (block) {
     }).then((response) => {
         return response.data.choices[0].text;
         })`;
-  return [code, blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

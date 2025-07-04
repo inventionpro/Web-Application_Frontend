@@ -1,5 +1,6 @@
 import BaseBlockly from 'blockly';
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const BORDER_FIELDS = ['DESCRIPTION', 'LABEL2', 'EMOJI2', 'CUSTOM_ID2'];
@@ -86,11 +87,11 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('s4d_message_menu_block_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
 
-Blockly.JavaScript['s4d_message_menu_block'] = function (block) {
-  let id = Blockly.JavaScript.valueToCode(block, 'CUSTOM_ID2', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let emoji = Blockly.JavaScript.valueToCode(block, 'EMOJI2', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let label = Blockly.JavaScript.valueToCode(block, 'LABEL2', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let description = Blockly.JavaScript.valueToCode(block, 'DESCRIPTION', Blockly.JavaScript.ORDER_ATOMIC) || null;
+JavaScript['s4d_message_menu_block'] = function (block) {
+  let id = JavaScript.valueToCode(block, 'CUSTOM_ID2', JavaScript.ORDER_ATOMIC) || null;
+  let emoji = JavaScript.valueToCode(block, 'EMOJI2', JavaScript.ORDER_ATOMIC) || null;
+  let label = JavaScript.valueToCode(block, 'LABEL2', JavaScript.ORDER_ATOMIC) || null;
+  let description = JavaScript.valueToCode(block, 'DESCRIPTION', JavaScript.ORDER_ATOMIC) || null;
   let code = `{\n`;
   if (id !== null) code += `value:${id},\n`;
   if (label !== null) code += `label:${label},\n`;

@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_joined_at';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  let member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  let member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
   if (String(member).endsWith('.user') || String(member).endsWith('.user)')) member = member.replace('.user', '');
-  return [`String(${member}.joinedAt)`, Blockly.JavaScript.ORDER_NONE];
+  return [`String(${member}.joinedAt)`, JavaScript.ORDER_NONE];
 };

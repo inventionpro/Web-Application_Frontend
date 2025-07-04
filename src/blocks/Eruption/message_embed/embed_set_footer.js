@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 's4d_embed_set_footer';
@@ -103,9 +104,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const footer = Blockly.JavaScript.valueToCode(block, 'FOOTER', Blockly.JavaScript.ORDER_ATOMIC);
-  const icon = Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const footer = JavaScript.valueToCode(block, 'FOOTER', JavaScript.ORDER_ATOMIC);
+  const icon = JavaScript.valueToCode(block, 'ICON', JavaScript.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setFooter({text: String(${footer}), iconURL: String(${icon})}); \n`;
   return code;
 };

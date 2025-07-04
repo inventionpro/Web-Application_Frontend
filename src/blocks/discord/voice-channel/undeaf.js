@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'undeaf_member';
 
@@ -24,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const id = JavaScript.valueToCode(block, 'id', JavaScript.ORDER_ATOMIC);
   const code = `
 s4dmessage.channel.members.forEach(member => {if(member.id === ${id}){member.voice.setDeaf(false)}});`;
   return code;

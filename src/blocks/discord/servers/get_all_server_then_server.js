@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_get_all_server_server';
@@ -18,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  return [`s`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  return [`s`, JavaScript.ORDER_NONE];
 };
 registerRestrictions(blockName, [
   {

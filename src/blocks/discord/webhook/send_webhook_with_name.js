@@ -1,6 +1,5 @@
-//made by gsa using crtl + c ctrl + v
-
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'gsa_jose_jg_webhooks_as_webhook_send_with_name_profile_picture_url';
@@ -35,10 +34,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const content = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_ATOMIC);
-  const username = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  const avatar = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const content = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC);
+  const username = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  const avatar = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check_ ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check_[0] : null;
     if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {

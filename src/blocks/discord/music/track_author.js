@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_track_author';
 
@@ -17,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  return [`track.author`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  return [`track.author`, JavaScript.ORDER_NONE];
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 's4d_thread_member_add';
@@ -118,11 +119,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const thread = Blockly.JavaScript.valueToCode(block, 'THREAD', Blockly.JavaScript.ORDER_ATOMIC);
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  let reason = Blockly.JavaScript.valueToCode(block, 'REASON', Blockly.JavaScript.ORDER_ATOMIC);
+  const thread = JavaScript.valueToCode(block, 'THREAD', JavaScript.ORDER_ATOMIC);
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  let reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
   if (reason) {
     reason = ', ' + reason;
   }

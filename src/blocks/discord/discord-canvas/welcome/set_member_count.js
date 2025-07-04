@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 's4d_set_member_count';
@@ -26,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'STRING', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'STRING', JavaScript.ORDER_ATOMIC);
   let code = `.setMemberCount(${value})`;
   return code;
 };

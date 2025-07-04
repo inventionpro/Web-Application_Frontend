@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'lime_s4d_message_attributes_content_author_id_timestamp';
 
@@ -77,7 +78,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   var dropdown = block.getFieldValue('dropdown');
   var code = '';
 
@@ -114,5 +115,5 @@ Blockly.JavaScript[blockName] = function (block) {
       break;
   }
 
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

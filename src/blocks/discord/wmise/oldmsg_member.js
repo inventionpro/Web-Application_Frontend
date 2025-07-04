@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'oldmsg_member';
 
@@ -28,16 +29,16 @@ Blockly.Blocks[blockName] = {
   isHiden: true
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['oldMessage.member.user.id', Blockly.JavaScript.ORDER_NONE];
+    const code = ['oldMessage.member.user.id', JavaScript.ORDER_NONE];
     return code;
   } else if (searchType === 'USERNAME') {
-    const code = ['oldMessage.member.user.username', Blockly.JavaScript.ORDER_NONE];
+    const code = ['oldMessage.member.user.username', JavaScript.ORDER_NONE];
     return code;
   } else if (searchType === 'NICKNAME') {
-    const code = ['oldMessage.member.user.nickname', Blockly.JavaScript.ORDER_NONE];
+    const code = ['oldMessage.member.user.nickname', JavaScript.ORDER_NONE];
     return code;
   }
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_member_exist';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`typeof ${member} !== undefined`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  const code = [`typeof ${member} !== undefined`, JavaScript.ORDER_NONE];
   return code;
 };

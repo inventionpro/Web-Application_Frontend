@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_search';
 
@@ -28,8 +29,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const string = Blockly.JavaScript.valueToCode(block, 'STRING', Blockly.JavaScript.ORDER_ATOMIC);
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`await s4d.player.search(${string}, {requestedBy: ${member}}).then(x => x.tracks[0])`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const string = JavaScript.valueToCode(block, 'STRING', JavaScript.ORDER_ATOMIC);
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  return [`await s4d.player.search(${string}, {requestedBy: ${member}}).then(x => x.tracks[0])`, JavaScript.ORDER_NONE];
 };

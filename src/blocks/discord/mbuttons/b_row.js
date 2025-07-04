@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'b_row';
 
@@ -31,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'THEN');
-  const name = Blockly.JavaScript.valueToCode(block, 'BUTTON_NAME', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'THEN');
+  const name = JavaScript.valueToCode(block, 'BUTTON_NAME', JavaScript.ORDER_ATOMIC);
   let text1 = name.replace("'", '');
   let name2 = text1.replace("'", '');
   const code = `const ${name2} = new MessageActionRow()\n${statements}\n`;

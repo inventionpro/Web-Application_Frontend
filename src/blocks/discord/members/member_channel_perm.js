@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'member_channel_perms';
 
@@ -47,12 +48,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['member_channel_perms'] = function (block) {
-  var member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['member_channel_perms'] = function (block) {
+  var member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
   var dropdown_name = block.getFieldValue('NAME');
-  var channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+  var channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
 
   var code = `ShsHSjJSjSJSJSGHkkhdjdmns.includes(${channel}.permissionsFor(${member}).toArray().filter(x => x == '${dropdown_name}')[0])`;
 
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

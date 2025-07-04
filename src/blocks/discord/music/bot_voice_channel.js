@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_bot_voice_channel';
 
@@ -17,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  return ['s4dmessage.guild.me.voice.channelId', Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  return ['s4dmessage.guild.me.voice.channelId', JavaScript.ORDER_NONE];
 };

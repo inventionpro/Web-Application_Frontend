@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_number_of__server';
@@ -37,9 +38,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('OF_THIS');
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
   var code = '0';
   if (type === 'BOT') {
     code = `${server}.members.cache.filter(m => m.user.bot).size`;
@@ -54,7 +55,7 @@ Blockly.JavaScript[blockName] = function (block) {
   } else if (type === 'TEXT') {
     code = `${server}.channels.cache.filter(m=>m.type === "GUILD_TEXT").size`;
   }
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 's4d_create_welcome_then';
 const blockData = {
   message0: '%{BKY_CREATE_WELCOME_THEN}',
@@ -21,8 +22,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
-  const code = [`await new canvas.Welcome()${statementThen}.toAttachment()`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
+  const code = [`await new canvas.Welcome()${statementThen}.toAttachment()`, JavaScript.ORDER_NONE];
   return code;
 };

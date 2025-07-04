@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'edit_s_event';
 
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['edit_s_event'] = function (block) {
-  var statements = Blockly.JavaScript.statementToCode(block, 'options');
-  var event_id = Blockly.JavaScript.valueToCode(block, 'event_id', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['edit_s_event'] = function (block) {
+  var statements = JavaScript.statementToCode(block, 'options');
+  var event_id = JavaScript.valueToCode(block, 'event_id', JavaScript.ORDER_ATOMIC);
 
   event_id = event_id.split(' '); // Splits Embed name by space so "Lime Nade" = ["Lime","Nade"]
   event_id = event_id.join('_'); // Puts back together the separated parts but puts an underscore between them. ["Lime","Nade"] = Lime_Nade

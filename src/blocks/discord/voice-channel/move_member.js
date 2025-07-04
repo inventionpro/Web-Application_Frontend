@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'move_member';
 
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
-  const vc = Blockly.JavaScript.valueToCode(block, 'vc', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const id = JavaScript.valueToCode(block, 'id', JavaScript.ORDER_ATOMIC);
+  const vc = JavaScript.valueToCode(block, 'vc', JavaScript.ORDER_ATOMIC);
   const code = `
 s4dmessage.channel.members.forEach(member => {if(member.id === ${id}){member.voice.setChannel(${vc})}});`;
   return code;

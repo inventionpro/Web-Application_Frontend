@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'set_verification_level';
 
@@ -31,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['set_verification_level'] = function (block) {
+JavaScript['set_verification_level'] = function (block) {
   var dropdown = block.getFieldValue('NAME');
   var code = dropdown;
 
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

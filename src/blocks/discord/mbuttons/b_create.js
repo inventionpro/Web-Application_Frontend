@@ -1,5 +1,6 @@
 import BaseBlockly from 'blockly';
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const BORDER_FIELDS = ['LABEL', 'STYLE', 'EMOJI', 'URL', 'ID', 'DISABLED'];
 
@@ -92,14 +93,14 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('s4d_message_2row_block_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
 
-Blockly.JavaScript['b_create'] = function (block) {
-  let id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let url = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let emoji = Blockly.JavaScript.valueToCode(block, 'EMOJI', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let label = Blockly.JavaScript.valueToCode(block, 'LABEL', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let style = Blockly.JavaScript.valueToCode(block, 'STYLE', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let disabled = Blockly.JavaScript.valueToCode(block, 'DISABLED', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  let name = Blockly.JavaScript.valueToCode(block, 'B_NAME', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['b_create'] = function (block) {
+  let id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC) || null;
+  let url = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC) || null;
+  let emoji = JavaScript.valueToCode(block, 'EMOJI', JavaScript.ORDER_ATOMIC) || null;
+  let label = JavaScript.valueToCode(block, 'LABEL', JavaScript.ORDER_ATOMIC) || null;
+  let style = JavaScript.valueToCode(block, 'STYLE', JavaScript.ORDER_ATOMIC) || null;
+  let disabled = JavaScript.valueToCode(block, 'DISABLED', JavaScript.ORDER_ATOMIC) || null;
+  let name = JavaScript.valueToCode(block, 'B_NAME', JavaScript.ORDER_ATOMIC);
   let text1 = name.replace("'", '');
   let text2 = text1.replace("'", '');
   let code = `const ${text2} = new MessageButton()\n`;

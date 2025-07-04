@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_embed_add_field';
@@ -36,10 +37,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const title = Blockly.JavaScript.valueToCode(block, 'TITLE', Blockly.JavaScript.ORDER_ATOMIC);
-  const description = Blockly.JavaScript.valueToCode(block, 'DESCRIPTION', Blockly.JavaScript.ORDER_ATOMIC);
-  const inline = Blockly.JavaScript.valueToCode(block, 'INLINE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const title = JavaScript.valueToCode(block, 'TITLE', JavaScript.ORDER_ATOMIC);
+  const description = JavaScript.valueToCode(block, 'DESCRIPTION', JavaScript.ORDER_ATOMIC);
+  const inline = JavaScript.valueToCode(block, 'INLINE', JavaScript.ORDER_ATOMIC);
   if (inline.length == 0) {
     const code = `hnxgcjtirh.addField(String(${title}), String(${description}), false); \n`;
     return code;

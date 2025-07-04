@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'cu_channel';
 
@@ -26,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const channel = block.getFieldValue('INFO');
-  const code = [`${channel}.channel`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${channel}.channel`, JavaScript.ORDER_NONE];
   return code;
 };

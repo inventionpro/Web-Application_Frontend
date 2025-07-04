@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_embed_set_timestamp';
@@ -83,8 +84,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const date = Blockly.JavaScript.valueToCode(block, 'DATE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const date = JavaScript.valueToCode(block, 'DATE', JavaScript.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setTimestamp(new Date(${date})); \n`;
   return code;
 };

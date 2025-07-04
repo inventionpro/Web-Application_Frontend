@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 'new_image';
@@ -68,10 +69,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const info2 = block.getFieldValue('INFO');
   let info1 = info2.replace("'", '');
   let info = info1.replace("'", '');
-  const code = [`await images.${info}()`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`await images.${info}()`, JavaScript.ORDER_NONE];
   return code;
 };

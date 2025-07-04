@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'slash_reply';
 
@@ -34,10 +35,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const content = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_ATOMIC) || 'No content';
-  const boolean = Blockly.JavaScript.valueToCode(block, 'BOOLEAN', Blockly.JavaScript.ORDER_ATOMIC) || true;
-  let button = Blockly.JavaScript.valueToCode(block, 'BUTTON', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const content = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC) || 'No content';
+  const boolean = JavaScript.valueToCode(block, 'BOOLEAN', JavaScript.ORDER_ATOMIC) || true;
+  let button = JavaScript.valueToCode(block, 'BUTTON', JavaScript.ORDER_ATOMIC);
   if (!button) {
     button = '';
   } else {

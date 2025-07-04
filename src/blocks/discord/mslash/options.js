@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'options';
 
@@ -79,10 +80,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const searchType = block.getFieldValue('SEARCH');
-  const string = Blockly.JavaScript.valueToCode(block, 'BOOLEAN', Blockly.JavaScript.ORDER_ATOMIC).toLowerCase();
+  const string = JavaScript.valueToCode(block, 'BOOLEAN', JavaScript.ORDER_ATOMIC).toLowerCase();
   console.log('return ' + string + '\n' + searchType);
-  const code = [`interaction.options.get${searchType}(${string})`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`interaction.options.get${searchType}(${string})`, JavaScript.ORDER_NONE];
   return code;
 };

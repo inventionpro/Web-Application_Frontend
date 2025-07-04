@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_playing';
 
@@ -23,7 +24,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const queue = Blockly.JavaScript.valueToCode(block, 'QUEUE', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`${queue}.playing`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const queue = JavaScript.valueToCode(block, 'QUEUE', JavaScript.ORDER_ATOMIC);
+  return [`${queue}.playing`, JavaScript.ORDER_NONE];
 };

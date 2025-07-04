@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_has_role';
@@ -29,11 +30,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const role = Blockly.JavaScript.valueToCode(block, 'ROLE', Blockly.JavaScript.ORDER_ATOMIC);
-  const memberr = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const role = JavaScript.valueToCode(block, 'ROLE', JavaScript.ORDER_ATOMIC);
+  const memberr = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
   let member = memberr.replace('.user', '');
-  const code = [`${member}._roles.includes(${role}.id)`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${member}._roles.includes(${role}.id)`, JavaScript.ORDER_NONE];
   return code;
 };
 

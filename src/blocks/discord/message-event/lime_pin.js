@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'lime_s4d_pin';
 
@@ -33,9 +34,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['lime_s4d_pin'] = function (block) {
+JavaScript['lime_s4d_pin'] = function (block) {
   var dropdown = block.getFieldValue('choise');
-  var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  var value = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC);
   var code = ``;
 
   if (value == '') {

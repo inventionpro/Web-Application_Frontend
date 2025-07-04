@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 'lime_msg_author_attributes';
@@ -109,7 +110,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['lime_msg_author_attributes'] = function (block) {
+JavaScript['lime_msg_author_attributes'] = function (block) {
   var dropdown = block.getFieldValue('dropdown');
   var code = '';
 
@@ -163,5 +164,5 @@ Blockly.JavaScript['lime_msg_author_attributes'] = function (block) {
       break;
   }
 
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

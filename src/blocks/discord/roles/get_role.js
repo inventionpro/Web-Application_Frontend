@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_get_role';
@@ -37,21 +38,21 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
   const searchType = block.getFieldValue('SEARCH_TYPE');
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
   if (searchType === 'NAME') {
     if (server !== null) {
-      return [`${server}.roles.cache.find((role) => role.name === ${value})`, Blockly.JavaScript.ORDER_NONE];
+      return [`${server}.roles.cache.find((role) => role.name === ${value})`, JavaScript.ORDER_NONE];
     } else {
-      return [`false`, Blockly.JavaScript.ORDER_NONE];
+      return [`false`, JavaScript.ORDER_NONE];
     }
   } else {
     if (server !== null) {
-      return [`${server}.roles.cache.get(${value})`, Blockly.JavaScript.ORDER_NONE];
+      return [`${server}.roles.cache.get(${value})`, JavaScript.ORDER_NONE];
     } else {
-      return [`false`, Blockly.JavaScript.ORDER_NONE];
+      return [`false`, JavaScript.ORDER_NONE];
     }
   }
 };

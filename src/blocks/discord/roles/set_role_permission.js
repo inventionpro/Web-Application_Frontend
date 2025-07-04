@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_set_role_perm';
 
@@ -61,9 +62,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const PERM = block.getFieldValue('PERM');
-  const role = Blockly.JavaScript.valueToCode(block, 'ROLE', Blockly.JavaScript.ORDER_ATOMIC);
+  const role = JavaScript.valueToCode(block, 'ROLE', JavaScript.ORDER_ATOMIC);
   const code = `${role}.setPermissions(['${PERM}']);\n`;
   return code;
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'entitytype';
 
@@ -30,7 +31,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['entitytype'] = function (block) {
+JavaScript['entitytype'] = function (block) {
   var dropdown_name = block.getFieldValue('NAME');
   var code = '';
   switch (dropdown_name) {
@@ -48,5 +49,5 @@ Blockly.JavaScript['entitytype'] = function (block) {
       break;
   }
 
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

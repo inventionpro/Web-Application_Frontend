@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 's4d_embed_set_title';
@@ -103,9 +104,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const title = Blockly.JavaScript.valueToCode(block, 'TITLE', Blockly.JavaScript.ORDER_ATOMIC);
-  const hyperlink = Blockly.JavaScript.valueToCode(block, 'HYPERLINK', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const title = JavaScript.valueToCode(block, 'TITLE', JavaScript.ORDER_ATOMIC);
+  const hyperlink = JavaScript.valueToCode(block, 'HYPERLINK', JavaScript.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setTitle(String(${title})) \n hnxgcjtirh.setURL(String(${hyperlink})); \n`;
   return code;
 };

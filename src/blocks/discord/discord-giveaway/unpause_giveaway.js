@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_unpause_giveaway';
 
@@ -29,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'THEN');
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'THEN');
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
   var code = `s4d.manager.unpause(${id}).then(async () => {\n${statements}\n});\n`;
   return code;
 };

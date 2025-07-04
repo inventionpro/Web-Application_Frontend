@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_get_msg_then';
 
@@ -34,10 +35,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
   const code = `${channel}.messages.fetch(${id}).then(async (s4dmessage) =>{\n ${statementThen} \n});`;
   return code;
 };

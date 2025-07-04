@@ -1,5 +1,5 @@
-//create login to openai block
-import blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'login_openai';
@@ -33,8 +33,8 @@ blockly.Blocks[blockName] = {
   }
 };
 
-blockly.JavaScript[blockName] = function (block) {
-  const key = blockly.JavaScript.valueToCode(block, 'token', blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const key = JavaScript.valueToCode(block, 'token', JavaScript.ORDER_ATOMIC);
   const code = `
         const openai = new OpenAI({
             apiKey: ${key},

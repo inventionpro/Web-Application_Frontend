@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'explicit_content_filter';
 
@@ -29,8 +30,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['explicit_content_filter'] = function (block) {
+JavaScript['explicit_content_filter'] = function (block) {
   var dropdown = block.getFieldValue('NAME');
   var code = dropdown;
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

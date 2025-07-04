@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_embed_create';
 
@@ -35,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const name = block.getFieldValue('NAME');
   const name2 = name.replace(/ /g, '_');
-  const then = Blockly.JavaScript.statementToCode(block, 'THEN');
+  const then = JavaScript.statementToCode(block, 'THEN');
   const then2 = then.replace(/hnxgcjtirh\./g, name2 + '.');
   const code = `var ${name2} = new Discord.MessageEmbed(); \n ${then2}\n`;
   return code;

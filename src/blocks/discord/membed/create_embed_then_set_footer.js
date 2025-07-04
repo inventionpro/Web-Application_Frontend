@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_m_create_embed_then_set_footer';
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
-  const fieldimage = Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const field = JavaScript.valueToCode(block, 'FIELD', JavaScript.ORDER_ATOMIC);
+  const fieldimage = JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC);
   const code = `embed.setFooter(${field},${fieldimage});\n`;
   return code;
 };

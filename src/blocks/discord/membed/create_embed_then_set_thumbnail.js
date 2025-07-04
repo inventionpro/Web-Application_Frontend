@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_m_create_embed_then_set_thumbnail';
@@ -25,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const thumbnail = Blockly.JavaScript.valueToCode(block, 'THUMBNAIL', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const thumbnail = JavaScript.valueToCode(block, 'THUMBNAIL', JavaScript.ORDER_ATOMIC);
   const code = `embed.setThumbnail(${thumbnail});\n`;
   return code;
 };

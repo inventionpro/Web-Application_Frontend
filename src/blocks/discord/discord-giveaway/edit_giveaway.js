@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_edit_giveaway';
 
@@ -45,12 +46,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'THEN');
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  const duration = Blockly.JavaScript.valueToCode(block, 'DURATION', Blockly.JavaScript.ORDER_ATOMIC);
-  const winnecount = Blockly.JavaScript.valueToCode(block, 'WINNERS', Blockly.JavaScript.ORDER_ATOMIC);
-  const prize = Blockly.JavaScript.valueToCode(block, 'PRIZE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'THEN');
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+  const duration = JavaScript.valueToCode(block, 'DURATION', JavaScript.ORDER_ATOMIC);
+  const winnecount = JavaScript.valueToCode(block, 'WINNERS', JavaScript.ORDER_ATOMIC);
+  const prize = JavaScript.valueToCode(block, 'PRIZE', JavaScript.ORDER_ATOMIC);
   var code = `s4d.manager.start(${id},{addTime: ${duration},newWinnerCount: ${winnecount},newPrize: ${prize}}).then(async (gData) => {\n${statements}\n});\n`;
   return code;
 };

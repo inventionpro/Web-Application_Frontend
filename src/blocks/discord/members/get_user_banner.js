@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_get_user_banner';
 
@@ -32,9 +33,9 @@ Blockly.Blocks[blockName] = {
 };
 
 // patched by gsa bc though it is dumb it is used kinda
-Blockly.JavaScript[blockName] = function (block) {
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
   let code = `
 await S4D_APP_PKG_axios('https://discord.com/api/users/' + ${id}, {
     headers: {

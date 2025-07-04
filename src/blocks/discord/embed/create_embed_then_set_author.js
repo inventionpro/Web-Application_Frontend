@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_create_embed_then_set_author';
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const author = Blockly.JavaScript.valueToCode(block, 'AUTHOR', Blockly.JavaScript.ORDER_ATOMIC);
-  const pfp = Blockly.JavaScript.valueToCode(block, 'PFP', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const author = JavaScript.valueToCode(block, 'AUTHOR', JavaScript.ORDER_ATOMIC);
+  const pfp = JavaScript.valueToCode(block, 'PFP', JavaScript.ORDER_ATOMIC);
   const code = `embed.setAuthor(${author},${pfp});\n`;
   return code;
 };

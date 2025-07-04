@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 's4d_set_color';
@@ -46,8 +47,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const color2 = Blockly.JavaScript.valueToCode(block, 'COLOR', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const color2 = JavaScript.valueToCode(block, 'COLOR', JavaScript.ORDER_ATOMIC);
   let color1 = color2.replace(`'`, '');
   let color = color1.replace(`'`, '');
   const type = block.getFieldValue('TYPE');
