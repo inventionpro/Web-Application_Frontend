@@ -1498,6 +1498,9 @@ body {
   font-family: sans-serif;
   color: rgb(204, 204, 204);
 }
+.blocklyToolboxCategory .blocklyToolboxContents {
+  display: none;
+}
 .s4d_customblocks_manager_deletor {
   background-color: #0f1011;
   width: 12em;
