@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_encode_checkhash';
 
@@ -29,8 +30,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const hash = Blockly.JavaScript.valueToCode(block, 'hash', Blockly.JavaScript.ORDER_ATOMIC);
-  const text = Blockly.JavaScript.valueToCode(block, 'test', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`bcrypt.compareSync(${text}, ${hash})`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const hash = JavaScript.valueToCode(block, 'hash', JavaScript.ORDER_ATOMIC);
+  const text = JavaScript.valueToCode(block, 'test', JavaScript.ORDER_ATOMIC);
+  return [`bcrypt.compareSync(${text}, ${hash})`, JavaScript.ORDER_NONE];
 };

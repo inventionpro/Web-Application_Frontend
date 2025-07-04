@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_sblur';
@@ -25,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const blur = Blockly.JavaScript.valueToCode(block, 'blur', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const blur = JavaScript.valueToCode(block, 'blur', JavaScript.ORDER_ATOMIC);
   return `await image.gaussian( Number(` + blur + `) )\n`;
 };
 

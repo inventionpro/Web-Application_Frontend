@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'jg_jimp_U2_drawtext';
@@ -75,10 +76,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_NONE);
-  const xpos = Blockly.JavaScript.valueToCode(block, 'xpos', Blockly.JavaScript.ORDER_ATOMIC);
-  const ypos = Blockly.JavaScript.valueToCode(block, 'ypos', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const text = JavaScript.valueToCode(block, 'text', JavaScript.ORDER_NONE);
+  const xpos = JavaScript.valueToCode(block, 'xpos', JavaScript.ORDER_ATOMIC);
+  const ypos = JavaScript.valueToCode(block, 'ypos', JavaScript.ORDER_ATOMIC);
   const fontSize = block.getFieldValue('fontSize');
   const alignx = block.getFieldValue('alignx');
   const aligny = block.getFieldValue('aligny');

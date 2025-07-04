@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_fart';
 
@@ -18,7 +19,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
+JavaScript[blockName] = function () {
   const code = `
             let embed = new Discord.MessageEmbed()
         embed.setImage('https://c.tenor.com/UVAk99QaOTsAAAAC/fart-experiment.gif');

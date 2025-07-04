@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_web_keycount';
 
@@ -17,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = [`Object.keys(JSONdataS4D).length`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`Object.keys(JSONdataS4D).length`, JavaScript.ORDER_NONE];
   return code;
 };

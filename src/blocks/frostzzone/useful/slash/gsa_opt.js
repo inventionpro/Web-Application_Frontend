@@ -1,17 +1,18 @@
 /*
-SUB_COMMAND	- 1	
-SUB_COMMAND_GROUP	- 2	
-STRING	- 3	
+SUB_COMMAND	- 1
+SUB_COMMAND_GROUP	- 2
+STRING	- 3
 INTEGER	- 4	Any integer between -2^53 and 2^53
-BOOLEAN	- 5	
-USER	- 6	
+BOOLEAN	- 5
+USER	- 6
 CHANNEL	- 7	Includes all channel types + categories
-ROLE	- 8	
+ROLE	- 8
 MENTIONABLE	- 9	Includes users and roles
 NUMBER	- 10	Any double between -2^53 and 2^53
 ATTACHMENT	- 11	attachment object
 */
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_frost_slash_options';
 
@@ -71,12 +72,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  const desc = Blockly.JavaScript.valueToCode(block, 'DESC', Blockly.JavaScript.ORDER_ATOMIC);
-  const required = Blockly.JavaScript.valueToCode(block, 'REQUIRED', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  const desc = JavaScript.valueToCode(block, 'DESC', JavaScript.ORDER_ATOMIC);
+  const required = JavaScript.valueToCode(block, 'REQUIRED', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  var choices = Blockly.JavaScript.statementToCode(block, 'CHOICES');
+  var choices = JavaScript.statementToCode(block, 'CHOICES');
   const code = `{
     type: ${type},
 	name: ${name.toLowerCase()},

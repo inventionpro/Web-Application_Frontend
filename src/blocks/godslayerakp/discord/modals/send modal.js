@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_modal_send';
 
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
-  const inputs = Blockly.JavaScript.valueToCode(block, 'inputs', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const name = JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC);
+  const inputs = JavaScript.valueToCode(block, 'inputs', JavaScript.ORDER_ATOMIC);
   return `
   modal.addComponents(${name});
   await interaction.showModal(${inputs});

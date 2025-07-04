@@ -1,5 +1,5 @@
-//jimp.write('edited.jpg');
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_slash_button_sendImage';
@@ -37,10 +37,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const fileNameandLocation = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  const hidden = Blockly.JavaScript.valueToCode(block, 'HIDE', Blockly.JavaScript.ORDER_ATOMIC);
-  var buttonraw = Blockly.JavaScript.valueToCode(block, 'ROW', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const fileNameandLocation = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  const hidden = JavaScript.valueToCode(block, 'HIDE', JavaScript.ORDER_ATOMIC);
+  var buttonraw = JavaScript.valueToCode(block, 'ROW', JavaScript.ORDER_ATOMIC);
   var buttonraw2 = String(buttonraw).replaceAll('"', '');
   const row = String(buttonraw2).replaceAll("'", '');
   var stored = `[${fileNameandLocation}]`;

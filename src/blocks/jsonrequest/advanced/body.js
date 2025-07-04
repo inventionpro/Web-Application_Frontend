@@ -1,6 +1,5 @@
-// S4D_APP_PKG_axios is the axios package!
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_web_request_advanced_data';
 
@@ -32,15 +31,15 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  var key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC).replaceAll("'", '').replaceAll('"', '');
+JavaScript[blockName] = function (block) {
+  var key = JavaScript.valueToCode(block, 'KEY', JavaScript.ORDER_ATOMIC).replaceAll("'", '').replaceAll('"', '');
   if (key.charAt(0) == '(') {
     key.replace('(', '');
   }
   if (key.charAt(key.length - 1) == ')') {
     key = key.substring(0, key.length - 1);
   }
-  const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
+  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
   const code = `${key}: ${value},
     `;
   return code;

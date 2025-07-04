@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_object_has_value_search_moment';
 
@@ -29,6 +30,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  return [`${Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC)}.hasOwnProperty(String(${Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC)}))`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript[blockName] = function (block) {
+  return [`${JavaScript.valueToCode(block, 'object', JavaScript.ORDER_ATOMIC)}.hasOwnProperty(String(${JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC)}))`, JavaScript.ORDER_ATOMIC];
 };

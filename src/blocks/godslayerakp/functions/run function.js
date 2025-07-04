@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_function_item_runer';
 
@@ -106,14 +107,14 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const josh = Blockly.JavaScript.valueToCode(block, 'function', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const josh = JavaScript.valueToCode(block, 'function', JavaScript.ORDER_ATOMIC);
   const await_ = block.await ? 'await ' : '';
   let ecport = [];
   for (let i = 0; i < block.inputs.length; i++) {
-    ecport.push(Blockly.JavaScript.valueToCode(block, String(i), Blockly.JavaScript.ORDER_ATOMIC));
+    ecport.push(JavaScript.valueToCode(block, String(i), JavaScript.ORDER_ATOMIC));
   }
   let code = `${await_}${josh}(${ecport.join(', ')})`;
-  if (block.return) code = [code, Blockly.JavaScript.ORDER_ATOMIC];
+  if (block.return) code = [code, JavaScript.ORDER_ATOMIC];
   return code;
 };

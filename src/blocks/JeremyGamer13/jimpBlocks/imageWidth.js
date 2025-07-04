@@ -1,5 +1,5 @@
-//"output": "Boolean",
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_width';
@@ -19,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = [`image.bitmap.width`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`image.bitmap.width`, JavaScript.ORDER_NONE];
   return code;
 };
 

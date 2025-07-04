@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_encode_main';
 
@@ -34,9 +35,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'encode', Blockly.JavaScript.ORDER_ATOMIC);
-  const type = Blockly.JavaScript.valueToCode(block, 'type', Blockly.JavaScript.ORDER_ATOMIC);
-  const typefrom = Blockly.JavaScript.valueToCode(block, 'type2', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`Buffer.from(${text}, ${typefrom}).toString(${type})`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const text = JavaScript.valueToCode(block, 'encode', JavaScript.ORDER_ATOMIC);
+  const type = JavaScript.valueToCode(block, 'type', JavaScript.ORDER_ATOMIC);
+  const typefrom = JavaScript.valueToCode(block, 'type2', JavaScript.ORDER_ATOMIC);
+  return [`Buffer.from(${text}, ${typefrom}).toString(${type})`, JavaScript.ORDER_NONE];
 };

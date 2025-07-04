@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'gsa_set_embed_title';
 const blockData = {
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const color = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC);
-  const url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const color = JavaScript.valueToCode(block, 'title', JavaScript.ORDER_ATOMIC);
+  const url = JavaScript.valueToCode(block, 'url', JavaScript.ORDER_ATOMIC);
   return `title: String(${color}),
 url: String(${url}),
 `;

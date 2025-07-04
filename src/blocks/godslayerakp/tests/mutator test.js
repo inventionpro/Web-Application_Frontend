@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 Blockly.Blocks['gsa_your_mom_lmao_mutator_block_hat'] = {
   init: function () {
     this.appendDummyInput().appendField('has fill color').appendField(new Blockly.FieldCheckbox('FALSE'), 'check');
@@ -76,12 +77,12 @@ Blockly.Blocks['gsa_your_mom_lmao'] = {
   }
 };
 
-Blockly.JavaScript['gsa_your_mom_lmao'] = function (block) {
-  var sizex = Blockly.JavaScript.valueToCode(block, 'sx', Blockly.JavaScript.ORDER_ATOMIC);
-  var sizey = Blockly.JavaScript.valueToCode(block, 'sy', Blockly.JavaScript.ORDER_ATOMIC);
-  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+JavaScript['gsa_your_mom_lmao'] = function (block) {
+  var sizex = JavaScript.valueToCode(block, 'sx', JavaScript.ORDER_ATOMIC);
+  var sizey = JavaScript.valueToCode(block, 'sy', JavaScript.ORDER_ATOMIC);
+  var statements_code = JavaScript.statementToCode(block, 'code');
   var code = `
-  new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
+  new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${JavaScript.valueToCode(block, 'color', JavaScript.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
     ${statements_code}
   })
   `;

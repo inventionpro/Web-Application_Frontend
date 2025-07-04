@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_file_foreachfileinput';
@@ -18,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  return [`files4d`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  return [`files4d`, JavaScript.ORDER_NONE];
 };
 registerRestrictions(blockName, [
   {

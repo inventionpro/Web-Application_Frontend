@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_get_length';
 
@@ -24,7 +25,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const buf = Blockly.JavaScript.valueToCode(block, 'buffer', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`${buf}.length`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript[blockName] = function (block) {
+  const buf = JavaScript.valueToCode(block, 'buffer', JavaScript.ORDER_ATOMIC);
+  return [`${buf}.length`, JavaScript.ORDER_ATOMIC];
 };

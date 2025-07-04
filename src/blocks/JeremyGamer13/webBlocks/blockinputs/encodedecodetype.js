@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_bDI_encodedecodetype';
 
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('type');
-  const code = [`${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${type}`, JavaScript.ORDER_NONE];
 
   return code;
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'fz_role_info';
 
@@ -33,9 +34,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const emoji = Blockly.JavaScript.valueToCode(block, 'EMOJI', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const emoji = JavaScript.valueToCode(block, 'EMOJI', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${emoji}.${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${emoji}.${type}`, JavaScript.ORDER_NONE];
   return code;
 };

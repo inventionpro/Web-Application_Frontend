@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 Blockly.Blocks['gsa_get_all_roles_on_member'] = {
   init: function () {
@@ -20,6 +21,6 @@ Blockly.Blocks['gsa_get_all_roles_on_member'] = {
   }
 };
 
-Blockly.JavaScript['gsa_get_all_roles_on_member'] = function (block) {
-  return [`${Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC)}._roles`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript['gsa_get_all_roles_on_member'] = function (block) {
+  return [`${JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC)}._roles`, JavaScript.ORDER_ATOMIC];
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_object_getvalue';
 // "colour": "#cc59e3",
@@ -29,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-  const object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${object}[String(${value})]`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC);
+  const object = JavaScript.valueToCode(block, 'object', JavaScript.ORDER_ATOMIC);
+  const code = [`${object}[String(${value})]`, JavaScript.ORDER_NONE];
   return code;
 };

@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_experiments_xml2json';
 
@@ -29,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const fileName1 = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_ATOMIC);
-  const fileName2 = Blockly.JavaScript.valueToCode(block, 'CONTENT2', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const fileName1 = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC);
+  const fileName2 = JavaScript.valueToCode(block, 'CONTENT2', JavaScript.ORDER_ATOMIC);
   return `xml2json({
         input: ${fileName1},
         output: ${fileName2}

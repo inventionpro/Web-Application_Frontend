@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'reaction_removed';
 
@@ -21,8 +22,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const statementsThen = Blockly.JavaScript.statementToCode(block, 'STATEMENTS', Blockly.JavaScript.ORDER_NONE);
+JavaScript[blockName] = function (block) {
+  const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_NONE);
   const code = `s4d.client.on("messageReactionRemove", async (reaction, user) => {${statementsThen}})`;
   return code;
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 'lasercat_jg_case_plus_minus';
 const menuName = blockName + '_plusminusMutatorMenu';
@@ -108,14 +109,14 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');
-  const A = Blockly.JavaScript.valueToCode(block, 'A', Blockly.JavaScript.ORDER_NONE);
-  const B = Blockly.JavaScript.valueToCode(block, 'B', Blockly.JavaScript.ORDER_NONE);
-  const C = Blockly.JavaScript.valueToCode(block, 'C', Blockly.JavaScript.ORDER_NONE);
-  const D = Blockly.JavaScript.valueToCode(block, 'D', Blockly.JavaScript.ORDER_NONE);
+  const A = JavaScript.valueToCode(block, 'A', JavaScript.ORDER_NONE);
+  const B = JavaScript.valueToCode(block, 'B', JavaScript.ORDER_NONE);
+  const C = JavaScript.valueToCode(block, 'C', JavaScript.ORDER_NONE);
+  const D = JavaScript.valueToCode(block, 'D', JavaScript.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (A) {
     code.push(`wow: ${A}`);

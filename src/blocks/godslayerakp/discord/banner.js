@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_get_user_banner_but_member_is_user_rn';
 const blockData = {
@@ -23,13 +24,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const user = JavaScript.valueToCode(block, 'user', JavaScript.ORDER_ATOMIC);
   return [
     `
 ${user}.bannerUrl({
   format: "png"
 })\n`,
-    Blockly.JavaScript.ORDER_ATOMIC
+    JavaScript.ORDER_ATOMIC
   ];
 };

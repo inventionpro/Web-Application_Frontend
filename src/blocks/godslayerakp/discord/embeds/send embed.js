@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'gsa_send_embed';
 const blockData = {
   type: 'gsa_send_embed',
@@ -27,12 +28,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  // const color = Blockly.JavaScript.valueToCode(block, "title", Blockly.JavaScript.ORDER_ATOMIC)
+JavaScript[blockName] = function (block) {
+  // const color = JavaScript.valueToCode(block, "title", JavaScript.ORDER_ATOMIC)
   let message = '';
-  if (Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC) != null) {
-    message = `content: String(${Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC)}), `;
+  if (JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC) != null) {
+    message = `content: String(${JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC)}), `;
   }
   const color = block.getFieldValue('NAME');
-  return [`${message}embeds: [${color.replaceAll(' ', '_').replace(/[!@#\$%\^&\*\(\)-=\]\[\|{}\+`~'":;\?\/\.<>,\/]/g, '_')}]`, Blockly.JavaScript.ORDER_ATOMIC];
+  return [`${message}embeds: [${color.replaceAll(' ', '_').replace(/[!@#\$%\^&\*\(\)-=\]\[\|{}\+`~'":;\?\/\.<>,\/]/g, '_')}]`, JavaScript.ORDER_ATOMIC];
 };

@@ -1,6 +1,5 @@
-// roblox_user_info
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_roblox_group_icon';
 
@@ -19,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = [`roblox_group_icon`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`roblox_group_icon`, JavaScript.ORDER_NONE];
   return code;
 };

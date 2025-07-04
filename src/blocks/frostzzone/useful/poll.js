@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'poll';
 
@@ -44,12 +45,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC);
-  const message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-  const color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
-  const up = Blockly.JavaScript.valueToCode(block, 'upvote', Blockly.JavaScript.ORDER_ATOMIC);
-  const down = Blockly.JavaScript.valueToCode(block, 'downvote', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const title = JavaScript.valueToCode(block, 'title', JavaScript.ORDER_ATOMIC);
+  const message = JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC);
+  const color = JavaScript.valueToCode(block, 'color', JavaScript.ORDER_ATOMIC);
+  const up = JavaScript.valueToCode(block, 'upvote', JavaScript.ORDER_ATOMIC);
+  const down = JavaScript.valueToCode(block, 'downvote', JavaScript.ORDER_ATOMIC);
   return `s4dmessage.channel.send({
             embeds: [{
                 title: ${title},

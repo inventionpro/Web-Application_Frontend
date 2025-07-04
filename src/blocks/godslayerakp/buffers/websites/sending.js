@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 Blockly.Blocks['gsa_express_website_respond_with_buffer'] = {
@@ -20,8 +21,8 @@ Blockly.Blocks['gsa_express_website_respond_with_buffer'] = {
     });
   }
 };
-Blockly.JavaScript['gsa_express_website_respond_with_buffer'] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'buffer', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['gsa_express_website_respond_with_buffer'] = function (block) {
+  const text = JavaScript.valueToCode(block, 'buffer', JavaScript.ORDER_ATOMIC);
   const code = `res.send(${text})
 `;
   return code;

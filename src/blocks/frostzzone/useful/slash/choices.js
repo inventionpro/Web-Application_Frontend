@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'frost_slash_choices';
 
@@ -32,9 +33,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const option_name = Blockly.JavaScript.valueToCode(block, 'OPTION_NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  const name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const option_name = JavaScript.valueToCode(block, 'OPTION_NAME', JavaScript.ORDER_ATOMIC);
+  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
   const code = `{
     name: String(${name.toLowerCase()}),
     value: String(${option_name})

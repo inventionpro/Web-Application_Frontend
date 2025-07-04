@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_web_keywithvalue';
 
@@ -23,9 +24,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   // stuff    return `fs.readFileSync(` + fileName + `, 'utf8')`;
-  const key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`Object.keys(JSONdataS4D)[Object.values(JSONdataS4D).indexOf(${key})]`, Blockly.JavaScript.ORDER_NONE];
+  const key = JavaScript.valueToCode(block, 'key', JavaScript.ORDER_ATOMIC);
+  const code = [`Object.keys(JSONdataS4D)[Object.values(JSONdataS4D).indexOf(${key})]`, JavaScript.ORDER_NONE];
   return code;
 };

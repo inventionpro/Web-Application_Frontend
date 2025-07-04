@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import * as blocklyModule from '../blocklyModule.js';
 import * as JBlock from '../jblock1.js';
 import { registerRestrictions } from '../../restrictions.js';
@@ -30,9 +31,9 @@ Blockly.Blocks['jg_messages_id_of_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_messages_id_of_message'] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MSG', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${message}.id`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_messages_id_of_message'] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MSG', JavaScript.ORDER_ATOMIC);
+  const code = [`${message}.id`, JavaScript.ORDER_NONE];
   return code;
 };
 /*
@@ -57,9 +58,9 @@ Blockly.Blocks["jg_messages_message_mentions_everyone"] = {
         );
     }
 }
-Blockly.JavaScript["jg_messages_message_mentions_everyone"] = function (block) {
-    const message = Blockly.JavaScript.valueToCode(block, "MSG", Blockly.JavaScript.ORDER_ATOMIC);
-    const code = [`${message}.mentions.everyone`, Blockly.JavaScript.ORDER_NONE];
+JavaScript["jg_messages_message_mentions_everyone"] = function (block) {
+    const message = JavaScript.valueToCode(block, "MSG", JavaScript.ORDER_ATOMIC);
+    const code = [`${message}.mentions.everyone`, JavaScript.ORDER_NONE];
     return code;
 };
 // next block
@@ -83,9 +84,9 @@ Blockly.Blocks["jg_messages_message_is_a_system_message"] = {
         );
     }
 }
-Blockly.JavaScript["jg_messages_message_is_a_system_message"] = function (block) {
-    const message = Blockly.JavaScript.valueToCode(block, "MSG", Blockly.JavaScript.ORDER_ATOMIC);
-    const code = [`${message}.system`, Blockly.JavaScript.ORDER_NONE];
+JavaScript["jg_messages_message_is_a_system_message"] = function (block) {
+    const message = JavaScript.valueToCode(block, "MSG", JavaScript.ORDER_ATOMIC);
+    const code = [`${message}.system`, JavaScript.ORDER_NONE];
     return code;
 };
 // next block
@@ -109,9 +110,9 @@ Blockly.Blocks["jg_messages_message_is_pinned"] = {
         );
     }
 }
-Blockly.JavaScript["jg_messages_message_is_pinned"] = function (block) {
-    const message = Blockly.JavaScript.valueToCode(block, "MSG", Blockly.JavaScript.ORDER_ATOMIC);
-    const code = [`${message}.pinned`, Blockly.JavaScript.ORDER_NONE];
+JavaScript["jg_messages_message_is_pinned"] = function (block) {
+    const message = JavaScript.valueToCode(block, "MSG", JavaScript.ORDER_ATOMIC);
+    const code = [`${message}.pinned`, JavaScript.ORDER_NONE];
     return code;
 };
 // next block
@@ -135,9 +136,9 @@ Blockly.Blocks["jg_messages_message_is_text_to_speech"] = {
         );
     }
 }
-Blockly.JavaScript["jg_messages_message_is_text_to_speech"] = function (block) {
-    const message = Blockly.JavaScript.valueToCode(block, "MSG", Blockly.JavaScript.ORDER_ATOMIC);
-    const code = [`${message}.tts`, Blockly.JavaScript.ORDER_NONE];
+JavaScript["jg_messages_message_is_text_to_speech"] = function (block) {
+    const message = JavaScript.valueToCode(block, "MSG", JavaScript.ORDER_ATOMIC);
+    const code = [`${message}.tts`, JavaScript.ORDER_NONE];
     return code;
 };
 */
@@ -185,10 +186,10 @@ Blockly.Blocks['jg_messages_message_is_value'] = {
     });
   }
 };
-Blockly.JavaScript['jg_messages_message_is_value'] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MSG', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_messages_message_is_value'] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MSG', JavaScript.ORDER_ATOMIC);
   const property = block.getFieldValue('TYPE').replaceAll('^{MSG_INPUT}', message + '.');
-  const code = [`${message}.${property}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${message}.${property}`, JavaScript.ORDER_NONE];
   return code;
 };
 // next block
@@ -210,9 +211,9 @@ Blockly.Blocks['jg_messages_message_webhook_id'] = {
     });
   }
 };
-Blockly.JavaScript['jg_messages_message_webhook_id'] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MSG', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${message}.webhookId`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_messages_message_webhook_id'] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MSG', JavaScript.ORDER_ATOMIC);
+  const code = [`${message}.webhookId`, JavaScript.ORDER_NONE];
   return code;
 };
 // next block
@@ -247,10 +248,10 @@ Blockly.Blocks['jg_channel_get_last_messages_in_channel_then'] = {
     });
   }
 };
-Blockly.JavaScript['jg_channel_get_last_messages_in_channel_then'] = function (block) {
-  const amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC);
-  const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript['jg_channel_get_last_messages_in_channel_then'] = function (block) {
+  const amount = JavaScript.valueToCode(block, 'AMOUNT', JavaScript.ORDER_ATOMIC);
+  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `${channel}.messages.fetch({ limit: ${amount} }).then(async (last_messages_in_channel) => {
     ${statements}
 });
@@ -276,9 +277,9 @@ Blockly.Blocks['jg_channel_last_message_number'] = {
     });
   }
 };
-Blockly.JavaScript['jg_channel_last_message_number'] = function (block) {
-  const index = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`last_messages_in_channel.at(${index} - 1)`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_channel_last_message_number'] = function (block) {
+  const index = JavaScript.valueToCode(block, 'INDEX', JavaScript.ORDER_ATOMIC);
+  const code = [`last_messages_in_channel.at(${index} - 1)`, JavaScript.ORDER_NONE];
   return code;
 };
 registerRestrictions('jg_channel_last_message_number', [
@@ -307,9 +308,9 @@ Blockly.Blocks['jg_message_user_replied_to_in_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_message_user_replied_to_in_message'] = function (block) {
-  const msg = Blockly.JavaScript.valueToCode(block, 'MSG', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${msg}.mentions.repliedUser`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_message_user_replied_to_in_message'] = function (block) {
+  const msg = JavaScript.valueToCode(block, 'MSG', JavaScript.ORDER_ATOMIC);
+  const code = [`${msg}.mentions.repliedUser`, JavaScript.ORDER_NONE];
   return code;
 };
 
@@ -333,9 +334,9 @@ Blockly.Blocks['jg_attachment_amount_of_attachments_on_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_attachment_amount_of_attachments_on_message'] = function (block) {
-  const msg = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${msg}.attachments.size`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_attachment_amount_of_attachments_on_message'] = function (block) {
+  const msg = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
+  const code = [`${msg}.attachments.size`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_attachment_get_attachment_number'] = {
@@ -362,10 +363,10 @@ Blockly.Blocks['jg_attachment_get_attachment_number'] = {
     });
   }
 };
-Blockly.JavaScript['jg_attachment_get_attachment_number'] = function (block) {
-  const index = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
-  const msg = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${msg}.attachments.at(Number(${index}) - 1)`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_attachment_get_attachment_number'] = function (block) {
+  const index = JavaScript.valueToCode(block, 'INDEX', JavaScript.ORDER_ATOMIC);
+  const msg = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
+  const code = [`${msg}.attachments.at(Number(${index}) - 1)`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_attachment_get_attachment_property'] = {
@@ -402,10 +403,10 @@ Blockly.Blocks['jg_attachment_get_attachment_property'] = {
     });
   }
 };
-Blockly.JavaScript['jg_attachment_get_attachment_property'] = function (block) {
+JavaScript['jg_attachment_get_attachment_property'] = function (block) {
   const property = block.getFieldValue('PROPERTY');
-  const attach = Blockly.JavaScript.valueToCode(block, 'ATTACH', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${attach}.${property}`, Blockly.JavaScript.ORDER_NONE];
+  const attach = JavaScript.valueToCode(block, 'ATTACH', JavaScript.ORDER_ATOMIC);
+  const code = [`${attach}.${property}`, JavaScript.ORDER_NONE];
   return code;
 };
 
@@ -444,11 +445,11 @@ Blockly.Blocks['jg_message_mentioned_member_number_on_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_message_mentioned_member_number_on_message'] = function (block) {
-  const index = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
-  const msg = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_message_mentioned_member_number_on_message'] = function (block) {
+  const index = JavaScript.valueToCode(block, 'INDEX', JavaScript.ORDER_ATOMIC);
+  const msg = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${msg}.mentions.${type}.at(Number(${index}) - 1)`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${msg}.mentions.${type}.at(Number(${index}) - 1)`, JavaScript.ORDER_NONE];
   return code;
 };
 // next blok
@@ -480,10 +481,10 @@ Blockly.Blocks['jg_message_amount_of_mentioned_members_on_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_message_amount_of_mentioned_members_on_message'] = function (block) {
-  const msg = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_message_amount_of_mentioned_members_on_message'] = function (block) {
+  const msg = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${msg}.mentions.${type}.size`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${msg}.mentions.${type}.size`, JavaScript.ORDER_NONE];
   return code;
 };
 
@@ -523,13 +524,13 @@ Blockly.Blocks['jg_typing_typing_attribute'] = {
     }
   }
 };
-Blockly.JavaScript['jg_typing_typing_attribute'] = function (block) {
+JavaScript['jg_typing_typing_attribute'] = function (block) {
   const type = block.getFieldValue('ATT');
   var code;
   if (type == 123) {
-    code = [`s4dTyping.inGuild()`, Blockly.JavaScript.ORDER_NONE];
+    code = [`s4dTyping.inGuild()`, JavaScript.ORDER_NONE];
   } else {
-    code = [`s4dTyping.${type}`, Blockly.JavaScript.ORDER_NONE];
+    code = [`s4dTyping.${type}`, JavaScript.ORDER_NONE];
   }
   return code;
 };
@@ -562,8 +563,8 @@ Blockly.Blocks['jg_status_does_member_have_a_status_for_device'] = {
     });
   }
 };
-Blockly.JavaScript['jg_status_does_member_have_a_status_for_device'] = function (block) {
-  var member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_status_does_member_have_a_status_for_device'] = function (block) {
+  var member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
   if (member.endsWith('.user')) {
     member = member.substring(0, member.length - 5);
   }
@@ -571,7 +572,7 @@ Blockly.JavaScript['jg_status_does_member_have_a_status_for_device'] = function 
     member = member.substring(0, member.length - 6) + ')';
   }
   const type = block.getFieldValue('TYPE');
-  const code = [`${member}.presence.clientStatus.${type} != null`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${member}.presence.clientStatus.${type} != null`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_status_member_status_on_discord'] = {
@@ -602,8 +603,8 @@ Blockly.Blocks['jg_status_member_status_on_discord'] = {
     });
   }
 };
-Blockly.JavaScript['jg_status_member_status_on_discord'] = function (block) {
-  var member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_status_member_status_on_discord'] = function (block) {
+  var member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
   if (member.endsWith('.user')) {
     member = member.substring(0, member.length - 5);
   }
@@ -611,7 +612,7 @@ Blockly.JavaScript['jg_status_member_status_on_discord'] = function (block) {
     member = member.substring(0, member.length - 6) + ')';
   }
   const type = block.getFieldValue('TYPE');
-  const code = [`${member}.presence.clientStatus.${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${member}.presence.clientStatus.${type}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles'] = {
@@ -647,10 +648,10 @@ Blockly.Blocks['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles']
     });
   }
 };
-Blockly.JavaScript['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles'] = function (block) {
-  const content = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_ATOMIC);
-  const users = Blockly.JavaScript.valueToCode(block, 'USERS', Blockly.JavaScript.ORDER_ATOMIC);
-  const roles = Blockly.JavaScript.valueToCode(block, 'ROLES', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles'] = function (block) {
+  const content = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC);
+  const users = JavaScript.valueToCode(block, 'USERS', JavaScript.ORDER_ATOMIC);
+  const roles = JavaScript.valueToCode(block, 'ROLES', JavaScript.ORDER_ATOMIC);
   var usableA = '';
   var usableB = '';
   if (!(users === null || users === '')) {
@@ -760,10 +761,10 @@ Blockly.Blocks['jg_messages_respond_with_and_with_allowed_list_of_pings_on_users
     });
   }
 };
-Blockly.JavaScript['jg_messages_respond_with_and_with_allowed_list_of_pings_on_users_on_roles'] = function (block) {
-  const content = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_ATOMIC);
-  const users = Blockly.JavaScript.valueToCode(block, 'USERS', Blockly.JavaScript.ORDER_ATOMIC);
-  const roles = Blockly.JavaScript.valueToCode(block, 'ROLES', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_messages_respond_with_and_with_allowed_list_of_pings_on_users_on_roles'] = function (block) {
+  const content = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC);
+  const users = JavaScript.valueToCode(block, 'USERS', JavaScript.ORDER_ATOMIC);
+  const roles = JavaScript.valueToCode(block, 'ROLES', JavaScript.ORDER_ATOMIC);
   var usableA = '';
   var usableB = '';
   if (!(users === null || users === '')) {
@@ -878,11 +879,11 @@ Blockly.Blocks['jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_
     });
   }
 };
-Blockly.JavaScript['jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_on_roles'] = function (block) {
-  const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
-  const content = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_ATOMIC);
-  const users = Blockly.JavaScript.valueToCode(block, 'USERS', Blockly.JavaScript.ORDER_ATOMIC);
-  const roles = Blockly.JavaScript.valueToCode(block, 'ROLES', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_on_roles'] = function (block) {
+  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
+  const content = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC);
+  const users = JavaScript.valueToCode(block, 'USERS', JavaScript.ORDER_ATOMIC);
+  const roles = JavaScript.valueToCode(block, 'ROLES', JavaScript.ORDER_ATOMIC);
   var usableA = '';
   var usableB = '';
   if (!(users === null || users === '')) {
@@ -977,8 +978,8 @@ Blockly.Blocks['jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bo
     });
   }
 };
-Blockly.JavaScript['jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bot'] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript['jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bot'] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `s4d.client.on('messageCreate', async (s4dmessage) => {
         if (s4dmessage.author.bot) {
             return;
@@ -1004,7 +1005,7 @@ Blockly.Blocks['jg_unused_floating_comment'] = {
     });
   }
 };
-Blockly.JavaScript['jg_unused_floating_comment'] = function () {
+JavaScript['jg_unused_floating_comment'] = function () {
   return ``;
 };
 Blockly.Blocks['jg_comments_floating_arrow'] = {
@@ -1096,7 +1097,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
     });
   }
 };
-Blockly.JavaScript['jg_comments_floating_arrow'] = function () {
+JavaScript['jg_comments_floating_arrow'] = function () {
   const code = ``;
   return code;
 };
@@ -1117,7 +1118,7 @@ Blockly.Blocks['jg_comments_floating_image'] = {
     this.setTooltip('An image comment using url ' + url + '.');
   }
 };
-Blockly.JavaScript['jg_comments_floating_image'] = function () {
+JavaScript['jg_comments_floating_image'] = function () {
   const code = ``;
   return code;
 };
@@ -1138,7 +1139,7 @@ Blockly.Blocks['jg_comments_connected_comment'] = {
     });
   }
 };
-Blockly.JavaScript['jg_comments_connected_comment'] = function (block) {
+JavaScript['jg_comments_connected_comment'] = function (block) {
   var text = block.getFieldValue('TEXT');
   text = text.replaceAll('*/', '* /');
   const code = `
@@ -1239,7 +1240,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
     });
   }
 };
-Blockly.JavaScript['jg_comments_connected_arrow'] = function (block) {
+JavaScript['jg_comments_connected_arrow'] = function (block) {
   let arrow = block.getFieldValue('arrow');
   const code = `/*
     ${arrow}
@@ -1264,7 +1265,7 @@ Blockly.Blocks['jg_comments_connected_image'] = {
     this.setTooltip('An image comment using url ' + url + '.');
   }
 };
-Blockly.JavaScript['jg_comments_connected_image'] = function (block) {
+JavaScript['jg_comments_connected_image'] = function (block) {
   let url = block.getFieldValue('TEXT');
   const code = `
     /*
@@ -1345,7 +1346,7 @@ Blockly.Blocks['jg_events_all_label'] = {
     this.setColour(color);
   }
 };
-Blockly.JavaScript['jg_events_all_label'] = function (block) {
+JavaScript['jg_events_all_label'] = function (block) {
   const label = block.getFieldValue('LABEL');
   let event = block.getFieldValue('EVENT');
   let ending = '});';
@@ -1353,7 +1354,7 @@ Blockly.JavaScript['jg_events_all_label'] = function (block) {
     event = '';
     ending = '';
   }
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `/*
         ${label.replaceAll('*/', '* /')}
 */
@@ -1377,8 +1378,8 @@ Blockly.Blocks['jg_members_list_of_known_member_ids'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_list_of_known_member_ids'] = function () {
-  const code = [`JSON.parse(JSON.stringify(s4d.client)).users`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_members_list_of_known_member_ids'] = function () {
+  const code = [`JSON.parse(JSON.stringify(s4d.client)).users`, JavaScript.ORDER_NONE];
   return code;
 };
 
@@ -1405,9 +1406,9 @@ Blockly.Blocks['jg_members_new_list_of_known_ids'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_new_list_of_known_ids'] = function (block) {
+JavaScript['jg_members_new_list_of_known_ids'] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const code = [`JSON.parse(JSON.stringify(s4d.client)).${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`JSON.parse(JSON.stringify(s4d.client)).${type}`, JavaScript.ORDER_NONE];
   return code;
 };
 
@@ -1430,9 +1431,9 @@ Blockly.Blocks['jg_members_get_member_by_id'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_get_member_by_id'] = function (block) {
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`s4d.client.users.cache.get(String(${id}))`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_members_get_member_by_id'] = function (block) {
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+  const code = [`s4d.client.users.cache.get(String(${id}))`, JavaScript.ORDER_NONE];
   return code;
 };
 
@@ -1455,9 +1456,9 @@ Blockly.Blocks['jg_members_member_is_in_voice_channel'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_member_is_in_voice_channel'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${String(member).endsWith('.user') || String(member).endsWith('.user)') ? member.replace('.user', '') : member}.voice.channel != null`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_members_member_is_in_voice_channel'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  const code = [`${String(member).endsWith('.user') || String(member).endsWith('.user)') ? member.replace('.user', '') : member}.voice.channel != null`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_members_get_members_current_voice_channel'] = {
@@ -1479,9 +1480,9 @@ Blockly.Blocks['jg_members_get_members_current_voice_channel'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_get_members_current_voice_channel'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${String(member).endsWith('.user') || String(member).endsWith('.user)') ? member.replace('.user', '') : member}.voice.channel`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_members_get_members_current_voice_channel'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  const code = [`${String(member).endsWith('.user') || String(member).endsWith('.user)') ? member.replace('.user', '') : member}.voice.channel`, JavaScript.ORDER_NONE];
   return code;
 };
 // oopsie
@@ -1503,8 +1504,8 @@ Blockly.Blocks['jg_messages_delete_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_messages_delete_message'] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_messages_delete_message'] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
   const code = `${message}.delete()
     `;
   return code;
@@ -1529,8 +1530,8 @@ Blockly.Blocks['jg_monaco_messages_delete_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_messages_delete_message'] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_monaco_messages_delete_message'] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
   const code = `${message}.delete()
     `;
   return code;
@@ -1560,9 +1561,9 @@ Blockly.Blocks['jg_messages_react_to_message_with_reaction'] = {
     });
   }
 };
-Blockly.JavaScript['jg_messages_react_to_message_with_reaction'] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
-  const reaction = Blockly.JavaScript.valueToCode(block, 'REACTION', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_messages_react_to_message_with_reaction'] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
+  const reaction = JavaScript.valueToCode(block, 'REACTION', JavaScript.ORDER_ATOMIC);
   const code = `${message}.react(${reaction})
     `;
   return code;
@@ -1586,8 +1587,8 @@ Blockly.Blocks['jg_messages_crosspost_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_messages_crosspost_message'] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_messages_crosspost_message'] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
   const code = `${message}.crosspost()
     `;
   return code;
@@ -1616,9 +1617,9 @@ Blockly.Blocks['jg_messages_edit_message_to_text'] = {
     });
   }
 };
-Blockly.JavaScript['jg_messages_edit_message_to_text'] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_messages_edit_message_to_text'] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
   const code = `${message}.edit(String(${text}))
     `;
   return code;
@@ -1642,8 +1643,8 @@ Blockly.Blocks['jg_monaco_members_remove_timeout_from_member'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_members_remove_timeout_from_member'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_monaco_members_remove_timeout_from_member'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
   const code = `${member}.timeout(null)
     `;
   return code;
@@ -1674,9 +1675,9 @@ Blockly.Blocks['jg_monaco_servers_on_server_get_audit_logs_then'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_on_server_get_audit_logs_then'] = function (block) {
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript['jg_monaco_servers_on_server_get_audit_logs_then'] = function (block) {
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `${server}.fetchAuditLogs().then(async (audit_raw) => {
         let audit = audit_raw.entries;
         ${statements}
@@ -1702,9 +1703,9 @@ Blockly.Blocks['jg_monaco_servers_audit_log_number'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_audit_log_number'] = function (block) {
-  const number = Blockly.JavaScript.valueToCode(block, 'NUMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`audit.at(Number(${number}) - 1)`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_monaco_servers_audit_log_number'] = function (block) {
+  const number = JavaScript.valueToCode(block, 'NUMBER', JavaScript.ORDER_ATOMIC);
+  const code = [`audit.at(Number(${number}) - 1)`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_monaco_servers_amount_of_audit_logs'] = {
@@ -1719,8 +1720,8 @@ Blockly.Blocks['jg_monaco_servers_amount_of_audit_logs'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_amount_of_audit_logs'] = function () {
-  const code = [`audit.size`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_monaco_servers_amount_of_audit_logs'] = function () {
+  const code = [`audit.size`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_monaco_servers_get_property_from_log'] = {
@@ -1754,10 +1755,10 @@ Blockly.Blocks['jg_monaco_servers_get_property_from_log'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_get_property_from_log'] = function (block) {
-  const log = Blockly.JavaScript.valueToCode(block, 'LOG', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_monaco_servers_get_property_from_log'] = function (block) {
+  const log = JavaScript.valueToCode(block, 'LOG', JavaScript.ORDER_ATOMIC);
   const prop = block.getFieldValue('PROP');
-  const code = [`${log}.${prop}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${log}.${prop}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_monaco_servers_log_has_reason'] = {
@@ -1778,9 +1779,9 @@ Blockly.Blocks['jg_monaco_servers_log_has_reason'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_log_has_reason'] = function (block) {
-  const log = Blockly.JavaScript.valueToCode(block, 'LOG', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${log}.reason != null`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_monaco_servers_log_has_reason'] = function (block) {
+  const log = JavaScript.valueToCode(block, 'LOG', JavaScript.ORDER_ATOMIC);
+  const code = [`${log}.reason != null`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_monaco_servers_amount_of_changes_in_log_changes'] = {
@@ -1801,9 +1802,9 @@ Blockly.Blocks['jg_monaco_servers_amount_of_changes_in_log_changes'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_amount_of_changes_in_log_changes'] = function (block) {
-  const changes = Blockly.JavaScript.valueToCode(block, 'CHANGES', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${changes}.length`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_monaco_servers_amount_of_changes_in_log_changes'] = function (block) {
+  const changes = JavaScript.valueToCode(block, 'CHANGES', JavaScript.ORDER_ATOMIC);
+  const code = [`${changes}.length`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_monaco_servers_change_number_in_changes'] = {
@@ -1829,10 +1830,10 @@ Blockly.Blocks['jg_monaco_servers_change_number_in_changes'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_change_number_in_changes'] = function (block) {
-  const changes = Blockly.JavaScript.valueToCode(block, 'CHANGES', Blockly.JavaScript.ORDER_ATOMIC);
-  const number = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${changes}[${number}]`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_monaco_servers_change_number_in_changes'] = function (block) {
+  const changes = JavaScript.valueToCode(block, 'CHANGES', JavaScript.ORDER_ATOMIC);
+  const number = JavaScript.valueToCode(block, 'INDEX', JavaScript.ORDER_ATOMIC);
+  const code = [`${changes}[${number}]`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_monaco_servers_get_from_change'] = {
@@ -1862,10 +1863,10 @@ Blockly.Blocks['jg_monaco_servers_get_from_change'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_get_from_change'] = function (block) {
-  const change = Blockly.JavaScript.valueToCode(block, 'CHANGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_monaco_servers_get_from_change'] = function (block) {
+  const change = JavaScript.valueToCode(block, 'CHANGE', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('PROP');
-  const code = [`${change}.${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${change}.${type}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_unused_scratcjwtff'] = {
@@ -1887,7 +1888,7 @@ Blockly.Blocks['jg_unused_scratcjwtff'] = {
     });
   }
 };
-Blockly.JavaScript['jg_unused_scratcjwtff'] = function () {
+JavaScript['jg_unused_scratcjwtff'] = function () {
   const code = ``;
   return code;
 };
@@ -1924,10 +1925,10 @@ Blockly.Blocks['jg_monaco_roles_hoist_role'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_roles_hoist_role'] = function (block) {
+JavaScript['jg_monaco_roles_hoist_role'] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const role = Blockly.JavaScript.valueToCode(block, 'ROLE', Blockly.JavaScript.ORDER_ATOMIC);
-  let reason = Blockly.JavaScript.valueToCode(block, 'REASON', Blockly.JavaScript.ORDER_ATOMIC);
+  const role = JavaScript.valueToCode(block, 'ROLE', JavaScript.ORDER_ATOMIC);
+  let reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
   if (reason) {
     reason = ', ' + reason;
   }
@@ -1958,10 +1959,10 @@ Blockly.Blocks['jg_monaco_channels_get_channel_number_from_server'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_channels_get_channel_number_from_server'] = function (block) {
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
-  const index = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${server}.channels.cache.at(Number(${index}) - 1)`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_monaco_channels_get_channel_number_from_server'] = function (block) {
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const index = JavaScript.valueToCode(block, 'INDEX', JavaScript.ORDER_ATOMIC);
+  const code = [`${server}.channels.cache.at(Number(${index}) - 1)`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_monaco_servers_amount_of_channels_in_server'] = {
@@ -1982,9 +1983,9 @@ Blockly.Blocks['jg_monaco_servers_amount_of_channels_in_server'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_servers_amount_of_channels_in_server'] = function (block) {
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${server}.channels.cache.size`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_monaco_servers_amount_of_channels_in_server'] = function (block) {
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const code = [`${server}.channels.cache.size`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_alex_channels_first_channel_in_server'] = {
@@ -2014,10 +2015,10 @@ Blockly.Blocks['jg_alex_channels_first_channel_in_server'] = {
     });
   }
 };
-Blockly.JavaScript['jg_alex_channels_first_channel_in_server'] = function (block) {
+JavaScript['jg_alex_channels_first_channel_in_server'] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${server}.channels.cache.${type}()`, Blockly.JavaScript.ORDER_NONE];
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const code = [`${server}.channels.cache.${type}()`, JavaScript.ORDER_NONE];
   return code;
 };
 
@@ -2049,9 +2050,9 @@ Blockly.Blocks['jose_jg_webhooks_get_all_webhooks_in_channel_then'] = {
     });
   }
 };
-Blockly.JavaScript['jose_jg_webhooks_get_all_webhooks_in_channel_then'] = function (block) {
-  const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript['jose_jg_webhooks_get_all_webhooks_in_channel_then'] = function (block) {
+  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `${channel}.fetchWebhooks().then(async (webhooks) => {
         ${statements}
     })
@@ -2070,8 +2071,8 @@ Blockly.Blocks['jose_jg_webhooks_amount_of_webhooks'] = {
     });
   }
 };
-Blockly.JavaScript['jose_jg_webhooks_amount_of_webhooks'] = function () {
-  const code = [`webhooks.size`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jose_jg_webhooks_amount_of_webhooks'] = function () {
+  const code = [`webhooks.size`, JavaScript.ORDER_NONE];
   return code;
 };
 registerRestrictions('jose_jg_webhooks_amount_of_webhooks', [
@@ -2099,9 +2100,9 @@ Blockly.Blocks['jose_jg_webhooks_webhook_with_id_exists_in_channel'] = {
     });
   }
 };
-Blockly.JavaScript['jose_jg_webhooks_webhook_with_id_exists_in_channel'] = function (block) {
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`webhooks.has(String(${id}))`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jose_jg_webhooks_webhook_with_id_exists_in_channel'] = function (block) {
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+  const code = [`webhooks.has(String(${id}))`, JavaScript.ORDER_NONE];
   return code;
 };
 registerRestrictions('jose_jg_webhooks_webhook_with_id_exists_in_channel', [
@@ -2129,9 +2130,9 @@ Blockly.Blocks['jose_jg_webhooks_get_webhook_with_id'] = {
     });
   }
 };
-Blockly.JavaScript['jose_jg_webhooks_get_webhook_with_id'] = function (block) {
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`webhooks.get(String(${id}))`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jose_jg_webhooks_get_webhook_with_id'] = function (block) {
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+  const code = [`webhooks.get(String(${id}))`, JavaScript.ORDER_NONE];
   return code;
 };
 registerRestrictions('jose_jg_webhooks_get_webhook_with_id', [
@@ -2174,10 +2175,10 @@ Blockly.Blocks['jose_jg_webhooks_get_webhook_information'] = {
     });
   }
 };
-Blockly.JavaScript['jose_jg_webhooks_get_webhook_information'] = function (block) {
-  const webhook = Blockly.JavaScript.valueToCode(block, 'WEBHOOK', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jose_jg_webhooks_get_webhook_information'] = function (block) {
+  const webhook = JavaScript.valueToCode(block, 'WEBHOOK', JavaScript.ORDER_ATOMIC);
   const prop = block.getFieldValue('PROP');
-  const code = [`${webhook}.${prop}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${webhook}.${prop}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jose_jg_delete_created_webhook_with_reason'] = {
@@ -2199,8 +2200,8 @@ Blockly.Blocks['jose_jg_delete_created_webhook_with_reason'] = {
     });
   }
 };
-Blockly.JavaScript['jose_jg_delete_created_webhook_with_reason'] = function (block) {
-  const reason = Blockly.JavaScript.valueToCode(block, 'REASON', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jose_jg_delete_created_webhook_with_reason'] = function (block) {
+  const reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
   const code = `webhook.delete(String(${reason}))
 `;
   return code;
@@ -2231,8 +2232,8 @@ Blockly.Blocks['jose_jg_gained_delete_webhook_with_reason'] = {
     });
   }
 };
-Blockly.JavaScript['jose_jg_gained_delete_webhook_with_reason'] = function (block) {
-  const reason = Blockly.JavaScript.valueToCode(block, 'REASON', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jose_jg_gained_delete_webhook_with_reason'] = function (block) {
+  const reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
   const code = `gwebhook.delete(String(${reason}))
 `;
   return code;
@@ -2268,9 +2269,9 @@ Blockly.Blocks['jose_jg_webhooks_delete_webhook_with_reason'] = {
     });
   }
 };
-Blockly.JavaScript['jose_jg_webhooks_delete_webhook_with_reason'] = function (block) {
-  const webhook = Blockly.JavaScript.valueToCode(block, 'WEBHOOK', Blockly.JavaScript.ORDER_ATOMIC);
-  const reason = Blockly.JavaScript.valueToCode(block, 'REASON', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jose_jg_webhooks_delete_webhook_with_reason'] = function (block) {
+  const webhook = JavaScript.valueToCode(block, 'WEBHOOK', JavaScript.ORDER_ATOMIC);
+  const reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
   const code = `${webhook}.delete(String(${reason}))
 `;
   return code;
@@ -2308,7 +2309,7 @@ Blockly.Blocks['jg_text_remake_paragraph_quotes'] = {
     });
   }
 };
-Blockly.JavaScript['jg_text_remake_paragraph_quotes'] = function (block) {
+JavaScript['jg_text_remake_paragraph_quotes'] = function (block) {
   let text = block.getFieldValue('TEXT');
   text = String(text).replaceAll('\\', '\\\\');
   let multiline = "'";
@@ -2321,7 +2322,7 @@ Blockly.JavaScript['jg_text_remake_paragraph_quotes'] = function (block) {
   if (multiline == '`') {
     text = String(text).replaceAll('${', '\\${');
   }
-  const code = [`${multiline}${text}${multiline}`, Blockly.JavaScript.ORDER_ATOMIC];
+  const code = [`${multiline}${text}${multiline}`, JavaScript.ORDER_ATOMIC];
   return code;
 };
 Blockly.Blocks['jg_text_remake_in_text_replace_with'] = {
@@ -2352,11 +2353,11 @@ Blockly.Blocks['jg_text_remake_in_text_replace_with'] = {
     });
   }
 };
-Blockly.JavaScript['jg_text_remake_in_text_replace_with'] = function (block) {
-  const origin = Blockly.JavaScript.valueToCode(block, 'ORIGIN', Blockly.JavaScript.ORDER_ATOMIC);
-  const replace = Blockly.JavaScript.valueToCode(block, 'REPLACE', Blockly.JavaScript.ORDER_ATOMIC);
-  const replaced = Blockly.JavaScript.valueToCode(block, 'WITH', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`String(${origin}).replaceAll(${replace}, String(${replaced}))`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_text_remake_in_text_replace_with'] = function (block) {
+  const origin = JavaScript.valueToCode(block, 'ORIGIN', JavaScript.ORDER_ATOMIC);
+  const replace = JavaScript.valueToCode(block, 'REPLACE', JavaScript.ORDER_ATOMIC);
+  const replaced = JavaScript.valueToCode(block, 'WITH', JavaScript.ORDER_ATOMIC);
+  const code = [`String(${origin}).replaceAll(${replace}, String(${replaced}))`, JavaScript.ORDER_NONE];
   return code;
 };
 // is equal to and is the same type as
@@ -2391,11 +2392,11 @@ Blockly.Blocks['jg_logic_is_equal_to_and_is_the_same_type_as'] = {
     });
   }
 };
-Blockly.JavaScript['jg_logic_is_equal_to_and_is_the_same_type_as'] = function (block) {
-  const a = Blockly.JavaScript.valueToCode(block, 'A', Blockly.JavaScript.ORDER_ATOMIC);
-  const b = Blockly.JavaScript.valueToCode(block, 'B', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_logic_is_equal_to_and_is_the_same_type_as'] = function (block) {
+  const a = JavaScript.valueToCode(block, 'A', JavaScript.ORDER_ATOMIC);
+  const b = JavaScript.valueToCode(block, 'B', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${a} ${type} ${b}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${a} ${type} ${b}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_monaco_roles_change_role_to_be_mentionable_with_reason'] = {
@@ -2431,10 +2432,10 @@ Blockly.Blocks['jg_monaco_roles_change_role_to_be_mentionable_with_reason'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_roles_change_role_to_be_mentionable_with_reason'] = function (block) {
+JavaScript['jg_monaco_roles_change_role_to_be_mentionable_with_reason'] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const role = Blockly.JavaScript.valueToCode(block, 'ROLE', Blockly.JavaScript.ORDER_ATOMIC);
-  let reason = Blockly.JavaScript.valueToCode(block, 'REASON', Blockly.JavaScript.ORDER_ATOMIC);
+  const role = JavaScript.valueToCode(block, 'ROLE', JavaScript.ORDER_ATOMIC);
+  let reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
   if (reason) {
     reason = ', ' + reason;
   }
@@ -2469,7 +2470,7 @@ Blockly.Blocks['jg_unused_any_color'] = {
   },
   isHiden: true
 };
-Blockly.JavaScript['jg_unused_any_color'] = function () {
+JavaScript['jg_unused_any_color'] = function () {
   return '';
 };
 Blockly.Blocks['jg_unused_any_color2'] = {
@@ -2494,7 +2495,7 @@ Blockly.Blocks['jg_unused_any_color2'] = {
   },
   isHiden: true
 };
-Blockly.JavaScript['jg_unused_any_color2'] = function () {
+JavaScript['jg_unused_any_color2'] = function () {
   return '';
 };
 Blockly.Blocks['jg_members_user_has_value'] = {
@@ -2542,10 +2543,10 @@ Blockly.Blocks['jg_members_user_has_value'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_user_has_value'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_members_user_has_value'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
   const property = block.getFieldValue('TYPE');
-  const code = [`${member}${property}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${member}${property}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_members_member_is_value'] = {
@@ -2578,10 +2579,10 @@ Blockly.Blocks['jg_members_member_is_value'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_member_is_value'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
+JavaScript['jg_members_member_is_value'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
   const property = block.getFieldValue('TYPE');
-  const code = [`${member}${property}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${member}${property}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_members_user_accent_color'] = {
@@ -2602,9 +2603,9 @@ Blockly.Blocks['jg_members_user_accent_color'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_user_accent_color'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${member}.hexAccentColor`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_members_user_accent_color'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  const code = [`${member}.hexAccentColor`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_members_user_exactly_equals_user'] = {
@@ -2630,10 +2631,10 @@ Blockly.Blocks['jg_members_user_exactly_equals_user'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_user_exactly_equals_user'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const member2 = Blockly.JavaScript.valueToCode(block, 'MEMBER2', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${member}.equals(${member2})`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_members_user_exactly_equals_user'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  const member2 = JavaScript.valueToCode(block, 'MEMBER2', JavaScript.ORDER_ATOMIC);
+  const code = [`${member}.equals(${member2})`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_members_member_has_nickname'] = {
@@ -2654,9 +2655,9 @@ Blockly.Blocks['jg_members_member_has_nickname'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_member_has_nickname'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
-  const code = [`${member}.nickname != null`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_members_member_has_nickname'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
+  const code = [`${member}.nickname != null`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_members_member_s_nickname'] = {
@@ -2677,9 +2678,9 @@ Blockly.Blocks['jg_members_member_s_nickname'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_member_s_nickname'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
-  const code = [`${member}.nickname == null ? ${member}.user.username : ${member}.nickname`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_members_member_s_nickname'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
+  const code = [`${member}.nickname == null ? ${member}.user.username : ${member}.nickname`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_roles_get_all_member_roles_then_for_each_do'] = {
@@ -2708,9 +2709,9 @@ Blockly.Blocks['jg_roles_get_all_member_roles_then_for_each_do'] = {
     });
   }
 };
-Blockly.JavaScript['jg_roles_get_all_member_roles_then_for_each_do'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript['jg_roles_get_all_member_roles_then_for_each_do'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `${member}.roles.cache.forEach(async (member_role) => {
     ${statements}
 })
@@ -2729,8 +2730,8 @@ Blockly.Blocks['jg_roles_get_all_member_roles_then_for_each_do_role'] = {
     });
   }
 };
-Blockly.JavaScript['jg_roles_get_all_member_roles_then_for_each_do_role'] = function () {
-  const code = [`member_role`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_roles_get_all_member_roles_then_for_each_do_role'] = function () {
+  const code = [`member_role`, JavaScript.ORDER_NONE];
   return code;
 };
 restrictToParent(['jg_roles_get_all_member_roles_then_for_each_do'], 'jg_roles_get_all_member_roles_then_for_each_do_role', 'This block must be in a "get all member roles then for each do" block!');
@@ -2752,9 +2753,9 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_custom_emojis_in_text'] = {
     });
   }
 };
-Blockly.JavaScript['jg_emoji_text_regex_list_of_custom_emojis_in_text'] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${text}.match(/(?<!\\\\)<:(?<=<:)[a-zA-Z0-9_-]*(?=:):[0-9]*>/gim)`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_emoji_text_regex_list_of_custom_emojis_in_text'] = function (block) {
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+  const code = [`${text}.match(/(?<!\\\\)<:(?<=<:)[a-zA-Z0-9_-]*(?=:):[0-9]*>/gim)`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_emoji_text_regex_list_of_animated_emojis_in_text'] = {
@@ -2775,9 +2776,9 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_animated_emojis_in_text'] = {
     });
   }
 };
-Blockly.JavaScript['jg_emoji_text_regex_list_of_animated_emojis_in_text'] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${text}.match(/(?<!\\\\)<a:(?<=<a:)[a-zA-Z0-9_-]*(?=:):[0-9]*>/gim)`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_emoji_text_regex_list_of_animated_emojis_in_text'] = function (block) {
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+  const code = [`${text}.match(/(?<!\\\\)<a:(?<=<a:)[a-zA-Z0-9_-]*(?=:):[0-9]*>/gim)`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_emoji_text_regex_list_of_normal_emojis_in_text'] = {
@@ -2798,9 +2799,9 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_normal_emojis_in_text'] = {
     });
   }
 };
-Blockly.JavaScript['jg_emoji_text_regex_list_of_normal_emojis_in_text'] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`String(${text}).replaceAll(" ", "").match(/((\\u00a9|\\u00ae|[\\u2000-\\u3300]|\\ud83c[\\ud000-\\udfff]|\\ud83d[\\ud000-\\udfff]|\\ud83e[\\ud000-\\udfff]\\s?)+)/gm)`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_emoji_text_regex_list_of_normal_emojis_in_text'] = function (block) {
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+  const code = [`String(${text}).replaceAll(" ", "").match(/((\\u00a9|\\u00ae|[\\u2000-\\u3300]|\\ud83c[\\ud000-\\udfff]|\\ud83d[\\ud000-\\udfff]|\\ud83e[\\ud000-\\udfff]\\s?)+)/gm)`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_text_regex_create_new_regex_of'] = {
@@ -2820,7 +2821,7 @@ Blockly.Blocks['jg_text_regex_create_new_regex_of'] = {
     });
   }
 };
-Blockly.JavaScript['jg_text_regex_create_new_regex_of'] = function (block) {
+JavaScript['jg_text_regex_create_new_regex_of'] = function (block) {
   let regex = block.getFieldValue('TEXT');
   try {
     let matches = String(regex).match(/(\/)[\S ]*(\/[a-z]{0,7})/gim);
@@ -2828,7 +2829,7 @@ Blockly.JavaScript['jg_text_regex_create_new_regex_of'] = function (block) {
   } catch (err) {
     console.error('This RegEx check is not supported on this platform.', err);
   }
-  const code = [`${regex}`, Blockly.JavaScript.ORDER_ATOMIC];
+  const code = [`${regex}`, JavaScript.ORDER_ATOMIC];
   return code;
 };
 Blockly.Blocks['jg_lists_regex_list_of_matches_from_regex_on_text'] = {
@@ -2855,10 +2856,10 @@ Blockly.Blocks['jg_lists_regex_list_of_matches_from_regex_on_text'] = {
     });
   }
 };
-Blockly.JavaScript['jg_lists_regex_list_of_matches_from_regex_on_text'] = function (block) {
-  const regex = Blockly.JavaScript.valueToCode(block, 'REGEX', Blockly.JavaScript.ORDER_ATOMIC);
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`String(${text}).match(${regex})`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript['jg_lists_regex_list_of_matches_from_regex_on_text'] = function (block) {
+  const regex = JavaScript.valueToCode(block, 'REGEX', JavaScript.ORDER_ATOMIC);
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+  const code = [`String(${text}).match(${regex})`, JavaScript.ORDER_ATOMIC];
   return code;
 };
 Blockly.Blocks['jg_member_is_user_in_server'] = {
@@ -2884,11 +2885,11 @@ Blockly.Blocks['jg_member_is_user_in_server'] = {
     });
   }
 };
-Blockly.JavaScript['jg_member_is_user_in_server'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_member_is_user_in_server'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
   // i know this is probably not the best way of doing it but i couldnt think of anything else that wouldnt break the original way this block was used
-  const code = [`await (() => { return new Promise((resolve, reject) => { ${server}.members.fetch(${member}.id).then(() => resolve(true)).catch(() => resolve(false)) } ) })()`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`await (() => { return new Promise((resolve, reject) => { ${server}.members.fetch(${member}.id).then(() => resolve(true)).catch(() => resolve(false)) } ) })()`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_members_roles_fetch_with_id_from_server_then_do'] = {
@@ -2930,11 +2931,11 @@ Blockly.Blocks['jg_members_roles_fetch_with_id_from_server_then_do'] = {
     });
   }
 };
-Blockly.JavaScript['jg_members_roles_fetch_with_id_from_server_then_do'] = function (block) {
+JavaScript['jg_members_roles_fetch_with_id_from_server_then_do'] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `${server}.${type}.fetch(String(${id})).then((fetched_${type}_from_server) => {
     ${statements}
 })
@@ -2962,9 +2963,9 @@ Blockly.Blocks['jg_members_roles_fetch_with_id_from_server_then_do_fetched_item'
     });
   }
 };
-Blockly.JavaScript['jg_members_roles_fetch_with_id_from_server_then_do_fetched_item'] = function (block) {
+JavaScript['jg_members_roles_fetch_with_id_from_server_then_do_fetched_item'] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const code = [`fetched_${type}_from_server`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`fetched_${type}_from_server`, JavaScript.ORDER_NONE];
   return code;
 };
 restrictToParent(['jg_members_roles_fetch_with_id_from_server_then_do'], 'jg_members_roles_fetch_with_id_from_server_then_do_fetched_item', 'Missing Restriction Text');
@@ -2988,8 +2989,8 @@ Blockly.Blocks['jg_s4d_other_run_code_inside_file'] = {
     });
   }
 };
-Blockly.JavaScript['jg_s4d_other_run_code_inside_file'] = function (block) {
-  const file = Blockly.JavaScript.valueToCode(block, 'FILE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_s4d_other_run_code_inside_file'] = function (block) {
+  const file = JavaScript.valueToCode(block, 'FILE', JavaScript.ORDER_ATOMIC);
   const code = `require((String(${file}).startsWith("./") ? String(${file}) : "./" + String(${file})))
 `;
   return code;
@@ -3020,9 +3021,9 @@ Blockly.Blocks['jg_roles_fetch_all_roles_in_server_then_do'] = {
     });
   }
 };
-Blockly.JavaScript['jg_roles_fetch_all_roles_in_server_then_do'] = function (block) {
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript['jg_roles_fetch_all_roles_in_server_then_do'] = function (block) {
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `${server}.roles.fetch().then(async (s4d_roles_from_server_auydewgfiyewfh) => {
         ${statements}
     })
@@ -3072,12 +3073,12 @@ Blockly.Blocks['jg_channels_wait_for_message_in_channel_to_meet_check_for_minute
     });
   }
 };
-Blockly.JavaScript['jg_channels_wait_for_message_in_channel_to_meet_check_for_minutes_then_if_no_messages_pass'] = function (block) {
-  const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
-  const filter = Blockly.JavaScript.valueToCode(block, 'CHECK', Blockly.JavaScript.ORDER_ATOMIC);
-  const time = Blockly.JavaScript.valueToCode(block, 'TIME', Blockly.JavaScript.ORDER_ATOMIC);
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
-  const statement2 = Blockly.JavaScript.statementToCode(block, 'STATEMENT2');
+JavaScript['jg_channels_wait_for_message_in_channel_to_meet_check_for_minutes_then_if_no_messages_pass'] = function (block) {
+  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
+  const filter = JavaScript.valueToCode(block, 'CHECK', JavaScript.ORDER_ATOMIC);
+  const time = JavaScript.valueToCode(block, 'TIME', JavaScript.ORDER_ATOMIC);
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
+  const statement2 = JavaScript.statementToCode(block, 'STATEMENT2');
   const code = `${channel}.awaitMessages({
     filter: (s4dmessage) => ${filter},
     time: (${time} * 60 * 1000),
@@ -3103,8 +3104,8 @@ Blockly.Blocks['jg_joins_subleaves_leaving_member'] = {
     });
   }
 };
-Blockly.JavaScript['jg_joins_subleaves_leaving_member'] = function () {
-  const code = [`s4d.leavingMember.user`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_joins_subleaves_leaving_member'] = function () {
+  const code = [`s4d.leavingMember.user`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_messages_value_dropdown_content_of_message'] = {
@@ -3142,10 +3143,10 @@ Blockly.Blocks['jg_messages_value_dropdown_content_of_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_messages_value_dropdown_content_of_message'] = function (block) {
+JavaScript['jg_messages_value_dropdown_content_of_message'] = function (block) {
   const property = block.getFieldValue('TYPE');
-  const message = Blockly.JavaScript.valueToCode(block, 'MSG', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${message}.${property}`, Blockly.JavaScript.ORDER_NONE];
+  const message = JavaScript.valueToCode(block, 'MSG', JavaScript.ORDER_ATOMIC);
+  const code = [`${message}.${property}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_edited_old_new_message'] = {
@@ -3169,9 +3170,9 @@ Blockly.Blocks['jg_edited_old_new_message'] = {
     });
   }
 };
-Blockly.JavaScript['jg_edited_old_new_message'] = function (block) {
+JavaScript['jg_edited_old_new_message'] = function (block) {
   const state = block.getFieldValue('TYPE');
-  const code = [`${state}Message`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${state}Message`, JavaScript.ORDER_NONE];
   return code;
 };
 // a
@@ -3194,9 +3195,9 @@ Blockly.Blocks['jg_monaco_members_member_is_timed_out'] = {
     });
   }
 };
-Blockly.JavaScript['jg_monaco_members_member_is_timed_out'] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'MEMBER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${member}.isCommunicationDisabled()`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_monaco_members_member_is_timed_out'] = function (block) {
+  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+  const code = [`${member}.isCommunicationDisabled()`, JavaScript.ORDER_NONE];
   return code;
 };
 
@@ -3220,8 +3221,8 @@ Blockly.Blocks['jg_s4d_other_throw_custom_error'] = {
     });
   }
 };
-Blockly.JavaScript['jg_s4d_other_throw_custom_error'] = function (block) {
-  const err = Blockly.JavaScript.valueToCode(block, 'ERROR', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_s4d_other_throw_custom_error'] = function (block) {
+  const err = JavaScript.valueToCode(block, 'ERROR', JavaScript.ORDER_ATOMIC);
   const code = `throw ${err ? err : null}
 `;
   return code;
@@ -3266,10 +3267,10 @@ Blockly.Blocks['jg_express_website_on_page_on_request_type_do'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_on_page_on_request_type_do'] = function (block) {
-  const page = Blockly.JavaScript.valueToCode(block, 'PAGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_express_website_on_page_on_request_type_do'] = function (block) {
+  const page = JavaScript.valueToCode(block, 'PAGE', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `S4D_WEBSITECREATION_EXPRESS_app.${type}(${page}, async function(req, res) {
   ${statements}
 })
@@ -3298,8 +3299,8 @@ Blockly.Blocks['jg_express_website_on_invalid_request_do'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_on_invalid_request_do'] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript['jg_express_website_on_invalid_request_do'] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `S4D_WEBSITECREATION_EXPRESS_app.use(function(req, res) {
   ${statements}
 })
@@ -3326,8 +3327,8 @@ Blockly.Blocks['jg_express_website_respond_with_text'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_respond_with_text'] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_express_website_respond_with_text'] = function (block) {
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
   const code = `res.send(String(${text}))
 `;
   return code;
@@ -3352,8 +3353,8 @@ Blockly.Blocks['jg_express_website_respond_with_file'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_respond_with_file'] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_express_website_respond_with_file'] = function (block) {
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
   const code = `res.sendFile(S4D_WEBSITECREATION_path.join(__dirname, String(${text})))
 `;
   return code;
@@ -3378,8 +3379,8 @@ Blockly.Blocks['jg_express_website_respond_with_object'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_respond_with_object'] = function (block) {
-  const object = Blockly.JavaScript.valueToCode(block, 'OBJECT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_express_website_respond_with_object'] = function (block) {
+  const object = JavaScript.valueToCode(block, 'OBJECT', JavaScript.ORDER_ATOMIC);
   const code = `res.json(${object})
 `;
   return code;
@@ -3404,8 +3405,8 @@ Blockly.Blocks['jg_express_website_set_response_status_code_to'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_set_response_status_code_to'] = function (block) {
-  const status = Blockly.JavaScript.valueToCode(block, 'STATUS', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_express_website_set_response_status_code_to'] = function (block) {
+  const status = JavaScript.valueToCode(block, 'STATUS', JavaScript.ORDER_ATOMIC);
   const code = `res.status(Number(${status}))
 `;
   return code;
@@ -3456,7 +3457,7 @@ Blockly.Blocks['jg_express_website_set_content_type_to'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_set_content_type_to'] = function (block) {
+JavaScript['jg_express_website_set_content_type_to'] = function (block) {
   const type = block.getFieldValue('TYPE');
   const code = `res.header("Content-Type", '${type}')
 `;
@@ -3489,10 +3490,10 @@ Blockly.Blocks['jg_express_website_query_item_parameter'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_query_item_parameter'] = function (block) {
+JavaScript['jg_express_website_query_item_parameter'] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const item = Blockly.JavaScript.valueToCode(block, 'ITEM', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`req.${type}[String(${item})]`, Blockly.JavaScript.ORDER_NONE];
+  const item = JavaScript.valueToCode(block, 'ITEM', JavaScript.ORDER_ATOMIC);
+  const code = [`req.${type}[String(${item})]`, JavaScript.ORDER_NONE];
   return code;
 };
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_query_item_parameter', 'This block must be in a "on page on request type do" block!');
@@ -3514,9 +3515,9 @@ Blockly.Blocks['jg_express_website_post_request_item'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_post_request_item'] = function (block) {
-  const item = Blockly.JavaScript.valueToCode(block, 'ITEM', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`req[String(${item})]`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['jg_express_website_post_request_item'] = function (block) {
+  const item = JavaScript.valueToCode(block, 'ITEM', JavaScript.ORDER_ATOMIC);
+  const code = [`req[String(${item})]`, JavaScript.ORDER_NONE];
   return code;
 };
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_post_request_item', 'This block must be in a "on page on request type do" block!');
@@ -3545,9 +3546,9 @@ Blockly.Blocks['jg_express_website_set_header_to'] = {
     });
   }
 };
-Blockly.JavaScript['jg_express_website_set_header_to'] = function (block) {
-  const header = Blockly.JavaScript.valueToCode(block, 'HEADER', Blockly.JavaScript.ORDER_ATOMIC);
-  const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_express_website_set_header_to'] = function (block) {
+  const header = JavaScript.valueToCode(block, 'HEADER', JavaScript.ORDER_ATOMIC);
+  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
   const code = `res.header(${header}, ${value})
 `;
   return code;
@@ -3634,7 +3635,7 @@ Blockly.Blocks['jg_testing_epic_menu_api_test_pooop_lolo_fard'] = {
   },
   isHiden: true
 };
-Blockly.JavaScript['jg_testing_epic_menu_api_test_pooop_lolo_fard'] = function () {
+JavaScript['jg_testing_epic_menu_api_test_pooop_lolo_fard'] = function () {
   return '';
 };
 
@@ -3699,7 +3700,7 @@ Blockly.Blocks['jg_tests_u98ewhg87fuinweo_googogjoooj_dynamic_mutator_time_mf'] 
   },
   isHiden: true
 };
-Blockly.JavaScript['jg_tests_u98ewhg87fuinweo_googogjoooj_dynamic_mutator_time_mf'] = function () {
+JavaScript['jg_tests_u98ewhg87fuinweo_googogjoooj_dynamic_mutator_time_mf'] = function () {
   return '';
 };
 
@@ -3729,7 +3730,7 @@ function ezBlock(name, json, jsCallback) {
       this.jsonInit(json);
     }
   };
-  Blockly.JavaScript[name] = jsCallback;
+  JavaScript[name] = jsCallback;
 }
 
 const JimpBlockColor = '#9951f0';
@@ -3763,9 +3764,9 @@ ezBlock(
     tooltip: `Creates a new "Jimp" type image using the provided buffer, url to an image, or file containing an image. When created, the first statements will run. If the image cannot be used or another error occurs, the second statements will run.`
   },
   (block) => {
-    const file = Blockly.JavaScript.valueToCode(block, 'FILE', Blockly.JavaScript.ORDER_ATOMIC);
-    const main_Statements = Blockly.JavaScript.statementToCode(block, 'THEN');
-    const errorStatements = Blockly.JavaScript.statementToCode(block, 'ERROR');
+    const file = JavaScript.valueToCode(block, 'FILE', JavaScript.ORDER_ATOMIC);
+    const main_Statements = JavaScript.statementToCode(block, 'THEN');
+    const errorStatements = JavaScript.statementToCode(block, 'ERROR');
     const code = `jimp.read(${file}).then(async S4D_APP_JIMP__JIMPIMAGE_CREATED_821926501243i => {
     ${main_Statements}
 }).catch(async err => {
@@ -3786,7 +3787,7 @@ ezBlock(
   },
   () => {
     const code = `S4D_APP_JIMP__JIMPIMAGE_CREATED_821926501243i`;
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, JavaScript.ORDER_NONE];
   }
 );
 restrictToParent(['jg_jimp_update2rd_createNewImage'], 'jg_jimp_update2rd_created_image', `This block can only be used in "create jimp image" blocks!`);
@@ -3814,8 +3815,8 @@ ezBlock(
     tooltip: `Saves the specified image as the file name.`
   },
   (block) => {
-    const image = Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC);
-    const name = Blockly.JavaScript.valueToCode(block, 'FILE', Blockly.JavaScript.ORDER_ATOMIC);
+    const image = JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC);
+    const name = JavaScript.valueToCode(block, 'FILE', JavaScript.ORDER_ATOMIC);
     const code = `await ${image}.writeAsync(String(${name}))
 `;
     return code;

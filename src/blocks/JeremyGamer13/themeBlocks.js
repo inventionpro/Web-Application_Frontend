@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 function hexToRgb(hex) {
   let arrBuff = new ArrayBuffer(4);
@@ -211,18 +212,18 @@ Blockly.Blocks['jg_s4d_themes_with_background_style_set_back_color_to_set_style_
   },
   isHiden: true
 };
-Blockly.JavaScript['jg_s4d_themes_top_name_block'] = function () {
+JavaScript['jg_s4d_themes_top_name_block'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_s4d_themes_set_navigation_bar_color_to'] = function () {
+JavaScript['jg_s4d_themes_set_navigation_bar_color_to'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_s4d_themes_set_connect_to_discord_warning_color_to'] = function () {
+JavaScript['jg_s4d_themes_set_connect_to_discord_warning_color_to'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_s4d_themes_set_navigation_bar_button_color_to'] = function () {
+JavaScript['jg_s4d_themes_set_navigation_bar_button_color_to'] = function () {
   return '';
 };
-Blockly.JavaScript['jg_s4d_themes_with_background_style_set_back_color_to_set_style_color_to'] = function () {
+JavaScript['jg_s4d_themes_with_background_style_set_back_color_to_set_style_color_to'] = function () {
   return '';
 };

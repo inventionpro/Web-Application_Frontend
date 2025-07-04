@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'frost_channel_types';
 
@@ -40,10 +41,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('type');
-  const channel = Blockly.JavaScript.valueToCode(block, 'Channel', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`(${channel}.type) == ${type}`, Blockly.JavaScript.ORDER_NONE];
+  const channel = JavaScript.valueToCode(block, 'Channel', JavaScript.ORDER_ATOMIC);
+  const code = [`(${channel}.type) == ${type}`, JavaScript.ORDER_NONE];
 
   return code;
 };

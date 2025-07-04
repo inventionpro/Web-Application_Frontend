@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockNames = ['jg_roblox_U2_login_with_security_cookie', 'jg_roblox_U2_currently_logged_in_users', 'jg_roblox_U2_wear_list_of_assets', 'jg_roblox_U2_set_avatar_type', 'jg_roblox_U2_get_users_avatar_asset_ids', 'jg_roblox_U2_users_avatar_asset_ids', 'jg_roblox_U2_remove_asset_id_from_avatar', 'jg_roblox_U2_accept_friend_request', 'jg_roblox_U2_block_user', 'jg_roblox_U2_unblock_user', 'jg_roblox_U2_decline_all_friend_requests', 'jg_roblox_U2_decline_friend_request'];
 Blockly.Blocks[blockNames[0]] = {
   init: function () {
@@ -26,9 +27,9 @@ Blockly.Blocks[blockNames[0]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[0]] = function (block) {
-  const cookie = Blockly.JavaScript.valueToCode(block, 'COOKIE', Blockly.JavaScript.ORDER_ATOMIC);
-  const then = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockNames[0]] = function (block) {
+  const cookie = JavaScript.valueToCode(block, 'COOKIE', JavaScript.ORDER_ATOMIC);
+  const then = JavaScript.statementToCode(block, 'THEN');
   const code = `S4D_APP_NOBLOX.setCookie(String(${cookie})).then(async function(roblox_currentUser) {
   ${then}
 })
@@ -68,9 +69,9 @@ Blockly.Blocks[blockNames[1]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[1]] = function (block) {
+JavaScript[blockNames[1]] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const code = [`roblox_user_info.${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`roblox_user_info.${type}`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks[blockNames[2]] = {
@@ -100,9 +101,9 @@ Blockly.Blocks[blockNames[2]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[2]] = function (block) {
-  const list = Blockly.JavaScript.valueToCode(block, 'LIST', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`S4D_APP_NOBLOX.setWearingAssets(${list})`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockNames[2]] = function (block) {
+  const list = JavaScript.valueToCode(block, 'LIST', JavaScript.ORDER_ATOMIC);
+  const code = [`S4D_APP_NOBLOX.setWearingAssets(${list})`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks[blockNames[3]] = {
@@ -135,9 +136,9 @@ Blockly.Blocks[blockNames[3]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[3]] = function (block) {
+JavaScript[blockNames[3]] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const code = [`S4D_APP_NOBLOX.setPlayerAvatarType(${type})`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`S4D_APP_NOBLOX.setPlayerAvatarType(${type})`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks[blockNames[4]] = {
@@ -166,9 +167,9 @@ Blockly.Blocks[blockNames[4]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[4]] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
-  const then = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockNames[4]] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
+  const then = JavaScript.statementToCode(block, 'THEN');
   const code = `S4D_APP_NOBLOX.currentlyWearing(Number(${user})).then(async (roblox_currentlywearing) => {
       ${then}
     })
@@ -187,8 +188,8 @@ Blockly.Blocks[blockNames[5]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[5]] = function () {
-  const code = [`roblox_currentlywearing.assetIds`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockNames[5]] = function () {
+  const code = [`roblox_currentlywearing.assetIds`, JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks[blockNames[6]] = {
@@ -218,8 +219,8 @@ Blockly.Blocks[blockNames[6]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[6]] = function (block) {
-  const asset = Blockly.JavaScript.valueToCode(block, 'ASSET', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockNames[6]] = function (block) {
+  const asset = JavaScript.valueToCode(block, 'ASSET', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.removeAssetId(Number(${asset}))`;
   return code;
 };
@@ -250,8 +251,8 @@ Blockly.Blocks[blockNames[7]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[7]] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockNames[7]] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.acceptFriendRequest(Number(${user}))`;
   return code;
 };
@@ -282,8 +283,8 @@ Blockly.Blocks[blockNames[8]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[8]] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockNames[8]] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.block(Number(${user}))`;
   return code;
 };
@@ -314,8 +315,8 @@ Blockly.Blocks[blockNames[9]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[9]] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockNames[9]] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.unblock(Number(${user}))`;
   return code;
 };
@@ -341,7 +342,7 @@ Blockly.Blocks[blockNames[10]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[10]] = function () {
+JavaScript[blockNames[10]] = function () {
   const code = `S4D_APP_NOBLOX.declineAllFriendRequests()`;
   return code;
 };
@@ -372,8 +373,8 @@ Blockly.Blocks[blockNames[11]] = {
     });
   }
 };
-Blockly.JavaScript[blockNames[11]] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockNames[11]] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.declineFriendRequest(Number(${user}))`;
   return code;
 };
@@ -404,8 +405,8 @@ Blockly.Blocks['jg_roblox_U2_follow_user_id'] = {
     });
   }
 };
-Blockly.JavaScript['jg_roblox_U2_follow_user_id'] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_roblox_U2_follow_user_id'] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.follow(Number(${user}))`;
   return code;
 };
@@ -436,8 +437,8 @@ Blockly.Blocks['jg_roblox_U2_unfollow_user_id'] = {
     });
   }
 };
-Blockly.JavaScript['jg_roblox_U2_unfollow_user_id'] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_roblox_U2_unfollow_user_id'] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.unfollow(Number(${user}))`;
   return code;
 };
@@ -478,10 +479,10 @@ Blockly.Blocks['jg_roblox_U2_send_message_to_user_id'] = {
     });
   }
 };
-Blockly.JavaScript['jg_roblox_U2_send_message_to_user_id'] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
-  const subject = Blockly.JavaScript.valueToCode(block, 'SUBJECT', Blockly.JavaScript.ORDER_ATOMIC);
-  const body = Blockly.JavaScript.valueToCode(block, 'BODY', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_roblox_U2_send_message_to_user_id'] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
+  const subject = JavaScript.valueToCode(block, 'SUBJECT', JavaScript.ORDER_ATOMIC);
+  const body = JavaScript.valueToCode(block, 'BODY', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.message(Number(${user}), String(${subject}), String(${body}))`;
   return code;
 };
@@ -513,8 +514,8 @@ Blockly.Blocks['jg_roblox_U2_send_friend_request'] = {
     });
   }
 };
-Blockly.JavaScript['jg_roblox_U2_send_friend_request'] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_roblox_U2_send_friend_request'] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
   const code = `S4D_APP_NOBLOX.sendFriendRequest(Number(${user}))`;
   return code;
 };

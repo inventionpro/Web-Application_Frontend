@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'banned_event';
 
@@ -25,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['banned_event'] = function (block) {
-  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+JavaScript['banned_event'] = function (block) {
+  var statements_code = JavaScript.statementToCode(block, 'code');
 
   var code = `s4d.client.on('guildBanAdd', async (ban) => {\n ${statements_code} \n });\n`;
   return code;

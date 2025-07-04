@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_empty';
 
@@ -29,8 +30,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const number = Blockly.JavaScript.valueToCode(block, 'number', Blockly.JavaScript.ORDER_ATOMIC);
-  const fill = Blockly.JavaScript.valueToCode(block, 'fill', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`Buffer.alloc(Number(${number}), ${fill})`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript[blockName] = function (block) {
+  const number = JavaScript.valueToCode(block, 'number', JavaScript.ORDER_ATOMIC);
+  const fill = JavaScript.valueToCode(block, 'fill', JavaScript.ORDER_ATOMIC);
+  return [`Buffer.alloc(Number(${number}), ${fill})`, JavaScript.ORDER_ATOMIC];
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_roblox_get_user_thumbnail';
 
@@ -40,10 +41,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const then = Blockly.JavaScript.statementToCode(block, 'THEN');
+  const then = JavaScript.statementToCode(block, 'THEN');
   // 720, "png", false, "Headshot"
   const code = `S4D_APP_NOBLOX.getPlayerThumbnail(${user}, ${type}).then(async (roblox_user_thumbnail) => {
   ${then}

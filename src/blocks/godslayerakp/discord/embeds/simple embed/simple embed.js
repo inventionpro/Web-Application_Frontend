@@ -7,7 +7,8 @@
 
 // current goals achieved: 1, 2, 3(?)!!!!
 
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 'gsa_simple_embed';
 const menuName = blockName + '_checkboxMutatorMenu';
@@ -110,7 +111,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   console.log(this.inputs_);
   // code should be the first couple lines of your code before the inputs
   let message = '';
@@ -126,43 +127,43 @@ Blockly.JavaScript[blockName] = function (block) {
   let footer = '';
   // check if the inputs exist before adding them to the exported code
   if (this.inputs_[1]) {
-    color = `color: String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[1], Blockly.JavaScript.ORDER_NONE)}), \n`;
+    color = `color: String(${JavaScript.valueToCode(block, BORDER_FIELDS[1], JavaScript.ORDER_NONE)}), \n`;
   }
   if (this.inputs_[2]) {
-    title = `title: String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[2], Blockly.JavaScript.ORDER_NONE)}), \n`;
+    title = `title: String(${JavaScript.valueToCode(block, BORDER_FIELDS[2], JavaScript.ORDER_NONE)}), \n`;
   }
   if (this.inputs_[3]) {
-    url = `url: String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[3], Blockly.JavaScript.ORDER_NONE)}), \n`;
+    url = `url: String(${JavaScript.valueToCode(block, BORDER_FIELDS[3], JavaScript.ORDER_NONE)}), \n`;
   }
   if (this.inputs_[4]) {
-    author = Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[4], Blockly.JavaScript.ORDER_ATOMIC);
+    author = JavaScript.valueToCode(block, BORDER_FIELDS[4], JavaScript.ORDER_ATOMIC);
   }
   if (this.inputs_[5]) {
-    description = `description: String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[5], Blockly.JavaScript.ORDER_NONE)}), \n`;
+    description = `description: String(${JavaScript.valueToCode(block, BORDER_FIELDS[5], JavaScript.ORDER_NONE)}), \n`;
   }
   if (this.inputs_[6]) {
     thumbnail = `thumbnail: {
-            url: String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[6], Blockly.JavaScript.ORDER_NONE)})
+            url: String(${JavaScript.valueToCode(block, BORDER_FIELDS[6], JavaScript.ORDER_NONE)})
         }, \n`;
   }
   if (this.inputs_[7]) {
-    fields = Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[7], Blockly.JavaScript.ORDER_ATOMIC);
+    fields = JavaScript.valueToCode(block, BORDER_FIELDS[7], JavaScript.ORDER_ATOMIC);
   }
   if (this.inputs_[8]) {
     image = `image: {
-            url: String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[8], Blockly.JavaScript.ORDER_NONE)})
+            url: String(${JavaScript.valueToCode(block, BORDER_FIELDS[8], JavaScript.ORDER_NONE)})
         }, \n`;
   }
   if (this.inputs_[9]) {
-    timestamp = `timestamp: new Date(String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[9], Blockly.JavaScript.ORDER_NONE)})),`;
+    timestamp = `timestamp: new Date(String(${JavaScript.valueToCode(block, BORDER_FIELDS[9], JavaScript.ORDER_NONE)})),`;
   }
   if (this.inputs_[10]) {
-    footer = Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[10], Blockly.JavaScript.ORDER_ATOMIC);
+    footer = JavaScript.valueToCode(block, BORDER_FIELDS[10], JavaScript.ORDER_ATOMIC);
   }
   if (this.inputs_[0]) {
-    message = `content: String(${Blockly.JavaScript.valueToCode(block, BORDER_FIELDS[0], Blockly.JavaScript.ORDER_NONE)}), `;
+    message = `content: String(${JavaScript.valueToCode(block, BORDER_FIELDS[0], JavaScript.ORDER_NONE)}), `;
   }
   const code = `${message}embeds: [{
 ${color}${title}${url}${author}${description}${thumbnail}${fields}${image}${timestamp}${footer}}]`;
-  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  return [code, JavaScript.ORDER_ATOMIC];
 };

@@ -1,6 +1,5 @@
-// result_bedrock
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_bedrock_motd';
 
@@ -29,8 +28,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const code = [`result_bedrock.motd.${type}[0]`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`result_bedrock.motd.${type}[0]`, JavaScript.ORDER_NONE];
   return code;
 };

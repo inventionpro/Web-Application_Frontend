@@ -6,7 +6,8 @@ import './tests';
 import './functions';
 
 /* folderless blocks */
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 Blockly.Blocks['gsa_make_db_with_path_x'] = {
   init: function () {
@@ -28,9 +29,9 @@ Blockly.Blocks['gsa_make_db_with_path_x'] = {
   }
 };
 
-Blockly.JavaScript['gsa_make_db_with_path_x'] = function (block) {
-  const path = Blockly.JavaScript.valueToCode(block, 'path', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`new Database(String(${path + '.json'}))`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript['gsa_make_db_with_path_x'] = function (block) {
+  const path = JavaScript.valueToCode(block, 'path', JavaScript.ORDER_ATOMIC);
+  return [`new Database(String(${path + '.json'}))`, JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Blocks['gsa_bypass_type'] = {
@@ -52,8 +53,8 @@ Blockly.Blocks['gsa_bypass_type'] = {
   }
 };
 
-Blockly.JavaScript['gsa_bypass_type'] = function (block) {
-  return [Blockly.JavaScript.valueToCode(block, 'path', Blockly.JavaScript.ORDER_ATOMIC), Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript['gsa_bypass_type'] = function (block) {
+  return [JavaScript.valueToCode(block, 'path', JavaScript.ORDER_ATOMIC), JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Blocks['gsa_format_time'] = {
@@ -81,8 +82,8 @@ Blockly.Blocks['gsa_format_time'] = {
   }
 };
 
-Blockly.JavaScript['gsa_format_time'] = function (block) {
-  return [`String(moment(${Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC)}).format(${Blockly.JavaScript.valueToCode(block, 'format', Blockly.JavaScript.ORDER_ATOMIC)}))`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript['gsa_format_time'] = function (block) {
+  return [`String(moment(${JavaScript.valueToCode(block, 'time', JavaScript.ORDER_ATOMIC)}).format(${JavaScript.valueToCode(block, 'format', JavaScript.ORDER_ATOMIC)}))`, JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Blocks['gsa_async'] = {
@@ -108,8 +109,8 @@ Blockly.Blocks['gsa_async'] = {
   }
 };
 
-Blockly.JavaScript['gsa_async'] = function (block) {
-  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+JavaScript['gsa_async'] = function (block) {
+  var statements_code = JavaScript.statementToCode(block, 'code');
   var code = `
 (async () => {
   ${statements_code}
@@ -190,12 +191,12 @@ Blockly.Blocks['gsa_create_new_jimp_image'] = {
   }
 };
 
-Blockly.JavaScript['gsa_create_new_jimp_image'] = function (block) {
-  var sizex = Blockly.JavaScript.valueToCode(block, 'sx', Blockly.JavaScript.ORDER_ATOMIC);
-  var sizey = Blockly.JavaScript.valueToCode(block, 'sy', Blockly.JavaScript.ORDER_ATOMIC);
-  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+JavaScript['gsa_create_new_jimp_image'] = function (block) {
+  var sizex = JavaScript.valueToCode(block, 'sx', JavaScript.ORDER_ATOMIC);
+  var sizey = JavaScript.valueToCode(block, 'sy', JavaScript.ORDER_ATOMIC);
+  var statements_code = JavaScript.statementToCode(block, 'code');
   var code = `
-new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
+new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${JavaScript.valueToCode(block, 'color', JavaScript.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
   ${statements_code}
 })
 `;
@@ -221,7 +222,7 @@ Blockly.Blocks['gsa_typeof'] = {
   }
 };
 
-Blockly.JavaScript['gsa_typeof'] = function (block) {
-  const thing = Blockly.JavaScript.valueToCode(block, 'thing', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`typeof ${thing}`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript['gsa_typeof'] = function (block) {
+  const thing = JavaScript.valueToCode(block, 'thing', JavaScript.ORDER_ATOMIC);
+  return [`typeof ${thing}`, JavaScript.ORDER_ATOMIC];
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'fz_attachment_info';
 
@@ -34,9 +35,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const attach = Blockly.JavaScript.valueToCode(block, 'ATTACH', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const attach = JavaScript.valueToCode(block, 'ATTACH', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${attach}.${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${attach}.${type}`, JavaScript.ORDER_NONE];
   return code;
 };

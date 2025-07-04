@@ -1,5 +1,5 @@
-// for the love of god vercel DO SOMETHING
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_new_object_item_creator_empty_search_moment_searchMoment';
 const blockData = {
@@ -29,8 +29,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const message = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC);
   const color = block.getFieldValue('name');
   return `"${color}": ${message},`;
 };

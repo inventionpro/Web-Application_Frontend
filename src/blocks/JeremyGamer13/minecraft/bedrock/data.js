@@ -1,6 +1,5 @@
-// result_bedrock
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_bedrock_data';
 
@@ -19,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = [`result_bedrock`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`result_bedrock`, JavaScript.ORDER_NONE];
   return code;
 };

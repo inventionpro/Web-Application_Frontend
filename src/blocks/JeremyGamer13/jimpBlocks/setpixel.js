@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_setpixel';
@@ -38,10 +39,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
-  const xpos = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
-  const ypos = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const color = JavaScript.valueToCode(block, 'color', JavaScript.ORDER_ATOMIC);
+  const xpos = JavaScript.valueToCode(block, 'x', JavaScript.ORDER_ATOMIC);
+  const ypos = JavaScript.valueToCode(block, 'y', JavaScript.ORDER_ATOMIC);
   return `await image.setPixelColor(jimp.cssColorToHex(${color}), ${xpos}, ${ypos})
 `;
 };

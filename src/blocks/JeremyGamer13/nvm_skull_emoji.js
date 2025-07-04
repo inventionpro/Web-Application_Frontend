@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 Blockly.Blocks['jg_api_express_main'] = {
   init: function () {
     this.jsonInit({
@@ -23,9 +24,9 @@ Blockly.Blocks['jg_api_express_main'] = {
   }
 };
 
-Blockly.JavaScript['jg_api_express_main'] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
-  const port = Blockly.JavaScript.valueToCode(block, 'PORT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_api_express_main'] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
+  const port = JavaScript.valueToCode(block, 'PORT', JavaScript.ORDER_ATOMIC);
   const code = `let S4D_APP_EXPRESS = require('express')
 let S4D_APP_EXPRESS_bodyParser = require('body-parser');
 let S4D_APP_EXPRESS_cors = require('cors');

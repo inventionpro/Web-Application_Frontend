@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'jg_example_block';
 const blockData = {
   message0: 'example block %1',
@@ -20,8 +21,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const member = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
   const code = `console.log(${member})
 `;
   return code;

@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'lime_guild_sheduled_events_create';
 
@@ -25,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+JavaScript[blockName] = function (block) {
+  var statements_code = JavaScript.statementToCode(block, 'code');
 
   var code = `s4d.client.on('guildScheduledEventCreate', async (scheduledEvent) => {\n ${statements_code} \n });\n`;
   return code;

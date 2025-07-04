@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'frost_buttonline';
 
@@ -29,8 +30,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const code = Blockly.JavaScript.statementToCode(block, 'code');
+JavaScript[blockName] = function (block) {
+  const code = JavaScript.statementToCode(block, 'code');
   return `),new MessageActionRow()
                         .addComponents(${code}`;
 };

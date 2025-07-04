@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'gsa_set_simple_embed_footer';
 const blockData = {
   message0: 'set footer text %1 icon %2',
@@ -27,12 +28,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
-  const icon_url = Blockly.JavaScript.valueToCode(block, 'icon_url', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const name = JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC);
+  const icon_url = JavaScript.valueToCode(block, 'icon_url', JavaScript.ORDER_ATOMIC);
   const code = `footer: {
 	text: String(${name}),
 	icon_url: String(${icon_url}),
 }, \n`;
-  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  return [code, JavaScript.ORDER_ATOMIC];
 };

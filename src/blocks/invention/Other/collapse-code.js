@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'inv_collapse_code';
 
@@ -26,6 +27,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  return Blockly.JavaScript.statementToCode(block, 'NAME');
+JavaScript[blockName] = function (block) {
+  return JavaScript.statementToCode(block, 'NAME');
 };

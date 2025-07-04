@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_file_extension';
 
@@ -23,10 +24,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 //String(('input'.slice((('input'.lastIndexOf('.') + 1 + 1) - 1), 'input'.length).toLowerCase()))
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   // stuff    return `fs.readFileSync(` + fileName + `, 'utf8')`;
-  const fileName = Blockly.JavaScript.valueToCode(block, 'fileName', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${fileName}.substring(${fileName}.lastIndexOf('.'))`, Blockly.JavaScript.ORDER_NONE];
+  const fileName = JavaScript.valueToCode(block, 'fileName', JavaScript.ORDER_ATOMIC);
+  const code = [`${fileName}.substring(${fileName}.lastIndexOf('.'))`, JavaScript.ORDER_NONE];
   return code;
 };
 //i have no idea if this block actually outputs the correct thing, too late though :troll:

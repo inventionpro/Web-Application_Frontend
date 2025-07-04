@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'inv_backup_list_get';
 
@@ -26,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+JavaScript[blockName] = function (block) {
+  var statements_code = JavaScript.statementToCode(block, 'code');
   // _S4D_backups expected Output [ "BC5qo", "Jdo91", ...]
   var code = `backup.list().then((_S4D_backups) => {
     ${statements_code}

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 Blockly.Blocks['jg_objects_create_new'] = {
   init: function () {
     this.jsonInit({
@@ -11,9 +12,9 @@ Blockly.Blocks['jg_objects_create_new'] = {
   }
 };
 
-Blockly.JavaScript['jg_objects_create_new'] = function () {
+JavaScript['jg_objects_create_new'] = function () {
   const code = `new Object()`;
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };
 Blockly.Blocks['jg_objects_set_key_to_value_in_object'] = {
   init: function () {
@@ -45,10 +46,10 @@ Blockly.Blocks['jg_objects_set_key_to_value_in_object'] = {
     });
   }
 };
-Blockly.JavaScript['jg_objects_set_key_to_value_in_object'] = function (block) {
-  const key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
-  const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
-  const object = Blockly.JavaScript.valueToCode(block, 'OBJECT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_objects_set_key_to_value_in_object'] = function (block) {
+  const key = JavaScript.valueToCode(block, 'KEY', JavaScript.ORDER_ATOMIC);
+  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
+  const object = JavaScript.valueToCode(block, 'OBJECT', JavaScript.ORDER_ATOMIC);
   const code = `${object}[String(${key})] = ${value}
     `;
   return code;
@@ -71,8 +72,8 @@ Blockly.Blocks['jg_objects_get_objects_key_names_in_list'] = {
   }
 };
 
-Blockly.JavaScript['jg_objects_get_objects_key_names_in_list'] = function (block) {
-  const object = Blockly.JavaScript.valueToCode(block, 'OBJECT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_objects_get_objects_key_names_in_list'] = function (block) {
+  const object = JavaScript.valueToCode(block, 'OBJECT', JavaScript.ORDER_ATOMIC);
   const code = `Object.getOwnPropertyNames(${object})`;
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

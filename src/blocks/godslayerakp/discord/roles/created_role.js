@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 Blockly.Blocks['gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role'] = {
   init: function () {
@@ -10,8 +11,8 @@ Blockly.Blocks['gsa_jg_create_role_with_name_in_server_with_color_then_do_create
     });
   }
 };
-Blockly.JavaScript['gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role'] = function () {
-  const code = [`s4d_create_role_then_role`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role'] = function () {
+  const code = [`s4d_create_role_then_role`, JavaScript.ORDER_NONE];
   return code;
 };
 registerRestrictions('gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role', [

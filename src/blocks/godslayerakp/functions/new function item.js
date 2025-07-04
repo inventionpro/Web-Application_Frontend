@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_function_item_creator_empty_search_moment_searchMoment';
 
@@ -108,15 +109,15 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.statementToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-  const return_ = block.return ? Blockly.JavaScript.statementToCode(block, 'return', Blockly.JavaScript.ORDER_ATOMIC) : '';
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.statementToCode(block, 'value', JavaScript.ORDER_ATOMIC);
+  const return_ = block.return ? JavaScript.statementToCode(block, 'return', JavaScript.ORDER_ATOMIC) : '';
   const async_ = block.async ? 'async ' : '';
   return [
     `${async_}(${block.inputs.join(', ')}) => {
   ${value}
   ${return_}
 }`,
-    Blockly.JavaScript.ORDER_ATOMIC
+    JavaScript.ORDER_ATOMIC
   ];
 };

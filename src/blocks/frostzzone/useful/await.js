@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 Blockly.Blocks['frost_await'] = {
   init: function () {
@@ -19,8 +20,8 @@ Blockly.Blocks['frost_await'] = {
   }
 };
 
-Blockly.JavaScript['frost_await'] = function (block) {
-  let input_block = Blockly.JavaScript.valueToCode(block, 'input_block', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['frost_await'] = function (block) {
+  let input_block = JavaScript.valueToCode(block, 'input_block', JavaScript.ORDER_ATOMIC);
   let code = `await ${input_block}`;
-  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  return [code, JavaScript.ORDER_ATOMIC];
 };

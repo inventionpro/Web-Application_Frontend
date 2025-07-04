@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_file_contents';
 
@@ -23,9 +24,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   // stuff    return `fs.readFileSync(` + fileName + `, 'utf8')`;
-  const fileName = Blockly.JavaScript.valueToCode(block, 'fileName', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`fs.readFileSync(` + fileName + `, 'utf8')`, Blockly.JavaScript.ORDER_NONE];
+  const fileName = JavaScript.valueToCode(block, 'fileName', JavaScript.ORDER_ATOMIC);
+  const code = [`fs.readFileSync(` + fileName + `, 'utf8')`, JavaScript.ORDER_NONE];
   return code;
 };

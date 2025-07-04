@@ -1,6 +1,5 @@
-// roblox_user_info
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_roblox_user_id';
 
@@ -19,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = [`gained_roblox_user_id`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`gained_roblox_user_id`, JavaScript.ORDER_NONE];
   return code;
 };

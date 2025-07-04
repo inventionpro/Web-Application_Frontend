@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_bedrock_get';
 
@@ -36,10 +37,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const ip = Blockly.JavaScript.valueToCode(block, 'IP', Blockly.JavaScript.ORDER_ATOMIC);
-  const port = Blockly.JavaScript.valueToCode(block, 'PORT', Blockly.JavaScript.ORDER_ATOMIC);
-  const then = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const ip = JavaScript.valueToCode(block, 'IP', JavaScript.ORDER_ATOMIC);
+  const port = JavaScript.valueToCode(block, 'PORT', JavaScript.ORDER_ATOMIC);
+  const then = JavaScript.statementToCode(block, 'THEN');
   const code = `S4D_APP_MC_BEDROCK_GET.statusBedrock({ ip: String(${ip}), port: Number(${port}) })
     .then(async (result_bedrock) => {
         ${then}

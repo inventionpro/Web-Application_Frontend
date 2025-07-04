@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'create_event';
 
@@ -29,10 +30,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   var code;
-  let value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  let statements_then = Blockly.JavaScript.statementToCode(block, 'THEN');
+  let value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  let statements_then = JavaScript.statementToCode(block, 'THEN');
   code = `eventEmitter.on(${value_name}, async => {
     ${statements_then}
   });

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'inv_chart_to_url';
 
@@ -16,9 +17,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['inv_chart_to_url'] = function () {
+JavaScript['inv_chart_to_url'] = function () {
   // this is giving me pain
   var code = `chart.toURL()`;
 
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

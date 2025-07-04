@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_tests_deleteInput';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   isHiden: true
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const A = Blockly.JavaScript.valueToCode(block, 'A', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const A = JavaScript.valueToCode(block, 'A', JavaScript.ORDER_ATOMIC);
   const code = `${A}`;
   return code;
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'express_var';
 
@@ -47,11 +48,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE') == 'set' ? '' : block.getFieldValue('TYPE');
-  const vab = Blockly.JavaScript.valueToCode(block, 'VAR', Blockly.JavaScript.ORDER_ATOMIC);
+  const vab = JavaScript.valueToCode(block, 'VAR', JavaScript.ORDER_ATOMIC);
   const vab2 = vab.substring(1, vab.length - 1);
-  const content = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_ATOMIC);
+  const content = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC);
   const colon = block.getFieldValue('COLON');
   const code = `${type} ${vab2} = ${content}${colon}
 `;

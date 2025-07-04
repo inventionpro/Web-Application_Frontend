@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'jg';
 const blockName = yourName + '_' + 'other_try_catch_finally';
@@ -109,14 +110,14 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   // code should be the first couple lines of your code before the inputs
   let code = `try {`;
   code = code.split('\n');
-  const TRY = Blockly.JavaScript.statementToCode(block, 'TRY');
+  const TRY = JavaScript.statementToCode(block, 'TRY');
   code.push(TRY);
-  const IFERROR = Blockly.JavaScript.statementToCode(block, 'IFERROR');
-  const FINALLY = Blockly.JavaScript.statementToCode(block, 'FINALLY');
+  const IFERROR = JavaScript.statementToCode(block, 'IFERROR');
+  const FINALLY = JavaScript.statementToCode(block, 'FINALLY');
   // check if the inputs exist before adding them to the exported code
   if (IFERROR) {
     code.push(`} catch (err) {`);

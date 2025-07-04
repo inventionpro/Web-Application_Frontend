@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'get_member_invites';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`await s4d.Inviter.getInvites(${user})`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
+  const code = [`await s4d.Inviter.getInvites(${user})`, JavaScript.ORDER_NONE];
   return code;
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'jg';
 const blockName = yourName + '_' + 'messages_new_message_payload';
@@ -101,13 +102,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   // code should be the first couple lines of your code before the inputs
-  const TARGET = Blockly.JavaScript.valueToCode(block, 'TARGET', Blockly.JavaScript.ORDER_NONE);
+  const TARGET = JavaScript.valueToCode(block, 'TARGET', JavaScript.ORDER_NONE);
   let code = [`new Discord.MessagePayload(${TARGET}, {`];
-  const CONTENT = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_NONE);
-  const TTS = Blockly.JavaScript.valueToCode(block, 'TTS', Blockly.JavaScript.ORDER_NONE);
-  const REPLYINGTOMESSAGE = Blockly.JavaScript.valueToCode(block, 'REPLYING_TO_MESSAGE', Blockly.JavaScript.ORDER_NONE);
+  const CONTENT = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_NONE);
+  const TTS = JavaScript.valueToCode(block, 'TTS', JavaScript.ORDER_NONE);
+  const REPLYINGTOMESSAGE = JavaScript.valueToCode(block, 'REPLYING_TO_MESSAGE', JavaScript.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (CONTENT) {
     code.push(`content: ${CONTENT},`);
@@ -120,5 +121,5 @@ Blockly.JavaScript[blockName] = function (block) {
   }
   // the last line of code here, do another code.push(``) if you need to put more code
   code.push(`})`);
-  return [code.join('\n'), Blockly.JavaScript.ORDER_ATOMIC];
+  return [code.join('\n'), JavaScript.ORDER_ATOMIC];
 };

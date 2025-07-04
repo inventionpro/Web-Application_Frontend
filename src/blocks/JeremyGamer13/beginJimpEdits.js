@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_beginJimp';
 
@@ -31,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const JimpURL = Blockly.JavaScript.valueToCode(block, 'JimpURL', Blockly.JavaScript.ORDER_ATOMIC);
-  const JimpCode = Blockly.JavaScript.statementToCode(block, 'beginJimp');
+JavaScript[blockName] = function (block) {
+  const JimpURL = JavaScript.valueToCode(block, 'JimpURL', JavaScript.ORDER_ATOMIC);
+  const JimpCode = JavaScript.statementToCode(block, 'beginJimp');
   const code =
     `var JimpImageBlock = ` +
     JimpURL +

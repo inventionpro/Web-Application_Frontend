@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_crop';
@@ -44,11 +45,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const xpos = Blockly.JavaScript.valueToCode(block, 'X', Blockly.JavaScript.ORDER_ATOMIC);
-  const ypos = Blockly.JavaScript.valueToCode(block, 'Y', Blockly.JavaScript.ORDER_ATOMIC);
-  const wide = Blockly.JavaScript.valueToCode(block, 'Width', Blockly.JavaScript.ORDER_ATOMIC);
-  const high = Blockly.JavaScript.valueToCode(block, 'Height', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const xpos = JavaScript.valueToCode(block, 'X', JavaScript.ORDER_ATOMIC);
+  const ypos = JavaScript.valueToCode(block, 'Y', JavaScript.ORDER_ATOMIC);
+  const wide = JavaScript.valueToCode(block, 'Width', JavaScript.ORDER_ATOMIC);
+  const high = JavaScript.valueToCode(block, 'Height', JavaScript.ORDER_ATOMIC);
   return `await image.crop( Number(` + xpos + `), Number(` + ypos + `), Number(` + wide + `), Number(` + high + `))\n`;
 };
 

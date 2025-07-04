@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_jpgqual';
@@ -25,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const quality = Blockly.JavaScript.valueToCode(block, 'quality', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const quality = JavaScript.valueToCode(block, 'quality', JavaScript.ORDER_ATOMIC);
   return `await image.quality(Number(` + quality + `))\n`;
 };
 

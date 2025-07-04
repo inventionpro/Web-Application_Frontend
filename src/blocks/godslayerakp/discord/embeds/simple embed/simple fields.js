@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../../restrictions';
 const blockName = 'gsa_simple_field';
 const blockData = {
@@ -34,10 +35,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC);
-  const description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
-  const inline = Blockly.JavaScript.valueToCode(block, 'inline', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const title = JavaScript.valueToCode(block, 'title', JavaScript.ORDER_ATOMIC);
+  const description = JavaScript.valueToCode(block, 'description', JavaScript.ORDER_ATOMIC);
+  const inline = JavaScript.valueToCode(block, 'inline', JavaScript.ORDER_ATOMIC);
   return `{
 	name: ${title},
 	value: ${description},

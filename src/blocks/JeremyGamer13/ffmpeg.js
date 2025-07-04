@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 Blockly.Blocks['jg_files_ffmpeg_video_get_video_with_file_name_then'] = {
   init: function () {
     this.jsonInit({
@@ -24,9 +25,9 @@ Blockly.Blocks['jg_files_ffmpeg_video_get_video_with_file_name_then'] = {
     });
   }
 };
-Blockly.JavaScript['jg_files_ffmpeg_video_get_video_with_file_name_then'] = function (block) {
-  const file = Blockly.JavaScript.valueToCode(block, 'FILE', Blockly.JavaScript.ORDER_ATOMIC);
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript['jg_files_ffmpeg_video_get_video_with_file_name_then'] = function (block) {
+  const file = JavaScript.valueToCode(block, 'FILE', JavaScript.ORDER_ATOMIC);
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `let S4D_GEN_FFMPEG_VIDEO_1092 = new S4D_APP_FFMPEG(String(${file}));
 S4D_GEN_FFMPEG_VIDEO_1092.then(function (ffmpeg_video) {
 	${statements}

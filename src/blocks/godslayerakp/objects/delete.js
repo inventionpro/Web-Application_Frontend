@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_delete_object_search_moment_searchMoment';
 const blockData = {
@@ -30,8 +31,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const v = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-  const o = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const v = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC);
+  const o = JavaScript.valueToCode(block, 'object', JavaScript.ORDER_ATOMIC);
   return `delete ${o}[String(${v})] \n`;
 };

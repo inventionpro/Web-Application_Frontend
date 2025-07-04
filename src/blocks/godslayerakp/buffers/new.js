@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_from_string';
 
@@ -38,8 +39,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const string = Blockly.JavaScript.valueToCode(block, 'string', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const string = JavaScript.valueToCode(block, 'string', JavaScript.ORDER_ATOMIC);
   const encode = block.getFieldValue('encode');
-  return [`Buffer.from(String(${string}), '${encode}')`, Blockly.JavaScript.ORDER_ATOMIC];
+  return [`Buffer.from(String(${string}), '${encode}')`, JavaScript.ORDER_ATOMIC];
 };

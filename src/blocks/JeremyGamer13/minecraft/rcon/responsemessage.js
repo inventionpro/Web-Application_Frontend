@@ -1,8 +1,5 @@
-// jg_minecraft_rcon_when_command_response
-// S4D_APP_MC_RCON
-// response
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_rcon_command_response';
 
@@ -21,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = [`response.message`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`response.message`, JavaScript.ORDER_NONE];
   return code;
 };

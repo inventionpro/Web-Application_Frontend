@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'blank_code_float';
 
@@ -22,7 +23,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   var text = block.getFieldValue('TEXT');
   if (text == null || text == undefined) return ``;
   var code = `${text}\n`;

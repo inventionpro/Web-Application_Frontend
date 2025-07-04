@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'push_to_list';
 
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const list = Blockly.JavaScript.valueToCode(block, 'LIST', Blockly.JavaScript.ORDER_ATOMIC);
-  const push = Blockly.JavaScript.valueToCode(block, 'PUSH', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const list = JavaScript.valueToCode(block, 'LIST', JavaScript.ORDER_ATOMIC);
+  const push = JavaScript.valueToCode(block, 'PUSH', JavaScript.ORDER_ATOMIC);
   const code = `${list}.push(${push});\n`;
   return code;
 };

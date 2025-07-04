@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'frost_slash_register';
 
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  var gild = Blockly.JavaScript.valueToCode(block, 'GUILD', Blockly.JavaScript.ORDER_ATOMIC);
-  var options = Blockly.JavaScript.statementToCode(block, 'OPTIONS');
+JavaScript[blockName] = function (block) {
+  var gild = JavaScript.valueToCode(block, 'GUILD', JavaScript.ORDER_ATOMIC);
+  var options = JavaScript.statementToCode(block, 'OPTIONS');
   var guild;
   if (gild == undefined || gild == null || !gild.length) {
     guild = ``;

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 'frost_current';
@@ -44,45 +45,45 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const dataType = block.getFieldValue('DATA_TYPE');
   if (dataType === 'MILLISECOND') {
-    return ['(new Date().getMilliseconds())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getMilliseconds())', JavaScript.ORDER_NONE];
   } else if (dataType === 'SECOND') {
-    return ['(new Date().getSeconds())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getSeconds())', JavaScript.ORDER_NONE];
   } else if (dataType === 'MINUTE') {
-    return ['(new Date().getMinutes())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getMinutes())', JavaScript.ORDER_NONE];
   } else if (dataType === 'HOUR') {
-    return ['(new Date().getHours())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getHours())', JavaScript.ORDER_NONE];
   } else if (dataType === 'DATE') {
-    return ['(new Date().getDate())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getDate())', JavaScript.ORDER_NONE];
   } else if (dataType === 'DAY_OF_WEEK') {
-    return ['(new Date().getDay())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getDay())', JavaScript.ORDER_NONE];
   } else if (dataType === 'MONTH') {
-    return ['(new Date().getMonth())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getMonth())', JavaScript.ORDER_NONE];
   } else if (dataType === 'YEAR') {
-    return ['(new Date().getFullYear())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getFullYear())', JavaScript.ORDER_NONE];
   } else if (dataType === 'COOLDOWN') {
-    return ['new Date()', Blockly.JavaScript.ORDER_NONE];
+    return ['new Date()', JavaScript.ORDER_NONE];
   } else if (dataType === 'UNIX') {
-    return ['Math.floor(new Date().getTime()/1000)', Blockly.JavaScript.ORDER_NONE];
+    return ['Math.floor(new Date().getTime()/1000)', JavaScript.ORDER_NONE];
   } else if (dataType === 'UNIX_ms') {
-    return ['new Date().getTime()', Blockly.JavaScript.ORDER_NONE];
+    return ['new Date().getTime()', JavaScript.ORDER_NONE];
   } else if (dataType === 'UTC_MILLISECOND') {
-    return ['(new Date().getUTCMilliseconds())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getUTCMilliseconds())', JavaScript.ORDER_NONE];
   } else if (dataType === 'UTC_SECOND') {
-    return ['(new Date().getUTCSeconds())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getUTCSeconds())', JavaScript.ORDER_NONE];
   } else if (dataType === 'UTC_MINUTE') {
-    return ['(new Date().getUTCMinutes())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getUTCMinutes())', JavaScript.ORDER_NONE];
   } else if (dataType === 'UTC_HOUR') {
-    return ['(new Date().getUTCHours())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getUTCHours())', JavaScript.ORDER_NONE];
   } else if (dataType === 'UTC_DAY_OF_WEEK') {
-    return ['(new Date().getUTCDay())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getUTCDay())', JavaScript.ORDER_NONE];
   } else if (dataType === 'UTC_DAY') {
-    return ['(new Date().getUTCDate())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getUTCDate())', JavaScript.ORDER_NONE];
   } else if (dataType === 'UTC_MONTH') {
-    return ['(new Date().getUTCMonth())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getUTCMonth())', JavaScript.ORDER_NONE];
   } else if (dataType === 'UTC_YEAR') {
-    return ['(new Date().getUTCFullYear())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getUTCFullYear())', JavaScript.ORDER_NONE];
   }
 };

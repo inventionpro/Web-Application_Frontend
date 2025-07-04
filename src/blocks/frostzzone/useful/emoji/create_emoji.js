@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'fz_create_emoji';
 
@@ -41,12 +42,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   var code;
-  let value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  let value_server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
-  let value_image = Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC);
-  let statements_then = Blockly.JavaScript.statementToCode(block, 'THEN');
+  let value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  let value_server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  let value_image = JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC);
+  let statements_then = JavaScript.statementToCode(block, 'THEN');
   if ((statements_then || null) == null) {
     code = `${value_server}.emojis.create(${value_image},${value_name});\n`;
   } else {

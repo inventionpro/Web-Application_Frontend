@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 import { registerRestrictions } from '../../../restrictions';
 
@@ -33,7 +34,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   var dropdown_options = block.getFieldValue('options');
   var code = ``;
 
@@ -58,7 +59,7 @@ Blockly.JavaScript[blockName] = function (block) {
       break;
   }
 
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

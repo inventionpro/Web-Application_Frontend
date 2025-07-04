@@ -1,5 +1,5 @@
-//jimp.write('edited.jpg');
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'jg_minecraft_rcon_send_command';
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  var command = Blockly.JavaScript.valueToCode(block, 'COMMAND', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  var command = JavaScript.valueToCode(block, 'COMMAND', JavaScript.ORDER_ATOMIC);
   if (command.charAt(0) == '/') {
     command = command.substring(1);
   }

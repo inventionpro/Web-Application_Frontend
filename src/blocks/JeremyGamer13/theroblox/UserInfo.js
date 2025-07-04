@@ -1,6 +1,5 @@
-// roblox_user_info
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_roblox_user_info';
 
@@ -36,8 +35,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const code = [`roblox_user_info.${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`roblox_user_info.${type}`, JavaScript.ORDER_NONE];
   return code;
 };

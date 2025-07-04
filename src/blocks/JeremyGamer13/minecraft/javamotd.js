@@ -1,6 +1,5 @@
-//result_java
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_java_motd';
 
@@ -29,8 +28,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const code = [`result_java.motd.${type}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`result_java.motd.${type}`, JavaScript.ORDER_NONE];
   return code;
 };

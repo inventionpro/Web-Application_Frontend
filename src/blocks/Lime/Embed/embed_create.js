@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'lime_s4d_embed_create';
 
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['s4d_embed_create'] = function (block) {
-  let name_value = Blockly.JavaScript.valueToCode(block, 'name_value', Blockly.JavaScript.ORDER_ATOMIC);
-  let statements_then = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript['s4d_embed_create'] = function (block) {
+  let name_value = JavaScript.valueToCode(block, 'name_value', JavaScript.ORDER_ATOMIC);
+  let statements_then = JavaScript.statementToCode(block, 'THEN');
   name_value = name_value.split(' ');
   name_value = name_value.join('_');
   name_value = name_value.toLowerCase();

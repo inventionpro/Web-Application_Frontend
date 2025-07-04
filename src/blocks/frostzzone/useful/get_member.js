@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_get_member2';
@@ -32,13 +33,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'USERNAME') {
-    return [`s4d.client.users.cache.find((m) => m.username === ${value})`, Blockly.JavaScript.ORDER_NONE];
+    return [`s4d.client.users.cache.find((m) => m.username === ${value})`, JavaScript.ORDER_NONE];
   } else {
-    return [`s4d.client.users.cache.find((m) => m.id === ${value})`, Blockly.JavaScript.ORDER_NONE];
+    return [`s4d.client.users.cache.find((m) => m.id === ${value})`, JavaScript.ORDER_NONE];
   }
 };
 

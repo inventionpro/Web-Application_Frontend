@@ -1,5 +1,5 @@
-// ("hello").charAt(Math.floor(Math.random() * ("hello").length))
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_text_randomletter';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`(${text}).charAt(Math.floor(Math.random() * (${text}).length))`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+  const code = [`(${text}).charAt(Math.floor(Math.random() * (${text}).length))`, JavaScript.ORDER_NONE];
   return code;
 };

@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 'jose_send_image_slash';
@@ -31,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const hidden = Blockly.JavaScript.valueToCode(block, 'HIDDEN', Blockly.JavaScript.ORDER_ATOMIC);
-  const image = Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const hidden = JavaScript.valueToCode(block, 'HIDDEN', JavaScript.ORDER_ATOMIC);
+  const image = JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC);
   let code = `interaction.reply({ 
       files: [${image}],
       ephemeral: ${hidden}

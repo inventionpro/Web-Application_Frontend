@@ -1,5 +1,6 @@
 import BaseBlockly from 'blockly';
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const BORDER_FIELDS = ['TITLE_LIME', 'URL_EMBED', 'DESCRIPTION_LIME', 'AUTHORPFP', 'THUMBNAIL_LIME', 'FIELD_LIME', 'IMAGE_LIME', 'COLOR_LIME', 'TIMESTAMP', 'FOOTER_LIME', 'SETAUTHOR'];
 
@@ -85,7 +86,7 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('s4d_message_embed_mutator_lime', BORDER_MUTATOR_MIXIN, null, ['']);
 
-Blockly.JavaScript['s4d_message_embed_lime'] = function (block) {
+JavaScript['s4d_message_embed_lime'] = function (block) {
   let title = '';
   let color = '';
   let image = '';
@@ -96,40 +97,40 @@ Blockly.JavaScript['s4d_message_embed_lime'] = function (block) {
   let timestamp = '';
   let author = '';
   let url = '';
-  if ((Blockly.JavaScript.valueToCode(block, 'TITLE_LIME', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    title = `\n.setTitle(String(${Blockly.JavaScript.valueToCode(block, 'TITLE_LIME', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'TITLE_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    title = `\n.setTitle(String(${JavaScript.valueToCode(block, 'TITLE_LIME', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'COLOR_LIME', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    color = `\n.setColor(String(${Blockly.JavaScript.valueToCode(block, 'COLOR_LIME', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'COLOR_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    color = `\n.setColor(String(${JavaScript.valueToCode(block, 'COLOR_LIME', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'IMAGE_LIME', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    image = `\n.setImage(String(${Blockly.JavaScript.valueToCode(block, 'IMAGE_LIME', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'IMAGE_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    image = `\n.setImage(String(${JavaScript.valueToCode(block, 'IMAGE_LIME', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'DESCRIPTION_LIME', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    description = `\n.setDescription(String(${Blockly.JavaScript.valueToCode(block, 'DESCRIPTION_LIME', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'DESCRIPTION_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    description = `\n.setDescription(String(${JavaScript.valueToCode(block, 'DESCRIPTION_LIME', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'FOOTER_LIME', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    footer = `\n.setFooter(String(${Blockly.JavaScript.valueToCode(block, 'FOOTER_LIME', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'FOOTER_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    footer = `\n.setFooter(String(${JavaScript.valueToCode(block, 'FOOTER_LIME', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'THUMBNAIL_LIME', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    thumbnail = `\n.setThumbnail(String(${Blockly.JavaScript.valueToCode(block, 'THUMBNAIL_LIME', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'THUMBNAIL_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    thumbnail = `\n.setThumbnail(String(${JavaScript.valueToCode(block, 'THUMBNAIL_LIME', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.statementToCode(block, 'FIELD_LIME', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    field = `\n.addFields(${Blockly.JavaScript.statementToCode(block, 'FIELD_LIME')})`;
+  if ((JavaScript.statementToCode(block, 'FIELD_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    field = `\n.addFields(${JavaScript.statementToCode(block, 'FIELD_LIME')})`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'TIMESTAMP', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    timestamp = `\n.setTimestamp(new Date(${Blockly.JavaScript.valueToCode(block, 'TIMESTAMP', Blockly.JavaScript.ORDER_ATOMIC)}))`;
-    if (Blockly.JavaScript.valueToCode(block, 'TIMESTAMP', Blockly.JavaScript.ORDER_ATOMIC) === 'null') {
+  if ((JavaScript.valueToCode(block, 'TIMESTAMP', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    timestamp = `\n.setTimestamp(new Date(${JavaScript.valueToCode(block, 'TIMESTAMP', JavaScript.ORDER_ATOMIC)}))`;
+    if (JavaScript.valueToCode(block, 'TIMESTAMP', JavaScript.ORDER_ATOMIC) === 'null') {
       timestamp = `\n.setTimestamp()`;
     }
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'URL_EMBED', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    url = `\n.setURL(String(${Blockly.JavaScript.valueToCode(block, 'URL_EMBED', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'URL_EMBED', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    url = `\n.setURL(String(${JavaScript.valueToCode(block, 'URL_EMBED', JavaScript.ORDER_ATOMIC)}))`;
   }
-  if ((Blockly.JavaScript.valueToCode(block, 'SETAUTHOR', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-    author = `\n.setAuthor(String(${Blockly.JavaScript.valueToCode(block, 'SETAUTHOR', Blockly.JavaScript.ORDER_ATOMIC)}))`;
-    if ((Blockly.JavaScript.valueToCode(block, 'AUTHORPFP', Blockly.JavaScript.ORDER_ATOMIC) || null) !== null) {
-      author = `\n.setAuthor(String(${Blockly.JavaScript.valueToCode(block, 'SETAUTHOR', Blockly.JavaScript.ORDER_ATOMIC)}),String(${Blockly.JavaScript.valueToCode(block, 'AUTHORPFP', Blockly.JavaScript.ORDER_ATOMIC)}))`;
+  if ((JavaScript.valueToCode(block, 'SETAUTHOR', JavaScript.ORDER_ATOMIC) || null) !== null) {
+    author = `\n.setAuthor(String(${JavaScript.valueToCode(block, 'SETAUTHOR', JavaScript.ORDER_ATOMIC)}))`;
+    if ((JavaScript.valueToCode(block, 'AUTHORPFP', JavaScript.ORDER_ATOMIC) || null) !== null) {
+      author = `\n.setAuthor(String(${JavaScript.valueToCode(block, 'SETAUTHOR', JavaScript.ORDER_ATOMIC)}),String(${JavaScript.valueToCode(block, 'AUTHORPFP', JavaScript.ORDER_ATOMIC)}))`;
     }
   }
   let code = `${title}${color}${image}${description}${footer}${thumbnail}${field}${timestamp}${author}${url}\n`;

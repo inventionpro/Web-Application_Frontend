@@ -1,5 +1,5 @@
-//jimp.write('edited.jpg');
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_messages_files_send_reply_with_file_and_message_with_button_row_as_hidden';
@@ -60,15 +60,15 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   //embeds: [
-  const fileNameandLocation = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  const hidden = Blockly.JavaScript.valueToCode(block, 'HIDE', Blockly.JavaScript.ORDER_ATOMIC);
-  const row = String(Blockly.JavaScript.valueToCode(block, 'ROW', Blockly.JavaScript.ORDER_ATOMIC))
+  const fileNameandLocation = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  const hidden = JavaScript.valueToCode(block, 'HIDE', JavaScript.ORDER_ATOMIC);
+  const row = String(JavaScript.valueToCode(block, 'ROW', JavaScript.ORDER_ATOMIC))
     .replaceAll('"', '')
     .replaceAll("'", '');
   const type = block.getFieldValue('TYPE');
-  let msg = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+  let msg = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
   let code;
   let rowMSG = '';
   let hidden2 = `

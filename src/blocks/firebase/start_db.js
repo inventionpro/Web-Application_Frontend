@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 'start_db';
@@ -60,15 +61,15 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const apiKey = Blockly.JavaScript.valueToCode(block, 'apiKey', Blockly.JavaScript.ORDER_ATOMIC);
-  const authDomain = Blockly.JavaScript.valueToCode(block, 'authDomain', Blockly.JavaScript.ORDER_ATOMIC);
-  const databaseURL = Blockly.JavaScript.valueToCode(block, 'databaseURL', Blockly.JavaScript.ORDER_ATOMIC);
-  const projectId = Blockly.JavaScript.valueToCode(block, 'projectId', Blockly.JavaScript.ORDER_ATOMIC);
-  const storageBucket = Blockly.JavaScript.valueToCode(block, 'storageBucket', Blockly.JavaScript.ORDER_ATOMIC);
-  const messagingSenderId = Blockly.JavaScript.valueToCode(block, 'messagingSenderId', Blockly.JavaScript.ORDER_ATOMIC);
-  const appId = Blockly.JavaScript.valueToCode(block, 'appId', Blockly.JavaScript.ORDER_ATOMIC);
-  const measurementId = Blockly.JavaScript.valueToCode(block, 'measurementId', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const apiKey = JavaScript.valueToCode(block, 'apiKey', JavaScript.ORDER_ATOMIC);
+  const authDomain = JavaScript.valueToCode(block, 'authDomain', JavaScript.ORDER_ATOMIC);
+  const databaseURL = JavaScript.valueToCode(block, 'databaseURL', JavaScript.ORDER_ATOMIC);
+  const projectId = JavaScript.valueToCode(block, 'projectId', JavaScript.ORDER_ATOMIC);
+  const storageBucket = JavaScript.valueToCode(block, 'storageBucket', JavaScript.ORDER_ATOMIC);
+  const messagingSenderId = JavaScript.valueToCode(block, 'messagingSenderId', JavaScript.ORDER_ATOMIC);
+  const appId = JavaScript.valueToCode(block, 'appId', JavaScript.ORDER_ATOMIC);
+  const measurementId = JavaScript.valueToCode(block, 'measurementId', JavaScript.ORDER_ATOMIC);
 
   let code = `let firebaseConfig = {
     apiKey: ${apiKey},

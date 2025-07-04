@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'fz_color';
 const defaultColor = '#a5745b';
@@ -35,8 +36,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const color = block.getFieldValue('COLOR');
-  const code = [`"${color}"`, Blockly.JavaScript.ORDER_ATOMIC];
+  const code = [`"${color}"`, JavaScript.ORDER_ATOMIC];
   return code;
 };

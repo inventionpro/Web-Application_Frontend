@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_roblox_get_user_group_rank';
 
@@ -36,10 +37,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const group = Blockly.JavaScript.valueToCode(block, 'GROUP', Blockly.JavaScript.ORDER_ATOMIC);
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
-  const then = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const group = JavaScript.valueToCode(block, 'GROUP', JavaScript.ORDER_ATOMIC);
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
+  const then = JavaScript.statementToCode(block, 'THEN');
   const code = `S4D_APP_NOBLOX.getRankNameInGroup(${group}, ${user}).then(async (roblox_group_rank) => {
   ${then}
 })

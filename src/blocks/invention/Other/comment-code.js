@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'inv_comment_code';
 
@@ -31,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   var text_name = block.getFieldValue('NAME');
-  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  var statements_name = JavaScript.statementToCode(block, 'NAME');
   var code = `/*
   ${text_name}
   

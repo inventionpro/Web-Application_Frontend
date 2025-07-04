@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_scale';
@@ -28,8 +29,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const scale = Blockly.JavaScript.valueToCode(block, 'Scale', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const scale = JavaScript.valueToCode(block, 'Scale', JavaScript.ORDER_ATOMIC);
   return `await image.scale( Number(` + scale + `) )\n`;
 };
 

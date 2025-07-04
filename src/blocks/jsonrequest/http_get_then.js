@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_http_get_then';
 
@@ -29,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const https = Blockly.JavaScript.valueToCode(block, 'HTTPS', Blockly.JavaScript.ORDER_ATOMIC);
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const https = JavaScript.valueToCode(block, 'HTTPS', JavaScript.ORDER_ATOMIC);
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
   const code = `https.get(${https}, async resp => {\nlet data2 = "";\nresp.on("data",async chunk => {\ndata2 += chunk;\n});\nresp.on("end",async () => {\nlet data = JSON.parse(data2)\n ${statementThen} \n});\n})\n.on("error",async err => {\nconsole.log("Error: " + err.message);\n});\n`;
   return code;
 };

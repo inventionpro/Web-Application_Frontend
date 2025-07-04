@@ -7,7 +7,8 @@
 
 // current goals achieved: 1, 2, 3(?)!!!!
 
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 'jg_tests_checkbox_mutator';
 const menuName = blockName + '_checkboxMutatorMenu';
@@ -110,14 +111,14 @@ Blockly.Blocks[blockName] = {
   isHiden: true // remove this from your block if you dont want it hidden
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');
-  const A = Blockly.JavaScript.valueToCode(block, 'A', Blockly.JavaScript.ORDER_NONE);
-  const B = Blockly.JavaScript.valueToCode(block, 'B', Blockly.JavaScript.ORDER_NONE);
-  const C = Blockly.JavaScript.valueToCode(block, 'C', Blockly.JavaScript.ORDER_NONE);
-  const D = Blockly.JavaScript.valueToCode(block, 'D', Blockly.JavaScript.ORDER_NONE);
+  const A = JavaScript.valueToCode(block, 'A', JavaScript.ORDER_NONE);
+  const B = JavaScript.valueToCode(block, 'B', JavaScript.ORDER_NONE);
+  const C = JavaScript.valueToCode(block, 'C', JavaScript.ORDER_NONE);
+  const D = JavaScript.valueToCode(block, 'D', JavaScript.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (A) {
     code.push(`wow: ${A}`);
@@ -230,11 +231,11 @@ Blockly.Extensions.registerMutator("jg_tests_checkbox_mutator_cleanup_fix", {
     }
 }, null, [""]);
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
     let code = [`await i.reply({`];
-    const Id = Blockly.JavaScript.valueToCode(block, "CONTENT", Blockly.JavaScript.ORDER_NONE);
-    const Lavbel = Blockly.JavaScript.valueToCode(block, "EMBED", Blockly.JavaScript.ORDER_NONE);
-    const Style = Blockly.JavaScript.valueToCode(block, "BUTTON", Blockly.JavaScript.ORDER_NONE);
+    const Id = JavaScript.valueToCode(block, "CONTENT", JavaScript.ORDER_NONE);
+    const Lavbel = JavaScript.valueToCode(block, "EMBED", JavaScript.ORDER_NONE);
+    const Style = JavaScript.valueToCode(block, "BUTTON", JavaScript.ORDER_NONE);
     if (Id) {
         code.push(`content: String(${Id}),`)
     }
@@ -244,7 +245,7 @@ Blockly.JavaScript[blockName] = function (block) {
     if (Style) {
         code.push(`components: [new MessageActionRow().addComponents(${Style.replace("'", "").replace("'", "").replace("(", "").replace(")", "")})],`)
     }
-    code.push(`ephemeral: ${Blockly.JavaScript.valueToCode(block, "ephemeral", Blockly.JavaScript.ORDER_NONE)}\n})`)
+    code.push(`ephemeral: ${JavaScript.valueToCode(block, "ephemeral", JavaScript.ORDER_NONE)}\n})`)
     return code.join("\n");
 };
 */

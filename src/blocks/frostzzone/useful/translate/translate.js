@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'frost_translate';
 
@@ -38,11 +39,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
-  const lang = Blockly.JavaScript.valueToCode(block, 'LANG', Blockly.JavaScript.ORDER_ATOMIC);
-  const vari = Blockly.JavaScript.valueToCode(block, 'VAR', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const key = JavaScript.valueToCode(block, 'KEY', JavaScript.ORDER_ATOMIC);
+  const lang = JavaScript.valueToCode(block, 'LANG', JavaScript.ORDER_ATOMIC);
+  const vari = JavaScript.valueToCode(block, 'VAR', JavaScript.ORDER_ATOMIC);
 
-  const code = [`translate(${key}, {to: '${lang}'}).then(res => { ${vari}; }).catch(err => { console.error(err) })`, Blockly.JavaScript.ORDER_ATOMIC];
+  const code = [`translate(${key}, {to: '${lang}'}).then(res => { ${vari}; }).catch(err => { console.error(err) })`, JavaScript.ORDER_ATOMIC];
   return code;
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_rotate';
@@ -33,8 +34,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const degrees = Blockly.JavaScript.valueToCode(block, 'Rotate', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const degrees = JavaScript.valueToCode(block, 'Rotate', JavaScript.ORDER_ATOMIC);
   const autoResize = block.getFieldValue('autoResize');
   return `await image.rotate( Number(` + degrees + `), ` + autoResize + ` )\n`;
 };

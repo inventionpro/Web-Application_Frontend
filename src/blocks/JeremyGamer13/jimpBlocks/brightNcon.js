@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_brightnesscontrast';
@@ -34,9 +35,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('type');
-  const amount = Blockly.JavaScript.valueToCode(block, 'amount', Blockly.JavaScript.ORDER_ATOMIC);
+  const amount = JavaScript.valueToCode(block, 'amount', JavaScript.ORDER_ATOMIC);
   if (String(type) === '"brightness"') {
     return `await image.brightness( (` + amount + ` / 100) )\n`;
   } else if (String(type) === '"contrast"') {

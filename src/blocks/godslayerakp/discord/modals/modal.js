@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_modal_create';
 
@@ -42,11 +43,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
-  const id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
-  const title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC);
-  const beep = Blockly.JavaScript.valueToCode(block, 'beep', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const name = JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC);
+  const id = JavaScript.valueToCode(block, 'id', JavaScript.ORDER_ATOMIC);
+  const title = JavaScript.valueToCode(block, 'title', JavaScript.ORDER_ATOMIC);
+  const beep = JavaScript.valueToCode(block, 'beep', JavaScript.ORDER_ATOMIC);
   return `
 const ${name} = new modal()
     .setCostomId(${id})

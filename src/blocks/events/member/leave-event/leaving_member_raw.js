@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 's4d_leaving_member_raw';
@@ -28,16 +29,16 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['s4d.leavingMember.id', Blockly.JavaScript.ORDER_NONE];
+    const code = ['s4d.leavingMember.id', JavaScript.ORDER_NONE];
     return code;
   } else if (searchType === 'USERNAME') {
-    const code = ['s4d.leavingMember.user.username', Blockly.JavaScript.ORDER_NONE];
+    const code = ['s4d.leavingMember.user.username', JavaScript.ORDER_NONE];
     return code;
   } else if (searchType === 'NICKNAME') {
-    const code = ['s4d.leavingMember.nickname', Blockly.JavaScript.ORDER_NONE];
+    const code = ['s4d.leavingMember.nickname', JavaScript.ORDER_NONE];
     return code;
   }
 };

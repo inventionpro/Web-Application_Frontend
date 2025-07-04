@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_channel_raw';
 
@@ -26,13 +27,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['(channel || {}).id', Blockly.JavaScript.ORDER_NONE];
+    const code = ['(channel || {}).id', JavaScript.ORDER_NONE];
     return code;
   } else if (searchType === 'NAME') {
-    const code = ['(channel || {}).name', Blockly.JavaScript.ORDER_NONE];
+    const code = ['(channel || {}).name', JavaScript.ORDER_NONE];
     return code;
   }
 };

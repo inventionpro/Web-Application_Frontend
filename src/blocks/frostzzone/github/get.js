@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'github_get_then';
 
@@ -34,10 +35,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC);
-  const what = Blockly.JavaScript.valueToCode(block, 'what', Blockly.JavaScript.ORDER_ATOMIC);
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
+  const what = JavaScript.valueToCode(block, 'what', JavaScript.ORDER_ATOMIC);
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
   const code = `https.get('https://api.github.com/users/' + ${user} + '/' + ${what}, async resp => {
       let data2 = "";
        resp.on("data", async chunk => {

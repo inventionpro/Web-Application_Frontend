@@ -1,5 +1,5 @@
-//"output": "Boolean",
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_text_isboolean';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`((${text}).toLowerCase() == 'true' || (${text}).toLowerCase() == 'false')`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+  const code = [`((${text}).toLowerCase() == 'true' || (${text}).toLowerCase() == 'false')`, JavaScript.ORDER_NONE];
   return code;
 };

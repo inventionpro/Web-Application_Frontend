@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'frost_client';
 
@@ -28,7 +29,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const t = block.getFieldValue('T');
   let code = '';
   if (t === 'servers') {
@@ -38,5 +39,5 @@ Blockly.JavaScript[blockName] = function (block) {
   } else if (t === 'users') {
     code = 's4d.client.users.cache.size';
   }
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

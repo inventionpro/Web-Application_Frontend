@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 Blockly.Blocks['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = {
   init: function () {
     this.jsonInit({
@@ -26,16 +27,16 @@ Blockly.Blocks['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = 
     });
   }
 };
-Blockly.JavaScript['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = function (block) {
-  const channel = Blockly.JavaScript.valueToCode(block, 'CHANNEL', Blockly.JavaScript.ORDER_ATOMIC);
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = function (block) {
+  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
   const code = [
     `S4D_APP_DJS_VOICE.joinVoiceChannel({
       channelId: String(${channel}),
       guildId: String(${server}),
       adapterCreator: s4dmessage.guild.voiceAdapterCreator
 })`,
-    Blockly.JavaScript.ORDER_NONE
+    JavaScript.ORDER_NONE
   ];
   return code;
 };
@@ -59,8 +60,8 @@ Blockly.Blocks['jg_voice_disconnect_from_voice_connection'] = {
     });
   }
 };
-Blockly.JavaScript['jg_voice_disconnect_from_voice_connection'] = function (block) {
-  const connection = Blockly.JavaScript.valueToCode(block, 'CONNECTION', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_voice_disconnect_from_voice_connection'] = function (block) {
+  const connection = JavaScript.valueToCode(block, 'CONNECTION', JavaScript.ORDER_ATOMIC);
   const code = `${connection}.destroy()
 `;
   return code;
@@ -95,10 +96,10 @@ Blockly.Blocks['jg_voice_play_audio_file_at_percent_volume_on_connection'] = {
     });
   }
 };
-Blockly.JavaScript['jg_voice_play_audio_file_at_percent_volume_on_connection'] = function (block) {
-  const file = Blockly.JavaScript.valueToCode(block, 'FILE', Blockly.JavaScript.ORDER_ATOMIC);
-  const volume = Blockly.JavaScript.valueToCode(block, 'VOLUME', Blockly.JavaScript.ORDER_ATOMIC);
-  const connection = Blockly.JavaScript.valueToCode(block, 'CONNECTION', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['jg_voice_play_audio_file_at_percent_volume_on_connection'] = function (block) {
+  const file = JavaScript.valueToCode(block, 'FILE', JavaScript.ORDER_ATOMIC);
+  const volume = JavaScript.valueToCode(block, 'VOLUME', JavaScript.ORDER_ATOMIC);
+  const connection = JavaScript.valueToCode(block, 'CONNECTION', JavaScript.ORDER_ATOMIC);
   const code = `let S4D_APP_TEMP_resource = S4D_APP_DJS_VOICE.createAudioResource(S4D_APP_VOICE_FS.createReadStream(String(${file})), {
     inlineVolume: true
 });

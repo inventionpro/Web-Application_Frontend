@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockname = 'gsa_send_new_attachment_in_channel';
 
@@ -36,11 +37,11 @@ Blockly.Blocks[blockname] = {
     });
   }
 };
-Blockly.JavaScript[blockname] = function (block) {
-  const buffer = Blockly.JavaScript.valueToCode(block, 'buffer', Blockly.JavaScript.ORDER_ATOMIC);
-  const name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
-  const content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC);
-  const channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockname] = function (block) {
+  const buffer = JavaScript.valueToCode(block, 'buffer', JavaScript.ORDER_ATOMIC);
+  const name = JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC);
+  const content = JavaScript.valueToCode(block, 'content', JavaScript.ORDER_ATOMIC);
+  const channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
   const code = `const attachment = new Discord.MessageAttachment(${buffer}, ${name})
 ${channel}.send({
     content: ${content}

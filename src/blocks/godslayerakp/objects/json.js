@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'gsa_convert_parse_json_so_it_becomes_list_or_object';
 const blockData = {
@@ -23,7 +24,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`JSON.parse(${message})`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const message = JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC);
+  return [`JSON.parse(${message})`, JavaScript.ORDER_NONE];
 };

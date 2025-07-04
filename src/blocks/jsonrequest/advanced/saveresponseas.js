@@ -1,5 +1,5 @@
-// S4D_APP_PKG_axios is the axios package!
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions.js';
 
 const blockName = 'jg_web_request_advanced_save_downloadable_response_as';
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const FILE = Blockly.JavaScript.valueToCode(block, 'FILE', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const FILE = JavaScript.valueToCode(block, 'FILE', JavaScript.ORDER_ATOMIC);
   const code = `response.data.pipe(fs.createWriteStream(String(${FILE})))
 `;
   return code;

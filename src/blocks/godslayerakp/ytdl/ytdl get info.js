@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core'; // man i really dont want to register a validator for this -1:18AM
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'gsa_ytdl_get_info';
@@ -105,9 +106,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const get_data = block.getFieldValue('get_data');
-  return [`S4D_APP_YTDL_JSON${get_data}`.replace('NOOOOOOOOOL', ''), Blockly.JavaScript.ORDER_NONE];
+  return [`S4D_APP_YTDL_JSON${get_data}`.replace('NOOOOOOOOOL', ''), JavaScript.ORDER_NONE];
 };
 registerRestrictions(blockName, [
   {
