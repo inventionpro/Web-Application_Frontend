@@ -1,4 +1,4 @@
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
 
 import blocklyMessages from './pt-BR.json';
 

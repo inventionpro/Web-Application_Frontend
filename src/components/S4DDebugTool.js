@@ -1,4 +1,5 @@
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import localforage from 'localforage';
 import * as blocklyModule from '../blocks/blocklyModule';
 window.devBlocklyModule = blocklyModule;
@@ -144,7 +145,7 @@ window.openS4DDebugMenu = () => {
       spawnBlockToWorkspace.onclick = () => {
         const input = spawnBlockToWorkspaceTextArea.value.split('\n');
         input.forEach((block) => {
-          let xml = Blockly.Xml.textToDom('<xml><block type="' + block + '"></block></xml>');
+          let xml = Blockly.utils.xml.textToDom('<xml><block type="' + block + '"></block></xml>');
           try {
             Blockly.Xml.appendDomToWorkspace(xml, blocklyModule.getWorkspace());
           } catch (err) {
@@ -1038,7 +1039,7 @@ window.openS4DDebugMenu = () => {
             this.jsonInit(json);
           }
         };
-        Blockly.JavaScript[blockName] = function () {
+        JavaScript[blockName] = function () {
           return '';
         };
       };

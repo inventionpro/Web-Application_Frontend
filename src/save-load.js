@@ -1,4 +1,4 @@
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
 import localforage from 'localforage';
 import Swal from 'sweetalert2';
 
@@ -59,7 +59,7 @@ export default async function register(app, t) {
               customBlocks: typeof cb === 'object' ? JSON.stringify(cb) : cb
             });
           }
-          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(xml), workspace);
           workspace.setResizesEnabled(true);
 
           const saveNickname = await localforage.getItem('autosaveName');

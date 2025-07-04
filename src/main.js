@@ -3,7 +3,8 @@ import { bootstrapPlugin, modalManagerPlugin } from 'bootstrap-vue-next';
 import App from './App.vue';
 import store from './store';
 import { createI18n } from 'vue-i18n';
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import VueToast from 'vue-toast-notification';
 import VueTour from 'vue3-tour';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -141,98 +142,92 @@ app.mixin({
       let requires = [];
       let requiresjscode = [];
       let xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-      req(requires, requiresjscode, Blockly.JavaScript.workspaceToCode(workspace), xml);
+      req(requires, requiresjscode, JavaScript.javascriptGenerator.workspaceToCode(workspace), xml);
       setTimeout(async () => {
         await localforage.setItem('requires', requires);
       }, 1000);
 
       return `(async()=>{
-    // default imports
-    const events = require('events');
-    const { exec } = require("child_process")
-    const logs = require("discord-logs")
-    const Discord = require("discord.js")
-    const {
-        MessageEmbed,
-        MessageButton,
-        MessageActionRow,
-        Intents,
-        Permissions,
-        MessageSelectMenu
-    }= require("discord.js")
-    const fs = require('fs');
-    let process = require('process');
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // default imports
+  const events = require('events');
+  const { exec } = require("child_process")
+  const logs = require("discord-logs")
+  const Discord = require("discord.js")
+  const {
+    MessageEmbed,
+    MessageButton,
+    MessageActionRow,
+    Intents,
+    Permissions,
+    MessageSelectMenu
+  }= require("discord.js")
+  const fs = require('fs');
+  let process = require('process');
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    // block imports
-    ${requires.join('\n    ')}
+  // block imports
+  ${requires.join('\n    ')}
 
-    // define s4d components (pretty sure 90% of these arnt even used/required)
-    let s4d = {
-        Discord,
-        fire:null,
-        joiningMember:null,
-        reply:null,
-        player:null,
-        manager:null,
-        Inviter:null,
-        message:null,
-        notifer:null,
-        checkMessageExists() {
-            if (!s4d.client) throw new Error('You cannot perform message operations without a Discord.js client')
-            if (!s4d.client.readyTimestamp) throw new Error('You cannot perform message operations while the bot is not connected to the Discord API')
-        }
-    };
-
-    // check if d.js is v13
-    if (!require('./package.json').dependencies['discord.js'].startsWith("^13.")) {
-      let file = JSON.parse(fs.readFileSync('package.json'))
-      file.dependencies['discord.js'] = '^13.16.0'
-      fs.writeFileSync('package.json', JSON.stringify(file, null, 4))
-      exec('npm i')
-      throw new Error("Seems you arent using v13 please re-run or run \`npm i discord.js@13.16.0\`");
+  // define s4d components (pretty sure 90% of these arnt even used/required)
+  let s4d = {
+    Discord,
+    fire: null,
+    joiningMember: null,
+    reply: null,
+    player: null,
+    manager: null,
+    Inviter: null,
+    message: null,
+    notifer: null,
+    checkMessageExists() {
+      if (!s4d.client) throw new Error('You cannot perform message operations without a Discord.js client')
+      if (!s4d.client.readyTimestamp) throw new Error('You cannot perform message operations while the bot is not connected to the Discord API')
     }
+  };
 
-    // check if discord-logs is v2
-    if (!require('./package.json').dependencies['discord-logs'].startsWith("^2.")) {
-      let file = JSON.parse(fs.readFileSync('package.json'))
-      file.dependencies['discord-logs'] = '^2.0.0'
-      fs.writeFileSync('package.json', JSON.stringify(file, null, 4))
-      exec('npm i')
-      throw new Error("discord-logs must be 2.0.0. please re-run or if that fails run \`npm i discord-logs@2.0.0\` then re-run");
-    }
+  // check if d.js is v13
+  if (!require('./package.json').dependencies['discord.js'].startsWith("^13.")) {
+    exec('npm i 13.17.1');
+    throw new Error("Seems you arent using v13 please re-run or run \`npm i discord.js@13.17.1\`");
+  }
 
-    // create a new discord client
-    s4d.client = new s4d.Discord.Client({
-        intents: [
-            Object.values(s4d.Discord.Intents.FLAGS).reduce((acc, p) => acc | p, 0)
-        ],
-        partials: [
-            "REACTION", 
-            "CHANNEL"
-        ]
-    });
+  // check if discord-logs is v2
+  if (!require('./package.json').dependencies['discord-logs'].startsWith("^2.")) {
+    exec('npm i discord-logs@2.0.0');
+    throw new Error("discord-logs must be 2.0.0. please re-run or if that fails run \`npm i discord-logs@2.0.0\` then re-run");
+  }
 
-    // when the bot is connected say so
-    s4d.client.on('ready', () => {
-        console.log(s4d.client.user.tag + " is alive!")
-    })
+  // create a new discord client
+  s4d.client = new s4d.Discord.Client({
+    intents: [
+      Object.values(s4d.Discord.Intents.FLAGS).reduce((acc, p) => acc | p, 0)
+    ],
+    partials: [
+      "REACTION", 
+      "CHANNEL"
+    ]
+  });
 
-    // upon error print "Error!" and the error
-    process.on('uncaughtException', function (err) {
-        console.log('Error!');
-        console.log(err);
-    });
+  // when the bot is connected say so
+  s4d.client.on('ready', () => {
+    console.log(s4d.client.user.tag + " is alive!")
+  })
 
-    // give the new client to discord-logs
-    logs(s4d.client);
+  // upon error print "Error!" and the error
+  process.on('uncaughtException', function (err) {
+    console.log('Error!');
+    console.log(err);
+  });
 
-    // pre blockly code
-    ${requiresjscode.join('\n    ')}
+  // give the new client to discord-logs
+  logs(s4d.client);
 
-    // blockly code
-    ${Blockly.JavaScript.workspaceToCode(workspace).split('\n').join('\n    ')}
-    return s4d
+  // pre blockly code
+  ${requiresjscode.join('\n    ')}
+
+  // blockly code
+  ${JavaScript.javascriptGenerator.workspaceToCode(workspace).split('\n').join('\n  ')}
+  return s4d
 })();`;
     }
   }
@@ -248,6 +243,5 @@ savenload(app, i18n.global.t);
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-//import '@sweetalert2/theme-dark/dark.min.css';
 import 'vue-toast-notification/dist/theme-default.css';
 import 'vue3-tour/dist/vue3-tour.css';

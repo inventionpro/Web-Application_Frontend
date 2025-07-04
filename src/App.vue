@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
 import NavBarComponent from './components/NavigationBar/NavigationBar.vue';
 import BlocklyComponent from './components/BlocklyComponent.vue';
 
@@ -188,7 +188,7 @@ export default {
   mounted() {
     console.log('...wait a second... a user?');
     console.log('i gotta tell them!');
-    console.log('%cCAREFUL WHAT YOU TYPE IN CONSOLE! %cbarry and johnathan are watching all of your moves...', 'color:red;font-family:system-ui;font-size:2rem;-webkit-text-stroke: 1px black;font-weight:bold', 'color:DarkRed;font-family:system-ui;font-size:2rem;-webkit-text-stroke: 1px black;font-weight:bold');
+    console.log('%cCAREFUL WHAT YOU TYPE IN CONSOLE! %cbarry and johnathan are watching all of your moves...', 'color:#f00;font-family:system-ui;font-size:2rem;font-weight:bold', 'color:#b00;font-family:system-ui;font-size:2rem;font-weight:bold');
     console.log('...');
     if (!('ScratchNative' in window) && window.parent?.ScratchNative) window.ScratchNative = window.parent.ScratchNative;
     const tourDone = localStorage.getItem('tourDone');

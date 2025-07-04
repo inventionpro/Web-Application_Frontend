@@ -1,4 +1,4 @@
-export function load(Blockly, prefix, color) {
+export function load(Blockly, JavaScript, prefix, color) {
   import('../../blocks/JeremyGamer13/Objects');
   import('../../blocks/godslayerakp/objects');
   import('../../blocks/frostzzone/useful/jsontostring');
@@ -32,8 +32,8 @@ export function load(Blockly, prefix, color) {
       });
     }
   };
-  Blockly.JavaScript[prefix + 'exportInit'] = (block) => {
-    const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+  JavaScript[prefix + 'exportInit'] = (block) => {
+    const statements = JavaScript.statementToCode(block, 'STATEMENTS');
     return `_ \\COPY_ABOVE FUNCTIONS and VARIABLES\\ _
 _ \\INIT FUNC\\ _
 let ___S4DCB_rALLOW_block_FROM_JS_FUNC___ = this;
@@ -58,8 +58,8 @@ _ \\END INIT FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'exportJavascript'] = (block) => {
-    const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+  JavaScript[prefix + 'exportJavascript'] = (block) => {
+    const statements = JavaScript.statementToCode(block, 'STATEMENTS');
     return `_ \\COPY_ABOVE FUNCTIONS and VARIABLES\\ _
 _ \\JS FUNC\\ _
 let ___S4DCB_rALLOW_block_FROM_JS_FUNC___ = block;
@@ -84,8 +84,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setColour'] = (block) => {
-    const color = Blockly.JavaScript.valueToCode(block, 'COLOR', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'setColour'] = (block) => {
+    const color = JavaScript.valueToCode(block, 'COLOR', JavaScript.ORDER_ATOMIC);
     return `this.setColour(${color});\n`;
   };
   Blockly.Blocks[prefix + 'setCommentText'] = {
@@ -106,8 +106,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setCommentText'] = (block) => {
-    const TEXT = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'setCommentText'] = (block) => {
+    const TEXT = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
     return `this.setCommentText(${TEXT});\n`;
   };
   Blockly.Blocks[prefix + 'setHelpUrl'] = {
@@ -128,8 +128,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setHelpUrl'] = (block) => {
-    const TEXT = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'setHelpUrl'] = (block) => {
+    const TEXT = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
     return `this.setHelpUrl(${TEXT});\n`;
   };
   Blockly.Blocks[prefix + 'setInputsInline'] = {
@@ -153,7 +153,7 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setInputsInline'] = (block) => {
+  JavaScript[prefix + 'setInputsInline'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
     return `this.setInputsInline(${ALIGN});\n`;
   };
@@ -178,7 +178,7 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'blockConnections'] = (block) => {
+  JavaScript[prefix + 'blockConnections'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
     return `this.${ALIGN}(true, null);\n`;
   };
@@ -208,9 +208,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'blockConnectionsType'] = (block) => {
+  JavaScript[prefix + 'blockConnectionsType'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
-    const TYPES = Blockly.JavaScript.valueToCode(block, 'TYPES', Blockly.JavaScript.ORDER_ATOMIC);
+    const TYPES = JavaScript.valueToCode(block, 'TYPES', JavaScript.ORDER_ATOMIC);
     return `this.${ALIGN}(true, ${TYPES});\n`;
   };
   Blockly.Blocks[prefix + 'appendDummyInput'] = {
@@ -224,8 +224,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendDummyInput'] = () => {
-    return [`this.appendDummyInput()`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'appendDummyInput'] = () => {
+    return [`this.appendDummyInput()`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'setTooltip'] = {
     init: function () {
@@ -245,8 +245,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setTooltip'] = (block) => {
-    const TEXT = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'setTooltip'] = (block) => {
+    const TEXT = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
     return `this.setTooltip(${TEXT});\n`;
   };
   Blockly.Blocks[prefix + 'setOutput'] = {
@@ -267,8 +267,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setOutput'] = (block) => {
-    const LIST = Blockly.JavaScript.valueToCode(block, 'LIST', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'setOutput'] = (block) => {
+    const LIST = JavaScript.valueToCode(block, 'LIST', JavaScript.ORDER_ATOMIC);
     return `this.setOutput(${LIST});\n`;
   };
   Blockly.Blocks[prefix + 'appendValueInput'] = {
@@ -288,9 +288,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendValueInput'] = (block) => {
-    const name = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`this.appendValueInput(${name})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'appendValueInput'] = (block) => {
+    const name = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+    return [`this.appendValueInput(${name})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'appendStatementInput'] = {
     init: function () {
@@ -309,9 +309,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendStatementInput'] = (block) => {
-    const name = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`this.appendStatementInput(${name})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'appendStatementInput'] = (block) => {
+    const name = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+    return [`this.appendStatementInput(${name})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'setInputCheck'] = {
     init: function () {
@@ -336,9 +336,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setInputCheck'] = (block) => {
-    const input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
-    const check = Blockly.JavaScript.valueToCode(block, 'CHECK', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'setInputCheck'] = (block) => {
+    const input = JavaScript.valueToCode(block, 'INPUT', JavaScript.ORDER_ATOMIC);
+    const check = JavaScript.valueToCode(block, 'CHECK', JavaScript.ORDER_ATOMIC);
     return `${input}.setCheck(${check});\n`;
   };
   Blockly.Blocks[prefix + 'setInputFieldAlignment'] = {
@@ -368,8 +368,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setInputFieldAlignment'] = (block) => {
-    const input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'setInputFieldAlignment'] = (block) => {
+    const input = JavaScript.valueToCode(block, 'INPUT', JavaScript.ORDER_ATOMIC);
     const alignment = block.getFieldValue('ALIGN');
     return `${input}.setAlign(${alignment});\n`;
   };
@@ -396,9 +396,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendField'] = (block) => {
-    const input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
-    const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'appendField'] = (block) => {
+    const input = JavaScript.valueToCode(block, 'INPUT', JavaScript.ORDER_ATOMIC);
+    const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
     return `${input}.appendField(${text});\n`;
   };
   Blockly.Blocks[prefix + 'appendFieldType'] = {
@@ -429,10 +429,10 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'appendFieldType'] = (block) => {
-    const input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
-    const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
-    const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'appendFieldType'] = (block) => {
+    const input = JavaScript.valueToCode(block, 'INPUT', JavaScript.ORDER_ATOMIC);
+    const field = JavaScript.valueToCode(block, 'FIELD', JavaScript.ORDER_ATOMIC);
+    const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
     return `${input}.appendField(${field}, ${id});\n`;
   };
   Blockly.Blocks[prefix + 'getInputById'] = {
@@ -452,9 +452,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'getInputById'] = (block) => {
-    const name = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`___S4DCB_rALLOW_block_FROM_JS_FUNC___.getInput(${name})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'getInputById'] = (block) => {
+    const name = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+    return [`___S4DCB_rALLOW_block_FROM_JS_FUNC___.getInput(${name})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'valueToCode'] = {
     init: function () {
@@ -473,9 +473,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'valueToCode'] = (block) => {
-    const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`Blockly.JavaScript.valueToCode(___S4DCB_rALLOW_block_FROM_JS_FUNC___, ${field}, Blockly.JavaScript.ORDER_ATOMIC)`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'valueToCode'] = (block) => {
+    const field = JavaScript.valueToCode(block, 'FIELD', JavaScript.ORDER_ATOMIC);
+    return [`JavaScript.valueToCode(___S4DCB_rALLOW_block_FROM_JS_FUNC___, ${field}, JavaScript.ORDER_ATOMIC)`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'statementToCode'] = {
     init: function () {
@@ -494,9 +494,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'statementToCode'] = (block) => {
-    const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`Blockly.JavaScript.statementToCode(___S4DCB_rALLOW_block_FROM_JS_FUNC___, ${field})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'statementToCode'] = (block) => {
+    const field = JavaScript.valueToCode(block, 'FIELD', JavaScript.ORDER_ATOMIC);
+    return [`JavaScript.statementToCode(___S4DCB_rALLOW_block_FROM_JS_FUNC___, ${field})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'variableChoiceToCode'] = {
     init: function () {
@@ -515,9 +515,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'variableChoiceToCode'] = (block) => {
-    const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`Blockly.JavaScript.nameDB_.getName(___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}), Blockly.Variables.NAME_TYPE)`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'variableChoiceToCode'] = (block) => {
+    const field = JavaScript.valueToCode(block, 'FIELD', JavaScript.ORDER_ATOMIC);
+    return [`JavaScript.nameDB_.getName(___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}), Blockly.Variables.NAME_TYPE)`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'getFieldValue'] = {
     init: function () {
@@ -536,9 +536,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'getFieldValue'] = (block) => {
-    const field = Blockly.JavaScript.valueToCode(block, 'FIELD', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`(___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "TRUE" || ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "FALSE") ? ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "TRUE" : ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'getFieldValue'] = (block) => {
+    const field = JavaScript.valueToCode(block, 'FIELD', JavaScript.ORDER_ATOMIC);
+    return [`(___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "TRUE" || ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "FALSE") ? ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field}) == "TRUE" : ___S4DCB_rALLOW_block_FROM_JS_FUNC___.getFieldValue(${field})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldLabelSerializable'] = {
     init: function () {
@@ -557,9 +557,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldLabelSerializable'] = (block) => {
-    const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`new Blockly.FieldLabelSerializable(${text})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'FieldFieldLabelSerializable'] = (block) => {
+    const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+    return [`new Blockly.FieldLabelSerializable(${text})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldTextInput'] = {
     init: function () {
@@ -578,9 +578,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldTextInput'] = (block) => {
-    const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`new Blockly.FieldTextInput(${text})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'FieldFieldTextInput'] = (block) => {
+    const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+    return [`new Blockly.FieldTextInput(${text})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldNumber'] = {
     init: function () {
@@ -614,12 +614,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldNumber'] = (block) => {
-    const number = Blockly.JavaScript.valueToCode(block, 'NUM', Blockly.JavaScript.ORDER_ATOMIC);
-    const min = Blockly.JavaScript.valueToCode(block, 'MIN', Blockly.JavaScript.ORDER_ATOMIC);
-    const max = Blockly.JavaScript.valueToCode(block, 'MAX', Blockly.JavaScript.ORDER_ATOMIC);
-    const prec = Blockly.JavaScript.valueToCode(block, 'PRECISION', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`new Blockly.FieldNumber(${number}, ${min}, ${max}, ${prec})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'FieldFieldNumber'] = (block) => {
+    const number = JavaScript.valueToCode(block, 'NUM', JavaScript.ORDER_ATOMIC);
+    const min = JavaScript.valueToCode(block, 'MIN', JavaScript.ORDER_ATOMIC);
+    const max = JavaScript.valueToCode(block, 'MAX', JavaScript.ORDER_ATOMIC);
+    const prec = JavaScript.valueToCode(block, 'PRECISION', JavaScript.ORDER_ATOMIC);
+    return [`new Blockly.FieldNumber(${number}, ${min}, ${max}, ${prec})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldAngle'] = {
     init: function () {
@@ -638,9 +638,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldAngle'] = (block) => {
-    const number = Blockly.JavaScript.valueToCode(block, 'NUM', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`new Blockly.FieldAngle(${number})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'FieldFieldAngle'] = (block) => {
+    const number = JavaScript.valueToCode(block, 'NUM', JavaScript.ORDER_ATOMIC);
+    return [`new Blockly.FieldAngle(${number})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldCheckbox'] = {
     init: function () {
@@ -659,9 +659,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldCheckbox'] = (block) => {
-    const bool = Blockly.JavaScript.valueToCode(block, 'BOOL', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`new Blockly.FieldCheckbox(${bool} ? "TRUE" : "FALSE")`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'FieldFieldCheckbox'] = (block) => {
+    const bool = JavaScript.valueToCode(block, 'BOOL', JavaScript.ORDER_ATOMIC);
+    return [`new Blockly.FieldCheckbox(${bool} ? "TRUE" : "FALSE")`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldColour'] = {
     init: function () {
@@ -680,9 +680,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldColour'] = (block) => {
-    const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`new Blockly.FieldColour(${text})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'FieldFieldColour'] = (block) => {
+    const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+    return [`new Blockly.FieldColour(${text})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldVariable'] = {
     init: function () {
@@ -701,9 +701,9 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldVariable'] = (block) => {
-    const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`new Blockly.FieldVariable(${text})`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'FieldFieldVariable'] = (block) => {
+    const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+    return [`new Blockly.FieldVariable(${text})`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'FieldFieldImage'] = {
     init: function () {
@@ -737,12 +737,12 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'FieldFieldImage'] = (block) => {
-    const image = Blockly.JavaScript.valueToCode(block, 'IMAGE', Blockly.JavaScript.ORDER_ATOMIC);
-    const width = Blockly.JavaScript.valueToCode(block, 'WIDTH', Blockly.JavaScript.ORDER_ATOMIC);
-    const height = Blockly.JavaScript.valueToCode(block, 'HEIGHT', Blockly.JavaScript.ORDER_ATOMIC);
-    const alt = Blockly.JavaScript.valueToCode(block, 'ALT', Blockly.JavaScript.ORDER_ATOMIC);
-    return [`new Blockly.FieldImage(${image}, ${width}, ${height}, { alt: ${alt}, flipRtl: "FALSE" })`, Blockly.JavaScript.ORDER_NONE];
+  JavaScript[prefix + 'FieldFieldImage'] = (block) => {
+    const image = JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC);
+    const width = JavaScript.valueToCode(block, 'WIDTH', JavaScript.ORDER_ATOMIC);
+    const height = JavaScript.valueToCode(block, 'HEIGHT', JavaScript.ORDER_ATOMIC);
+    const alt = JavaScript.valueToCode(block, 'ALT', JavaScript.ORDER_ATOMIC);
+    return [`new Blockly.FieldImage(${image}, ${width}, ${height}, { alt: ${alt}, flipRtl: "FALSE" })`, JavaScript.ORDER_NONE];
   };
   Blockly.Blocks[prefix + 'setOutputCode'] = {
     init: function () {
@@ -762,8 +762,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setOutputCode'] = (block) => {
-    const code = Blockly.JavaScript.valueToCode(block, 'CODE', Blockly.JavaScript.ORDER_ATOMIC);
+  JavaScript[prefix + 'setOutputCode'] = (block) => {
+    const code = JavaScript.valueToCode(block, 'CODE', JavaScript.ORDER_ATOMIC);
     return `returning.value = (${code});\n`;
   };
   Blockly.Blocks[prefix + 'setOutputCode2'] = {
@@ -784,8 +784,8 @@ _ \\END JS FUNC\\ _`;
       });
     }
   };
-  Blockly.JavaScript[prefix + 'setOutputCode2'] = (block) => {
-    const code = Blockly.JavaScript.valueToCode(block, 'CODE', Blockly.JavaScript.ORDER_ATOMIC);
-    return `returning.value = [(${code}), Blockly.JavaScript.ORDER_NONE];\n`;
+  JavaScript[prefix + 'setOutputCode2'] = (block) => {
+    const code = JavaScript.valueToCode(block, 'CODE', JavaScript.ORDER_ATOMIC);
+    return `returning.value = [(${code}), JavaScript.ORDER_NONE];\n`;
   };
 }

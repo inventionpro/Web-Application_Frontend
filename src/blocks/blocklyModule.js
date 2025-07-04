@@ -245,7 +245,7 @@ export function workspaceToXml(workspace) {
   return Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
 }
 export function xmlToWorkspace(xml, workspace) {
-  Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+  Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(xml), workspace);
 }
 export let menus = {};
 menus.createMenu = (data) => {

@@ -42,7 +42,7 @@ registerRestrictions(blockName, [
   }
 ]);
 
-blockly.Blocks[blockName] = {
+Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
   }

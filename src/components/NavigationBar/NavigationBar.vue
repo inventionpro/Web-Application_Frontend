@@ -49,7 +49,7 @@ const NavExpanded = ref(false);
 </template>
 
 <script>
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
 import JSZip from 'jszip';
 import localforage from 'localforage';
 import Swal from 'sweetalert2';
@@ -1349,7 +1349,7 @@ export default {
                             icon: 'success',
                             title: `${a}`
                           });
-                          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(token), this.$store.state.workspace);
+                          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(token), this.$store.state.workspace);
                         }
                       });
                     }

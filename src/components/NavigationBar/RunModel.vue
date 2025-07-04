@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import DIG from 'discord-image-generation';
 import Discord from 'discord.js';
 import Database from 'easy-json-database';
@@ -43,7 +45,6 @@ import smartestchatbot from 'smartestchatbot';
 import TempChannels from 'TempChannels';
 import db from 'quick.db';
 import discordTTS from 'discord-tts';
-import Blockly from 'blockly';
 import { AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel } from '@discordjs/voice';
 import { Calculator, Snake, Fight } from 'weky';
 import censor from 'discord-censor';
@@ -104,7 +105,7 @@ export default {
     },
     async start() {
       this.botStarting = true;
-      const finalCode = beautify.js(Blockly.JavaScript.workspaceToCode(this.$store.state.workspace)(), {
+      const finalCode = beautify.js(JavaScript.javascriptGenerator.workspaceToCode(this.$store.state.workspace)(), {
         indent_size: 2,
         space_in_empty_paren: true
       });

@@ -1,4 +1,5 @@
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import localforage from 'localforage';
 const registered = {};
 function handle(block) {
@@ -8,7 +9,7 @@ function handle(block) {
 }
 export function bypassStrictModeRegister(name, code) {
   registered[name] = { code: code };
-  Blockly.JavaScript[name] = handle;
+  JavaScript[name] = handle;
 }
 export function createCustomBlockID(name) {
   let customId = '';
@@ -50,7 +51,7 @@ export function createCustomBlock(name, data) {
 const prefix = 'jg_s4d_customBlocks_builder1_';
 const color = 120;
 import { load } from './cbblocks.js';
-load(Blockly, prefix, color);
+load(Blockly, JavaScript, prefix, color);
 // toolbox
 export let toolbox = `
 <xml>

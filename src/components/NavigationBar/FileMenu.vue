@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import JSZip from 'jszip';
 import beautify from 'js-beautify';
 import localforage from 'localforage';
@@ -79,7 +80,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   window.BlocklyService = {};
   window.BlocklyService.Blocks = {};
   window.BlocklyService.JavaScript = {};
-  window.BlocklyService.JavaScript = Blockly.JavaScript;
+  window.BlocklyService.JavaScript = JavaScript;
   blocks.forEach((block) => {
     let bringBack_setTimeout;
     let bringBack_setInterval;
@@ -186,7 +187,7 @@ export default {
           if (file.type == 'text/xml') {
             const decoder = new TextDecoder('utf-8');
             const raw = decoder.decode(e.target.result);
-            const xml = Blockly.Xml.textToDom(raw);
+            const xml = Blockly.utils.xml.textToDom(raw);
             Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
             return;
           }
@@ -204,7 +205,7 @@ export default {
             .then((dataobj) => {
               if (dataobj.xml == null) return;
               function load() {
-                const xml = Blockly.Xml.textToDom(dataobj.xml);
+                const xml = Blockly.utils.xml.textToDom(dataobj.xml);
                 Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
               }
               if (dataobj.customBlocks == null) {

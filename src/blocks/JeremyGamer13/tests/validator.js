@@ -27,7 +27,6 @@ Blockly.Blocks[blockName] = {
   },
   onchange: function () {
     let A = this.getFieldValue('A');
-    console.log(A);
     if (A != 1) {
       this.setColour(0);
       return;

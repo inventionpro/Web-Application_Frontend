@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
 import Swal from 'sweetalert2';
 
 import PingPongExample from '../../examples/ping-pong';
@@ -122,7 +122,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace,
       fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then((result) =>
         result.text().then((xml) => {
           exampleXml = String(xml);
-          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), workspace);
+          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), workspace);
           setTimeout(() => {
             toast.open({
               message: 'Loaded a custom example!',
@@ -187,7 +187,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace,
   fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then((result) =>
     result.text().then((xml) => {
       const exampleXml = String(xml);
-      Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), previewWorkspace);
+      Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), previewWorkspace);
       console.log('loaded xml for workspace in', new Date().getTime() - currentMS + 'ms');
     })
   );
@@ -245,7 +245,7 @@ export default {
           this.$store.state.workspace.getAllBlocks().forEach((block) => block.dispose());
         }
         const exampleXml = examples[example];
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(exampleXml), this.$store.state.workspace);
+        Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), this.$store.state.workspace);
         setTimeout(() => {
           this.$toast.open({
             message: this.$t('examples.loaded', {

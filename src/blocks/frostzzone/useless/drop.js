@@ -27,7 +27,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+JavaScript.javascriptGenerator[blockName] = function (block) {
   const stats = block.getFieldValue('INFO');
   const code = [`${stats}`, JavaScript.ORDER_NONE];
 

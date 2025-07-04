@@ -8,7 +8,8 @@
 </template>
 
 <script>
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import swal from 'sweetalert2';
 import * as blocklyModule from '../blocks/blocklyModule.js';
 import * as customBlockModule from './NavigationBar/cbmodule.js';
@@ -83,7 +84,7 @@ let HIDEN_BLOCKS = ['frost_image', 'frost_drop1', 'colour_picker', 'frost_transl
 
 let preadded = [];
 BlocklyB.filter((block) => {
-  if (Blockly.Blocks[block].isHiden || Blockly.JavaScript[block] == null) {
+  if (Blockly.Blocks[block].isHiden || JavaScript[block] == null) {
     HIDEN_BLOCKS.push(block);
     preadded.push(block);
   }
@@ -114,7 +115,7 @@ export default {
 
       if (searching == 'baiuyfg8iu4ewf643o8ir') {
         blocks.forEach((block) => {
-          let xml = Blockly.Xml.textToDom(`<block type="${block}"/>`);
+          let xml = Blockly.utils.xml.textToDom(`<block type="${block}"/>`);
           block = Blockly.Xml.domToBlock(xml, pooopewwweewwww);
           block.moveBy(Math.round(Math.random() * 5000), Math.round(Math.random() * 5000));
           return;
@@ -122,7 +123,7 @@ export default {
       }
       if (searching == 'f9u42r8hg329rehsfhoiewgf37') {
         blocks.forEach((block) => {
-          const xml = Blockly.Xml.textToDom(`<xml><block type="${block}"/></xml>`);
+          const xml = Blockly.utils.xml.textToDom(`<xml><block type="${block}"/></xml>`);
           Blockly.Xml.appendDomToWorkspace(xml, pooopewwweewwww);
         });
         return;
@@ -140,11 +141,12 @@ export default {
             console.warn(`${block} is already registerd as hiden! either remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS" or remove the "isHiden" tag from the block defnintion`);
             warnings.push(block);
           }
-          if (Blockly.JavaScript[block] == null && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
+          if (JavaScript[block] == null && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
+            console.log(JavaScript[block])
             console.warn(`${block} doesnt have a export! and thus doesnt need to be in "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"! please remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"!`);
             warnings.push(block);
           }
-          if ((Blockly.Blocks[block].isHiden || Blockly.JavaScript[block] == null) && !HIDEN_BLOCKS.includes(block)) {
+          if ((Blockly.Blocks[block].isHiden || JavaScript[block] == null) && !HIDEN_BLOCKS.includes(block)) {
             HIDEN_BLOCKS.push(block);
             preadded.push(block);
           }
@@ -303,7 +305,7 @@ ${CATEGORYCONTENT}`
                 dx = selected.saveInfo.x;
                 dy = selected.saveInfo.y;
               }
-              let xml = Blockly.Xml.textToDom(`<block type="${blockToPlace}"></block>`);
+              let xml = Blockly.utils.xml.textToDom(`<block type="${blockToPlace}"></block>`);
               let block = Blockly.Xml.domToBlock(xml, workspace);
               if (Number(dx) && Number(dy)) {
                 block.moveBy(Number(dx), Number(dy));
@@ -334,7 +336,7 @@ ${CATEGORYCONTENT}`
           if (!input) {
             return;
           }
-          let xml = Blockly.Xml.textToDom('<xml><block type="' + input + '"></block></xml>');
+          let xml = Blockly.utils.xml.textToDom('<xml><block type="' + input + '"></block></xml>');
           try {
             Blockly.Xml.appendDomToWorkspace(xml, workspace);
           } catch (err) {
@@ -437,7 +439,7 @@ ${CATEGORYCONTENT}`
     localforage.getItem('hide-blockcount').then((item) => {
       if (String(item) == 'true') {
         let counter = document.getElementById('block-counter');
-        counter.remove();
+        counter?.remove();
       }
     });
     window.addEventListener('click', () => {
@@ -636,7 +638,7 @@ ${CATEGORYCONTENT}`
                     });
                 }
             }
-            Blockly.JavaScript["jg_test_variables_" + varName] = function () {
+            JavaScript["jg_test_variables_" + varName] = function () {
                 const code = `${varName}`
                 return code;
             };
@@ -695,9 +697,9 @@ ${CATEGORYCONTENT}`
         comments: false,
         toolbox: customBlockModule.toolbox
       });
-      const exportInitBlock = Blockly.Xml.domToBlock(Blockly.Xml.textToDom('<block type="jg_s4d_customBlocks_builder1_exportInit"/>'), customBlockWorkspace);
+      const exportInitBlock = Blockly.Xml.domToBlock(Blockly.utils.xml.textToDom('<block type="jg_s4d_customBlocks_builder1_exportInit"/>'), customBlockWorkspace);
       exportInitBlock.setDeletable(false);
-      const exportJavascriptBlock = Blockly.Xml.domToBlock(Blockly.Xml.textToDom('<block type="jg_s4d_customBlocks_builder1_exportJavascript"/>'), customBlockWorkspace);
+      const exportJavascriptBlock = Blockly.Xml.domToBlock(Blockly.utils.xml.textToDom('<block type="jg_s4d_customBlocks_builder1_exportJavascript"/>'), customBlockWorkspace);
       exportJavascriptBlock.setDeletable(false);
       exportInitBlock.moveBy(100, 100);
       exportJavascriptBlock.moveBy(600, 100);
@@ -720,8 +722,8 @@ ${CATEGORYCONTENT}`
       createButton.style.width = '100%';
       createButton.innerHTML = 'Create Block';
       createButton.onclick = () => {
-        customBlockModule.createCustomBlock(customBlockModule.createCustomBlockID(blockNameInput.value), customBlockModule.stringToCustomBlockData(Blockly.JavaScript.workspaceToCode(customBlockWorkspace)));
-        console.log(Blockly.JavaScript.workspaceToCode(customBlockWorkspace));
+        customBlockModule.createCustomBlock(customBlockModule.createCustomBlockID(blockNameInput.value), customBlockModule.stringToCustomBlockData(JavaScript.workspaceToCode(customBlockWorkspace)));
+        console.log(JavaScript.workspaceToCode(customBlockWorkspace));
       };
       buttonDiv.append(createButton);
       const customBlockDeletorDiv = document.createElement('div');
@@ -798,7 +800,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
           const eauthorpfp = validateForXML(document.getElementById('EmbedAuthorPFP').value);
           const eauthorurl = validateForXML(document.getElementById('EmbedAuthorURL').value);
           // blocks are placed even if they arent required because blockly is dumb and has a stupid method of placing multiple blocks inside of statement inputs
-          let xml = Blockly.Xml.textToDom(`<block type="s4d_embed_create">
+          let xml = Blockly.utils.xml.textToDom(`<block type="s4d_embed_create">
   <statement name="THEN">
     <block type="s4d_embed_set_title">
       <value name="TITLE">
@@ -913,7 +915,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
         });
     });
     /*
-        let xml = Blockly.Xml.textToDom(`
+        let xml = Blockly.utils.xml.textToDom(`
 <block type="s4d_login">
     <value name="TOKEN">
         <shadow type="text">
@@ -1259,6 +1261,8 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
 
     try {
       Blockly.ContextMenuRegistry.registry.unregister('fav');
+      Blockly.ContextMenuRegistry.registry.unregister('refav');
+      Blockly.ContextMenuRegistry.registry.unregister('image');
     } catch {}
 
     Blockly.ContextMenuRegistry.registry.register({
@@ -1308,11 +1312,6 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       id: 'image',
       weight: 100
     });
-
-    try {
-      Blockly.ContextMenuRegistry.registry.unregister('refav');
-    } catch {}
-
     Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Remove from favorite',
       preconditionFn: function (scope) {
@@ -1350,7 +1349,11 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       weight: 100
     });
 
-    const defaultOptions = {
+    const workspaceSearch = new WorkspaceSearch(workspace);
+    workspaceSearch.init();
+    workspaceSearch.close();
+
+    const backpack = new Backpack(workspace, {
       contextMenu: {
         emptyBackpack: true,
         removeFromBackpack: true,
@@ -1359,12 +1362,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
         pasteAllToBackpack: true,
         disablePreconditionChecks: true
       }
-    };
-    const workspaceSearch = new WorkspaceSearch(workspace);
-    workspaceSearch.init();
-    workspaceSearch.close();
-
-    const backpack = new Backpack(workspace, defaultOptions);
+    });
     backpack.init();
     Load(backpack);
     this.$store.commit('setWorkspace', {

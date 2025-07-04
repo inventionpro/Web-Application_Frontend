@@ -57,26 +57,3 @@ JavaScript[blockName] = function (block) {
   const code = `${A}${B}`;
   return code;
 };
-
-/*
-
-        {
-            "type": "field_dropdown",
-            "name": "A",
-            "options": [
-                [
-                    "A1",
-                    "0"
-                ],
-                [
-                    "A2",
-                    "1"
-                ],
-                [
-                    "A3",
-                    "2"
-                ]
-            ],
-        }
-    
-*/

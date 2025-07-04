@@ -26,7 +26,6 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   },
   onchange: function () {
-    console.log('something');
     this.setColour(Math.floor(Math.random() * 360));
   },
   isHiden: true
