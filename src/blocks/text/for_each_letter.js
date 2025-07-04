@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
 Blockly.Blocks['jg_text_for_each_letter_in_text_do'] = {
   init: function () {

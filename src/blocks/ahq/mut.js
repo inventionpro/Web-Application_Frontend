@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'mute_ahq';
 const blockData = {
   message0: 'timeout member %1 %2 for seconds %3 %4 reason %5',

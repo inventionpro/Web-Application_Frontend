@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const ahqcolor = [
   '#40BF4A',
   '#40BF4A'

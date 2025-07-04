@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_index_of_string_number_or_buffer';
 

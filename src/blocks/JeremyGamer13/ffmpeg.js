@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 Blockly.Blocks['jg_files_ffmpeg_video_get_video_with_file_name_then'] = {
   init: function () {
     this.jsonInit({

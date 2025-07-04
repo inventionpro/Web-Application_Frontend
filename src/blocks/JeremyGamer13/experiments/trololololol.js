@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const blockName = 'jg_do_not_use_this_block_you_poop_bruh_fard_lolololol_haha_poopoo';
 

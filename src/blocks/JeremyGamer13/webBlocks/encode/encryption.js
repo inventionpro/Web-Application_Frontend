@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 Blockly.Blocks['jg_encryption_encrypt_text'] = {
   init: function () {
     this.jsonInit({

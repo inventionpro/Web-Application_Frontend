@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 Blockly.Blocks['gsa_your_mom_lmao_mutator_block_hat'] = {
   init: function () {
     this.appendDummyInput().appendField('has fill color').appendField(new Blockly.FieldCheckbox('FALSE'), 'check');

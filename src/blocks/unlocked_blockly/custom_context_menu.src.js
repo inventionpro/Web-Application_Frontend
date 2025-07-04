@@ -5,7 +5,7 @@
 // https://drive.google.com/drive/folders/1G2Lg11s8ds3Ug_LmL_2OIieTAg5Fu1QC?usp=sharing
 
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 Blockly.Blocks['string_length'] = {
   init: function () {

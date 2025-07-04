@@ -1,6 +1,6 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const BORDER_FIELDS = ['STYLE', 'LABEL', 'EMOJI', 'URL', 'CUSTOM_ID', 'DISABLED'];

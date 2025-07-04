@@ -12,7 +12,7 @@ NUMBER	- 10	Any double between -2^53 and 2^53
 ATTACHMENT	- 11	attachment object
 */
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const blockName = 'frost_slash_options2';
 

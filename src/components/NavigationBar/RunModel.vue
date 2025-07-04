@@ -34,7 +34,7 @@
 
 <script>
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import DIG from 'discord-image-generation';
 import Discord from 'discord.js';
 import Database from 'easy-json-database';
@@ -105,7 +105,7 @@ export default {
     },
     async start() {
       this.botStarting = true;
-      const finalCode = beautify.js(JavaScript.javascriptGenerator.workspaceToCode(this.$store.state.workspace)(), {
+      const finalCode = beautify.js(JavaScript.workspaceToCode(this.$store.state.workspace)(), {
         indent_size: 2,
         space_in_empty_paren: true
       });

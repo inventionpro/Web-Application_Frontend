@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import localforage from 'localforage';
 import * as blocklyModule from '../blocks/blocklyModule';
 window.devBlocklyModule = blocklyModule;

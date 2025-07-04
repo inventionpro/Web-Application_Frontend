@@ -11,7 +11,7 @@
 
 <script>
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import JSZip from 'jszip';
 import beautify from 'js-beautify';
 import localforage from 'localforage';

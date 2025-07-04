@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const blockName = 'jose_jg_create_webhook_in_channel_with_name_and_profile_picture_url_with_reason_then_do';
 

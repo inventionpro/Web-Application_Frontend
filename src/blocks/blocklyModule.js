@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 Math.lerp = (n1, n2, a) => {
   let lerped = n1;

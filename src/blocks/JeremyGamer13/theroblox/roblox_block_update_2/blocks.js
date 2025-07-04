@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockNames = ['jg_roblox_U2_login_with_security_cookie', 'jg_roblox_U2_currently_logged_in_users', 'jg_roblox_U2_wear_list_of_assets', 'jg_roblox_U2_set_avatar_type', 'jg_roblox_U2_get_users_avatar_asset_ids', 'jg_roblox_U2_users_avatar_asset_ids', 'jg_roblox_U2_remove_asset_id_from_avatar', 'jg_roblox_U2_accept_friend_request', 'jg_roblox_U2_block_user', 'jg_roblox_U2_unblock_user', 'jg_roblox_U2_decline_all_friend_requests', 'jg_roblox_U2_decline_friend_request'];
 Blockly.Blocks[blockNames[0]] = {
   init: function () {

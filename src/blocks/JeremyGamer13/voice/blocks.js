@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 Blockly.Blocks['jg_voice_create_connection_to_voice_channel_id_in_server_id'] = {
   init: function () {
     this.jsonInit({

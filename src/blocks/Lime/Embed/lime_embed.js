@@ -1,6 +1,6 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const BORDER_FIELDS = ['TITLE_LIME', 'URL_EMBED', 'DESCRIPTION_LIME', 'AUTHORPFP', 'THUMBNAIL_LIME', 'FIELD_LIME', 'IMAGE_LIME', 'COLOR_LIME', 'TIMESTAMP', 'FOOTER_LIME', 'SETAUTHOR'];
 

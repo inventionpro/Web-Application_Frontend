@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockColor = '#a354b3';
 Blockly.Blocks['collections_create_new_collection'] = {
   init: function () {

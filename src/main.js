@@ -4,7 +4,7 @@ import App from './App.vue';
 import store from './store';
 import { createI18n } from 'vue-i18n';
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import VueToast from 'vue-toast-notification';
 import VueTour from 'vue3-tour';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -142,7 +142,7 @@ app.mixin({
       let requires = [];
       let requiresjscode = [];
       let xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-      req(requires, requiresjscode, JavaScript.javascriptGenerator.workspaceToCode(workspace), xml);
+      req(requires, requiresjscode, JavaScript.workspaceToCode(workspace), xml);
       setTimeout(async () => {
         await localforage.setItem('requires', requires);
       }, 1000);
@@ -226,7 +226,7 @@ app.mixin({
   ${requiresjscode.join('\n    ')}
 
   // blockly code
-  ${JavaScript.javascriptGenerator.workspaceToCode(workspace).split('\n').join('\n  ')}
+  ${JavaScript.workspaceToCode(workspace).split('\n').join('\n  ')}
   return s4d
 })();`;
     }

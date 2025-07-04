@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'jg';
 const blockName = yourName + '_' + 'express_start_website_then_using_port';

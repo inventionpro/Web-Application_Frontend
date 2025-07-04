@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import * as blocklyModule from '../blocklyModule.js';
 import * as JBlock from '../jblock1.js';
 import { registerRestrictions } from '../../restrictions.js';

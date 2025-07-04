@@ -1,6 +1,6 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const BORDER_FIELDS = ['S_EVENT_NAME', 'S_EVENT_START', 'S_EVENT_END', 'S_PRIV_LVL', 'S_NTITI_TYPE', 'S_EVENT_DESC', 'S_EVENT_CHANNEL', 'S_METADATA', 'S_REASON'];
 

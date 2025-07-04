@@ -8,7 +8,7 @@
 // current goals achieved: 1, 2, 3(?)!!!!
 
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 'jg_tests_checkbox_mutator';
 const menuName = blockName + '_checkboxMutatorMenu';

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'gsa_set_simple_embed_author';
 const blockData = {
   message0: 'set embed author name %1 pfp %2 url %3',

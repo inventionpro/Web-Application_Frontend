@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import * as JavaScript from 'blockly/javascript';
+import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'chat_ahq';
 const blockData = {
   message0: 'chat message %1 %2 bot name %3 %4 user ID %5 %6 channel %7',
