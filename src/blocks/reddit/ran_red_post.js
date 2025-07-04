@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'ran_red_post';
 
@@ -29,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
   return `
 S4D_APP_REDDIT_musakui(${message}).then(async (result) => {
    ${statementThen}

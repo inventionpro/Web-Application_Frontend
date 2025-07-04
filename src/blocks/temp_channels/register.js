@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_temp_register';
 
@@ -51,11 +52,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const channel_id = Blockly.JavaScript.valueToCode(block, 'CHANNELID', Blockly.JavaScript.ORDER_ATOMIC);
-  const empty = Blockly.JavaScript.valueToCode(block, 'EMPTY', Blockly.JavaScript.ORDER_ATOMIC);
-  const max = Blockly.JavaScript.valueToCode(block, 'MAX', Blockly.JavaScript.ORDER_ATOMIC);
-  const name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const channel_id = JavaScript.valueToCode(block, 'CHANNELID', JavaScript.ORDER_ATOMIC);
+  const empty = JavaScript.valueToCode(block, 'EMPTY', JavaScript.ORDER_ATOMIC);
+  const max = JavaScript.valueToCode(block, 'MAX', JavaScript.ORDER_ATOMIC);
+  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
   const code = `
     const stuffkksadicnsake = {
       childAutoDeleteIfEmpty: ${empty},

@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_print';
 
@@ -24,7 +25,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const print = Blockly.JavaScript.valueToCode(block, 'PRINT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const print = JavaScript.valueToCode(block, 'PRINT', JavaScript.ORDER_ATOMIC);
   return `console.log(${print});\n`;
 };

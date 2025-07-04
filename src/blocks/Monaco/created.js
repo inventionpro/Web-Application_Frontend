@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'monaco_created_guild';
 
@@ -18,9 +19,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['monaco_created_guild'] = function () {
+JavaScript['monaco_created_guild'] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = `newServer`;
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

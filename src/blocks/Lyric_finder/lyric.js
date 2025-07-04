@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'lyric';
 
@@ -17,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = [`lyrics`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`lyrics`, JavaScript.ORDER_NONE];
   return code;
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'qdb_subtract';
 
@@ -28,8 +29,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
-  const count = Blockly.JavaScript.valueToCode(block, 'COUNT', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const key = JavaScript.valueToCode(block, 'KEY', JavaScript.ORDER_ATOMIC);
+  const count = JavaScript.valueToCode(block, 'COUNT', JavaScript.ORDER_ATOMIC);
   return `qdb.sub(String(${key}), Number(${count}))\n`;
 };

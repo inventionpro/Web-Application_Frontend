@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'qdb_delete_all';
 
@@ -17,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
+JavaScript[blockName] = function () {
   const code = 'await qdb.deleteAll();\n';
   return code;
 };

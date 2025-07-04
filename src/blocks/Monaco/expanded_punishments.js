@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'monaco_expanded_punishments';
 
@@ -43,11 +44,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['monaco_expanded_punishments'] = function (block) {
+JavaScript['monaco_expanded_punishments'] = function (block) {
   var dropdown_punishments = block.getFieldValue('punishments');
-  var value_member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_reason = Blockly.JavaScript.valueToCode(block, 'reason', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
+  var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
+  var value_reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.members.${dropdown_punishments}(${value_member}, { reason: String(${value_reason}) })\n`;
   return code;

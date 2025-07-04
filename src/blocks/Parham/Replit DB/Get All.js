@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'parham_replitdb_getall';
 
@@ -26,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  var statements_then = Blockly.JavaScript.statementToCode(block, 'then');
+JavaScript[blockName] = function (block) {
+  var statements_then = JavaScript.statementToCode(block, 'then');
   // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_Replit_DB.list().then(async (S4D_APP_Replit_DB_Data) => {${statements_then}});;\n`;
   return code;

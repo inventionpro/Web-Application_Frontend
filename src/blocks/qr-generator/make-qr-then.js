@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'create_qr_then';
 
@@ -32,9 +33,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'THEN');
-  const URL = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'THEN');
+  const URL = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
   const code = `QRCode.toString(${URL}, { type: "image" }, async (err, QR) => {
         if(err) return console.warn('There was an error while creating the QR code')
         ${statements}

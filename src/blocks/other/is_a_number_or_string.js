@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'is_a_number_or_string';
 
@@ -31,12 +32,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const dataType = block.getFieldValue('DATA_TYPE');
-  const code = Blockly.JavaScript.valueToCode(block, 'STRING', Blockly.JavaScript.ORDER_ATOMIC);
+  const code = JavaScript.valueToCode(block, 'STRING', JavaScript.ORDER_ATOMIC);
   if (dataType == 'NUMBER') {
-    return [`typeof (${code}) == "number"`, Blockly.JavaScript.ORDER_NONE];
+    return [`typeof (${code}) == "number"`, JavaScript.ORDER_NONE];
   } else if (dataType == 'STRING') {
-    return [`typeof (${code}) == "string"`, Blockly.JavaScript.ORDER_NONE];
+    return [`typeof (${code}) == "string"`, JavaScript.ORDER_NONE];
   }
 };

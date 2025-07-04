@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 import { registerRestrictions } from '../../../restrictions';
 
@@ -18,11 +19,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
+JavaScript[blockName] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_Replit_DB_Data`;
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

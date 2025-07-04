@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'monaco_delete_invite';
 
@@ -34,10 +35,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['monaco_delete_invite'] = function (block) {
-  var value_invite = Blockly.JavaScript.valueToCode(block, 'invite', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_reason = Blockly.JavaScript.valueToCode(block, 'reason', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['monaco_delete_invite'] = function (block) {
+  var value_invite = JavaScript.valueToCode(block, 'invite', JavaScript.ORDER_ATOMIC);
+  var value_reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
+  var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.invites.delete(${value_invite}, String(${value_reason}))\n`;
   return code;

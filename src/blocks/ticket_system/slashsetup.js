@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'slash_ticket_setup';
 
@@ -24,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const channel = Blockly.JavaScript.valueToCode('channel', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function () {
+  const channel = JavaScript.valueToCode('channel', JavaScript.ORDER_ATOMIC);
   const code = `ticket.setup(interaction, interaction.options.getChannel(${channel}).id);`;
   return code;
 };

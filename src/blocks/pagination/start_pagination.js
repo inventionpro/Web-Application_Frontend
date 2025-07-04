@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'start_pagination';
 
@@ -44,11 +45,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  const emoji1 = Blockly.JavaScript.valueToCode(block, 'EMOJI1', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  const emoji2 = Blockly.JavaScript.valueToCode(block, 'EMOJI2', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  const timeout = Blockly.JavaScript.valueToCode(block, 'TIMEOUT', Blockly.JavaScript.ORDER_ATOMIC) || null;
-  const embeds = Blockly.JavaScript.valueToCode(block, 'EMBEDS', Blockly.JavaScript.ORDER_ATOMIC) || null;
+JavaScript[blockName] = function (block) {
+  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC) || null;
+  const emoji1 = JavaScript.valueToCode(block, 'EMOJI1', JavaScript.ORDER_ATOMIC) || null;
+  const emoji2 = JavaScript.valueToCode(block, 'EMOJI2', JavaScript.ORDER_ATOMIC) || null;
+  const timeout = JavaScript.valueToCode(block, 'TIMEOUT', JavaScript.ORDER_ATOMIC) || null;
+  const embeds = JavaScript.valueToCode(block, 'EMBEDS', JavaScript.ORDER_ATOMIC) || null;
   return `paginationEmbed(${message}, ${embeds}, ['${emoji1}', '${emoji2}'],${timeout});\n`;
 };

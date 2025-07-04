@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'event-role';
 
@@ -32,8 +33,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const info = block.getFieldValue('INFO');
-  const code = [`role.${info}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`role.${info}`, JavaScript.ORDER_NONE];
   return code;
 };

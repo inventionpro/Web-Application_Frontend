@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'find_lyric_than';
 
@@ -37,10 +38,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const Artist = Blockly.JavaScript.valueToCode(block, 'ArtistName', Blockly.JavaScript.ORDER_ATOMIC);
-  const Song = Blockly.JavaScript.valueToCode(block, 'SongName', Blockly.JavaScript.ORDER_ATOMIC);
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
+JavaScript[blockName] = function (block) {
+  const Artist = JavaScript.valueToCode(block, 'ArtistName', JavaScript.ORDER_ATOMIC);
+  const Song = JavaScript.valueToCode(block, 'SongName', JavaScript.ORDER_ATOMIC);
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
   const code = `(async function(artist, title) {
         let lyrics = await lyricsFinder(artist, title) || "Not Found!";\n
         ${statementThen}

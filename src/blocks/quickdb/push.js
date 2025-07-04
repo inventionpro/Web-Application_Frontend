@@ -1,4 +1,5 @@
-import Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'qdb_push';
 
@@ -26,8 +27,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
-  const data = Blockly.JavaScript.valueToCode(block, 'DATA', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const key = JavaScript.valueToCode(block, 'KEY', JavaScript.ORDER_ATOMIC);
+  const data = JavaScript.valueToCode(block, 'DATA', JavaScript.ORDER_ATOMIC);
   return `qdb.push(String(${key}), ${data})\n`;
 };

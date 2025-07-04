@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'monaco_all_invites';
 
@@ -25,10 +26,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['monaco_all_invites'] = function (block) {
-  var value_server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['monaco_all_invites'] = function (block) {
+  var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.invites.fetch()`;
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

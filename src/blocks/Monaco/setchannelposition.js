@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'monaco_set_channel_position';
 
@@ -35,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['monaco_set_channel_position'] = function (block) {
-  var value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['monaco_set_channel_position'] = function (block) {
+  var value_channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
+  var value_position = JavaScript.valueToCode(block, 'position', JavaScript.ORDER_ATOMIC);
+  var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.${value_channel}.setPosition(${value_position})\n`;
   return code;

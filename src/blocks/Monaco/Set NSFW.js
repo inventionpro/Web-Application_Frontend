@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'monaco_set_channel_nsfw';
 
@@ -38,9 +39,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-  let reason = Blockly.JavaScript.valueToCode(block, 'reason', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
+  let reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE'); // this is the dropdown
   // the dropdown options are NAMED with true or false so that you dont need to do checks on them
   if (String(reason) != null && String(reason) != '') reason = ', ' + reason;

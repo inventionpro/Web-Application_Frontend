@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'create_together';
 
@@ -52,9 +53,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'THEN');
-  const voicechannel = Blockly.JavaScript.valueToCode(block, 'VoiceChannel', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'THEN');
+  const voicechannel = JavaScript.valueToCode(block, 'VoiceChannel', JavaScript.ORDER_ATOMIC);
   const info2 = block.getFieldValue('INFO');
   let info1 = info2.replace("'", '');
   let info = info1.replace("'", '');

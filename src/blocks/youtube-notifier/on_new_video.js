@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'on_newvideo';
 
@@ -22,8 +23,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+JavaScript[blockName] = function (block) {
+  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
   const code = `s4d.notifer.on('video', async video => {\n${statements}\n});\n`;
   return code;
 };

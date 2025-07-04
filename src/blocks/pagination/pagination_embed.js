@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'pagination_embed';
 
@@ -29,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const embed1 = Blockly.JavaScript.valueToCode(block, 'EMBED1', Blockly.JavaScript.ORDER_ATOMIC);
-  const embed2 = Blockly.JavaScript.valueToCode(block, 'EMBED2', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${embed1},${embed2}`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const embed1 = JavaScript.valueToCode(block, 'EMBED1', JavaScript.ORDER_ATOMIC);
+  const embed2 = JavaScript.valueToCode(block, 'EMBED2', JavaScript.ORDER_ATOMIC);
+  const code = [`${embed1},${embed2}`, JavaScript.ORDER_NONE];
   return code;
 };

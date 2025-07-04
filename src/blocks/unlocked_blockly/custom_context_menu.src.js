@@ -4,7 +4,8 @@
 // If this website is down or shutdown, you can find an archive I made here:
 // https://drive.google.com/drive/folders/1G2Lg11s8ds3Ug_LmL_2OIieTAg5Fu1QC?usp=sharing
 
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 Blockly.Blocks['string_length'] = {
   init: function () {

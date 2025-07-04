@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'ticket_setup';
 
@@ -18,7 +19,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
+JavaScript[blockName] = function () {
   const code = `ticket.setup(s4dmessage, s4dmessage.mentions.channels.first().id);`;
   return code;
 };

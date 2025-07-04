@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'ps_cpu_stats';
 
@@ -26,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const info = block.getFieldValue('INFO');
-  const code = [`cpu.${info}()`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`cpu.${info}()`, JavaScript.ORDER_NONE];
   return code;
 };

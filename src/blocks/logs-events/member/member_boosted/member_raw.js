@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'member_raw';
 
@@ -26,11 +27,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const searchType = block.getFieldValue('SEARCH_TYPE');
-  let code = ['member.user.id', Blockly.JavaScript.ORDER_NONE];
+  let code = ['member.user.id', JavaScript.ORDER_NONE];
   if (searchType === 'TAG') {
-    code = ['member.user.tag', Blockly.JavaScript.ORDER_NONE];
+    code = ['member.user.tag', JavaScript.ORDER_NONE];
   }
   return code;
 };

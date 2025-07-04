@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'create_random_string';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`S4D_makeid(${text})`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+  const code = [`S4D_makeid(${text})`, JavaScript.ORDER_NONE];
   return code;
 };

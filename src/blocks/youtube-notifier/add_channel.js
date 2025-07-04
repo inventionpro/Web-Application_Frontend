@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'add_channel';
 
@@ -25,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
   const code = `s4d.notifer.addChannels([${id}])`;
   return code;
 };

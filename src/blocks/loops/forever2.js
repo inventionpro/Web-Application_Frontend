@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_forever2';
 
@@ -31,12 +32,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const log = Blockly.JavaScript.valueToCode(block, 'LOG', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const log = JavaScript.valueToCode(block, 'LOG', JavaScript.ORDER_ATOMIC);
   return `
         while(s4d.client && s4d.client.token) {
             await delay(50);
-            ${Blockly.JavaScript.statementToCode(block, 'STATEMENT')}
+            ${JavaScript.statementToCode(block, 'STATEMENT')}
             if (${log}) {
                 console.log('ran')
             }
@@ -66,11 +67,11 @@ Blockly.Blocks['s4d_forever_nolog'] = {
   }
 };
 
-Blockly.JavaScript['s4d_forever_nolog'] = function (block) {
+JavaScript['s4d_forever_nolog'] = function (block) {
   return `
         while(s4d.client && s4d.client.token) {
             await delay(50);
-            ${Blockly.JavaScript.statementToCode(block, 'STATEMENT')}
+            ${JavaScript.statementToCode(block, 'STATEMENT')}
         }
     `;
 };

@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'ps_os_stats';
 
@@ -28,13 +29,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const info = block.getFieldValue('INFO');
   if (info == 'sysUptime') {
-    const code = [`miliConverter.secsMinsHoursDays((os.sysUptime() * 1000), "string")`, Blockly.JavaScript.ORDER_NONE];
+    const code = [`miliConverter.secsMinsHoursDays((os.sysUptime() * 1000), "string")`, JavaScript.ORDER_NONE];
     return code;
   } else {
-    const code = [`os.${info}()`, Blockly.JavaScript.ORDER_NONE];
+    const code = [`os.${info}()`, JavaScript.ORDER_NONE];
     return code;
   }
 };

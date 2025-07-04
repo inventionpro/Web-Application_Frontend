@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 Math.lerp = (n1, n2, a) => {
   let lerped = n1;
@@ -139,7 +140,7 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
         }
       }
     };
-    Blockly.JavaScript[blockName] = exportCodeCallback;
+    JavaScript[blockName] = exportCodeCallback;
   }
 }
 export function setMutatorOnBlock(block, mutator_type, data) {

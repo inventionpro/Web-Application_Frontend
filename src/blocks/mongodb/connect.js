@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'mongo_connect';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
   const code = `const mdb = new DB(${value});
     \n`;
   return code;

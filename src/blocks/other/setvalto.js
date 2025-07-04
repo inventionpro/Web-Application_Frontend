@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'jg_other_setvalue';
 
@@ -30,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const input = Blockly.JavaScript.valueToCode(block, 'input', Blockly.JavaScript.ORDER_ATOMIC);
-  const replace = Blockly.JavaScript.valueToCode(block, 'replace', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const input = JavaScript.valueToCode(block, 'input', JavaScript.ORDER_ATOMIC);
+  const replace = JavaScript.valueToCode(block, 'replace', JavaScript.ORDER_ATOMIC);
   const code = `${input} = ${replace}
     `;
   return code;

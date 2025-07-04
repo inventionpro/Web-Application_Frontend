@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_string_to_number';
 
@@ -23,7 +24,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const code = Blockly.JavaScript.valueToCode(block, 'STRING', Blockly.JavaScript.ORDER_ATOMIC);
-  return [`Number(${code})`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const code = JavaScript.valueToCode(block, 'STRING', JavaScript.ORDER_ATOMIC);
+  return [`Number(${code})`, JavaScript.ORDER_NONE];
 };

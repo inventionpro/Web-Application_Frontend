@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'event-guild';
 
@@ -26,13 +27,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['guild.id', Blockly.JavaScript.ORDER_NONE];
+    const code = ['guild.id', JavaScript.ORDER_NONE];
     return code;
   } else if (searchType === 'NAME') {
-    const code = ['guild.name', Blockly.JavaScript.ORDER_NONE];
+    const code = ['guild.name', JavaScript.ORDER_NONE];
     return code;
   }
 };

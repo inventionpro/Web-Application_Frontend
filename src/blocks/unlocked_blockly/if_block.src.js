@@ -4,7 +4,8 @@
 // If this website is down or shutdown, you can find an archive I made here:
 // https://drive.google.com/drive/folders/1G2Lg11s8ds3Ug_LmL_2OIieTAg5Fu1QC?usp=sharing
 
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 Blockly.Blocks['controls_if'] = {
   /**
@@ -180,22 +181,22 @@ Blockly.Blocks['controls_if'] = {
   }
 };
 
-Blockly.JavaScript['controls_if'] = function (block) {
+JavaScript['controls_if'] = function (block) {
   // If/elseif/else condition.
   var n = 0;
   var code = '',
     branchCode,
     conditionCode;
   do {
-    conditionCode = Blockly.JavaScript.valueToCode(block, 'IF' + n, Blockly.JavaScript.ORDER_NONE) || 'false';
-    branchCode = Blockly.JavaScript.statementToCode(block, 'DO' + n);
+    conditionCode = JavaScript.valueToCode(block, 'IF' + n, JavaScript.ORDER_NONE) || 'false';
+    branchCode = JavaScript.statementToCode(block, 'DO' + n);
     code += (n > 0 ? ' else ' : '') + 'if (' + conditionCode + ') {\n' + branchCode + '}';
 
     ++n;
   } while (block.getInput('IF' + n));
 
   if (block.getInput('ELSE')) {
-    branchCode = Blockly.JavaScript.statementToCode(block, 'ELSE');
+    branchCode = JavaScript.statementToCode(block, 'ELSE');
     code += ' else {\n' + branchCode + '}';
   }
   return code + '\n';

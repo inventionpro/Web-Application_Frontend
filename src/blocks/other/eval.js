@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_eval';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const code = Blockly.JavaScript.valueToCode(block, 'EVAL', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const code = JavaScript.valueToCode(block, 'EVAL', JavaScript.ORDER_ATOMIC);
   return `eval(${code});
     `;
 };

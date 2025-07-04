@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'tictactoe';
 
@@ -123,24 +124,24 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['tictactoe'] = function (block) {
-  var value_opponent = Blockly.JavaScript.valueToCode(block, 'Opponent', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_emb_title = Blockly.JavaScript.valueToCode(block, 'emb_title', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_gover_title = Blockly.JavaScript.valueToCode(block, 'gover_title', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_oemoji = Blockly.JavaScript.valueToCode(block, 'oEmoji', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_xemoji = Blockly.JavaScript.valueToCode(block, 'xEmoji', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_blankemoji = Blockly.JavaScript.valueToCode(block, 'blankEmoji', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['tictactoe'] = function (block) {
+  var value_opponent = JavaScript.valueToCode(block, 'Opponent', JavaScript.ORDER_ATOMIC);
+  var value_emb_title = JavaScript.valueToCode(block, 'emb_title', JavaScript.ORDER_ATOMIC);
+  var value_gover_title = JavaScript.valueToCode(block, 'gover_title', JavaScript.ORDER_ATOMIC);
+  var value_color = JavaScript.valueToCode(block, 'color', JavaScript.ORDER_ATOMIC);
+  var value_oemoji = JavaScript.valueToCode(block, 'oEmoji', JavaScript.ORDER_ATOMIC);
+  var value_xemoji = JavaScript.valueToCode(block, 'xEmoji', JavaScript.ORDER_ATOMIC);
+  var value_blankemoji = JavaScript.valueToCode(block, 'blankEmoji', JavaScript.ORDER_ATOMIC);
   var dropdown_o_color_dropdown = block.getFieldValue('o_color_dropdown');
   var dropdown_x_color_dropdown = block.getFieldValue('x_color_dropdown');
-  var value_waitmessage = Blockly.JavaScript.valueToCode(block, 'waitMessage', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_turnmessage = Blockly.JavaScript.valueToCode(block, 'turnMessage', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_askmessage = Blockly.JavaScript.valueToCode(block, 'askMessage', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_cancelmessage = Blockly.JavaScript.valueToCode(block, 'cancelMessage', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_timeendmessage = Blockly.JavaScript.valueToCode(block, 'timeEndMessage', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_drawmessage = Blockly.JavaScript.valueToCode(block, 'drawMessage', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_winmessage = Blockly.JavaScript.valueToCode(block, 'winMessage', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_gameendmessage = Blockly.JavaScript.valueToCode(block, 'gameEndMessage', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_waitmessage = JavaScript.valueToCode(block, 'waitMessage', JavaScript.ORDER_ATOMIC);
+  var value_turnmessage = JavaScript.valueToCode(block, 'turnMessage', JavaScript.ORDER_ATOMIC);
+  var value_askmessage = JavaScript.valueToCode(block, 'askMessage', JavaScript.ORDER_ATOMIC);
+  var value_cancelmessage = JavaScript.valueToCode(block, 'cancelMessage', JavaScript.ORDER_ATOMIC);
+  var value_timeendmessage = JavaScript.valueToCode(block, 'timeEndMessage', JavaScript.ORDER_ATOMIC);
+  var value_drawmessage = JavaScript.valueToCode(block, 'drawMessage', JavaScript.ORDER_ATOMIC);
+  var value_winmessage = JavaScript.valueToCode(block, 'winMessage', JavaScript.ORDER_ATOMIC);
+  var value_gameendmessage = JavaScript.valueToCode(block, 'gameEndMessage', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `
     new TicTacToe({

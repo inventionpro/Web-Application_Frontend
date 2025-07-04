@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_try_and_catch';
 
@@ -33,9 +34,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const tryy = Blockly.JavaScript.statementToCode(block, 'try');
-  const catchh = Blockly.JavaScript.statementToCode(block, 'catch');
+JavaScript[blockName] = function (block) {
+  const tryy = JavaScript.statementToCode(block, 'try');
+  const catchh = JavaScript.statementToCode(block, 'catch');
   return `try{
         ${tryy}
     }catch(err){

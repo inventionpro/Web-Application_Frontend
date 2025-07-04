@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'monaco_delete_guild';
 
@@ -25,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['monaco_delete_guild'] = function (block) {
-  var value_server = Blockly.JavaScript.valueToCode(block, 'Server', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['monaco_delete_guild'] = function (block) {
+  var value_server = JavaScript.valueToCode(block, 'Server', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.delete()\n`;
   return code;

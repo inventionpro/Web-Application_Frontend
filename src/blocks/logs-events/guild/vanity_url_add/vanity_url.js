@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'vanity-url';
 
@@ -17,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = ['vanityURL', Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = ['vanityURL', JavaScript.ORDER_NONE];
   return code;
 };
