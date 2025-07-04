@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'date_to_unix';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const date = Blockly.JavaScript.valueToCode(block, 'DATE', Blockly.JavaScript.ORDER_ATOMIC);
-  let code = [`Math.floor(${date}.getTime()/1000)`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const date = JavaScript.valueToCode(block, 'DATE', JavaScript.ORDER_ATOMIC);
+  let code = [`Math.floor(${date}.getTime()/1000)`, JavaScript.ORDER_NONE];
   return code;
 };

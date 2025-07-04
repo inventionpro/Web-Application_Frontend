@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'send_ahq_embed';
 
 const blockData = {
@@ -21,7 +22,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const code = [`embeds: [${Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE).replace("'", '').replace("'", '')}]`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript[blockName] = function (block) {
+  const code = [`embeds: [${JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE).replace("'", '').replace("'", '')}]`, JavaScript.ORDER_ATOMIC];
   return code;
 };

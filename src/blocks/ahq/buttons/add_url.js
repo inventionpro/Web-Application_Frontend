@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'url_ahq_button';
 
 const blockData = {
@@ -28,11 +29,11 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   let code = '';
-  const name = Blockly.JavaScript.valueToCode(block, 'button name', Blockly.JavaScript.ORDER_NONE);
+  const name = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE);
   const finaln = name.replace("'", '').replace("'", '');
-  const statementsThen = Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE);
+  const statementsThen = JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE);
   if (statementsThen.includes('https://')) {
     code = `${finaln}.setURL(${statementsThen});`;
   } else {

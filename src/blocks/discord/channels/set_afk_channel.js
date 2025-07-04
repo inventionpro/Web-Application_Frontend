@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'set_afk_channel';
 
@@ -33,10 +34,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['set_afk_channel'] = function (block) {
-  var server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
-  var channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-  var reason = Blockly.JavaScript.valueToCode(block, 'reason', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['set_afk_channel'] = function (block) {
+  var server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
+  var channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
+  var reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
 
   var code = `${server}.setAFKChannel(${channel},${reason});\n`;
   return code;

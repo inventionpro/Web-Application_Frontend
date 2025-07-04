@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'random_sekret';
 
@@ -17,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['random_sekret'] = function () {
+JavaScript['random_sekret'] = function () {
   var code = `([Math.floor(new Date().getTime() / 1000), 'e', Math.floor(Math.random() * 83490)].join(''))`;
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

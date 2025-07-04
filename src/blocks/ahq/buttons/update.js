@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'updte_ahq_button';
 
 const blockData = {
@@ -39,12 +40,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   var ahq = ``;
   let extra = '';
-  const data = Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE);
-  const statementsThen = Blockly.JavaScript.valueToCode(block, 'button val', Blockly.JavaScript.ORDER_NONE);
-  const embed = Blockly.JavaScript.valueToCode(block, 'embed val', Blockly.JavaScript.ORDER_NONE);
+  const data = JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE);
+  const statementsThen = JavaScript.valueToCode(block, 'button val', JavaScript.ORDER_NONE);
+  const embed = JavaScript.valueToCode(block, 'embed val', JavaScript.ORDER_NONE);
   if (statementsThen) {
     ahq = `components: [new MessageActionRow().addComponents(
             ${statementsThen.replace("'", '').replace("'", '')}

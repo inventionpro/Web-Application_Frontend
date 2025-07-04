@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'tts-test';
 
@@ -35,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const playtts = Blockly.JavaScript.valueToCode(block, 'tts', Blockly.JavaScript.ORDER_ATOMIC);
-  const channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-  const server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const playtts = JavaScript.valueToCode(block, 'tts', JavaScript.ORDER_ATOMIC);
+  const channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
+  const server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
   const code = `const stream=discordTTS.getVoiceStream(${playtts});
         const audioResource=createAudioResource(stream, {inputType: StreamType.Arbitrary, inlineVolume:true});
         if(!voiceConnection || voiceConnection.status===VoiceConnectionStatus.Disconnected){

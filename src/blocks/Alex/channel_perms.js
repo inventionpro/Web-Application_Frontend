@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'channel_perms';
 
@@ -52,10 +53,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const trufal = block.getFieldValue('ad');
   const perm = block.getFieldValue('perm');
-  let to = Blockly.JavaScript.valueToCode(block, 'to', Blockly.JavaScript.ORDER_ATOMIC);
+  let to = JavaScript.valueToCode(block, 'to', JavaScript.ORDER_ATOMIC);
   let contentType = null;
   try {
     contentType = block.getInput('to').connection.targetConnection.getSourceBlock().outputConnection.check_ ? block.getInput('to').connection.targetConnection.getSourceBlock().outputConnection.check_[0] : null;
@@ -63,7 +64,7 @@ Blockly.JavaScript[blockName] = function (block) {
     contentType = null;
   }
   if (String(contentType) === 'Server') to = `(${to} || {}).id`;
-  const channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+  const channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
   const code = `${channel}.permissionOverwrites.edit(${to}, { ${perm}: ${trufal} });`;
   return code;
 };

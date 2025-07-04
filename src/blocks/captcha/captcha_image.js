@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'captcha_image';
 
@@ -17,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  const code = [`new Discord.MessageAttachment(captcha.JPEGStream, "captcha.jpeg") `, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`new Discord.MessageAttachment(captcha.JPEGStream, "captcha.jpeg") `, JavaScript.ORDER_NONE];
   return code;
 };

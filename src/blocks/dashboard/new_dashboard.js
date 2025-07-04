@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'initialize_dashboard';
 
@@ -110,24 +111,24 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['initialize_dashboard'] = function (block) {
-  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_support_server_url = Blockly.JavaScript.valueToCode(block, 'support_server_url', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_bot_invite_url = Blockly.JavaScript.valueToCode(block, 'bot_invite_url', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_base_url = Blockly.JavaScript.valueToCode(block, 'base_url', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_port = Blockly.JavaScript.valueToCode(block, 'port', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_noportincallbackurl = Blockly.JavaScript.valueToCode(block, 'noPortIncallbackUrl', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_secret = Blockly.JavaScript.valueToCode(block, 'secret', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_logrequests = Blockly.JavaScript.valueToCode(block, 'logRequests', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_injectcss = Blockly.JavaScript.valueToCode(block, 'injectCSS', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_favicon_path = Blockly.JavaScript.valueToCode(block, 'favicon_path', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['initialize_dashboard'] = function (block) {
+  var value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  var value_description = JavaScript.valueToCode(block, 'description', JavaScript.ORDER_ATOMIC);
+  var value_support_server_url = JavaScript.valueToCode(block, 'support_server_url', JavaScript.ORDER_ATOMIC);
+  var value_bot_invite_url = JavaScript.valueToCode(block, 'bot_invite_url', JavaScript.ORDER_ATOMIC);
+  var value_base_url = JavaScript.valueToCode(block, 'base_url', JavaScript.ORDER_ATOMIC);
+  var value_port = JavaScript.valueToCode(block, 'port', JavaScript.ORDER_ATOMIC);
+  var value_noportincallbackurl = JavaScript.valueToCode(block, 'noPortIncallbackUrl', JavaScript.ORDER_ATOMIC);
+  var value_secret = JavaScript.valueToCode(block, 'secret', JavaScript.ORDER_ATOMIC);
+  var value_logrequests = JavaScript.valueToCode(block, 'logRequests', JavaScript.ORDER_ATOMIC);
+  var value_injectcss = JavaScript.valueToCode(block, 'injectCSS', JavaScript.ORDER_ATOMIC);
+  var value_favicon_path = JavaScript.valueToCode(block, 'favicon_path', JavaScript.ORDER_ATOMIC);
   var dropdown_theme = block.getFieldValue('theme');
   var text_requiree = block.getFieldValue('requiree');
-  var value_permissions = Blockly.JavaScript.valueToCode(block, 'permissions', Blockly.JavaScript.ORDER_ATOMIC);
-  var statements_fields = Blockly.JavaScript.statementToCode(block, 'FIELDS');
-  var statements_register_commands = Blockly.JavaScript.statementToCode(block, 'REGISTER_COMMANDS');
-  var statements_cooki = Blockly.JavaScript.statementToCode(block, 'cooki');
+  var value_permissions = JavaScript.valueToCode(block, 'permissions', JavaScript.ORDER_ATOMIC);
+  var statements_fields = JavaScript.statementToCode(block, 'FIELDS');
+  var statements_register_commands = JavaScript.statementToCode(block, 'REGISTER_COMMANDS');
+  var statements_cooki = JavaScript.statementToCode(block, 'cooki');
   // TODO: Assemble JavaScript into code variable.
   var code;
 

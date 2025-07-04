@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'send_ahq_converted';
@@ -114,14 +115,14 @@ const BORDER_MUTATOR_MIXIN = {
 };
 
 Blockly.Extensions.registerMutator('ahq_send_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
-Blockly.JavaScript[blockName] = function (block) {
-  const a = Blockly.JavaScript.valueToCode(block, 'AHQ_E', Blockly.JavaScript.ORDER_NONE);
-  const b = Blockly.JavaScript.valueToCode(block, 'AHQ_B', Blockly.JavaScript.ORDER_NONE);
+JavaScript[blockName] = function (block) {
+  const a = JavaScript.valueToCode(block, 'AHQ_E', JavaScript.ORDER_NONE);
+  const b = JavaScript.valueToCode(block, 'AHQ_B', JavaScript.ORDER_NONE);
   const code = [
-    `${Blockly.JavaScript.valueToCode(block, 'ch', Blockly.JavaScript.ORDER_NONE)}.send({
+    `${JavaScript.valueToCode(block, 'ch', JavaScript.ORDER_NONE)}.send({
         files: [{
-            attachment: \`${Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`,
-            name: \`${Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`
+            attachment: \`${JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`,
+            name: \`${JavaScript.valueToCode(block, 'name', JavaScript.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`
         }]`
   ];
   if (a) {

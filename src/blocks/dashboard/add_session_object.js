@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'new_session_obj';
 
@@ -56,13 +57,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['new_session_obj'] = function (block) {
-  var value_sekret = Blockly.JavaScript.valueToCode(block, 'sekret', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_resave = Blockly.JavaScript.valueToCode(block, 'resave', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_saveuninitialized = Blockly.JavaScript.valueToCode(block, 'saveUninitialized', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_secure = Blockly.JavaScript.valueToCode(block, 'secure', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_httponly = Blockly.JavaScript.valueToCode(block, 'httpOnly', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_maxage = Blockly.JavaScript.valueToCode(block, 'maxAge', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['new_session_obj'] = function (block) {
+  var value_sekret = JavaScript.valueToCode(block, 'sekret', JavaScript.ORDER_ATOMIC);
+  var value_resave = JavaScript.valueToCode(block, 'resave', JavaScript.ORDER_ATOMIC);
+  var value_saveuninitialized = JavaScript.valueToCode(block, 'saveUninitialized', JavaScript.ORDER_ATOMIC);
+  var value_secure = JavaScript.valueToCode(block, 'secure', JavaScript.ORDER_ATOMIC);
+  var value_httponly = JavaScript.valueToCode(block, 'httpOnly', JavaScript.ORDER_ATOMIC);
+  var value_maxage = JavaScript.valueToCode(block, 'maxAge', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `
     const sessionObject = {

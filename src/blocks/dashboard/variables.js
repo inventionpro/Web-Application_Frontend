@@ -1,6 +1,5 @@
-// return guild_id || Block URL: https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#q2wnse
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'dash_guild_id';
 
@@ -19,16 +18,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['dash_guild_id'] = function () {
+JavaScript['dash_guild_id'] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = 'guild.id';
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };
-
-// -----------  [ VALUE ] --------------
-
-// Block URL: https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#qx4d4e
 
 const blockName1 = 'dash_value';
 
@@ -47,9 +42,9 @@ Blockly.Blocks[blockName1] = {
   }
 };
 
-Blockly.JavaScript['dash_value'] = function () {
+JavaScript['dash_value'] = function () {
   // TODO: Assemble JavaScript into code variable.
   var code = 'value';
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, JavaScript.ORDER_NONE];
 };

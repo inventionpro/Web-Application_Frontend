@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'snd_ahq';
 
 const blockData = {
@@ -28,9 +29,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_NONE);
-  const ch = Blockly.JavaScript.valueToCode(block, 'ch', Blockly.JavaScript.ORDER_NONE);
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_NONE);
+  const ch = JavaScript.valueToCode(block, 'ch', JavaScript.ORDER_NONE);
   const code = `${ch}.send({
         content: String(${value})
     });`;

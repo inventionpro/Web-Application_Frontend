@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'mute_ahq';
 const blockData = {
   message0: 'timeout member %1 %2 for seconds %3 %4 reason %5',
@@ -31,10 +32,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_NONE);
-  const time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_NONE);
-  const reason = Blockly.JavaScript.valueToCode(block, 'reason', Blockly.JavaScript.ORDER_NONE);
+JavaScript[blockName] = function (block) {
+  const member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_NONE);
+  const time = JavaScript.valueToCode(block, 'time', JavaScript.ORDER_NONE);
+  const reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_NONE);
   const code = `${member.replace('.user', '').replace('.user', '')}.timeout((${time} * 1000), ${reason})
     `;
   return code;

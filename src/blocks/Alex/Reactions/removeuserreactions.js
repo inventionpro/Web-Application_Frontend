@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'remove_all_reactions_of_user';
 
@@ -28,9 +29,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-  const user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const message = JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC);
+  const user = JavaScript.valueToCode(block, 'user', JavaScript.ORDER_ATOMIC);
 
   const code = `${message}.reactions.cache.forEach(rr => rr.users.remove(${user}.id)); \n`;
   return code;

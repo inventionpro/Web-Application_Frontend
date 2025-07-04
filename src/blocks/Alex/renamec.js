@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'renamec';
 
@@ -32,9 +33,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const cn = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-  const nn = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const cn = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
+  const nn = JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC);
   const code = `${cn}.setName(${nn})
     `;
   return code;

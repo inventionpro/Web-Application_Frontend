@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'add_boolean_input';
 
@@ -50,13 +51,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['add_boolean_input'] = function (block) {
-  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript['add_boolean_input'] = function (block) {
+  var value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+  var value_description = JavaScript.valueToCode(block, 'description', JavaScript.ORDER_ATOMIC);
   var text_name = block.getFieldValue('name');
   text_name = text_name.replace(/ /g, '_');
-  var statements_setter = Blockly.JavaScript.statementToCode(block, 'setter');
-  var value_getter = Blockly.JavaScript.valueToCode(block, 'getter', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_setter = JavaScript.statementToCode(block, 'setter');
+  var value_getter = JavaScript.valueToCode(block, 'getter', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `
     const setter_${text_name} = (discordClient, guild, value) => ${statements_setter}

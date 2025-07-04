@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'retro_track_channel';
 
@@ -17,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  return [`queue.data.channel`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  return [`queue.data.channel`, JavaScript.ORDER_NONE];
 };

@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_reg_slash_options';
 
@@ -56,10 +57,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const bl = Blockly.JavaScript.valueToCode(block, 'ahq', Blockly.JavaScript.ORDER_ATOMIC);
-  const server = Blockly.JavaScript.valueToCode(block, 'Server', Blockly.JavaScript.ORDER_ATOMIC);
-  const des = Blockly.JavaScript.valueToCode(block, 'args', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const bl = JavaScript.valueToCode(block, 'ahq', JavaScript.ORDER_ATOMIC);
+  const server = JavaScript.valueToCode(block, 'Server', JavaScript.ORDER_ATOMIC);
+  const des = JavaScript.valueToCode(block, 'args', JavaScript.ORDER_ATOMIC);
   const type = block.getFieldValue('Label');
   const code = `{
         name: ${server},

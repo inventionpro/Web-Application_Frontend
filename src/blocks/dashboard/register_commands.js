@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'register_commands';
 
@@ -25,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['register_commands'] = function (block) {
-  var statements_commands = Blockly.JavaScript.statementToCode(block, 'commands');
+JavaScript['register_commands'] = function (block) {
+  var statements_commands = JavaScript.statementToCode(block, 'commands');
   // TODO: Assemble JavaScript into code variable.
   var code = `${statements_commands}`;
   return code;

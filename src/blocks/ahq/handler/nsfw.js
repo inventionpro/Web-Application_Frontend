@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'nsfw_ahq_hndler';
 
@@ -16,7 +17,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function () {
-  const code = [`(ahqhandler[\`nsfw\`])`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = [`(ahqhandler[\`nsfw\`])`, JavaScript.ORDER_NONE];
   return code;
 };

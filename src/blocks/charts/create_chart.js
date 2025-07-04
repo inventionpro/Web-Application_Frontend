@@ -1,6 +1,5 @@
-// Block URL: https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#84q32x
-
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'create_chart';
 
@@ -57,11 +56,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript['create_chart'] = function (block) {
+JavaScript['create_chart'] = function (block) {
   var dropdown_typee = block.getFieldValue('typee');
-  var value_label = Blockly.JavaScript.valueToCode(block, 'label', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_labels = Blockly.JavaScript.valueToCode(block, 'labels', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_data = Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_label = JavaScript.valueToCode(block, 'label', JavaScript.ORDER_ATOMIC);
+  var value_labels = JavaScript.valueToCode(block, 'labels', JavaScript.ORDER_ATOMIC);
+  var value_data = JavaScript.valueToCode(block, 'data', JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = `const chart = ChartJSImage().chart({\n            type: '${dropdown_typee}',\n            data: {\n                labels: ${value_labels},\n                datasets: [{\n                    label: ${value_label},\n                    data: ${value_data}\n                }]\n            }\n        })\n`;
   return code;

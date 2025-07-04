@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 's4d_get_rndm';
 
 const blockData = {
@@ -24,9 +25,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const statementThen = Blockly.JavaScript.statementToCode(block, 'THEN');
-  const server = Blockly.JavaScript.valueToCode(block, 'Server', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const statementThen = JavaScript.statementToCode(block, 'THEN');
+  const server = JavaScript.valueToCode(block, 'Server', JavaScript.ORDER_ATOMIC);
   //i shall try tomorrow as its 11PM here
   const code = `let usersCollection = ${server}.members.cache;
     let randomUser = usersCollection.random();

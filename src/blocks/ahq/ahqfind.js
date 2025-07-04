@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'ahq_value_snd';
 
 const blockData = {
@@ -42,11 +43,11 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const ahq = block.getFieldValue('channel');
   const server = block.getFieldValue('server');
-  const valch = Blockly.JavaScript.valueToCode(block, 'baluech', Blockly.JavaScript.ORDER_NONE);
-  const valsr = Blockly.JavaScript.valueToCode(block, 'baluesr', Blockly.JavaScript.ORDER_NONE);
-  const code = [`s4d.client.guilds.cache.find(server => server.${server} == ${valsr}).channels.cache.find(ch => ch.${ahq} == ${valch})`, Blockly.JavaScript.ORDER_NONE];
+  const valch = JavaScript.valueToCode(block, 'baluech', JavaScript.ORDER_NONE);
+  const valsr = JavaScript.valueToCode(block, 'baluesr', JavaScript.ORDER_NONE);
+  const code = [`s4d.client.guilds.cache.find(server => server.${server} == ${valsr}).channels.cache.find(ch => ch.${ahq} == ${valch})`, JavaScript.ORDER_NONE];
   return code;
 };

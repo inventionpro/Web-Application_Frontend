@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_set_bot_game';
@@ -46,9 +47,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
-  const game = Blockly.JavaScript.valueToCode(block, 'GAME', Blockly.JavaScript.ORDER_ATOMIC);
+  const game = JavaScript.valueToCode(block, 'GAME', JavaScript.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');
   const code = `s4d.client.user.setPresence({status: "${OIFD}",activities:[{name:${game},type:"${type}"}]}); \n`;
   return code;

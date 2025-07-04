@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'create_ahq_handler';
 const blockData = {
@@ -57,14 +58,14 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'TOKEN', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'TOKEN', JavaScript.ORDER_ATOMIC);
   const code = `const ahqhandler = {
         "prefix": ${value},
-        "owner": ${Blockly.JavaScript.valueToCode(block, 'ownerId', Blockly.JavaScript.ORDER_ATOMIC)},
-        "not-owner": ${Blockly.JavaScript.valueToCode(block, 'notowner', Blockly.JavaScript.ORDER_ATOMIC)},
-        "nsfw": ${Blockly.JavaScript.valueToCode(block, 'ahq', Blockly.JavaScript.ORDER_ATOMIC)},
-        "not-perms": ${Blockly.JavaScript.valueToCode(block, 'notperms', Blockly.JavaScript.ORDER_ATOMIC)}
+        "owner": ${JavaScript.valueToCode(block, 'ownerId', JavaScript.ORDER_ATOMIC)},
+        "not-owner": ${JavaScript.valueToCode(block, 'notowner', JavaScript.ORDER_ATOMIC)},
+        "nsfw": ${JavaScript.valueToCode(block, 'ahq', JavaScript.ORDER_ATOMIC)},
+        "not-perms": ${JavaScript.valueToCode(block, 'notperms', JavaScript.ORDER_ATOMIC)}
     }`;
   return code;
 };

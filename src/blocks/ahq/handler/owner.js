@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'owner_ahq_hndler';
 
@@ -22,9 +23,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  let member = Blockly.JavaScript.valueToCode(block, 'm', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  let member = JavaScript.valueToCode(block, 'm', JavaScript.ORDER_ATOMIC);
   let final = member.replace('.author', '.member.user');
-  const code = [`String(${final}.id) == (ahqhandler[\`owner\`])`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`String(${final}.id) == (ahqhandler[\`owner\`])`, JavaScript.ORDER_NONE];
   return code;
 };

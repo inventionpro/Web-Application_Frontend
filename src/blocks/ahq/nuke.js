@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'ahq-mod';
 
 const blockData = {
@@ -29,9 +30,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const f = Blockly.JavaScript.valueToCode(block, 'anti-nsfw', Blockly.JavaScript.ORDER_NONE);
-  const e = Blockly.JavaScript.valueToCode(block, 'deepai', Blockly.JavaScript.ORDER_NONE);
+JavaScript[blockName] = function (block) {
+  const f = JavaScript.valueToCode(block, 'anti-nsfw', JavaScript.ORDER_NONE);
+  const e = JavaScript.valueToCode(block, 'deepai', JavaScript.ORDER_NONE);
   let token = '';
   let extra = '';
   if ((f || 'false') == 'false') {

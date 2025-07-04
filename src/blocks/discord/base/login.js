@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-
+import * as JavaScript from 'blockly/javascript';
 const blockName = 's4d_login';
 
 const blockData = {
@@ -23,8 +23,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const value = Blockly.JavaScript.valueToCode(block, 'TOKEN', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const value = JavaScript.valueToCode(block, 'TOKEN', JavaScript.ORDER_ATOMIC);
   const code = `await s4d.client.login(${value}).catch((e) => { 
         const tokenInvalid = true;
         const tokenError = e;

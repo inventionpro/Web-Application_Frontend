@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'get_reaction_member';
 
@@ -38,9 +39,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('type');
-  const cmem = Blockly.JavaScript.valueToCode(block, 'mtype', Blockly.JavaScript.ORDER_ATOMIC);
+  const cmem = JavaScript.valueToCode(block, 'mtype', JavaScript.ORDER_ATOMIC);
 
   var code;
   if (type == 'first') {
@@ -52,7 +53,7 @@ Blockly.JavaScript[blockName] = function (block) {
   } else {
     code = `m.users.cache.map(r => r)[${cmem}]`;
   }
-  const finalcode = [code, Blockly.JavaScript.ORDER_NONE];
+  const finalcode = [code, JavaScript.ORDER_NONE];
 
   return finalcode;
 };

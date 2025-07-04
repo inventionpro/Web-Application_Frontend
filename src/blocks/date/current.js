@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_current';
 
@@ -31,21 +32,21 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const dataType = block.getFieldValue('DATA_TYPE');
   if (dataType === 'SECOND') {
-    return ['(new Date().getSeconds())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getSeconds())', JavaScript.ORDER_NONE];
   } else if (dataType === 'MINUTE') {
-    return ['(new Date().getMinutes())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getMinutes())', JavaScript.ORDER_NONE];
   } else if (dataType === 'HOUR') {
-    return ['(new Date().getHours())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getHours())', JavaScript.ORDER_NONE];
   } else if (dataType === 'DATE') {
-    return ['(new Date().getDate())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getDate())', JavaScript.ORDER_NONE];
   } else if (dataType === 'DAY_OF_WEEK') {
-    return ['(new Date().getDay())', Blockly.JavaScript.ORDER_NONE];
+    return ['(new Date().getDay())', JavaScript.ORDER_NONE];
   } else if (dataType === 'COOLDOWN') {
-    return ['new Date()', Blockly.JavaScript.ORDER_NONE];
+    return ['new Date()', JavaScript.ORDER_NONE];
   } else if (dataType === 'UNIX') {
-    return ['Math.floor(new Date().getTime()/1000)', Blockly.JavaScript.ORDER_NONE];
+    return ['Math.floor(new Date().getTime()/1000)', JavaScript.ORDER_NONE];
   }
 };

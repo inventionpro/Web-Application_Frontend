@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'ahq_embed_info';
 
 const blockData = {
@@ -33,9 +34,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const a = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC).replace('.user', '').replace('.author', '.member');
+JavaScript[blockName] = function (block) {
+  const a = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC).replace('.user', '').replace('.author', '.member');
   const stats = block.getFieldValue('INFO');
-  const code = [`String(${a}.embeds[0]${stats})`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`String(${a}.embeds[0]${stats})`, JavaScript.ORDER_NONE];
   return code;
 };

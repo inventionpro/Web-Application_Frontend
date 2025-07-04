@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'everyn';
 
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`(${server} || {}).id`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
+  const code = [`(${server} || {}).id`, JavaScript.ORDER_NONE];
   return code;
 };

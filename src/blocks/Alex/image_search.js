@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'get_image';
 
@@ -32,9 +33,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const Then = Blockly.JavaScript.statementToCode(block, 'then');
-  const query = Blockly.JavaScript.valueToCode(block, 'query', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const Then = JavaScript.statementToCode(block, 'then');
+  const query = JavaScript.valueToCode(block, 'query', JavaScript.ORDER_ATOMIC);
   const code = `let query = ${query} \n ${Then}`;
   return code;
 };

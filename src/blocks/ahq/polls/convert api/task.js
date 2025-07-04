@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'convert_api_task';
 import { registerRestrictions } from '../../../../restrictions';
 
@@ -63,12 +64,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const code = `let job = await cloudConvert.jobs.create({
         "tasks": {
             "import-1": {
                 "operation": "import/url",
-                "url": ${Blockly.JavaScript.valueToCode(block, 'link', Blockly.JavaScript.ORDER_ATOMIC)}
+                "url": ${JavaScript.valueToCode(block, 'link', JavaScript.ORDER_ATOMIC)}
             },
             "task-1": {
                 "operation": "convert",
@@ -76,7 +77,7 @@ Blockly.JavaScript[blockName] = function (block) {
                     "import-1"
                 ],
                 "output_format": "${block.getFieldValue('to')}",
-                "filename": "${Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC).replace("'", '').replace("'", '').toLowerCase}"
+                "filename": "${JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC).replace("'", '').replace("'", '').toLowerCase}"
             },
             "export-1": {
                 "operation": "export/url",
@@ -90,7 +91,7 @@ Blockly.JavaScript[blockName] = function (block) {
         "tag": "jobbuilder"
     });
     
-    ${Blockly.JavaScript.statementToCode(block, 'statement', Blockly.JavaScript.ORDER_NONE)}`;
+    ${JavaScript.statementToCode(block, 'statement', JavaScript.ORDER_NONE)}`;
   return code;
 };
 

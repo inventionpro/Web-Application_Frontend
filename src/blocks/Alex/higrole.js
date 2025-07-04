@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'hig_role';
 
@@ -24,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const memb = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${memb.replaceAll(/member(?=\.user)\.user/gi, 'member')}.roles.highest`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const memb = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
+  const code = [`${memb.replaceAll(/member(?=\.user)\.user/gi, 'member')}.roles.highest`, JavaScript.ORDER_NONE];
   return code;
 };

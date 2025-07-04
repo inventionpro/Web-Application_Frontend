@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_get_all_data2';
 
@@ -17,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  return ['dootabase.all()', Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript[blockName] = function () {
+  return ['dootabase.all()', JavaScript.ORDER_ATOMIC];
 };

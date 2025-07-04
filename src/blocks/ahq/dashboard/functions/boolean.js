@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'add_boolean_dash';
@@ -49,10 +50,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const code = `s4d.client.dashboard.addSelectorInput(${Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_NONE)}, ${Blockly.JavaScript.valueToCode(block, 'desc', Blockly.JavaScript.ORDER_NONE)}, async function(client, guild, value) {${Blockly.JavaScript.statementToCode(block, 'set')}}, async function(client, guild) {
+JavaScript[blockName] = function (block) {
+  const code = `s4d.client.dashboard.addSelectorInput(${JavaScript.valueToCode(block, 'name', JavaScript.ORDER_NONE)}, ${JavaScript.valueToCode(block, 'desc', JavaScript.ORDER_NONE)}, async function(client, guild, value) {${JavaScript.statementToCode(block, 'set')}}, async function(client, guild) {
         await delay(200);
-        return (${Blockly.JavaScript.valueToCode(block, 'getter', Blockly.JavaScript.ORDER_NONE)})
+        return (${JavaScript.valueToCode(block, 'getter', JavaScript.ORDER_NONE)})
     });`;
   return code;
 };

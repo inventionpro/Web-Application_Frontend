@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'id_textbox_ahq';
 
@@ -22,8 +23,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const code = [`(i.getTextInputValue(${Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_NONE)}))`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const code = [`(i.getTextInputValue(${JavaScript.valueToCode(block, 'id', JavaScript.ORDER_NONE)}))`, JavaScript.ORDER_NONE];
   return code;
 };
 registerRestrictions(blockName, [

@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 import BaseBlockly from 'blockly';
 const blockName = 'make_ahq_modal_text';
@@ -86,15 +87,15 @@ const BORDER_MUTATOR_MIXIN = {
 };
 
 Blockly.Extensions.registerMutator('s4d_ahq_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   let code = ``;
-  const Id = Blockly.JavaScript.valueToCode(block, 'ID_A', Blockly.JavaScript.ORDER_ATOMIC);
-  const Lavbel = Blockly.JavaScript.valueToCode(block, 'LABEL_A', Blockly.JavaScript.ORDER_ATOMIC);
-  const Style = Blockly.JavaScript.valueToCode(block, 'STYLE_A', Blockly.JavaScript.ORDER_ATOMIC) || "'SHORT'";
-  const min = Blockly.JavaScript.valueToCode(block, 'MINIMUM_SIZE', Blockly.JavaScript.ORDER_ATOMIC);
-  const man = Blockly.JavaScript.valueToCode(block, 'MAXIMUM_SIZE', Blockly.JavaScript.ORDER_ATOMIC);
-  const place = Blockly.JavaScript.valueToCode(block, 'PLACE_HOLDER', Blockly.JavaScript.ORDER_ATOMIC);
-  const re = Blockly.JavaScript.valueToCode(block, 'REQUIRED', Blockly.JavaScript.ORDER_ATOMIC);
+  const Id = JavaScript.valueToCode(block, 'ID_A', JavaScript.ORDER_ATOMIC);
+  const Lavbel = JavaScript.valueToCode(block, 'LABEL_A', JavaScript.ORDER_ATOMIC);
+  const Style = JavaScript.valueToCode(block, 'STYLE_A', JavaScript.ORDER_ATOMIC) || "'SHORT'";
+  const min = JavaScript.valueToCode(block, 'MINIMUM_SIZE', JavaScript.ORDER_ATOMIC);
+  const man = JavaScript.valueToCode(block, 'MAXIMUM_SIZE', JavaScript.ORDER_ATOMIC);
+  const place = JavaScript.valueToCode(block, 'PLACE_HOLDER', JavaScript.ORDER_ATOMIC);
+  const re = JavaScript.valueToCode(block, 'REQUIRED', JavaScript.ORDER_ATOMIC);
   if (!place) {
     code = `new TextInputComponent()
     .setCustomId(${Id})

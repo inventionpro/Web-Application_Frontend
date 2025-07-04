@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'ahq_bdwrd_cn';
 
@@ -22,8 +23,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const data = Blockly.JavaScript.valueToCode(block, 'BAD', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`(censor.censor(String(${data})))`, Blockly.JavaScript.ORDER_ATOMIC];
+JavaScript[blockName] = function (block) {
+  const data = JavaScript.valueToCode(block, 'BAD', JavaScript.ORDER_ATOMIC);
+  const code = [`(censor.censor(String(${data})))`, JavaScript.ORDER_ATOMIC];
   return code;
 };

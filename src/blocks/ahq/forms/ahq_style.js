@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'style_ahq_modal';
 
 const blockData = {
@@ -22,8 +23,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const statementsThen = block.getFieldValue('Label');
-  const code = [`${statementsThen}`, Blockly.JavaScript.ORDER_NONE];
+  const code = [`${statementsThen}`, JavaScript.ORDER_NONE];
   return code;
 };

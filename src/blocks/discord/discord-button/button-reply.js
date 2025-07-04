@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_button_reply';
 
@@ -29,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const tof = Blockly.JavaScript.valueToCode(block, 'TRUEORFALSE', Blockly.JavaScript.ORDER_ATOMIC);
-  const reply = Blockly.JavaScript.valueToCode(block, 'REPLY', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const tof = JavaScript.valueToCode(block, 'TRUEORFALSE', JavaScript.ORDER_ATOMIC);
+  const reply = JavaScript.valueToCode(block, 'REPLY', JavaScript.ORDER_ATOMIC);
   const code = `await i.reply({content:${reply},ephemeral:${tof}});\n`;
   return code;
 };

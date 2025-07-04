@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'disconnect_voice';
 
@@ -34,7 +35,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const code = `newState.disconnect(${Blockly.JavaScript.valueToCode(block, 'r', Blockly.JavaScript.ORDER_ATOMIC || null)})`;
+JavaScript[blockName] = function (block) {
+  const code = `newState.disconnect(${JavaScript.valueToCode(block, 'r', JavaScript.ORDER_ATOMIC || null)})`;
   return code;
 };

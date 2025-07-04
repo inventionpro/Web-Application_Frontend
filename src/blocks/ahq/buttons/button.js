@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'on_real_button';
 
@@ -21,13 +22,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const statementsThen = Blockly.JavaScript.statementToCode(block, 'STATEMENTS', Blockly.JavaScript.ORDER_NONE);
+JavaScript[blockName] = function (block) {
+  const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_NONE);
   const code = `s4d.client.on('interactionCreate', async (i) => {
-        let member = i.guild.members.cache.get(i.member.user.id)
-        let interaction = i; if (!(i.isButton())) return;
-        ${statementsThen}
-    });
-    `;
+  let member = i.guild.members.cache.get(i.member.user.id)
+  let interaction = i; if (!(i.isButton())) return;
+  ${statementsThen}
+});`;
   return code;
 };

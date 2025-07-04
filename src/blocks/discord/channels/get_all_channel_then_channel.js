@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_get_all_channel_channel';
@@ -18,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function () {
-  return [`c`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  return [`c`, JavaScript.ORDER_NONE];
 };
 registerRestrictions(blockName, [
   {

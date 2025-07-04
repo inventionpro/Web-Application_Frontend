@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'style_ahq_button';
 
 const blockData = {
@@ -38,8 +39,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const name = Blockly.JavaScript.valueToCode(block, 'button name', Blockly.JavaScript.ORDER_NONE);
+JavaScript[blockName] = function (block) {
+  const name = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE);
   const finaln = name.replace("'", '').replace("'", '');
   const statementsThen = block.getFieldValue('Label');
   const code = `${finaln}.setStyle("${statementsThen}");`;

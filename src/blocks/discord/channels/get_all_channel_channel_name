@@ -1,4 +1,5 @@
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from "../../../restrictions";
 
 const blockName = "get_all_channel_channel_name";
@@ -19,8 +20,8 @@ Blockly.Blocks[blockName] = {
     }
 };
 
-Blockly.JavaScript[blockName] = function(){
-return [ `c.name`, Blockly.JavaScript.ORDER_NONE ];
+JavaScript[blockName] = function(){
+return [ `c.name`, JavaScript.ORDER_NONE ];
 };
 registerRestrictions(blockName, [
     {

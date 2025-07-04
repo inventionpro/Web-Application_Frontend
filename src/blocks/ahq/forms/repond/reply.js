@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'reply_ahq_modal_text';
@@ -93,11 +94,11 @@ const BORDER_MUTATOR_MIXIN = {
 };
 
 Blockly.Extensions.registerMutator('s4d_ahq_mutator_t', BORDER_MUTATOR_MIXIN, null, ['']);
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   let code = [`await i.reply({`];
-  const Id = Blockly.JavaScript.valueToCode(block, 'CONTENT', Blockly.JavaScript.ORDER_NONE);
-  const Lavbel = Blockly.JavaScript.valueToCode(block, 'EMBED', Blockly.JavaScript.ORDER_NONE);
-  const Style = Blockly.JavaScript.valueToCode(block, 'BUTTON', Blockly.JavaScript.ORDER_NONE);
+  const Id = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_NONE);
+  const Lavbel = JavaScript.valueToCode(block, 'EMBED', JavaScript.ORDER_NONE);
+  const Style = JavaScript.valueToCode(block, 'BUTTON', JavaScript.ORDER_NONE);
   if (Id) {
     code.push(`content: String(${Id}),`);
   }
@@ -107,7 +108,7 @@ Blockly.JavaScript[blockName] = function (block) {
   if (Style) {
     code.push(`components: [new MessageActionRow().addComponents(${Style.replace("'", '').replace("'", '').replace('(', '').replace(')', '')})],`);
   }
-  code.push(`ephemeral: ${Blockly.JavaScript.valueToCode(block, 'ephemeral', Blockly.JavaScript.ORDER_NONE)}\n})`);
+  code.push(`ephemeral: ${JavaScript.valueToCode(block, 'ephemeral', JavaScript.ORDER_NONE)}\n})`);
   return code.join('\n');
 };
 registerRestrictions(blockName, [

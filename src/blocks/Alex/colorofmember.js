@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'member_color';
 
@@ -24,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const member = Blockly.JavaScript.valueToCode(block, 'member', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${member}.displayHexColor`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
+  const code = [`${member}.displayHexColor`, JavaScript.ORDER_NONE];
   return code;
 };

@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'isdm';
 
@@ -22,8 +23,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const chan = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${chan}.type === "DM"`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const chan = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
+  const code = [`${chan}.type === "DM"`, JavaScript.ORDER_NONE];
   return code;
 };

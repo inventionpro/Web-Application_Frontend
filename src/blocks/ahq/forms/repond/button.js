@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 const blockName = 'ahq_ahq_ahq_modal';
 
 const blockData = {
@@ -19,8 +20,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function (block) {
-  const statementsThen = Blockly.JavaScript.valueToCode(block, 'Label', Blockly.JavaScript.ORDER_NONE);
-  const code = [`${statementsThen}`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const statementsThen = JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE);
+  const code = [`${statementsThen}`, JavaScript.ORDER_NONE];
   return code;
 };

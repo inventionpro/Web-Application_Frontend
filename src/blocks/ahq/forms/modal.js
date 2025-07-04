@@ -1,4 +1,5 @@
-import * as Blockly from 'blockly';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 'make_ahq_modal';
 
@@ -54,13 +55,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const name = Blockly.JavaScript.valueToCode(block, 'button name', Blockly.JavaScript.ORDER_NONE) || 'modal';
+JavaScript[blockName] = function (block) {
+  const name = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE) || 'modal';
   const finaln = name.replace("'", '').replace("'", '');
-  const statementsThen = Blockly.JavaScript.statementToCode(block, 'STATEMENTS', Blockly.JavaScript.ORDER_ATOMIC);
+  const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_ATOMIC);
   const code = `let ${finaln} = new Modal()
-    .setCustomId(${Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_NONE)})
-    .setTitle(${Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_NONE)})
+    .setCustomId(${JavaScript.valueToCode(block, 'id', JavaScript.ORDER_NONE)})
+    .setTitle(${JavaScript.valueToCode(block, 'title', JavaScript.ORDER_NONE)})
     .addComponents(\n${statementsThen});`;
   return code;
 };

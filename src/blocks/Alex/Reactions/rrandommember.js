@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'random_reacting_member_user';
 
@@ -26,13 +27,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('type');
   var code;
   if (type == 'member') {
-    code = ['reaction.message.guild.members.resolve(m.users.cache.random())', Blockly.JavaScript.ORDER_NONE];
+    code = ['reaction.message.guild.members.resolve(m.users.cache.random())', JavaScript.ORDER_NONE];
   } else {
-    code = ['reaction.users.cache.random()', Blockly.JavaScript.ORDER_NONE];
+    code = ['reaction.users.cache.random()', JavaScript.ORDER_NONE];
   }
   return code;
 };

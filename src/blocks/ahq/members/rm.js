@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 's4d_get_rndmber';
 
@@ -15,8 +16,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-Blockly.JavaScript[blockName] = function () {
-  const code = ['randomUser.user', Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function () {
+  const code = ['randomUser.user', JavaScript.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['ahq_members_get_random_member_in_server'] = {
@@ -37,8 +38,8 @@ Blockly.Blocks['ahq_members_get_random_member_in_server'] = {
     });
   }
 };
-Blockly.JavaScript['ahq_members_get_random_member_in_server'] = function (block) {
-  const server = Blockly.JavaScript.valueToCode(block, 'SERVER', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${server}.members.cache.random().user`, Blockly.JavaScript.ORDER_NONE];
+JavaScript['ahq_members_get_random_member_in_server'] = function (block) {
+  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const code = [`${server}.members.cache.random().user`, JavaScript.ORDER_NONE];
   return code;
 };

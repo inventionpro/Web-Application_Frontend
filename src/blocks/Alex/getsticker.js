@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'get_sticker';
 
@@ -28,9 +29,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const guild = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
-  const sticker = Blockly.JavaScript.valueToCode(block, 'sticker', Blockly.JavaScript.ORDER_ATOMIC);
-  const code = [`${guild}.stickers.cache.find(s => s.name == ${sticker}) \n`, Blockly.JavaScript.ORDER_NONE];
+JavaScript[blockName] = function (block) {
+  const guild = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
+  const sticker = JavaScript.valueToCode(block, 'sticker', JavaScript.ORDER_ATOMIC);
+  const code = [`${guild}.stickers.cache.find(s => s.name == ${sticker}) \n`, JavaScript.ORDER_NONE];
   return code;
 };

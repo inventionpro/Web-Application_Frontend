@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'vcategory_channel';
 
@@ -40,10 +41,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
-  const name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
-  const cid = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
-  const server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
+JavaScript[blockName] = function (block) {
+  const name = JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC);
+  const cid = JavaScript.valueToCode(block, 'id', JavaScript.ORDER_ATOMIC);
+  const server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
 
   const code = `${server}.channels.create(${name}, { type: 'GUILD_VOICE', parent: ${cid} });
 `;

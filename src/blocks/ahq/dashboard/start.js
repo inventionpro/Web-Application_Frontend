@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 
@@ -92,23 +93,23 @@ const BORDER_MUTATOR_MIXIN = {
 // const names = ["Bot Name", "Bot Description", "Support Server URL", "Bot Invite URL", "Replit Base URL", "Client Secret", "Access Permissions", "Mongo DB URL (cookies)"];
 //const types = [true, true, true, true, true, true, false, false]
 Blockly.Extensions.registerMutator('dash_setup', BORDER_MUTATOR_MIXIN, null, ['']);
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   let extra = [];
-  if (Blockly.JavaScript.valueToCode(block, 'P_D_PERMS', Blockly.JavaScript.ORDER_NONE)) {
-    extra.push(`,\npermissions: ${Blockly.JavaScript.valueToCode(block, 'P_D_PERMS', Blockly.JavaScript.ORDER_NONE)}`);
+  if (JavaScript.valueToCode(block, 'P_D_PERMS', JavaScript.ORDER_NONE)) {
+    extra.push(`,\npermissions: ${JavaScript.valueToCode(block, 'P_D_PERMS', JavaScript.ORDER_NONE)}`);
   }
-  if (Blockly.JavaScript.valueToCode(block, 'COOKIE_D', Blockly.JavaScript.ORDER_NONE)) {
-    extra.push(`,\nsession: ${Blockly.JavaScript.valueToCode(block, 'COOKIE_D', Blockly.JavaScript.ORDER_NONE)}`);
+  if (JavaScript.valueToCode(block, 'COOKIE_D', JavaScript.ORDER_NONE)) {
+    extra.push(`,\nsession: ${JavaScript.valueToCode(block, 'COOKIE_D', JavaScript.ORDER_NONE)}`);
   }
   const code = `const Dashboard = require("discord-easy-dashboard");
     const dashboard = new Dashboard(s4d.client, {
-        name: ${Blockly.JavaScript.valueToCode(block, 'AHQ_A_B', Blockly.JavaScript.ORDER_NONE)},
-        description: ${Blockly.JavaScript.valueToCode(block, 'AHQ_B_D', Blockly.JavaScript.ORDER_NONE)},
-        baseUrl: ${Blockly.JavaScript.valueToCode(block, 'BASE_D', Blockly.JavaScript.ORDER_NONE)},
+        name: ${JavaScript.valueToCode(block, 'AHQ_A_B', JavaScript.ORDER_NONE)},
+        description: ${JavaScript.valueToCode(block, 'AHQ_B_D', JavaScript.ORDER_NONE)},
+        baseUrl: ${JavaScript.valueToCode(block, 'BASE_D', JavaScript.ORDER_NONE)},
         noPortIncallbackUrl: true,
-        secret: ${Blockly.JavaScript.valueToCode(block, 'SECRET_D', Blockly.JavaScript.ORDER_NONE)},
-        serverUrl: ${Blockly.JavaScript.valueToCode(block, 'D_SERVER', Blockly.JavaScript.ORDER_NONE)},
-        inviteUrl: ${Blockly.JavaScript.valueToCode(block, 'INVITE_D', Blockly.JavaScript.ORDER_NONE)}${extra.join('')}
+        secret: ${JavaScript.valueToCode(block, 'SECRET_D', JavaScript.ORDER_NONE)},
+        serverUrl: ${JavaScript.valueToCode(block, 'D_SERVER', JavaScript.ORDER_NONE)},
+        inviteUrl: ${JavaScript.valueToCode(block, 'INVITE_D', JavaScript.ORDER_NONE)}${extra.join('')}
     });
     s4d.client.dashboard = dashboard;`;
   return code;

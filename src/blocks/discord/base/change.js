@@ -1,4 +1,5 @@
-import Blockly from 'blockly/core';
+import * as Blockly from 'blockly/core';
+import * as JavaScript from 'blockly/javascript';
 
 const blockName = 'setbot';
 
@@ -32,9 +33,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-Blockly.JavaScript[blockName] = function (block) {
+JavaScript[blockName] = function (block) {
   const wt = block.getFieldValue('wt');
-  const set = Blockly.JavaScript.valueToCode(block, 'set', Blockly.JavaScript.ORDER_ATOMIC);
+  const set = JavaScript.valueToCode(block, 'set', JavaScript.ORDER_ATOMIC);
   const code = `s4d.client.user.${wt}(${set})`;
   return code;
 };
