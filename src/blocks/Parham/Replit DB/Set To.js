@@ -41,7 +41,6 @@ JavaScript[blockName] = function (block) {
   var value_set = JavaScript.valueToCode(block, 'set', JavaScript.ORDER_ATOMIC);
   var value_to = JavaScript.valueToCode(block, 'to', JavaScript.ORDER_ATOMIC);
   var statements_then = JavaScript.statementToCode(block, 'then');
-  // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_Replit_DB.set(${value_set}, ${value_to}).then(async () => {${statements_then}});\n`;
   return code;
 };

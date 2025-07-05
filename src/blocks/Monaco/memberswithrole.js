@@ -28,8 +28,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript['monaco_members_with_role'] = function (block) {
   var value_role = JavaScript.valueToCode(block, 'role', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `${value_role}.members`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

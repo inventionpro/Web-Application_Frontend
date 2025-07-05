@@ -142,7 +142,6 @@ JavaScript['slash_tictactoe'] = function (block) {
   var value_drawmessage = JavaScript.valueToCode(block, 'drawMessage', JavaScript.ORDER_ATOMIC);
   var value_winmessage = JavaScript.valueToCode(block, 'winMessage', JavaScript.ORDER_ATOMIC);
   var value_gameendmessage = JavaScript.valueToCode(block, 'gameEndMessage', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `
     new TicTacToe({
         message: interaction,

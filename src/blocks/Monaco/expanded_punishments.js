@@ -49,7 +49,6 @@ JavaScript['monaco_expanded_punishments'] = function (block) {
   var value_member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
   var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
   var value_reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.members.${dropdown_punishments}(${value_member}, { reason: String(${value_reason}) })\n`;
   return code;
 };

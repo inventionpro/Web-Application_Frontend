@@ -63,7 +63,6 @@ JavaScript['add_color_input'] = function (block) {
   var statements_setter = JavaScript.statementToCode(block, 'setter');
   var value_getter = JavaScript.valueToCode(block, 'getter', JavaScript.ORDER_ATOMIC);
   var value_gett_def = JavaScript.valueToCode(block, 'gett_def', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `
     const setter_${text_name} = (discordClient, guild, value) => ${statements_setter}
     const getter_${text_name} = async(discordClient, guild) => {

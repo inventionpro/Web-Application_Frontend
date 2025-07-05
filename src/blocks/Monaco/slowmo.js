@@ -28,8 +28,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   var value_channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `${value_channel}.rateLimitPerUser`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

@@ -34,8 +34,6 @@ Blockly.Blocks[blockName] = {
 JavaScript['new_couple'] = function (block) {
   var value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
   var value_id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `[${value_id}, ${value_name}]`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

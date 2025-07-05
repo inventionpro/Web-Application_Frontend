@@ -18,8 +18,6 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function () {
-  // TODO: Assemble JavaScript into code variable.
   var code = '((interaction.guild).members.cache.get(((interaction.member.user).id)) || await (interaction.guild).members.fetch(((interaction.member.user).id))).user';
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

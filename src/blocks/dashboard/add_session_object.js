@@ -64,7 +64,6 @@ JavaScript['new_session_obj'] = function (block) {
   var value_secure = JavaScript.valueToCode(block, 'secure', JavaScript.ORDER_ATOMIC);
   var value_httponly = JavaScript.valueToCode(block, 'httpOnly', JavaScript.ORDER_ATOMIC);
   var value_maxage = JavaScript.valueToCode(block, 'maxAge', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `
     const sessionObject = {
         secret: ${value_sekret},

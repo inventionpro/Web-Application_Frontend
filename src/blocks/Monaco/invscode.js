@@ -34,8 +34,6 @@ Blockly.Blocks[blockName] = {
 JavaScript['monaco_invite_with_code'] = function (block) {
   var value_invite = JavaScript.valueToCode(block, 'invite', JavaScript.ORDER_ATOMIC);
   var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.invites.fetch(String(${value_invite}))`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

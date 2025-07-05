@@ -20,9 +20,7 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function () {
-  // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_Replit_DB_Data`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };
 

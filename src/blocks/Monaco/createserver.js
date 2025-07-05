@@ -32,7 +32,6 @@ Blockly.Blocks[blockName] = {
 JavaScript['monaco_create_server'] = function (block) {
   var value_create = JavaScript.valueToCode(block, 'create', JavaScript.ORDER_ATOMIC);
   var statements = JavaScript.statementToCode(block, 'then');
-  // TODO: Assemble JavaScript into code variable.
   var guilder = `s4d.client.guilds.create(String(${value_create})).then(async newServer => {
   ${statements}
 })`;

@@ -35,7 +35,6 @@ Blockly.Blocks[blockName] = {
 JavaScript[blockName] = function (block) {
   var value_delete = JavaScript.valueToCode(block, 'delete', JavaScript.ORDER_ATOMIC);
   var statements_then = JavaScript.statementToCode(block, 'then');
-  // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_Replit_DB.delete(${value_delete}).then(async () => {${statements_then}});`;
   return code;
 };

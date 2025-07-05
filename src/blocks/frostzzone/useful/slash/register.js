@@ -40,7 +40,6 @@ JavaScript[blockName] = function (block) {
   } else {
     guild = `guildID: ${gild}`;
   }
-  // TODO: Assemble JavaScript into code variable.
   var code = `synchronizeSlashCommands(s4d.client, [
 ${options}
 ],{

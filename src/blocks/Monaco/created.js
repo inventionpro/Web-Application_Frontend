@@ -20,8 +20,6 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript['monaco_created_guild'] = function () {
-  // TODO: Assemble JavaScript into code variable.
   var code = `newServer`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

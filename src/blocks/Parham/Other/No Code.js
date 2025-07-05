@@ -28,7 +28,6 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function () {
-  // TODO: Assemble JavaScript into code variable.
   var code = '';
   return code;
 };

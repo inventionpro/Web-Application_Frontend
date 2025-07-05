@@ -19,8 +19,6 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript['send_chart'] = function () {
-  // TODO: Assemble JavaScript into code variable.
   var code = `{files: [{attachment: chart.toURL(), name: 'chart.png'}],}`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

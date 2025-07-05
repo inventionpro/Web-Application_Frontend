@@ -28,7 +28,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript['register_commands'] = function (block) {
   var statements_commands = JavaScript.statementToCode(block, 'commands');
-  // TODO: Assemble JavaScript into code variable.
   var code = `${statements_commands}`;
   return code;
 };

@@ -28,8 +28,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript['monaco_all_invites'] = function (block) {
   var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.invites.fetch()`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

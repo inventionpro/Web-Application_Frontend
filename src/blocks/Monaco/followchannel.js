@@ -40,7 +40,6 @@ JavaScript[blockName] = function (block) {
   var value_togglechannel = JavaScript.valueToCode(block, 'togglechannel', JavaScript.ORDER_ATOMIC);
   var value_locationchannel = JavaScript.valueToCode(block, 'locationchannel', JavaScript.ORDER_ATOMIC);
   var value_reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = ` ${value_togglechannel}.addFollower(${value_locationchannel}, String(${value_reason}))
 `;
   return code;

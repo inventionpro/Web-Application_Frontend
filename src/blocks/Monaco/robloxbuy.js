@@ -36,7 +36,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript['monaco_roblox_buy'] = function (block) {
   var value_id = JavaScript.valueToCode(block, 'id', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `S4D_APP_NOBLOX.buy(Number(${value_id}))\n`;
   return code;
 };

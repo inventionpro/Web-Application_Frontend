@@ -19,9 +19,7 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript['dash_guild_id'] = function () {
-  // TODO: Assemble JavaScript into code variable.
   var code = 'guild.id';
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };
 
@@ -43,8 +41,6 @@ Blockly.Blocks[blockName1] = {
 };
 
 JavaScript['dash_value'] = function () {
-  // TODO: Assemble JavaScript into code variable.
   var code = 'value';
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

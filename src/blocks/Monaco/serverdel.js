@@ -28,7 +28,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript['monaco_delete_guild'] = function (block) {
   var value_server = JavaScript.valueToCode(block, 'Server', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.delete()\n`;
   return code;
 };

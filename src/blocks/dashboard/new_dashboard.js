@@ -129,7 +129,6 @@ JavaScript['initialize_dashboard'] = function (block) {
   var statements_fields = JavaScript.statementToCode(block, 'FIELDS');
   var statements_register_commands = JavaScript.statementToCode(block, 'REGISTER_COMMANDS');
   var statements_cooki = JavaScript.statementToCode(block, 'cooki');
-  // TODO: Assemble JavaScript into code variable.
   var code;
 
   if (dropdown_theme == 'custom') {

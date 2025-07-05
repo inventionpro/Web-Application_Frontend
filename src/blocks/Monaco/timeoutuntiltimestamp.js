@@ -28,8 +28,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   var value_member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `${value_member}.communicationDisabledUntilTimestamp`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, JavaScript.ORDER_NONE];
 };

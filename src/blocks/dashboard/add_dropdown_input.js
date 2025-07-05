@@ -69,7 +69,6 @@ JavaScript['add_dropdown_input'] = function (block) {
   var value_getter_id = JavaScript.valueToCode(block, 'getter_id', JavaScript.ORDER_ATOMIC);
   var value_getter_name = JavaScript.valueToCode(block, 'getter_name', JavaScript.ORDER_ATOMIC);
   var value_selector_entries = JavaScript.valueToCode(block, 'selector_entries', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `
     const ${text_name}_getSelectorEntries = (client, guild) => ${value_selector_entries};
     const setter_${text_name} = (client, guild, value) => ${statements_setter}

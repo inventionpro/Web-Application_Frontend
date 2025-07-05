@@ -40,7 +40,6 @@ JavaScript['monaco_set_role_position'] = function (block) {
   var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
   var value_role = JavaScript.valueToCode(block, 'role', JavaScript.ORDER_ATOMIC);
   var value_position = JavaScript.valueToCode(block, 'position', JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
   var code = `${value_server}.${value_role}.setPosition(${value_position})\n`;
   return code;
 };
