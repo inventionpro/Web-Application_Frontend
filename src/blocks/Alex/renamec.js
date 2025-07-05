@@ -4,7 +4,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'renamec';
 
 const blockData = {
-  message0: 'Rename channel %1 %2 New name %3',
+  message0: 'Rename channel %1 New name %2',
   args0: [
     {
       type: 'input_value',
@@ -12,19 +12,17 @@ const blockData = {
       name: 'channel'
     },
     {
-      type: 'input_space'
-    },
-    {
       check: 'String',
       type: 'input_value',
       name: 'name'
     }
   ],
-  previousStatement: null,
-  nextStatement: null,
   colour: '#0c97f0',
   tooltip: 'Rename a channel',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false,
+  previousStatement: null,
+  nextStatement: null
 };
 
 Blockly.Blocks[blockName] = {

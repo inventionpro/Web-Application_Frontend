@@ -6,10 +6,10 @@ const blockName = 'add_text_dash';
 
 const blockData = {
   type: 'block_type',
-  message0: 'Add text input %1 Name %2 %3 Description %4 %5 max length %6 %7 Setter %8 %9 get value %10',
+  message0: 'Add text input %1 Name %2 Description %3 max length %4 Setter %5 get value %6',
   args0: [
     {
-      type: 'input_space'
+      type: 'input_dummy'
     },
     {
       type: 'input_value',
@@ -17,15 +17,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'desc',
       check: 'String'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -33,14 +27,8 @@ const blockData = {
       check: 'Number'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_statement',
       name: 'set'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -50,7 +38,8 @@ const blockData = {
   ],
   colour: '#0EB22B',
   tooltip: 'Returns Text',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false
 };
 
 Blockly.Blocks[blockName] = {

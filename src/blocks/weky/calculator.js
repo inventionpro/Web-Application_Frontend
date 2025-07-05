@@ -3,7 +3,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const blockName = 's4d_cal';
 
-const name = 'Start a calculator with Embed title %1 %2 Embed color %3 %4 Embed footer %5 %6 Timestamp %7 %8 Calculator disabled message %9 %10 Invalid equation message %11';
+const name = 'Start a calculator with Embed title %1 Embed color %2 Embed footer %3 Timestamp %4 Calculator disabled message %5 Invalid equation message %6';
 
 const blockData = {
   message0: `${name}`,
@@ -14,15 +14,9 @@ const blockData = {
       Check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'color',
       check: 'Colour'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -30,15 +24,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'TIMESTAMP',
       check: 'Boolean'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -46,19 +34,17 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'INVALID',
       check: 'String'
     }
   ],
-  previousStatement: null,
-  nextStatement: null,
   colour: '#48a4f0',
   tooltip: '',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false,
+  previousStatement: null,
+  nextStatement: null
 };
 
 Blockly.Blocks[blockName] = {

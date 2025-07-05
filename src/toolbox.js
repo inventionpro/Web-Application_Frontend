@@ -7,13 +7,13 @@ export default (favorites) => {
     <!-- CATEGORY_CONTENT_VARIABLE_GOES_HERE_897489712470376894703168263487623 -->
   </category>
   <category name="Favorites" colour="#FFFF00" css-icon="customIcon fa fa-star">
-    <label text="Add your favorite blocks here by right clicking them and pressing &quot;Add to favorite!&quot;"/>
+    <label text="Right click blocks and press &quot;Add to favorite&quot; to add them here!"/>
     ${favorites === null ? '' : favorites.map((fav) => `<block type="${fav}"/>`)}
   </category>
   <category name="Custom Blocks" colour="#808080" css-icon="customIcon2 fa fa-gear" hidden="${String(!window.isInS4DDebugMode)}">
     <label text="Custom blocks are currently in testing!"/>
     <label text="If you found any vulnerabilities or bugs, let us know!"/>
-    <button text="Create block..." callbacs="LAUNCHCUSTOMBLOCKBUILDER"/>
+    <button text="Create block..." callbackKey="LAUNCHCUSTOMBLOCKBUILDER"/>
     ${window.customBlocks.map((custom) => `<block type="${custom}"/>`).join('\n')}
   </category>
   <sep class="bt"/>

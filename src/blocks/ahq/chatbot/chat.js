@@ -2,7 +2,7 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'chat_ahq';
 const blockData = {
-  message0: 'chat message %1 %2 bot name %3 %4 user ID %5 %6 channel %7',
+  message0: 'chat message %1 bot name %2 user ID %3 channel %4',
   args0: [
     {
       type: 'input_value',
@@ -10,23 +10,14 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'button name',
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'user',
       check: 'String'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -35,6 +26,7 @@ const blockData = {
     }
   ],
   colour: '#40BF4A',
+  inputsInline: false,
   previousStatement: null,
   nextStatement: null
 };

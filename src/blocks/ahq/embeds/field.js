@@ -3,7 +3,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'fld_ahq_embed';
 
 const blockData = {
-  message0: 'Add Field name %1 description %2 inline %3 %4 Embed %5',
+  message0: 'Add Field name %1 description %2 inline %3 Embed %4',
   args0: [
     {
       type: 'input_value',
@@ -21,15 +21,13 @@ const blockData = {
       check: 'Boolean'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'button name',
       check: 'String'
     }
   ],
   colour: '#40BF4A',
+  inputsInline: false,
   previousStatement: null,
   nextStatement: null
 };

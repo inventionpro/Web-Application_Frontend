@@ -36,7 +36,7 @@ Blockly.Blocks['gsa_your_mom_lmao'] = {
       tooltip: 'Asynchronously runs the code inside of it',
       helpUrl: ''
     });
-    this.setMutator(new Blockly.Mutator([]));
+    this.setMutator(new Blockly.Mutator([], this));
   },
   isFilled: false,
   isHiden: true,

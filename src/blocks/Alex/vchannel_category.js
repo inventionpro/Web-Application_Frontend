@@ -4,7 +4,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'vcategory_channel';
 
 const blockData = {
-  message0: 'Create voice channel with name %1 %2 In category with ID %3 %4 In server %5',
+  message0: 'Create voice channel with name %1 In category with ID %2 In server %3',
   args0: [
     {
       type: 'input_value',
@@ -12,15 +12,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'id',
       check: ['String', 'Category']
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -28,11 +22,12 @@ const blockData = {
       check: 'Server'
     }
   ],
-  previousStatement: null,
-  nextStatement: null,
   colour: '#0c97f0',
   tooltip: '',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false,
+  previousStatement: null,
+  nextStatement: null
 };
 
 Blockly.Blocks[blockName] = {

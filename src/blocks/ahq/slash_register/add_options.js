@@ -4,7 +4,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 's4d_reg_slash_options';
 
 const blockData = {
-  message0: 'Set slash cmd options name %1 %2 set Description %3 %4 required? %5 %6 type %7',
+  message0: 'Set slash cmd options name %1 set Description %2 required? %3 type %4',
   args0: [
     {
       type: 'input_value',
@@ -12,23 +12,14 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'args',
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'ahq',
       checl: 'Boolean'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'field_dropdown',
@@ -48,6 +39,7 @@ const blockData = {
     }
   ],
   colour: '#33cc00',
+  inputsInline: false,
   previousStatement: null,
   nextStatement: null
 };

@@ -3,7 +3,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const blockName = 'snake_js';
 
-const NAME = 'Start Snake game with embed title  %1 %2 Embed footer %3 %4 With timestamp %5 %6 Empty space emoji %7 %8 Snake body emoji %9 %10 With food emoji %11 %12 Cancel button text %13 %14 Embed Color %15';
+const NAME = 'Start Snake game with embed title  %1 Embed footer %2 With timestamp %3 Empty space emoji %4 Snake body emoji %5 With food emoji %6 Cancel button text %7 Embed Color %8';
 
 const blockData = {
   message0: `${NAME}`,
@@ -14,15 +14,9 @@ const blockData = {
       Check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'FOOTER',
       check: 'String'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -30,15 +24,9 @@ const blockData = {
       check: 'Boolean'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'EMPTY',
       check: 'String'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -46,15 +34,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'FOOD',
       check: 'String'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -62,19 +44,17 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'COLOR',
       check: 'Colour'
     }
   ],
-  previousStatement: null,
-  nextStatement: null,
   colour: '#48a4f0',
   tooltip: '',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false,
+  previousStatement: null,
+  nextStatement: null
 };
 
 Blockly.Blocks[blockName] = {

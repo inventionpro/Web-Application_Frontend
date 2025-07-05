@@ -3,7 +3,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 's4d_reg_slash';
 
 const blockData = {
-  message0: 'Register slash command name %1 %2 set description %3 %4 then %5',
+  message0: 'Register slash command name %1 set description %2 then %3',
   args0: [
     {
       type: 'input_value',
@@ -11,15 +11,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'args',
       check: 'String'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_statement',
@@ -27,6 +21,7 @@ const blockData = {
     }
   ],
   colour: '#33cc00',
+  inputsInline: false,
   previousStatement: null,
   nextStatement: null
 };

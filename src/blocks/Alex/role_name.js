@@ -4,7 +4,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'role_name';
 
 const blockData = {
-  message0: 'Edit role name %1 %2 New name %3',
+  message0: 'Edit role name %1 New name %2',
   args0: [
     {
       type: 'input_value',
@@ -12,19 +12,17 @@ const blockData = {
       Check: 'Role'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'name',
       check: 'String'
     }
   ],
-  previousStatement: null,
-  nextStatement: null,
   colour: '#48a4f0',
   tooltip: 'Change role name',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false,
+  previousStatement: null,
+  nextStatement: null
 };
 
 Blockly.Blocks[blockName] = {

@@ -3,7 +3,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'author_ahq_embed';
 
 const blockData = {
-  message0: 'Set author %1 image %2 %3 Embed %4',
+  message0: 'Set author %1 image %2 Embed %3',
   args0: [
     {
       type: 'input_value',
@@ -16,15 +16,13 @@ const blockData = {
       check: ['String']
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'button name',
       check: 'String'
     }
   ],
   colour: '#40BF4A',
+  inputsInline: false,
   previousStatement: null,
   nextStatement: null
 };

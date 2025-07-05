@@ -4,10 +4,10 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'create_ahq_handler';
 const blockData = {
   type: 'block_type',
-  message0: 'Create command handler %1 Prefix %2 %3 OwnerId %4 %5 Owner Only Message %6 %7 Set NSFW channel only message %8 %9 Set not mod message %10',
+  message0: 'Create command handler %1 Prefix %2 OwnerId %3 Owner Only Message %4 Set NSFW channel only message %5 Set not mod message %6',
   args0: [
     {
-      type: 'input_space'
+      type: 'input_dummy'
     },
     {
       type: 'input_value',
@@ -15,15 +15,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'ownerId',
       check: 'String'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -31,15 +25,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'ahq',
       check: 'String'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -49,7 +37,8 @@ const blockData = {
   ],
   colour: '#3333ff',
   tooltip: '???',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false
 };
 
 Blockly.Blocks[blockName] = {

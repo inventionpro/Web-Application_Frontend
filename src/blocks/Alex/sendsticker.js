@@ -4,7 +4,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'send_sticker';
 
 const blockData = {
-  message0: 'In channel %1 %2 send sticker %3',
+  message0: 'In channel %1 send sticker %2',
   args0: [
     {
       type: 'input_value',
@@ -12,19 +12,17 @@ const blockData = {
       check: 'Channel'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'sticker',
       check: 'Sticker'
     }
   ],
-  previousStatement: null,
-  nextStatement: null,
   colour: '#02a836',
   tooltip: 'Sends a sticker to a specific channel.',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false,
+  previousStatement: null,
+  nextStatement: null
 };
 
 Blockly.Blocks[blockName] = {

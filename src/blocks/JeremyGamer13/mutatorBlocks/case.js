@@ -44,7 +44,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([]));
+    this.setMutator(new Blockly.Mutator([], this));
     this.inputCount = 0;
     this.defaultCaseEnabled = false;
   },

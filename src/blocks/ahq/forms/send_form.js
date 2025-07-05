@@ -4,7 +4,7 @@ import { registerRestrictions } from '../../../restrictions';
 const blockName = 'snd_ahq_modal';
 
 const blockData = {
-  message0: 'Send forms on reply type %1 %2 %3 form %4',
+  message0: 'Send forms on reply type %1 form %2',
   args0: [
     {
       type: 'field_dropdown',
@@ -15,18 +15,13 @@ const blockData = {
       ]
     },
     {
-      type: 'input_space'
-    },
-    {
-      type: 'input_dummy'
-    },
-    {
       type: 'input_value',
       name: 'form',
       check: 'ahq_modal_names'
     }
   ],
   colour: '#33cc00',
+  inputsInline: false,
   previousStatement: null,
   nextStatement: null
 };

@@ -4,7 +4,7 @@ import { registerRestrictions } from '../../../restrictions';
 const blockName = 'make_ahq_modal';
 
 const blockData = {
-  message0: 'Make A Form with name %1 %2 %3 Title %4 %5 %6 Id %7 %8 %9 Then %10',
+  message0: 'Make A Form with name %1 Title %2 Id %3 Then %4',
   args0: [
     {
       type: 'input_value',
@@ -12,21 +12,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
-      type: 'input_dummy'
-    },
-    {
       type: 'input_value',
       name: 'title',
       check: 'String'
-    },
-    {
-      type: 'input_space'
-    },
-    {
-      type: 'input_dummy'
     },
     {
       type: 'input_value',
@@ -34,17 +22,12 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
-      type: 'input_dummy'
-    },
-    {
       type: 'input_statement',
       name: 'STATEMENTS'
     }
   ],
   colour: '#40BF4A',
+  inputsInline: false,
   previousStatement: null,
   nextStatement: null
 };

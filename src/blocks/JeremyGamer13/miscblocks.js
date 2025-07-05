@@ -12,26 +12,10 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     this.setColour('#8B48A3');
     this.appendValueInput('IF0').setCheck(null).appendField('case');
     this.appendStatementInput('DO0');
-    //.appendField(Blockly.Msg.CONTROLS_IF_MSG_THEN);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setMutator(new Blockly.Mutator(['lasercat_jg_case_default_INTERNAL_case2', 'lasercat_jg_case_default_INTERNAL_case3', 'lasercat_jg_case_default_INTERNAL_case4', 'lasercat_jg_case_default_INTERNAL_default']));
-    // Assign 'this' to a variable for use in the tooltip closure below.
-    //var thisBlock = this;
-    this.setTooltip(function () {
-      /*
-            if (!thisBlock.elseifCount_ && !thisBlock.elseCount_) {
-                return Blockly.Msg.CONTROLS_IF_TOOLTIP_1;
-            } else if (!thisBlock.elseifCount_ && thisBlock.elseCount_) {
-                return Blockly.Msg.CONTROLS_IF_TOOLTIP_2;
-            } else if (thisBlock.elseifCount_ && !thisBlock.elseCount_) {
-                return Blockly.Msg.CONTROLS_IF_TOOLTIP_3;
-            } else if (thisBlock.elseifCount_ && thisBlock.elseCount_) {
-                return Blockly.Msg.CONTROLS_IF_TOOLTIP_4;
-            }
-            */
-      return `Run the blocks inside if the switched item is equal to this case's value. The "default" case is if the switched item doesn't match any of the other cases mentioned. Hover over the blocks in this block's gear menu for more details.`;
-    });
+    this.setMutator(new Blockly.Mutator(['lasercat_jg_case_default_INTERNAL_case2', 'lasercat_jg_case_default_INTERNAL_case3', 'lasercat_jg_case_default_INTERNAL_case4', 'lasercat_jg_case_default_INTERNAL_default'], this));
+    this.setTooltip(`Run the blocks inside if the switched item is equal to this case's value. The "default" case is if the switched item doesn't match any of the other cases mentioned. Hover over the blocks in this block's gear menu for more details.`);
     this.elseifCount_ = 0;
     this.elseCount_ = 0;
     this.mutatorMenuBlockTypes = [];
@@ -70,11 +54,11 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     this.updateShape_();
   },
   /**
-     * Populate the mutator's dialog with this block's components.
- 65    * @param {!Blockly.Workspace} workspace Mutator's workspace.
- 66    * @return {!Blockly.Block} Root block in mutator.
- 67    * @this Blockly.Block
- 68    */
+   * Populate the mutator's dialog with this block's components.
+   * @param {!Blockly.Workspace} workspace Mutator's workspace.
+   * @return {!Blockly.Block} Root block in mutator.
+   * @this Blockly.Block
+   */
   decompose: function (workspace) {
     var containerBlock = workspace.newBlock('lasercat_jg_case_default_INTERNAL_case1');
     containerBlock.initSvg();
@@ -93,10 +77,10 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     return containerBlock;
   },
   /**
- 87    * Reconfigure this block based on the mutator dialog's components.
- 88    * @param {!Blockly.Block} containerBlock Root block in mutator.
- 89    * @this Blockly.Block
- 90    */
+   * Reconfigure this block based on the mutator dialog's components.
+   * @param {!Blockly.Block} containerBlock Root block in mutator.
+   * @this Blockly.Block
+   */
   compose: function (containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
     // Count number of inputs.
@@ -134,10 +118,10 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     Blockly.Mutator.reconnect(elseStatementConnection, this, 'ELSE');
   },
   /**
-  125    * Store pointers to any connected child blocks.
-  126    * @param {!Blockly.Block} containerBlock Root block in mutator.
-  127    * @this Blockly.Block
-  128    */
+   * Store pointers to any connected child blocks.
+   * @param {!Blockly.Block} containerBlock Root block in mutator.
+   * @this Blockly.Block
+   */
   saveConnections: function (containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
     var i = 1;
@@ -165,10 +149,10 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     }
   },
   /**
-  156    * Modify this block to have the correct number of inputs.
-  157    * @private
-  158    * @this Blockly.Block
-  159    */
+   * Modify this block to have the correct number of inputs.
+   * @private
+   * @this Blockly.Block
+   */
   updateShape_: function () {
     // Delete everything.
     if (this.getInput('ELSE')) {

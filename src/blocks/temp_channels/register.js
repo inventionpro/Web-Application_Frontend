@@ -3,7 +3,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const blockName = 's4d_temp_register';
 
-const name = 'Register a voice channel with the id %1 %2 Delete if empty %3 %4 Max member count %5 %6 Temp channel name %7';
+const name = 'Register a voice channel with the id %1 Delete if empty %2 Max member count %3 Temp channel name %4';
 
 const blockData = {
   type: 'block_type',
@@ -15,15 +15,9 @@ const blockData = {
       Check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'EMPTY',
       check: 'Boolean'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -31,19 +25,17 @@ const blockData = {
       check: 'Number'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'NAME',
       check: 'String'
     }
   ],
-  previousStatement: null,
-  nextStatement: null,
   colour: '#48a4f0',
   tooltip: '',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false,
+  previousStatement: null,
+  nextStatement: null
 };
 
 Blockly.Blocks[blockName] = {

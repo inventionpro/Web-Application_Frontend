@@ -10,7 +10,7 @@ const BORDER_TYPES = ['String', 'AHQEmbeds', 'AHQButton'];
 const names = ['Text', 'Send ahq embed', 'Send ahq button (max 5)'];
 
 const blockData = {
-  message0: 'Send Attachment %1 File (filename) %2 %3 Display Name %4 %5 in channel %6',
+  message0: 'Send Attachment %1 File (filename) %2 Display Name %3 in channel %4',
   args0: [
     {
       type: 'input_dummy'
@@ -21,16 +21,9 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'name',
       check: 'String'
-    },
-
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -41,6 +34,7 @@ const blockData = {
   colour: '#40BF4A',
   tooltip: 'Send the converted file to a channel.',
   helpUrl: '',
+  inputsInline: false,
   mutator: 'ahq_send_mutator',
   previousStatement: null,
   nextStatement: null

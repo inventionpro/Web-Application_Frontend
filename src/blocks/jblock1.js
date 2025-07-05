@@ -88,9 +88,6 @@ export function createBlock(data) {
         case 'input_dummy':
           args[input] = '';
           break;
-        case 'input_space':
-          args[input] = '';
-          break;
         default:
           args[input] = block.getFieldValue(input);
           break;

@@ -4,7 +4,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'delete_sticker';
 
 const blockData = {
-  message0: 'In server %1 %2 Delete sticker %3',
+  message0: 'In server %1 Delete sticker %2',
   args0: [
     {
       type: 'input_value',
@@ -12,19 +12,17 @@ const blockData = {
       check: 'Server'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'sticker',
       check: 'Sticker'
     }
   ],
-  previousStatement: null,
-  nextStatement: null,
   colour: '#02a836',
   tooltip: 'Deletes a sticker from the server.',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false,
+  previousStatement: null,
+  nextStatement: null
 };
 Blockly.Blocks[blockName] = {
   init: function () {

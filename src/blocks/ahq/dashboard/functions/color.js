@@ -6,10 +6,10 @@ const blockName = 'add_color_dash';
 
 const blockData = {
   type: 'block_type',
-  message0: 'add colour input %1 name %2 %3 description %4 %5 setter %6 %7 get %8',
+  message0: 'add colour input %1 name %2 description %3 setter %4 get %5',
   args0: [
     {
-      type: 'input_space'
+      type: 'input_dummy'
     },
     {
       type: 'input_value',
@@ -17,22 +17,13 @@ const blockData = {
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_value',
       name: 'desc',
       check: 'String'
     },
     {
-      type: 'input_space'
-    },
-    {
       type: 'input_statement',
       name: 'set'
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -42,7 +33,8 @@ const blockData = {
   ],
   colour: '#0EB22B',
   tooltip: 'Returns color in string',
-  helpUrl: ''
+  helpUrl: '',
+  inputsInline: false
 };
 
 Blockly.Blocks[blockName] = {

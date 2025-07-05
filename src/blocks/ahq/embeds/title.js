@@ -3,15 +3,12 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'title_ahq_embed';
 
 const blockData = {
-  message0: 'Set Title %1 %2 Embed %3',
+  message0: 'Set Title %1 Embed %2',
   args0: [
     {
       type: 'input_value',
       name: 'Label',
       check: ['String']
-    },
-    {
-      type: 'input_space'
     },
     {
       type: 'input_value',
@@ -20,6 +17,7 @@ const blockData = {
     }
   ],
   colour: '#40BF4A',
+  inputsInline: false,
   previousStatement: null,
   nextStatement: null
 };
