@@ -142,7 +142,7 @@ export default {
             warnings.push(block);
           }
           if (JavaScript[block] == null && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
-            console.log(JavaScript[block])
+            console.log(JavaScript[block]);
             console.warn(`${block} doesnt have a export! and thus doesnt need to be in "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"! please remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"!`);
             warnings.push(block);
           }

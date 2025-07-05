@@ -1,9 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator as JavaScript } from 'blockly/javascript';
-const ahqcolor = [
-  '#40BF4A',
-  '#40BF4A'
-];
+const ahqcolor = ['#40BF4A', '#40BF4A'];
 function listsGetRandomItem(list, remove) {
   var x = Math.floor(Math.random() * list.length);
   if (remove) {
