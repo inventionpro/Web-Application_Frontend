@@ -4,7 +4,7 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'disconnect_voice';
 
 const blockData = {
-  message0: 'Disconnect member %1 reason: %3 %4 from voice channel',
+  message0: 'Disconnect member %1 reason: %2 %3 from voice channel',
   args0: [
     {
       type: 'field_dropdown',
