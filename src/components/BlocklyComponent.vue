@@ -1364,7 +1364,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       }
     });
     backpack.init();
-    Load(backpack);
+    Load(backpack, workspace);
     this.$store.commit('setWorkspace', {
       workspace
     });
