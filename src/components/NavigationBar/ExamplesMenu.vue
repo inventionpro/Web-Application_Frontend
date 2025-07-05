@@ -551,7 +551,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                             examplesData[idx].likes = examplesData[idx].likes_users.length;
                             examplesData[idx].dislikes = examplesData[idx].dislikes_users.length;
                           })
-                          .catch((err) => {
+                          .catch(() => {
                             icon.setAttribute('class', 'fa-solid fa-triangle-exclamation');
                             icon.setAttribute('style', 'color: #ff0000');
                           });

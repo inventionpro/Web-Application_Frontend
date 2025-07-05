@@ -998,8 +998,8 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       function rgbToHex(r, g, b) {
         return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
       }
-      const eventBlockSVGRegex = / m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h [0-9\.]* a 4 4 0 0,1 4,4  v 4  V 8  V 40  V 44 a 4 4 0 0,1 -4,4  H 64  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12/gim;
-      const outputBlockSVGRegex = / m [0-9]*,0  h [0-9\.]* a 20 20 0 0,1 20,20  v 0 a 20 20 0 0,1 -20,20  V 40  h [0-9\.-]* a 20 20 0 0,1 -20,-20  v 0 a 20 20 0 0,1 20,-20 z/gim;
+      const eventBlockSVGRegex = / m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h [0-9.]* a 4 4 0 0,1 4,4  v 4  V 8  V 40  V 44 a 4 4 0 0,1 -4,4  H 64  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12/gim;
+      const outputBlockSVGRegex = / m [0-9]*,0  h [0-9.]* a 20 20 0 0,1 20,20  v 0 a 20 20 0 0,1 -20,20  V 40  h [0-9.-]* a 20 20 0 0,1 -20,-20  v 0 a 20 20 0 0,1 20,-20 z/gim;
       if (specialTag == 'scratch-top') {
         const elem2ents = document.getElementsByClassName('blocklyDraggable');
         for (let i = 0; i < elem2ents.length; i++) {
@@ -1014,7 +1014,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
               const width = Number(
                 current
                   .getAttribute('d')
-                  .match(/h [0-9\.]*/im)[0]
+                  .match(/h [0-9.]*/im)[0]
                   .replace('h ', '')
               );
               current.setAttribute('d', `m 0 0 c 25 -22 71 -22 96 0 H ${width + 3.5} a 4 4 0 0 1 4 4 v 40 a 4 4 0 0 1 -4 4 H 48 c -2 0 -3 1 -4 2 l -4 4 c -1 1 -2 2 -4 2 h -12 c -2 0 -3 -1 -4 -2 l -4 -4 c -1 -1 -2 -2 -4 -2 H 4 a 4 4 0 0 1 -4 -4 z`);
@@ -1059,7 +1059,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
                 Number(
                   current
                     .getAttribute('d')
-                    .match(/h [0-9\.]*/im)[0]
+                    .match(/h [0-9.]*/im)[0]
                     .replace('h ', '')
                 ) - 55;
               const VISOR_WIDTH = width < 0 ? 0 : width;
@@ -1263,7 +1263,9 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       Blockly.ContextMenuRegistry.registry.unregister('fav');
       Blockly.ContextMenuRegistry.registry.unregister('refav');
       Blockly.ContextMenuRegistry.registry.unregister('image');
-    } catch {}
+    } catch {
+      // Ignore :3
+    }
 
     Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Add to favorite',
@@ -1283,18 +1285,14 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
 
         if (val === null) {
           await localforage.setItem('fav', [type]);
-          val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-          var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-          workspace.updateToolbox(new_toolbox_xml);
         } else {
           val.push(type);
           await localforage.setItem('fav', val);
-          val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-          var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-          workspace.updateToolbox(new_toolbox_xml);
         }
+        val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
+
+        let new_toolbox_xml = prepToolbox(toolbox(val), false, val);
+        workspace.updateToolbox(new_toolbox_xml);
       },
       scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
       id: 'fav',

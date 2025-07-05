@@ -5,7 +5,6 @@
 // https://drive.google.com/drive/folders/1G2Lg11s8ds3Ug_LmL_2OIieTAg5Fu1QC?usp=sharing
 
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 Blockly.Blocks['string_length'] = {
   init: function () {
@@ -14,7 +13,6 @@ Blockly.Blocks['string_length'] = {
     this.setColour(160);
     this.setTooltip('Returns number of letters in the provided text.');
     this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
-    // console.log(this)
   },
   customContextMenu: function (options) {
     var option = {

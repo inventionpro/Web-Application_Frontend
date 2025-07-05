@@ -305,7 +305,7 @@ export default {
           audio.play();
         } else {
           function delay(ms) {
-            return new Promise((resolve, _) => {
+            return new Promise((resolve) => {
               setTimeout(resolve, ms);
             });
           }

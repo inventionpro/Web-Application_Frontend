@@ -82,12 +82,6 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   window.BlocklyService.JavaScript = {};
   window.BlocklyService.JavaScript = JavaScript;
   blocks.forEach((block) => {
-    let bringBack_setTimeout;
-    let bringBack_setInterval;
-    let bringBack_fetch;
-    let bringBack_Worker;
-    let bringBack_SharedWorker;
-    let bringBack_ServiceWorker;
     let works = true;
     try {
       Blockly.Blocks[block.name] = {

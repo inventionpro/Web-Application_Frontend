@@ -35,5 +35,5 @@ JavaScript[blockName] = function (block) {
     message = `content: String(${JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC)}), `;
   }
   const color = block.getFieldValue('NAME');
-  return [`${message}embeds: [${color.replaceAll(' ', '_').replace(/[!@#\$%\^&\*\(\)-=\]\[\|{}\+`~'":;\?\/\.<>,\/]/g, '_')}]`, JavaScript.ORDER_ATOMIC];
+  return [`${message}embeds: [${color.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')}]`, JavaScript.ORDER_ATOMIC];
 };

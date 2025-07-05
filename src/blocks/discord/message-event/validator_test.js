@@ -1,5 +1,4 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 
 const blockName = 'validator_test';
 

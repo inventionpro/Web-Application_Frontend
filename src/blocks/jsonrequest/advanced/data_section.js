@@ -36,7 +36,7 @@ Blockly.Blocks[blockName] = {
 JavaScript[blockName] = function (block) {
   const LABEL = block.getFieldValue('LABEL');
   const STATEMENTS = JavaScript.statementToCode(block, 'STATEMENTS');
-  const code = `${LABEL.replaceAll(' ', '_').replace(/[!@#\$%\^&\*\(\)-=\]\[\|{}\+`~'":;\?\/\.<>,\/]/g, '_')}: {
+  const code = `${LABEL.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')}: {
            ${STATEMENTS}
         },
     `;
