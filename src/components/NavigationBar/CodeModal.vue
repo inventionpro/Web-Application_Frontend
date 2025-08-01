@@ -1,16 +1,27 @@
+<script setup>
+function closeCodeModal() {
+  document.getElementById('code-modal')?.close()
+}
+</script>
+
 <template>
-  <b-modal id="code-modal" title="JavaScript code of your bot" cancel-title="Close" ok-title="Copy to Clipboard" @ok="copy">
+  <dialog ref="codeModal" id="code-modal">
+    <h2>JavaScript code of your bot</h2>
     <code class="language-js">
       <textarea disabled :value="content" id="code_TextArea_element_exporting_code"> </textarea>
     </code>
-  </b-modal>
+    <div>
+      <b-button @click="closeCodeModal">Close</b-button>
+      <b-button @click="copy" variant="primary">Copy to Clipboard</b-button>
+    </div>
+  </dialog>
 </template>
 
 <script>
 import beautify from 'js-beautify';
 
 export default {
-  name: 'editmenu',
+  name: 'CodeModal',
   computed: {
     content: function () {
       return beautify.js(this.getWorkspaceCode(), {
@@ -46,51 +57,38 @@ window.addEventListener("click", () => {
 </script>
 
 <style>
-#code-modal___BV_modal_title_ {
+#code-modal {
+  width: 100dvw;
+  height: 100dvh;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100000;
+  box-sizing: content-box;
+}
+#code-modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+#code-modal h2 {
   color: white;
   text-shadow: 7px 5px 5px black;
 }
-
-.close {
-  display: none;
+#code-modal code {
+  flex: 1;
 }
-
-#code_TextArea_element_exporting_code {
+#code-modal textarea {
   width: 100%;
   height: 100%;
   resize: none;
   background-color: #ffffffe6 !important;
 }
-
-#code_TextArea_element_exporting_code::-webkit-scrollbar {
+#code-modal div {
+  display: flex;
+  gap: 5px;
+  margin: 5px 0px;
+}
+#code-modal textarea::-webkit-scrollbar {
   width: 12px;
   background: #f1f1f1;
-}
-
-.modal-header,
-.modal-footer {
-  border: none !important;
-}
-
-.modal-footer {
-  justify-content: flex-start !important;
-}
-
-#code-modal .modal-dialog {
-  max-width: 100%;
-  max-height: 100%;
-  margin: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  display: flex;
-  position: fixed;
-  z-index: 100000;
-}
-
-#code-modal___BV_modal_content_ {
-  background-color: rgba(0, 0, 0, 0.4);
 }
 </style>
