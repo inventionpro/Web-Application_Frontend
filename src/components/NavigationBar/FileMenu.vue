@@ -1,13 +1,13 @@
 <script setup>
 function openCodeModal() {
-  document.getElementById('code-modal')?.showModal()
+  document.getElementById('code-modal')?.showModal();
 }
 </script>
 
 <template>
   <b-nav-item-dropdown :text="$t('file.title')" right>
     <b-dropdown-item @click="askForFile">{{ $t('file.open') }}</b-dropdown-item>
-    <input hidden @change="load" id="load-code" type="file" accept=".s4d,.zip,.xml">
+    <input hidden @change="load" id="load-code" type="file" accept=".s4d,.zip,.xml" />
     <b-dropdown-item @click="openCodeModal">{{ $t('file.javascript') }}</b-dropdown-item>
     <b-dropdown-item @click="copy">{{ $t('file.copy') }}</b-dropdown-item>
     <b-dropdown-item @click="save">{{ $t('file.save') }}</b-dropdown-item>

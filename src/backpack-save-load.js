@@ -23,7 +23,8 @@ let last;
 async function Save(backpack) {
   let contents = backpack.getContents();
   // Make sure that actually something has changed
-  if (JSON.stringify(last) !== JSON.stringify(contents)) { // [] === [] -> false, JS my beloved
+  if (JSON.stringify(last) !== JSON.stringify(contents)) {
+    // [] === [] -> false, JS my beloved
     console.log('saving backpack');
     last = contents;
     localforage.setItem('backpack3', contents);

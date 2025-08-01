@@ -1,15 +1,13 @@
 <script setup>
 function closeCodeModal() {
-  document.getElementById('code-modal')?.close()
+  document.getElementById('code-modal')?.close();
 }
 </script>
 
 <template>
   <dialog ref="codeModal" id="code-modal">
     <h2>JavaScript code of your bot</h2>
-    <code class="language-js">
-      <textarea disabled :value="content" id="code_TextArea_element_exporting_code"> </textarea>
-    </code>
+    <code class="language-js" v-html="content"></code>
     <div>
       <b-button @click="closeCodeModal">Close</b-button>
       <b-button @click="copy" variant="primary">Copy to Clipboard</b-button>
@@ -24,36 +22,38 @@ export default {
   name: 'CodeModal',
   computed: {
     content: function () {
-      return beautify.js(this.getWorkspaceCode(), {
+      const Prism = window.Prism;
+      let code = this.getWorkspaceCode();
+      code = beautify.js(code, {
         indent_size: 2,
+        max_preserve_newlines: 2,
+        preserve_newlines: true,
+        break_chained_methods: true,
+        brace_style: 'collapse,preserve-inline',
+        space_before_conditional: true,
         space_in_empty_paren: true
       });
+      if (Prism) {
+        code = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+      }
+      return code;
     }
   },
   methods: {
     copy() {
       var url = beautify.js(this.getWorkspaceCode(), {
         indent_size: 2,
+        max_preserve_newlines: 2,
+        preserve_newlines: true,
+        break_chained_methods: true,
+        brace_style: 'collapse,preserve-inline',
+        space_before_conditional: true,
         space_in_empty_paren: true
       });
       navigator.clipboard.writeText(url);
     }
   }
 };
-/*
-i did the hard work of adding prism, now someone else needs to get it working because i have no clue how lol
-heres some code i made but it doesnt work on text areas
-works fine otherwise
-
-window.addEventListener("click", () => {
-    const Prism = window.Prism
-    if (!Prism) return
-    const codearea = document.getElementById("code_TextArea_element_exporting_code")
-    if (!codearea) return
-    const highlight = Prism.highlight(codearea.value, Prism.languages.javascript, 'javascript');
-    document.getElementById("temporary thing wow").innerHTML = highlight
-})
-*/
 </script>
 
 <style>
@@ -71,24 +71,31 @@ window.addEventListener("click", () => {
 }
 #code-modal h2 {
   color: white;
+  user-select: none;
   text-shadow: 7px 5px 5px black;
 }
 #code-modal code {
   flex: 1;
-}
-#code-modal textarea {
   width: 100%;
   height: 100%;
-  resize: none;
-  background-color: #ffffffe6 !important;
+  color: #ccc;
+  font-family: inherit;
+  line-height: 1.3;
+  white-space: break-spaces;
+  overflow: auto;
+  border-radius: 5px;
+  background-color: #222;
+}
+#code-modal code::-webkit-scrollbar {
+  width: 12px;
+  background: inherit;
+}
+#code-modal code::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
 }
 #code-modal div {
   display: flex;
   gap: 5px;
   margin: 5px 0px;
-}
-#code-modal textarea::-webkit-scrollbar {
-  width: 12px;
-  background: #f1f1f1;
 }
 </style>
