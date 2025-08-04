@@ -187,7 +187,7 @@ ${newblocks.map((block) => `<block type="${block}"/>`).join('\n')}
 ${!lessthan_350 ? `<label text="${blocks.length - default_max_length} blocks left..." web-class="boldtext"></label>` : ''}`;
         }
       }
-      var returned_stuff = toolbox_content.replace(
+      var returned_stuff = toolbox_content?.replace(
         '<!-- CATEGORY_CONTENT_VARIABLE_GOES_HERE_897489712470376894703168263487623 -->',
         `<label text="There are currently ${blocks.length} blocks in S4D." web-class="boldtext"></label>
 <label text="ㅤ" web-class="boldtext"></label>

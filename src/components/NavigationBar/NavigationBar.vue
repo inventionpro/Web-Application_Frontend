@@ -1771,6 +1771,9 @@ if (localStorage.getItem('theme') == null) {
 </script>
 
 <style>
+.collapse.navbar-collapse:has(dialog[open]) {
+  display: block !important;
+}
 .hide-gui-button {
   background-color: transparent;
   border-width: 0px;

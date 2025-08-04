@@ -1151,7 +1151,7 @@ window.openS4DDebugMenu = () => {
     evalToolSummary.innerHTML = 'eval tool';
     evalTool.append(evalToolSummary);
     menu.content.append(evalTool);
-    if (!process.env.VUE_APP_EVALKEY && !(String(window.location).includes('localhost') || String(window.location).includes('replit'))) {
+    if (window.location.hostname!=='localhost' && (!process || !process.env.VUE_APP_EVALKEY)) {
       const evalToolWarning = document.createElement('h1');
       evalToolWarning.innerHTML = 'Sorry but...<br><h5>the key thats supposed to allow us to see you put the correct password doesnt seem to exist meaning it is phisically imposible to open the tool.</h5>';
       evalToolWarning.style.color = '#FFC447';
