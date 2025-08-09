@@ -1,13 +1,7 @@
-<script setup>
-function closeCodeModal() {
-  document.getElementById('code-modal')?.close();
-}
-</script>
-
 <template>
   <dialog ref="codeModal" id="code-modal">
     <h2>JavaScript code of your bot</h2>
-    <code class="language-js" v-html="content"></code>
+    <code class="language-js"></code>
     <div>
       <b-button @click="closeCodeModal">Close</b-button>
       <b-button @click="copy" variant="primary">Copy to Clipboard</b-button>
@@ -16,12 +10,31 @@ function closeCodeModal() {
 </template>
 
 <script>
+import { ref, onMounted, getCurrentInstance } from 'vue';
 import beautify from 'js-beautify';
 
 export default {
   name: 'CodeModal',
-  computed: {
-    content: function () {
+  setup() {
+    const { proxy } = getCurrentInstance();
+    console.log(getCurrentInstance)
+    const codeModal = ref(null);
+    onMounted(() => {
+      codeModal.value.show = ()=>{
+        proxy.show(codeModal.value.querySelector('code'));
+        codeModal.value.showModal();
+      };
+    });
+
+    function closeCodeModal() {
+      document.getElementById('code-modal')?.close();
+    }
+
+    return { codeModal, closeCodeModal };
+  },
+  methods: {
+    show(modal) {
+      console.log('meth')
       const Prism = window.Prism;
       let code = this.getWorkspaceCode();
       code = beautify.js(code, {
@@ -36,10 +49,8 @@ export default {
       if (Prism) {
         code = Prism.highlight(code, Prism.languages.javascript, 'javascript');
       }
-      return code;
-    }
-  },
-  methods: {
+      modal.innerHTML = code;
+    },
     copy() {
       var url = beautify.js(this.getWorkspaceCode(), {
         indent_size: 2,

@@ -1,6 +1,6 @@
 <script setup>
 function openCodeModal() {
-  document.getElementById('code-modal')?.showModal();
+  document.getElementById('code-modal')?.show();
 }
 </script>
 
@@ -148,6 +148,11 @@ export default {
     copy() {
       var url = beautify.js(this.getWorkspaceCode(), {
         indent_size: 2,
+        max_preserve_newlines: 2,
+        preserve_newlines: true,
+        break_chained_methods: true,
+        brace_style: 'collapse,preserve-inline',
+        space_before_conditional: true,
         space_in_empty_paren: true
       });
       navigator.clipboard.writeText(url);
