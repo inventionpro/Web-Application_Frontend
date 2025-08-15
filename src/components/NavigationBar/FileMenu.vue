@@ -161,6 +161,7 @@ export default {
       document.querySelector('#load-code').click();
     },
     async load() {
+      if (!document.getElementById('load-code').files[0]) return;
       Swal.fire({
         theme: 'auto',
         title: this.$t('file.confirm.title'),

@@ -1483,6 +1483,11 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
 #blocklyTreeIconClosed {
   filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
 }
+
+textarea.blocklyHtmlInput.blocklyHtmlTextAreaInput {
+  padding: 2.925px 5.9px !important;
+}
+
 body {
   font-family: sans-serif;
 }

@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     show(modal) {
-      console.log('meth')
       const Prism = window.Prism;
       let code = this.getWorkspaceCode();
       code = beautify.js(code, {
