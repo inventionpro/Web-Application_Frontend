@@ -103,7 +103,7 @@ JavaScript['b_create'] = function (block) {
   let name = JavaScript.valueToCode(block, 'B_NAME', JavaScript.ORDER_ATOMIC);
   let text1 = name.replace("'", '');
   let text2 = text1.replace("'", '');
-  let code = `const ${text2} = new MessageButton()\n`;
+  let code = `const ${text2} = new Discord.ButtonBuilder()\n`;
   if (id !== null) code += `.setCustomId(${id})\n`;
   if (label !== null) code += `.setLabel(${label})\n`;
   if (style === null) code += ".setStyle('DANGER')\n";

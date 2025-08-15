@@ -126,7 +126,7 @@ JavaScript['s4d_message_embed'] = function (block) {
   }
   return [
     `
-            embeds: [new MessageEmbed()${title}${color}${image}${description}${footer}${thumbnail}${field}
+            embeds: [new Discord.EmbedBuilder()${title}${color}${image}${description}${footer}${thumbnail}${field}
             ]
     `,
     JavaScript.ORDER_ATOMIC

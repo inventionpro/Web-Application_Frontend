@@ -32,6 +32,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   const code = JavaScript.statementToCode(block, 'code');
-  return `),new MessageActionRow()
+  return `),new Discord.ActionRowBuilder()
                         .addComponents(${code}`;
 };

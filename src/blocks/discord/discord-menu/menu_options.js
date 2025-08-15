@@ -46,16 +46,15 @@ JavaScript[blockName] = function (block) {
   const statements = JavaScript.statementToCode(block, 'OPTIONS');
   const disabled = JavaScript.valueToCode(block, 'DISABLED', JavaScript.ORDER_ATOMIC);
   var code = [
-    `new MessageActionRow()
+    `new Discord.ActionRowBuilder()
     .addComponents(
-    new MessageSelectMenu()
+    new Discord.SelectMenuBuilder()
     .setCustomId(${id})
     .setPlaceholder(${placeholder})
     .setMaxValues(1)
     .setMinValues(1)
     .setDisabled(${disabled === null ? false : disabled})
 
-    
     .addOptions(${statements}))\n`,
     JavaScript.ORDER_NONE
   ];

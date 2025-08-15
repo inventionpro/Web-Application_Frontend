@@ -28,7 +28,7 @@ Blockly.Blocks[blockName] = {
 JavaScript[blockName] = function (block) {
   const message = JavaScript.valueToCode(block, 'image', JavaScript.ORDER_ATOMIC);
   const code = `
-            let embed = new Discord.MessageEmbed()
+            let embed = new Discord.EmbedBuilder()
         embed.setImage(${message});
         (s4dmessage.channel).send({
             embeds: [embed]

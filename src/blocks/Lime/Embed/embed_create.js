@@ -39,6 +39,6 @@ JavaScript['s4d_embed_create'] = function (block) {
   name_value = name_value.toLowerCase();
   name_value = name_value.replace("'", '');
   name_value = name_value.replace("'", '');
-  let code = `let ${name_value} = new Discord.MessageEmbed() \n ${statements_then}\n`;
+  let code = `let ${name_value} = new Discord.EmbedBuilder() \n ${statements_then}\n`;
   return code;
 };

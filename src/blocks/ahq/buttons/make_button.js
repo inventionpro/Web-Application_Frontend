@@ -32,6 +32,6 @@ JavaScript[blockName] = function (block) {
   const name = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE);
   const finaln = name.replace("'", '').replace("'", '');
   const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_ATOMIC);
-  const code = `let ${finaln} = new MessageButton()\n${statementsThen}`;
+  const code = `let ${finaln} = new Discord.ButtonBuilder()\n${statementsThen}`;
   return code;
 };

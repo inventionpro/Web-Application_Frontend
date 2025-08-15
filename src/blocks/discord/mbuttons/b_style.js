@@ -4,23 +4,25 @@ import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 const blockName = 'b_style';
 
 const blockData = {
-  message0: '%{BKY_B_STYLE}',
+  message0: '%{BKY_BUTTON_STYLE}',
   args0: [
     {
       type: 'field_dropdown',
-      name: 'SEARCH_TYPE',
+      name: 'STYLE',
       options: [
-        ['Blurple', "'PRIMARY'"],
-        ['Grey', "'SECONDARY'"],
-        ['Green', "'SUCCESS'"],
-        ['Red', "'DANGER'"],
-        ['Link', "'LINK'"]
+        ['%{BKY_BUTTON_STYLE_PRIMARY}', '1'],
+        ['%{BKY_BUTTON_STYLE_SECONDARY}', '2'],
+        ['%{BKY_BUTTON_STYLE_SUCCESS}', '3'],
+        ['%{BKY_BUTTON_STYLE_DANGER}', '4'],
+        ['%{BKY_BUTTON_STYLE_LINK}', '5'],
+        // TODO: Add premium buttons
+        //['%{BKY_BUTTON_STYLE_PREMIUM}', '6']
       ]
     }
   ],
-  output: 'bstyle',
   colour: '#4C97FF',
-  tooltip: '',
+  output: 'bstyle',
+  tooltip: 'The style of a button',
   helpUrl: ''
 };
 
@@ -31,7 +33,7 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function (block) {
-  const searchType = block.getFieldValue('SEARCH_TYPE');
-  const code = [`${searchType}`, JavaScript.ORDER_NONE];
+  const style = block.getFieldValue('STYLE');
+  const code = [`${style}`, JavaScript.ORDER_NONE];
   return code;
 };

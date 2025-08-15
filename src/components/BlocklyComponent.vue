@@ -1485,7 +1485,7 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
 }
 
 textarea.blocklyHtmlInput.blocklyHtmlTextAreaInput {
-  padding: 2.925px 5.9px !important;
+  padding: 2.925px 4px !important;
 }
 
 body {

@@ -41,6 +41,6 @@ JavaScript[blockName] = function (block) {
   const name2 = name.replace(/ /g, '_');
   const then = JavaScript.statementToCode(block, 'THEN');
   const then2 = then.replace(/hnxgcjtirh\./g, name2 + '.');
-  const code = `var ${name2} = new Discord.MessageEmbed(); \n ${then2}\n`;
+  const code = `var ${name2} = new Discord.EmbedBuilder(); \n ${then2}\n`;
   return code;
 };

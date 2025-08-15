@@ -125,16 +125,16 @@ JavaScript[blockName] = function (block) {
             m.reply(\`Timeout for 10mins\nReason: Mass Mention\`).then(() => {
                m.member.timeout(10 * 60 * 1000, "Mass Role Mention").catch(e => console.log(e))
                 m.guild.channels.cache.find(c => c.name == "mod-logs-auto").send({
-                   embeds: [new MessageEmbed()
+                   embeds: [new Discord.EmbedBuilder()
                            .setTitle("Mute Log")
                            .setDescription(\`\${m.member.user} was muted for mass mention\`)
-                           .setColor("RED")] 
+                           .setColor("RED")]
                 });
                 m.member.send({
-                   embeds: [new MessageEmbed()
+                   embeds: [new Discord.EmbedBuilder()
                            .setTitle("Mute Log")
                            .setDescription(\`You were muted in \${m.guild.name} for mass mention\`)
-                           .setColor("RED")] 
+                           .setColor("RED")]
                 });
             });
         }

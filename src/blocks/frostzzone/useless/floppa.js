@@ -21,7 +21,7 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function () {
   const code = `
-            let embed = new Discord.MessageEmbed()
+            let embed = new Discord.EmbedBuilder()
         embed.setImage('https://c.tenor.com/VcR3cl_TNQsAAAAM/big-floppa-mad-floppa.gif');
         (s4dmessage.channel).send({
             embeds: [embed]

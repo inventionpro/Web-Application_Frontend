@@ -127,7 +127,6 @@
   "B_ROW_COMP": "add button %1",
   "B_SEND_MSG": "Reply %1 Row %2 channel %3",
   "B_GUILD": "Button server",
-  "B_STYLE": "button style %1",
   "B_EDIT": "Button Edit %1 Row %2",
   "B_REPLY": "Button Reply %1 Ephemeral %2 Row %3",
   "B_ON": "When button is clicked %1 %2",
@@ -242,7 +241,6 @@
   "PERM_SEND_TTS_MESSAGES": "send TTS messages",
   "PERM_MANAGE_MESSAGES": "manage messages",
   "PERM_EMBED_LINKS": "embed links",
-  "LINK": "LINK",
   "PERM_ATTACH_FILES": "attach files",
   "PERM_VIEW_GUILD_INSIGHTS": "View guild insights",
   "PERM_READ_MESSAGE_HISTORY": "read message history",
@@ -592,11 +590,6 @@
   "ON_MENU_CLICK": "when a menu is clicked by member %3 %1 %2",
   "TOOLBOX_MENU": "menu",
   "BUTTON_EDIT": "edit %1",
-  "RED": "red",
-  "GREEN": "green",
-  "BLURPLE": "blurple",
-  "GREY": "grey",
-  "BUTTON_STYLE": "button style %1",
   "MESSAGE_INFORMATIONS": "Informations about the message",
   "CURRENT": "current %1",
   "HOUR": "hour",
@@ -662,5 +655,13 @@
   "SEND_THREAD": "send%1embed%2thread%3",
   "RES_VALID_CHANNEL": "You must specify a valid channel",
   "RES_MISSING_INPUTS": "Some inputs have not been filled in!",
-  "RES_MISSING_CHANNEL": "You must specify a valid channel!"
+  "RES_MISSING_CHANNEL": "You must specify a valid channel!",
+
+  "BUTTON_STYLE": "button style %1",
+  "BUTTON_STYLE_PRIMARY": "Primary",
+  "BUTTON_STYLE_SECONDARY": "Secondary",
+  "BUTTON_STYLE_SUCCESS": "Success",
+  "BUTTON_STYLE_DANGER": "Danger",
+  "BUTTON_STYLE_LINK": "Link",
+  "BUTTON_STYLE_PREMIUM": "Premium"
 }

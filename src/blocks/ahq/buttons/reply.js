@@ -56,7 +56,7 @@ JavaScript[blockName] = function (block) {
   const eph = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE) || false;
   const embed = JavaScript.valueToCode(block, 'embed val', JavaScript.ORDER_NONE);
   if (statementsThen) {
-    ahq = `components: [new MessageActionRow().addComponents(
+    ahq = `components: [new Discord.ActionRowBuilder().addComponents(
             ${statementsThen.replace("'", '').replace("'", '')}
         )],`;
   }

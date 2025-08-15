@@ -26,6 +26,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   const toload = JavaScript.valueToCode(block, 'TOLOAD', JavaScript.ORDER_ATOMIC);
-  const code = [`new Discord.MessageAttachment(${toload}, "image.gif")`, JavaScript.ORDER_NONE];
+  const code = [`new Discord.AttachmentBuilder(${toload}, {name: 'image.gif'})`, JavaScript.ORDER_NONE];
   return code;
 };

@@ -123,7 +123,7 @@ JavaScript[blockName] = function (block) {
     code.push(`,\nembeds: [${a.replace("'", '').replace("'", '')}]`);
   }
   if (b) {
-    code.push(`,\ncomponents: [new MessageActionRow().addComponents(${b.replace("'", '').replace("'", '')})]`);
+    code.push(`,\ncomponents: [new Discord.ActionRowBuilder().addComponents(${b.replace("'", '').replace("'", '')})]`);
   }
   code.push(`});`);
   return code.join('\n');

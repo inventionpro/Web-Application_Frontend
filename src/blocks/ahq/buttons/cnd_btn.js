@@ -57,7 +57,7 @@ JavaScript[blockName] = function (block) {
   const ahq = statementsThen.replace("'", '').replace("'", '');
   const code = `${name}.send({
         content: String(${data}),
-        components: [new MessageActionRow().addComponents(${ahq})],
+        components: [new Discord.ActionRowBuilder().addComponents(${ahq})],
         ${extra.replace('`', '').replace('`', '').replace("'", '').replace("'", '')}
         });`;
   return code;

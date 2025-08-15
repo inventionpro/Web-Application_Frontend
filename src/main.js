@@ -153,12 +153,7 @@ app.mixin({
   const logs = require("discord-logs")
   const Discord = require("discord.js")
   const {
-    MessageEmbed,
-    MessageButton,
-    MessageActionRow,
-    Intents,
-    Permissions,
-    MessageSelectMenu
+    Permissions
   }= require("discord.js")
   const fs = require('fs');
   let process = require('process');

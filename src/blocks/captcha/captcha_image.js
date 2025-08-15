@@ -19,6 +19,6 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function () {
-  const code = [`new Discord.MessageAttachment(captcha.JPEGStream, "captcha.jpeg") `, JavaScript.ORDER_NONE];
+  const code = [`new Discord.AttachmentBuilder(captcha.JPEGStream, {name: 'captcha.jpeg'}) `, JavaScript.ORDER_NONE];
   return code;
 };
