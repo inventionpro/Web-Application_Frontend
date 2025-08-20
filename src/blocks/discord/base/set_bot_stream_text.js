@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'URL',
-      check: ['Number', 'String']
+      check: 'String'
     },
     {
       type: 'input_value',

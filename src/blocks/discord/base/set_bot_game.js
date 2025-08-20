@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'GAME',
-      check: ['Number', 'String']
+      check: 'String'
     },
     {
       type: 'field_dropdown',
