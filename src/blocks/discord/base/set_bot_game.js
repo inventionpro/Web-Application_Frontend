@@ -16,20 +16,20 @@ const blockData = {
       type: 'field_dropdown',
       name: 'TYPE',
       options: [
-        ['%{BKY_LISTENING}', 'LISTENING'],
-        ['%{BKY_WATCHING}', 'WATCHING'],
-        ['%{BKY_COMPETING}', 'COMPETING'],
-        ['%{BKY_PLAYING}', 'PLAYING']
+        ['%{BKY_STATUS_TYPE_PLAYING}', 'PLAYING'],
+        ['%{BKY_STATUS_TYPE_LISTENING}', 'LISTENING'],
+        ['%{BKY_STATUS_TYPE_WATCHING}', 'WATCHING'],
+        ['%{BKY_STATUS_TYPE_COMPETING}', 'COMPETING']
       ]
     },
     {
       type: 'field_dropdown',
       name: 'OIFD',
       options: [
-        ['%{BKY_ONLINE}', 'online'],
-        ['%{BKY_OFFLINE}', 'offline'],
-        ['%{BKY_IDLE}', 'idle'],
-        ['%{BKY_DND}', 'dnd']
+        ['%{BKY_STATUS_ONLINE}', 'online'],
+        ['%{BKY_STATUS_IDLE}', 'idle'],
+        ['%{BKY_STATUS_DND}', 'dnd'],
+        ['%{BKY_STATUS_OFFLINE}', 'offline']
       ]
     }
   ],
@@ -37,7 +37,7 @@ const blockData = {
   previousStatement: null,
   nextStatement: null,
   inputsInline: true,
-  tooltip: "Set your bot's game/status.",
+  tooltip: "Set your bot's status.",
   helpUrl: ''
 };
 
@@ -48,10 +48,16 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function (block) {
-  const type = block.getFieldValue('TYPE');
+  const type = block.getFieldValue('TYPE').toLowerCase().replace(/^./,function(match){return match.toUpperCase()});
   const game = JavaScript.valueToCode(block, 'GAME', JavaScript.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');
-  const code = `s4d.client.user.setPresence({status: "${OIFD}",activities:[{name:${game},type:"${type}"}]}); \n`;
+  const code = `s4d.client.user.setPresence({
+  status: '${OIFD}',
+  activities: [{
+    name: ${game},
+    type: Discord.ActivityType.${type}
+  }]
+});\n`;
   return code;
 };
 

@@ -35,9 +35,9 @@ JavaScript[blockName] = function (block) {
   const url = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
   const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
   const code = `s4d.client.user.setActivity(${name}, { 
-         type: "STREAMING", 
-          url: ${url}});
-          `;
+  type: Discord.ActivityType.Streaming,
+  url: ${url}
+});\n`;
   return code;
 };
 

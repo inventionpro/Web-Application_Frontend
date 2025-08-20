@@ -1562,7 +1562,7 @@ if (localStorage.getItem('theme') == null) {
 
 <style>
 .collapse.navbar-collapse:has(dialog[open]) {
-  display: block !important;
+  display: flex !important;
 }
 .hide-gui-button {
   background-color: transparent;
