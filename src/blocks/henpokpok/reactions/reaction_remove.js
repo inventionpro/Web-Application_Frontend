@@ -24,6 +24,6 @@ Blockly.Blocks[blockName] = {
 };
 JavaScript[blockName] = function (block) {
   const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_NONE);
-  const code = `s4d.client.on("messageReactionRemove", async (reaction, user) => {${statementsThen}})`;
+  const code = `s4d.client.on(Discord.Events.MessageReactionRemove, async (reaction, user) => {${statementsThen}})`;
   return code;
 };
