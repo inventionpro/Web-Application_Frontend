@@ -24,6 +24,10 @@ Blockly.Blocks[blockName] = {
 };
 JavaScript[blockName] = function (block) {
   const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_NONE);
-  const code = `s4d.client.on('modalSubmit', async (i) => {\nlet member = i.guild.members.cache.get(i.member.user.id)\n${statementsThen}\n});\n`;
+  const code = `s4d.client.on(Discord.Events.InteractionCreate, async (i) => {
+	if (!i.isModalSubmit()) return;
+  let member = i.guild.members.cache.get(i.member.user.id);
+  ${statementsThen}
+});\n`;
   return code;
 };

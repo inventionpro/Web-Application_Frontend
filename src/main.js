@@ -198,7 +198,7 @@ app.mixin({
   });
 
   // When the bot is connected say so
-  s4d.client.on('ready', () => {
+  s4d.client.on(Discord.Events.ClientReady, () => {
     console.log(s4d.client.user.tag + " is alive!")
   })
 

@@ -76,7 +76,7 @@ JavaScript[blockName] = function (block) {
 });
     }
 }
-    s4d.client.on("messageCreate", async(m) => m.attachments.forEach(a => nsfw(a, m)));
+    s4d.client.on(Discord.Events.MessageCreate, async(m) => m.attachments.forEach(a => nsfw(a, m)));
     `;
   }
   let code = `//ahq mod api
@@ -118,7 +118,7 @@ JavaScript[blockName] = function (block) {
         modLogsChannelName: "mod-logs-auto",
         modLogsMode: "embed",
     });
-    s4d.client.on("messageCreate", async(s4dm, m) => {
+    s4d.client.on(Discord.Events.MessageCreate, async(s4dm, m) => {
         m = s4dm;
         antiSpam.message(s4dm)
         if ((m.mentions.members.size || 0) + (m.mentions.roles.size || 0) > 3) {

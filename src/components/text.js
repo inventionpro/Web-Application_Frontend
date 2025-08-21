@@ -1,5 +1,5 @@
 module.exports = {
-  LoadEvents: "const guildEvent = (event) => require(`../events/guild/${event}`);\nconst Discord = require('discord.js');\nfunction loadEvents(s4d) {\n  const cooldowns = new Discord.Collection();\ns4d.client.on('messageCreate', (m) => guildEvent('messageCreate')(m, cooldowns));\n}module.exports = {\n  loadEvents, \n};",
+  LoadEvents: "const guildEvent = (event) => require(`../events/guild/${event}`);\nconst Discord = require('discord.js');\nfunction loadEvents(s4d) {\n  const cooldowns = new Discord.Collection();\ns4d.client.on(Discord.Events.MessageCreate, (m) => guildEvent('messageCreate')(m, cooldowns));\n}module.exports = {\n  loadEvents, \n};",
   LoadCommands: `function loadCommands(s4d) {
           const fs = require("fs");
             const array = []       

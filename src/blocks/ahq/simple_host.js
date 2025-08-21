@@ -41,7 +41,7 @@ JavaScript[blockName] = function (block) {
             "error": String(err)
         });
     });
-    s4d.client.on("ready", async() => {
+    s4d.client.on(Discord.Events.ClientReady, async() => {
     while (s4d.client && s4d.client.token) {
         await delay(2000)
         const {

@@ -26,6 +26,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   const then = JavaScript.statementToCode(block, 'THEN');
-  const code = `s4d.client.on('typingStart', async (s4dTyping) => {\n${then}\n});\n`;
+  const code = `s4d.client.on(Discord.Events.TypingStart, async (s4dTyping) => {\n${then}\n});\n`;
   return code;
 };

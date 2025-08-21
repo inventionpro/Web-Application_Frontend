@@ -25,6 +25,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   const statements = JavaScript.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on('guildDelete', async (s4dguild) => {\n${statements}\n});\n `;
+  const code = `s4d.client.on(Discord.Events.GuildDelete, async (s4dguild) => {\n${statements}\n});\n `;
   return code;
 };

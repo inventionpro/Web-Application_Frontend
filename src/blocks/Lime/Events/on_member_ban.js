@@ -29,6 +29,6 @@ Blockly.Blocks[blockName] = {
 JavaScript['banned_event'] = function (block) {
   var statements_code = JavaScript.statementToCode(block, 'code');
 
-  var code = `s4d.client.on('guildBanAdd', async (ban) => {\n ${statements_code} \n });\n`;
+  var code = `s4d.client.on(Discord.Events.GuildBanAdd, async (ban) => {\n ${statements_code} \n });\n`;
   return code;
 };

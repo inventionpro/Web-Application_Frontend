@@ -980,7 +980,7 @@ Blockly.Blocks['jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bo
 };
 JavaScript['jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bot'] = function (block) {
   const statements = JavaScript.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on('messageCreate', async (s4dmessage) => {
+  const code = `s4d.client.on(Discord.Events.MessageCreate, async (s4dmessage) => {
         if (s4dmessage.author.bot) {
             return;
         }
@@ -1299,32 +1299,32 @@ Blockly.Blocks['jg_events_all_label'] = {
           name: 'EVENT',
           options: [
             ['When the code runs', '^empty'],
-            ['When the bot is connected', "s4d.client.on('ready', async () => {"],
-            ['When a message is received', "s4d.client.on('messageCreate', async (s4dmessage) => {"],
+            ['When the bot is connected', "s4d.client.on(Discord.Events.ClientReady, async () => {"],
+            ['When a message is received', "s4d.client.on(Discord.Events.MessageCreate, async (s4dmessage) => {"],
             [
               "When a message is received & author isn't bot",
-              `s4d.client.on('messageCreate', async (s4dmessage) => {
+              `s4d.client.on(Discord.Events.MessageCreate, async (s4dmessage) => {
         if (s4dmessage.author.bot) {
             return;
         }`
             ],
-            ['When a message is edited', "s4d.client.on('messageUpdate', async (oldMessage, newMessage) => {"],
-            ['When a message is deleted', "s4d.client.on('messageDelete', async (s4dmessage) => {"],
-            ['When someone starts typing', "s4d.client.on('typingStart', async (s4dTyping) => {"],
+            ['When a message is edited', "s4d.client.on(Discord.Events.MessageUpdate, async (oldMessage, newMessage) => {"],
+            ['When a message is deleted', "s4d.client.on(Discord.Events.MessageDelete, async (s4dmessage) => {"],
+            ['When someone starts typing', "s4d.client.on(Discord.Events.TypingStart, async (s4dTyping) => {"],
             [
               'When thread message is received',
-              `s4d.client.on('messageCreate', async (s4dThread) => {
+              `s4d.client.on(Discord.Events.MessageCreate, async (s4dThread) => {
         if(!(s4dThread.channel.type === "GUILD_PUBLIC_THREAD" || s4dThread.channel.type === "GUILD_PUBLIC_THREAD" )){
             return
         }`
             ],
             [
               'When a slash command is received',
-              `s4d.client.on('interactionCreate', async (interaction) => {
+              `s4d.client.on(Discord.Events.InteractionCreate, async (interaction) => {
         let member = interaction.guild.members.cache.get(interaction.member.user.id)`
             ],
-            ['When the bot is added to a server', "s4d.client.on('guildCreate', async (s4dguild) => {"],
-            ['When the bot is removed from a server', "s4d.client.on('guildDelete', async (s4dguild) => {"]
+            ['When the bot is added to a server', "s4d.client.on(Discord.Events.GuildCreate, async (s4dguild) => {"],
+            ['When the bot is removed from a server', "s4d.client.on(Discord.Events.GuildDelete, async (s4dguild) => {"]
           ]
         },
         {

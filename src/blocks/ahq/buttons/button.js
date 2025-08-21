@@ -24,7 +24,7 @@ Blockly.Blocks[blockName] = {
 };
 JavaScript[blockName] = function (block) {
   const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_NONE);
-  const code = `s4d.client.on('interactionCreate', async (i) => {
+  const code = `s4d.client.on(Discord.Events.InteractionCreate, async (i) => {
   let member = i.guild.members.cache.get(i.member.user.id)
   let interaction = i; if (!(i.isButton())) return;
   ${statementsThen}

@@ -19,7 +19,7 @@ const { Modal, TextInputComponent, showModal } = require('discord-modals');`);
     array.push(`const tcdbpkcgRequirementlolol = require("quick.db");`);
     array.push(`const db = new tcdbpkcgRequirementlolol.QuickDB({ filePath: "tempChannelsS4D.sqlite" });`);
     code.push(`const tempChannels = new TempChannels(s4d.client);`);
-    code.push(`s4d.client.on("ready", async()=>{
+    code.push(`s4d.client.on(Discord.Events.ClientReady, async()=>{
     let thingie = await db.get("temp-channels");
     if (!thingie) await db.set("temp-channels", []);
     let arrayofstuff = await db.get("temp-channels");

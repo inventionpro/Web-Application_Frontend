@@ -25,6 +25,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   const statements = JavaScript.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on('stickerUpdate', async (oldSticker, newSticker) => {\n${statements}\n});\n`;
+  const code = `s4d.client.on(Discord.Events.GuildStickerUpdate, async (oldSticker, newSticker) => {\n${statements}\n});\n`;
   return code;
 };
