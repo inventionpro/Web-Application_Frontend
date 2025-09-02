@@ -30,8 +30,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
+const v13tov14 = {
+  DISABLED: 0,
+  MEMBERS_WITHOUT_ROLES: 1,
+  ALL_MEMBERS: 2
+};
 JavaScript['explicit_content_filter'] = function (block) {
   var dropdown = block.getFieldValue('NAME');
-  var code = dropdown;
+  var code = v13tov14[dropdown];
   return [code, JavaScript.ORDER_NONE];
 };

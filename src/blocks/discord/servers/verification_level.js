@@ -32,9 +32,15 @@ Blockly.Blocks[blockName] = {
   }
 };
 
+const v13tov14 = {
+  NONE: 0,
+  LOW: 1,
+  MEDIUM: 2,
+  HIGH: 3,
+  VERY_HIGH: 4
+};
 JavaScript['set_verification_level'] = function (block) {
   var dropdown = block.getFieldValue('NAME');
-  var code = dropdown;
-
+  var code = v13tov14[dropdown];
   return [code, JavaScript.ORDER_NONE];
 };
