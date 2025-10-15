@@ -17,10 +17,9 @@ export default {
   name: 'CodeModal',
   setup() {
     const { proxy } = getCurrentInstance();
-    console.log(getCurrentInstance)
     const codeModal = ref(null);
     onMounted(() => {
-      codeModal.value.show = ()=>{
+      codeModal.value.show = () => {
         proxy.show(codeModal.value.querySelector('code'));
         codeModal.value.showModal();
       };

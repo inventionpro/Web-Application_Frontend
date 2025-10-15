@@ -95,7 +95,7 @@ Blockly.Blocks[blockName] = {
     this.updateShape_();
   },
   updateShape_: function () {
-    this.inputs = this.inputs.filter((x) => !this.inputs[0] == '');
+    this.inputs = this.inputs.filter((input) => input !== '');
 
     this.setFieldValue(this.inputs.length > 0 ? 'with ' + this.inputs.join(', ') : '', 'vars');
 

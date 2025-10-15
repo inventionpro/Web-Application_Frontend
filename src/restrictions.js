@@ -14,6 +14,17 @@ const decode = (html) => {
 };
 
 let excusedBlocks = ['lasercat_jg_case_default'];
+const customMessages = {
+  RES_MISSING_AHQ_CONTENT: 'All the blocks should be filled!',
+  RES_MISSING_AHQ_SUPER_CONTENT: 'You should place it in the block "Make a convert task"',
+  RES_MISSING_AHQ_BLOCK: 'The block "Save Converted File" must be used',
+  RES_MISSING_AHQ_DASH_CONTENT: 'The block "Make Cookie..." must be used',
+  RES_MISSING_AHQ_DASH_C_CONTENT: 'The block(s) "Add ... (dashboard blocks)" must be used',
+  RES_MUST_BE_IN_BANNED_EVENT: 'Must be inside the "When a member is banned" event!',
+  RES_MUST_BE_IN_UNBANNED_EVENT: 'Must be inside the "When a member is unbanned" event!',
+  RES_MUST_BE_IN_KICK_EVENT: 'Must be inside the "When a member is kicked/removed" event!',
+  RES_MUST_BE_IN_EVENT_EVENT: 'Must be inside the Scheduled events event block!'
+};
 export const disableUnapplicable = (workspace) => {
   // Gets all blocks in the workspace
   const blocks = workspace.getAllBlocks(false);
@@ -30,24 +41,8 @@ export const disableUnapplicable = (workspace) => {
     for (let restriction of restrictions[block.type]) {
       if (!validateConfiguration(block, restriction)) continue;
       if (!Blockly.Msg[restriction.message]) {
-        if (restriction.message == 'RES_MISSING_AHQ_CONTENT') {
-          Blockly.Msg[restriction.message] = 'All the blocks should be filled!';
-        } else if (restriction.message == 'RES_MISSING_AHQ_SUPER_CONTENT') {
-          Blockly.Msg[restriction.message] = 'You should place it in the block "Make a convert task"';
-        } else if (restriction.message == 'RES_MISSING_AHQ_BLOCK') {
-          Blockly.Msg[restriction.message] = 'The block "Save Converted File" must be used';
-        } else if (restriction.message == 'RES_MISSING_AHQ_DASH_CONTENT') {
-          Blockly.Msg[restriction.message] = 'The block "Make Cookie..." must be used';
-        } else if (restriction.message == 'RES_MISSING_AHQ_DASH_C_CONTENT') {
-          Blockly.Msg[restriction.message] = 'The block(s) "Add ... (dashboard blocks)" must be used';
-        } else if (restriction.message == 'RES_MUST_BE_IN_BANNED_EVENT') {
-          Blockly.Msg[restriction.message] = 'Must be inside the "When a member is banned" event!';
-        } else if (restriction.message == 'RES_MUST_BE_IN_UNBANNED_EVENT') {
-          Blockly.Msg[restriction.message] = 'Must be inside the "When a member is unbanned" event!';
-        } else if (restriction.message == 'RES_MUST_BE_IN_KICK_EVENT') {
-          Blockly.Msg[restriction.message] = 'Must be inside the "When a member is kicked/removed" event!';
-        } else if (restriction.message == 'RES_MUST_BE_IN_EVENT_EVENT') {
-          Blockly.Msg[restriction.message] = 'Must be inside the Scheduled events event block!';
+        if (customMessages[restriction.message]) {
+          Blockly.Msg[restriction.message] = customMessages[restriction.message];
         } else if (restriction.message && restriction.message.startsWith('$')) {
           Blockly.Msg[restriction.message] = restriction.message.substring(1);
         }
@@ -57,7 +52,6 @@ export const disableUnapplicable = (workspace) => {
           if (Blockly.Msg[restriction.message]) {
             messages.push(Blockly.Msg[restriction.message]);
           } else {
-            //  window.alert("KEY NOT FOUND: " + restriction.message);
             messages.push(decode(restriction.message));
           }
         }

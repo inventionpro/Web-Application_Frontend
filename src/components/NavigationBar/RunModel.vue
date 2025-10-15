@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import * as Blockly from 'blockly/core';
 import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import DIG from 'discord-image-generation';
 import Discord from 'discord.js';
@@ -111,7 +110,7 @@ export default {
       });
       const vm = new NodeVM({
         console: 'inherit',
-        sandbox: { censor, Calculator, Snake, Fight, discordTTS, AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChanneldiscordTTS, db, smartestchatbot, TempChannels, https, GiveawaysManager, canvas, ytnotifier, logs, DIG, DB, moment, Database, Discord, Permissions, Player, QueueRepeatMode }
+        sandbox: { censor, Calculator, Snake, Fight, discordTTS, AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, db, smartestchatbot, TempChannels, https, GiveawaysManager, canvas, ytnotifier, logs, DIG, DB, moment, Database, Discord, Permissions, Player, QueueRepeatMode }
       });
       let s4d = await vm.run(finalCode, 'vm.js');
       let result = await s4d();
