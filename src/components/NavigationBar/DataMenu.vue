@@ -41,9 +41,9 @@ export default {
         title: 'Token Database',
         html: `This can be used to store your tokens so you don't need to go elsewhere to get them.
 <br>
-${keys!==null?'<button id="tdb-load" class="swal2-confirm swal2-styled">Load Token</button>':''}
+${keys !== null ? '<button id="tdb-load" class="swal2-confirm swal2-styled">Load Token</button>' : ''}
 <button id="tdb-save" class="swal2-confirm swal2-styled">Save Token</button>
-${keys!==null?'<button id="tdb-delete" class="swal2-confirm swal2-styled">Delete Token</button>':''}
+${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">Delete Token</button>' : ''}
 <button id="tdb-cancel" class="swal2-cancel swal2-styled">Cancel</button>`,
         showConfirmButton: false,
         showCancelButton: false,
@@ -198,7 +198,7 @@ ${keys!==null?'<button id="tdb-delete" class="swal2-confirm swal2-styled">Delete
                   });
                   break;
               }
-            }
+            };
           });
         }
       });

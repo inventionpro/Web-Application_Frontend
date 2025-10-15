@@ -63,7 +63,7 @@ Blockly.Blocks[blockName] = {
     var connection = containerBlock.getInput('value').connection;
 
     // add every value in this.inputs into the block as a block
-    this.inputs.forEach((i) => {
+    this.inputs.forEach(() => {
       var elseifBlock = workspace.newBlock(blockName + '_mutator_block_input');
       elseifBlock.initSvg();
       connection.connect(elseifBlock.previousConnection);

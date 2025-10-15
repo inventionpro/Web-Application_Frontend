@@ -35,7 +35,7 @@ export function createBlock(data) {
   let i = 0;
   const message = String(data.text).replace(/(\[\S+\])+/gim, (match) => {
     i++;
-    inputNames.push(String(match).replace(/[\[\]]*/gim, ''));
+    inputNames.push(String(match).replace(/[[\]]*/gim, ''));
     return '%' + i;
   });
   const argumentss = [];

@@ -1250,13 +1250,11 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
       });
     }
 
-    //month starts at 0, day starts at 1
-    let check = new Date().getMonth() == 3 && new Date().getDate() == 1;
-    if (check) {
-      setInterval(aprilFoolsContent, 50);
-      function aprilFoolsContent() {
+    // Month starts at 0, day starts at 1
+    if (new Date().getMonth() == 3 && new Date().getDate() == 1) {
+      setInterval(() => {
         themeBlocks(null, null, 'april-fools');
-      }
+      }, 50);
     }
 
     try {
@@ -1332,15 +1330,12 @@ Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAu
         }
         if (arrayRemove(await localforage.getItem('fav'), type).length === 0) {
           await localforage.setItem('fav', null);
-          val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-          var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-          workspace.updateToolbox(new_toolbox_xml);
         } else {
           await localforage.setItem('fav', arrayRemove(await localforage.getItem('fav'), type));
-          val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-          var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-          workspace.updateToolbox(new_toolbox_xml);
         }
+        val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
+        var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
+        workspace.updateToolbox(new_toolbox_xml);
       },
       scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
       id: 'refav',
