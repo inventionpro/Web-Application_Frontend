@@ -16,7 +16,15 @@ import * as customBlockModule from './NavigationBar/cbmodule.js';
 import { disableUnapplicable } from '../restrictions.js';
 import toolbox from '../toolbox.js';
 
-var renderer = 'zelos';
+import { Backpack } from '@blockly/workspace-backpack';
+import { WorkspaceSearch } from '@blockly/plugin-workspace-search';
+import theme from '@blockly/theme-dark';
+import customBlockBuilderTheme from '@blockly/theme-dark';
+import Load from '../backpack-save-load.js';
+import localforage from 'localforage';
+
+// Custom renderes via path
+let renderer = 'zelos';
 switch (String(window.location.pathname).replace(/\//gim, '')) {
   case 'rge':
     renderer = 'geras';
@@ -28,12 +36,6 @@ switch (String(window.location.pathname).replace(/\//gim, '')) {
     renderer = 'thrasos';
     break;
 }
-import { Backpack } from '@blockly/workspace-backpack';
-import { WorkspaceSearch } from '@blockly/plugin-workspace-search';
-import theme from '@blockly/theme-dark';
-import customBlockBuilderTheme from '@blockly/theme-dark';
-import Load from '../backpack-save-load.js';
-import localforage from 'localforage';
 
 // pre-define a bunch of stuff so the search load times are better
 let coolbox = toolbox([]).split('\n');
@@ -171,7 +173,7 @@ export default {
             <label text="Found ${search_res.length} blocks with &quot;${searchparameter}&quot; in there name${search_res.length > 100 ? ' showing first 100' : ''}" web-class="boldtext"></label>
             <label text="ㅤ" web-class="boldtext"></label>
             ${search_res
-              .slice(0, 100)
+              .slice(0, default_max_length)
               .map((block) => {
                 return `<label text="${block.replace(searchparameter, `${searchparameter.toUpperCase()}`)} ${resbox[block] == null ? ' isnt in the toolbox' : 'is in ' + resbox[block].join(' and ')}" web-class="boldtext"></label>
 <block type="${block}"/>`;
@@ -179,12 +181,12 @@ export default {
               .join('\n')}`;
         }
       } else {
-        const lessthan_350 = blocks.length < default_max_length;
-        let newblocks = (lessthan_350 ? blocks : blocks.slice(0, default_max_length)).filter((block) => !HIDEN_BLOCKS.includes(block));
+        const lessthan = blocks.length < default_max_length;
+        let newblocks = (lessthan ? blocks : blocks.slice(0, default_max_length)).filter((block) => !HIDEN_BLOCKS.includes(block));
         if (newblocks.length > 0) {
           CATEGORYCONTENT = `<label text="ㅤ" web-class="boldtext"></label>
 ${newblocks.map((block) => `<block type="${block}"/>`).join('\n')}
-${!lessthan_350 ? `<label text="${blocks.length - default_max_length} blocks left..." web-class="boldtext"></label>` : ''}`;
+${!lessthan ? `<label text="${blocks.length - default_max_length} blocks left..." web-class="boldtext"></label>` : ''}`;
         }
       }
       var returned_stuff = toolbox_content?.replace(
@@ -407,56 +409,10 @@ ${CATEGORYCONTENT}`
       });
     });
 
-    function blockCounter() {
-      let counter = document.getElementById('block-counter');
-      let blocks = workspace.getAllBlocks().length;
-      var rgb = '182, 182, 182';
-      var bold = ['', ''];
-      if (blocks >= 300) {
-        rgb = '255, 125, 125';
-        bold = ['<b>', '</b>'];
-      }
-      if (blocks >= 750) {
-        rgb = '255, 60, 60';
-        bold = ['<b><strong>', '</strong></b>'];
-      }
-      if (blocks >= 5000) {
-        rgb = '255, 35, 35';
-        bold = ['<b style="font-size: 110%"><strong>', '</strong></b>'];
-      }
-      if (blocks >= 10000) {
-        rgb = '255, 20, 20';
-        bold = ['<b style="font-size: 125%"><strong>', '</strong></b>'];
-      }
-      let plural = 's';
-      if (blocks == 1) {
-        plural = '';
-      } else {
-        plural = 's';
-      }
-      counter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="color:rgb(${rgb});">${blocks} block${plural}</p>` + bold[1];
-    }
     localforage.getItem('hide-blockcount').then((item) => {
-      if (String(item) == 'true') {
-        let counter = document.getElementById('block-counter');
-        counter?.remove();
+      if (String(item) === 'true') {
+        document.getElementById('block-counter')?.remove();
       }
-    });
-    window.addEventListener('click', () => {
-      localforage.getItem('hide-blockcount').then((item) => {
-        if (String(item) == 'true') {
-          return;
-        }
-        blockCounter();
-      });
-    });
-    window.addEventListener('keydown', () => {
-      localforage.getItem('hide-blockcount').then((item) => {
-        if (String(item) == 'true') {
-          return;
-        }
-        blockCounter();
-      });
     });
 
     window.s4dDebugEvents.push(() => {

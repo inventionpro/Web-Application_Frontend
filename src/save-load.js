@@ -13,12 +13,36 @@ function debounce(func, delay) {
   };
 }
 
+let BlockCounter;
 async function handle(workspace) {
   console.log('saved changes...');
   const content = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
   await localforage.setItem('save3', content);
   await localforage.setItem('autosaveName', document.querySelector('#docName').textContent);
   await localforage.setItem('autosave_customBlocks', JSON.stringify(window.saveCustomBlocksOutput));
+
+  localforage.getItem('hide-blockcount').then((item) => {
+    if (String(item) === 'true') return;
+    BlockCounter ??= document.getElementById('block-counter');
+    let blocks = workspace.getAllBlocks(false).length;
+    let rgb = '182, 182, 182';
+    let bold = ['', ''];
+    if (blocks >= 300 && blocks < 750) {
+      rgb = '255, 125, 125';
+      bold = ['<b>', '</b>'];
+    } else if (blocks >= 750 && blocks < 1500) {
+      rgb = '255, 60, 60';
+      bold = ['<b><strong>', '</strong></b>'];
+    } else if (blocks >= 1500 && blocks < 5000) {
+      rgb = '255, 35, 35';
+      bold = ['<b style="font-size: 110%"><strong>', '</strong></b>'];
+    } else if (blocks >= 5000) {
+      rgb = '255, 20, 20';
+      bold = ['<b style="font-size: 125%"><strong>', '</strong></b>'];
+    }
+    let plural = blocks === 1 ? '' : 's';
+    BlockCounter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="color:rgb(${rgb});">${blocks} block${plural}</p>` + bold[1];
+  });
 }
 
 export default async function register(app, t) {
