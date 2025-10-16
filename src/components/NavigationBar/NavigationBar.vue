@@ -12,8 +12,8 @@ const NavExpanded = ref(false);
 
     <b-navbar-toggle @click="NavExpanded = !NavExpanded"></b-navbar-toggle>
 
-    <b-collapse is-nav v-model="NavExpanded">
-      <b-navbar-nav>
+    <b-collapse is-nav v-model="NavExpanded" style="width: 0px">
+      <b-navbar-nav style="overflow-x: auto">
         <CodeModal></CodeModal>
         <FileMenu style="font-size: small"></FileMenu>
         <EditMenu style="font-size: small"></EditMenu>
@@ -25,14 +25,14 @@ const NavExpanded = ref(false);
         <ShortcutsMenu style="font-size: small"></ShortcutsMenu>
         <CreditsMenu style="font-size: small"></CreditsMenu>
       </b-navbar-nav>
-      <b-navbar-nav class="ms-auto">
+      <b-navbar-nav class="ms-auto align-items-center">
         <div id="block-counter" style="margin-right: 5px; font-size: 90%">
-          <p id="block-counter-textParagraph" style="color: rgb(182, 182, 182)">0 blocks</p>
+          <p id="block-counter-textParagraph" style="margin: 0px; color: rgb(182, 182, 182)">0 blocks</p>
         </div>
         <b-nav-item class="theme-changer" id="themeSwitchingLD" style="width: 32px; height: 32px; margin-top: 2px; margin-right: 5px" @click="changeTheme"></b-nav-item>
 
-        <b-button style="border-right-color: #161719; border-radius: 0em; border-top-left-radius: 0.25em; border-bottom-left-radius: 0.25em">
-          <span id="docName" style="font-size: smaller" @click="changeFileName">{{ $t('untitled') }}</span>
+        <b-button style="max-width: 25dvw; border-right-color: rgb(22, 23, 25); border-radius: 0.25em 0em 0em 0.25em; overflow: hidden; text-overflow: ellipsis">
+          <span id="docName" style="font-size: smaller; white-space: nowrap" @click="changeFileName">{{ $t('untitled') }}</span>
         </b-button>
         <b-button id="v-step-4" style="border-right-color: #161719; border-radius: 0em" @click="runbot">
           <i class="bi bi-play"></i>
