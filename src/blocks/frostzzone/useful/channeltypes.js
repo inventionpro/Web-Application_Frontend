@@ -64,12 +64,11 @@ const v13channeltov14 = {
   GUILD_MEDIA: 16,
   LOBBY: 17,
   DM_SDK: 18
-
 };
 JavaScript[blockName] = function (block) {
   let type = block.getFieldValue('type');
   // Transform type into something v14 can understand
-  type = v13channeltov14[type.replaceAll("'",'')];
+  type = v13channeltov14[type.replaceAll("'", '')];
   const channel = JavaScript.valueToCode(block, 'Channel', JavaScript.ORDER_ATOMIC);
   const code = [`(${channel}.type) === ${type}`, JavaScript.ORDER_NONE];
 

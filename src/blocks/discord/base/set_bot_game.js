@@ -48,7 +48,12 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function (block) {
-  const type = block.getFieldValue('TYPE').toLowerCase().replace(/^./,function(match){return match.toUpperCase()});
+  const type = block
+    .getFieldValue('TYPE')
+    .toLowerCase()
+    .replace(/^./, function (match) {
+      return match.toUpperCase();
+    });
   const game = JavaScript.valueToCode(block, 'GAME', JavaScript.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');
   const code = `s4d.client.user.setPresence({

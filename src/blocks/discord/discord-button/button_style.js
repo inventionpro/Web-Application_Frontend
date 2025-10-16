@@ -14,7 +14,7 @@ const blockData = {
         ['%{BKY_BUTTON_STYLE_SECONDARY}', '2'],
         ['%{BKY_BUTTON_STYLE_SUCCESS}', '3'],
         ['%{BKY_BUTTON_STYLE_DANGER}', '4'],
-        ['%{BKY_BUTTON_STYLE_LINK}', '5'],
+        ['%{BKY_BUTTON_STYLE_LINK}', '5']
         // TODO: Add premium buttons
         //['%{BKY_BUTTON_STYLE_PREMIUM}', '6']
       ]
