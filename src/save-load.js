@@ -41,7 +41,7 @@ async function handle(workspace) {
       bold = ['<b style="font-size: 125%"><strong>', '</strong></b>'];
     }
     let plural = blocks === 1 ? '' : 's';
-    BlockCounter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="color:rgb(${rgb});">${blocks} block${plural}</p>` + bold[1];
+    BlockCounter.innerHTML = bold[0] + `<p id="block-counter-textParagraph" style="margin:0px;color:rgb(${rgb});">${blocks} block${plural}</p>` + bold[1];
   });
 }
 
