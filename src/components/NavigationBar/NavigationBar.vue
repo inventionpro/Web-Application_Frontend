@@ -5,15 +5,15 @@ const NavExpanded = ref(false);
 
 <template>
   <b-navbar toggleable="lg" style="user-select: none" id="navbar nav-main" class="navbar-dark bg-dark">
-    <b-navbar-brand>
+    <b-navbar-brand style="margin:0;">
       <button id="hideAllGuiElements" class="hide-gui-button"><img src="/scratch.png" width="35" draggable="false" id="navigationBarS4DImage" /></button>
       Scratch For Discord
     </b-navbar-brand>
 
     <b-navbar-toggle @click="NavExpanded = !NavExpanded"></b-navbar-toggle>
 
-    <b-collapse is-nav v-model="NavExpanded" style="width: 0px">
-      <b-navbar-nav style="overflow-x: auto">
+    <b-collapse is-nav v-model="NavExpanded" style="width:0px">
+      <b-navbar-nav>
         <CodeModal></CodeModal>
         <FileMenu style="font-size: small"></FileMenu>
         <EditMenu style="font-size: small"></EditMenu>
