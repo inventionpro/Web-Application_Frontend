@@ -279,7 +279,7 @@ export default {
           await getSessionID();
           document.getElementById('upload-btn').onclick = () => {
             Swal.close();
-            const name = encodeURIComponent(document.querySelector('#docName').textContent)
+            const name = encodeURIComponent(document.getElementById('docName').textContent)
               .replace(/%20/g, ' ')
               .replaceAll('\n', '')
               .replaceAll(/[^a-z 0-9]/gim, '');

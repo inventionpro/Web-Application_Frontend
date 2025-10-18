@@ -183,7 +183,8 @@ export default {
         }
         const file = document.getElementById('load-code').files[0];
         const documentName = file.name.split('.').slice(0, file.name.split('.').length - 1);
-        document.querySelector('#docName').textContent = documentName;
+        document.getElementById('docName').textContent = documentName;
+        document.title = `Scratch For Discord - ${document.getElementById('docName').textContent}`;
         const reader = new FileReader();
         reader.onload = async (e) => {
           if (file.type == 'text/xml') {
@@ -235,7 +236,7 @@ export default {
     save() {
       const zip = new JSZip();
       const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(window.blocklyWorkspaceGlobalRef));
-      const fileName = `${encodeURIComponent(document.querySelector('#docName').textContent).replace(/%20/g, ' ')}.s4d`;
+      const fileName = `${encodeURIComponent(document.getElementById('docName').textContent).replace(/%20/g, ' ')}.s4d`;
       zip.file('blocks.xml', xmlContent);
       if (window.saveCustomBlocksOutput.length > 0) {
         zip.file('customBlocks.json', JSON.stringify(window.saveCustomBlocksOutput));

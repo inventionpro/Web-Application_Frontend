@@ -25,7 +25,7 @@ const NavExpanded = ref(false);
         <ShortcutsMenu style="font-size: small"></ShortcutsMenu>
         <CreditsMenu style="font-size: small"></CreditsMenu>
       </b-navbar-nav>
-      <b-navbar-nav class="ms-auto align-items-center">
+      <b-navbar-nav class="ms-auto flex-row align-items-center">
         <div id="block-counter" style="margin-right: 5px; font-size: 90%">
           <p id="block-counter-textParagraph" style="margin: 0px; color: rgb(182, 182, 182)">0 blocks</p>
         </div>
@@ -81,20 +81,6 @@ export default {
     CreditsMenu
   },
   mounted() {
-    document.getElementById('docName').addEventListener(
-      'input',
-      function () {
-        if (document.querySelector('#docName').textContent == '') {
-          document.querySelector('#docName').textContent = 'Untitled document';
-        }
-        document.title = `Scratch For Discord - ${document.querySelector('#docName').textContent}`;
-      },
-      false
-    );
-    const element = document.querySelector('#docName');
-    element.spellcheck = false;
-    element.focus();
-    element.blur();
     this.$store.commit('setLocale', {
       newLocale: 'en'
     });
@@ -243,7 +229,7 @@ export default {
         if (result.isConfirmed) {
           const zip = new JSZip();
           const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-          const fileName = `${encodeURIComponent(document.querySelector('#docName').textContent).replace(/%20/g, ' ')}.zip`;
+          const fileName = `${encodeURIComponent(document.getElementById('docName').textContent).replace(/%20/g, ' ')}.zip`;
           zip.file('blocks.xml', xmlContent);
           const javascriptContent = this.getWorkspaceCode();
           if (javascriptContent.includes('queue.join') && javascriptContent.includes('queue.connect')) {
@@ -1529,10 +1515,11 @@ export default {
       }
     },
     changeFileName() {
-      let oldFileName = document.querySelector('#docName').textContent;
+      let oldFileName = document.getElementById('docName').textContent;
       let fileName = prompt("Please enter your new document's name:", oldFileName);
       if (fileName.length != 0) {
-        document.querySelector('#docName').textContent = fileName;
+        document.getElementById('docName').textContent = fileName;
+        document.title = `Scratch For Discord - ${document.getElementById('docName').textContent}`;
       }
     },
     changeTheme() {
