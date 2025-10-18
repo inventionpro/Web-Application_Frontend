@@ -144,7 +144,4 @@ export default async function require(array, oldarray) {
 "tweetnacl": "1.0.3",`);
     }
   });
-  // array.reverse()
-  // array[0] = array[0].replace(",","")
-  // array.reverse()
 }

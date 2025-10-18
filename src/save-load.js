@@ -88,7 +88,8 @@ export default async function register(app, t) {
           workspace.setResizesEnabled(true);
 
           const saveNickname = await localforage.getItem('autosaveName');
-          document.querySelector('#docName').textContent = saveNickname == null || saveNickname == '' ? 'Untitled autosave' : saveNickname;
+          document.getElementById('docName').textContent = saveNickname == null || saveNickname == '' ? 'Untitled autosave' : saveNickname;
+          document.title = `Scratch For Discord - ${document.getElementById('docName').textContent}`;
         }
       });
     }

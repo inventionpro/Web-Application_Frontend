@@ -108,9 +108,6 @@ export default {
     const isMobile = function () {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     };
-    const validateForXML = function (text) {
-      return String(text).replaceAll('&', '&amp;').replaceAll('\n', '&amp;#10;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-    };
     function prepToolbox(toolbox_content, searching, favorites, pooopewwweewwww, searchparameter) {
       const default_max_length = 250;
       let CATEGORYCONTENT = `<label text="Error failed to get block(s)..." web-class="boldtext"></label>`;
@@ -561,52 +558,6 @@ ${CATEGORYCONTENT}`
       }
     });
     window.blocklyWorkspaceGlobalRef = workspace;
-    /*
-        let testCategoryXMLContents = `<button text="Create" callbackKey="CREATETESTVARIABLE"></button>`
-        workspace.registerToolboxCategoryCallback("VARIABLETESTREMAKE", function () {
-            const button = document.createElement("button")
-            button.setAttribute("text", "Create")
-            button.setAttribute("callbackKey", "CREATETESTVARIABLE")
-            return [button]
-        })
-        let currentTestVariableName = 0
-        let currentTestVariableNameLength = 1
-        workspace.registerButtonCallback('CREATETESTVARIABLE', function () {
-            const allowedCharacters = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`.split("")
-            let varName = ""
-            for (let i = 0; i < currentTestVariableNameLength; i++) {
-                varName += allowedCharacters[currentTestVariableName]
-            }
-            currentTestVariableName++
-            if (currentTestVariableName > allowedCharacters.length - 1) {
-                currentTestVariableName = 0
-                currentTestVariableNameLength++
-            }
-            Blockly.Blocks["jg_test_variables_" + varName] = {
-                init: function () {
-                    this.jsonInit({
-                        "message0": varName,
-                        "inputsInline": true,
-                        "tooltip": "",
-                        "colour": "#ff0000",
-                        "output": null,
-                        "args0": []
-                    });
-                }
-            }
-            JavaScript["jg_test_variables_" + varName] = function () {
-                const code = `${varName}`
-                return code;
-            };
-            const toolbox = workspace.toolbox_
-            const category = toolbox.getToolboxItems()[10]
-            testCategoryXMLContents += `<block type="jg_test_variables_${varName}"/>`
-            console.log(category.getContents())
-            category.flyoutItems_ = testCategoryXMLContents
-            console.log(category.getContents())
-            toolbox.refreshSelection()
-        });
-        */
     workspace.registerButtonCallback('LAUNCHCUSTOMBLOCKBUILDER', function () {
       const menu = blocklyModule.menus.createMenu({
         width: 1280,
@@ -728,114 +679,6 @@ ${CATEGORYCONTENT}`
         icon: 'info',
         text: "This isn't quite done yet..."
       });
-    });
-    workspace.registerButtonCallback('EMBED_GUI_POPUP', function () {
-      swal
-        .fire({
-          theme: 'auto',
-          title: 'Create an embed!',
-          html: `<b>Required:</b><br><br>
-Description:<br>
-<textarea id="EmbedDescription" rows="4" cols="50"></textarea>
-<br><br><b>Extras:</b><br>
-<em>(?): Completely optional</em><br><br>
-Title: <input type="text" id="EmbedTitle"> URL (?): <input type="text" id="EmbedTitleURL"><br>
-Color: <input type="color" id="EmbedColor" value="#ff0000"><br>
-Author: <input type="text" id="EmbedAuthor"> PFP: <input type="text" id="EmbedAuthorPFP"> URL (?): <input type="text" id="EmbedAuthorURL"><br>`,
-          showCancelButton: true,
-          showConfirmButton: true,
-          confirmButtonText: 'Import to Workspace'
-        })
-        .then(async (result) => {
-          if (!result.isConfirmed) return;
-          const edesc = validateForXML(document.getElementById('EmbedDescription').value);
-          const etitle = validateForXML(document.getElementById('EmbedTitle').value);
-          const etitleurl = validateForXML(document.getElementById('EmbedTitleURL').value);
-          const ecolor = validateForXML(document.getElementById('EmbedColor').value);
-          const eauthor = validateForXML(document.getElementById('EmbedAuthor').value);
-          const eauthorpfp = validateForXML(document.getElementById('EmbedAuthorPFP').value);
-          const eauthorurl = validateForXML(document.getElementById('EmbedAuthorURL').value);
-          // blocks are placed even if they arent required because blockly is dumb and has a stupid method of placing multiple blocks inside of statement inputs
-          let xml = Blockly.utils.xml.textToDom(`<block type="s4d_embed_create">
-  <statement name="THEN">
-    <block type="s4d_embed_set_title">
-      <value name="TITLE">
-        ${
-          etitle
-            ? `<block type="jg_text_remake_paragraph_quotes">
-  <field name="TEXT">${etitle}</field>
-</block>`
-            : ''
-        }
-      </value>
-      <value name="HYPERLINK">
-        ${
-          etitleurl
-            ? `<block type="jg_text_remake_paragraph_quotes">
-  <field name="TEXT">${etitleurl}</field>
-</block>`
-            : ''
-        }
-      </value>
-      <next>
-        <block type="s4d_embed_set_desc">
-          <value name="DESC">
-            <block type="jg_text_remake_paragraph_quotes">
-              <field name="TEXT">${edesc ? edesc : '⠀'}</field>
-            </block>
-          </value>
-          <next>
-            <block type="s4d_embed_set_color">
-              <value name="COLOUR">
-                ${
-                  etitle
-                    ? `<block type="fz_color">
-  <field name="COLOR">${ecolor}</field>
-</block>`
-                    : ''
-                }
-              </value>
-              <next>
-                <block type="s4d_embed_set_author">
-                  <value name="AUTHOR">
-                    ${
-                      eauthor
-                        ? `<block type="jg_text_remake_paragraph_quotes">
-  <field name="TEXT">${eauthor}</field>
-</block>`
-                        : ''
-                    }
-                  </value>
-                  <value name="PROFILE">
-                    ${
-                      eauthorpfp
-                        ? `<block type="jg_text_remake_paragraph_quotes">
-  <field name="TEXT">${eauthorpfp}</field>
-</block>`
-                        : ''
-                    }
-                  </value>
-                  <value name="URL">
-                    ${
-                      eauthorurl
-                        ? `<block type="jg_text_remake_paragraph_quotes">
-  <field name="TEXT">${eauthorurl}</field>
-</block>`
-                        : ''
-                    }
-                  </value>
-                </block>
-              </next>
-            </block>
-          </next>
-        </block>
-      </next>
-    </block>
-  </statement>
-</block>`);
-          let block = Blockly.Xml.domToBlock(xml, workspace);
-          workspace.centerOnBlock(block.id);
-        });
     });
     window.loadtoolboxfuncinternal = () => {
       let new_toolbox_xml = prepToolbox(toolbox(val), false, val, workspace, null);
