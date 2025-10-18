@@ -1570,4 +1570,7 @@ if (localStorage.getItem('theme') == null) {
   width: fit-content !important;
   max-width: 70vw !important;
 }
+div:where(.swal2-container) {
+  z-index: 2000;
+}
 </style>

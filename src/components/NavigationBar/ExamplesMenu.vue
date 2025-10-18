@@ -27,6 +27,8 @@
 <script>
 import * as Blockly from 'blockly/core';
 import Swal from 'sweetalert2';
+import localforage from 'localforage';
+import theme from '@blockly/theme-dark';
 
 import PingPongExample from '../../examples/ping-pong';
 import CommandParsingExample from '../../examples/command-parsing';
@@ -47,7 +49,6 @@ import advjsonreq from '../../examples/advjsonreq.js';
 import regex from '../../examples/regex.js';
 import leaderboard from '../../examples/leaderboard.js';
 import embed from '../../examples/embed example.js';
-import localforage from 'localforage';
 
 const examples = {
   'ping-pong': PingPongExample,
@@ -77,7 +78,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace,
 <i class="fa-solid fa-user-shield"></i> <b>${json.example[6].replaceAll('\\', '').replaceAll('<', '').replaceAll('>', '').replaceAll('/', '')}</b>
 &#8226
 <i class="fa-solid fa-cube"></i> <b><em>${Number(json.example[3])}</em></b>
-<p style="color:rgb(45,45,45)"><i class="fa-solid fa-file-lines"></i> &#8226 <i>${json.example[1].replaceAll('<', '').replaceAll('\\', '')}</i></p>
+<p class="text-secondary"><i class="fa-solid fa-file-lines"></i> &#8226 <i>${json.example[1].replaceAll('<', '').replaceAll('\\', '')}</i></p>
 <div id="swal_popup_BlocklyUserExampleViewer"></div>
 <div class="swal_popup_BlocklyUserExampleViewer_bottom_left_div">
   <i class="fa-solid fa-id-badge"></i> &#8226 ${selectedOption}<br>
@@ -88,7 +89,6 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace,
   let previewWorkspace = false;
   Swal.fire({
     theme: 'auto',
-    //title: "Load this example?",
     html: wrapper,
     customClass: {
       popup: 'swal-userExamples-preview-popup'
@@ -164,8 +164,8 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace,
       length: 3,
       colour: '#ccc'
     },
-    renderer: 'zelos',
-    //theme: theme,
+    renderer: window.renderer??'zelos',
+    theme,
     zoom: {
       controls: true,
       startScale: 0.9,
@@ -427,7 +427,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
   <i title="Sort the examples menu" class="fa-solid fa-arrow-down-wide-short"> </i>
   <select id="swal_dialog_box_sortUserExamples">
     <option value="new">Newest First</option>
-    <option value="old">Oldest First</option>
+    <option value="old" selected>Oldest First</option>
     <option value="liked">Most Liked</option>
     <option value="hated">Most Hated</option>
     <option value="mostDownloads">Most Downloaded</option>
@@ -604,7 +604,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                   searchBox.oninput = search;
                   // Sort
                   var sortingButton = document.getElementById('swal_dialog_box_sortUserExamples');
-                  var sorting = 'new';
+                  var sorting = 'old';
                   sortingButton.onchange = (e) => {
                     sorting = e.target.value;
                     search();
@@ -717,8 +717,7 @@ input[type='radio']:checked {
 
 #swal_popup_BlocklyUserExampleViewer {
   font-family: sans-serif;
-  position: absolute;
-  height: 78%;
+  height: 50dvh;
   width: 97.5%;
   text-align: left;
   overflow: hidden;

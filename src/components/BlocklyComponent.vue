@@ -36,6 +36,7 @@ switch (String(window.location.pathname).replace(/\//gim, '')) {
     renderer = 'thrasos';
     break;
 }
+window.renderer = renderer;
 
 // pre-define a bunch of stuff so the search load times are better
 let coolbox = toolbox([]).split('\n');
@@ -532,13 +533,13 @@ ${CATEGORYCONTENT}`
     const workspace = Blockly.inject(this.$refs['blocklyDiv'], {
       ...options,
       ...{
-        renderer: renderer,
+        renderer: window.renderer??'zelos',
         grid: {
           spacing: 25,
           length: 3,
           colour: '#ccc'
         },
-        theme: theme,
+        theme,
         zoom: {
           controls: true,
           startScale: 0.9,
@@ -578,7 +579,7 @@ ${CATEGORYCONTENT}`
         family: 'monospace'
       });
       const customBlockWorkspace = Blockly.inject(blocklyDiv, {
-        renderer: renderer,
+        renderer: window.renderer??'zelos',
         grid: {
           spacing: 25,
           length: 3,
