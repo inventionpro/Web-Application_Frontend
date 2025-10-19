@@ -176,11 +176,8 @@ export default {
         },
         allowOutsideClick: false
       }).then(async (result) => {
-        if (result.isDismissed) {
-          return;
-        } else if (result.isConfirmed) {
-          window.blocklyWorkspaceGlobalRef.clear();
-        }
+        if (result.isDismissed) return;
+        if (result.isConfirmed) window.blocklyWorkspaceGlobalRef.clear();
         const file = document.getElementById('load-code').files[0];
         document.getElementById('load-code').value = '';
         const documentName = file.name.split('.').slice(0, file.name.split('.').length - 1);
