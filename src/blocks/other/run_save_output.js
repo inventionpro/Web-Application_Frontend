@@ -33,8 +33,7 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function (block) {
-  const code = `${JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE)} = await ${JavaScript.statementToCode(block, 'STATEMENT')}`;
-  return code;
+  return `${JavaScript.nameDB_.getName(block.workspace.getVariableById(block.getFieldValue('VAR')).name, Blockly.Names.NameType.VARIABLE)} = await ${JavaScript.statementToCode(block, 'STATEMENT')};`;
 };
 
 registerRestrictions(blockName, [

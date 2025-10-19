@@ -624,7 +624,7 @@ window.openS4DDebugMenu = () => {
       const blockTargetBlockUseSelected = menu.createDecoratedButton();
       blockTargetBlockUseSelected.innerHTML = 'Use Selected Block';
       blockTargetBlockUseSelected.onclick = () => {
-        blockTargetBlockId.value = Blockly.selected.id;
+        blockTargetBlockId.value = Blockly.getSelected().id;
       };
       blockDetails.append(blockTargetBlockUseSelected);
       blockDetails.append(document.createElement('br'));

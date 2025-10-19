@@ -72,7 +72,7 @@ const examples = {
   'embed example': embed
 };
 
-function displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace, toast) {
+function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${json.example[0].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '')}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"title="This example is created by a trusted/verified creator"></i>`}</h2>
 <i class="fa-solid fa-user-shield"></i> <b>${json.example[6].replaceAll('\\', '').replaceAll('<', '').replaceAll('>', '').replaceAll('/', '')}</b>
@@ -113,16 +113,13 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace,
       cancelButtonText: 'Cancel',
       allowOutsideClick: false
     }).then((result) => {
-      if (result.isDismissed) {
-        return;
-      } else if (result.isConfirmed) {
-        workspace.getAllBlocks().forEach((block) => block.dispose());
-      }
+      if (result.isDismissed) return;
+      if (result.isConfirmed) window.blocklyWorkspaceGlobalRef.clear();
       let exampleXml = '';
       fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then((result) =>
         result.text().then((xml) => {
           exampleXml = String(xml);
-          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), workspace);
+          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), window.blocklyWorkspaceGlobalRef);
           setTimeout(() => {
             toast.open({
               message: 'Loaded a custom example!',
@@ -164,7 +161,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace,
       length: 3,
       colour: '#ccc'
     },
-    renderer: window.renderer??'zelos',
+    renderer: window.renderer ?? 'zelos',
     theme,
     zoom: {
       controls: true,
@@ -216,7 +213,7 @@ export default {
       if (urlParams.has('exampleid')) {
         fetch(`https://s4d-examples.fsh.plus/api/getExample?id=${urlParams.get('exampleid')}`).then(async (result) => {
           result.json().then((json) => {
-            displaySwalPopupForUserExample(json, urlParams.get('exampleid'), 'https://s4d-examples.fsh.plus/', this.$store.state.workspace, this.$toast);
+            displaySwalPopupForUserExample(json, urlParams.get('exampleid'), 'https://s4d-examples.fsh.plus/', this.$toast);
           });
         });
       }
@@ -239,13 +236,10 @@ export default {
           denyButton: 'red-button'
         }
       }).then((result) => {
-        if (result.isDismissed) {
-          return;
-        } else if (result.isConfirmed) {
-          this.$store.state.workspace.getAllBlocks().forEach((block) => block.dispose());
-        }
+        if (result.isDismissed) return;
+        if (result.isConfirmed) window.blocklyWorkspaceGlobalRef.clear();
         const exampleXml = examples[example];
-        Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), this.$store.state.workspace);
+        Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), window.blocklyWorkspaceGlobalRef);
         setTimeout(() => {
           this.$toast.open({
             message: this.$t('examples.loaded', {
@@ -259,10 +253,9 @@ export default {
       });
     },
     userexamples() {
-      const workspace = this.$store.state.workspace;
       let url = 'https://s4d-examples.fsh.plus/';
       if (window.isInS4DDebugMode) {
-        url = prompt('Examples server URL to use?', 'https://s4d-examples.fsh.plus/');
+        url = prompt('Examples server URL to use?', url);
         if (!url.endsWith('/')) url += '/';
       }
       const SERVER = url;
@@ -283,7 +276,7 @@ export default {
               .replace(/%20/g, ' ')
               .replaceAll('\n', '')
               .replaceAll(/[^a-z 0-9]/gim, '');
-            const blockCounts = workspace.getAllBlocks().length;
+            const blockCounts = window.blocklyWorkspaceGlobalRef.getAllBlocks(false).length;
             Swal.fire({
               theme: 'auto',
               title: 'Upload an example',
@@ -306,7 +299,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
               allowOutsideClick: false
             }).then(async (result2) => {
               if (!result2.isConfirmed) return;
-              const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
+              const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(window.blocklyWorkspaceGlobalRef));
               fetch(SERVER + 'api/upload', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -314,7 +307,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                   name: String(document.getElementById('UserExampleName').value),
                   desc: String(document.getElementById('UserExampleDescription').value),
                   xml: String(xmlContent),
-                  count: workspace.getAllBlocks().length,
+                  count: blockCounts,
                   author: String(document.getElementById('UserExampleAuthor').value),
                   sessionID: await getSessionID()
                 })
@@ -490,7 +483,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                     if (selectedOption == null) return;
                     fetch(SERVER + `api/getExample?id=${selectedOption}`).then(async (result) => {
                       result.json().then((json) => {
-                        displaySwalPopupForUserExample(json, selectedOption, SERVER, workspace, this.$toast);
+                        displaySwalPopupForUserExample(json, selectedOption, SERVER, this.$toast);
                       });
                     });
                   });

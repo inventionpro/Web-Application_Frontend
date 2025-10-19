@@ -9,7 +9,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'DATE',
-      check: 'Number'
+      check: ['Number', 'Date']
     }
   ],
   output: 'Number',

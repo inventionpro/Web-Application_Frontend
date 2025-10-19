@@ -13,7 +13,7 @@ const blockData = {
     }
   ],
   colour: '#187795',
-  output: 'String',
+  output: ['String', 'Date'],
   tooltip: '',
   helpUrl: ''
 };
@@ -26,5 +26,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
-  return [`moment(${member}.createdAt).format('LLLL')`, JavaScript.ORDER_NONE];
+  // TODO: uh this only on user, temp fix
+  return [`${member}.user.createdAt`, JavaScript.ORDER_NONE];
 };
