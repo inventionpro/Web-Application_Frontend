@@ -13,7 +13,7 @@ const blockData = {
     }
   ],
   colour: '#187795',
-  output: 'String',
+  output: ['String', 'Date'],
   tooltip: '',
   helpUrl: ''
 };
@@ -27,5 +27,5 @@ Blockly.Blocks[blockName] = {
 JavaScript[blockName] = function (block) {
   let member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
   if (String(member).endsWith('.user') || String(member).endsWith('.user)')) member = member.replace('.user', '');
-  return [`String(${member}.joinedAt)`, JavaScript.ORDER_NONE];
+  return [`${member}.joinedAt`, JavaScript.ORDER_NONE];
 };

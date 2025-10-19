@@ -73,19 +73,18 @@ export default async function register(app, t) {
             icon: 'success',
             title: t('autosave.text')
           });
-          console.log('loaded a save!');
+          console.log('loading a save!');
 
-          workspace.setResizesEnabled(false);
-          workspace.clear();
-
+          window.blocklyWorkspaceGlobalRef.clear();
           const cb = await localforage.getItem('autosave_customBlocks');
           if (cb && cb != '[]') {
             await window.fetchCustomBlocks({
               customBlocks: typeof cb === 'object' ? JSON.stringify(cb) : cb
             });
           }
-          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(xml), workspace);
-          workspace.setResizesEnabled(true);
+          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(xml), window.blocklyWorkspaceGlobalRef);
+
+          console.log('loaded the save!');
 
           const saveNickname = await localforage.getItem('autosaveName');
           document.getElementById('docName').textContent = saveNickname == null || saveNickname == '' ? 'Untitled autosave' : saveNickname;

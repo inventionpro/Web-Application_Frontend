@@ -300,8 +300,8 @@ ${CATEGORYCONTENT}`
                 dx = xpos.slice(-1)[0];
                 dy = ypos.slice(-1)[0];
               }
-              if (Blockly.selected) {
-                let selected = Blockly.selected.toCopyData();
+              if (Blockly.getSelected()) {
+                let selected = Blockly.getSelected().toCopyData();
                 dx = selected.saveInfo.x;
                 dy = selected.saveInfo.y;
               }
@@ -311,10 +311,10 @@ ${CATEGORYCONTENT}`
                 block.moveBy(Number(dx), Number(dy));
               }
             } else if (evt.ctrlKey) {
-              if (Blockly.selected) {
-                let xml = Blockly.Xml.blockToDom(Blockly.selected);
+              if (Blockly.getSelected()) {
+                let xml = Blockly.Xml.blockToDom(Blockly.getSelected());
                 let block = Blockly.Xml.domToBlock(xml, workspace);
-                let selected = Blockly.selected.toCopyData();
+                let selected = Blockly.getSelected().toCopyData();
                 let dx = selected.saveInfo.x;
                 let dy = selected.saveInfo.y;
                 block.moveBy(Number(dx) + 5, Number(dy) + 5);
@@ -533,7 +533,7 @@ ${CATEGORYCONTENT}`
     const workspace = Blockly.inject(this.$refs['blocklyDiv'], {
       ...options,
       ...{
-        renderer: window.renderer??'zelos',
+        renderer: window.renderer ?? 'zelos',
         grid: {
           spacing: 25,
           length: 3,
@@ -579,7 +579,7 @@ ${CATEGORYCONTENT}`
         family: 'monospace'
       });
       const customBlockWorkspace = Blockly.inject(blocklyDiv, {
-        renderer: window.renderer??'zelos',
+        renderer: window.renderer ?? 'zelos',
         grid: {
           spacing: 25,
           length: 3,

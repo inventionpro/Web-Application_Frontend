@@ -9,6 +9,7 @@
 import * as Blockly from 'blockly/core';
 import NavBarComponent from './components/NavigationBar/NavigationBar.vue';
 import BlocklyComponent from './components/BlocklyComponent.vue';
+import Theme from '@blockly/theme-modern';
 
 console.log('User is currently on platform', navigator.userAgent);
 
@@ -154,10 +155,6 @@ import './blocks/example-t/';
 import './blocks/discord/scheduled-events/scheduled-events';
 import './blocks/Lime/Embed';
 import './blocks/Lime/Events';
-// p
-import './blocks/unlocked_blockly';
-
-import Theme from '@blockly/theme-modern';
 
 //ahq stuff
 import './blocks/ahq/';
