@@ -716,7 +716,6 @@ export default {
 <button id="btn-settings" class="swal2-confirm swal2-styled">Settings</button>
 <button id="btn-optimizations" class="swal2-confirm swal2-styled">Optimizations</button>
 <button id="btn-prebuilds" class="swal2-confirm swal2-styled">Prebuilds</button>
-<button id="btn-manage" class="swal2-confirm swal2-styled">Manage Favorites</button>
 <button id="btn-dfi" class="swal2-confirm swal2-styled">Download Files Indiv.</button>
 <button id="btn-cancel" class="swal2-cancel swal2-styled">Exit</button>`,
         showConfirmButton: false,
@@ -829,45 +828,6 @@ export default {
                       }
                       console.log('barry: welp guess we are done');
                       console.log('johnathan: lets get back to work, shall we?');
-                    }
-                  });
-                  break;
-                case 'manage':
-                  Swal.fire({
-                    theme: 'auto',
-                    title: 'Favorites manager',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    showDenyButton: true,
-                    cancelButtonText: 'Cancel',
-                    confirmButtonText: 'Manual Favorite',
-                    denyButtonText: 'Clear Favorites'
-                  }).then(async (result) => {
-                    if (result.isDenied) {
-                      localforage.setItem('fav', null);
-                      console.log('Favorites cleared...');
-                    } else if (result.isConfirmed) {
-                      Swal.fire({
-                        theme: 'auto',
-                        title: 'Add a block to favorites',
-                        html: `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`,
-                        showCancelButton: true,
-                        cancelButtonText: 'Cancel',
-                        confirmButtonText: 'Add'
-                      }).then(async (result) => {
-                        if (!result.isConfirmed) return;
-                        localforage.getItem('fav').then((favs) => {
-                          let block = document.getElementById('block').value.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
-                          console.log('Adding block', block, 'to favorites');
-                          if (favs != null) {
-                            let newArray = favs;
-                            newArray.push(block);
-                            localforage.setItem('fav', newArray);
-                          } else {
-                            localforage.setItem('fav', [block]);
-                          }
-                        });
-                      });
                     }
                   });
                   break;

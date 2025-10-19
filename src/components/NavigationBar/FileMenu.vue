@@ -182,6 +182,7 @@ export default {
           window.blocklyWorkspaceGlobalRef.clear();
         }
         const file = document.getElementById('load-code').files[0];
+        document.getElementById('load-code').value = '';
         const documentName = file.name.split('.').slice(0, file.name.split('.').length - 1);
         document.getElementById('docName').textContent = documentName;
         document.title = `Scratch For Discord - ${document.getElementById('docName').textContent}`;

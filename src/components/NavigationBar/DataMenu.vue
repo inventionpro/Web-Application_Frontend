@@ -1,7 +1,9 @@
 <template>
   <b-nav-item-dropdown text="Data" right>
-    <b-dropdown-item @click="ClearAutosave">Clear Autosave</b-dropdown-item>
     <b-dropdown-item @click="TokenDB">Token DB</b-dropdown-item>
+    <b-dropdown-item @click="ManualFavorite">Manual Favorite</b-dropdown-item>
+    <b-dropdown-item @click="ClearAutosave" variant="danger">Clear Autosave</b-dropdown-item>
+    <b-dropdown-item @click="ClearFavorites" variant="danger">Clear Favorites</b-dropdown-item>
     <b-dropdown-divider></b-dropdown-divider>
     <b-dropdown-item @click="askForFile">Load data</b-dropdown-item>
     <input hidden @change="load" id="load-s4dData-code" type="file" accept=".zip,.data" />
@@ -32,6 +34,21 @@ export default {
         localforage.removeItem('autosaveName');
         localforage.removeItem('autosave_customBlocks');
         console.log('Autosave cleared');
+      });
+    },
+    ClearFavorites() {
+      Swal.fire({
+        theme: 'auto',
+        title: 'Clear favorites',
+        text: `Are you sure?`,
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+        if (!result.isConfirmed) return;
+        localforage.setItem('fav', null);
+        console.log('Favorites cleared');
       });
     },
     async TokenDB() {
@@ -201,6 +218,29 @@ ${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">De
             };
           });
         }
+      });
+    },
+    ManualFavorite() {
+      Swal.fire({
+        theme: 'auto',
+        title: 'Add a block to favorites',
+        html: `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`,
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+        confirmButtonText: 'Add'
+      }).then(async (result) => {
+        if (!result.isConfirmed) return;
+        localforage.getItem('fav').then((favs) => {
+          let block = document.getElementById('block').value.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
+          console.log('Adding block', block, 'to favorites');
+          if (favs != null) {
+            let newArray = favs;
+            newArray.push(block);
+            localforage.setItem('fav', newArray);
+          } else {
+            localforage.setItem('fav', [block]);
+          }
+        });
       });
     },
     askForFile() {
