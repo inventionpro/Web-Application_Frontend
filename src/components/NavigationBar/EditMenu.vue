@@ -20,8 +20,8 @@ export default {
     },
     clearGhost() {
       let allBlocks = window.blocklyWorkspaceGlobalRef.getAllBlocks(false);
-      let disabledBlocks = allBlocks.filter((block)=>!block.isEnabled());
-      disabledBlocks.forEach(block=>block.dispose());
+      let disabledBlocks = allBlocks.filter((block) => !block.isEnabled());
+      disabledBlocks.forEach((block) => block.dispose());
     },
     clear() {
       window.blocklyWorkspaceGlobalRef.clear();

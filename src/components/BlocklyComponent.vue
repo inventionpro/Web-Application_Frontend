@@ -1059,43 +1059,11 @@ ${CATEGORYCONTENT}`
 
     try {
       Blockly.ContextMenuRegistry.registry.unregister('fav');
-      Blockly.ContextMenuRegistry.registry.unregister('refav');
       Blockly.ContextMenuRegistry.registry.unregister('image');
     } catch {
       // Ignore :3
     }
 
-    Blockly.ContextMenuRegistry.registry.register({
-      displayText: 'Add to favorite',
-      preconditionFn: function (scope) {
-        let type = scope.block.type;
-        if (val === null) {
-          return 'enabled';
-        }
-        if (val.includes(type)) {
-          return 'disabled';
-        } else {
-          return 'enabled';
-        }
-      },
-      callback: async function (scope) {
-        let type = scope.block.type;
-
-        if (val === null) {
-          await localforage.setItem('fav', [type]);
-        } else {
-          val.push(type);
-          await localforage.setItem('fav', val);
-        }
-        val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-
-        let new_toolbox_xml = prepToolbox(toolbox(val), false, val);
-        workspace.updateToolbox(new_toolbox_xml);
-      },
-      scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-      id: 'fav',
-      weight: 100
-    });
     Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Download Workspace Image',
       preconditionFn: function () {
@@ -1109,36 +1077,42 @@ ${CATEGORYCONTENT}`
       weight: 100
     });
     Blockly.ContextMenuRegistry.registry.register({
-      displayText: 'Remove from favorite',
-      preconditionFn: function (scope) {
-        let type = scope.block.type;
-        if (val === null) {
-          return 'disabled';
-        }
-        if (val.includes(type)) {
-          return 'enabled';
-        } else {
-          return 'disabled';
-        }
+      displayText: function (scope) {
+        return val && val.includes(scope.block.type) ? 'Remove from favorite' : 'Add to favorite';
+      },
+      preconditionFn: function () {
+        return 'enabled';
       },
       callback: async function (scope) {
         let type = scope.block.type;
+
         function arrayRemove(arr, value) {
           return arr.filter(function (ele) {
             return ele != value;
           });
         }
-        if (arrayRemove(await localforage.getItem('fav'), type).length === 0) {
-          await localforage.setItem('fav', null);
+
+        if (val && val.includes(scope.block.type)) {
+          if (arrayRemove(await localforage.getItem('fav'), type).length === 0) {
+            await localforage.setItem('fav', null);
+          } else {
+            await localforage.setItem('fav', arrayRemove(await localforage.getItem('fav'), type));
+          }
         } else {
-          await localforage.setItem('fav', arrayRemove(await localforage.getItem('fav'), type));
+          if (val === null) {
+            await localforage.setItem('fav', [type]);
+          } else {
+            val.push(type);
+            await localforage.setItem('fav', val);
+          }
         }
+
         val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-        var new_toolbox_xml = prepToolbox(toolbox(val), false, val);
+        let new_toolbox_xml = prepToolbox(toolbox(val), false, val);
         workspace.updateToolbox(new_toolbox_xml);
       },
       scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-      id: 'refav',
+      id: 'fav',
       weight: 100
     });
 
@@ -1165,7 +1139,7 @@ ${CATEGORYCONTENT}`
     this.$nextTick(() => {
       window.setInterval(() => {
         disableUnapplicable(this.$store.state.workspace);
-        const getAllBlocksInWorkspace = this.$store.state.workspace.getAllBlocks();
+        const getAllBlocksInWorkspace = this.$store.state.workspace.getAllBlocks(false);
         const loginBlock = getAllBlocksInWorkspace.some((block) => block.type === 's4d_login');
         const db1 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_add_data_new');
         const db2 = getAllBlocksInWorkspace.some((block) => block.type == 's4d_database_create_new');
