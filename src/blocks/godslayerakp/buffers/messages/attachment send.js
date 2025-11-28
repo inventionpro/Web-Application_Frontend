@@ -42,10 +42,9 @@ JavaScript[blockname] = function (block) {
   const name = JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC);
   const content = JavaScript.valueToCode(block, 'content', JavaScript.ORDER_ATOMIC);
   const channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
-  const code = `const attachment = new Discord.AttachmentBuilder(${buffer}, {name: ${name}});
-${channel}.send({
+  const code = `${channel}.send({
   content: ${content},
-  files: [attachment]
+  files: [new Discord.AttachmentBuilder(${buffer}, {name: ${name}})]
 });`;
   return code;
 };
