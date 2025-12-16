@@ -61,8 +61,8 @@ const { Modal, TextInputComponent, showModal } = require('discord-modals');`);
   if (js.includes('os')) {
     array.push(`const os = require("os-utils");`);
   }
-  if (js.includes('lyricsFinder')) {
-    array.push(`const lyricsFinder = require('lyrics-finder');`);
+  if (js.includes('_S4D_getLyrics')) {
+    array.push(`const _S4D_getLyrics = require('lyrics-getter');`);
   }
   if (js.includes('s4d.Inviter')) {
     array.push(`let Invite = require("discord-inviter-tracker")`);

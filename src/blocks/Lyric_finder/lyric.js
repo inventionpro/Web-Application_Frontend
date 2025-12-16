@@ -19,6 +19,6 @@ Blockly.Blocks[blockName] = {
 };
 
 JavaScript[blockName] = function () {
-  const code = [`lyrics`, JavaScript.ORDER_NONE];
+  const code = [`_S4D_lyrics`, JavaScript.ORDER_NONE];
   return code;
 };
