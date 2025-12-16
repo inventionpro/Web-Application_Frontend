@@ -122,8 +122,8 @@ export default async function require(array, oldarray) {
     if (js.includes('easy-db-json')) {
       array.push(`"easy-db-json": "1.1.1",`);
     }
-    if (js.includes('lyricsFinder')) {
-      array.push(`"lyrics-finder": "^21.7.0",`);
+    if (js.includes('_S4D_getLyrics')) {
+      array.push(`"lyrics-getter": "^0.1.0",`);
     }
     if (js.includes('os')) {
       array.push(`"os-utils": "0.0.14",`);

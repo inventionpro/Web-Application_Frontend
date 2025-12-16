@@ -42,9 +42,9 @@ JavaScript[blockName] = function (block) {
   const Artist = JavaScript.valueToCode(block, 'ArtistName', JavaScript.ORDER_ATOMIC);
   const Song = JavaScript.valueToCode(block, 'SongName', JavaScript.ORDER_ATOMIC);
   const statementThen = JavaScript.statementToCode(block, 'THEN');
-  const code = `(async function(artist, title) {
-        let lyrics = await lyricsFinder(artist, title) || "Not Found!";\n
-        ${statementThen}
-    })(${Artist}, ${Song});`;
+  const code = `_S4D_getLyrics(${Artist.length ? Artist : "''"}+' '+${Song.length ? Song : "''"})
+  .then(_S4D_lyrics=>{
+    if (_S4D_lyrics instanceof Error) _S4D_lyrics = 'Not Found!';
+  ${statementThen}  });`;
   return code;
 };
