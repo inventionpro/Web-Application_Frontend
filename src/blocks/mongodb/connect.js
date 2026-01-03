@@ -14,7 +14,7 @@ const blockData = {
     }
   ],
   colour: '#F46580',
-  tooltip: '%{BKY_LOGIN_TOOLTIP}',
+  tooltip: 'Login into mongo with a url',
   helpUrl: ''
 };
 
@@ -26,7 +26,6 @@ Blockly.Blocks[blockName] = {
 
 JavaScript[blockName] = function (block) {
   const value = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
-  const code = `const mdb = new DB(${value});
-    \n`;
+  const code = `const mdb = new DB(${value});\n`;
   return code;
 };

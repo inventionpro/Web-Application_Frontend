@@ -14,7 +14,7 @@ const blockData = {
     }
   ],
   colour: '#F46580',
-  tooltip: '%{BKY_LOGIN_TOOLTIP}',
+  tooltip: 'Start a webserver on port 3000, this can be used for tools like uptimerobot.',
   helpUrl: ''
 };
 
@@ -28,8 +28,8 @@ JavaScript[blockName] = function (block) {
   const value = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
   const code = `const http = require('http');
 const server = http.createServer((req, res) => {
-    res.writeHead(200);
-    res.end(${value});
+  res.writeHead(200);
+  res.end(${value});
 });
 server.listen(3000);\n`;
   return code;
