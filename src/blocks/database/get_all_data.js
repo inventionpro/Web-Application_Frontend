@@ -15,7 +15,7 @@ const blockData = {
       check: 'String'
     }
   ],
-  output: 'JSON',
+  output: ['JSON','Array'],
   colour: '#5ba58b',
   tooltip: 'Gets all data from database\nOutputs a JSON map',
   helpUrl: ''
