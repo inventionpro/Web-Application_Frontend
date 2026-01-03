@@ -558,6 +558,8 @@ ${CATEGORYCONTENT}`
         toolbox: prepToolbox(toolbox(val), false, val)
       }
     });
+    window.blocklyGlobalRef = Blockly;
+    window.blocklyJSGlobalRef = JavaScript;
     window.blocklyWorkspaceGlobalRef = workspace;
     workspace.registerButtonCallback('LAUNCHCUSTOMBLOCKBUILDER', function () {
       const menu = blocklyModule.menus.createMenu({

@@ -61,6 +61,15 @@ JavaScript['create_chart'] = function (block) {
   var value_label = JavaScript.valueToCode(block, 'label', JavaScript.ORDER_ATOMIC);
   var value_labels = JavaScript.valueToCode(block, 'labels', JavaScript.ORDER_ATOMIC);
   var value_data = JavaScript.valueToCode(block, 'data', JavaScript.ORDER_ATOMIC);
-  var code = `const chart = ChartJSImage().chart({\n            type: '${dropdown_typee}',\n            data: {\n                labels: ${value_labels},\n                datasets: [{\n                    label: ${value_label},\n                    data: ${value_data}\n                }]\n            }\n        })\n`;
+  var code = `const chart = ChartJSImage().chart({
+  type: '${dropdown_typee}',
+  data: {
+    labels: ${value_labels},
+    datasets: [{
+      label: ${value_label},
+      data: ${value_data}
+    }]
+  }
+});`;
   return code;
 };
