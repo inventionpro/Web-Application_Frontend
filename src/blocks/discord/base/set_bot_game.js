@@ -51,7 +51,10 @@ JavaScript[blockName] = function (block) {
   const type = block.getFieldValue('TYPE');
   const game = JavaScript.valueToCode(block, 'GAME', JavaScript.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');
-  const code = `s4d.client.user.setPresence({status: "${OIFD}",activities:[{name:${game},type:"${type}"}]}); \n`;
+  const code = `s4d.client.user.setPresence({
+  status: "${OIFD}",
+  activities:[{ name: ${game}, type: "${type}" }]
+});\n`;
   return code;
 };
 

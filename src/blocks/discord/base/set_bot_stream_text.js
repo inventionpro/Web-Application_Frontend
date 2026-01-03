@@ -34,10 +34,10 @@ Blockly.Blocks[blockName] = {
 JavaScript[blockName] = function (block) {
   const url = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
   const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  const code = `s4d.client.user.setActivity(${name}, { 
-         type: "STREAMING", 
-          url: ${url}});
-          `;
+  const code = `s4d.client.user.setActivity(${name}, {
+  type: 'STREAMING',
+  url: ${url}
+});`;
   return code;
 };
 
