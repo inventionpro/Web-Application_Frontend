@@ -77,7 +77,7 @@ Blockly.Blocks[blockName] = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.inputs.Align.LEFT)
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase())
         .appendField(names[i]);
     }
@@ -104,7 +104,7 @@ Blockly.Blocks[blockName] = {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
         this.appendDummyInput(BORDER_FIELDS[i].toUpperCase() + 'd').appendField(names[i]);
-        this.appendStatementInput(BORDER_FIELDS[i].toUpperCase()).setAlign(Blockly.ALIGN_RIGHT);
+        this.appendStatementInput(BORDER_FIELDS[i].toUpperCase()).setAlign(Blockly.inputs.Align.RIGHT);
       }
     }
   }

@@ -68,14 +68,14 @@ Blockly.Blocks[blockName] = {
     BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
     containerBlock
       .appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
+      .setAlign(Blockly.inputs.Align.RIGHT)
       .appendField(APPEND_NAME + ' ︱ -')
       .appendField(new Blockly.FieldCheckbox(false), 'MINUS')
       .appendField('+')
       .appendField(new Blockly.FieldCheckbox(false), 'PLUS')
       .appendField('Amount:')
       .appendField(new Blockly.FieldLabel('0'), 'NUMBER');
-    containerBlock.appendDummyInput().setAlign(Blockly.ALIGN_LEFT).appendField(new Blockly.FieldCheckbox(false), 'ALLOWDEFAULTCASE').appendField('default case');
+    containerBlock.appendDummyInput().setAlign(Blockly.inputs.Align.LEFT).appendField(new Blockly.FieldCheckbox(false), 'ALLOWDEFAULTCASE').appendField('default case');
     containerBlock.initSvg();
     return containerBlock;
   },
@@ -102,7 +102,7 @@ Blockly.Blocks[blockName] = {
       if (!this.getInput(APPEND_FIELD + i)) {
         BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
         this.appendValueInput(APPEND_FIELD + i)
-          .setAlign(Blockly.ALIGN_LEFT)
+          .setAlign(Blockly.inputs.Align.LEFT)
           .appendField(APPEND_NAME);
       }
     }

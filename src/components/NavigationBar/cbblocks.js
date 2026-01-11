@@ -355,9 +355,9 @@ _ \\END JS FUNC\\ _`;
             type: 'field_dropdown',
             name: 'ALIGN',
             options: [
-              ['left', 'Blockly.ALIGN_LEFT'],
-              ['center', 'Blockly.ALIGN_CENTRE'],
-              ['right', 'Blockly.ALIGN_RIGHT']
+              ['left', 'Blockly.inputs.Align.LEFT'],
+              ['center', 'Blockly.inputs.Align.CENTER'],
+              ['right', 'Blockly.inputs.Align.RIGHT']
             ]
           }
         ],

@@ -112,10 +112,10 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     this.updateShape_();
     // Reconnect any child blocks.
     for (var i = 1; i <= this.elseifCount_; i++) {
-      Blockly.Mutator.reconnect(valueConnections[i], this, 'IF' + i);
-      Blockly.Mutator.reconnect(statementConnections[i], this, 'DO' + i);
+      valueConnections[i].reconnect(this, 'IF' + i);
+      statementConnections[i].reconnect(this, 'DO' + i);
     }
-    Blockly.Mutator.reconnect(elseStatementConnection, this, 'ELSE');
+    elseStatementConnection.reconnect(this, 'ELSE');
   },
   /**
    * Store pointers to any connected child blocks.
