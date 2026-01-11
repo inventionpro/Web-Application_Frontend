@@ -39,7 +39,7 @@ Blockly.Blocks[blockName] = {
     this.setColour('#D14081');
     this.setTooltip('outputs a new function');
     this.setHelpUrl('');
-    this.setMutator(new Blockly.Mutator([blockName + '_mutator_block_input'], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([blockName + '_mutator_block_input'], this));
     this.setOutput(true, 'Function');
     this.inputs = [];
     this.return = false;

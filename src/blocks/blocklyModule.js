@@ -77,7 +77,7 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
     Blockly.Blocks[blockName] = {
       init: function () {
         this.jsonInit(data.blockData);
-        this.setMutator(new Blockly.Mutator([], this));
+        this.setMutator(new Blockly.icons.MutatorIcon([], this));
         this.inputs_ = [];
         for (let i = 0; i < amountOfInputs; i++) {
           this.inputs_.push(false);
@@ -175,7 +175,7 @@ export function setMutatorOnBlock(block, mutator_type, data) {
           }
         };
       }
-      block.setMutator(new Blockly.Mutator([], this));
+      block.setMutator(new Blockly.icons.MutatorIcon([], this));
       block.inputs_ = [];
       for (let i = 0; i < amountOfInputs; i++) {
         block.inputs_.push(false);

@@ -155,7 +155,7 @@ Blockly.Blocks['gsa_create_new_jimp_image'] = {
       tooltip: 'Asynchronously runs the code inside of it',
       helpUrl: ''
     });
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.isFilled = false;
   },
   mutationToDom: function () {
