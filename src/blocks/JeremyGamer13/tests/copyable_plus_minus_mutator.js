@@ -63,7 +63,7 @@ Blockly.Blocks[blockName] = {
     BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
     containerBlock
       .appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
+      .setAlign(Blockly.inputs.Align.RIGHT)
       .appendField(APPEND_NAME + ' ︱ -')
       .appendField(new Blockly.FieldCheckbox(false), 'MINUS')
       .appendField('+')
@@ -95,7 +95,7 @@ Blockly.Blocks[blockName] = {
       if (!this.getInput(APPEND_FIELD + i)) {
         BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
         this.appendValueInput(APPEND_FIELD + i)
-          .setAlign(Blockly.ALIGN_LEFT)
+          .setAlign(Blockly.inputs.Align.LEFT)
           .appendField(APPEND_NAME);
       }
     }

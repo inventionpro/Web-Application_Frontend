@@ -107,7 +107,7 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
         for (let i = 0; i < this.inputs_.length; i++) {
           BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
           const di = containerBlock.appendDummyInput();
-          di.setAlign(alignLeft ? Blockly.ALIGN_LEFT : Blockly.ALIGN_RIGHT);
+          di.setAlign(alignLeft ? Blockly.inputs.Align.LEFT : Blockly.inputs.Align.RIGHT);
           if (alignLeft) {
             di.appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
             di.appendField(names[i]);
@@ -135,7 +135,7 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
         for (let i = 0; i < this.inputs_.length; i++) {
           if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
             BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-            this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+            this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
           }
         }
       }
@@ -201,7 +201,7 @@ export function setMutatorOnBlock(block, mutator_type, data) {
         for (let i = 0; i < this.inputs_.length; i++) {
           BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
           const di = containerBlock.appendDummyInput();
-          di.setAlign(alignLeft ? Blockly.ALIGN_LEFT : Blockly.ALIGN_RIGHT);
+          di.setAlign(alignLeft ? Blockly.inputs.Align.LEFT : Blockly.inputs.Align.RIGHT);
           if (alignLeft) {
             di.appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
             di.appendField(names[i]);
@@ -227,7 +227,7 @@ export function setMutatorOnBlock(block, mutator_type, data) {
         for (let i = 0; i < this.inputs_.length; i++) {
           if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
             BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-            this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+            this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
           }
         }
       };
