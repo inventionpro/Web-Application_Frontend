@@ -14,7 +14,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     this.appendStatementInput('DO0');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setMutator(new Blockly.Mutator(['lasercat_jg_case_default_INTERNAL_case2', 'lasercat_jg_case_default_INTERNAL_case3', 'lasercat_jg_case_default_INTERNAL_case4', 'lasercat_jg_case_default_INTERNAL_default'], this));
+    this.setMutator(new Blockly.icons.MutatorIcon(['lasercat_jg_case_default_INTERNAL_case2', 'lasercat_jg_case_default_INTERNAL_case3', 'lasercat_jg_case_default_INTERNAL_case4', 'lasercat_jg_case_default_INTERNAL_default'], this));
     this.setTooltip(`Run the blocks inside if the switched item is equal to this case's value. The "default" case is if the switched item doesn't match any of the other cases mentioned. Hover over the blocks in this block's gear menu for more details.`);
     this.elseifCount_ = 0;
     this.elseCount_ = 0;
