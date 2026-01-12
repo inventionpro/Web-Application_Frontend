@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_new_object_creator_empty_search_moment_searchMoment';
 
@@ -28,12 +28,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   return [
     `
 {
-  ${JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_ATOMIC)}
+  ${javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC)}
 }`,
-    JavaScript.ORDER_ATOMIC
+    javascriptGenerator.ORDER_ATOMIC
   ];
 };

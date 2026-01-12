@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'get_image';
 
@@ -33,9 +33,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const Then = JavaScript.statementToCode(block, 'then');
-  const query = JavaScript.valueToCode(block, 'query', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const Then = javascriptGenerator.statementToCode(block, 'then');
+  const query = javascriptGenerator.valueToCode(block, 'query', javascriptGenerator.ORDER_ATOMIC);
   const code = `let query = ${query} \n ${Then}`;
   return code;
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'create_ahq_handler';
 const blockData = {
@@ -47,14 +47,14 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'TOKEN', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'TOKEN', javascriptGenerator.ORDER_ATOMIC);
   const code = `const ahqhandler = {
         "prefix": ${value},
-        "owner": ${JavaScript.valueToCode(block, 'ownerId', JavaScript.ORDER_ATOMIC)},
-        "not-owner": ${JavaScript.valueToCode(block, 'notowner', JavaScript.ORDER_ATOMIC)},
-        "nsfw": ${JavaScript.valueToCode(block, 'ahq', JavaScript.ORDER_ATOMIC)},
-        "not-perms": ${JavaScript.valueToCode(block, 'notperms', JavaScript.ORDER_ATOMIC)}
+        "owner": ${javascriptGenerator.valueToCode(block, 'ownerId', javascriptGenerator.ORDER_ATOMIC)},
+        "not-owner": ${javascriptGenerator.valueToCode(block, 'notowner', javascriptGenerator.ORDER_ATOMIC)},
+        "nsfw": ${javascriptGenerator.valueToCode(block, 'ahq', javascriptGenerator.ORDER_ATOMIC)},
+        "not-perms": ${javascriptGenerator.valueToCode(block, 'notperms', javascriptGenerator.ORDER_ATOMIC)}
     }`;
   return code;
 };

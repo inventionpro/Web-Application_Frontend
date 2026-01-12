@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_try_and_catch';
 
@@ -34,9 +34,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const tryy = JavaScript.statementToCode(block, 'try');
-  const catchh = JavaScript.statementToCode(block, 'catch');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const tryy = javascriptGenerator.statementToCode(block, 'try');
+  const catchh = javascriptGenerator.statementToCode(block, 'catch');
   return `try{
         ${tryy}
     }catch(err){

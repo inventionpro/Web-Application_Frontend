@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jose_jg_s4d_as_webhook_send_with_allowed_mentions_on_lists_user_ids_role_ids';
@@ -40,11 +40,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const content = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
 
-  const users = JavaScript.valueToCode(block, 'USERS', JavaScript.ORDER_ATOMIC);
-  const roles = JavaScript.valueToCode(block, 'ROLES', JavaScript.ORDER_ATOMIC);
+  const users = javascriptGenerator.valueToCode(block, 'USERS', javascriptGenerator.ORDER_ATOMIC);
+  const roles = javascriptGenerator.valueToCode(block, 'ROLES', javascriptGenerator.ORDER_ATOMIC);
   let usableA = '';
   let usableB = '';
   if (!(users === null || users === '')) {

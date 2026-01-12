@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_encode_hash';
 
@@ -30,8 +30,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const text = JavaScript.valueToCode(block, 'encode', JavaScript.ORDER_ATOMIC);
-  const rounds = JavaScript.valueToCode(block, 'rounds', JavaScript.ORDER_ATOMIC);
-  return [`bcrypt.hashSync(${text}, ${rounds})`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'encode', javascriptGenerator.ORDER_ATOMIC);
+  const rounds = javascriptGenerator.valueToCode(block, 'rounds', javascriptGenerator.ORDER_ATOMIC);
+  return [`bcrypt.hashSync(${text}, ${rounds})`, javascriptGenerator.ORDER_NONE];
 };

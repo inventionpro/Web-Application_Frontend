@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_embed_edit';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['s4d_embed_edit'] = function (block) {
-  var new_message = JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC);
-  var new_embed = JavaScript.valueToCode(block, 'embed', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['s4d_embed_edit'] = (block) => {
+  var new_message = javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC);
+  var new_embed = javascriptGenerator.valueToCode(block, 'embed', javascriptGenerator.ORDER_ATOMIC);
   // For the embed name to have no error, I do this so there is no space in the embed title!
   new_embed = new_embed.split(' '); // Splits Embed name by space so "Lime Nade" = ["Lime","Nade"]
   new_embed = new_embed.join('_'); // Puts back together the separated parts but puts an underscore between them. ["Lime","Nade"] = Lime_Nade

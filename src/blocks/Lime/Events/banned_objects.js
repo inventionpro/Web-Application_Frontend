@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 import { registerRestrictions } from '../../../restrictions';
 
@@ -40,7 +40,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['banned_objects'] = function (block) {
+javascriptGenerator.forBlock['banned_objects'] = (block) => {
   var dropdown_options = block.getFieldValue('options');
   var code = ``;
   switch (dropdown_options) {
@@ -73,7 +73,7 @@ JavaScript['banned_objects'] = function (block) {
   //     if (dropdown_options == "MEMBER_ID"){code = `String(ban.user.id)`}
   //     if (dropdown_options == "REASON"){code = `String(ban.reason)`}
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

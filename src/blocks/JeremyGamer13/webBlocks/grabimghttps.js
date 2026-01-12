@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_imghttps';
 
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const urlimg = JavaScript.valueToCode(block, 'url', JavaScript.ORDER_ATOMIC);
-  const filename = JavaScript.valueToCode(block, 'file', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const urlimg = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
+  const filename = javascriptGenerator.valueToCode(block, 'file', javascriptGenerator.ORDER_ATOMIC);
   const code = `await https.get(${urlimg}, async (res) => {
   res.pipe(fs.createWriteStream(${filename}));
 });\n`;

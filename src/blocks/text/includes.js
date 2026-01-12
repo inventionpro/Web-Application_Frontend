@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
 
 const blockName = 's4d_includes';
@@ -30,10 +30,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
-  const includes = JavaScript.valueToCode(block, 'INCLUDES', JavaScript.ORDER_ATOMIC);
-  const code = [`String(${text}).includes(String(${includes}))`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
+  const includes = javascriptGenerator.valueToCode(block, 'INCLUDES', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`String(${text}).includes(String(${includes}))`, javascriptGenerator.ORDER_NONE];
 
   return code;
 };

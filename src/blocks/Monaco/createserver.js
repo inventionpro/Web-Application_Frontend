@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'monaco_create_server';
 
@@ -29,9 +29,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['monaco_create_server'] = function (block) {
-  var value_create = JavaScript.valueToCode(block, 'create', JavaScript.ORDER_ATOMIC);
-  var statements = JavaScript.statementToCode(block, 'then');
+javascriptGenerator.forBlock['monaco_create_server'] = (block) => {
+  var value_create = javascriptGenerator.valueToCode(block, 'create', javascriptGenerator.ORDER_ATOMIC);
+  var statements = javascriptGenerator.statementToCode(block, 'then');
   var guilder = `s4d.client.guilds.create(String(${value_create})).then(async newServer => {
   ${statements}
 })`;

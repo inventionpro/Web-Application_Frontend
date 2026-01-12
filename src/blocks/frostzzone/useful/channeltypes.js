@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'frost_channel_types';
 
@@ -65,12 +65,11 @@ const v13channeltov14 = {
   LOBBY: 17,
   DM_SDK: 18
 };
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   let type = block.getFieldValue('type');
   // Transform type into something v14 can understand
   type = v13channeltov14[type.replaceAll("'", '')];
-  const channel = JavaScript.valueToCode(block, 'Channel', JavaScript.ORDER_ATOMIC);
-  const code = [`(${channel}.type) === ${type}`, JavaScript.ORDER_NONE];
-
+  const channel = javascriptGenerator.valueToCode(block, 'Channel', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`(${channel}.type) === ${type}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

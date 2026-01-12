@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_play';
 
@@ -25,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const search = JavaScript.valueToCode(block, 'SEARCH', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const search = javascriptGenerator.valueToCode(block, 'SEARCH', javascriptGenerator.ORDER_ATOMIC);
   const code = `queue.play(${search});\n`;
   return code;
 };

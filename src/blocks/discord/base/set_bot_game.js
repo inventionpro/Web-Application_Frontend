@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_set_bot_game';
@@ -47,14 +47,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block
     .getFieldValue('TYPE')
     .toLowerCase()
-    .replace(/^./, function (match) {
-      return match.toUpperCase();
-    });
-  const game = JavaScript.valueToCode(block, 'GAME', JavaScript.ORDER_ATOMIC);
+    .replace(/^./, (match)=>match.toUpperCase());
+  const game = JavaScript.valueToCode(block, 'GAME', javascriptGenerator.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');
   const code = `s4d.client.user.setPresence({
   status: '${OIFD}',

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'set_verification_level';
 
@@ -39,8 +39,8 @@ const v13tov14 = {
   HIGH: 3,
   VERY_HIGH: 4
 };
-JavaScript['set_verification_level'] = function (block) {
-  var dropdown = block.getFieldValue('NAME');
-  var code = v13tov14[dropdown];
-  return [code, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock['set_verification_level'] = (block) => {
+  let dropdown = block.getFieldValue('NAME');
+  let code = v13tov14[dropdown];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

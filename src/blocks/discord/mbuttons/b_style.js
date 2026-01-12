@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'b_style';
 
@@ -32,8 +32,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const style = block.getFieldValue('STYLE');
-  const code = [`${style}`, JavaScript.ORDER_NONE];
+  const code = [`${style}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

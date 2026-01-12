@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_history';
 
@@ -16,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = function () {
   const code = [
     `\`s4d means scratch for discord
     s4d was created mainly by \\\`Androz\\\`
@@ -32,7 +32,7 @@ JavaScript[blockName] = function () {
     
     Official s4d server:- https://discord.gg/cB2g5f4Ypq
     s4d 469 official server:- https://discord.gg/A7yttWszfD\``,
-    JavaScript.ORDER_NONE
+    javascriptGenerator.ORDER_NONE
   ];
   return code;
 };

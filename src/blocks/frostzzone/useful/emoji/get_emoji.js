@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'fz_get_emoji';
@@ -38,17 +38,17 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
   const searchType = block.getFieldValue('SEARCH_TYPE');
-  let server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  let server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   if ((server || null) == null) {
     server = `(s4d.client)`;
   }
   if (searchType === 'USERNAME') {
-    return [`${server}.emojis.cache.find(emoji => emoji.name === ${value})`, JavaScript.ORDER_NONE];
+    return [`${server}.emojis.cache.find(emoji => emoji.name === ${value})`, javascriptGenerator.ORDER_NONE];
   } else {
-    return [`${server}.emojis.cache.find(emoji => emoji.id === ${value})`, JavaScript.ORDER_NONE];
+    return [`${server}.emojis.cache.find(emoji => emoji.id === ${value})`, javascriptGenerator.ORDER_NONE];
   }
 };
 

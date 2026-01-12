@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_rcon_create_client';
 
@@ -42,11 +42,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const ip = JavaScript.valueToCode(block, 'IP', JavaScript.ORDER_ATOMIC);
-  const port = JavaScript.valueToCode(block, 'PORT', JavaScript.ORDER_ATOMIC);
-  const password = JavaScript.valueToCode(block, 'PASSWORD', JavaScript.ORDER_ATOMIC);
-  const then = JavaScript.statementToCode(block, 'THEN');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const ip = javascriptGenerator.valueToCode(block, 'IP', javascriptGenerator.ORDER_ATOMIC);
+  const port = javascriptGenerator.valueToCode(block, 'PORT', javascriptGenerator.ORDER_ATOMIC);
+  const password = javascriptGenerator.valueToCode(block, 'PASSWORD', javascriptGenerator.ORDER_ATOMIC);
+  const then = javascriptGenerator.statementToCode(block, 'THEN');
   const code = `let S4D_APP_MC_RCON_CLIENT_OPTIONS = {
         timeout: 5000
     };

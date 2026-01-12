@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_ytdl';
 
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const url = JavaScript.valueToCode(block, 'url', JavaScript.ORDER_ATOMIC);
-  const fs_name = JavaScript.valueToCode(block, 'fs_name', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const url = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
+  const fs_name = javascriptGenerator.valueToCode(block, 'fs_name', javascriptGenerator.ORDER_ATOMIC);
   return `
 ytdl(${url})
   .pipe(fs.createWriteStream(${fs_name}));

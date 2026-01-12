@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'gsa_set_embed_timestamp';
 const blockData = {
@@ -26,9 +26,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const date = JavaScript.valueToCode(block, 'date', JavaScript.ORDER_ATOMIC);
-  if (JavaScript.valueToCode(block, 'date', JavaScript.ORDER_ATOMIC) === null) {
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const date = javascriptGenerator.valueToCode(block, 'date', javascriptGenerator.ORDER_ATOMIC);
+  if (javascriptGenerator.valueToCode(block, 'date', javascriptGenerator.ORDER_ATOMIC) === null) {
     return `timestamp: new Date(),
     `;
   } else {

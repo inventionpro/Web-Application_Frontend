@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_connect';
 
@@ -25,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const voice = JavaScript.valueToCode(block, 'VOICECHANNEL', JavaScript.ORDER_ATOMIC) || 's4dmessage.member.voice.channel';
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const voice = javascriptGenerator.valueToCode(block, 'VOICECHANNEL', javascriptGenerator.ORDER_ATOMIC) || 's4dmessage.member.voice.channel';
   const code = `await queue.connect(${voice})\n;`;
   return code;
 };

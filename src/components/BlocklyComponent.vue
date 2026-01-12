@@ -109,7 +109,7 @@ export default {
     const isMobile = function () {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     };
-    function prepToolbox(toolbox_content, searching, favorites, pooopewwweewwww, searchparameter='') {
+    function prepToolbox(toolbox_content, searching, favorites, pooopewwweewwww, searchparameter = '') {
       const default_max_length = 250;
       let CATEGORYCONTENT = `<label text="Error failed to get block(s)..." web-class="boldtext"></label>`;
 
@@ -382,7 +382,12 @@ ${CATEGORYCONTENT}`
           workspace.getAllBlocks().forEach((block) => {
             try {
               if (color == 'random') {
-                block.setColour('#'+Math.floor(Math.random() * 0xffffff).toString(16).padStart(6,'0'));
+                block.setColour(
+                  '#' +
+                    Math.floor(Math.random() * 0xffffff)
+                      .toString(16)
+                      .padStart(6, '0')
+                );
               } else block.setColour(color);
             } catch (err) {
               console.warn(err);

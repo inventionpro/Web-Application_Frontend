@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'server_update_vars';
 
@@ -27,13 +27,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'OLD') {
-    const code = ['oldGuild', JavaScript.ORDER_NONE];
+    const code = ['oldGuild', javascriptGenerator.ORDER_NONE];
     return code;
   } else if (searchType === 'NEW') {
-    const code = ['newGuild', JavaScript.ORDER_NONE];
+    const code = ['newGuild', javascriptGenerator.ORDER_NONE];
     return code;
   }
 };

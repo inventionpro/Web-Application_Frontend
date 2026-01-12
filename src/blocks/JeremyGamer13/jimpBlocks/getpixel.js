@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_getpixel';
@@ -33,10 +33,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const xpos = JavaScript.valueToCode(block, 'x', JavaScript.ORDER_ATOMIC);
-  const ypos = JavaScript.valueToCode(block, 'y', JavaScript.ORDER_ATOMIC);
-  return [`image.getPixelColor(${xpos}, ${ypos})`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const xpos = javascriptGenerator.valueToCode(block, 'x', javascriptGenerator.ORDER_ATOMIC);
+  const ypos = javascriptGenerator.valueToCode(block, 'y', javascriptGenerator.ORDER_ATOMIC);
+  return [`image.getPixelColor(${xpos}, ${ypos})`, javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

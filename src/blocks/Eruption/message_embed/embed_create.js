@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_embed_create';
 
@@ -36,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const name = block.getFieldValue('NAME');
   const name2 = name.replace(/ /g, '_');
-  const then = JavaScript.statementToCode(block, 'THEN');
+  const then = javascriptGenerator.statementToCode(block, 'THEN');
   const then2 = then.replace(/hnxgcjtirh\./g, name2 + '.');
   const code = `var ${name2} = new Discord.EmbedBuilder(); \n ${then2}\n`;
   return code;

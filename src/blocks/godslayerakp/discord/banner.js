@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_get_user_banner_but_member_is_user_rn';
 const blockData = {
@@ -24,13 +24,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const user = JavaScript.valueToCode(block, 'user', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const user = javascriptGenerator.valueToCode(block, 'user', javascriptGenerator.ORDER_ATOMIC);
   return [
     `
 ${user}.bannerUrl({
   format: "png"
 })\n`,
-    JavaScript.ORDER_ATOMIC
+    javascriptGenerator.ORDER_ATOMIC
   ];
 };

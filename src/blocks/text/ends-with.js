@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_ends_with';
 
@@ -29,9 +29,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const string = JavaScript.valueToCode(block, 'STRING', JavaScript.ORDER_ATOMIC);
-  const substring = JavaScript.valueToCode(block, 'SUBSTRING', JavaScript.ORDER_ATOMIC);
-  const code = [`(${string} || '').endsWith(${substring} || '')`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const string = javascriptGenerator.valueToCode(block, 'STRING', javascriptGenerator.ORDER_ATOMIC);
+  const substring = javascriptGenerator.valueToCode(block, 'SUBSTRING', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`(${string} || '').endsWith(${substring} || '')`, javascriptGenerator.ORDER_NONE];
   return code;
 };

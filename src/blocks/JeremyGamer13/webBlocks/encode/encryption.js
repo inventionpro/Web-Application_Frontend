@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 Blockly.Blocks['jg_encryption_encrypt_text'] = {
   init: function () {
     this.jsonInit({
@@ -33,14 +33,14 @@ Blockly.Blocks['jg_encryption_encrypt_text'] = {
   }
 };
 
-JavaScript['jg_encryption_encrypt_text'] = function (block) {
-  const text = JavaScript.valueToCode(block, 'encode', JavaScript.ORDER_ATOMIC);
-  const key = JavaScript.valueToCode(block, 'key', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['jg_encryption_encrypt_text'] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'encode', javascriptGenerator.ORDER_ATOMIC);
+  const key = javascriptGenerator.valueToCode(block, 'key', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
   if (type == 0) {
-    return [`S4D_APP_CRYPTOJS.AES.encrypt(${text}, ${key}).toString()`, JavaScript.ORDER_NONE];
+    return [`S4D_APP_CRYPTOJS.AES.encrypt(${text}, ${key}).toString()`, javascriptGenerator.ORDER_NONE];
   } else {
-    return [`S4D_APP_CRYPTOJS.AES.decrypt(${text}, ${key}).toString(S4D_APP_CRYPTOJS.enc.Utf8)`, JavaScript.ORDER_NONE];
+    return [`S4D_APP_CRYPTOJS.AES.decrypt(${text}, ${key}).toString(S4D_APP_CRYPTOJS.enc.Utf8)`, javascriptGenerator.ORDER_NONE];
   }
 };
 //afoieh
@@ -73,7 +73,7 @@ Blockly.Blocks['catsoup_encryption_sha256'] = {
   }
 };
 
-JavaScript['catsoup_encryption_sha256'] = function (block) {
-  const text = JavaScript.valueToCode(block, 'encode', JavaScript.ORDER_ATOMIC);
-  return [`S4D_APP_CRYPTOJS.SHA256(${text})`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock['catsoup_encryption_sha256'] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'encode', javascriptGenerator.ORDER_ATOMIC);
+  return [`S4D_APP_CRYPTOJS.SHA256(${text})`, javascriptGenerator.ORDER_NONE];
 };

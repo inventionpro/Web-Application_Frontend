@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'snd_ahq_button';
 
 const blockData = {
@@ -45,15 +45,15 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   let extra = '';
-  const name = JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE);
-  const data = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE);
-  const embed = JavaScript.valueToCode(block, 'embed val', JavaScript.ORDER_NONE);
+  const name = javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE);
+  const data = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE);
+  const embed = javascriptGenerator.valueToCode(block, 'embed val', javascriptGenerator.ORDER_NONE);
   if (embed) {
     extra = `${embed}`;
   }
-  const statementsThen = JavaScript.valueToCode(block, 'button val', JavaScript.ORDER_NONE);
+  const statementsThen = javascriptGenerator.valueToCode(block, 'button val', javascriptGenerator.ORDER_NONE);
   const ahq = statementsThen.replace("'", '').replace("'", '');
   const code = `${name}.send({
         content: String(${data}),

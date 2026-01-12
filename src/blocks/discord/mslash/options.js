@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'options';
 
@@ -80,10 +80,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH');
-  const string = JavaScript.valueToCode(block, 'BOOLEAN', JavaScript.ORDER_ATOMIC).toLowerCase();
+  const string = javascriptGenerator.valueToCode(block, 'BOOLEAN', javascriptGenerator.ORDER_ATOMIC).toLowerCase();
   console.log('return ' + string + '\n' + searchType);
-  const code = [`interaction.options.get${searchType}(${string})`, JavaScript.ORDER_NONE];
+  const code = [`interaction.options.get${searchType}(${string})`, javascriptGenerator.ORDER_NONE];
   return code;
 };

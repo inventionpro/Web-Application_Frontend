@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'qdb_all';
 
@@ -18,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  return ['await qdb.all()\n', JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = function () {
+  return ['await qdb.all()\n', javascriptGenerator.ORDER_ATOMIC];
 };

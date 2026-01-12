@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'snake_js';
 
@@ -63,15 +63,15 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const title = JavaScript.valueToCode(block, 'TITLE', JavaScript.ORDER_ATOMIC);
-  const footer = JavaScript.valueToCode(block, 'FOOTER', JavaScript.ORDER_ATOMIC);
-  const timestamp = JavaScript.valueToCode(block, 'TIMESTAMP', JavaScript.ORDER_ATOMIC);
-  const empty = JavaScript.valueToCode(block, 'EMPTY', JavaScript.ORDER_ATOMIC);
-  const body = JavaScript.valueToCode(block, 'BODY', JavaScript.ORDER_ATOMIC);
-  const food = JavaScript.valueToCode(block, 'FOOD', JavaScript.ORDER_ATOMIC);
-  const cancel = JavaScript.valueToCode(block, 'CANCEL', JavaScript.ORDER_ATOMIC);
-  const color = JavaScript.valueToCode(block, 'COLOR', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const title = javascriptGenerator.valueToCode(block, 'TITLE', javascriptGenerator.ORDER_ATOMIC);
+  const footer = javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC);
+  const timestamp = javascriptGenerator.valueToCode(block, 'TIMESTAMP', javascriptGenerator.ORDER_ATOMIC);
+  const empty = javascriptGenerator.valueToCode(block, 'EMPTY', javascriptGenerator.ORDER_ATOMIC);
+  const body = javascriptGenerator.valueToCode(block, 'BODY', javascriptGenerator.ORDER_ATOMIC);
+  const food = javascriptGenerator.valueToCode(block, 'FOOD', javascriptGenerator.ORDER_ATOMIC);
+  const cancel = javascriptGenerator.valueToCode(block, 'CANCEL', javascriptGenerator.ORDER_ATOMIC);
+  const color = javascriptGenerator.valueToCode(block, 'COLOR', javascriptGenerator.ORDER_ATOMIC);
   const code = `
     await Snake({
         message: s4dmessage,

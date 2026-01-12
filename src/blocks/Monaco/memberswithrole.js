@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'monaco_members_with_role';
 
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['monaco_members_with_role'] = function (block) {
-  var value_role = JavaScript.valueToCode(block, 'role', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['monaco_members_with_role'] = (block) => {
+  var value_role = javascriptGenerator.valueToCode(block, 'role', javascriptGenerator.ORDER_ATOMIC);
   var code = `${value_role}.members`;
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'att_type';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
-  const code = [`(new URL.URL((${message}.attachments.first()).url)).pathname.split("/").reverse()[0]).split(".")[1]`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`(new URL.URL((${message}.attachments.first()).url)).pathname.split("/").reverse()[0]).split(".")[1]`, javascriptGenerator.ORDER_NONE];
   return code;
 };

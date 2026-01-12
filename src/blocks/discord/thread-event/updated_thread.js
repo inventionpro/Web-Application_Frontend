@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_updated_thread';
@@ -28,9 +28,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const thread = block.getFieldValue('THREAD');
-  const code = [`${thread}`, JavaScript.ORDER_NONE];
+  const code = [`${thread}`, javascriptGenerator.ORDER_NONE];
   return code;
 };
 

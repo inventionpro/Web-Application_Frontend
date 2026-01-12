@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'parham_replitdb_getall';
 
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var statements_then = JavaScript.statementToCode(block, 'then');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var statements_then = javascriptGenerator.statementToCode(block, 'then');
   var code = `S4D_APP_Replit_DB.list().then(async (S4D_APP_Replit_DB_Data) => {${statements_then}});;\n`;
   return code;
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'frost_category_id';
 
@@ -35,9 +35,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   var extention = block.getFieldValue('type');
-  var code = JavaScript.valueToCode(block, 'CATEGORY', JavaScript.ORDER_ATOMIC);
+  var code = javascriptGenerator.valueToCode(block, 'CATEGORY', javascriptGenerator.ORDER_ATOMIC);
 
-  return [`${code}.${extention}`, JavaScript.ORDER_NONE];
+  return [`${code}.${extention}`, javascriptGenerator.ORDER_NONE];
 };

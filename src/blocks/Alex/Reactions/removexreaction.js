@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'remove_reaction_of_user';
 
@@ -34,10 +34,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const message = JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC);
-  const user = JavaScript.valueToCode(block, 'user', JavaScript.ORDER_ATOMIC);
-  const reaction = JavaScript.valueToCode(block, 'reaction', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const message = javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC);
+  const user = javascriptGenerator.valueToCode(block, 'user', javascriptGenerator.ORDER_ATOMIC);
+  const reaction = javascriptGenerator.valueToCode(block, 'reaction', javascriptGenerator.ORDER_ATOMIC);
 
   const code = `${message}.reactions.cache.find(reaction => reaction.emoji.name == ${reaction}).users.remove(${user}.id); \n`;
   return code;

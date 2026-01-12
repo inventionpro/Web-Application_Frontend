@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 's4d_embed_send';
 const menuName = 's4d_embed_send_mutator';
@@ -103,17 +103,17 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const name = block.getFieldValue('NAME');
   const name2 = name
     .replace(/, /g, 'asgasdgasdgasegqehh')
     .replace(/ /g, '_')
     .replace(/asgasdgasdgasegqehh/g, ', ');
-  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
+  const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   if (message.length == 0) {
-    const code = [`embeds: [${name2}]`, JavaScript.ORDER_ATOMIC];
+    const code = [`embeds: [${name2}]`, javascriptGenerator.ORDER_ATOMIC];
     return code;
   }
-  const code = [`embeds: [${name2}], content: String(${message})`, JavaScript.ORDER_ATOMIC];
+  const code = [`embeds: [${name2}], content: String(${message})`, javascriptGenerator.ORDER_ATOMIC];
   return code;
 };

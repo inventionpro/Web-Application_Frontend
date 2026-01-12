@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'gsa_ytdl_get_info';
@@ -106,9 +106,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const get_data = block.getFieldValue('get_data');
-  return [`S4D_APP_YTDL_JSON${get_data}`.replace('NOOOOOOOOOL', ''), JavaScript.ORDER_NONE];
+  return [`S4D_APP_YTDL_JSON${get_data}`.replace('NOOOOOOOOOL', ''), javascriptGenerator.ORDER_NONE];
 };
 registerRestrictions(blockName, [
   {

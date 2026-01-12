@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'express_var';
 
@@ -48,11 +48,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE') == 'set' ? '' : block.getFieldValue('TYPE');
-  const vab = JavaScript.valueToCode(block, 'VAR', JavaScript.ORDER_ATOMIC);
+  const vab = javascriptGenerator.valueToCode(block, 'VAR', javascriptGenerator.ORDER_ATOMIC);
   const vab2 = vab.substring(1, vab.length - 1);
-  const content = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_ATOMIC);
+  const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   const colon = block.getFieldValue('COLON');
   const code = `${type} ${vab2} = ${content}${colon}
 `;

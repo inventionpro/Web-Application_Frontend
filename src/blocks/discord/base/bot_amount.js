@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_bot_amount';
 
@@ -31,7 +31,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const t = block.getFieldValue('T');
   let code = '';
   if (t === 'pings') {
@@ -45,5 +45,5 @@ JavaScript[blockName] = function (block) {
   } else if (t === 'uptime') {
     code = 's4d.client.uptime';
   }
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

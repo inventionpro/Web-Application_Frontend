@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'inv_comment_code';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   var text_name = block.getFieldValue('NAME');
-  var statements_name = JavaScript.statementToCode(block, 'NAME');
+  var statements_name = javascriptGenerator.statementToCode(block, 'NAME');
   var code = `/*
   ${text_name}
   

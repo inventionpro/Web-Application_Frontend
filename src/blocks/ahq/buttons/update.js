@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'updte_ahq_button';
 
 const blockData = {
@@ -40,12 +40,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   var ahq = ``;
   let extra = '';
-  const data = JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE);
-  const statementsThen = JavaScript.valueToCode(block, 'button val', JavaScript.ORDER_NONE);
-  const embed = JavaScript.valueToCode(block, 'embed val', JavaScript.ORDER_NONE);
+  const data = javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE);
+  const statementsThen = javascriptGenerator.valueToCode(block, 'button val', javascriptGenerator.ORDER_NONE);
+  const embed = javascriptGenerator.valueToCode(block, 'embed val', javascriptGenerator.ORDER_NONE);
   if (statementsThen) {
     ahq = `components: [new Discord.ActionRowBuilder().addComponents(
             ${statementsThen.replace("'", '').replace("'", '')}

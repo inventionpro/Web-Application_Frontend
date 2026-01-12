@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'create_chart';
 
@@ -56,11 +56,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['create_chart'] = function (block) {
+javascriptGenerator.forBlock['create_chart'] = (block) => {
   var dropdown_typee = block.getFieldValue('typee');
-  var value_label = JavaScript.valueToCode(block, 'label', JavaScript.ORDER_ATOMIC);
-  var value_labels = JavaScript.valueToCode(block, 'labels', JavaScript.ORDER_ATOMIC);
-  var value_data = JavaScript.valueToCode(block, 'data', JavaScript.ORDER_ATOMIC);
+  var value_label = javascriptGenerator.valueToCode(block, 'label', javascriptGenerator.ORDER_ATOMIC);
+  var value_labels = javascriptGenerator.valueToCode(block, 'labels', javascriptGenerator.ORDER_ATOMIC);
+  var value_data = javascriptGenerator.valueToCode(block, 'data', javascriptGenerator.ORDER_ATOMIC);
   var code = `const chart = ChartJSImage().chart({
   type: '${dropdown_typee}',
   data: {

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'unbanned_event';
 
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['unbanned_event'] = function (block) {
-  var statements_code = JavaScript.statementToCode(block, 'code');
+javascriptGenerator.forBlock['unbanned_event'] = (block) => {
+  var statements_code = javascriptGenerator.statementToCode(block, 'code');
 
   var code = `s4d.client.on(Discord.Events.GuildBanRemove, async (unban) => {\n ${statements_code} \n });\n`;
   return code;

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'get_sticker';
 
@@ -29,9 +29,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const guild = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
-  const sticker = JavaScript.valueToCode(block, 'sticker', JavaScript.ORDER_ATOMIC);
-  const code = [`${guild}.stickers.cache.find(s => s.name == ${sticker}) \n`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const guild = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
+  const sticker = javascriptGenerator.valueToCode(block, 'sticker', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`${guild}.stickers.cache.find(s => s.name == ${sticker}) \n`, javascriptGenerator.ORDER_NONE];
   return code;
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 'set_server_something';
@@ -59,11 +59,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['set_server_something'] = function (block) {
+javascriptGenerator.forBlock['set_server_something'] = (block) => {
   var parameters = block.getFieldValue('parameter');
-  var value = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC);
-  var reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
-  var server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
+  var value = javascriptGenerator.valueToCode(block, 'value', javascriptGenerator.ORDER_ATOMIC);
+  var reason = javascriptGenerator.valueToCode(block, 'reason', javascriptGenerator.ORDER_ATOMIC);
+  var server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
 
   var code = ``;
   switch (parameters) {

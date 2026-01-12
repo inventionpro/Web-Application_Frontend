@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'monaco_expanded_punishments';
 
@@ -44,11 +44,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['monaco_expanded_punishments'] = function (block) {
+javascriptGenerator.forBlock['monaco_expanded_punishments'] = (block) => {
   var dropdown_punishments = block.getFieldValue('punishments');
-  var value_member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
-  var value_server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
-  var value_reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
+  var value_member = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC);
+  var value_server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
+  var value_reason = javascriptGenerator.valueToCode(block, 'reason', javascriptGenerator.ORDER_ATOMIC);
   var code = `${value_server}.members.${dropdown_punishments}(${value_member}, { reason: String(${value_reason}) })\n`;
   return code;
 };

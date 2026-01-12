@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'reply_ahq_modal_text';
@@ -94,11 +94,11 @@ const BORDER_MUTATOR_MIXIN = {
 };
 
 Blockly.Extensions.registerMutator('s4d_ahq_mutator_t', BORDER_MUTATOR_MIXIN, null, ['']);
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   let code = [`await i.reply({`];
-  const Id = JavaScript.valueToCode(block, 'CONTENT', JavaScript.ORDER_NONE);
-  const Lavbel = JavaScript.valueToCode(block, 'EMBED', JavaScript.ORDER_NONE);
-  const Style = JavaScript.valueToCode(block, 'BUTTON', JavaScript.ORDER_NONE);
+  const Id = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_NONE);
+  const Lavbel = javascriptGenerator.valueToCode(block, 'EMBED', javascriptGenerator.ORDER_NONE);
+  const Style = javascriptGenerator.valueToCode(block, 'BUTTON', javascriptGenerator.ORDER_NONE);
   if (Id) {
     code.push(`content: String(${Id}),`);
   }
@@ -108,7 +108,7 @@ JavaScript[blockName] = function (block) {
   if (Style) {
     code.push(`components: [new Discord.ActionRowBuilder().addComponents(${Style.replace("'", '').replace("'", '').replace('(', '').replace(')', '')})],`);
   }
-  code.push(`ephemeral: ${JavaScript.valueToCode(block, 'ephemeral', JavaScript.ORDER_NONE)}\n})`);
+  code.push(`ephemeral: ${javascriptGenerator.valueToCode(block, 'ephemeral', javascriptGenerator.ORDER_NONE)}\n})`);
   return code.join('\n');
 };
 registerRestrictions(blockName, [

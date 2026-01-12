@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_saveGraph_convert';
 
@@ -28,8 +28,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
-  const code = [`line_chart_S4D_generated_992731990318.${type}()`, JavaScript.ORDER_NONE];
+  const code = [`line_chart_S4D_generated_992731990318.${type}()`, javascriptGenerator.ORDER_NONE];
   return code;
 };

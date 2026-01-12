@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
 
 const blockName = 's4d_run_save_output';
@@ -32,8 +32,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  return `${JavaScript.nameDB_.getName(block.workspace.getVariableById(block.getFieldValue('VAR')).name, Blockly.Names.NameType.VARIABLE)} = await ${JavaScript.statementToCode(block, 'STATEMENT')};`;
+javascriptGenerator.forBlock[blockName] = (block) => {
+  return `${javascriptGenerator.nameDB_.getName(block.workspace.getVariableById(block.getFieldValue('VAR')).name, Blockly.Names.NameType.VARIABLE)} = await ${javascriptGenerator.statementToCode(block, 'STATEMENT')};`;
 };
 
 registerRestrictions(blockName, [

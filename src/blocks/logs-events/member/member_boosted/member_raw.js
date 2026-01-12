@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'member_raw';
 
@@ -27,11 +27,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
-  let code = ['member.user.id', JavaScript.ORDER_NONE];
+  let code = ['member.user.id', javascriptGenerator.ORDER_NONE];
   if (searchType === 'TAG') {
-    code = ['member.user.tag', JavaScript.ORDER_NONE];
+    code = ['member.user.tag', javascriptGenerator.ORDER_NONE];
   }
   return code;
 };

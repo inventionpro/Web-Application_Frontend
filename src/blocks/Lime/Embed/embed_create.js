@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'lime_s4d_embed_create';
 
@@ -31,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['s4d_embed_create'] = function (block) {
-  let name_value = JavaScript.valueToCode(block, 'name_value', JavaScript.ORDER_ATOMIC);
-  let statements_then = JavaScript.statementToCode(block, 'THEN');
+javascriptGenerator.forBlock['s4d_embed_create'] = (block) => {
+  let name_value = javascriptGenerator.valueToCode(block, 'name_value', javascriptGenerator.ORDER_ATOMIC);
+  let statements_then = javascriptGenerator.statementToCode(block, 'THEN');
   name_value = name_value.split(' ');
   name_value = name_value.join('_');
   name_value = name_value.toLowerCase();

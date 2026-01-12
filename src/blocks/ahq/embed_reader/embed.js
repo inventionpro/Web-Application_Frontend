@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'ahq_embed_info';
 
 const blockData = {
@@ -34,9 +34,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const a = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC).replace('.user', '').replace('.author', '.member');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const a = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC).replace('.user', '').replace('.author', '.member');
   const stats = block.getFieldValue('INFO');
-  const code = [`String(${a}.embeds[0]${stats})`, JavaScript.ORDER_NONE];
+  const code = [`String(${a}.embeds[0]${stats})`, javascriptGenerator.ORDER_NONE];
   return code;
 };

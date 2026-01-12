@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_get_channel';
@@ -33,13 +33,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'NAME') {
-    return [`s4d.client.channels.cache.find((channel) => channel.name === ${value})`, JavaScript.ORDER_ATOMIC];
+    return [`s4d.client.channels.cache.find((channel) => channel.name === ${value})`, javascriptGenerator.ORDER_ATOMIC];
   } else {
-    return [`s4d.client.channels.cache.get(${value})`, JavaScript.ORDER_ATOMIC];
+    return [`s4d.client.channels.cache.get(${value})`, javascriptGenerator.ORDER_ATOMIC];
   }
 };
 

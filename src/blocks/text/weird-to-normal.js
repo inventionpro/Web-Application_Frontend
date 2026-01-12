@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'weird-to-normal';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const string = JavaScript.valueToCode(block, 'CHAR', JavaScript.ORDER_ATOMIC);
-  const code = [`weirdToNormalChars(${string})`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const string = javascriptGenerator.valueToCode(block, 'CHAR', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`weirdToNormalChars(${string})`, javascriptGenerator.ORDER_NONE];
   return code;
 };

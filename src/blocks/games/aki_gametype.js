@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'aki_gametype';
 
@@ -28,9 +28,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
-  const code = [`${type}`, JavaScript.ORDER_NONE];
+  const code = [`${type}`, javascriptGenerator.ORDER_NONE];
 
   return code;
 };

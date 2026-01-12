@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
 Blockly.Blocks['jg_text_for_each_letter_in_text_do'] = {
   init: function () {
@@ -26,9 +26,9 @@ Blockly.Blocks['jg_text_for_each_letter_in_text_do'] = {
     });
   }
 };
-JavaScript['jg_text_for_each_letter_in_text_do'] = function (block) {
-  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
-  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
+javascriptGenerator.forBlock['jg_text_for_each_letter_in_text_do'] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
+  const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   const code = `[...String(${text})].forEach(async (letter_inText) => {
   ${statements}
 });
@@ -48,8 +48,8 @@ Blockly.Blocks['jg_text_for_each_letter_in_text_do_letter'] = {
   }
 };
 
-JavaScript['jg_text_for_each_letter_in_text_do_letter'] = function () {
-  return [`letter_inText`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock['jg_text_for_each_letter_in_text_do_letter'] = function () {
+  return [`letter_inText`, javascriptGenerator.ORDER_NONE];
 };
 registerRestrictions('jg_text_for_each_letter_in_text_do_letter', [
   {

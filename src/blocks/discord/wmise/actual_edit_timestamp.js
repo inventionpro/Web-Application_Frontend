@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'redo_maybe_idk_jg_newmsg_edit_date_timestamp_of_message_edit';
 
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`newMessage.${type}`, JavaScript.ORDER_NONE];
+  const code = [`newMessage.${type}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

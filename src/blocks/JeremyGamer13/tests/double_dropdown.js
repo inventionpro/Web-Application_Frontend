@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_tests_doubleDropdown';
 
@@ -37,7 +37,7 @@ Blockly.Blocks[blockName] = {
   isHiden: true
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const A = block.getFieldValue('A');
   const B = block.getFieldValue('B');
   const code = `${A}${B}`;

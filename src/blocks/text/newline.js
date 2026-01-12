@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_newline';
 
@@ -16,6 +16,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  return ["'\\n'", JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = function () {
+  return ["'\\n'", javascriptGenerator.ORDER_ATOMIC];
 };

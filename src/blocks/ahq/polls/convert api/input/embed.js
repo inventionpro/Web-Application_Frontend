@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../../restrictions';
 const blockName = 'convert_embed';
 
@@ -23,8 +23,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const code = [JavaScript.valueToCode(block, 'buton', JavaScript.ORDER_NONE).replace("'", '').replace("'", ''), JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const code = [javascriptGenerator.valueToCode(block, 'buton', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", ''), javascriptGenerator.ORDER_NONE];
   return code;
 };
 registerRestrictions(blockName, [

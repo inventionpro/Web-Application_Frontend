@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_reg_slash_options';
 
@@ -49,10 +49,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const bl = JavaScript.valueToCode(block, 'ahq', JavaScript.ORDER_ATOMIC);
-  const server = JavaScript.valueToCode(block, 'Server', JavaScript.ORDER_ATOMIC);
-  const des = JavaScript.valueToCode(block, 'args', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const bl = javascriptGenerator.valueToCode(block, 'ahq', javascriptGenerator.ORDER_ATOMIC);
+  const server = javascriptGenerator.valueToCode(block, 'Server', javascriptGenerator.ORDER_ATOMIC);
+  const des = javascriptGenerator.valueToCode(block, 'args', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('Label');
   const code = `{
         name: ${server},

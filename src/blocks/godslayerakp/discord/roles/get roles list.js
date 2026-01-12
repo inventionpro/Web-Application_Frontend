@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 Blockly.Blocks['gsa_get_all_roles_on_member'] = {
   init: function () {
@@ -21,6 +21,6 @@ Blockly.Blocks['gsa_get_all_roles_on_member'] = {
   }
 };
 
-JavaScript['gsa_get_all_roles_on_member'] = function (block) {
-  return [`${JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC)}._roles`, JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock['gsa_get_all_roles_on_member'] = (block) => {
+  return [`${javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC)}._roles`, javascriptGenerator.ORDER_ATOMIC];
 };

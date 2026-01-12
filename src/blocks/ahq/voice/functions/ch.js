@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'act_voice';
 
@@ -41,7 +41,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const code = `newState.${block.getFieldValue('action')}(${JavaScript.valueToCode(block, 'r', JavaScript.ORDER_ATOMIC || null)})`;
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const code = `newState.${block.getFieldValue('action')}(${javascriptGenerator.valueToCode(block, 'r', javascriptGenerator.ORDER_ATOMIC || null)})`;
   return code;
 };

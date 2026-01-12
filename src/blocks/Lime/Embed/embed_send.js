@@ -1,10 +1,10 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'lime_s4d_embed_send';
 
 const blockData = {
-  type: 's4d_embed_send',
+  type: blockName,
   message0: 'Call Embed With name %1 and text %2',
   args0: [
     {
@@ -31,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['s4d_embed_send'] = function (block) {
-  let name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  let text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  let name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  let text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
   name = name.split(' ');
   name = name.join('_');
   name = name.toLowerCase();

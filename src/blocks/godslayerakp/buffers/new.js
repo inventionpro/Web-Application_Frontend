@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_from_string';
 
@@ -39,8 +39,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const string = JavaScript.valueToCode(block, 'string', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const string = javascriptGenerator.valueToCode(block, 'string', javascriptGenerator.ORDER_ATOMIC);
   const encode = block.getFieldValue('encode');
-  return [`Buffer.from(String(${string}), '${encode}')`, JavaScript.ORDER_ATOMIC];
+  return [`Buffer.from(String(${string}), '${encode}')`, javascriptGenerator.ORDER_ATOMIC];
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'parham_replitdb_setto';
 
@@ -37,10 +37,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var value_set = JavaScript.valueToCode(block, 'set', JavaScript.ORDER_ATOMIC);
-  var value_to = JavaScript.valueToCode(block, 'to', JavaScript.ORDER_ATOMIC);
-  var statements_then = JavaScript.statementToCode(block, 'then');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var value_set = javascriptGenerator.valueToCode(block, 'set', javascriptGenerator.ORDER_ATOMIC);
+  var value_to = javascriptGenerator.valueToCode(block, 'to', javascriptGenerator.ORDER_ATOMIC);
+  var statements_then = javascriptGenerator.statementToCode(block, 'then');
   var code = `S4D_APP_Replit_DB.set(${value_set}, ${value_to}).then(async () => {${statements_then}});\n`;
   return code;
 };

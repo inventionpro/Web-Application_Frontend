@@ -1,6 +1,6 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const BORDER_FIELDS = ['STYLE', 'LABEL', 'EMOJI', 'URL', 'CUSTOM_ID', 'DISABLED'];
@@ -87,13 +87,13 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('s4d_message_row_block_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
 
-JavaScript['s4d_message_row_block'] = function (block) {
-  let id = JavaScript.valueToCode(block, 'CUSTOM_ID', JavaScript.ORDER_ATOMIC) || null;
-  let url = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC) || null;
-  let emoji = JavaScript.valueToCode(block, 'EMOJI', JavaScript.ORDER_ATOMIC) || null;
-  let label = JavaScript.valueToCode(block, 'LABEL', JavaScript.ORDER_ATOMIC) || null;
-  let style = JavaScript.valueToCode(block, 'STYLE', JavaScript.ORDER_ATOMIC) || null;
-  let disabled = JavaScript.valueToCode(block, 'DISABLED', JavaScript.ORDER_ATOMIC) || null;
+javascriptGenerator.forBlock['s4d_message_row_block'] = (block) => {
+  let id = javascriptGenerator.valueToCode(block, 'CUSTOM_ID', javascriptGenerator.ORDER_ATOMIC) || null;
+  let url = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC) || null;
+  let emoji = javascriptGenerator.valueToCode(block, 'EMOJI', javascriptGenerator.ORDER_ATOMIC) || null;
+  let label = javascriptGenerator.valueToCode(block, 'LABEL', javascriptGenerator.ORDER_ATOMIC) || null;
+  let style = javascriptGenerator.valueToCode(block, 'STYLE', javascriptGenerator.ORDER_ATOMIC) || null;
+  let disabled = javascriptGenerator.valueToCode(block, 'DISABLED', javascriptGenerator.ORDER_ATOMIC) || null;
   let code = `new Discord.ButtonBuilder()\n`;
   if (id !== null) code += `.setCustomId(${id})\n`;
   if (url !== null) code += `.setURL(${url})\n`;
