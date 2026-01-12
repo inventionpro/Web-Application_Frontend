@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'fz_lock_emoji';
 
@@ -31,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const emoji = JavaScript.valueToCode(block, 'EMOJI', JavaScript.ORDER_ATOMIC);
-  const role = JavaScript.valueToCode(block, 'ROLE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const emoji = javascriptGenerator.valueToCode(block, 'EMOJI', javascriptGenerator.ORDER_ATOMIC);
+  const role = javascriptGenerator.valueToCode(block, 'ROLE', javascriptGenerator.ORDER_ATOMIC);
   const code = `${emoji}.roles.add([${role}]);\n`;
   return code;
 };

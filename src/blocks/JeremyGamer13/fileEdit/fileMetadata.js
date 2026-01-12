@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_file_metadata';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const file = JavaScript.valueToCode(block, 'file', JavaScript.ORDER_ATOMIC);
-  const code = [`JSON.stringify(fs.statSync(` + file + `))`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const file = javascriptGenerator.valueToCode(block, 'file', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`JSON.stringify(fs.statSync(` + file + `))`, javascriptGenerator.ORDER_NONE];
   return code;
 };

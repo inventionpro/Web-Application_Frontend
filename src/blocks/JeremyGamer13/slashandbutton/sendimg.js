@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_slash_sendImage';
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const fileNameandLocation = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  const hidden = JavaScript.valueToCode(block, 'HIDE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const fileNameandLocation = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  const hidden = javascriptGenerator.valueToCode(block, 'HIDE', javascriptGenerator.ORDER_ATOMIC);
   var stored = `[${fileNameandLocation}]`;
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
     stored = fileNameandLocation;

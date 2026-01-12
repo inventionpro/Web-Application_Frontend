@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'jg';
 const blockName = yourName + '_' + 'other_try_catch_finally';
@@ -46,7 +46,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputs_ = [];
     for (let i = 0; i < amountOfInputs; i++) {
       this.inputs_.push(false);
@@ -77,7 +77,7 @@ Blockly.Blocks[blockName] = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.inputs.Align.LEFT)
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase())
         .appendField(names[i]);
     }
@@ -104,20 +104,20 @@ Blockly.Blocks[blockName] = {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
         this.appendDummyInput(BORDER_FIELDS[i].toUpperCase() + 'd').appendField(names[i]);
-        this.appendStatementInput(BORDER_FIELDS[i].toUpperCase()).setAlign(Blockly.ALIGN_RIGHT);
+        this.appendStatementInput(BORDER_FIELDS[i].toUpperCase()).setAlign(Blockly.inputs.Align.RIGHT);
       }
     }
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
   let code = `try {`;
   code = code.split('\n');
-  const TRY = JavaScript.statementToCode(block, 'TRY');
+  const TRY = javascriptGenerator.statementToCode(block, 'TRY');
   code.push(TRY);
-  const IFERROR = JavaScript.statementToCode(block, 'IFERROR');
-  const FINALLY = JavaScript.statementToCode(block, 'FINALLY');
+  const IFERROR = javascriptGenerator.statementToCode(block, 'IFERROR');
+  const FINALLY = javascriptGenerator.statementToCode(block, 'FINALLY');
   // check if the inputs exist before adding them to the exported code
   if (IFERROR) {
     code.push(`} catch (err) {`);

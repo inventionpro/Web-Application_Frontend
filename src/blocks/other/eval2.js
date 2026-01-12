@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_eval2';
 
@@ -23,7 +23,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const code = JavaScript.valueToCode(block, 'EVAL', JavaScript.ORDER_ATOMIC);
-  return [`eval(${code})`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const code = javascriptGenerator.valueToCode(block, 'EVAL', javascriptGenerator.ORDER_ATOMIC);
+  return [`eval(${code})`, javascriptGenerator.ORDER_NONE];
 };

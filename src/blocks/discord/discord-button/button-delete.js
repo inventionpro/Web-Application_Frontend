@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_button_delete_reply';
 
@@ -19,7 +19,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = function () {
   const code = `await i.deleteReply()\n`;
   return code;
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'get_cpu_uptime';
 
@@ -25,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const statementThen = JavaScript.statementToCode(block, 'THEN');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
 
   const code = `
         os.cpuUsage(async function(v){

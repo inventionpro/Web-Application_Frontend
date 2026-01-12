@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_create_webhook_then';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const channel = JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_ATOMIC);
-  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
+  const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   const code = `${channel}.createWebhook('Spidey Bot','https://discord.com/assets/1f0bfc0865d324c2587920a7d80c609b.png').then(async webhook=>{\n${statements}\n})\n`;
   return code;
 };

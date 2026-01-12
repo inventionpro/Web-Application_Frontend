@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_leave_server';
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   var code = `${server}.leave()`;
   return code;
 };

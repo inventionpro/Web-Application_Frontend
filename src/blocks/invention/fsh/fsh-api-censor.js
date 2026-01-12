@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'inv_fsh_api_censor';
 
@@ -24,10 +24,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var value_url = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var value_url = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
 
   var code = `await _S4D_inventionFSHapi('filter?text=', ${value_url}, 'censor', ${value_url})`;
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

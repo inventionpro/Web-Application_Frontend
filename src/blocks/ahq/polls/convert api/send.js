@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'send_ahq_converted';
@@ -79,7 +79,7 @@ const BORDER_MUTATOR_MIXIN = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(names[i])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -102,21 +102,21 @@ const BORDER_MUTATOR_MIXIN = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_LEFT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.LEFT).appendField(names[i]);
       }
     }
   }
 };
 
 Blockly.Extensions.registerMutator('ahq_send_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
-JavaScript[blockName] = function (block) {
-  const a = JavaScript.valueToCode(block, 'AHQ_E', JavaScript.ORDER_NONE);
-  const b = JavaScript.valueToCode(block, 'AHQ_B', JavaScript.ORDER_NONE);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const a = javascriptGenerator.valueToCode(block, 'AHQ_E', javascriptGenerator.ORDER_NONE);
+  const b = javascriptGenerator.valueToCode(block, 'AHQ_B', javascriptGenerator.ORDER_NONE);
   const code = [
-    `${JavaScript.valueToCode(block, 'ch', JavaScript.ORDER_NONE)}.send({
+    `${javascriptGenerator.valueToCode(block, 'ch', javascriptGenerator.ORDER_NONE)}.send({
         files: [{
-            attachment: \`${JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`,
-            name: \`${JavaScript.valueToCode(block, 'name', JavaScript.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`
+            attachment: \`${javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`,
+            name: \`${javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`
         }]`
   ];
   if (a) {

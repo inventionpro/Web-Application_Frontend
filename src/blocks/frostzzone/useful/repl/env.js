@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'frost_env';
 const blockData = {
@@ -23,8 +23,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
-  const code = [`process.env[String(${value})]`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`process.env[String(${value})]`, javascriptGenerator.ORDER_NONE];
   return code;
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'Message';
 
@@ -17,7 +17,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  const code = ['s4dmessage', JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = function () {
+  const code = ['s4dmessage', javascriptGenerator.ORDER_NONE];
   return code;
 };

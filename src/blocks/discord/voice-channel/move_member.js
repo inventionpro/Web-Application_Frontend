@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'move_member';
 
@@ -31,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const id = JavaScript.valueToCode(block, 'id', JavaScript.ORDER_ATOMIC);
-  const vc = JavaScript.valueToCode(block, 'vc', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const id = javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_ATOMIC);
+  const vc = javascriptGenerator.valueToCode(block, 'vc', javascriptGenerator.ORDER_ATOMIC);
   const code = `
 s4dmessage.channel.members.forEach(member => {if(member.id === ${id}){member.voice.setChannel(${vc})}});`;
   return code;

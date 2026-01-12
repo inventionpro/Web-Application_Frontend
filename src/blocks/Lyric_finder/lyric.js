@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'lyric';
 
@@ -18,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  const code = [`_S4D_lyrics`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = function () {
+  const code = [`_S4D_lyrics`, javascriptGenerator.ORDER_NONE];
   return code;
 };

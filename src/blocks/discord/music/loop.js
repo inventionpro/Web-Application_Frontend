@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_loop';
 
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const queue = JavaScript.valueToCode(block, 'QUEUE', JavaScript.ORDER_ATOMIC);
-  const looping = JavaScript.valueToCode(block, 'LOOPING', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const queue = javascriptGenerator.valueToCode(block, 'QUEUE', javascriptGenerator.ORDER_ATOMIC);
+  const looping = javascriptGenerator.valueToCode(block, 'LOOPING', javascriptGenerator.ORDER_ATOMIC);
   let code = '';
   if (looping === 'true') {
     code = `${queue}.setRepeatMode(QueueRepeatMode.QUEUE)\n`;

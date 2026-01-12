@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_get_webhook_then';
 
@@ -37,9 +37,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
-  const token = JavaScript.valueToCode(block, 'TOKEN', JavaScript.ORDER_ATOMIC);
-  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
+  const token = javascriptGenerator.valueToCode(block, 'TOKEN', javascriptGenerator.ORDER_ATOMIC);
+  const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   return `s4d.client.fetchWebhook(${id},${token}).then(async gwebhook =>{\n${statements}\n});\n`;
 };

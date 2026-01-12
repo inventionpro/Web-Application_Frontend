@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'frost_slash_sub_command';
 
@@ -37,10 +37,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  var desc = JavaScript.valueToCode(block, 'DESC', JavaScript.ORDER_ATOMIC);
-  var options = JavaScript.statementToCode(block, 'OPTIONS');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  var desc = javascriptGenerator.valueToCode(block, 'DESC', javascriptGenerator.ORDER_ATOMIC);
+  var options = javascriptGenerator.statementToCode(block, 'OPTIONS');
   var code = `{
     name: ${name.toLowerCase()},
 		description: ${desc},

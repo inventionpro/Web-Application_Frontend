@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'frost_translate';
 
@@ -39,11 +39,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const key = JavaScript.valueToCode(block, 'KEY', JavaScript.ORDER_ATOMIC);
-  const lang = JavaScript.valueToCode(block, 'LANG', JavaScript.ORDER_ATOMIC);
-  const vari = JavaScript.valueToCode(block, 'VAR', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
+  const lang = javascriptGenerator.valueToCode(block, 'LANG', javascriptGenerator.ORDER_ATOMIC);
+  const vari = javascriptGenerator.valueToCode(block, 'VAR', javascriptGenerator.ORDER_ATOMIC);
 
-  const code = [`translate(${key}, {to: '${lang}'}).then(res => { ${vari}; }).catch(err => { console.error(err) })`, JavaScript.ORDER_ATOMIC];
+  const code = [`translate(${key}, {to: '${lang}'}).then(res => { ${vari}; }).catch(err => { console.error(err) })`, javascriptGenerator.ORDER_ATOMIC];
   return code;
 };

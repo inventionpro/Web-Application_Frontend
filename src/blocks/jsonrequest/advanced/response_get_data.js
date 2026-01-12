@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_web_request_advanced_get_response_data';
 const blockData = {
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC).replaceAll("'", '').replaceAll('"', '');
-  const code = [`response.data.${value}`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC).replaceAll("'", '').replaceAll('"', '');
+  const code = [`response.data.${value}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

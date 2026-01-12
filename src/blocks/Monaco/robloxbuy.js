@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'monaco_roblox_buy';
 
@@ -34,8 +34,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['monaco_roblox_buy'] = function (block) {
-  var value_id = JavaScript.valueToCode(block, 'id', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['monaco_roblox_buy'] = (block) => {
+  var value_id = javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_ATOMIC);
   var code = `S4D_APP_NOBLOX.buy(Number(${value_id}))\n`;
   return code;
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_create_giveaway';
 
@@ -46,12 +46,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const statements = JavaScript.statementToCode(block, 'THEN');
-  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
-  const duration = JavaScript.valueToCode(block, 'DURATION', JavaScript.ORDER_ATOMIC);
-  const winnecount = JavaScript.valueToCode(block, 'WINNERS', JavaScript.ORDER_ATOMIC);
-  const prize = JavaScript.valueToCode(block, 'PRIZE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const statements = javascriptGenerator.statementToCode(block, 'THEN');
+  const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
+  const duration = javascriptGenerator.valueToCode(block, 'DURATION', javascriptGenerator.ORDER_ATOMIC);
+  const winnecount = javascriptGenerator.valueToCode(block, 'WINNERS', javascriptGenerator.ORDER_ATOMIC);
+  const prize = javascriptGenerator.valueToCode(block, 'PRIZE', javascriptGenerator.ORDER_ATOMIC);
   var code = `s4d.manager.start(${channel}, {duration:ms(${duration}),winnerCount:Number(${winnecount}),prize:${prize}}).then(async (gData) => {\n${statements}\n});\n`;
   return code;
 };

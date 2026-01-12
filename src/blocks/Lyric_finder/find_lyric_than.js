@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'find_lyric_than';
 
@@ -38,10 +38,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const Artist = JavaScript.valueToCode(block, 'ArtistName', JavaScript.ORDER_ATOMIC);
-  const Song = JavaScript.valueToCode(block, 'SongName', JavaScript.ORDER_ATOMIC);
-  const statementThen = JavaScript.statementToCode(block, 'THEN');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const Artist = javascriptGenerator.valueToCode(block, 'ArtistName', javascriptGenerator.ORDER_ATOMIC);
+  const Song = javascriptGenerator.valueToCode(block, 'SongName', javascriptGenerator.ORDER_ATOMIC);
+  const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   const code = `_S4D_getLyrics(${Artist.length ? Artist : "''"}+' '+${Song.length ? Song : "''"})
   .then(_S4D_lyrics=>{
     if (_S4D_lyrics instanceof Error) _S4D_lyrics = 'Not Found!';

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'monaco_delete_guild';
 
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['monaco_delete_guild'] = function (block) {
-  var value_server = JavaScript.valueToCode(block, 'Server', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['monaco_delete_guild'] = (block) => {
+  var value_server = javascriptGenerator.valueToCode(block, 'Server', javascriptGenerator.ORDER_ATOMIC);
   var code = `${value_server}.delete()\n`;
   return code;
 };

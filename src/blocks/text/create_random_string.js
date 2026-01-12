@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'create_random_string';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
-  const code = [`S4D_makeid(${text})`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`S4D_makeid(${text})`, javascriptGenerator.ORDER_NONE];
   return code;
 };

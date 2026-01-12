@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'jg_minecraft_rcon_send_command';
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var command = JavaScript.valueToCode(block, 'COMMAND', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var command = javascriptGenerator.valueToCode(block, 'COMMAND', javascriptGenerator.ORDER_ATOMIC);
   if (command.charAt(0) == '/') {
     command = command.substring(1);
   }

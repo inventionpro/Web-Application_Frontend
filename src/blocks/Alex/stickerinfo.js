@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'info_of_sticker';
 
@@ -36,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const sticker = JavaScript.valueToCode(block, 'sticker', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const sticker = javascriptGenerator.valueToCode(block, 'sticker', javascriptGenerator.ORDER_ATOMIC);
   const info = block.getFieldValue('info');
 
-  const code = [`${sticker}.${info}`, JavaScript.ORDER_NONE];
+  const code = [`${sticker}.${info}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

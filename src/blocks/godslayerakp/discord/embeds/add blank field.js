@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 const blockName = 'gsa_add_blank_field';
 const blockData = {
@@ -19,7 +19,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = function () {
   return `{
 	name: '\\u200b',
 	value: '\\u200b',

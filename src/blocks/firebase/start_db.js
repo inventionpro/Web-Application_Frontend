@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 'start_db';
@@ -61,15 +61,15 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const apiKey = JavaScript.valueToCode(block, 'apiKey', JavaScript.ORDER_ATOMIC);
-  const authDomain = JavaScript.valueToCode(block, 'authDomain', JavaScript.ORDER_ATOMIC);
-  const databaseURL = JavaScript.valueToCode(block, 'databaseURL', JavaScript.ORDER_ATOMIC);
-  const projectId = JavaScript.valueToCode(block, 'projectId', JavaScript.ORDER_ATOMIC);
-  const storageBucket = JavaScript.valueToCode(block, 'storageBucket', JavaScript.ORDER_ATOMIC);
-  const messagingSenderId = JavaScript.valueToCode(block, 'messagingSenderId', JavaScript.ORDER_ATOMIC);
-  const appId = JavaScript.valueToCode(block, 'appId', JavaScript.ORDER_ATOMIC);
-  const measurementId = JavaScript.valueToCode(block, 'measurementId', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const apiKey = javascriptGenerator.valueToCode(block, 'apiKey', javascriptGenerator.ORDER_ATOMIC);
+  const authDomain = javascriptGenerator.valueToCode(block, 'authDomain', javascriptGenerator.ORDER_ATOMIC);
+  const databaseURL = javascriptGenerator.valueToCode(block, 'databaseURL', javascriptGenerator.ORDER_ATOMIC);
+  const projectId = javascriptGenerator.valueToCode(block, 'projectId', javascriptGenerator.ORDER_ATOMIC);
+  const storageBucket = javascriptGenerator.valueToCode(block, 'storageBucket', javascriptGenerator.ORDER_ATOMIC);
+  const messagingSenderId = javascriptGenerator.valueToCode(block, 'messagingSenderId', javascriptGenerator.ORDER_ATOMIC);
+  const appId = javascriptGenerator.valueToCode(block, 'appId', javascriptGenerator.ORDER_ATOMIC);
+  const measurementId = javascriptGenerator.valueToCode(block, 'measurementId', javascriptGenerator.ORDER_ATOMIC);
 
   let code = `let firebaseConfig = {
     apiKey: ${apiKey},

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_web_request_advanced_new2_send_request_to_url_using_method_with_result_giving_request_headers_with_data_sections_then_if_error';
 
@@ -75,14 +75,14 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const URL = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const URL = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
   const METHOD = block.getFieldValue('METHOD');
   const IMAGEORNOT = block.getFieldValue('IMAGEORNOT');
-  const HEADERS = JavaScript.statementToCode(block, 'HEADERS');
-  const BODY = JavaScript.statementToCode(block, 'BODY');
-  const THEN = JavaScript.statementToCode(block, 'THEN');
-  const IF_ERROR = JavaScript.statementToCode(block, 'IF_ERROR');
+  const HEADERS = javascriptGenerator.statementToCode(block, 'HEADERS');
+  const BODY = javascriptGenerator.statementToCode(block, 'BODY');
+  const THEN = javascriptGenerator.statementToCode(block, 'THEN');
+  const IF_ERROR = javascriptGenerator.statementToCode(block, 'IF_ERROR');
   const code = `S4D_APP_PKG_axios({
         method: ${METHOD},
         url: ${URL},

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'initialize_dashboard';
 
@@ -111,24 +111,24 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['initialize_dashboard'] = function (block) {
-  var value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  var value_description = JavaScript.valueToCode(block, 'description', JavaScript.ORDER_ATOMIC);
-  var value_support_server_url = JavaScript.valueToCode(block, 'support_server_url', JavaScript.ORDER_ATOMIC);
-  var value_bot_invite_url = JavaScript.valueToCode(block, 'bot_invite_url', JavaScript.ORDER_ATOMIC);
-  var value_base_url = JavaScript.valueToCode(block, 'base_url', JavaScript.ORDER_ATOMIC);
-  var value_port = JavaScript.valueToCode(block, 'port', JavaScript.ORDER_ATOMIC);
-  var value_noportincallbackurl = JavaScript.valueToCode(block, 'noPortIncallbackUrl', JavaScript.ORDER_ATOMIC);
-  var value_secret = JavaScript.valueToCode(block, 'secret', JavaScript.ORDER_ATOMIC);
-  var value_logrequests = JavaScript.valueToCode(block, 'logRequests', JavaScript.ORDER_ATOMIC);
-  var value_injectcss = JavaScript.valueToCode(block, 'injectCSS', JavaScript.ORDER_ATOMIC);
-  var value_favicon_path = JavaScript.valueToCode(block, 'favicon_path', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['initialize_dashboard'] = (block) => {
+  var value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  var value_description = javascriptGenerator.valueToCode(block, 'description', javascriptGenerator.ORDER_ATOMIC);
+  var value_support_server_url = javascriptGenerator.valueToCode(block, 'support_server_url', javascriptGenerator.ORDER_ATOMIC);
+  var value_bot_invite_url = javascriptGenerator.valueToCode(block, 'bot_invite_url', javascriptGenerator.ORDER_ATOMIC);
+  var value_base_url = javascriptGenerator.valueToCode(block, 'base_url', javascriptGenerator.ORDER_ATOMIC);
+  var value_port = javascriptGenerator.valueToCode(block, 'port', javascriptGenerator.ORDER_ATOMIC);
+  var value_noportincallbackurl = javascriptGenerator.valueToCode(block, 'noPortIncallbackUrl', javascriptGenerator.ORDER_ATOMIC);
+  var value_secret = javascriptGenerator.valueToCode(block, 'secret', javascriptGenerator.ORDER_ATOMIC);
+  var value_logrequests = javascriptGenerator.valueToCode(block, 'logRequests', javascriptGenerator.ORDER_ATOMIC);
+  var value_injectcss = javascriptGenerator.valueToCode(block, 'injectCSS', javascriptGenerator.ORDER_ATOMIC);
+  var value_favicon_path = javascriptGenerator.valueToCode(block, 'favicon_path', javascriptGenerator.ORDER_ATOMIC);
   var dropdown_theme = block.getFieldValue('theme');
   var text_requiree = block.getFieldValue('requiree');
-  var value_permissions = JavaScript.valueToCode(block, 'permissions', JavaScript.ORDER_ATOMIC);
-  var statements_fields = JavaScript.statementToCode(block, 'FIELDS');
-  var statements_register_commands = JavaScript.statementToCode(block, 'REGISTER_COMMANDS');
-  var statements_cooki = JavaScript.statementToCode(block, 'cooki');
+  var value_permissions = javascriptGenerator.valueToCode(block, 'permissions', javascriptGenerator.ORDER_ATOMIC);
+  var statements_fields = javascriptGenerator.statementToCode(block, 'FIELDS');
+  var statements_register_commands = javascriptGenerator.statementToCode(block, 'REGISTER_COMMANDS');
+  var statements_cooki = javascriptGenerator.statementToCode(block, 'cooki');
   var code;
 
   if (dropdown_theme == 'custom') {

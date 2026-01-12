@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'ahq-mod';
 
 const blockData = {
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const f = JavaScript.valueToCode(block, 'anti-nsfw', JavaScript.ORDER_NONE);
-  const e = JavaScript.valueToCode(block, 'deepai', JavaScript.ORDER_NONE);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const f = javascriptGenerator.valueToCode(block, 'anti-nsfw', javascriptGenerator.ORDER_NONE);
+  const e = javascriptGenerator.valueToCode(block, 'deepai', javascriptGenerator.ORDER_NONE);
   let token = '';
   let extra = '';
   if ((f || 'false') == 'false') {

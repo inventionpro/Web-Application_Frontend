@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'fz_color';
 const defaultColor = '#a5745b';
@@ -36,8 +36,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const color = block.getFieldValue('COLOR');
-  const code = [`"${color}"`, JavaScript.ORDER_ATOMIC];
+  const code = [`"${color}"`, javascriptGenerator.ORDER_ATOMIC];
   return code;
 };

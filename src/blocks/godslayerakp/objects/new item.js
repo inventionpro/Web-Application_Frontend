@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_new_object_item_creator_empty_search_moment_searchMoment';
 const blockData = {
@@ -29,8 +29,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const message = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const message = javascriptGenerator.valueToCode(block, 'value', javascriptGenerator.ORDER_ATOMIC);
   const color = block.getFieldValue('name');
   return `"${color}": ${message},`;
 };

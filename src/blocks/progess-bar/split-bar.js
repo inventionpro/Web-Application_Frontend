@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'split_bar';
 
@@ -44,11 +44,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const total = JavaScript.valueToCode(block, 'TOTAL', JavaScript.ORDER_ATOMIC);
-  const current = JavaScript.valueToCode(block, 'CURRENT', JavaScript.ORDER_ATOMIC);
-  const size = JavaScript.valueToCode(block, 'SIZE', JavaScript.ORDER_ATOMIC) || null;
-  const line = JavaScript.valueToCode(block, 'LINE', JavaScript.ORDER_ATOMIC) || null;
-  const slider = JavaScript.valueToCode(block, 'SLIDER', JavaScript.ORDER_ATOMIC) || null;
-  return [`progressbar.splitBar(${total}, ${current}, ${size},${line},${slider});`, JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const total = javascriptGenerator.valueToCode(block, 'TOTAL', javascriptGenerator.ORDER_ATOMIC);
+  const current = javascriptGenerator.valueToCode(block, 'CURRENT', javascriptGenerator.ORDER_ATOMIC);
+  const size = javascriptGenerator.valueToCode(block, 'SIZE', javascriptGenerator.ORDER_ATOMIC) || null;
+  const line = javascriptGenerator.valueToCode(block, 'LINE', javascriptGenerator.ORDER_ATOMIC) || null;
+  const slider = javascriptGenerator.valueToCode(block, 'SLIDER', javascriptGenerator.ORDER_ATOMIC) || null;
+  return [`progressbar.splitBar(${total}, ${current}, ${size},${line},${slider});`, javascriptGenerator.ORDER_ATOMIC];
 };

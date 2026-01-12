@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_encode_main';
 
@@ -35,9 +35,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const text = JavaScript.valueToCode(block, 'encode', JavaScript.ORDER_ATOMIC);
-  const type = JavaScript.valueToCode(block, 'type', JavaScript.ORDER_ATOMIC);
-  const typefrom = JavaScript.valueToCode(block, 'type2', JavaScript.ORDER_ATOMIC);
-  return [`Buffer.from(${text}, ${typefrom}).toString(${type})`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'encode', javascriptGenerator.ORDER_ATOMIC);
+  const type = javascriptGenerator.valueToCode(block, 'type', javascriptGenerator.ORDER_ATOMIC);
+  const typefrom = javascriptGenerator.valueToCode(block, 'type2', javascriptGenerator.ORDER_ATOMIC);
+  return [`Buffer.from(${text}, ${typefrom}).toString(${type})`, javascriptGenerator.ORDER_NONE];
 };

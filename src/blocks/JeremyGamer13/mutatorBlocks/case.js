@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 'lasercat_jg_case_plus_minus';
 const menuName = blockName + '_plusminusMutatorMenu';
@@ -44,7 +44,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputCount = 0;
     this.defaultCaseEnabled = false;
   },
@@ -68,14 +68,14 @@ Blockly.Blocks[blockName] = {
     BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
     containerBlock
       .appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
+      .setAlign(Blockly.inputs.Align.RIGHT)
       .appendField(APPEND_NAME + ' ︱ -')
       .appendField(new Blockly.FieldCheckbox(false), 'MINUS')
       .appendField('+')
       .appendField(new Blockly.FieldCheckbox(false), 'PLUS')
       .appendField('Amount:')
       .appendField(new Blockly.FieldLabel('0'), 'NUMBER');
-    containerBlock.appendDummyInput().setAlign(Blockly.ALIGN_LEFT).appendField(new Blockly.FieldCheckbox(false), 'ALLOWDEFAULTCASE').appendField('default case');
+    containerBlock.appendDummyInput().setAlign(Blockly.inputs.Align.LEFT).appendField(new Blockly.FieldCheckbox(false), 'ALLOWDEFAULTCASE').appendField('default case');
     containerBlock.initSvg();
     return containerBlock;
   },
@@ -102,21 +102,21 @@ Blockly.Blocks[blockName] = {
       if (!this.getInput(APPEND_FIELD + i)) {
         BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
         this.appendValueInput(APPEND_FIELD + i)
-          .setAlign(Blockly.ALIGN_LEFT)
+          .setAlign(Blockly.inputs.Align.LEFT)
           .appendField(APPEND_NAME);
       }
     }
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');
-  const A = JavaScript.valueToCode(block, 'A', JavaScript.ORDER_NONE);
-  const B = JavaScript.valueToCode(block, 'B', JavaScript.ORDER_NONE);
-  const C = JavaScript.valueToCode(block, 'C', JavaScript.ORDER_NONE);
-  const D = JavaScript.valueToCode(block, 'D', JavaScript.ORDER_NONE);
+  const A = javascriptGenerator.valueToCode(block, 'A', javascriptGenerator.ORDER_NONE);
+  const B = javascriptGenerator.valueToCode(block, 'B', javascriptGenerator.ORDER_NONE);
+  const C = javascriptGenerator.valueToCode(block, 'C', javascriptGenerator.ORDER_NONE);
+  const D = javascriptGenerator.valueToCode(block, 'D', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (A) {
     code.push(`wow: ${A}`);

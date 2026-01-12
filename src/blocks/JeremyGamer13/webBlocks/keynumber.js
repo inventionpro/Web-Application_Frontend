@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_web_keynumber';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const datafile = JavaScript.valueToCode(block, 'datafile', JavaScript.ORDER_ATOMIC);
-  const code = [`(Object.keys(JSONdataS4D)[${datafile} - 1])`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const datafile = javascriptGenerator.valueToCode(block, 'datafile', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`(Object.keys(JSONdataS4D)[${datafile} - 1])`, javascriptGenerator.ORDER_NONE];
   return code;
 };

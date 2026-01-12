@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_button_menu';
 
@@ -40,11 +40,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
-  const placeholder = JavaScript.valueToCode(block, 'PLACEHOLDER', JavaScript.ORDER_ATOMIC);
-  const statements = JavaScript.statementToCode(block, 'OPTIONS');
-  const disabled = JavaScript.valueToCode(block, 'DISABLED', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
+  const placeholder = javascriptGenerator.valueToCode(block, 'PLACEHOLDER', javascriptGenerator.ORDER_ATOMIC);
+  const statements = javascriptGenerator.statementToCode(block, 'OPTIONS');
+  const disabled = javascriptGenerator.valueToCode(block, 'DISABLED', javascriptGenerator.ORDER_ATOMIC);
   var code = [
     `new MessageActionRow()
     .addComponents(
@@ -57,7 +57,7 @@ JavaScript[blockName] = function (block) {
 
     
     .addOptions(${statements}))\n`,
-    JavaScript.ORDER_NONE
+    javascriptGenerator.ORDER_NONE
   ];
   return code;
 };

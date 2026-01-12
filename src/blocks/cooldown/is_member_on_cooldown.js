@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'is_member_on_cooldown';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const user = JavaScript.valueToCode(block, 'USER', JavaScript.ORDER_ATOMIC);
-  const code = [`Cooldown.has(${user}.id)`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const user = javascriptGenerator.valueToCode(block, 'USER', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`Cooldown.has(${user}.id)`, javascriptGenerator.ORDER_NONE];
   return code;
 };

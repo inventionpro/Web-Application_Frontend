@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'eu_name';
 
@@ -41,9 +41,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const info = block.getFieldValue('INFO');
   const emoji = block.getFieldValue('ROLE');
-  const code = [`${emoji}.${info}`, JavaScript.ORDER_NONE];
+  const code = [`${emoji}.${info}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

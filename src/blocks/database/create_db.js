@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_database_create_new';
 
@@ -28,10 +28,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const name2 = name.substring(1, name.length - 1);
-  const file = JavaScript.valueToCode(block, 'FILE', JavaScript.ORDER_ATOMIC);
+  const file = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
   const file2 = file.substring(1, file.length - 1);
   const code = `const ${name2} = new Database('./${file2}.json')`;
   return code;

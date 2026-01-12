@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_s4duptime';
 const blockData = {
@@ -18,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  const code = [`s4d.client.uptime`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = function () {
+  const code = [`s4d.client.uptime`, javascriptGenerator.ORDER_NONE];
   return code;
 };

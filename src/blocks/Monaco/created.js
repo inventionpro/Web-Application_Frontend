@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'monaco_created_guild';
 
@@ -19,7 +19,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['monaco_created_guild'] = function () {
+javascriptGenerator.forBlock['monaco_created_guild'] = function () {
   var code = `newServer`;
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

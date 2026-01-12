@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_lasercat_switch_case';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const casee = JavaScript.valueToCode(block, 'case', JavaScript.ORDER_ATOMIC);
-  const blocks = JavaScript.statementToCode(block, 'blocks');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const casee = javascriptGenerator.valueToCode(block, 'case', javascriptGenerator.ORDER_ATOMIC);
+  const blocks = javascriptGenerator.statementToCode(block, 'blocks');
 
   return `
     case ${casee}:

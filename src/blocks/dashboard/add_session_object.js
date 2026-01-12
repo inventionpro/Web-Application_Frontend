@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'new_session_obj';
 
@@ -57,13 +57,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['new_session_obj'] = function (block) {
-  var value_sekret = JavaScript.valueToCode(block, 'sekret', JavaScript.ORDER_ATOMIC);
-  var value_resave = JavaScript.valueToCode(block, 'resave', JavaScript.ORDER_ATOMIC);
-  var value_saveuninitialized = JavaScript.valueToCode(block, 'saveUninitialized', JavaScript.ORDER_ATOMIC);
-  var value_secure = JavaScript.valueToCode(block, 'secure', JavaScript.ORDER_ATOMIC);
-  var value_httponly = JavaScript.valueToCode(block, 'httpOnly', JavaScript.ORDER_ATOMIC);
-  var value_maxage = JavaScript.valueToCode(block, 'maxAge', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['new_session_obj'] = (block) => {
+  var value_sekret = javascriptGenerator.valueToCode(block, 'sekret', javascriptGenerator.ORDER_ATOMIC);
+  var value_resave = javascriptGenerator.valueToCode(block, 'resave', javascriptGenerator.ORDER_ATOMIC);
+  var value_saveuninitialized = javascriptGenerator.valueToCode(block, 'saveUninitialized', javascriptGenerator.ORDER_ATOMIC);
+  var value_secure = javascriptGenerator.valueToCode(block, 'secure', javascriptGenerator.ORDER_ATOMIC);
+  var value_httponly = javascriptGenerator.valueToCode(block, 'httpOnly', javascriptGenerator.ORDER_ATOMIC);
+  var value_maxage = javascriptGenerator.valueToCode(block, 'maxAge', javascriptGenerator.ORDER_ATOMIC);
   var code = `
     const sessionObject = {
         secret: ${value_sekret},

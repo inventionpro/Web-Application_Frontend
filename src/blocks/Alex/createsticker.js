@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'create_sticker';
 
@@ -39,11 +39,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const file = JavaScript.valueToCode(block, 'file', JavaScript.ORDER_ATOMIC);
-  const name = JavaScript.valueToCode(block, 'name', JavaScript.ORDER_ATOMIC);
-  const server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
-  const tags = JavaScript.valueToCode(block, 'tags', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const file = javascriptGenerator.valueToCode(block, 'file', javascriptGenerator.ORDER_ATOMIC);
+  const name = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
+  const server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
+  const tags = javascriptGenerator.valueToCode(block, 'tags', javascriptGenerator.ORDER_ATOMIC);
   const code = `${server}.stickers.create(${file}, ${name}, ${tags}); \n`;
   return code;
 };

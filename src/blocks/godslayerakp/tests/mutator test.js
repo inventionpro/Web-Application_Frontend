@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 Blockly.Blocks['gsa_your_mom_lmao_mutator_block_hat'] = {
   init: function () {
     this.appendDummyInput().appendField('has fill color').appendField(new Blockly.FieldCheckbox('FALSE'), 'check');
@@ -36,7 +36,7 @@ Blockly.Blocks['gsa_your_mom_lmao'] = {
       tooltip: 'Asynchronously runs the code inside of it',
       helpUrl: ''
     });
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
   },
   isFilled: false,
   isHiden: true,
@@ -77,12 +77,12 @@ Blockly.Blocks['gsa_your_mom_lmao'] = {
   }
 };
 
-JavaScript['gsa_your_mom_lmao'] = function (block) {
-  var sizex = JavaScript.valueToCode(block, 'sx', JavaScript.ORDER_ATOMIC);
-  var sizey = JavaScript.valueToCode(block, 'sy', JavaScript.ORDER_ATOMIC);
-  var statements_code = JavaScript.statementToCode(block, 'code');
+javascriptGenerator.forBlock['gsa_your_mom_lmao'] = (block) => {
+  var sizex = javascriptGenerator.valueToCode(block, 'sx', javascriptGenerator.ORDER_ATOMIC);
+  var sizey = javascriptGenerator.valueToCode(block, 'sy', javascriptGenerator.ORDER_ATOMIC);
+  var statements_code = javascriptGenerator.statementToCode(block, 'code');
   var code = `
-  new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${JavaScript.valueToCode(block, 'color', JavaScript.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
+  new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${javascriptGenerator.valueToCode(block, 'color', javascriptGenerator.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
     ${statements_code}
   })
   `;

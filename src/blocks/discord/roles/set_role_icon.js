@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'set_role_icon';
 
@@ -31,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['set_role_icon'] = function (block) {
-  var icon = JavaScript.valueToCode(block, 'icon', JavaScript.ORDER_ATOMIC);
-  var role = JavaScript.valueToCode(block, 'role', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['set_role_icon'] = (block) => {
+  var icon = javascriptGenerator.valueToCode(block, 'icon', javascriptGenerator.ORDER_ATOMIC);
+  var role = javascriptGenerator.valueToCode(block, 'role', javascriptGenerator.ORDER_ATOMIC);
   var code = `${role}.setIcon(${icon});\n`;
   return code;
 };

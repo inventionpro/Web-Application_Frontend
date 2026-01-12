@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_forever';
 
@@ -27,11 +27,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   return `
         while(s4d.client && s4d.client.token) {
             await delay(50);
-            ${JavaScript.statementToCode(block, 'STATEMENT')}
+            ${javascriptGenerator.statementToCode(block, 'STATEMENT')}
             console.log('ran')
         }
     `;

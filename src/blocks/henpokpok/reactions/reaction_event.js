@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'reaction_added';
 
@@ -22,8 +22,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_NONE);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_NONE);
   const code = `s4d.client.on("messageReactionAdd", async (reaction, user) => {${statementsThen}})`;
   return code;
 };

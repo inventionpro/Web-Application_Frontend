@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_web_request_advanced_data_section';
 
@@ -33,9 +33,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const LABEL = block.getFieldValue('LABEL');
-  const STATEMENTS = JavaScript.statementToCode(block, 'STATEMENTS');
+  const STATEMENTS = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   const code = `${LABEL.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')}: {
            ${STATEMENTS}
         },

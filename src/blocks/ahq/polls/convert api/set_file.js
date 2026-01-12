@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'save_api_code';
@@ -20,7 +20,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = function () {
   const code = `job = await cloudConvert.jobs.wait(job.id); // Wait for job completion
 
 const exportTask = job.tasks.filter(

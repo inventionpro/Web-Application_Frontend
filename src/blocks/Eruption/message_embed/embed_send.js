@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 's4d_embed_send';
 const menuName = 's4d_embed_send_mutator';
@@ -43,7 +43,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputs_ = [];
     for (let i = 0; i < amountOfInputs; i++) {
       this.inputs_.push(false);
@@ -74,7 +74,7 @@ Blockly.Blocks[blockName] = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(names[i])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -97,23 +97,23 @@ Blockly.Blocks[blockName] = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
       }
     }
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const name = block.getFieldValue('NAME');
   const name2 = name
     .replace(/, /g, 'asgasdgasdgasegqehh')
     .replace(/ /g, '_')
     .replace(/asgasdgasdgasegqehh/g, ', ');
-  const message = JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC);
+  const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   if (message.length == 0) {
-    const code = [`embeds: [${name2}]`, JavaScript.ORDER_ATOMIC];
+    const code = [`embeds: [${name2}]`, javascriptGenerator.ORDER_ATOMIC];
     return code;
   }
-  const code = [`embeds: [${name2}], content: String(${message})`, JavaScript.ORDER_ATOMIC];
+  const code = [`embeds: [${name2}], content: String(${message})`, javascriptGenerator.ORDER_ATOMIC];
   return code;
 };

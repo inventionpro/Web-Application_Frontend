@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'get_all_roles';
 
@@ -38,10 +38,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const Then = JavaScript.statementToCode(block, 'then');
-  const member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
-  const server = JavaScript.valueToCode(block, 'server', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const Then = javascriptGenerator.statementToCode(block, 'then');
+  const member = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC);
+  const server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
   const code = `memberRoles = ${member}.roles.cache
 .filter((roles) => roles.id !== ${server}.id)
 .map ((role) => role.toString()); \n ${Then}`;

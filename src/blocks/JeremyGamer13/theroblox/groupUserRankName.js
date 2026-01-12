@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_roblox_user_group_rank';
 
@@ -18,7 +18,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  const code = [`roblox_group_rank`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = function () {
+  const code = [`roblox_group_rank`, javascriptGenerator.ORDER_NONE];
   return code;
 };

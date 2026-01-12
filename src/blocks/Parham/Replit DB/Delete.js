@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'parham_replitdb_delete';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var value_delete = JavaScript.valueToCode(block, 'delete', JavaScript.ORDER_ATOMIC);
-  var statements_then = JavaScript.statementToCode(block, 'then');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var value_delete = javascriptGenerator.valueToCode(block, 'delete', javascriptGenerator.ORDER_ATOMIC);
+  var statements_then = javascriptGenerator.statementToCode(block, 'then');
   var code = `S4D_APP_Replit_DB.delete(${value_delete}).then(async () => {${statements_then}});`;
   return code;
 };

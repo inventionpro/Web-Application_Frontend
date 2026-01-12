@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 's4d_embed_set_author';
@@ -44,7 +44,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputs_ = [];
     for (let i = 0; i < amountOfInputs; i++) {
       this.inputs_.push(false);
@@ -75,7 +75,7 @@ Blockly.Blocks[blockName] = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(names[i])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -98,16 +98,16 @@ Blockly.Blocks[blockName] = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
       }
     }
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const author = JavaScript.valueToCode(block, 'AUTHOR', JavaScript.ORDER_ATOMIC);
-  const profile = JavaScript.valueToCode(block, 'PROFILE', JavaScript.ORDER_ATOMIC);
-  const url = JavaScript.valueToCode(block, 'URL', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const author = javascriptGenerator.valueToCode(block, 'AUTHOR', javascriptGenerator.ORDER_ATOMIC);
+  const profile = javascriptGenerator.valueToCode(block, 'PROFILE', javascriptGenerator.ORDER_ATOMIC);
+  const url = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setAuthor(String(${author}), String(${profile}), String(${url})); \n`;
   return code;
 };

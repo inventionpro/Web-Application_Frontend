@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'frost_send_embed_rr';
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
   const code = `s4dmessage.reply({${text === '' ? '' : `content:${text},`} embeds: [embed] });\n`;
   return code;
 };

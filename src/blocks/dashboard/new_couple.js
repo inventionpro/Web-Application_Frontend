@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'new_couple';
 
@@ -31,9 +31,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['new_couple'] = function (block) {
-  var value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  var value_id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['new_couple'] = (block) => {
+  var value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  var value_id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
   var code = `[${value_id}, ${value_name}]`;
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

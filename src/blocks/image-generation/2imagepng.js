@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = '2imagepng';
@@ -42,12 +42,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const image = JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC);
-  const image2 = JavaScript.valueToCode(block, 'IMAGE2', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
+  const image2 = javascriptGenerator.valueToCode(block, 'IMAGE2', javascriptGenerator.ORDER_ATOMIC);
   const info2 = block.getFieldValue('INFO');
   let info1 = info2.replace("'", '');
   let info = info1.replace("'", '');
-  const code = [`await new DIG.${info}().getImage(${image},${image2})`, JavaScript.ORDER_NONE];
+  const code = [`await new DIG.${info}().getImage(${image},${image2})`, javascriptGenerator.ORDER_NONE];
   return code;
 };

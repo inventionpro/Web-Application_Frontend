@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'member_color';
 
@@ -25,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const member = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
-  const code = [`${member}.displayHexColor`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const member = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`${member}.displayHexColor`, javascriptGenerator.ORDER_NONE];
   return code;
 };

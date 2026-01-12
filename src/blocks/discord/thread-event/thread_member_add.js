@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 's4d_thread_member_add';
@@ -59,7 +59,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputs_ = [];
     for (let i = 0; i < amountOfInputs; i++) {
       this.inputs_.push(false);
@@ -90,7 +90,7 @@ Blockly.Blocks[blockName] = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(names[i])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -113,17 +113,17 @@ Blockly.Blocks[blockName] = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
       }
     }
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const thread = JavaScript.valueToCode(block, 'THREAD', JavaScript.ORDER_ATOMIC);
-  const member = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
-  let reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
+  const thread = javascriptGenerator.valueToCode(block, 'THREAD', javascriptGenerator.ORDER_ATOMIC);
+  const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
+  let reason = javascriptGenerator.valueToCode(block, 'REASON', javascriptGenerator.ORDER_ATOMIC);
   if (reason) {
     reason = ', ' + reason;
   }

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_file_foreachfile';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const fileName = JavaScript.valueToCode(block, 'fileName', JavaScript.ORDER_ATOMIC);
-  const statementThen = JavaScript.statementToCode(block, 'THEN');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const fileName = javascriptGenerator.valueToCode(block, 'fileName', javascriptGenerator.ORDER_ATOMIC);
+  const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   let code = `fs.readdir(${fileName}, async (err, files) => {
   files.forEach(async files4d => {
     ${statementThen}

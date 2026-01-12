@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_m_create_embed_then_set_author';
@@ -36,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const author = JavaScript.valueToCode(block, 'AUTHOR', JavaScript.ORDER_ATOMIC);
-  const pfp = JavaScript.valueToCode(block, 'PFP', JavaScript.ORDER_ATOMIC);
-  const hyperlink = JavaScript.valueToCode(block, 'HYPERLINK', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const author = javascriptGenerator.valueToCode(block, 'AUTHOR', javascriptGenerator.ORDER_ATOMIC);
+  const pfp = javascriptGenerator.valueToCode(block, 'PFP', javascriptGenerator.ORDER_ATOMIC);
+  const hyperlink = javascriptGenerator.valueToCode(block, 'HYPERLINK', javascriptGenerator.ORDER_ATOMIC);
   const code = `embed.setAuthor(${author},(${pfp}.user.displayAvatarURL()),${hyperlink});\n`;
   return code;
 };

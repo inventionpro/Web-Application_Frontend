@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_web_foreachkey';
 
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const statementThen = JavaScript.statementToCode(block, 'THEN');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   let code = `Object.keys(JSONdataS4D).forEach( async s4dkey => {
 ${statementThen} 
 })

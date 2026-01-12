@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'frost_client';
 
@@ -29,7 +29,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const t = block.getFieldValue('T');
   let code = '';
   if (t === 'servers') {
@@ -39,5 +39,5 @@ JavaScript[blockName] = function (block) {
   } else if (t === 'users') {
     code = 's4d.client.users.cache.size';
   }
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

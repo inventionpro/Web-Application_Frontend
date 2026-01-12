@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_get_jimp_image_buffer';
 
@@ -36,9 +36,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('mimeType');
-  const then = JavaScript.statementToCode(block, 'then');
+  const then = javascriptGenerator.statementToCode(block, 'then');
   const code = `image.getBuffer(jimp.${type}, async (err, buffer) => {
     ${then}
 });
@@ -58,7 +58,7 @@ Blockly.Blocks[blockName + '_value'] = {
   }
 };
 
-JavaScript[blockName + '_value'] = function () {
-  const code = [`buffer`, JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName + '_value'] = function () {
+  const code = [`buffer`, javascriptGenerator.ORDER_ATOMIC];
   return code;
 };

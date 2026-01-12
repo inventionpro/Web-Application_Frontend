@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 export const OutputType = {
   STRING: ['String', 'Text'],
@@ -75,15 +75,15 @@ export function createBlock(data) {
     },
     isHiden: data.hidden
   };
-  JavaScript[data.id] = function (block) {
+  javascriptGenerator.forBlock[data.id] = (block) => {
     const args = {};
     inputNames.forEach((input) => {
       switch (data.inputs[input].type) {
         case 'input_value':
-          args[input] = JavaScript.valueToCode(block, input, JavaScript.ORDER_ATOMIC);
+          args[input] = javascriptGenerator.valueToCode(block, input, javascriptGenerator.ORDER_ATOMIC);
           break;
         case 'input_statement':
-          args[input] = JavaScript.statementToCode(block, input);
+          args[input] = javascriptGenerator.statementToCode(block, input);
           break;
         case 'input_dummy':
           args[input] = '';
@@ -94,6 +94,6 @@ export function createBlock(data) {
       }
     });
     if (data.output == null) return data.export(block, args);
-    return [data.export(block, args), JavaScript.ORDER_NONE];
+    return [data.export(block, args), javascriptGenerator.ORDER_NONE];
   };
 }

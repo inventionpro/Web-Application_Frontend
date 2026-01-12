@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_reply_add_reaction';
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const reaction = JavaScript.valueToCode(block, 'REACTION', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const reaction = javascriptGenerator.valueToCode(block, 'REACTION', javascriptGenerator.ORDER_ATOMIC);
   const code = `s4dreply.react(${reaction});\n`;
   return code;
 };

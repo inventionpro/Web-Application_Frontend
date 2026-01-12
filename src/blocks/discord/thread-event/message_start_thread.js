@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_message_start_thread';
@@ -68,12 +68,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const archiveAfter = block.getFieldValue('ARCHIVE');
   const threadType = block.getFieldValue('THREADTYPE');
-  const code = JavaScript.statementToCode(block, 'CODE');
-  const catchd = JavaScript.statementToCode(block, 'NOTENOUGH');
+  const code = javascriptGenerator.statementToCode(block, 'CODE');
+  const catchd = javascriptGenerator.statementToCode(block, 'NOTENOUGH');
   return `s4dmessage.startThread({name: ${name}, autoArchiveDuration: ${archiveAfter}, type: '${threadType}'})\n.then(async s4dCreatedThread => {\n${code}\n})\n.catch(async s4dThreadErr => {if (String(s4dThreadErr) === 'DiscordAPIError: Guild premium subscription level too low'){\n${catchd}\n}});\n`;
 };
 

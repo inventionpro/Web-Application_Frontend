@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'inv_fivem_get';
 
@@ -42,9 +42,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   var dropdown_get = block.getFieldValue('get');
-  var statements_then = JavaScript.statementToCode(block, 'then');
+  var statements_then = javascriptGenerator.statementToCode(block, 'then');
   var code = `__S4D__fivem_server.${dropdown_get}().then(async (__S4D__${dropdown_get}) => {
     ${statements_then}
   });`;

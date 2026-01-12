@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'dash_guild_id';
 
@@ -18,9 +18,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['dash_guild_id'] = function () {
+javascriptGenerator.forBlock['dash_guild_id'] = function () {
   var code = 'guild.id';
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };
 
 const blockName1 = 'dash_value';
@@ -40,7 +40,7 @@ Blockly.Blocks[blockName1] = {
   }
 };
 
-JavaScript['dash_value'] = function () {
+javascriptGenerator.forBlock['dash_value'] = function () {
   var code = 'value';
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

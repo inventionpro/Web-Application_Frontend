@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_lasercat_switch_switch';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const switchh = JavaScript.valueToCode(block, 'switch', JavaScript.ORDER_ATOMIC);
-  const blocks = JavaScript.statementToCode(block, 'blocks');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const switchh = javascriptGenerator.valueToCode(block, 'switch', javascriptGenerator.ORDER_ATOMIC);
+  const blocks = javascriptGenerator.statementToCode(block, 'blocks');
 
   return `switch (${switchh}) {
         ${blocks}

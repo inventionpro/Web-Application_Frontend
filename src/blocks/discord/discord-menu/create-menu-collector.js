@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_on_menu_click';
 
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
-  const memberr = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
+  const memberr = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   let member = memberr.replace('.user', '');
   const code = `let collector = m.createMessageComponentCollector({filter: i=>i.user.id === ${member}.id ,time:60000});
     collector.on('collect',async i=>{

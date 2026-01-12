@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'monaco_toggle_follow_channel';
 
@@ -36,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var value_togglechannel = JavaScript.valueToCode(block, 'togglechannel', JavaScript.ORDER_ATOMIC);
-  var value_locationchannel = JavaScript.valueToCode(block, 'locationchannel', JavaScript.ORDER_ATOMIC);
-  var value_reason = JavaScript.valueToCode(block, 'reason', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var value_togglechannel = javascriptGenerator.valueToCode(block, 'togglechannel', javascriptGenerator.ORDER_ATOMIC);
+  var value_locationchannel = javascriptGenerator.valueToCode(block, 'locationchannel', javascriptGenerator.ORDER_ATOMIC);
+  var value_reason = javascriptGenerator.valueToCode(block, 'reason', javascriptGenerator.ORDER_ATOMIC);
   var code = ` ${value_togglechannel}.addFollower(${value_locationchannel}, String(${value_reason}))
 `;
   return code;

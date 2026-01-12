@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'owner_n_ahq_hndler';
 
@@ -16,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function () {
-  const code = ['(ahqhandler[`not-owner`])', JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = function () {
+  const code = ['(ahqhandler[`not-owner`])', javascriptGenerator.ORDER_NONE];
   return code;
 };

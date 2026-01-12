@@ -1,6 +1,6 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const BORDER_FIELDS = ['TITLE_LIME', 'URL_EMBED', 'DESCRIPTION_LIME', 'AUTHORPFP', 'THUMBNAIL_LIME', 'FIELD_LIME', 'IMAGE_LIME', 'COLOR_LIME', 'TIMESTAMP', 'FOOTER_LIME', 'SETAUTHOR'];
 
@@ -56,7 +56,7 @@ const BORDER_MUTATOR_MIXIN = {
     for (let i = 0; i < this.inputs_.length; i++) {
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(BaseBlockly.Msg[BORDER_FIELDS[i]])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -78,7 +78,7 @@ const BORDER_MUTATOR_MIXIN = {
     }
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(BaseBlockly.Msg[BORDER_FIELDS[i]]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(BaseBlockly.Msg[BORDER_FIELDS[i]]);
       }
     }
   }
@@ -86,7 +86,7 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('s4d_message_embed_mutator_lime', BORDER_MUTATOR_MIXIN, null, ['']);
 
-JavaScript['s4d_message_embed_lime'] = function (block) {
+javascriptGenerator.forBlock['s4d_message_embed_lime'] = (block) => {
   let title = '';
   let color = '';
   let image = '';
@@ -97,40 +97,40 @@ JavaScript['s4d_message_embed_lime'] = function (block) {
   let timestamp = '';
   let author = '';
   let url = '';
-  if ((JavaScript.valueToCode(block, 'TITLE_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    title = `\n.setTitle(String(${JavaScript.valueToCode(block, 'TITLE_LIME', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'TITLE_LIME', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    title = `\n.setTitle(String(${javascriptGenerator.valueToCode(block, 'TITLE_LIME', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'COLOR_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    color = `\n.setColor(String(${JavaScript.valueToCode(block, 'COLOR_LIME', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'COLOR_LIME', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    color = `\n.setColor(String(${javascriptGenerator.valueToCode(block, 'COLOR_LIME', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'IMAGE_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    image = `\n.setImage(String(${JavaScript.valueToCode(block, 'IMAGE_LIME', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'IMAGE_LIME', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    image = `\n.setImage(String(${javascriptGenerator.valueToCode(block, 'IMAGE_LIME', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'DESCRIPTION_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    description = `\n.setDescription(String(${JavaScript.valueToCode(block, 'DESCRIPTION_LIME', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'DESCRIPTION_LIME', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    description = `\n.setDescription(String(${javascriptGenerator.valueToCode(block, 'DESCRIPTION_LIME', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'FOOTER_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    footer = `\n.setFooter(String(${JavaScript.valueToCode(block, 'FOOTER_LIME', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'FOOTER_LIME', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    footer = `\n.setFooter(String(${javascriptGenerator.valueToCode(block, 'FOOTER_LIME', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'THUMBNAIL_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    thumbnail = `\n.setThumbnail(String(${JavaScript.valueToCode(block, 'THUMBNAIL_LIME', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'THUMBNAIL_LIME', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    thumbnail = `\n.setThumbnail(String(${javascriptGenerator.valueToCode(block, 'THUMBNAIL_LIME', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.statementToCode(block, 'FIELD_LIME', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    field = `\n.addFields(${JavaScript.statementToCode(block, 'FIELD_LIME')})`;
+  if ((javascriptGenerator.statementToCode(block, 'FIELD_LIME', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    field = `\n.addFields(${javascriptGenerator.statementToCode(block, 'FIELD_LIME')})`;
   }
-  if ((JavaScript.valueToCode(block, 'TIMESTAMP', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    timestamp = `\n.setTimestamp(new Date(${JavaScript.valueToCode(block, 'TIMESTAMP', JavaScript.ORDER_ATOMIC)}))`;
-    if (JavaScript.valueToCode(block, 'TIMESTAMP', JavaScript.ORDER_ATOMIC) === 'null') {
+  if ((javascriptGenerator.valueToCode(block, 'TIMESTAMP', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    timestamp = `\n.setTimestamp(new Date(${javascriptGenerator.valueToCode(block, 'TIMESTAMP', javascriptGenerator.ORDER_ATOMIC)}))`;
+    if (javascriptGenerator.valueToCode(block, 'TIMESTAMP', javascriptGenerator.ORDER_ATOMIC) === 'null') {
       timestamp = `\n.setTimestamp()`;
     }
   }
-  if ((JavaScript.valueToCode(block, 'URL_EMBED', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    url = `\n.setURL(String(${JavaScript.valueToCode(block, 'URL_EMBED', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'URL_EMBED', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    url = `\n.setURL(String(${javascriptGenerator.valueToCode(block, 'URL_EMBED', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'SETAUTHOR', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    author = `\n.setAuthor(String(${JavaScript.valueToCode(block, 'SETAUTHOR', JavaScript.ORDER_ATOMIC)}))`;
-    if ((JavaScript.valueToCode(block, 'AUTHORPFP', JavaScript.ORDER_ATOMIC) || null) !== null) {
-      author = `\n.setAuthor(String(${JavaScript.valueToCode(block, 'SETAUTHOR', JavaScript.ORDER_ATOMIC)}),String(${JavaScript.valueToCode(block, 'AUTHORPFP', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'SETAUTHOR', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    author = `\n.setAuthor(String(${javascriptGenerator.valueToCode(block, 'SETAUTHOR', javascriptGenerator.ORDER_ATOMIC)}))`;
+    if ((javascriptGenerator.valueToCode(block, 'AUTHORPFP', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+      author = `\n.setAuthor(String(${javascriptGenerator.valueToCode(block, 'SETAUTHOR', javascriptGenerator.ORDER_ATOMIC)}),String(${javascriptGenerator.valueToCode(block, 'AUTHORPFP', javascriptGenerator.ORDER_ATOMIC)}))`;
     }
   }
   let code = `${title}${color}${image}${description}${footer}${thumbnail}${field}${timestamp}${author}${url}\n`;

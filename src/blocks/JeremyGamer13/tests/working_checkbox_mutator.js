@@ -8,7 +8,7 @@
 // current goals achieved: 1, 2, 3(?)!!!!
 
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 'jg_tests_checkbox_mutator';
 const menuName = blockName + '_checkboxMutatorMenu';
@@ -50,7 +50,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputs_ = [];
     for (let i = 0; i < amountOfInputs; i++) {
       this.inputs_.push(false);
@@ -81,7 +81,7 @@ Blockly.Blocks[blockName] = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(names[i])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -104,21 +104,21 @@ Blockly.Blocks[blockName] = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
       }
     }
   },
   isHiden: true // remove this from your block if you dont want it hidden
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');
-  const A = JavaScript.valueToCode(block, 'A', JavaScript.ORDER_NONE);
-  const B = JavaScript.valueToCode(block, 'B', JavaScript.ORDER_NONE);
-  const C = JavaScript.valueToCode(block, 'C', JavaScript.ORDER_NONE);
-  const D = JavaScript.valueToCode(block, 'D', JavaScript.ORDER_NONE);
+  const A = javascriptGenerator.valueToCode(block, 'A', javascriptGenerator.ORDER_NONE);
+  const B = javascriptGenerator.valueToCode(block, 'B', javascriptGenerator.ORDER_NONE);
+  const C = javascriptGenerator.valueToCode(block, 'C', javascriptGenerator.ORDER_NONE);
+  const D = javascriptGenerator.valueToCode(block, 'D', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (A) {
     code.push(`wow: ${A}`);
@@ -199,7 +199,7 @@ Blockly.Extensions.registerMutator("jg_tests_checkbox_mutator_cleanup_fix", {
         for (let i = 0; i < this.inputs_.length; i++) {
             BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
             containerBlock.appendDummyInput()
-                .setAlign(Blockly.ALIGN_RIGHT)
+                .setAlign(Blockly.inputs.Align.RIGHT)
                 .appendField(names[i])
                 .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? "TRUE" : "FALSE"), BORDER_FIELDS[i].toUpperCase());
         }
@@ -224,18 +224,18 @@ Blockly.Extensions.registerMutator("jg_tests_checkbox_mutator_cleanup_fix", {
                 BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
                 this.appendValueInput(BORDER_FIELDS[i].toUpperCase())
                     .setCheck(BORDER_TYPES[i])
-                    .setAlign(Blockly.ALIGN_RIGHT)
+                    .setAlign(Blockly.inputs.Align.RIGHT)
                     .appendField(names[i]);
             }
         }
     }
 }, null, [""]);
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block)=>{
     let code = [`await i.reply({`];
-    const Id = JavaScript.valueToCode(block, "CONTENT", JavaScript.ORDER_NONE);
-    const Lavbel = JavaScript.valueToCode(block, "EMBED", JavaScript.ORDER_NONE);
-    const Style = JavaScript.valueToCode(block, "BUTTON", JavaScript.ORDER_NONE);
+    const Id = javascriptGenerator.valueToCode(block, "CONTENT", javascriptGenerator.ORDER_NONE);
+    const Lavbel = javascriptGenerator.valueToCode(block, "EMBED", javascriptGenerator.ORDER_NONE);
+    const Style = javascriptGenerator.valueToCode(block, "BUTTON", javascriptGenerator.ORDER_NONE);
     if (Id) {
         code.push(`content: String(${Id}),`)
     }
@@ -245,7 +245,7 @@ JavaScript[blockName] = function (block) {
     if (Style) {
         code.push(`components: [new MessageActionRow().addComponents(${Style.replace("'", "").replace("'", "").replace("(", "").replace(")", "")})],`)
     }
-    code.push(`ephemeral: ${JavaScript.valueToCode(block, "ephemeral", JavaScript.ORDER_NONE)}\n})`)
+    code.push(`ephemeral: ${javascriptGenerator.valueToCode(block, "ephemeral", javascriptGenerator.ORDER_NONE)}\n})`)
     return code.join("\n");
 };
 */

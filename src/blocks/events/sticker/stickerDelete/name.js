@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'sd_name';
 
@@ -34,8 +34,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const info = block.getFieldValue('INFO');
-  const code = [`sticker.${info}`, JavaScript.ORDER_NONE];
+  const code = [`sticker.${info}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

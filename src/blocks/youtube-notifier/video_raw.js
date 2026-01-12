@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'video_raw';
 
@@ -30,10 +30,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   let searchType2 = searchType.replace("'", '');
   let s = searchType2.replace("'", '');
-  const code = [`video.${s}`, JavaScript.ORDER_NONE];
+  const code = [`video.${s}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

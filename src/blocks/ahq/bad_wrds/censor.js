@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'ahq_bdwrd_cn';
 
@@ -23,8 +23,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const data = JavaScript.valueToCode(block, 'BAD', JavaScript.ORDER_ATOMIC);
-  const code = [`(censor.censor(String(${data})))`, JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const data = javascriptGenerator.valueToCode(block, 'BAD', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`(censor.censor(String(${data})))`, javascriptGenerator.ORDER_ATOMIC];
   return code;
 };

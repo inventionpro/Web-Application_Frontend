@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'default_notif_lvl';
 
@@ -29,9 +29,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['default_notif_lvl'] = function (block) {
+javascriptGenerator.forBlock['default_notif_lvl'] = (block) => {
   var dropdown = block.getFieldValue('NAME');
   var code = dropdown;
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

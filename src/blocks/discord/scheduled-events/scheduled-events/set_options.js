@@ -1,6 +1,6 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const BORDER_FIELDS = ['S_EVENT_NAME', 'S_EVENT_START', 'S_EVENT_END', 'S_PRIV_LVL', 'S_NTITI_TYPE', 'S_EVENT_DESC', 'S_EVENT_CHANNEL', 'S_METADATA', 'S_REASON'];
 
@@ -56,7 +56,7 @@ const BORDER_MUTATOR_MIXIN = {
     for (let i = 0; i < this.inputs_.length; i++) {
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(BaseBlockly.Msg[BORDER_FIELDS[i]])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -78,7 +78,7 @@ const BORDER_MUTATOR_MIXIN = {
     }
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(BaseBlockly.Msg[BORDER_FIELDS[i]]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(BaseBlockly.Msg[BORDER_FIELDS[i]]);
       }
     }
   }
@@ -86,7 +86,7 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('event_set_options_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
 
-JavaScript['event_set_options'] = function (block) {
+javascriptGenerator.forBlock['event_set_options'] = (block) => {
   let name = '';
   let start_date = '';
   let end_date = '';
@@ -97,32 +97,32 @@ JavaScript['event_set_options'] = function (block) {
   let metadata = '';
   let reason = '';
 
-  if ((JavaScript.valueToCode(block, 'S_EVENT_NAME', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    name = `\nname: ${JavaScript.valueToCode(block, 'S_EVENT_NAME', JavaScript.ORDER_ATOMIC)},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_EVENT_NAME', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    name = `\nname: ${javascriptGenerator.valueToCode(block, 'S_EVENT_NAME', javascriptGenerator.ORDER_ATOMIC)},`;
   }
-  if ((JavaScript.valueToCode(block, 'S_EVENT_START', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    start_date = `\nscheduledStartTime:${JavaScript.valueToCode(block, 'S_EVENT_START', JavaScript.ORDER_ATOMIC)},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_EVENT_START', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    start_date = `\nscheduledStartTime:${javascriptGenerator.valueToCode(block, 'S_EVENT_START', javascriptGenerator.ORDER_ATOMIC)},`;
   }
-  if ((JavaScript.valueToCode(block, 'S_EVENT_END', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    end_date = `\nscheduledEndTime:${JavaScript.valueToCode(block, 'S_EVENT_END', JavaScript.ORDER_ATOMIC)},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_EVENT_END', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    end_date = `\nscheduledEndTime:${javascriptGenerator.valueToCode(block, 'S_EVENT_END', javascriptGenerator.ORDER_ATOMIC)},`;
   }
-  if ((JavaScript.valueToCode(block, 'S_EVENT_DESC', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    description = `\ndescription:${JavaScript.valueToCode(block, 'S_EVENT_DESC', JavaScript.ORDER_ATOMIC)},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_EVENT_DESC', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    description = `\ndescription:${javascriptGenerator.valueToCode(block, 'S_EVENT_DESC', javascriptGenerator.ORDER_ATOMIC)},`;
   }
-  if ((JavaScript.valueToCode(block, 'S_PRIV_LVL', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    privateLevel = `\n privacyLevel:${JavaScript.valueToCode(block, 'S_PRIV_LVL', JavaScript.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_PRIV_LVL', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    privateLevel = `\n privacyLevel:${javascriptGenerator.valueToCode(block, 'S_PRIV_LVL', javascriptGenerator.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
   }
-  if ((JavaScript.valueToCode(block, 'S_NTITI_TYPE', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    type = `\nentityType:${JavaScript.valueToCode(block, 'S_NTITI_TYPE', JavaScript.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_NTITI_TYPE', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    type = `\nentityType:${javascriptGenerator.valueToCode(block, 'S_NTITI_TYPE', javascriptGenerator.ORDER_ATOMIC).replace('(', '').replace(')', '')},`;
   }
-  if ((JavaScript.valueToCode(block, 'S_EVENT_CHANNEL', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    channel = `\nchannel:${JavaScript.valueToCode(block, 'S_EVENT_CHANNEL', JavaScript.ORDER_ATOMIC)},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_EVENT_CHANNEL', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    channel = `\nchannel:${javascriptGenerator.valueToCode(block, 'S_EVENT_CHANNEL', javascriptGenerator.ORDER_ATOMIC)},`;
   }
-  if ((JavaScript.valueToCode(block, 'S_METADATA', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    metadata = `\nentityMetadata:${JavaScript.valueToCode(block, 'S_METADATA', JavaScript.ORDER_ATOMIC)},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_METADATA', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    metadata = `\nentityMetadata:${javascriptGenerator.valueToCode(block, 'S_METADATA', javascriptGenerator.ORDER_ATOMIC)},`;
   }
-  if ((JavaScript.valueToCode(block, 'S_REASON', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    reason = `\nreason:${JavaScript.valueToCode(block, 'S_REASON', JavaScript.ORDER_ATOMIC)},`;
+  if ((javascriptGenerator.valueToCode(block, 'S_REASON', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    reason = `\nreason:${javascriptGenerator.valueToCode(block, 'S_REASON', javascriptGenerator.ORDER_ATOMIC)},`;
   }
 
   let code = `${name}${start_date}${end_date}${description}${privateLevel}${type}${channel}${metadata}${reason}\n`;

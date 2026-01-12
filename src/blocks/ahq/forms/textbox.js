@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 import BaseBlockly from 'blockly';
 const blockName = 'make_ahq_modal_text';
@@ -57,7 +57,7 @@ const BORDER_MUTATOR_MIXIN = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(names[i])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -80,22 +80,22 @@ const BORDER_MUTATOR_MIXIN = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
       }
     }
   }
 };
 
 Blockly.Extensions.registerMutator('s4d_ahq_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   let code = ``;
-  const Id = JavaScript.valueToCode(block, 'ID_A', JavaScript.ORDER_ATOMIC);
-  const Lavbel = JavaScript.valueToCode(block, 'LABEL_A', JavaScript.ORDER_ATOMIC);
-  const Style = JavaScript.valueToCode(block, 'STYLE_A', JavaScript.ORDER_ATOMIC) || "'SHORT'";
-  const min = JavaScript.valueToCode(block, 'MINIMUM_SIZE', JavaScript.ORDER_ATOMIC);
-  const man = JavaScript.valueToCode(block, 'MAXIMUM_SIZE', JavaScript.ORDER_ATOMIC);
-  const place = JavaScript.valueToCode(block, 'PLACE_HOLDER', JavaScript.ORDER_ATOMIC);
-  const re = JavaScript.valueToCode(block, 'REQUIRED', JavaScript.ORDER_ATOMIC);
+  const Id = javascriptGenerator.valueToCode(block, 'ID_A', javascriptGenerator.ORDER_ATOMIC);
+  const Lavbel = javascriptGenerator.valueToCode(block, 'LABEL_A', javascriptGenerator.ORDER_ATOMIC);
+  const Style = javascriptGenerator.valueToCode(block, 'STYLE_A', javascriptGenerator.ORDER_ATOMIC) || "'SHORT'";
+  const min = javascriptGenerator.valueToCode(block, 'MINIMUM_SIZE', javascriptGenerator.ORDER_ATOMIC);
+  const man = javascriptGenerator.valueToCode(block, 'MAXIMUM_SIZE', javascriptGenerator.ORDER_ATOMIC);
+  const place = javascriptGenerator.valueToCode(block, 'PLACE_HOLDER', javascriptGenerator.ORDER_ATOMIC);
+  const re = javascriptGenerator.valueToCode(block, 'REQUIRED', javascriptGenerator.ORDER_ATOMIC);
   if (!place) {
     code = `new TextInputComponent()
     .setCustomId(${Id})

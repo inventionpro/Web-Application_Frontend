@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_create_role';
 
@@ -36,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
-  const color = JavaScript.valueToCode(block, 'COLOR', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
+  const color = javascriptGenerator.valueToCode(block, 'COLOR', javascriptGenerator.ORDER_ATOMIC);
   const code = `${server}.roles.create({ name: ${name},color:${color} });\n`;
   return code;
 };

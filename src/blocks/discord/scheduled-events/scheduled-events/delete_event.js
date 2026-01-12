@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'delete_sch_event';
 
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['delete_sch_event'] = function (block) {
-  var amongus = JavaScript.valueToCode(block, 'amongus', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['delete_sch_event'] = (block) => {
+  var amongus = javascriptGenerator.valueToCode(block, 'amongus', javascriptGenerator.ORDER_ATOMIC);
 
   amongus = amongus.split(' '); // Splits Embed name by space so "Lime Nade" = ["Lime","Nade"]
   amongus = amongus.join('_'); // Puts back together the separated parts but puts an underscore between them. ["Lime","Nade"] = Lime_Nade

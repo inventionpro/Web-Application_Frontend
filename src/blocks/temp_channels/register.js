@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_temp_register';
 
@@ -44,11 +44,11 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const channel_id = JavaScript.valueToCode(block, 'CHANNELID', JavaScript.ORDER_ATOMIC);
-  const empty = JavaScript.valueToCode(block, 'EMPTY', JavaScript.ORDER_ATOMIC);
-  const max = JavaScript.valueToCode(block, 'MAX', JavaScript.ORDER_ATOMIC);
-  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const channel_id = javascriptGenerator.valueToCode(block, 'CHANNELID', javascriptGenerator.ORDER_ATOMIC);
+  const empty = javascriptGenerator.valueToCode(block, 'EMPTY', javascriptGenerator.ORDER_ATOMIC);
+  const max = javascriptGenerator.valueToCode(block, 'MAX', javascriptGenerator.ORDER_ATOMIC);
+  const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const code = `
     const stuffkksadicnsake = {
       childAutoDeleteIfEmpty: ${empty},

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_get_all_data_new';
 
@@ -15,7 +15,7 @@ const blockData = {
       check: 'String'
     }
   ],
-  output: ['JSON','Array'],
+  output: ['JSON', 'Array'],
   colour: '#5ba58b',
   tooltip: 'Gets all data from database\nOutputs a JSON map',
   helpUrl: ''
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const name2 = name.substring(1, name.length - 1);
-  return [`${name2}.all()`, JavaScript.ORDER_ATOMIC];
+  return [`${name2}.all()`, javascriptGenerator.ORDER_ATOMIC];
 };

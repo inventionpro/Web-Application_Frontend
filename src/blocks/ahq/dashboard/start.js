@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 
@@ -58,7 +58,7 @@ const BORDER_MUTATOR_MIXIN = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(names[i])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -81,7 +81,7 @@ const BORDER_MUTATOR_MIXIN = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_LEFT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.LEFT).appendField(names[i]);
       }
     }
   }
@@ -93,23 +93,23 @@ const BORDER_MUTATOR_MIXIN = {
 // const names = ["Bot Name", "Bot Description", "Support Server URL", "Bot Invite URL", "Replit Base URL", "Client Secret", "Access Permissions", "Mongo DB URL (cookies)"];
 //const types = [true, true, true, true, true, true, false, false]
 Blockly.Extensions.registerMutator('dash_setup', BORDER_MUTATOR_MIXIN, null, ['']);
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   let extra = [];
-  if (JavaScript.valueToCode(block, 'P_D_PERMS', JavaScript.ORDER_NONE)) {
-    extra.push(`,\npermissions: ${JavaScript.valueToCode(block, 'P_D_PERMS', JavaScript.ORDER_NONE)}`);
+  if (javascriptGenerator.valueToCode(block, 'P_D_PERMS', javascriptGenerator.ORDER_NONE)) {
+    extra.push(`,\npermissions: ${javascriptGenerator.valueToCode(block, 'P_D_PERMS', javascriptGenerator.ORDER_NONE)}`);
   }
-  if (JavaScript.valueToCode(block, 'COOKIE_D', JavaScript.ORDER_NONE)) {
-    extra.push(`,\nsession: ${JavaScript.valueToCode(block, 'COOKIE_D', JavaScript.ORDER_NONE)}`);
+  if (javascriptGenerator.valueToCode(block, 'COOKIE_D', javascriptGenerator.ORDER_NONE)) {
+    extra.push(`,\nsession: ${javascriptGenerator.valueToCode(block, 'COOKIE_D', javascriptGenerator.ORDER_NONE)}`);
   }
   const code = `const Dashboard = require("discord-easy-dashboard");
     const dashboard = new Dashboard(s4d.client, {
-        name: ${JavaScript.valueToCode(block, 'AHQ_A_B', JavaScript.ORDER_NONE)},
-        description: ${JavaScript.valueToCode(block, 'AHQ_B_D', JavaScript.ORDER_NONE)},
-        baseUrl: ${JavaScript.valueToCode(block, 'BASE_D', JavaScript.ORDER_NONE)},
+        name: ${javascriptGenerator.valueToCode(block, 'AHQ_A_B', javascriptGenerator.ORDER_NONE)},
+        description: ${javascriptGenerator.valueToCode(block, 'AHQ_B_D', javascriptGenerator.ORDER_NONE)},
+        baseUrl: ${javascriptGenerator.valueToCode(block, 'BASE_D', javascriptGenerator.ORDER_NONE)},
         noPortIncallbackUrl: true,
-        secret: ${JavaScript.valueToCode(block, 'SECRET_D', JavaScript.ORDER_NONE)},
-        serverUrl: ${JavaScript.valueToCode(block, 'D_SERVER', JavaScript.ORDER_NONE)},
-        inviteUrl: ${JavaScript.valueToCode(block, 'INVITE_D', JavaScript.ORDER_NONE)}${extra.join('')}
+        secret: ${javascriptGenerator.valueToCode(block, 'SECRET_D', javascriptGenerator.ORDER_NONE)},
+        serverUrl: ${javascriptGenerator.valueToCode(block, 'D_SERVER', javascriptGenerator.ORDER_NONE)},
+        inviteUrl: ${javascriptGenerator.valueToCode(block, 'INVITE_D', javascriptGenerator.ORDER_NONE)}${extra.join('')}
     });
     s4d.client.dashboard = dashboard;`;
   return code;

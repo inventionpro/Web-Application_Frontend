@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'lime_s4d_message_context';
 
@@ -57,7 +57,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['lime_s4d_message_context'] = function (block) {
+javascriptGenerator.forBlock['lime_s4d_message_context'] = (block) => {
   var dropdown = block.getFieldValue('dropdown');
   var code = '';
 
@@ -79,5 +79,5 @@ JavaScript['lime_s4d_message_context'] = function (block) {
       break;
   }
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'fz_create_emoji';
 
@@ -42,12 +42,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   var code;
-  let value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  let value_server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
-  let value_image = JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC);
-  let statements_then = JavaScript.statementToCode(block, 'THEN');
+  let value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  let value_server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
+  let value_image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
+  let statements_then = javascriptGenerator.statementToCode(block, 'THEN');
   if ((statements_then || null) == null) {
     code = `${value_server}.emojis.create(${value_image},${value_name});\n`;
   } else {

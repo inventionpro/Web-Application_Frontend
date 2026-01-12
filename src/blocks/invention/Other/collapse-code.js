@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'inv_collapse_code';
 
@@ -27,6 +27,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  return JavaScript.statementToCode(block, 'NAME');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  return javascriptGenerator.statementToCode(block, 'NAME');
 };

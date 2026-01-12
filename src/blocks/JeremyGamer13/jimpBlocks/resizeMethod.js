@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_resizeMethods';
@@ -42,9 +42,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const wide = JavaScript.valueToCode(block, 'Width', JavaScript.ORDER_ATOMIC);
-  const high = JavaScript.valueToCode(block, 'Height', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const wide = javascriptGenerator.valueToCode(block, 'Width', javascriptGenerator.ORDER_ATOMIC);
+  const high = javascriptGenerator.valueToCode(block, 'Height', javascriptGenerator.ORDER_ATOMIC);
   const method = block.getFieldValue('method');
   return `await image.resize( Number(` + wide + `), Number(` + high + `), ` + method + `)\n`;
 };

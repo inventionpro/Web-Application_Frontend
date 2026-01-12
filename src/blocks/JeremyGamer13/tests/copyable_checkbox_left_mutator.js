@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'jg';
 const blockName = yourName + '_' + 'copy_checkbox_left_mutator';
@@ -43,7 +43,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputs_ = [];
     for (let i = 0; i < amountOfInputs; i++) {
       this.inputs_.push(false);
@@ -74,7 +74,7 @@ Blockly.Blocks[blockName] = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.inputs.Align.LEFT)
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase())
         .appendField(names[i]);
     }
@@ -97,21 +97,21 @@ Blockly.Blocks[blockName] = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
       }
     }
   },
   isHiden: true // remove this from your block if you dont want it hidden
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');
-  const A = JavaScript.valueToCode(block, 'A', JavaScript.ORDER_NONE);
-  const B = JavaScript.valueToCode(block, 'B', JavaScript.ORDER_NONE);
-  const C = JavaScript.valueToCode(block, 'C', JavaScript.ORDER_NONE);
-  const D = JavaScript.valueToCode(block, 'D', JavaScript.ORDER_NONE);
+  const A = javascriptGenerator.valueToCode(block, 'A', javascriptGenerator.ORDER_NONE);
+  const B = javascriptGenerator.valueToCode(block, 'B', javascriptGenerator.ORDER_NONE);
+  const C = javascriptGenerator.valueToCode(block, 'C', javascriptGenerator.ORDER_NONE);
+  const D = javascriptGenerator.valueToCode(block, 'D', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (A) {
     code.push(`wow: ${A}`);

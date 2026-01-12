@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'chat_ahq';
 const blockData = {
   message0: 'chat message %1 bot name %2 user ID %3 channel %4',
@@ -36,11 +36,11 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const name = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE);
-  const statementsThen = JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const name = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE);
+  const statementsThen = javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE);
   const code = `client.chat({message:${statementsThen}, name:${name}, owner:"scratch-for-discord-469-dev-ahqminessyt", user: 849690256945184828, language:"en"}).then(reply => {
-        ${JavaScript.valueToCode(block, 'channel', JavaScript.ORDER_NONE)}.send(String(reply));
+        ${javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_NONE)}.send(String(reply));
         });`;
   return code;
 };

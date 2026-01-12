@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_typing';
 
@@ -19,7 +19,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = function () {
   return `// DEPRECATED BLOCK! Use "Start typing in channel ()" instead.
     s4dmessage.channel.sendTyping();
     `;

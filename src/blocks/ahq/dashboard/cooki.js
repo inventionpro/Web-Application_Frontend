@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'make_cookie';
@@ -27,7 +27,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const code = `var cookieParser = require('cookie-parser');
     var session = require('express-session');
     var MongoStore = require('connect-mongo');
@@ -41,7 +41,7 @@ JavaScript[blockName] = function (block) {
         store: MongoStore.create({
           mongooseConnection: mongoose,
           collections: 'sessions', 
-          mongoUrl: ${JavaScript.valueToCode(block, 'api', JavaScript.ORDER_ATOMIC)},
+          mongoUrl: ${javascriptGenerator.valueToCode(block, 'api', javascriptGenerator.ORDER_ATOMIC)},
           autoRemove: 'interval',
           autoRemoveInterval: 60
         })

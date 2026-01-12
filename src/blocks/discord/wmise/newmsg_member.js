@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'newmsg_member';
 
@@ -28,16 +28,16 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['newMessage.member.user.id', JavaScript.ORDER_NONE];
+    const code = ['newMessage.member.user.id', javascriptGenerator.ORDER_NONE];
     return code;
   } else if (searchType === 'USERNAME') {
-    const code = ['newMessage.member.user.username', JavaScript.ORDER_NONE];
+    const code = ['newMessage.member.user.username', javascriptGenerator.ORDER_NONE];
     return code;
   } else if (searchType === 'NICKNAME') {
-    const code = ['newMessage.member.user.nickname', JavaScript.ORDER_NONE];
+    const code = ['newMessage.member.user.nickname', javascriptGenerator.ORDER_NONE];
     return code;
   }
 };

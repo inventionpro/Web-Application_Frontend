@@ -1,6 +1,6 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const BORDER_FIELDS = ['DESCRIPTION', 'LABEL2', 'EMOJI2', 'CUSTOM_ID2'];
@@ -57,7 +57,7 @@ const BORDER_MUTATOR_MIXIN = {
     for (let i = 0; i < this.inputs_.length; i++) {
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.inputs.Align.RIGHT)
         .appendField(BaseBlockly.Msg[BORDER_FIELDS[i]])
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase());
     }
@@ -79,7 +79,7 @@ const BORDER_MUTATOR_MIXIN = {
     }
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) {
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(BaseBlockly.Msg[BORDER_FIELDS[i]]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(BaseBlockly.Msg[BORDER_FIELDS[i]]);
       }
     }
   }
@@ -87,11 +87,11 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('s4d_message_menu_block_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
 
-JavaScript['s4d_message_menu_block'] = function (block) {
-  let id = JavaScript.valueToCode(block, 'CUSTOM_ID2', JavaScript.ORDER_ATOMIC) || null;
-  let emoji = JavaScript.valueToCode(block, 'EMOJI2', JavaScript.ORDER_ATOMIC) || null;
-  let label = JavaScript.valueToCode(block, 'LABEL2', JavaScript.ORDER_ATOMIC) || null;
-  let description = JavaScript.valueToCode(block, 'DESCRIPTION', JavaScript.ORDER_ATOMIC) || null;
+javascriptGenerator.forBlock['s4d_message_menu_block'] = (block) => {
+  let id = javascriptGenerator.valueToCode(block, 'CUSTOM_ID2', javascriptGenerator.ORDER_ATOMIC) || null;
+  let emoji = javascriptGenerator.valueToCode(block, 'EMOJI2', javascriptGenerator.ORDER_ATOMIC) || null;
+  let label = javascriptGenerator.valueToCode(block, 'LABEL2', javascriptGenerator.ORDER_ATOMIC) || null;
+  let description = javascriptGenerator.valueToCode(block, 'DESCRIPTION', javascriptGenerator.ORDER_ATOMIC) || null;
   let code = `{\n`;
   if (id !== null) code += `value:${id},\n`;
   if (label !== null) code += `label:${label},\n`;

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const ahqcolor = ['#40BF4A', '#40BF4A'];
 function listsGetRandomItem(list, remove) {
   var x = Math.floor(Math.random() * list.length);
@@ -84,7 +84,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = function () {
   const code = [
     `\`s4d means scratch for discord
     earth was created 4.3 billion years ago
@@ -108,7 +108,7 @@ JavaScript[blockName] = function () {
     
     Official s4d4d4s4ds44ds server:- https://discord.gg/cB2g5f4Ypq
     s4r34 69 furry segs official server:- https://discord.gg/furry\``,
-    JavaScript.ORDER_LOGICAL_OR
+    javascriptGenerator.ORDER_LOGICAL_OR
   ];
   return code;
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'yournamehere';
 const blockName = yourName + '_' + 'blocknamehere_plusminus';
@@ -40,7 +40,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputCount = 0;
   },
 
@@ -63,7 +63,7 @@ Blockly.Blocks[blockName] = {
     BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
     containerBlock
       .appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
+      .setAlign(Blockly.inputs.Align.RIGHT)
       .appendField(APPEND_NAME + ' ︱ -')
       .appendField(new Blockly.FieldCheckbox(false), 'MINUS')
       .appendField('+')
@@ -95,7 +95,7 @@ Blockly.Blocks[blockName] = {
       if (!this.getInput(APPEND_FIELD + i)) {
         BaseBlockly.Msg[APPEND_FIELD] = APPEND_NAME;
         this.appendValueInput(APPEND_FIELD + i)
-          .setAlign(Blockly.ALIGN_LEFT)
+          .setAlign(Blockly.inputs.Align.LEFT)
           .appendField(APPEND_NAME);
       }
     }
@@ -103,13 +103,13 @@ Blockly.Blocks[blockName] = {
   isHiden: true // remove this from your block if you dont want it hidden
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');
   let counting = 0;
   while (block.getInput(APPEND_FIELD + counting)) {
-    const INPUT = JavaScript.valueToCode(block, APPEND_FIELD + counting, JavaScript.ORDER_NONE);
+    const INPUT = javascriptGenerator.valueToCode(block, APPEND_FIELD + counting, javascriptGenerator.ORDER_NONE);
     code.push(`wow: ${INPUT}`);
     counting++;
   }

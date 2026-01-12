@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_start_thread';
@@ -70,13 +70,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
-  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
+  const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const archiveAfter = block.getFieldValue('ARCHIVE');
   const threadType = block.getFieldValue('THREADTYPE');
-  const code = JavaScript.statementToCode(block, 'CODE');
-  const catchd = JavaScript.statementToCode(block, 'NOTENOUGH');
+  const code = javascriptGenerator.statementToCode(block, 'CODE');
+  const catchd = javascriptGenerator.statementToCode(block, 'NOTENOUGH');
   return `${channel}.threads.create({name: ${name}, autoArchiveDuration: ${archiveAfter}, type: '${threadType}'})
     .then(async s4dCreatedThread => {
         ${code}

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'make_ahq_embed';
 
 const blockData = {
@@ -28,10 +28,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const name = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE) || 'embed';
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const name = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE) || 'embed';
   const finaln = name.replace("'", '').replace("'", '');
-  const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_ATOMIC);
+  const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
   const code = `let ${finaln} = new MessageEmbed()\n${statementsThen}`;
   return code;
 };

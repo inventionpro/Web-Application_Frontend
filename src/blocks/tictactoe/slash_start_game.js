@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'slash_tictactoe';
 
@@ -124,24 +124,24 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['slash_tictactoe'] = function (block) {
-  var value_opponent = JavaScript.valueToCode(block, 'Opponent', JavaScript.ORDER_ATOMIC);
-  var value_emb_title = JavaScript.valueToCode(block, 'emb_title', JavaScript.ORDER_ATOMIC);
-  var value_gover_title = JavaScript.valueToCode(block, 'gover_title', JavaScript.ORDER_ATOMIC);
-  var value_color = JavaScript.valueToCode(block, 'color', JavaScript.ORDER_ATOMIC);
-  var value_oemoji = JavaScript.valueToCode(block, 'oEmoji', JavaScript.ORDER_ATOMIC);
-  var value_xemoji = JavaScript.valueToCode(block, 'xEmoji', JavaScript.ORDER_ATOMIC);
-  var value_blankemoji = JavaScript.valueToCode(block, 'blankEmoji', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['slash_tictactoe'] = (block) => {
+  var value_opponent = javascriptGenerator.valueToCode(block, 'Opponent', javascriptGenerator.ORDER_ATOMIC);
+  var value_emb_title = javascriptGenerator.valueToCode(block, 'emb_title', javascriptGenerator.ORDER_ATOMIC);
+  var value_gover_title = javascriptGenerator.valueToCode(block, 'gover_title', javascriptGenerator.ORDER_ATOMIC);
+  var value_color = javascriptGenerator.valueToCode(block, 'color', javascriptGenerator.ORDER_ATOMIC);
+  var value_oemoji = javascriptGenerator.valueToCode(block, 'oEmoji', javascriptGenerator.ORDER_ATOMIC);
+  var value_xemoji = javascriptGenerator.valueToCode(block, 'xEmoji', javascriptGenerator.ORDER_ATOMIC);
+  var value_blankemoji = javascriptGenerator.valueToCode(block, 'blankEmoji', javascriptGenerator.ORDER_ATOMIC);
   var dropdown_o_color_dropdown = block.getFieldValue('o_color_dropdown');
   var dropdown_x_color_dropdown = block.getFieldValue('x_color_dropdown');
-  var value_waitmessage = JavaScript.valueToCode(block, 'waitMessage', JavaScript.ORDER_ATOMIC);
-  var value_turnmessage = JavaScript.valueToCode(block, 'turnMessage', JavaScript.ORDER_ATOMIC);
-  var value_askmessage = JavaScript.valueToCode(block, 'askMessage', JavaScript.ORDER_ATOMIC);
-  var value_cancelmessage = JavaScript.valueToCode(block, 'cancelMessage', JavaScript.ORDER_ATOMIC);
-  var value_timeendmessage = JavaScript.valueToCode(block, 'timeEndMessage', JavaScript.ORDER_ATOMIC);
-  var value_drawmessage = JavaScript.valueToCode(block, 'drawMessage', JavaScript.ORDER_ATOMIC);
-  var value_winmessage = JavaScript.valueToCode(block, 'winMessage', JavaScript.ORDER_ATOMIC);
-  var value_gameendmessage = JavaScript.valueToCode(block, 'gameEndMessage', JavaScript.ORDER_ATOMIC);
+  var value_waitmessage = javascriptGenerator.valueToCode(block, 'waitMessage', javascriptGenerator.ORDER_ATOMIC);
+  var value_turnmessage = javascriptGenerator.valueToCode(block, 'turnMessage', javascriptGenerator.ORDER_ATOMIC);
+  var value_askmessage = javascriptGenerator.valueToCode(block, 'askMessage', javascriptGenerator.ORDER_ATOMIC);
+  var value_cancelmessage = javascriptGenerator.valueToCode(block, 'cancelMessage', javascriptGenerator.ORDER_ATOMIC);
+  var value_timeendmessage = javascriptGenerator.valueToCode(block, 'timeEndMessage', javascriptGenerator.ORDER_ATOMIC);
+  var value_drawmessage = javascriptGenerator.valueToCode(block, 'drawMessage', javascriptGenerator.ORDER_ATOMIC);
+  var value_winmessage = javascriptGenerator.valueToCode(block, 'winMessage', javascriptGenerator.ORDER_ATOMIC);
+  var value_gameendmessage = javascriptGenerator.valueToCode(block, 'gameEndMessage', javascriptGenerator.ORDER_ATOMIC);
   var code = `
     new TicTacToe({
         message: interaction,

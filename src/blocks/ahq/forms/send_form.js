@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 'snd_ahq_modal';
 
@@ -31,9 +31,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const name = block.getFieldValue('Label');
-  const data = JavaScript.valueToCode(block, 'form', JavaScript.ORDER_NONE);
+  const data = javascriptGenerator.valueToCode(block, 'form', javascriptGenerator.ORDER_NONE);
   const ahq = data.replace("'", '').replace("'", '');
   const code = `showModal(${ahq}, {
   client: s4d.client,

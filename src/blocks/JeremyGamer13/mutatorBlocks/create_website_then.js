@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'jg';
 const blockName = yourName + '_' + 'express_start_website_then_using_port';
@@ -43,7 +43,7 @@ Blockly.Blocks[menuName] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
-    this.setMutator(new Blockly.Mutator([], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([], this));
     this.inputs_ = [];
     for (let i = 0; i < amountOfInputs; i++) {
       this.inputs_.push(false);
@@ -74,7 +74,7 @@ Blockly.Blocks[blockName] = {
       BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
       containerBlock
         .appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.inputs.Align.LEFT)
         .appendField(new Blockly.FieldCheckbox(this.inputs_[i] ? 'TRUE' : 'FALSE'), BORDER_FIELDS[i].toUpperCase())
         .appendField(names[i]);
     }
@@ -97,15 +97,15 @@ Blockly.Blocks[blockName] = {
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i] && !this.getInput(BORDER_FIELDS[i].toUpperCase())) {
         BaseBlockly.Msg[BORDER_FIELDS[i]] = names[i];
-        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.ALIGN_RIGHT).appendField(names[i]);
+        this.appendValueInput(BORDER_FIELDS[i].toUpperCase()).setCheck(BORDER_TYPES[i]).setAlign(Blockly.inputs.Align.RIGHT).appendField(names[i]);
       }
     }
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
-  const STATEMENTS = JavaScript.statementToCode(block, 'STATEMENTS');
+  const STATEMENTS = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   let code = [
     `/* IMPORTED - S4D Website Hosting Dependencies */
 let S4D_APP_WEBSITE_HOSTING_PORT = 8080
@@ -119,7 +119,7 @@ S4D_WEBSITECREATION_EXPRESS_app.use(S4D_WEBSITECREATION_bodyParser.json());
 ${STATEMENTS}
 `
   ];
-  const PORT = JavaScript.valueToCode(block, 'PORT', JavaScript.ORDER_NONE);
+  const PORT = javascriptGenerator.valueToCode(block, 'PORT', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (PORT) {
     code.push(`S4D_APP_WEBSITE_HOSTING_PORT = ${PORT}`);

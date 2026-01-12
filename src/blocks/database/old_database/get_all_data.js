@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_get_all_data';
 
@@ -18,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  return ['s4d.database.all()', JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = function () {
+  return ['s4d.database.all()', javascriptGenerator.ORDER_ATOMIC];
 };

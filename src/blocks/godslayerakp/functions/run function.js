@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_function_item_runer';
 
@@ -32,7 +32,7 @@ Blockly.Blocks[blockName] = {
     this.setColour('#D14081');
     this.setTooltip('');
     this.setHelpUrl('');
-    this.setMutator(new Blockly.Mutator([blockName + '_mutator_block_input'], this));
+    this.setMutator(new Blockly.icons.MutatorIcon([blockName + '_mutator_block_input'], this));
     this.inputs = [];
     this.return = false;
     this.await = false;
@@ -107,14 +107,14 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const josh = JavaScript.valueToCode(block, 'function', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const josh = javascriptGenerator.valueToCode(block, 'function', javascriptGenerator.ORDER_ATOMIC);
   const await_ = block.await ? 'await ' : '';
   let ecport = [];
   for (let i = 0; i < block.inputs.length; i++) {
-    ecport.push(JavaScript.valueToCode(block, String(i), JavaScript.ORDER_ATOMIC));
+    ecport.push(javascriptGenerator.valueToCode(block, String(i), javascriptGenerator.ORDER_ATOMIC));
   }
   let code = `${await_}${josh}(${ecport.join(', ')})`;
-  if (block.return) code = [code, JavaScript.ORDER_ATOMIC];
+  if (block.return) code = [code, javascriptGenerator.ORDER_ATOMIC];
   return code;
 };
