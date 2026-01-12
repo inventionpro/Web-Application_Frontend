@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'yournamehere';
 const blockName = yourName + '_' + 'blocknamehere';
@@ -103,14 +103,14 @@ Blockly.Blocks[blockName] = {
   isHiden: true // remove this from your block if you dont want it hidden
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');
-  const A = JavaScript.valueToCode(block, 'A', JavaScript.ORDER_NONE);
-  const B = JavaScript.valueToCode(block, 'B', JavaScript.ORDER_NONE);
-  const C = JavaScript.valueToCode(block, 'C', JavaScript.ORDER_NONE);
-  const D = JavaScript.valueToCode(block, 'D', JavaScript.ORDER_NONE);
+  const A = javascriptGenerator.valueToCode(block, 'A', javascriptGenerator.ORDER_NONE);
+  const B = javascriptGenerator.valueToCode(block, 'B', javascriptGenerator.ORDER_NONE);
+  const C = javascriptGenerator.valueToCode(block, 'C', javascriptGenerator.ORDER_NONE);
+  const D = javascriptGenerator.valueToCode(block, 'D', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (A) {
     code.push(`wow: ${A}`);

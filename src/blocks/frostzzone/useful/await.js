@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 Blockly.Blocks['frost_await'] = {
   init: function () {
@@ -20,8 +20,8 @@ Blockly.Blocks['frost_await'] = {
   }
 };
 
-JavaScript['frost_await'] = function (block) {
-  let input_block = JavaScript.valueToCode(block, 'input_block', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['frost_await'] = (block) => {
+  let input_block = javascriptGenerator.valueToCode(block, 'input_block', javascriptGenerator.ORDER_ATOMIC);
   let code = `await ${input_block}`;
-  return [code, JavaScript.ORDER_ATOMIC];
+  return [code, javascriptGenerator.ORDER_ATOMIC];
 };

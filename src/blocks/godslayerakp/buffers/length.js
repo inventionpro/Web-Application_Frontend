@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_get_length';
 
@@ -25,7 +25,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const buf = JavaScript.valueToCode(block, 'buffer', JavaScript.ORDER_ATOMIC);
-  return [`${buf}.length`, JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const buf = javascriptGenerator.valueToCode(block, 'buffer', javascriptGenerator.ORDER_ATOMIC);
+  return [`${buf}.length`, javascriptGenerator.ORDER_ATOMIC];
 };

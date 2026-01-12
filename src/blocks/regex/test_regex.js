@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'test_regex';
 
@@ -29,9 +29,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const regex = JavaScript.valueToCode(block, 'REGEX', JavaScript.ORDER_ATOMIC);
-  const string = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
-  let code = [`${regex}.test(${string})`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const regex = javascriptGenerator.valueToCode(block, 'REGEX', javascriptGenerator.ORDER_ATOMIC);
+  const string = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
+  let code = [`${regex}.test(${string})`, javascriptGenerator.ORDER_NONE];
   return code;
 };

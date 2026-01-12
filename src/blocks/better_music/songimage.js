@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'better_song_thumbnail';
 
@@ -18,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  return [`newSong.thumbnail`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = function () {
+  return [`newSong.thumbnail`, javascriptGenerator.ORDER_NONE];
 };

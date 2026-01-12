@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_embed_set_color';
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const color = JavaScript.valueToCode(block, 'COLOUR', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const color = javascriptGenerator.valueToCode(block, 'COLOUR', javascriptGenerator.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setColor(${color}); \n`;
   return code;
 };

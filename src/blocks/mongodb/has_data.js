@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'mongo_has_data';
 
@@ -23,7 +23,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const key = JavaScript.valueToCode(block, 'KEY', JavaScript.ORDER_ATOMIC);
-  return [`(await(mdb.has(${key})))`, JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
+  return [`(await(mdb.has(${key})))`, javascriptGenerator.ORDER_ATOMIC];
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'frost_buttonline';
 
@@ -30,8 +30,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const code = JavaScript.statementToCode(block, 'code');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const code = javascriptGenerator.statementToCode(block, 'code');
   return `),new MessageActionRow()
                         .addComponents(${code}`;
 };

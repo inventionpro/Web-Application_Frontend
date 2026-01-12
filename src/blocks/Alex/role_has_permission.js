@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'role_has_permission';
 
@@ -72,10 +72,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const role = JavaScript.valueToCode(block, 'role', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const role = javascriptGenerator.valueToCode(block, 'role', javascriptGenerator.ORDER_ATOMIC);
   const perm = block.getFieldValue('perm');
 
-  const code = [`${role}.permissions.has('${perm}')`, JavaScript.ORDER_NONE];
+  const code = [`${role}.permissions.has('${perm}')`, javascriptGenerator.ORDER_NONE];
   return code;
 };

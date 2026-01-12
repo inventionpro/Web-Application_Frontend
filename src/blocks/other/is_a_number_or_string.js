@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'is_a_number_or_string';
 
@@ -32,12 +32,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const dataType = block.getFieldValue('DATA_TYPE');
-  const code = JavaScript.valueToCode(block, 'STRING', JavaScript.ORDER_ATOMIC);
+  const code = javascriptGenerator.valueToCode(block, 'STRING', javascriptGenerator.ORDER_ATOMIC);
   if (dataType == 'NUMBER') {
-    return [`typeof (${code}) == "number"`, JavaScript.ORDER_NONE];
+    return [`typeof (${code}) == "number"`, javascriptGenerator.ORDER_NONE];
   } else if (dataType == 'STRING') {
-    return [`typeof (${code}) == "string"`, JavaScript.ORDER_NONE];
+    return [`typeof (${code}) == "string"`, javascriptGenerator.ORDER_NONE];
   }
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 
 const blockName = 'lime_msg_author_attributes';
@@ -110,7 +110,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['lime_msg_author_attributes'] = function (block) {
+javascriptGenerator.forBlock['lime_msg_author_attributes'] = (block) => {
   var dropdown = block.getFieldValue('dropdown');
   var code = '';
 
@@ -164,5 +164,5 @@ JavaScript['lime_msg_author_attributes'] = function (block) {
       break;
   }
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

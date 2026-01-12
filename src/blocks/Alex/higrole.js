@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'hig_role';
 
@@ -25,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const memb = JavaScript.valueToCode(block, 'member', JavaScript.ORDER_ATOMIC);
-  const code = [`${memb.replaceAll(/member(?=\.user)\.user/gi, 'member')}.roles.highest`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const memb = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`${memb.replaceAll(/member(?=\.user)\.user/gi, 'member')}.roles.highest`, javascriptGenerator.ORDER_NONE];
   return code;
 };

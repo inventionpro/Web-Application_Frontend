@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_get_rndmber';
 
@@ -16,8 +16,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function () {
-  const code = ['randomUser.user', JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = function () {
+  const code = ['randomUser.user', javascriptGenerator.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['ahq_members_get_random_member_in_server'] = {
@@ -38,8 +38,8 @@ Blockly.Blocks['ahq_members_get_random_member_in_server'] = {
     });
   }
 };
-JavaScript['ahq_members_get_random_member_in_server'] = function (block) {
-  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
-  const code = [`${server}.members.cache.random().user`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock['ahq_members_get_random_member_in_server'] = (block) => {
+  const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`${server}.members.cache.random().user`, javascriptGenerator.ORDER_NONE];
   return code;
 };

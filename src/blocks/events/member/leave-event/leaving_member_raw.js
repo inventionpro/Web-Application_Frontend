@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 's4d_leaving_member_raw';
@@ -29,16 +29,16 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['s4d.leavingMember.id', JavaScript.ORDER_NONE];
+    const code = ['s4d.leavingMember.id', javascriptGenerator.ORDER_NONE];
     return code;
   } else if (searchType === 'USERNAME') {
-    const code = ['s4d.leavingMember.user.username', JavaScript.ORDER_NONE];
+    const code = ['s4d.leavingMember.user.username', javascriptGenerator.ORDER_NONE];
     return code;
   } else if (searchType === 'NICKNAME') {
-    const code = ['s4d.leavingMember.nickname', JavaScript.ORDER_NONE];
+    const code = ['s4d.leavingMember.nickname', javascriptGenerator.ORDER_NONE];
     return code;
   }
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_file_create';
@@ -39,9 +39,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const fileName = JavaScript.valueToCode(block, 'fileName', JavaScript.ORDER_ATOMIC);
-  const fileContent = JavaScript.valueToCode(block, 'fileContent', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const fileName = javascriptGenerator.valueToCode(block, 'fileName', javascriptGenerator.ORDER_ATOMIC);
+  const fileContent = javascriptGenerator.valueToCode(block, 'fileContent', javascriptGenerator.ORDER_ATOMIC);
   const tralse = block.getFieldValue('truefalse');
   return `S4D_APP_write.sync(String(` + fileName + `), String(` + fileContent + `), { overwrite: ` + tralse + ` });`;
 };

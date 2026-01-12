@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'yournamehere';
 const blockName = yourName + '_' + 'blocknamehere_plusminus';
@@ -103,13 +103,13 @@ Blockly.Blocks[blockName] = {
   isHiden: true // remove this from your block if you dont want it hidden
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
   let code = `/*`;
   code = code.split('\n');
   let counting = 0;
   while (block.getInput(APPEND_FIELD + counting)) {
-    const INPUT = JavaScript.valueToCode(block, APPEND_FIELD + counting, JavaScript.ORDER_NONE);
+    const INPUT = javascriptGenerator.valueToCode(block, APPEND_FIELD + counting, javascriptGenerator.ORDER_NONE);
     code.push(`wow: ${INPUT}`);
     counting++;
   }

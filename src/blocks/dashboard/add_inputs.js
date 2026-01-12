@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'add_inputs';
 
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['add_inputs'] = function (block) {
-  var statements_blocks = JavaScript.statementToCode(block, 'blocks');
+javascriptGenerator.forBlock['add_inputs'] = (block) => {
+  var statements_blocks = javascriptGenerator.statementToCode(block, 'blocks');
   var code = `${statements_blocks}`;
   return code;
 };

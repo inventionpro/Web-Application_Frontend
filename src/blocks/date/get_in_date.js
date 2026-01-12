@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'get_in_date';
 
@@ -35,20 +35,20 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const date = JavaScript.valueToCode(block, 'DATE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const date = javascriptGenerator.valueToCode(block, 'DATE', javascriptGenerator.ORDER_ATOMIC);
   const dataType = block.getFieldValue('DATA_TYPE');
   if (dataType === 'SECOND') {
-    return [`(${date}.getSeconds())`, JavaScript.ORDER_NONE];
+    return [`(${date}.getSeconds())`, javascriptGenerator.ORDER_NONE];
   } else if (dataType === 'MINUTE') {
-    return [`(${date}.getMinutes())`, JavaScript.ORDER_NONE];
+    return [`(${date}.getMinutes())`, javascriptGenerator.ORDER_NONE];
   } else if (dataType === 'HOUR') {
-    return [`(${date}.getHours())`, JavaScript.ORDER_NONE];
+    return [`(${date}.getHours())`, javascriptGenerator.ORDER_NONE];
   } else if (dataType === 'DATE') {
-    return [`(${date}.getDate())`, JavaScript.ORDER_NONE];
+    return [`(${date}.getDate())`, javascriptGenerator.ORDER_NONE];
   } else if (dataType === 'DAY_OF_WEEK') {
-    return [`(${date}.getDay())`, JavaScript.ORDER_NONE];
+    return [`(${date}.getDay())`, javascriptGenerator.ORDER_NONE];
   } else {
-    return [`(${date}.getSeconds())`, JavaScript.ORDER_NONE];
+    return [`(${date}.getSeconds())`, javascriptGenerator.ORDER_NONE];
   }
 };

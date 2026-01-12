@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_roblox_group_info';
 
@@ -36,8 +36,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`roblox_group_info.${type}`, JavaScript.ORDER_NONE];
+  const code = [`roblox_group_info.${type}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

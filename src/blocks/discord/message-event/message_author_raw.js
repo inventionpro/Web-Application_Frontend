@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_message_author_raw';
 
@@ -28,16 +28,16 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['s4dmessage.member.id', JavaScript.ORDER_NONE];
+    const code = ['s4dmessage.member.id', javascriptGenerator.ORDER_NONE];
     return code;
   } else if (searchType === 'USERNAME') {
-    const code = ['s4dmessage.member.user.username', JavaScript.ORDER_NONE];
+    const code = ['s4dmessage.member.user.username', javascriptGenerator.ORDER_NONE];
     return code;
   } else if (searchType === 'NICKNAME') {
-    const code = ['(s4dmessage.member || await s4dmessage.guild.members.fetch(s4dmessage.author.id)).nickname', JavaScript.ORDER_NONE];
+    const code = ['(s4dmessage.member || await s4dmessage.guild.members.fetch(s4dmessage.author.id)).nickname', javascriptGenerator.ORDER_NONE];
     return code;
   }
 };

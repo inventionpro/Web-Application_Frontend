@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_get_role';
@@ -38,21 +38,21 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
   const searchType = block.getFieldValue('SEARCH_TYPE');
-  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   if (searchType === 'NAME') {
     if (server !== null) {
-      return [`${server}.roles.cache.find((role) => role.name === ${value})`, JavaScript.ORDER_NONE];
+      return [`${server}.roles.cache.find((role) => role.name === ${value})`, javascriptGenerator.ORDER_NONE];
     } else {
-      return [`false`, JavaScript.ORDER_NONE];
+      return [`false`, javascriptGenerator.ORDER_NONE];
     }
   } else {
     if (server !== null) {
-      return [`${server}.roles.cache.get(${value})`, JavaScript.ORDER_NONE];
+      return [`${server}.roles.cache.get(${value})`, javascriptGenerator.ORDER_NONE];
     } else {
-      return [`false`, JavaScript.ORDER_NONE];
+      return [`false`, javascriptGenerator.ORDER_NONE];
     }
   }
 };

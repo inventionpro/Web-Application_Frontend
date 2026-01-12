@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_text_isboolean';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const text = JavaScript.valueToCode(block, 'TEXT', JavaScript.ORDER_ATOMIC);
-  const code = [`((${text}).toLowerCase() == 'true' || (${text}).toLowerCase() == 'false')`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`((${text}).toLowerCase() == 'true' || (${text}).toLowerCase() == 'false')`, javascriptGenerator.ORDER_NONE];
   return code;
 };

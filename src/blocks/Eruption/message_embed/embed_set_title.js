@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 's4d_embed_set_title';
@@ -104,9 +104,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const title = JavaScript.valueToCode(block, 'TITLE', JavaScript.ORDER_ATOMIC);
-  const hyperlink = JavaScript.valueToCode(block, 'HYPERLINK', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const title = javascriptGenerator.valueToCode(block, 'TITLE', javascriptGenerator.ORDER_ATOMIC);
+  const hyperlink = javascriptGenerator.valueToCode(block, 'HYPERLINK', javascriptGenerator.ORDER_ATOMIC);
   const code = `hnxgcjtirh.setTitle(String(${title})) \n hnxgcjtirh.setURL(String(${hyperlink})); \n`;
   return code;
 };

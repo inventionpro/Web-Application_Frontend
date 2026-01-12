@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'frost_category_get';
@@ -38,21 +38,21 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
   const searchType = block.getFieldValue('SEARCH_TYPE');
-  const server = JavaScript.valueToCode(block, 'SERVER', JavaScript.ORDER_ATOMIC);
+  const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   if (server.length < 1) {
     if (searchType === 'NAME') {
-      return [`s4d.client.channels.cache.find((category) => category.name === ${value})`, JavaScript.ORDER_ATOMIC];
+      return [`s4d.client.channels.cache.find((category) => category.name === ${value})`, javascriptGenerator.ORDER_ATOMIC];
     } else {
-      return [`s4d.client.channels.cache.get(${value})`, JavaScript.ORDER_ATOMIC];
+      return [`s4d.client.channels.cache.get(${value})`, javascriptGenerator.ORDER_ATOMIC];
     }
   } else {
     if (searchType === 'NAME') {
-      return [`${server}.channels.cache.find((category) => category.name === ${value})`, JavaScript.ORDER_ATOMIC];
+      return [`${server}.channels.cache.find((category) => category.name === ${value})`, javascriptGenerator.ORDER_ATOMIC];
     } else {
-      return [`${server}.channels.cache.get(${value})`, JavaScript.ORDER_ATOMIC];
+      return [`${server}.channels.cache.get(${value})`, javascriptGenerator.ORDER_ATOMIC];
     }
   }
 };

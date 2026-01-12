@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 's4d_thread_archive';
@@ -116,10 +116,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['s4d_thread_archive'] = function (block) {
+javascriptGenerator.forBlock['s4d_thread_archive'] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const thread = JavaScript.valueToCode(block, 'THREAD', JavaScript.ORDER_ATOMIC);
-  const reason = JavaScript.valueToCode(block, 'REASON', JavaScript.ORDER_ATOMIC);
+  const thread = javascriptGenerator.valueToCode(block, 'THREAD', javascriptGenerator.ORDER_ATOMIC);
+  const reason = javascriptGenerator.valueToCode(block, 'REASON', javascriptGenerator.ORDER_ATOMIC);
   if (reason.length !== 0) {
     if (type === 'true' || type === 'false') {
       return `${thread}.setArchived(${type}, ${reason});\n`;

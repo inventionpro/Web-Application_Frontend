@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_webhook_token';
@@ -19,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function () {
-  return [`webhook.token`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = function () {
+  return [`webhook.token`, javascriptGenerator.ORDER_NONE];
 };
 registerRestrictions(blockName, [
   {

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_bedrock_motd';
 
@@ -28,8 +28,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`result_bedrock.motd.${type}[0]`, JavaScript.ORDER_NONE];
+  const code = [`result_bedrock.motd.${type}[0]`, javascriptGenerator.ORDER_NONE];
   return code;
 };

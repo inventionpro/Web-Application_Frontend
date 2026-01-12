@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'embed_send_round';
 
@@ -23,12 +23,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  var name = JavaScript.valueToCode(block, 'Label', JavaScript.ORDER_NONE);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var name = javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE);
   name = name.split(' ');
   name = name.join('_');
   name = name.toLowerCase();
   name = name.replace("'", '').replace("'", '');
-  const code = [`embeds: [${name}]`, JavaScript.ORDER_ATOMIC];
+  const code = [`embeds: [${name}]`, javascriptGenerator.ORDER_ATOMIC];
   return code;
 };

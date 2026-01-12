@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'create_event';
 
@@ -30,10 +30,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   var code;
-  let value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  let statements_then = JavaScript.statementToCode(block, 'THEN');
+  let value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  let statements_then = javascriptGenerator.statementToCode(block, 'THEN');
   code = `eventEmitter.on(${value_name}, async => {
     ${statements_then}
   });

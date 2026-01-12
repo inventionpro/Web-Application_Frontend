@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_set_from_index';
 
@@ -36,9 +36,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const buf = JavaScript.valueToCode(block, 'buffer', JavaScript.ORDER_ATOMIC);
-  const idx = JavaScript.valueToCode(block, 'index', JavaScript.ORDER_ATOMIC);
-  const val = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const buf = javascriptGenerator.valueToCode(block, 'buffer', javascriptGenerator.ORDER_ATOMIC);
+  const idx = javascriptGenerator.valueToCode(block, 'index', javascriptGenerator.ORDER_ATOMIC);
+  const val = javascriptGenerator.valueToCode(block, 'value', javascriptGenerator.ORDER_ATOMIC);
   return `${buf}[Number(${idx}) - 1] = Number(${val})`;
 };

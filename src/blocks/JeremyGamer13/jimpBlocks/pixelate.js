@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_pixelate';
@@ -50,12 +50,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const size = JavaScript.valueToCode(block, 'Size', JavaScript.ORDER_ATOMIC);
-  const xpos = JavaScript.valueToCode(block, 'X', JavaScript.ORDER_ATOMIC);
-  const ypos = JavaScript.valueToCode(block, 'Y', JavaScript.ORDER_ATOMIC);
-  const wide = JavaScript.valueToCode(block, 'Width', JavaScript.ORDER_ATOMIC);
-  const high = JavaScript.valueToCode(block, 'Height', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const size = javascriptGenerator.valueToCode(block, 'Size', javascriptGenerator.ORDER_ATOMIC);
+  const xpos = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
+  const ypos = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
+  const wide = javascriptGenerator.valueToCode(block, 'Width', javascriptGenerator.ORDER_ATOMIC);
+  const high = javascriptGenerator.valueToCode(block, 'Height', javascriptGenerator.ORDER_ATOMIC);
   return (
     `await image.pixelate( Number(` +
     size +

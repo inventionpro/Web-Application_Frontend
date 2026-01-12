@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_temp_unregister';
 
@@ -28,8 +28,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const channel_id = JavaScript.valueToCode(block, 'CHANNELID', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const channel_id = javascriptGenerator.valueToCode(block, 'CHANNELID', javascriptGenerator.ORDER_ATOMIC);
   const code = `tempChannels.unregisterChannel(${channel_id});`;
   return code;
 };

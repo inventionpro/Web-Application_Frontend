@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'add_dropdown_input';
 
@@ -60,15 +60,15 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['add_dropdown_input'] = function (block) {
-  var value_name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  var value_description = JavaScript.valueToCode(block, 'description', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['add_dropdown_input'] = (block) => {
+  var value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  var value_description = javascriptGenerator.valueToCode(block, 'description', javascriptGenerator.ORDER_ATOMIC);
   var text_name = block.getFieldValue('name');
   text_name = text_name.replace(/ /g, '_');
-  var statements_setter = JavaScript.statementToCode(block, 'setter');
-  var value_getter_id = JavaScript.valueToCode(block, 'getter_id', JavaScript.ORDER_ATOMIC);
-  var value_getter_name = JavaScript.valueToCode(block, 'getter_name', JavaScript.ORDER_ATOMIC);
-  var value_selector_entries = JavaScript.valueToCode(block, 'selector_entries', JavaScript.ORDER_ATOMIC);
+  var statements_setter = javascriptGenerator.statementToCode(block, 'setter');
+  var value_getter_id = javascriptGenerator.valueToCode(block, 'getter_id', javascriptGenerator.ORDER_ATOMIC);
+  var value_getter_name = javascriptGenerator.valueToCode(block, 'getter_name', javascriptGenerator.ORDER_ATOMIC);
+  var value_selector_entries = javascriptGenerator.valueToCode(block, 'selector_entries', javascriptGenerator.ORDER_ATOMIC);
   var code = `
     const ${text_name}_getSelectorEntries = (client, guild) => ${value_selector_entries};
     const setter_${text_name} = (client, guild, value) => ${statements_setter}

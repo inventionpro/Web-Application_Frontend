@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 const blockName = 'make_ahq_modal';
 
@@ -38,13 +38,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const name = JavaScript.valueToCode(block, 'button name', JavaScript.ORDER_NONE) || 'modal';
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const name = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE) || 'modal';
   const finaln = name.replace("'", '').replace("'", '');
-  const statementsThen = JavaScript.statementToCode(block, 'STATEMENTS', JavaScript.ORDER_ATOMIC);
+  const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
   const code = `let ${finaln} = new Modal()
-    .setCustomId(${JavaScript.valueToCode(block, 'id', JavaScript.ORDER_NONE)})
-    .setTitle(${JavaScript.valueToCode(block, 'title', JavaScript.ORDER_NONE)})
+    .setCustomId(${javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_NONE)})
+    .setTitle(${javascriptGenerator.valueToCode(block, 'title', javascriptGenerator.ORDER_NONE)})
     .addComponents(\n${statementsThen});`;
   return code;
 };

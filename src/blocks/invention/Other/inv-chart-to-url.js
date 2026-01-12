@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'inv_chart_to_url';
 
@@ -17,9 +17,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['inv_chart_to_url'] = function () {
+javascriptGenerator.forBlock['inv_chart_to_url'] = function () {
   // this is giving me pain
   var code = `chart.toURL()`;
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'add_text_dash';
@@ -47,12 +47,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
-  const code = `s4d.client.dashboard.addTextInput(${JavaScript.valueToCode(block, 'name', JavaScript.ORDER_NONE)}, ${JavaScript.valueToCode(block, 'desc', JavaScript.ORDER_NONE)}, function(prefix) {
-        return (prefix.length <= ${JavaScript.valueToCode(block, 'length', JavaScript.ORDER_NONE)})
-    }, async function(client, guild, value) {${JavaScript.statementToCode(block, 'set')}}, async function(client, guild) {
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const code = `s4d.client.dashboard.addTextInput(${javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_NONE)}, ${javascriptGenerator.valueToCode(block, 'desc', javascriptGenerator.ORDER_NONE)}, function(prefix) {
+        return (prefix.length <= ${javascriptGenerator.valueToCode(block, 'length', javascriptGenerator.ORDER_NONE)})
+    }, async function(client, guild, value) {${javascriptGenerator.statementToCode(block, 'set')}}, async function(client, guild) {
         await delay(200);
-        return (${JavaScript.valueToCode(block, 'getter', JavaScript.ORDER_NONE)})
+        return (${javascriptGenerator.valueToCode(block, 'getter', javascriptGenerator.ORDER_NONE)})
     });`;
   return code;
 };

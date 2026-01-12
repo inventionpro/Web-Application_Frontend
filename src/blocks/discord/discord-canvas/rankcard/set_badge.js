@@ -1,7 +1,7 @@
 import '@blockly/field-slider';
 
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_set_badge';
 
@@ -40,7 +40,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const number = block.getFieldValue('SLIDER');
   const type = block.getFieldValue('TYPE');
   return `.setBadge(${number}, "${type}")`;

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'edit_msg_by_id';
 
@@ -36,10 +36,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const channel = JavaScript.valueToCode(block, 'CHANNEL', JavaScript.ORDER_ATOMIC);
-  const id = JavaScript.valueToCode(block, 'ID', JavaScript.ORDER_ATOMIC);
-  let edit = JavaScript.valueToCode(block, 'EDIT', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
+  const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
+  let edit = javascriptGenerator.valueToCode(block, 'EDIT', javascriptGenerator.ORDER_ATOMIC);
   if (!String(edit).includes('embeds: [')) {
     edit = `content: String(${edit})`;
   } else {

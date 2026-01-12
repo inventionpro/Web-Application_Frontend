@@ -12,7 +12,7 @@ NUMBER	- 10	Any double between -2^53 and 2^53
 ATTACHMENT	- 11	attachment object
 */
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_frost_slash_options';
 
@@ -72,12 +72,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const name = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  const desc = JavaScript.valueToCode(block, 'DESC', JavaScript.ORDER_ATOMIC);
-  const required = JavaScript.valueToCode(block, 'REQUIRED', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  const desc = javascriptGenerator.valueToCode(block, 'DESC', javascriptGenerator.ORDER_ATOMIC);
+  const required = javascriptGenerator.valueToCode(block, 'REQUIRED', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  var choices = JavaScript.statementToCode(block, 'CHOICES');
+  var choices = javascriptGenerator.statementToCode(block, 'CHOICES');
   const code = `{
     type: ${type},
 	name: ${name.toLowerCase()},

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'lime_guild_sheduled_events_remove';
 
@@ -26,8 +26,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var statements_code = JavaScript.statementToCode(block, 'code');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var statements_code = javascriptGenerator.statementToCode(block, 'code');
 
   var code = `s4d.client.on('guildScheduledEventDelete', async (scheduledEvent) => {\n ${statements_code} \n });\n`;
   return code;

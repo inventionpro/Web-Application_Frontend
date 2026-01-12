@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'fz_role_info_num';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const role = JavaScript.valueToCode(block, 'ROLE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const role = javascriptGenerator.valueToCode(block, 'ROLE', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${role}.${type}`, JavaScript.ORDER_NONE];
+  const code = [`${role}.${type}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

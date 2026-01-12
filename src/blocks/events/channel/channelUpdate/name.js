@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'cu_name';
 
@@ -41,9 +41,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = block.getFieldValue('CHANNEL');
   const info = block.getFieldValue('INFO');
-  const code = [`${channel}.${info}`, JavaScript.ORDER_NONE];
+  const code = [`${channel}.${info}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

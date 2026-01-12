@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_object_getvalue';
 // "colour": "#cc59e3",
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'value', JavaScript.ORDER_ATOMIC);
-  const object = JavaScript.valueToCode(block, 'object', JavaScript.ORDER_ATOMIC);
-  const code = [`${object}[String(${value})]`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'value', javascriptGenerator.ORDER_ATOMIC);
+  const object = javascriptGenerator.valueToCode(block, 'object', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`${object}[String(${value})]`, javascriptGenerator.ORDER_NONE];
   return code;
 };

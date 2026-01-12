@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'gsa_send_embed';
 const blockData = {
   type: 'gsa_send_embed',
@@ -28,12 +28,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  // const color = JavaScript.valueToCode(block, "title", JavaScript.ORDER_ATOMIC)
+javascriptGenerator.forBlock[blockName] = (block) => {
+  // const color = javascriptGenerator.valueToCode(block, "title", javascriptGenerator.ORDER_ATOMIC)
   let message = '';
-  if (JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC) != null) {
-    message = `content: String(${JavaScript.valueToCode(block, 'message', JavaScript.ORDER_ATOMIC)}), `;
+  if (javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC) != null) {
+    message = `content: String(${javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC)}), `;
   }
   const color = block.getFieldValue('NAME');
-  return [`${message}embeds: [${color.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')}]`, JavaScript.ORDER_ATOMIC];
+  return [`${message}embeds: [${color.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')}]`, javascriptGenerator.ORDER_ATOMIC];
 };

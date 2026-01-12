@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'random_reacting_member_user';
 
@@ -27,13 +27,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
   var code;
   if (type == 'member') {
-    code = ['reaction.message.guild.members.resolve(m.users.cache.random())', JavaScript.ORDER_NONE];
+    code = ['reaction.message.guild.members.resolve(m.users.cache.random())', javascriptGenerator.ORDER_NONE];
   } else {
-    code = ['reaction.users.cache.random()', JavaScript.ORDER_NONE];
+    code = ['reaction.users.cache.random()', javascriptGenerator.ORDER_NONE];
   }
   return code;
 };

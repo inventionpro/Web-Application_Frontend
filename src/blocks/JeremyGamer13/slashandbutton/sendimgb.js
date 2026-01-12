@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_slash_button_sendImage';
@@ -37,10 +37,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const fileNameandLocation = JavaScript.valueToCode(block, 'NAME', JavaScript.ORDER_ATOMIC);
-  const hidden = JavaScript.valueToCode(block, 'HIDE', JavaScript.ORDER_ATOMIC);
-  var buttonraw = JavaScript.valueToCode(block, 'ROW', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const fileNameandLocation = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+  const hidden = javascriptGenerator.valueToCode(block, 'HIDE', javascriptGenerator.ORDER_ATOMIC);
+  var buttonraw = javascriptGenerator.valueToCode(block, 'ROW', javascriptGenerator.ORDER_ATOMIC);
   var buttonraw2 = String(buttonraw).replaceAll('"', '');
   const row = String(buttonraw2).replaceAll("'", '');
   var stored = `[${fileNameandLocation}]`;

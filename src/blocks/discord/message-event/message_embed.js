@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const blockName = 's4d_message_embed';
 const menuName = 's4d_message_embed_mutator';
@@ -95,7 +95,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['s4d_message_embed'] = function (block) {
+javascriptGenerator.forBlock['s4d_message_embed'] = (block) => {
   let title = '';
   let color = '';
   let image = '';
@@ -103,32 +103,32 @@ JavaScript['s4d_message_embed'] = function (block) {
   let footer = '';
   let thumbnail = '';
   let field = '';
-  if ((JavaScript.valueToCode(block, 'TITLE', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    title = `\n.setTitle(String(${JavaScript.valueToCode(block, 'TITLE', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'TITLE', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    title = `\n.setTitle(String(${javascriptGenerator.valueToCode(block, 'TITLE', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'COLOR', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    color = `\n.setColor(String(${JavaScript.valueToCode(block, 'COLOR', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'COLOR', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    color = `\n.setColor(String(${javascriptGenerator.valueToCode(block, 'COLOR', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    image = `\n.setImage(String(${JavaScript.valueToCode(block, 'IMAGE', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    image = `\n.setImage(String(${javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    description = `\n.setDescription(String(${JavaScript.valueToCode(block, 'MESSAGE', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    description = `\n.setDescription(String(${javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'FOOTER', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    footer = `\n.setFooter(String(${JavaScript.valueToCode(block, 'FOOTER', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    footer = `\n.setFooter(String(${javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.valueToCode(block, 'THUMBNAIL', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    thumbnail = `\n.setThumbnail(String(${JavaScript.valueToCode(block, 'THUMBNAIL', JavaScript.ORDER_ATOMIC)}))`;
+  if ((javascriptGenerator.valueToCode(block, 'THUMBNAIL', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    thumbnail = `\n.setThumbnail(String(${javascriptGenerator.valueToCode(block, 'THUMBNAIL', javascriptGenerator.ORDER_ATOMIC)}))`;
   }
-  if ((JavaScript.statementToCode(block, 'FIELD', JavaScript.ORDER_ATOMIC) || null) !== null) {
-    field = `\n.addFields(${JavaScript.statementToCode(block, 'FIELD')})`;
+  if ((javascriptGenerator.statementToCode(block, 'FIELD', javascriptGenerator.ORDER_ATOMIC) || null) !== null) {
+    field = `\n.addFields(${javascriptGenerator.statementToCode(block, 'FIELD')})`;
   }
   return [
     `
             embeds: [new MessageEmbed()${title}${color}${image}${description}${footer}${thumbnail}${field}
             ]
     `,
-    JavaScript.ORDER_ATOMIC
+    javascriptGenerator.ORDER_ATOMIC
   ];
 };

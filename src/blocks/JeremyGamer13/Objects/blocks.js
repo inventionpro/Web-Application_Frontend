@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 Blockly.Blocks['jg_objects_create_new'] = {
   init: function () {
     this.jsonInit({
@@ -12,9 +12,9 @@ Blockly.Blocks['jg_objects_create_new'] = {
   }
 };
 
-JavaScript['jg_objects_create_new'] = function () {
+javascriptGenerator.forBlock['jg_objects_create_new'] = function () {
   const code = `new Object()`;
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };
 Blockly.Blocks['jg_objects_set_key_to_value_in_object'] = {
   init: function () {
@@ -46,10 +46,10 @@ Blockly.Blocks['jg_objects_set_key_to_value_in_object'] = {
     });
   }
 };
-JavaScript['jg_objects_set_key_to_value_in_object'] = function (block) {
-  const key = JavaScript.valueToCode(block, 'KEY', JavaScript.ORDER_ATOMIC);
-  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
-  const object = JavaScript.valueToCode(block, 'OBJECT', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['jg_objects_set_key_to_value_in_object'] = (block) => {
+  const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
+  const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
+  const object = javascriptGenerator.valueToCode(block, 'OBJECT', javascriptGenerator.ORDER_ATOMIC);
   const code = `${object}[String(${key})] = ${value}
     `;
   return code;
@@ -72,8 +72,8 @@ Blockly.Blocks['jg_objects_get_objects_key_names_in_list'] = {
   }
 };
 
-JavaScript['jg_objects_get_objects_key_names_in_list'] = function (block) {
-  const object = JavaScript.valueToCode(block, 'OBJECT', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock['jg_objects_get_objects_key_names_in_list'] = (block) => {
+  const object = javascriptGenerator.valueToCode(block, 'OBJECT', javascriptGenerator.ORDER_ATOMIC);
   const code = `Object.getOwnPropertyNames(${object})`;
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

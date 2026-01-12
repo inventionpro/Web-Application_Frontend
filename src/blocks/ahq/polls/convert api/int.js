@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'convert_api_code';
@@ -27,10 +27,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const code = `const CloudConvert = require('cloudconvert');
     const ahqfs = require("fs");
-    const cloudConvert = new CloudConvert(${JavaScript.valueToCode(block, 'api', JavaScript.ORDER_ATOMIC)});`;
+    const cloudConvert = new CloudConvert(${javascriptGenerator.valueToCode(block, 'api', javascriptGenerator.ORDER_ATOMIC)});`;
   return code;
 };
 

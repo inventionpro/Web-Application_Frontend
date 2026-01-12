@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'load_image';
 
@@ -24,8 +24,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const toload = JavaScript.valueToCode(block, 'TOLOAD', JavaScript.ORDER_ATOMIC);
-  const code = [`new Discord.MessageAttachment(${toload}, "image.png")`, JavaScript.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const toload = javascriptGenerator.valueToCode(block, 'TOLOAD', javascriptGenerator.ORDER_ATOMIC);
+  const code = [`new Discord.MessageAttachment(${toload}, "image.png")`, javascriptGenerator.ORDER_NONE];
   return code;
 };

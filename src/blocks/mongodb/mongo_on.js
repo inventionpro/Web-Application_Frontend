@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'mongo_on';
 
@@ -23,8 +23,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const statements = JavaScript.statementToCode(block, 'STATEMENTS');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   const code = `mdb.on('ready', async () => {\n${statements}\n});\n
     `;
   return code;

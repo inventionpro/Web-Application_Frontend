@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_http_get_buffer_then';
 
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const https = JavaScript.valueToCode(block, 'HTTPS', JavaScript.ORDER_ATOMIC);
-  const statementThen = JavaScript.statementToCode(block, 'THEN');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const https = javascriptGenerator.valueToCode(block, 'HTTPS', javascriptGenerator.ORDER_ATOMIC);
+  const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   const code = `https.get(${https}, async resp => {
     let data = Buffer.alloc(0);
     resp.on("data",async chunk => {
@@ -58,6 +58,6 @@ Blockly.Blocks['gsa_get_https_response_buffer'] = {
   }
 };
 
-JavaScript['gsa_get_https_response_buffer'] = function () {
-  return [`data`, JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock['gsa_get_https_response_buffer'] = function () {
+  return [`data`, javascriptGenerator.ORDER_ATOMIC];
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_menu_reply';
 
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const tof = JavaScript.valueToCode(block, 'TRUEORFALSE', JavaScript.ORDER_ATOMIC);
-  const reply = JavaScript.valueToCode(block, 'REPLY', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const tof = javascriptGenerator.valueToCode(block, 'TRUEORFALSE', javascriptGenerator.ORDER_ATOMIC);
+  const reply = javascriptGenerator.valueToCode(block, 'REPLY', javascriptGenerator.ORDER_ATOMIC);
   const code = `await i.reply({content:${reply},ephemeral:${tof === null ? false : tof}})\n`;
   return code;
 };

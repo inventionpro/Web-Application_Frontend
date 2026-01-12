@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_get_string_of_data';
 
@@ -24,9 +24,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const value = JavaScript.valueToCode(block, 'VALUE', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
   const replacedValue = value.replace("'", '').replace("'", '');
-  const code = [`data.${replacedValue}`, JavaScript.ORDER_NONE];
+  const code = [`data.${replacedValue}`, javascriptGenerator.ORDER_NONE];
   return code;
 };

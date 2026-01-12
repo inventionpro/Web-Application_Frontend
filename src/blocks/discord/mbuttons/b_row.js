@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'b_row';
 
@@ -32,9 +32,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const statements = JavaScript.statementToCode(block, 'THEN');
-  const name = JavaScript.valueToCode(block, 'BUTTON_NAME', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const statements = javascriptGenerator.statementToCode(block, 'THEN');
+  const name = javascriptGenerator.valueToCode(block, 'BUTTON_NAME', javascriptGenerator.ORDER_ATOMIC);
   let text1 = name.replace("'", '');
   let name2 = text1.replace("'", '');
   const code = `const ${name2} = new MessageActionRow()\n${statements}\n`;

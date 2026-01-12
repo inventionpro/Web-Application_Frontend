@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_brightnesscontrast';
@@ -35,9 +35,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
-  const amount = JavaScript.valueToCode(block, 'amount', JavaScript.ORDER_ATOMIC);
+  const amount = javascriptGenerator.valueToCode(block, 'amount', javascriptGenerator.ORDER_ATOMIC);
   if (String(type) === '"brightness"') {
     return `await image.brightness( (` + amount + ` / 100) )\n`;
   } else if (String(type) === '"contrast"') {

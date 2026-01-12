@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'privacylevel';
 
 const blockData = {
@@ -28,7 +28,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['privacylevel'] = function (block) {
+javascriptGenerator.forBlock['privacylevel'] = (block) => {
   var dropdown_name = block.getFieldValue('NAME');
   var code = '';
   switch (dropdown_name) {
@@ -40,5 +40,5 @@ JavaScript['privacylevel'] = function (block) {
       break;
   }
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

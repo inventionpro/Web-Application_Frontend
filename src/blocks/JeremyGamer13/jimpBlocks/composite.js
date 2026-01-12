@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_composite';
@@ -64,12 +64,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const img = JavaScript.valueToCode(block, 'Image', JavaScript.ORDER_ATOMIC);
-  const xpos = JavaScript.valueToCode(block, 'xpos', JavaScript.ORDER_ATOMIC);
-  const ypos = JavaScript.valueToCode(block, 'ypos', JavaScript.ORDER_ATOMIC);
-  const srcO = JavaScript.valueToCode(block, 'srcOpac', JavaScript.ORDER_ATOMIC);
-  const desO = JavaScript.valueToCode(block, 'destOpac', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const img = javascriptGenerator.valueToCode(block, 'Image', javascriptGenerator.ORDER_ATOMIC);
+  const xpos = javascriptGenerator.valueToCode(block, 'xpos', javascriptGenerator.ORDER_ATOMIC);
+  const ypos = javascriptGenerator.valueToCode(block, 'ypos', javascriptGenerator.ORDER_ATOMIC);
+  const srcO = javascriptGenerator.valueToCode(block, 'srcOpac', javascriptGenerator.ORDER_ATOMIC);
+  const desO = javascriptGenerator.valueToCode(block, 'destOpac', javascriptGenerator.ORDER_ATOMIC);
   const mode = block.getFieldValue('blendmode');
 
   return `var JimpImageC = await jimp.read(String(${img}));

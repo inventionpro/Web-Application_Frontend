@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_lasercat_switch_default';
 
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const blocks = JavaScript.statementToCode(block, 'blocks');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const blocks = javascriptGenerator.statementToCode(block, 'blocks');
 
   return `
     default:

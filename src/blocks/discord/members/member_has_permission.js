@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_member_has_permission';
@@ -62,12 +62,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const memberrr = JavaScript.valueToCode(block, 'MEMBER', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const memberrr = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   let memberr = memberrr.replace('.author', '.member');
   let member = memberr.replace('.user', '');
   const permission = block.getFieldValue('PERMISSION');
-  const code = [`${member}.permissions.has(Permissions.FLAGS.${permission})`, JavaScript.ORDER_FUNCTION_CALL];
+  const code = [`${member}.permissions.has(Permissions.FLAGS.${permission})`, javascriptGenerator.ORDER_FUNCTION_CALL];
   return code;
 };
 

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_button_think';
 
@@ -25,8 +25,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const tof = JavaScript.valueToCode(block, 'TOF', JavaScript.ORDER_ATOMIC);
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const tof = javascriptGenerator.valueToCode(block, 'TOF', javascriptGenerator.ORDER_ATOMIC);
   const code = `await i.deferReply({ ephemeral:${tof === null ? false : tof} });\n`;
   return code;
 };

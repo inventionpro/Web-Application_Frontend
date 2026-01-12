@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'about_user';
 
@@ -30,9 +30,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const stats = block.getFieldValue('INFO');
-  const code = [`info.data.${stats}`, JavaScript.ORDER_NONE];
+  const code = [`info.data.${stats}`, javascriptGenerator.ORDER_NONE];
 
   return code;
 };

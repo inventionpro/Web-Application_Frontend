@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_web_valueofflkey';
 
@@ -27,14 +27,14 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // stuff    return `fs.readFileSync(` + fileName + `, 'utf8')`;
   const key = block.getFieldValue('key');
   if (Number(key) === 0) {
-    const code = [`Object.keys(JSONdataS4D)[0]`, JavaScript.ORDER_NONE];
+    const code = [`Object.keys(JSONdataS4D)[0]`, javascriptGenerator.ORDER_NONE];
     return code;
   } else {
-    const code = [`Object.keys(JSONdataS4D)[((Object.keys(JSONdataS4D).length) - 1)]`, JavaScript.ORDER_NONE];
+    const code = [`Object.keys(JSONdataS4D)[((Object.keys(JSONdataS4D).length) - 1)]`, javascriptGenerator.ORDER_NONE];
     return code;
   }
 };

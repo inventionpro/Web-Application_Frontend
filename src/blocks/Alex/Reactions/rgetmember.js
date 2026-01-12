@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'get_reaction_member';
 
@@ -39,9 +39,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
-  const cmem = JavaScript.valueToCode(block, 'mtype', JavaScript.ORDER_ATOMIC);
+  const cmem = javascriptGenerator.valueToCode(block, 'mtype', javascriptGenerator.ORDER_ATOMIC);
 
   var code;
   if (type == 'first') {
@@ -53,7 +53,7 @@ JavaScript[blockName] = function (block) {
   } else {
     code = `m.users.cache.map(r => r)[${cmem}]`;
   }
-  const finalcode = [code, JavaScript.ORDER_NONE];
+  const finalcode = [code, javascriptGenerator.ORDER_NONE];
 
   return finalcode;
 };

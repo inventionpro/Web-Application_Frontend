@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'inv_backup_list_get';
 
@@ -27,8 +27,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  var statements_code = JavaScript.statementToCode(block, 'code');
+javascriptGenerator.forBlock[blockName] = (block) => {
+  var statements_code = javascriptGenerator.statementToCode(block, 'code');
   // _S4D_backups expected Output [ "BC5qo", "Jdo91", ...]
   var code = `backup.list().then((_S4D_backups) => {
     ${statements_code}

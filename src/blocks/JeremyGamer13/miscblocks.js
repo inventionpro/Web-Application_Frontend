@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 //lasercat_jg_case_default
 Blockly.Blocks['lasercat_jg_case_default'] = {
   /**
@@ -204,20 +204,20 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
   }
 };
 
-JavaScript['lasercat_jg_case_default'] = function (block) {
+javascriptGenerator.forBlock['lasercat_jg_case_default'] = (block) => {
   var n = 0;
   var code = '',
     branchCode,
     conditionCode;
   while (block.getInput('IF' + n)) {
-    conditionCode = JavaScript.valueToCode(block, 'IF' + n, JavaScript.ORDER_NONE) || 'false';
-    branchCode = JavaScript.statementToCode(block, 'DO' + n);
+    conditionCode = javascriptGenerator.valueToCode(block, 'IF' + n, javascriptGenerator.ORDER_NONE) || 'false';
+    branchCode = javascriptGenerator.statementToCode(block, 'DO' + n);
     code += `case ${conditionCode}: 
     ${branchCode}${block.mutatorMenuBlockTypes[n - 1] == 'case' || n == 0 ? '\nbreak;' : ''}`;
     ++n;
   }
   if (block.getInput('ELSE')) {
-    branchCode = JavaScript.statementToCode(block, 'ELSE');
+    branchCode = javascriptGenerator.statementToCode(block, 'ELSE');
     code += `default:
     ${branchCode}
     break;`;
@@ -284,19 +284,19 @@ Blockly.Blocks['lasercat_jg_case_default_INTERNAL_default'] = {
     });
   }
 };
-JavaScript['lasercat_jg_case_default_INTERNAL_case1'] = function () {
+javascriptGenerator.forBlock['lasercat_jg_case_default_INTERNAL_case1'] = function () {
   return '';
 };
-JavaScript['lasercat_jg_case_default_INTERNAL_case2'] = function () {
+javascriptGenerator.forBlock['lasercat_jg_case_default_INTERNAL_case2'] = function () {
   return '';
 };
-JavaScript['lasercat_jg_case_default_INTERNAL_case3'] = function () {
+javascriptGenerator.forBlock['lasercat_jg_case_default_INTERNAL_case3'] = function () {
   return '';
 };
-JavaScript['lasercat_jg_case_default_INTERNAL_case4'] = function () {
+javascriptGenerator.forBlock['lasercat_jg_case_default_INTERNAL_case4'] = function () {
   return '';
 };
-JavaScript['lasercat_jg_case_default_INTERNAL_default'] = function () {
+javascriptGenerator.forBlock['lasercat_jg_case_default_INTERNAL_default'] = function () {
   return '';
 };
 let rainbow_color = 0;
@@ -404,9 +404,9 @@ Blockly.Blocks['jg_blocklyfp_load_workspace_website'] = {
     }
   }
 };
-JavaScript['jg_blocklyfp_load_workspace'] = function () {
+javascriptGenerator.forBlock['jg_blocklyfp_load_workspace'] = function () {
   return '';
 };
-JavaScript['jg_blocklyfp_load_workspace_website'] = function () {
+javascriptGenerator.forBlock['jg_blocklyfp_load_workspace_website'] = function () {
   return '';
 };

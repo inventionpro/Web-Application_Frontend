@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'explicit_content_filter';
 
@@ -30,8 +30,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['explicit_content_filter'] = function (block) {
+javascriptGenerator.forBlock['explicit_content_filter'] = (block) => {
   var dropdown = block.getFieldValue('NAME');
   var code = dropdown;
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'entitytype';
 
@@ -31,7 +31,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['entitytype'] = function (block) {
+javascriptGenerator.forBlock['entitytype'] = (block) => {
   var dropdown_name = block.getFieldValue('NAME');
   var code = '';
   switch (dropdown_name) {
@@ -49,5 +49,5 @@ JavaScript['entitytype'] = function (block) {
       break;
   }
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };

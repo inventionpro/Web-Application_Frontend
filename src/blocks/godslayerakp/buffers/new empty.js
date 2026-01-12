@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_empty';
 
@@ -30,8 +30,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
-  const number = JavaScript.valueToCode(block, 'number', JavaScript.ORDER_ATOMIC);
-  const fill = JavaScript.valueToCode(block, 'fill', JavaScript.ORDER_ATOMIC);
-  return [`Buffer.alloc(Number(${number}), ${fill})`, JavaScript.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const number = javascriptGenerator.valueToCode(block, 'number', javascriptGenerator.ORDER_ATOMIC);
+  const fill = javascriptGenerator.valueToCode(block, 'fill', javascriptGenerator.ORDER_ATOMIC);
+  return [`Buffer.alloc(Number(${number}), ${fill})`, javascriptGenerator.ORDER_ATOMIC];
 };

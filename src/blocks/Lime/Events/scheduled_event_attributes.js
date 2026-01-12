@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 import { registerRestrictions } from '../../../restrictions';
 
@@ -177,7 +177,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript['lime_scheduled_event_attributes'] = function (block) {
+javascriptGenerator.forBlock['lime_scheduled_event_attributes'] = (block) => {
   var dropdown = block.getFieldValue('dropdown');
   var code = ``;
 
@@ -274,7 +274,7 @@ JavaScript['lime_scheduled_event_attributes'] = function (block) {
       code = 'scheduledEvent.name';
   }
 
-  return [code, JavaScript.ORDER_NONE];
+  return [code, javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

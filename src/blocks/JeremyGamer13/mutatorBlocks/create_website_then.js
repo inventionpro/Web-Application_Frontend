@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 const yourName = 'jg';
 const blockName = yourName + '_' + 'express_start_website_then_using_port';
@@ -103,9 +103,9 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-JavaScript[blockName] = function (block) {
+javascriptGenerator.forBlock[blockName] = (block) => {
   // code should be the first couple lines of your code before the inputs
-  const STATEMENTS = JavaScript.statementToCode(block, 'STATEMENTS');
+  const STATEMENTS = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   let code = [
     `/* IMPORTED - S4D Website Hosting Dependencies */
 let S4D_APP_WEBSITE_HOSTING_PORT = 8080
@@ -119,7 +119,7 @@ S4D_WEBSITECREATION_EXPRESS_app.use(S4D_WEBSITECREATION_bodyParser.json());
 ${STATEMENTS}
 `
   ];
-  const PORT = JavaScript.valueToCode(block, 'PORT', JavaScript.ORDER_NONE);
+  const PORT = javascriptGenerator.valueToCode(block, 'PORT', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
   if (PORT) {
     code.push(`S4D_APP_WEBSITE_HOSTING_PORT = ${PORT}`);
