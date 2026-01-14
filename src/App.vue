@@ -188,11 +188,6 @@ export default {
     console.log('%cCAREFUL WHAT YOU TYPE IN CONSOLE! %cbarry and johnathan are watching all of your moves...', 'color:#f00;font-family:system-ui;font-size:2rem;font-weight:bold', 'color:#b00;font-family:system-ui;font-size:2rem;font-weight:bold');
     console.log('...');
     if (!('ScratchNative' in window) && window.parent?.ScratchNative) window.ScratchNative = window.parent.ScratchNative;
-    const tourDone = localStorage.getItem('tourDone');
-    if (tourDone !== null)
-      this.$store.commit('setTour', {
-        status: tourDone
-      });
     const blocklyLocale = localStorage.getItem('blocklyLocale');
     if (blocklyLocale !== null) {
       this.$store.commit('setLocale', {

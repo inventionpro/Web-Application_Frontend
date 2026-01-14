@@ -1,5 +1,5 @@
 <template>
-  <b-nav-item-dropdown id="v-step-0" text="Examples" right>
+  <b-nav-item-dropdown text="Examples" right>
     <b-dropdown-item @click="userexamples()"><i class="fa-solid fa-user"></i> &#8226; Online Examples</b-dropdown-item>
     <b-dropdown-divider></b-dropdown-divider>
     <p style="text-align: center"><b>Built-in:</b></p>

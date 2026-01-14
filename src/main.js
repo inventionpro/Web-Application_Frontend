@@ -6,7 +6,6 @@ import { createI18n } from 'vue-i18n';
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator as JavaScript } from 'blockly/javascript';
 import VueToast from 'vue-toast-notification';
-import VueTour from 'vue3-tour';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import savenload from './save-load';
 
@@ -27,16 +26,21 @@ app.component('b-collapse', BCollapse);
 
 app.component('font-awesome-icon', FontAwesomeIcon);
 
-app.use(VueTour);
 app.use(VueToast);
 app.use(bootstrapPlugin);
 app.use(modalManagerPlugin);
 
 import req from './require';
 
+// Locales
 import blocklyLocaleEN from 'blockly/msg/en';
 import blocklyLocaleFR from 'blockly/msg/fr';
 import blocklyLocalePT from 'blockly/msg/pt';
+const blocklyLocale = {
+  en: blocklyLocaleEN,
+  fr: blocklyLocaleFR,
+  pt: blocklyLocalePT
+}
 
 import customLocaleEN from './locales/en';
 import customLocaleFR from './locales/fr';
@@ -47,6 +51,7 @@ const messages = {
   fr: customLocaleFR.websiteMessages,
   pt: customLocalePT.websiteMessages
 };
+
 const i18n = createI18n({
   legacy: true,
   globalInjection: true,
@@ -106,34 +111,13 @@ app.mixin({
       return workspace;
     },
     setLanguage(locale) {
-      switch (locale) {
-        case 'en':
-          // Change Blockly language for default blocks
-          Blockly.setLocale(blocklyLocaleEN);
-          // Change Blockly language for custom blocks
-          customLocaleEN.applyBlocklyLocale();
-          // Change website languages (navbar, etc...)
-          this.$root.$i18n.locale = 'en';
-          break;
-        case 'fr':
-          // Change Blockly language for default blocks
-          Blockly.setLocale(blocklyLocaleFR);
-          // Change Blockly language for custom blocks
-          customLocaleFR.applyBlocklyLocale();
-          // Change website languages (navbar, etc...)
-          this.$root.$i18n.locale = 'fr';
-          break;
-        case 'pt':
-          // Change Blockly language for default blocks
-          Blockly.setLocale(blocklyLocalePT);
-          // Change Blockly language for custom blocks
-          customLocalePT.applyBlocklyLocale();
-          // Change website languages (navbar, etc...)
-          this.$root.$i18n.locale = 'pt';
-          break;
-        default:
-          break;
-      }
+      if (!blocklyLocale[locale]) return;
+      // Change Blockly language for default blocks
+      Blockly.setLocale(blocklyLocale[locale]);
+      // Change Blockly language for custom blocks
+      blocklyLocale[locale].applyBlocklyLocale();
+      // Change website languages (navbar, etc...)
+      this.$root.$i18n.locale = locale;
     },
     getWorkspaceCode() {
       const workspace = this.$store.state.workspace;
@@ -148,10 +132,10 @@ app.mixin({
 
       return `(async()=>{
   // default imports
-  const events = require('events');
-  const { exec } = require("child_process")
-  const logs = require("discord-logs")
-  const Discord = require("discord.js")
+  const events = require('node:events');
+  const { exec } = require('node:child_process');
+  const logs = require('discord-logs');
+  const Discord = require('discord.js');
   const {
     MessageEmbed,
     MessageButton,
@@ -159,9 +143,9 @@ app.mixin({
     Intents,
     Permissions,
     MessageSelectMenu
-  }= require("discord.js")
-  const fs = require('fs');
-  let process = require('process');
+  } = require('discord.js')
+  const fs = require('node:fs');
+  let process = require('node:process');
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   // block imports
@@ -243,4 +227,3 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'vue-toast-notification/dist/theme-default.css';
-import 'vue3-tour/dist/vue3-tour.css';
