@@ -34,13 +34,13 @@ const NavExpanded = ref(false);
         <b-button style="max-width: 25dvw; border-right-color: rgb(22, 23, 25); border-radius: 0.25em 0em 0em 0.25em; overflow: hidden; text-overflow: ellipsis">
           <span id="docName" style="font-size: smaller; white-space: nowrap" @click="changeFileName">{{ $t('untitled') }}</span>
         </b-button>
-        <b-button id="v-step-4" style="border-right-color: #161719; border-radius: 0em" @click="runbot">
+        <b-button style="border-right-color: #161719; border-radius: 0em" @click="runbot">
           <i class="bi bi-play"></i>
         </b-button>
-        <b-button id="v-step-2" style="border-right-color: #161719; border-radius: 0em" @click="util">
+        <b-button style="border-right-color: #161719; border-radius: 0em" @click="util">
           <i class="bi bi-gear"></i>
         </b-button>
-        <b-button id="v-step-3" style="border-radius: 0em; border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em" @click="exportToCode">
+        <b-button style="border-radius: 0em; border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em" @click="exportToCode">
           <i class="bi bi-download"></i>
         </b-button>
       </b-navbar-nav>
