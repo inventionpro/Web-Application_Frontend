@@ -46,18 +46,18 @@ import customLocaleEN from './locales/en';
 import customLocaleFR from './locales/fr';
 import customLocalePT from './locales/pt';
 import localforage from 'localforage';
-const messages = {
-  en: customLocaleEN.websiteMessages,
-  fr: customLocaleFR.websiteMessages,
-  pt: customLocalePT.websiteMessages
+const languages = {
+  en: customLocaleEN,
+  fr: customLocaleFR,
+  pt: customLocalePT
 };
 
 const i18n = createI18n({
   legacy: true,
   globalInjection: true,
-  locale: messages[navigator.language.split('-')[0]] ? navigator.language.split('-')[0] : 'en',
+  locale: languages[navigator.language.split('-')[0]]?.websiteMessages ? navigator.language.split('-')[0] : 'en',
   fallbackLocale: 'en',
-  messages
+  messages: Object.fromEntries(Object.entries(languages).map(entry=>[entry[0],entry[1].websiteMessages]))
 });
 
 import toolbox from './toolbox';
@@ -111,11 +111,11 @@ app.mixin({
       return workspace;
     },
     setLanguage(locale) {
-      if (!blocklyLocale[locale]) return;
+      if (!languages[locale]) return;
       // Change Blockly language for default blocks
       Blockly.setLocale(blocklyLocale[locale]);
       // Change Blockly language for custom blocks
-      blocklyLocale[locale].applyBlocklyLocale();
+      languages[locale].applyBlocklyLocale();
       // Change website languages (navbar, etc...)
       this.$root.$i18n.locale = locale;
     },
