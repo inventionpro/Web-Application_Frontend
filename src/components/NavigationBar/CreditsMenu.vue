@@ -12,13 +12,13 @@ export default {
       Swal.fire({
         theme: 'auto',
         icon: 'info',
-        html: `<h1><span>Developers of </span><span style="color:#15a9e8">Scratch For Discord!</span></h1>
+        html: `<h1><span>Credits of </span><span style="color:#15a9e8">Scratch For Discord!</span></h1>
 <b><p>
-  <h2>New:</h2>
+  <h2>New</h2>
   <span style="color:#9670b5">inventionpro</span>
-  <br><br>
+  <hr>
 
-  <h2>Preview 469:</h2>
+  <h2>469</h2>
   <h3>Developers:</h3>
   <span style="color:#2aa9bd">frostzzone</span>,
   <span style="color:#ad6f39">RetroBTW</span>,
@@ -39,16 +39,18 @@ export default {
   <span style="color:#9419FF">TropicGalxy</span>,
   <span style="color:#f28a29">ChsyDev</span>,
   <span style="color:#9670b5">inventionpro</span>
-  <br><br>
+  <hr>
 
-  <h2>Original S4D:</h2>
+  <h2>454</h2>
+  <span style="color:#429139">jose_trindade</span>,
+  <span style="color:#9c2525">MrRedo</span>
+  <hr>
+  <h2>Original</h2>
   <span style="color:#36915a">Androz</span>,
   <span style="color:#568896">snowflake107</span>,
   <span style="color:#8f815b">7coil</span>,
   <span style="color:#6EB7BB">Andromeda</span>
-  <h2>Preview 454:</h2>
-  <span style="color:#429139">jose_trindade</span>,
-  <span style="color:#9c2525">MrRedo</span>
+  <hr>
   <h3>Extras:</h3>
   <span style="color:#568896">Noxy, changelog master</span>
 </p></b>`,
