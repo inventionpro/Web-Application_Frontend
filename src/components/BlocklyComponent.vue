@@ -87,7 +87,7 @@ let HIDEN_BLOCKS = ['frost_image', 'frost_drop1', 'colour_picker', 'frost_transl
 
 let preadded = [];
 BlocklyB.filter((block) => {
-  if (Blockly.Blocks[block].isHiden || javascriptGenerator[block] == null) {
+  if (Blockly.Blocks[block].isHiden || javascriptGenerator.forBlock[block] == null) {
     HIDEN_BLOCKS.push(block);
     preadded.push(block);
   }
@@ -141,12 +141,12 @@ export default {
             console.warn(`${block} is already registerd as hiden! either remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS" or remove the "isHiden" tag from the block defnintion`);
             warnings.push(block);
           }
-          if (javascriptGenerator[block] == null && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
-            console.log(javascriptGenerator[block]);
+          if (javascriptGenerator.forBlock[block] == null && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
+            console.log(javascriptGenerator.forBlock[block]);
             console.warn(`${block} doesnt have a export! and thus doesnt need to be in "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"! please remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"!`);
             warnings.push(block);
           }
-          if ((Blockly.Blocks[block].isHiden || javascriptGenerator[block] == null) && !HIDEN_BLOCKS.includes(block)) {
+          if ((Blockly.Blocks[block].isHiden || javascriptGenerator.forBlock[block] == null) && !HIDEN_BLOCKS.includes(block)) {
             HIDEN_BLOCKS.push(block);
             preadded.push(block);
           }
