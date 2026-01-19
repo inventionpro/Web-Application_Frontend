@@ -17,7 +17,7 @@ function openCodeModal() {
 
 <script>
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import JSZip from 'jszip';
 import beautify from 'js-beautify';
 import localforage from 'localforage';
@@ -86,7 +86,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   window.BlocklyService = {};
   window.BlocklyService.Blocks = {};
   window.BlocklyService.JavaScript = {};
-  window.BlocklyService.JavaScript = JavaScript;
+  window.BlocklyService.JavaScript = javascriptGenerator;
   blocks.forEach((block) => {
     let works = true;
     try {

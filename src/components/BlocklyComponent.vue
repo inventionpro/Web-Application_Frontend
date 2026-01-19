@@ -9,7 +9,7 @@
 
 <script>
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import swal from 'sweetalert2';
 import * as blocklyModule from '../blocks/blocklyModule.js';
 import * as customBlockModule from './NavigationBar/cbmodule.js';
@@ -87,7 +87,7 @@ let HIDEN_BLOCKS = ['frost_image', 'frost_drop1', 'colour_picker', 'frost_transl
 
 let preadded = [];
 BlocklyB.filter((block) => {
-  if (Blockly.Blocks[block].isHiden || JavaScript[block] == null) {
+  if (Blockly.Blocks[block].isHiden || javascriptGenerator[block] == null) {
     HIDEN_BLOCKS.push(block);
     preadded.push(block);
   }
@@ -141,12 +141,12 @@ export default {
             console.warn(`${block} is already registerd as hiden! either remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS" or remove the "isHiden" tag from the block defnintion`);
             warnings.push(block);
           }
-          if (JavaScript[block] == null && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
-            console.log(JavaScript[block]);
+          if (javascriptGenerator[block] == null && !preadded.includes(block) && HIDEN_BLOCKS.includes(block)) {
+            console.log(javascriptGenerator[block]);
             console.warn(`${block} doesnt have a export! and thus doesnt need to be in "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"! please remove ${block} from "src/components/BlocklyComponent.vue > HIDEN_BLOCKS"!`);
             warnings.push(block);
           }
-          if ((Blockly.Blocks[block].isHiden || JavaScript[block] == null) && !HIDEN_BLOCKS.includes(block)) {
+          if ((Blockly.Blocks[block].isHiden || javascriptGenerator[block] == null) && !HIDEN_BLOCKS.includes(block)) {
             HIDEN_BLOCKS.push(block);
             preadded.push(block);
           }
@@ -564,7 +564,7 @@ ${CATEGORYCONTENT}`
       }
     });
     window.blocklyGlobalRef = Blockly;
-    window.blocklyJSGlobalRef = JavaScript;
+    window.blocklyJSGlobalRef = javascriptGenerator;
     window.blocklyWorkspaceGlobalRef = workspace;
     workspace.registerButtonCallback('LAUNCHCUSTOMBLOCKBUILDER', function () {
       const menu = blocklyModule.menus.createMenu({
@@ -637,8 +637,8 @@ ${CATEGORYCONTENT}`
       createButton.style.width = '100%';
       createButton.innerHTML = 'Create Block';
       createButton.onclick = () => {
-        customBlockModule.createCustomBlock(customBlockModule.createCustomBlockID(blockNameInput.value), customBlockModule.stringToCustomBlockData(JavaScript.workspaceToCode(customBlockWorkspace)));
-        console.log(JavaScript.workspaceToCode(customBlockWorkspace));
+        customBlockModule.createCustomBlock(customBlockModule.createCustomBlockID(blockNameInput.value), customBlockModule.stringToCustomBlockData(javascriptGenerator.workspaceToCode(customBlockWorkspace)));
+        console.log(javascriptGenerator.workspaceToCode(customBlockWorkspace));
       };
       buttonDiv.append(createButton);
       const customBlockDeletorDiv = document.createElement('div');

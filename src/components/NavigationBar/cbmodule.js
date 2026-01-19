@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator as JavaScript } from 'blockly/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
 import localforage from 'localforage';
 const registered = {};
 function handle(block) {
@@ -9,7 +9,7 @@ function handle(block) {
 }
 export function bypassStrictModeRegister(name, code) {
   registered[name] = { code: code };
-  JavaScript[name] = handle;
+  javascriptGenerator.forBlock[name] = handle;
 }
 export function createCustomBlockID(name) {
   let customId = '';
@@ -51,7 +51,7 @@ export function createCustomBlock(name, data) {
 const prefix = 'jg_s4d_customBlocks_builder1_';
 const color = 120;
 import { load } from './cbblocks.js';
-load(Blockly, JavaScript, prefix, color);
+load(Blockly, javascriptGenerator, prefix, color);
 // toolbox
 export let toolbox = `
 <xml>
