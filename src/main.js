@@ -40,7 +40,7 @@ const blocklyLocale = {
   en: blocklyLocaleEN,
   fr: blocklyLocaleFR,
   pt: blocklyLocalePT
-}
+};
 
 import customLocaleEN from './locales/en';
 import customLocaleFR from './locales/fr';
@@ -57,7 +57,7 @@ const i18n = createI18n({
   globalInjection: true,
   locale: languages[navigator.language.split('-')[0]]?.websiteMessages ? navigator.language.split('-')[0] : 'en',
   fallbackLocale: 'en',
-  messages: Object.fromEntries(Object.entries(languages).map(entry=>[entry[0],entry[1].websiteMessages]))
+  messages: Object.fromEntries(Object.entries(languages).map((entry) => [entry[0], entry[1].websiteMessages]))
 });
 
 import toolbox from './toolbox';

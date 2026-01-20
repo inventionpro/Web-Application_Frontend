@@ -51,7 +51,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block
     .getFieldValue('TYPE')
     .toLowerCase()
-    .replace(/^./, (match)=>match.toUpperCase());
+    .replace(/^./, (match) => match.toUpperCase());
   const game = javascriptGenerator.valueToCode(block, 'GAME', javascriptGenerator.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');
   const code = `s4d.client.user.setPresence({

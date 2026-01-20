@@ -9,8 +9,7 @@ function hexToRgb(hex) {
   return [arrByte[1], arrByte[2], arrByte[3]];
 }
 function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? '0' + hex : hex;
+  return c.toString(16).padStart(2, '0');
 }
 function rgbToHex(r, g, b) {
   return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
@@ -55,7 +54,7 @@ Blockly.Blocks['jg_s4d_themes_set_navigation_bar_color_to'] = {
     if (!this.isEnabled()) return;
     const color = String(this.getFieldValue('COLOR')).toUpperCase().substring(0, 7);
     document.getElementById('navSpace').style = `background-color: ${color} !important;`;
-    const elements = document.getElementsByClassName('navbar-nav ml-auto').item(0).getElementsByTagName('button');
+    const elements = document.getElementsByClassName('navbar-nav ms-auto').item(0).getElementsByTagName('button');
     for (let i = 0; i < elements.length; i++) {
       let current = elements.item(i);
       if (current.getAttribute('style') == null) continue;
