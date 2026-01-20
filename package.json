@@ -2,6 +2,7 @@
   "name": "scratch-for-discord",
   "version": "469.13.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "npm run build && npm run serve",
     "serve": "vite preview",
@@ -31,8 +32,6 @@
     "js-beautify": "^1.15.4",
     "jszip": "^3.10.1",
     "localforage": "^1.10.0",
-    "node": "^24.13.0",
-    "npm": "^11.7.0",
     "save-svg-as-png": "^1.4.17",
     "scratchblocks": "^3.6.4",
     "sweetalert2": "^11.26.17",
@@ -45,34 +44,12 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.3",
     "autoprefixer": "^10.4.23",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^7.20.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-vue": "^10.7.0",
     "events": "^3.3.0",
     "postcss": "^8.5.6",
     "sass": "^1.97.2",
     "vite": "^7.3.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {
-      "id-length": [
-        "warn",
-        {
-          "max": 35
-        }
-      ]
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "browserslist": [
     "> 1%",
