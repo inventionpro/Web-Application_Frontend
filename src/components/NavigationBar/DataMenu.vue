@@ -1,14 +1,14 @@
 <template>
-  <b-nav-item-dropdown text="Data" right>
-    <b-dropdown-item @click="TokenDB">Token DB</b-dropdown-item>
-    <b-dropdown-item @click="ManualFavorite">Manual Favorite</b-dropdown-item>
-    <b-dropdown-item @click="ClearAutosave" variant="danger">Clear Autosave</b-dropdown-item>
-    <b-dropdown-item @click="ClearFavorites" variant="danger">Clear Favorites</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item @click="askForFile">Load data</b-dropdown-item>
-    <input hidden @change="load" id="load-s4dData-code" type="file" accept=".zip,.data" />
-    <b-dropdown-item @click="dld">Download data</b-dropdown-item>
-  </b-nav-item-dropdown>
+  <BNavItemDropdown text="Data" right>
+    <BDropdownItem @click="TokenDB">Token DB</BDropdownItem>
+    <BDropdownItem @click="ManualFavorite">Manual Favorite</BDropdownItem>
+    <BDropdownItem variant="danger" @click="ClearAutosave">Clear Autosave</BDropdownItem>
+    <BDropdownItem variant="danger" @click="ClearFavorites">Clear Favorites</BDropdownItem>
+    <BDropdownDivider />
+    <BDropdownItem @click="askForFile">Load data</BDropdownItem>
+    <input id="load-s4dData-code" hidden type="file" accept=".zip,.data" @change="load">
+    <BDropdownItem @click="dld">Download data</BDropdownItem>
+  </BNavItemDropdown>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ import JSZip from 'jszip';
 import localforage from 'localforage';
 import Swal from 'sweetalert2';
 export default {
-  name: 'userDataExport',
+  name: 'UserDataExport',
   computed: {},
   methods: {
     ClearAutosave() {

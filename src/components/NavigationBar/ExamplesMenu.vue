@@ -1,27 +1,29 @@
 <template>
-  <b-nav-item-dropdown text="Examples" right>
-    <b-dropdown-item @click="userexamples()"><i class="fa-solid fa-user"></i> &#8226; Online Examples</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <p style="text-align: center"><b>Built-in:</b></p>
+  <BNavItemDropdown text="Examples" right>
+    <BDropdownItem @click="userexamples()"><i class="fa-solid fa-user" /> &#8226; Online Examples</BDropdownItem>
+    <BDropdownDivider />
+    <p style="text-align: center">
+      <b>Built-in:</b>
+    </p>
     <div style="height: 8.75em; overflow: auto">
-      <b-dropdown-item @click="load('ping-pong')">Ping-Pong Command</b-dropdown-item>
-      <b-dropdown-item @click="load('command-parsing')">Command Handler</b-dropdown-item>
-      <b-dropdown-item @click="load('bettercmd')">Prefix Command Handler</b-dropdown-item>
-      <b-dropdown-item @click="load('leveling')">Basic Leveling System</b-dropdown-item>
-      <b-dropdown-item @click="load('music')">Music System</b-dropdown-item>
-      <b-dropdown-item @click="load('image-gen')">Image Generation</b-dropdown-item>
-      <b-dropdown-item @click="load('economy')">Economy System</b-dropdown-item>
-      <b-dropdown-item @click="load('leaderboard')">Leaderboard from Database</b-dropdown-item>
-      <b-dropdown-item @click="load('backup')">Backups</b-dropdown-item>
-      <b-dropdown-item @click="load('random')">Random Responses</b-dropdown-item>
-      <b-dropdown-item @click="load('cooldown')">Cooldowns</b-dropdown-item>
-      <b-dropdown-item @click="load('button')">Buttons & Button rows</b-dropdown-item>
-      <b-dropdown-item @click="load('slash')">Slash Commands</b-dropdown-item>
-      <b-dropdown-item @click="load('advjsonreq')">Advanced JSON Request</b-dropdown-item>
-      <b-dropdown-item @click="load('regex')">RegEx: Finding specific text</b-dropdown-item>
-      <b-dropdown-item @click="load('embed example')">Using Embeds Category</b-dropdown-item>
+      <BDropdownItem @click="load('ping-pong')">Ping-Pong Command</BDropdownItem>
+      <BDropdownItem @click="load('command-parsing')">Command Handler</BDropdownItem>
+      <BDropdownItem @click="load('bettercmd')">Prefix Command Handler</BDropdownItem>
+      <BDropdownItem @click="load('leveling')">Basic Leveling System</BDropdownItem>
+      <BDropdownItem @click="load('music')">Music System</BDropdownItem>
+      <BDropdownItem @click="load('image-gen')">Image Generation</BDropdownItem>
+      <BDropdownItem @click="load('economy')">Economy System</BDropdownItem>
+      <BDropdownItem @click="load('leaderboard')">Leaderboard from Database</BDropdownItem>
+      <BDropdownItem @click="load('backup')">Backups</BDropdownItem>
+      <BDropdownItem @click="load('random')">Random Responses</BDropdownItem>
+      <BDropdownItem @click="load('cooldown')">Cooldowns</BDropdownItem>
+      <BDropdownItem @click="load('button')">Buttons & Button rows</BDropdownItem>
+      <BDropdownItem @click="load('slash')">Slash Commands</BDropdownItem>
+      <BDropdownItem @click="load('advjsonreq')">Advanced JSON Request</BDropdownItem>
+      <BDropdownItem @click="load('regex')">RegEx: Finding specific text</BDropdownItem>
+      <BDropdownItem @click="load('embed example')">Using Embeds Category</BDropdownItem>
     </div>
-  </b-nav-item-dropdown>
+  </BNavItemDropdown>
 </template>
 
 <script>
@@ -205,7 +207,7 @@ async function getSessionID() {
 }
 
 export default {
-  name: 'editmenu',
+  name: 'Editmenu',
   computed: {},
   mounted() {
     setTimeout(() => {

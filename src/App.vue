@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <NavBarComponent id="navSpace"></NavBarComponent>
-    <BlocklyComponent id="blocklySpace" :options="options"></BlocklyComponent>
+    <NavBarComponent id="navSpace" />
+    <BlocklyComponent id="blocklySpace" :options="options" />
   </div>
 </template>
 
@@ -174,27 +174,10 @@ import './blocks/emidblol/openai/index.js';
 import './blocks/quickdb';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     BlocklyComponent,
     NavBarComponent
-  },
-  beforeCreate() {
-    this.$root.$i18n.locale = this.$store.state.blocklyLocale;
-  },
-  mounted() {
-    console.log('...wait a second... a user?');
-    console.log('i gotta tell them!');
-    console.log('%cCAREFUL WHAT YOU TYPE IN CONSOLE! %cbarry and johnathan are watching all of your moves...', 'color:#f00;font-family:system-ui;font-size:2rem;font-weight:bold', 'color:#b00;font-family:system-ui;font-size:2rem;font-weight:bold');
-    console.log('...');
-    if (!('ScratchNative' in window) && window.parent?.ScratchNative) window.ScratchNative = window.parent.ScratchNative;
-    const blocklyLocale = localStorage.getItem('blocklyLocale');
-    if (blocklyLocale !== null) {
-      this.$store.commit('setLocale', {
-        newLocale: blocklyLocale
-      });
-      this.setLanguage(blocklyLocale);
-    }
   },
   data() {
     //month starts at 0 day starts at 1
@@ -249,6 +232,23 @@ export default {
           wheel: true
         }
       };
+    }
+  },
+  beforeCreate() {
+    this.$root.$i18n.locale = this.$store.state.blocklyLocale;
+  },
+  mounted() {
+    console.log('...wait a second... a user?');
+    console.log('i gotta tell them!');
+    console.log('%cCAREFUL WHAT YOU TYPE IN CONSOLE! %cbarry and johnathan are watching all of your moves...', 'color:#f00;font-family:system-ui;font-size:2rem;font-weight:bold', 'color:#b00;font-family:system-ui;font-size:2rem;font-weight:bold');
+    console.log('...');
+    if (!('ScratchNative' in window) && window.parent?.ScratchNative) window.ScratchNative = window.parent.ScratchNative;
+    const blocklyLocale = localStorage.getItem('blocklyLocale');
+    if (blocklyLocale !== null) {
+      this.$store.commit('setLocale', {
+        newLocale: blocklyLocale
+      });
+      this.setLanguage(blocklyLocale);
     }
   }
 };

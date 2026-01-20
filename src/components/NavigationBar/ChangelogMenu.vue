@@ -1,5 +1,5 @@
 <template>
-  <b-nav-item @click="changelog">Changelog</b-nav-item>
+  <BNavItem @click="changelog">Changelog</BNavItem>
 </template>
 
 <script>

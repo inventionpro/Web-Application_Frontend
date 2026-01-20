@@ -1,9 +1,9 @@
 <template>
-  <b-nav-item-dropdown :text="$t('lang.title')" right>
-    <b-dropdown-item @click="changeLanguage('en')">English (EN)</b-dropdown-item>
-    <b-dropdown-item @click="changeLanguage('fr')">Français (FR)</b-dropdown-item>
-    <b-dropdown-item @click="changeLanguage('pt')">Português (PT)</b-dropdown-item>
-  </b-nav-item-dropdown>
+  <BNavItemDropdown :text="$t('lang.title')" right>
+    <BDropdownItem @click="changeLanguage('en')">English (EN)</BDropdownItem>
+    <BDropdownItem @click="changeLanguage('fr')">Français (FR)</BDropdownItem>
+    <BDropdownItem @click="changeLanguage('pt')">Português (PT)</BDropdownItem>
+  </BNavItemDropdown>
 </template>
 
 <script>

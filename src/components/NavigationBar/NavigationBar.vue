@@ -4,48 +4,50 @@ const NavExpanded = ref(false);
 </script>
 
 <template>
-  <b-navbar toggleable="lg" style="user-select: none" id="navbar nav-main" class="navbar-dark bg-dark">
-    <b-navbar-brand style="margin: 0">
-      <button id="hideAllGuiElements" class="hide-gui-button"><img src="/scratch.png" width="35" draggable="false" id="navigationBarS4DImage" /></button>
+  <BNavbar id="navbar nav-main" toggleable="lg" style="user-select: none" class="navbar-dark bg-dark">
+    <BNavbarBrand style="margin: 0">
+      <button id="hideAllGuiElements" class="hide-gui-button">
+        <img id="navigationBarS4DImage" src="/scratch.png" width="35" draggable="false">
+      </button>
       Scratch For Discord
-    </b-navbar-brand>
+    </BNavbarBrand>
 
-    <b-navbar-toggle @click="NavExpanded = !NavExpanded"></b-navbar-toggle>
+    <BNavbarToggle @click="NavExpanded = !NavExpanded" />
 
-    <b-collapse is-nav v-model="NavExpanded" style="width: 0px">
-      <b-navbar-nav>
-        <CodeModal></CodeModal>
-        <FileMenu style="font-size: small"></FileMenu>
-        <EditMenu style="font-size: small"></EditMenu>
+    <BCollapse v-model="NavExpanded" is-nav style="width: 0px">
+      <BNavbarNav>
+        <CodeModal />
+        <FileMenu style="font-size: small" />
+        <EditMenu style="font-size: small" />
         <!--<LanguageMenu style="font-size: small"></LanguageMenu>-->
-        <ExamplesMenu style="font-size: small"></ExamplesMenu>
-        <SocialsMenu style="font-size: small"></SocialsMenu>
-        <DataMenu style="font-size: small"></DataMenu>
-        <ChangelogMenu style="font-size: small"></ChangelogMenu>
-        <ShortcutsMenu style="font-size: small"></ShortcutsMenu>
-        <CreditsMenu style="font-size: small"></CreditsMenu>
-      </b-navbar-nav>
-      <b-navbar-nav class="ms-auto flex-row align-items-center">
+        <ExamplesMenu style="font-size: small" />
+        <SocialsMenu style="font-size: small" />
+        <DataMenu style="font-size: small" />
+        <ChangelogMenu style="font-size: small" />
+        <ShortcutsMenu style="font-size: small" />
+        <CreditsMenu style="font-size: small" />
+      </BNavbarNav>
+      <BNavbarNav class="ms-auto flex-row align-items-center">
         <div id="block-counter" style="margin-right: 5px; font-size: 90%">
           <p id="block-counter-textParagraph" style="margin: 0px; color: rgb(182, 182, 182)">0 blocks</p>
         </div>
-        <b-nav-item class="theme-changer" id="themeSwitchingLD" style="width: 32px; height: 32px; margin-top: 2px; margin-right: 5px" @click="changeTheme"></b-nav-item>
+        <BNavItem id="themeSwitchingLD" class="theme-changer" style="width: 32px; height: 32px; margin-top: 2px; margin-right: 5px" @click="changeTheme" />
 
-        <b-button style="max-width: 25dvw; border-right-color: rgb(22, 23, 25); border-radius: 0.25em 0em 0em 0.25em; overflow: hidden; text-overflow: ellipsis">
+        <BButton style="max-width: 25dvw; border-right-color: rgb(22, 23, 25); border-radius: 0.25em 0em 0em 0.25em; overflow: hidden; text-overflow: ellipsis">
           <span id="docName" style="font-size: smaller; white-space: nowrap" @click="changeFileName">{{ $t('untitled') }}</span>
-        </b-button>
-        <b-button style="border-right-color: #161719; border-radius: 0em" @click="runbot">
-          <i class="bi bi-play"></i>
-        </b-button>
-        <b-button style="border-right-color: #161719; border-radius: 0em" @click="util">
-          <i class="bi bi-gear"></i>
-        </b-button>
-        <b-button style="border-radius: 0em; border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em" @click="exportToCode">
-          <i class="bi bi-download"></i>
-        </b-button>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+        </BButton>
+        <BButton style="border-right-color: #161719; border-radius: 0em" @click="runbot">
+          <i class="bi bi-play" />
+        </BButton>
+        <BButton style="border-right-color: #161719; border-radius: 0em" @click="util">
+          <i class="bi bi-gear" />
+        </BButton>
+        <BButton style="border-radius: 0em; border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em" @click="exportToCode">
+          <i class="bi bi-download" />
+        </BButton>
+      </BNavbarNav>
+    </BCollapse>
+  </BNavbar>
 </template>
 
 <script>
@@ -67,7 +69,7 @@ import ShortcutsMenu from './ShortcutsMenu.vue';
 import CreditsMenu from './CreditsMenu.vue';
 
 export default {
-  name: 'navbar',
+  name: 'Navbar',
   components: {
     CodeModal,
     FileMenu,

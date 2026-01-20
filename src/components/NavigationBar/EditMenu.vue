@@ -1,11 +1,11 @@
 <template>
-  <b-nav-item-dropdown :text="$t('edit.title')" right>
-    <b-dropdown-item @click="undo">Undo</b-dropdown-item>
-    <b-dropdown-item @click="redo">Redo</b-dropdown-item>
-    <b-dropdown-item @click="cleanUp">Clean up blocks</b-dropdown-item>
-    <b-dropdown-item @click="clear" variant="danger">Delete all blocks</b-dropdown-item>
-    <b-dropdown-item @click="clearGhost" variant="danger">Delete unused blocks</b-dropdown-item>
-  </b-nav-item-dropdown>
+  <BNavItemDropdown :text="$t('edit.title')" right>
+    <BDropdownItem @click="undo">Undo</BDropdownItem>
+    <BDropdownItem @click="redo">Redo</BDropdownItem>
+    <BDropdownItem @click="cleanUp">Clean up blocks</BDropdownItem>
+    <BDropdownItem variant="danger" @click="clear">Delete all blocks</BDropdownItem>
+    <BDropdownItem variant="danger" @click="clearGhost">Delete unused blocks</BDropdownItem>
+  </BNavItemDropdown>
 </template>
 
 <script>
