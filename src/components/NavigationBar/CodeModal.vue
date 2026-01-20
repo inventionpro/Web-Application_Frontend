@@ -1,10 +1,10 @@
 <template>
-  <dialog ref="codeModal" id="code-modal">
+  <dialog id="code-modal" ref="codeModal">
     <h2>JavaScript code of your bot</h2>
-    <code class="language-js"></code>
+    <code class="language-js" />
     <div>
-      <b-button @click="closeCodeModal">Close</b-button>
-      <b-button @click="copy" variant="primary">Copy to Clipboard</b-button>
+      <BButton @click="closeCodeModal">Close</BButton>
+      <BButton variant="primary" @click="copy">Copy to Clipboard</BButton>
     </div>
   </dialog>
 </template>

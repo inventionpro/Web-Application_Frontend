@@ -1,35 +1,37 @@
 <template>
-  <b-modal id="run-modal" hide-footer :title="$t('run_modal.title')">
+  <BModal id="run-modal" hide-footer :title="$t('run_modal.title')">
     <div class="d-block">
       <b-container>
         <b-row v-if="!electronApp">
           <i18n path="run_modal.disabled" tag="h5">
-            <template v-slot:here>
+            <template #here>
               <a href="https://ahqsoftwares.github.io/scratch-for-discord-app/" target="_blank">{{ $t('run_modal.here') }}</a>
             </template>
           </i18n>
         </b-row>
-        <hr />
+        <hr>
         <b-row>
           <b-col sm="12" lg="8">
             <div class="botinfos">
               <b-overlay :show="botStarting" class="d-inline-block" rounded="circle">
-                <div :style="getBotImageStyle()"></div>
+                <div :style="getBotImageStyle()" />
               </b-overlay>
               <span :class="getUsernameSpanClass()">Logged in as {{ botTag || 'Unknown#0000' }}</span>
             </div>
           </b-col>
           <b-col>
             <div class="handlebuttondiv">
-              <b-overlay :show="botStarting" rounded opacity="0.6" spinner-small spinner-variant="primary" class="d-inline-block" ref="button" @hidden="onHidden">
-                <b-button :class="getHandleButtonClass()" @click="handle()" v-b-tooltip.hover :title="getTooltipContent()"><font-awesome-icon icon="power-off" /></b-button>
+              <b-overlay ref="button" :show="botStarting" rounded opacity="0.6" spinner-small spinner-variant="primary" class="d-inline-block" @hidden="onHidden">
+                <BButton v-b-tooltip.hover :class="getHandleButtonClass()" :title="getTooltipContent()" @click="handle()">
+                  <FontAwesomeIcon icon="power-off" />
+                </BButton>
               </b-overlay>
             </div>
           </b-col>
         </b-row>
       </b-container>
     </div>
-  </b-modal>
+  </BModal>
 </template>
 
 <script>
@@ -57,7 +59,7 @@ import { NodeVM } from 'vm2';
 import beautify from 'js-beautify';
 
 export default {
-  name: 'editmenu',
+  name: 'Editmenu',
   data: function () {
     return {
       botStarted: false,

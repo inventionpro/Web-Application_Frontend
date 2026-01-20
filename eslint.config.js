@@ -13,7 +13,8 @@ export default [
     },
     rules: {
       'id-length': ['warn', { min: 0, max: 35 }],
-      'vue/max-attributes-per-line': 'off'
+      'vue/max-attributes-per-line': 'off',
+      'vue/singleline-html-element-content-newline': 'off'
     }
   }
 ];

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="blocklyDiv" ref="blocklyDiv" id="blocklyDiv"></div>
+    <div id="blocklyDiv" ref="blocklyDiv" class="blocklyDiv" />
     <xml ref="blocklyToolbox" style="font-family: sans-serif">
-      <slot></slot>
+      <slot />
     </xml>
   </div>
 </template>

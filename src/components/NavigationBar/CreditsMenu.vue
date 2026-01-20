@@ -1,5 +1,5 @@
 <template>
-  <b-nav-item @click="credit">Credit</b-nav-item>
+  <BNavItem @click="credit">Credit</BNavItem>
 </template>
 
 <script>

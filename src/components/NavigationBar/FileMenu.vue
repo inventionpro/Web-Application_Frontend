@@ -5,14 +5,14 @@ function openCodeModal() {
 </script>
 
 <template>
-  <b-nav-item-dropdown :text="$t('file.title')" right>
-    <b-dropdown-item @click="askForFile">{{ $t('file.open') }}</b-dropdown-item>
-    <input hidden @change="load" id="load-code" type="file" accept=".s4d,.zip,.xml" />
-    <b-dropdown-item @click="openCodeModal">{{ $t('file.javascript') }}</b-dropdown-item>
-    <b-dropdown-item @click="copy">{{ $t('file.copy') }}</b-dropdown-item>
-    <b-dropdown-item @click="save">{{ $t('file.save') }}</b-dropdown-item>
-    <b-dropdown-item @click="saveas">Replace</b-dropdown-item>
-  </b-nav-item-dropdown>
+  <BNavItemDropdown :text="$t('file.title')" right>
+    <BDropdownItem @click="askForFile">{{ $t('file.open') }}</BDropdownItem>
+    <input id="load-code" hidden type="file" accept=".s4d,.zip,.xml" @change="load">
+    <BDropdownItem @click="openCodeModal">{{ $t('file.javascript') }}</BDropdownItem>
+    <BDropdownItem @click="copy">{{ $t('file.copy') }}</BDropdownItem>
+    <BDropdownItem @click="save">{{ $t('file.save') }}</BDropdownItem>
+    <BDropdownItem @click="saveas">Replace</BDropdownItem>
+  </BNavItemDropdown>
 </template>
 
 <script>

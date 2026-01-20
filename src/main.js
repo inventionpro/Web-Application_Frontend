@@ -12,19 +12,19 @@ import savenload from './save-load';
 const app = createApp(App);
 
 import { BModal, BNavItem, BNavItemDropdown, BNavbar, BNavbarNav, BNavbarBrand, BNavbarToggle, BButton, BDropdownItem, BDropdownDivider, BCollapse } from 'bootstrap-vue-next';
-app.component('b-modal', BModal);
-app.component('b-nav-item', BNavItem);
-app.component('b-nav-item-dropdown', BNavItemDropdown);
-app.component('b-navbar', BNavbar);
-app.component('b-navbar-nav', BNavbarNav);
-app.component('b-navbar-brand', BNavbarBrand);
-app.component('b-navbar-toggle', BNavbarToggle);
+app.component('BModal', BModal);
+app.component('BNavItem', BNavItem);
+app.component('BNavItemDropdown', BNavItemDropdown);
+app.component('BNavbar', BNavbar);
+app.component('BNavbarNav', BNavbarNav);
+app.component('BNavbarBrand', BNavbarBrand);
+app.component('BNavbarToggle', BNavbarToggle);
 app.component('BButton', BButton);
-app.component('b-dropdown-item', BDropdownItem);
-app.component('b-dropdown-divider', BDropdownDivider);
-app.component('b-collapse', BCollapse);
+app.component('BDropdownItem', BDropdownItem);
+app.component('BDropdownDivider', BDropdownDivider);
+app.component('BCollapse', BCollapse);
 
-app.component('font-awesome-icon', FontAwesomeIcon);
+app.component('FontAwesomeIcon', FontAwesomeIcon);
 
 app.use(VueToast);
 app.use(bootstrapPlugin);

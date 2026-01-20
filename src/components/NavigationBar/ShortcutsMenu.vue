@@ -1,5 +1,5 @@
 <template>
-  <b-nav-item @click="shortcuts">Shortcuts</b-nav-item>
+  <BNavItem @click="shortcuts">Shortcuts</BNavItem>
 </template>
 
 <script>
