@@ -109,25 +109,10 @@ export default {
     const isMobile = function () {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     };
-    function prepToolbox(toolbox_content, searching, favorites, pooopewwweewwww, searchparameter = '') {
+    function prepToolbox(toolbox_content, searching, searchparameter = '') {
       const default_max_length = 250;
       let CATEGORYCONTENT = `<label text="Error failed to get block(s)..." web-class="boldtext"></label>`;
 
-      if (searching == 'baiuyfg8iu4ewf643o8ir') {
-        blocks.forEach((block) => {
-          let xml = Blockly.utils.xml.textToDom(`<block type="${block}"/>`);
-          block = Blockly.Xml.domToBlock(xml, pooopewwweewwww);
-          block.moveBy(Math.round(Math.random() * 5000), Math.round(Math.random() * 5000));
-          return;
-        });
-      }
-      if (searching == 'f9u42r8hg329rehsfhoiewgf37') {
-        blocks.forEach((block) => {
-          const xml = Blockly.utils.xml.textToDom(`<xml><block type="${block}"/></xml>`);
-          Blockly.Xml.appendDomToWorkspace(xml, pooopewwweewwww);
-        });
-        return;
-      }
       if (searching) {
         // search category controler
         // why are so many blocks not defined before this all runs 😭
@@ -172,10 +157,10 @@ export default {
             <label text="ㅤ" web-class="boldtext"></label>
             ${search_res
               .slice(0, default_max_length)
-              .map((block) => {
-                return `<label text="${block.replace(searchparameter, `${searchparameter.toUpperCase()}`)} ${resbox[block] == null ? ' isnt in the toolbox' : 'is in ' + resbox[block].join(' and ')}" web-class="boldtext"></label>
-<block type="${block}"/>`;
-              })
+              .map(
+                (block) => `<label text="${block.replace(searchparameter, searchparameter.toUpperCase())} is${resbox[block] == null ? "n't in the toolbox" : ' in ' + resbox[block].join(' and ')}" web-class="boldtext"></label>
+<block type="${block}"/>`
+              )
               .join('\n')}`;
         }
       } else {
@@ -239,11 +224,9 @@ ${CATEGORYCONTENT}`
     if (allow_toolbox_search) {
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Search for block',
-        preconditionFn: function () {
-          return 'enabled';
-        },
+        preconditionFn: () => 'enabled',
         callback: function () {
-          var new_toolbox_xml = prepToolbox(toolbox(val), true, val);
+          var new_toolbox_xml = prepToolbox(toolbox(val), true);
           workspace.updateToolbox(new_toolbox_xml);
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -328,9 +311,7 @@ ${CATEGORYCONTENT}`
     window.s4dDebugEvents.push(() => {
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn block via Internal name',
-        preconditionFn: function () {
-          return 'enabled';
-        },
+        preconditionFn: () => 'enabled',
         callback: function () {
           let input = prompt('Block Internal Name');
           if (!input) {
@@ -350,11 +331,14 @@ ${CATEGORYCONTENT}`
       });
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn all toolblocks',
-        preconditionFn: function () {
-          return 'enabled';
-        },
+        preconditionFn: () => 'enabled',
         callback: function () {
-          prepToolbox(toolbox(val), 'baiuyfg8iu4ewf643o8ir', null, workspace);
+          blocks.forEach((block) => {
+            let xml = Blockly.utils.xml.textToDom(`<block type="${block}"/>`);
+            block = Blockly.Xml.domToBlock(xml, workspace);
+            block.moveBy(Math.round(Math.random() * 5000), Math.round(Math.random() * 5000));
+            return;
+          });
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
         id: 'spawnalltoolblocks',
@@ -362,11 +346,12 @@ ${CATEGORYCONTENT}`
       });
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn all toolblocks (ordered)',
-        preconditionFn: function () {
-          return 'enabled';
-        },
+        preconditionFn: () => 'enabled',
         callback: function () {
-          prepToolbox(toolbox(val), 'f9u42r8hg329rehsfhoiewgf37', null, workspace);
+          blocks.forEach((block) => {
+            const xml = Blockly.utils.xml.textToDom(`<xml><block type="${block}"/></xml>`);
+            Blockly.Xml.appendDomToWorkspace(xml, workspace);
+          });
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
         id: 'spawnalltoolblocks2',
@@ -374,9 +359,7 @@ ${CATEGORYCONTENT}`
       });
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Recolor all blocks',
-        preconditionFn: function () {
-          return 'enabled';
-        },
+        preconditionFn: () => 'enabled',
         callback: function () {
           let color = prompt('New color?');
           workspace.getAllBlocks().forEach((block) => {
@@ -400,9 +383,7 @@ ${CATEGORYCONTENT}`
       });
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Log Workspace XML',
-        preconditionFn: function () {
-          return 'enabled';
-        },
+        preconditionFn: () => 'enabled',
         callback: function () {
           console.log(Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace)));
         },
@@ -421,9 +402,7 @@ ${CATEGORYCONTENT}`
     window.s4dDebugEvents.push(() => {
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Log all Toolbox blocks',
-        preconditionFn: function () {
-          return 'enabled';
-        },
+        preconditionFn: () => 'enabled',
         callback: function () {
           logtoolblocks(true);
         },
@@ -560,7 +539,7 @@ ${CATEGORYCONTENT}`
           drag: true,
           wheel: true
         },
-        toolbox: prepToolbox(toolbox(val), false, val)
+        toolbox: prepToolbox(toolbox(val), false)
       }
     });
     window.blocklyGlobalRef = Blockly;
@@ -689,14 +668,14 @@ ${CATEGORYCONTENT}`
       });
     });
     window.loadtoolboxfuncinternal = () => {
-      let new_toolbox_xml = prepToolbox(toolbox(val), false, val, workspace, null);
+      let new_toolbox_xml = prepToolbox(toolbox(val), false, null);
       workspace.updateToolbox(new_toolbox_xml);
     };
     workspace.registerButtonCallback('SEARCH', function () {
       if (isMobile()) {
         let res = String(prompt('Search for a block:'));
         let block = res.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
-        let new_toolbox_xml = prepToolbox(toolbox(val), true, val, workspace, block);
+        let new_toolbox_xml = prepToolbox(toolbox(val), true, block);
         workspace.toolbox_.clearSelection();
         workspace.updateToolbox(new_toolbox_xml);
         workspace.toolbox_.clearSelection();
@@ -714,7 +693,7 @@ ${CATEGORYCONTENT}`
         .then(async (result) => {
           if (result) {
             let block = document.getElementById('block').value.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
-            let new_toolbox_xml = prepToolbox(toolbox(val), true, val, workspace, block);
+            let new_toolbox_xml = prepToolbox(toolbox(val), true, block);
             workspace.toolbox_.clearSelection();
             workspace.updateToolbox(new_toolbox_xml);
             workspace.toolbox_.clearSelection();
@@ -1073,9 +1052,7 @@ ${CATEGORYCONTENT}`
 
     Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Download Workspace Image',
-      preconditionFn: function () {
-        return 'enabled';
-      },
+      preconditionFn: () => 'enabled',
       callback: function () {
         Blockly.downloadScreenshot(workspace);
       },
@@ -1087,9 +1064,7 @@ ${CATEGORYCONTENT}`
       displayText: function (scope) {
         return val && val.includes(scope.block.type) ? 'Remove from favorite' : 'Add to favorite';
       },
-      preconditionFn: function () {
-        return 'enabled';
-      },
+      preconditionFn: () => 'enabled',
       callback: async function (scope) {
         let type = scope.block.type;
 
@@ -1115,7 +1090,7 @@ ${CATEGORYCONTENT}`
         }
 
         val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
-        let new_toolbox_xml = prepToolbox(toolbox(val), false, val);
+        let new_toolbox_xml = prepToolbox(toolbox(val), false);
         workspace.updateToolbox(new_toolbox_xml);
       },
       scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
