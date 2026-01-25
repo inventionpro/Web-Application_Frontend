@@ -83,7 +83,6 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH');
   const string = javascriptGenerator.valueToCode(block, 'BOOLEAN', javascriptGenerator.ORDER_ATOMIC).toLowerCase();
-  console.log('return ' + string + '\n' + searchType);
   const code = [`interaction.options.get${searchType}(${string})`, javascriptGenerator.ORDER_NONE];
   return code;
 };

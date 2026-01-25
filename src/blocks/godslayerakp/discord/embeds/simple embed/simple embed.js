@@ -59,9 +59,7 @@ Blockly.Blocks[blockName] = {
   },
 
   mutationToDom: function () {
-    if (!this.inputs_) {
-      return null;
-    }
+    if (!this.inputs_) return null;
     const container = document.createElement('mutation');
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) container.setAttribute(BORDER_FIELDS[i], this.inputs_[i]);
@@ -71,7 +69,7 @@ Blockly.Blocks[blockName] = {
 
   domToMutation: function (xmlElement) {
     for (let i = 0; i < this.inputs_.length; i++) {
-      this.inputs_[i] = xmlElement.getAttribute(BORDER_FIELDS[i].toLowerCase()) == 'true';
+      this.inputs_[i] = xmlElement.getAttribute(BORDER_FIELDS[i].toLowerCase()) === 'true';
     }
     this.updateShape_();
   },
@@ -93,7 +91,7 @@ Blockly.Blocks[blockName] = {
   compose: function (containerBlock) {
     // Set states
     for (let i = 0; i < this.inputs_.length; i++) {
-      this.inputs_[i] = containerBlock.getFieldValue(BORDER_FIELDS[i].toUpperCase()) == 'TRUE';
+      this.inputs_[i] = containerBlock.getFieldValue(BORDER_FIELDS[i].toUpperCase()) === 'TRUE';
     }
     this.updateShape_();
   },
@@ -112,7 +110,6 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  console.log(this.inputs_);
   // code should be the first couple lines of your code before the inputs
   let message = '';
   let color = '';
@@ -126,43 +123,17 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let timestamp = '';
   let footer = '';
   // check if the inputs exist before adding them to the exported code
-  if (this.inputs_[1]) {
-    color = `color: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[1], javascriptGenerator.ORDER_NONE)}), \n`;
-  }
-  if (this.inputs_[2]) {
-    title = `title: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[2], javascriptGenerator.ORDER_NONE)}), \n`;
-  }
-  if (this.inputs_[3]) {
-    url = `url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[3], javascriptGenerator.ORDER_NONE)}), \n`;
-  }
-  if (this.inputs_[4]) {
-    author = javascriptGenerator.valueToCode(block, BORDER_FIELDS[4], javascriptGenerator.ORDER_ATOMIC);
-  }
-  if (this.inputs_[5]) {
-    description = `description: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[5], javascriptGenerator.ORDER_NONE)}), \n`;
-  }
-  if (this.inputs_[6]) {
-    thumbnail = `thumbnail: {
-            url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[6], javascriptGenerator.ORDER_NONE)})
-        }, \n`;
-  }
-  if (this.inputs_[7]) {
-    fields = javascriptGenerator.valueToCode(block, BORDER_FIELDS[7], javascriptGenerator.ORDER_ATOMIC);
-  }
-  if (this.inputs_[8]) {
-    image = `image: {
-            url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[8], javascriptGenerator.ORDER_NONE)})
-        }, \n`;
-  }
-  if (this.inputs_[9]) {
-    timestamp = `timestamp: new Date(String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[9], javascriptGenerator.ORDER_NONE)})),`;
-  }
-  if (this.inputs_[10]) {
-    footer = javascriptGenerator.valueToCode(block, BORDER_FIELDS[10], javascriptGenerator.ORDER_ATOMIC);
-  }
-  if (this.inputs_[0]) {
-    message = `content: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[0], javascriptGenerator.ORDER_NONE)}), `;
-  }
+  if (block.inputs_[1]) color = `color: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[1], javascriptGenerator.ORDER_NONE)}),\n`;
+  if (block.inputs_[2]) title = `title: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[2], javascriptGenerator.ORDER_NONE)}),\n`;
+  if (block.inputs_[3]) url = `url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[3], javascriptGenerator.ORDER_NONE)}),\n`;
+  if (block.inputs_[4]) author = javascriptGenerator.valueToCode(block, BORDER_FIELDS[4], javascriptGenerator.ORDER_ATOMIC);
+  if (block.inputs_[5]) description = `description: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[5], javascriptGenerator.ORDER_NONE)}),\n`;
+  if (block.inputs_[6]) thumbnail = `thumbnail: { url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[6], javascriptGenerator.ORDER_NONE)}) },\n`;
+  if (block.inputs_[7]) fields = javascriptGenerator.valueToCode(block, BORDER_FIELDS[7], javascriptGenerator.ORDER_ATOMIC);
+  if (block.inputs_[8]) image = `image: { url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[8], javascriptGenerator.ORDER_NONE)}) },\n`;
+  if (block.inputs_[9]) timestamp = `timestamp: new Date(String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[9], javascriptGenerator.ORDER_NONE)})),\n`;
+  if (block.inputs_[10]) footer = javascriptGenerator.valueToCode(block, BORDER_FIELDS[10], javascriptGenerator.ORDER_ATOMIC);
+  if (block.inputs_[0]) message = `content: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[0], javascriptGenerator.ORDER_NONE)}),`;
   const code = `${message}embeds: [{
 ${color}${title}${url}${author}${description}${thumbnail}${fields}${image}${timestamp}${footer}}]`;
   return [code, javascriptGenerator.ORDER_ATOMIC];

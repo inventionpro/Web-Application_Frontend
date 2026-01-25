@@ -59,7 +59,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
            reply.member.timeout(60 * 60 * 1000, "NSFW image").catch(e => m.edit("Error in muting!"))
         });
     }
-    }); 
+    });
     });
 }).catch(async () => {
             await deepai.callStandardApi("nsfw-detector", {
