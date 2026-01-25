@@ -90,7 +90,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
         },
         "tag": "jobbuilder"
     });
-    
+
     ${javascriptGenerator.statementToCode(block, 'statement', javascriptGenerator.ORDER_NONE)}`;
   return code;
 };

@@ -94,7 +94,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
         alignmentX: ${alignx},
         alignmentY: ${aligny}
       },
-      
       );
 });\n`;
 };

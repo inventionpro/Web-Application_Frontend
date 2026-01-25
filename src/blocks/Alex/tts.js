@@ -41,19 +41,19 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
   const code = `const stream=discordTTS.getVoiceStream(${playtts});
-        const audioResource=createAudioResource(stream, {inputType: StreamType.Arbitrary, inlineVolume:true});
-        if(!voiceConnection || voiceConnection.status===VoiceConnectionStatus.Disconnected){
-            voiceConnection = joinVoiceChannel({
-                channelId: ${channel}.id,
-                guildId: ${server}.id,
-                adapterCreator: ${server}.voiceAdapterCreator,
-            });
-            voiceConnection=await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5000);
-        }
-        
-        if(voiceConnection.status===VoiceConnectionStatus.Connected){
-            voiceConnection.subscribe(audioPlayer);
-            audioPlayer.play(audioResource);
-        }`;
+const audioResource=createAudioResource(stream, {inputType: StreamType.Arbitrary, inlineVolume:true});
+if (!voiceConnection || voiceConnection.status===VoiceConnectionStatus.Disconnected) {
+  voiceConnection = joinVoiceChannel({
+    channelId: ${channel}.id,
+    guildId: ${server}.id,
+    adapterCreator: ${server}.voiceAdapterCreator,
+  });
+  voiceConnection=await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5000);
+}
+
+if (voiceConnection.status===VoiceConnectionStatus.Connected) {
+  voiceConnection.subscribe(audioPlayer);
+  audioPlayer.play(audioResource);
+}`;
   return code;
 };

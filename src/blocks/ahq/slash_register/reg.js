@@ -36,9 +36,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const server = javascriptGenerator.valueToCode(block, 'Server', javascriptGenerator.ORDER_ATOMIC);
   const des = javascriptGenerator.valueToCode(block, 'args', javascriptGenerator.ORDER_ATOMIC);
   const code = `s4d.client.application?.commands.create({
-        name: ${server},
-        description: ${des},
-        options: [${statementThen}]        
-    });`;
+  name: ${server},
+  description: ${des},
+  options: [${statementThen}]
+});`;
   return code;
 };

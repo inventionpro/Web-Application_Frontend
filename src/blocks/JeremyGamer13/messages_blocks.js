@@ -3080,16 +3080,15 @@ javascriptGenerator.forBlock['jg_channels_wait_for_message_in_channel_to_meet_ch
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   const statement2 = javascriptGenerator.statementToCode(block, 'STATEMENT2');
   const code = `${channel}.awaitMessages({
-    filter: (s4dmessage) => ${filter},
-    time: (${time} * 60 * 1000),
-    max: 1 
+  filter: (s4dmessage) => ${filter},
+  time: (${time} * 60 * 1000),
+  max: 1
 }).then(async (S4DAPP_MESSAGES_RETURNED_FCOLLECTED) => {
-    s4dmessage = S4DAPP_MESSAGES_RETURNED_FCOLLECTED.first()
-    ${statements}
+  s4dmessage = S4DAPP_MESSAGES_RETURNED_FCOLLECTED.first()
+  ${statements}
 }).catch(async err => {
-    ${statement2}
-})
-`;
+  ${statement2}
+});`;
   return code;
 };
 Blockly.Blocks['jg_joins_subleaves_leaving_member'] = {

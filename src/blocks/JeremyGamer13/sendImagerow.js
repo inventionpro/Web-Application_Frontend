@@ -47,7 +47,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
     stored = fileNameandLocation;
   }
-  const code = `await ${fileSendChannel}.send({ 
+  const code = `await ${fileSendChannel}.send({
       files: ${stored},
       components: [${row}]
     });

@@ -209,7 +209,7 @@ export let toolbox = `
                 <shadow type="text">
                     <field name="TEXT">abc</field>
                 </shadow>
-            </value>               
+            </value>
         </block>
 		<block type="text_isEmpty"/>
 		<block type="text_reverse"/>
@@ -463,8 +463,8 @@ export let toolbox = `
         </block>
     </category>
     <category name="Collections" colour="#a354b3">
-    
-        
+
+
     <label text="Collections are able to hold data." web-class="boldtext"></label>
     <label text="It's like a list, but you attach a key to the data." web-class="boldtext"></label>
     <label text="You can then grab the data using the key later." web-class="boldtext"></label>
@@ -651,7 +651,7 @@ export let toolbox = `
             </value>
         </block>
     </category>
-    <category name="Others" colour="#D14081"> 
+    <category name="Others" colour="#D14081">
 
 
         <block type="s4d_print">
@@ -681,7 +681,7 @@ export let toolbox = `
                     </value>
                 </block>
             </statement>
-        </block>  
+        </block>
         <block type="jg_s4d_other_throw_custom_error">
             <value name="ERROR">
                 <block type="text"/>
@@ -691,7 +691,7 @@ export let toolbox = `
         <block type="s4d_return"></block>
         <block type="is_a_number_or_string"></block>
         <block type="s4d_string_to_number"></block>
-        
+
         <block type="frost_current"/>
         <block type="gsa_bypass_type"/>
     </category>

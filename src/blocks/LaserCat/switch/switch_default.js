@@ -32,6 +32,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 
   return `
     default:
-    ${blocks}    
+    ${blocks}
     `;
 };

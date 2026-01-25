@@ -35,9 +35,8 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  let code = `${server}.members.cache.forEach(async m =>{
-         ${statementThen} 
-        })
-        `;
+  let code = `${server}.members.cache.forEach(async(m)=>{
+  ${statementThen}
+});`;
   return code;
 };

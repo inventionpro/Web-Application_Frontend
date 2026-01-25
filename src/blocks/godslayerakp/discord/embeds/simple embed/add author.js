@@ -41,7 +41,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 		name: String(${name}),
 		icon_url: String(${icon_url}),
 		url: String(${url}),
-  }, 
+  },
 `;
   return [code, javascriptGenerator.ORDER_ATOMIC];
 };

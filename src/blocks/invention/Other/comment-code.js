@@ -37,9 +37,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var statements_name = javascriptGenerator.statementToCode(block, 'NAME');
   var code = `/*
   ${text_name}
-  
+
   ${statements_name}
-  */`;
+*/`;
 
   return code;
 };

@@ -29,9 +29,8 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  let code = `Object.keys(JSONdataS4D).forEach( async s4dkey => {
-${statementThen} 
-})
-`;
+  let code = `Object.keys(JSONdataS4D).forEach(async s4dkey => {
+${statementThen}
+});`;
   return code;
 };

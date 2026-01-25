@@ -38,6 +38,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 
   return `
     case ${casee}:
-    ${blocks}    
+    ${blocks}
     `;
 };

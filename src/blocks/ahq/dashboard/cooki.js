@@ -28,24 +28,24 @@ Blockly.Blocks[blockName] = {
   }
 };
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = `var cookieParser = require('cookie-parser');
-    var session = require('express-session');
-    var MongoStore = require('connect-mongo');
-    var mongoose = require('mongoose');
-    
-    const cookies_config = {
-        secret: 'nuke-protector',
-        resave: true,
-        saveUninitialized: true,
-        cookie: { maxAge: 24 * 60 * 60 * 1000 },
-        store: MongoStore.create({
-          mongooseConnection: mongoose,
-          collections: 'sessions', 
-          mongoUrl: ${javascriptGenerator.valueToCode(block, 'api', javascriptGenerator.ORDER_ATOMIC)},
-          autoRemove: 'interval',
-          autoRemoveInterval: 60
-        })
-    };`;
+  const code = `let cookieParser = require('cookie-parser');
+let session = require('express-session');
+let MongoStore = require('connect-mongo');
+let mongoose = require('mongoose');
+
+const cookies_config = {
+  secret: 'nuke-protector',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 24 * 60 * 60 * 1000 },
+  store: MongoStore.create({
+    mongooseConnection: mongoose,
+    collections: 'sessions',
+    mongoUrl: ${javascriptGenerator.valueToCode(block, 'api', javascriptGenerator.ORDER_ATOMIC)},
+    autoRemove: 'interval',
+    autoRemoveInterval: 60
+  })
+};`;
   return code;
 };
 
