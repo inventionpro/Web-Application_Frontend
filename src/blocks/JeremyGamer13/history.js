@@ -105,7 +105,7 @@ javascriptGenerator.forBlock[blockName] = function () {
     12. Malix's Home Address is: 49021 Among Us St.
     13. JooJ
     14. https://www.youtube.com/watch?v=dQw4w9WgXcQ
-    
+
     Official s4d4d4s4ds44ds server:- https://discord.gg/cB2g5f4Ypq
     s4r34 69 furry segs official server:- https://discord.gg/furry\``,
     javascriptGenerator.ORDER_LOGICAL_OR

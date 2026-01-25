@@ -67,52 +67,52 @@ export default {
       <time datetime="09/11/2022">09/11/2022 - Freslin</time>
       <h3>Update #2 on Important Links Graphics:</h3>
       <p>Added more labelings to enhance the looks and show the purpose.<br>Unofficial column will be removed when v2 arrives</p>
-      <img src="/changelog/links.webp" alt="Updated links" class="img-size2"></img> 
+      <img src="/changelog/links.webp" alt="Updated links" class="img-size2"></img>
     </div>
     <div>
       <time datetime="09/11/2022">09/11/2022 - JeremyGamer13</time>
       <h3>Updated the Examples menu to show User Examples first & renamed it to Online Examples</h3>
-      <img src="/changelog/online_examples.webp" alt="Online examples" class="img-size2"></img> 
+      <img src="/changelog/online_examples.webp" alt="Online examples" class="img-size2"></img>
     </div>
     <div>
       <time datetime="09/10/2022">09/10/2022 - Eruption</time>
       <h3>Final embed update</h3>
-      <img src="/changelog/embed.webp" alt="Embeds" class="img-size2"></img> 
+      <img src="/changelog/embed.webp" alt="Embeds" class="img-size2"></img>
     </div>
     <div>
       <time datetime="08/09/2022">08/09/2022 - redman13</time>
       <h3>added new abject stoof</h3>
-      <img src="/changelog/object.webp" alt="Object stoof" class="img-size2"></img> 
+      <img src="/changelog/object.webp" alt="Object stoof" class="img-size2"></img>
     </div>
     <div>
       <time datetime="08/09/2022">08/09/2022 - JeremyGamer13</time>
       <h3>A "little experiment" is now on the site: S4D Forums!</h3>
-      <img src="/changelog/forums.webp" alt="Forums (that lasted long)" class="img-size2"></img> 
+      <img src="/changelog/forums.webp" alt="Forums (that lasted long)" class="img-size2"></img>
     </div>
     <div>
       <time datetime="21/09/2022">21/09/2022 - AlexCdDg</time>
       <h3>Sticker blocks are here!</h3>
-      <img src="/changelog/stickers.webp" alt="Stickers" class="img-size2"></img> 
+      <img src="/changelog/stickers.webp" alt="Stickers" class="img-size2"></img>
     </div>
     <div>
       <time datetime="21/08/2022">21/08/2022 - Eruption</time>
       <h3>Late but export to Javascript UI is much cooler now</h3>
-      <img src="/changelog/js.webp" alt="JS cooler" class="img-size2"></img> 
+      <img src="/changelog/js.webp" alt="JS cooler" class="img-size2"></img>
     </div>
     <div>
       <time datetime="19/08/2022">19/08/2022 - Eruption</time>
       <h3>Fixed thread blocks</h3>
-      <img src="/changelog/fixthread.webp" alt="Fixed threads" class="img-size2"></img> 
+      <img src="/changelog/fixthread.webp" alt="Fixed threads" class="img-size2"></img>
     </div>
     <div>
       <time datetime="13/08/2022">13/08/2022 - Eruption</time>
       <h3>User examples & Changelog menu are revamped!</h3>
       <p>Currently in the process of updating popups because some of them looks bad. Will give the website a more consistent feelings in the future.<br>So far the user examples menu and changelogs have been updated.</p>
-      <img src="/changelog/revampedonlineexamples.webp" alt="Revamped menus" class="img-size2"></img> 
+      <img src="/changelog/revampedonlineexamples.webp" alt="Revamped menus" class="img-size2"></img>
     </div>
     <div>
       <time datetime="13/08/2022">13/08/2022 - JeremyGamer13</time>
-      <h3>Added some website blocks!</h3>  
+      <h3>Added some website blocks!</h3>
       <p>They are in the "Websites" category under "Creation".</p>
       <img src="/changelog/websites.webp" alt="Website blocks" class="img-size2"></img>
     </div>
@@ -127,7 +127,7 @@ export default {
     </div>
     <div>
       <time datetime="01/08/2022">01/08/2022 - Eruption</time>
-      <h3>Dootabase and Database have been merged into new and improved database blocks!</h3>    
+      <h3>Dootabase and Database have been merged into new and improved database blocks!</h3>
       <details>
         <summary>You can now</summary>
         <ul>
@@ -144,12 +144,12 @@ export default {
     </div>
     <div>
       <time datetime="31/07/2022">31/07/2022 - JeremyGamer13</time>
-      <h3>New <code style="color: #50a6c9;"> member () is timed out? </code> block!</h3>    
+      <h3>New <code style="color: #50a6c9;"> member () is timed out? </code> block!</h3>
       <img src="/changelog/timeout.webp" alt="Timed out block" class="img-size1">
     </div>
     <div>
       <time datetime="29/07/2022">29/07/2022 - Freslin</time>
-      <h3>Jose, Mrredo and AHQ Embeds are removed!</h3> 
+      <h3>Jose, Mrredo and AHQ Embeds are removed!</h3>
       <p><b>The removed embeds will be permanently removed once v2 arrives! So change up your codes.</b></p>
       <p>Also these were the embeds chosen not only because of the poll, but also as they have most of the features and compatibility.</p>
       <p>Here's an image:</p>
@@ -157,12 +157,12 @@ export default {
     </div>
     <div>
       <time datetime="13/07/2022">13/07/2022 - Freslin</time>
-      <h3>New <code style="color: #4C97FF;">get all members with role ()</code> block!</h3> 
+      <h3>New <code style="color: #4C97FF;">get all members with role ()</code> block!</h3>
       <img src="/changelog/allmemberswith.webp" alt="All members with role block" class="img-size2">
     </div>
     <div>
       <time datetime="04/07/2022">04/07/2022 - JeremyGamer13</time>
-      <h3>User examples!</h3> 
+      <h3>User examples!</h3>
       <p>Do you want to make an example for something complicated? Now you can do it even easier with the new <b>User Uploaded Examples</b> menu!</p>
       <p>Upload examples, find examples, all created by the community! Find this menu by going to <b>Examples > User Uploaded Examples</b>.<br>
       <i>note: the server is a bit slow, so expect delays when you open user example menus</i></p>
@@ -170,12 +170,12 @@ export default {
     </div>
     <div>
       <time datetime="01/07/2022">01/07/2022 - Freslin</time>
-      <h3>New channel position blocks!</h3> 
+      <h3>New channel position blocks!</h3>
       <img src="/changelog/rolepositions.webp" alt="Channel position blocks" class="img-size1">
     </div>
     <div>
       <time datetime="29/06/2022">29/06/2022 - Freslin</time>
-      <h3>New moderation blocks!</h3> 
+      <h3>New moderation blocks!</h3>
       <img src="/changelog/moderation.webp" alt="Moderation blocks" class="img-size1">
       <br>
       <h3>Invites category revamp + New blocks!</h3>
@@ -215,7 +215,7 @@ export default {
       <h3>Webhook blocks have gotten a bit of an upgrade!</h3>
       <p>On another note, we are inching towards a member categoryless 469...</p>
       <img src="/changelog/webhook.webp" alt="Webhook blocks" class="img-size1">
-    </div> 
+    </div>
     <div>
       <time datetime="14/06/2022">14/06/2022 - LimeNade</time>
       <h3>Lots of blocks were merged to find blocks more easier!</h3>
@@ -246,7 +246,7 @@ export default {
       <h3>AES and SHA256 encryption, "Securing" category!</h3>
       <img src="/changelog/securing.webp" alt="Securing blocks" class="img-size2">
     </div>
-    <div> 
+    <div>
       <time datetime="07/06/2022">07/06/2022 - JeremyGamer13</time>
       <h3>Send messages with user & role pings disabled!</h3>
       <p>To disable pings or only ping certain IDs, put a list in the input. To only ping certain IDs, make a list with the role or member IDs you want to mention. If you want to use the default mentioning then don't put an input there.</p>
@@ -257,23 +257,23 @@ export default {
       <h3>Updated attachement blocks!</h3>
       <p>The old attachment blocks can be found by searching "att" in the search category.
 Please let JeremyGamer13 know if these new blocks are causing problems so he can fix them or revert the change.</p>
-      <img src="/changelog/att.webp" alt="Attachment blocks" class="img-size1"> 
+      <img src="/changelog/att.webp" alt="Attachment blocks" class="img-size1">
       <br>
       <h3>Last messages!</h3>
       <p>Get the last messages (in the "Channels" category). The message properties & the <code style="color: #4C97FF;">ID of message ()</code> blocks are in the "Messages" category. The <code style="color: #4C97FF;">ID of message ()</code> block is mainly used for <code style="color: #4C97FF;">last message #()</code>.</p>
-      <img src="/changelog/last.webp" alt="Last messages blocks" class="img-size1"> 
+      <img src="/changelog/last.webp" alt="Last messages blocks" class="img-size1">
     </div>
     <div>
       <time datetime="31/05/2022">31/05/2022 - JeremyGamer13</time>
       <h3>New Roblox blocks!</h3>
       <p>More will be added in the future.</p>
-      <img src="/changelog/roblox.webp" alt="Roblox blocks" class="img-size1"> 
+      <img src="/changelog/roblox.webp" alt="Roblox blocks" class="img-size1">
     </div>
     <div>
       <time datetime="29/05/2022">29/05/2022 - LimeNade</time>
       <h3>Server settings!</h3>
       <p>Set or get info about the server's settings.</p>
-      <img src="/changelog/ss.webp" alt="Server settings blocks" class="img-size1"> 
+      <img src="/changelog/ss.webp" alt="Server settings blocks" class="img-size1">
     </div>
     <div>
       <time datetime="28/05/2022">28/05/2022 - JeremyGamer13</time>

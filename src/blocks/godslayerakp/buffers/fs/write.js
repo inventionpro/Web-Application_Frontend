@@ -34,9 +34,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const file = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
 
-  const code = `fs.writeFileSync(${file}, ${content}, async function (err) {
-    console.log(err) 
-});
-`;
+  const code = `fs.writeFileSync(${file}, ${content}, async(err)=>{ console.log(err) });`;
   return code;
 };

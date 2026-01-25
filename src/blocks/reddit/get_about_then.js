@@ -33,17 +33,15 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const user = javascriptGenerator.valueToCode(block, 'USER', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = `
-https.get('https://www.reddit.com/user/' + ${user} + '/about.json', async resp => {
-    let data2 = "";
-    resp.on("data", async chunk => {
-        data2 += chunk;
-    }); 
-    resp.on("end", async () => {
-        let info = JSON.parse(data2)
-        ${statementThen}                           
-    });
-})
-`;
+  const code = `https.get('https://www.reddit.com/user/' + ${user} + '/about.json', async resp => {
+  let data2 = "";
+  resp.on("data", async chunk => {
+    data2 += chunk;
+  });
+  resp.on("end", async () => {
+    let info = JSON.parse(data2)
+    ${statementThen}
+  });
+});`;
   return code;
 };

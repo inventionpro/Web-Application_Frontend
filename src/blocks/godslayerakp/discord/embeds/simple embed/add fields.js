@@ -31,7 +31,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
   const code = `fields: [
 ${statements}
-	], 
+	],
 `;
   return [code, javascriptGenerator.ORDER_ATOMIC];
 };

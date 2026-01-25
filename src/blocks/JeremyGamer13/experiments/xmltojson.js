@@ -34,16 +34,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const fileName1 = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   const fileName2 = javascriptGenerator.valueToCode(block, 'CONTENT2', javascriptGenerator.ORDER_ATOMIC);
   return `xml2json({
-        input: ${fileName1},
-        output: ${fileName2}
-    }, function(err, result) {
-      
-        if(err) {
-            console.error(err);
-        } else {
-            console.log(result);
-        }
-      
-    });
-    `;
+  input: ${fileName1},
+  output: ${fileName2}
+}, function(err, result) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(result);
+  }
+});`;
 };

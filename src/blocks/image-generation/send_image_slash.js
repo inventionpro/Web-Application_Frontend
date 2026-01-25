@@ -35,10 +35,9 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const hidden = javascriptGenerator.valueToCode(block, 'HIDDEN', javascriptGenerator.ORDER_ATOMIC);
   const image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
-  let code = `interaction.reply({ 
-      files: [${image}],
-      ephemeral: ${hidden}
-    });
-    `;
+  let code = `interaction.reply({
+  files: [${image}],
+  ephemeral: ${hidden}
+});`;
   return code;
 };

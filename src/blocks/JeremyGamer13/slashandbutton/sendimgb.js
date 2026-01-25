@@ -47,7 +47,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
     stored = fileNameandLocation;
   }
-  const code = `interaction.reply({ 
+  const code = `interaction.reply({
       files: ${stored},
       ephemeral: ${hidden},
       components: [${row}]

@@ -28,12 +28,10 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
 
-  const code = `
-        os.cpuUsage(async function(v){
-	      var obj = v * 100
-        ${statementThen}   
-});      
-`;
+  const code = `os.cpuUsage(async function(v){
+	let obj = v * 100;
+  ${statementThen}
+});`;
 
   return code;
 };

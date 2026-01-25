@@ -54,8 +54,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     .setMaxValues(1)
     .setMinValues(1)
     .setDisabled(${disabled === null ? false : disabled})
-
-    
     .addOptions(${statements}))\n`,
     javascriptGenerator.ORDER_NONE
   ];
