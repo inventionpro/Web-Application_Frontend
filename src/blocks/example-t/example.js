@@ -23,7 +23,6 @@ Blockly.Blocks[blockName] = {
 };
 javascriptGenerator.forBlock[blockName] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `console.log(${member})
-`;
+  const code = `console.log(${member});`;
   return code;
 };

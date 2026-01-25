@@ -59,7 +59,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
            reply.member.timeout(60 * 60 * 1000, "NSFW image").catch(e => m.edit("Error in muting!"))
         });
     }
-    }); 
+    });
     });
 }).catch(async () => {
             await deepai.callStandardApi("nsfw-detector", {
@@ -128,13 +128,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
                    embeds: [new MessageEmbed()
                            .setTitle("Mute Log")
                            .setDescription(\`\${m.member.user} was muted for mass mention\`)
-                           .setColor("RED")] 
+                           .setColor("RED")]
                 });
                 m.member.send({
                    embeds: [new MessageEmbed()
                            .setTitle("Mute Log")
                            .setDescription(\`You were muted in \${m.guild.name} for mass mention\`)
-                           .setColor("RED")] 
+                           .setColor("RED")]
                 });
             });
         }

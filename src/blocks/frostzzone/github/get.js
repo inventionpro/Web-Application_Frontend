@@ -40,18 +40,17 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const what = javascriptGenerator.valueToCode(block, 'what', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   const code = `https.get('https://api.github.com/users/' + ${user} + '/' + ${what}, async resp => {
-      let data2 = "";
-       resp.on("data", async chunk => {
-       data2 += chunk;
-      }); resp.on("end", async () => {
-        let data = JSON.parse(data2)
-        ${statementThen}                           
-                              });
-                          })
-                          .on("error", async err => {
-                console.log("Error: " + err.message);
-            });
-        
-`;
+  let data2 = "";
+    resp.on("data", async chunk => {
+    data2 += chunk;
+  });
+  resp.on("end", async () => {
+    let data = JSON.parse(data2)
+    ${statementThen}
+  });
+})
+  .on("error", async err => {
+    console.log("Error: " + err.message);
+  });`;
   return code;
 };

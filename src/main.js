@@ -186,7 +186,7 @@ app.mixin({
       Object.values(s4d.Discord.Intents.FLAGS).reduce((acc, p) => acc | p, 0)
     ],
     partials: [
-      "REACTION", 
+      "REACTION",
       "CHANNEL"
     ]
   });
