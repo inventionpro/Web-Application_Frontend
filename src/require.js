@@ -45,7 +45,7 @@ const { Modal, TextInputComponent, showModal } = require('discord-modals');`);
     array.push("const censor = require('discord-censor');");
   }
   if (js.includes('moment')) {
-    array.push(`let moment  = require("moment");`);
+    array.push(`let moment = require("moment");`);
   }
   if (js.includes('queue.join')) {
     array.push(`let { Player, RepeatMode } = require("discord-music-player");`);
@@ -265,10 +265,10 @@ const S4D_WEBSITECREATION_EXPRESS_app = S4D_WEBSITECREATION_EXPRESS();`);
 }`);
   }
   if (js.includes('Database')) {
-    array.push('const Database  = require("easy-json-database");');
+    array.push('const Database = require("easy-json-database");');
   }
   if (js.includes('s4d.database')) {
-    array.push('const Database  = require("easy-json-database");');
+    array.push('const Database = require("easy-json-database");');
     code.push("s4d.database = new Database('./database.json');");
   }
   if (js.includes('OpenAIApi')) {
