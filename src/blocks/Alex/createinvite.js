@@ -4,7 +4,7 @@ import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'new_invite';
 
 const blockData = {
-  message0: 'Create invite for channel  %1  then %2 %3',
+  message0: 'Create invite for channel %1 then %2 %3',
   args0: [
     {
       type: 'input_value',

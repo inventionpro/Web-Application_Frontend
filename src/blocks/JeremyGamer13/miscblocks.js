@@ -212,7 +212,7 @@ javascriptGenerator.forBlock['lasercat_jg_case_default'] = (block) => {
   while (block.getInput('IF' + n)) {
     conditionCode = javascriptGenerator.valueToCode(block, 'IF' + n, javascriptGenerator.ORDER_NONE) || 'false';
     branchCode = javascriptGenerator.statementToCode(block, 'DO' + n);
-    code += `case ${conditionCode}: 
+    code += `case ${conditionCode}:
     ${branchCode}${block.mutatorMenuBlockTypes[n - 1] == 'case' || n == 0 ? '\nbreak;' : ''}`;
     ++n;
   }
