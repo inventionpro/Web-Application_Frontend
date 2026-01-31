@@ -172,7 +172,7 @@ ${newblocks.map((block) => `<block type="${block}"/>`).join('\n')}
 ${!lessthan ? `<label text="${blocks.length - default_max_length} blocks left..." web-class="boldtext"></label>` : ''}`;
         }
       }
-      var returned_stuff = toolbox_content?.replace(
+      let returned_stuff = toolbox_content?.replace(
         '<!-- CATEGORY_CONTENT_VARIABLE_GOES_HERE_897489712470376894703168263487623 -->',
         `<label text="There are currently ${blocks.length} blocks in S4D." web-class="boldtext"></label>
 <label text="ㅤ" web-class="boldtext"></label>
@@ -182,7 +182,7 @@ ${CATEGORYCONTENT}`
       // for custom categories
       let urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('customXML')) {
-        var custom_xml = urlParams.get('customXML');
+        let custom_xml = urlParams.get('customXML');
         let temp1 = String(custom_xml).replaceAll('□', '\n');
         let temp2 = String(temp1).replaceAll('▣', '#');
         let appearances = temp2.split('※360※').length;
@@ -203,11 +203,11 @@ ${CATEGORYCONTENT}`
     async function logtoolblocks(remove_underscore) {
       const toolxml = toolbox([]);
       const toolboxArray = toolxml.split('\n');
-      var blocks = [];
-      var loop = 0;
-      var pushed;
-      var repeat_end = toolboxArray.length;
-      for (var count = 0; count < repeat_end; count++) {
+      let blocks = [];
+      let loop = 0;
+      let pushed;
+      let repeat_end = toolboxArray.length;
+      for (let count = 0; count < repeat_end; count++) {
         if (toolboxArray[loop].includes('<block type="')) {
           pushed = toolboxArray[loop].replaceAll(' ', '').replaceAll('blocktype="', '').replaceAll('/', '').replaceAll('<', '').replaceAll('"', '').replaceAll("'", '').replaceAll('\t', '');
           pushed = pushed.slice(0, pushed.indexOf('>'));
@@ -226,7 +226,7 @@ ${CATEGORYCONTENT}`
         displayText: 'Search for block',
         preconditionFn: () => 'enabled',
         callback: function () {
-          var new_toolbox_xml = prepToolbox(toolbox(val), true);
+          let new_toolbox_xml = prepToolbox(toolbox(val), true);
           workspace.updateToolbox(new_toolbox_xml);
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -268,17 +268,17 @@ ${CATEGORYCONTENT}`
               }
               let workspace_xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
               let xml_blocks = workspace_xml.split('\n');
-              var xpos = [];
-              var ypos = [];
-              for (var count = 0; count < xml_blocks.length; count++) {
-                var current = xml_blocks[count];
+              let xpos = [];
+              let ypos = [];
+              for (let count = 0; count < xml_blocks.length; count++) {
+                let current = xml_blocks[count];
                 if (current.includes('<block type="') && current.includes('x="') && current.includes('y="')) {
                   xpos.push(current.substring(current.indexOf('x="') + 3, current.indexOf(' y="') - 1));
                   ypos.push(current.substring(current.indexOf('y="') + 3, current.indexOf('">')));
                 }
               }
-              var dx = 0;
-              var dy = 0;
+              let dx = 0;
+              let dy = 0;
               if (xpos && ypos) {
                 dx = xpos.slice(-1)[0];
                 dy = ypos.slice(-1)[0];
@@ -418,15 +418,15 @@ ${CATEGORYCONTENT}`
     }, 1000);
 
     function svgToPng_(data, width, height, callback) {
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
-      var img = new Image();
+      let canvas = document.createElement('canvas');
+      let context = canvas.getContext('2d');
+      let img = new Image();
 
-      var pixelDensity = 5;
+      let pixelDensity = 5;
       let maxScaleI = 4096;
-      var highestCScale = 0;
-      var newWidth = width * pixelDensity;
-      var newHeight = height * pixelDensity;
+      let highestCScale = 0;
+      let newWidth = width * pixelDensity;
+      let newHeight = height * pixelDensity;
 
       if (newWidth > maxScaleI || newHeight > maxScaleI) {
         if (newWidth > newHeight) {
@@ -443,7 +443,7 @@ ${CATEGORYCONTENT}`
       img.onload = function () {
         context.drawImage(img, 0, 0, width, height, 0, 0, canvas.width, canvas.height);
         try {
-          var dataUri = canvas.toDataURL('image/png');
+          let dataUri = canvas.toDataURL('image/png');
           callback(dataUri);
         } catch (err) {
           console.warn('Error converting the workspace svg to a png');
@@ -455,22 +455,22 @@ ${CATEGORYCONTENT}`
 
     function workspaceToSvg_(workspace, callback, customCss) {
       // Go through all text areas and set their value.
-      var textAreas = document.getElementsByTagName('textarea');
-      for (var i = 0; i < textAreas.length; i++) {
+      let textAreas = document.getElementsByTagName('textarea');
+      for (let i = 0; i < textAreas.length; i++) {
         textAreas[i].innerHTML = textAreas[i].value;
       }
 
-      var bBox = workspace.getBlocksBoundingBox();
-      var x = bBox.x || bBox.left;
-      var y = bBox.y || bBox.top;
-      var width = bBox.width || bBox.right - x;
-      var height = bBox.height || bBox.bottom - y;
+      let bBox = workspace.getBlocksBoundingBox();
+      let x = bBox.x || bBox.left;
+      let y = bBox.y || bBox.top;
+      let width = bBox.width || bBox.right - x;
+      let height = bBox.height || bBox.bottom - y;
 
-      var blockCanvas = workspace.getCanvas();
-      var clone = blockCanvas.cloneNode(true);
+      let blockCanvas = workspace.getCanvas();
+      let clone = blockCanvas.cloneNode(true);
       clone.removeAttribute('transform');
 
-      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
       svg.appendChild(clone);
       svg.setAttribute('viewBox', x + ' ' + y + ' ' + width + ' ' + height);
@@ -480,29 +480,25 @@ ${CATEGORYCONTENT}`
       svg.setAttribute('height', height);
       svg.setAttribute('style', 'background-color: transparent');
 
-      var css = [].slice
+      let css = [].slice
         .call(document.head.querySelectorAll('style'))
-        .filter(function (el) {
-          return /\.blocklySvg/.test(el.innerText) || el.id.indexOf('blockly-') === 0;
-        })
-        .map(function (el) {
-          return el.innerText;
-        })
+        .filter((el) => /\.blocklySvg/.test(el.innerText) || el.id.indexOf('blockly-') === 0)
+        .map((el) => el.innerText)
         .join('\n');
-      var style = document.createElement('style');
+      let style = document.createElement('style');
       style.innerHTML = css + '\n' + customCss;
       svg.insertBefore(style, svg.firstChild);
 
-      var svgAsXML = new XMLSerializer().serializeToString(svg);
+      let svgAsXML = new XMLSerializer().serializeToString(svg);
       svgAsXML = svgAsXML.replace(/&nbsp/g, '&#160');
-      var data = 'data:image/svg+xml,' + encodeURIComponent(svgAsXML);
+      let data = 'data:image/svg+xml,' + encodeURIComponent(svgAsXML);
 
       svgToPng_(data, width, height, callback);
     }
 
     Blockly.downloadScreenshot = function (workspace) {
       workspaceToSvg_(workspace, function (datauri) {
-        var a = document.createElement('a');
+        let a = document.createElement('a');
         a.download = 'screenshot.png';
         a.target = '_self';
         a.href = datauri;
@@ -759,7 +755,7 @@ ${CATEGORYCONTENT}`
           throw new Error('Invalid HEX color.');
         }
         // invert color components
-        var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+        let r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
           g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
           b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
         // pad each with zeros and return
@@ -767,7 +763,7 @@ ${CATEGORYCONTENT}`
       }
       function padZero(str, len) {
         len = len || 2;
-        var zeros = new Array(len).join('0');
+        let zeros = new Array(len).join('0');
         return (zeros + str).slice(-len);
       }
       function hexToRgb(hex) {
@@ -778,8 +774,7 @@ ${CATEGORYCONTENT}`
         return [arrByte[1], arrByte[2], arrByte[3]];
       }
       function componentToHex(color) {
-        var hex = color.toString(16);
-        return hex.length == 1 ? '0' + hex : hex;
+        return color.toString(16).padStart(2, '0');
       }
       function rgbToHex(r, g, b) {
         return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
