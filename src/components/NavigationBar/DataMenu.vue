@@ -65,9 +65,7 @@ ${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">De
         showConfirmButton: false,
         showCancelButton: false,
         didOpen: () => {
-          document.getElementById('tdb-cancel').onclick = () => {
-            Swal.close();
-          };
+          document.getElementById('tdb-cancel').onclick = Swal.close;
           Array.from(document.querySelectorAll('.swal2-container button.swal2-confirm')).forEach((btn) => {
             btn.onclick = async () => {
               switch (btn.id.replace('tdb-', '')) {
