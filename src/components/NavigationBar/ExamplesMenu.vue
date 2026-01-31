@@ -632,9 +632,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                 });
               });
           };
-          document.getElementById('cancel-btn').onclick = () => {
-            Swal.close();
-          };
+          document.getElementById('cancel-btn').onclick = Swal.close;
         }
       });
     }
