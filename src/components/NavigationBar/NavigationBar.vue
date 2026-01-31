@@ -827,17 +827,23 @@ export default {
                   });
                   break;
                 case 'prebuilds':
-                  let prebuilds = await localforage.getItem('prebuilds')??[];
+                  let prebuilds = (await localforage.getItem('prebuilds')) ?? [];
                   Swal.fire({
                     theme: 'auto',
                     title: 'Prebuilds',
                     html: `<p>Prebuilds can be used to save your projects in browser to load them later.</p>
-${prebuilds.map(prebuild=>`<div class="d-flex align-items-center">
+${
+  prebuilds
+    .map(
+      (prebuild) => `<div class="d-flex align-items-center">
   <span class="text-start flex-fill">${prebuild.replace('prebuild-', '')}</span>
   <button data-id="${prebuild}" data-act="load" class="swal2-confirm swal2-styled p-2 m-0 me-1">Load</button>
   <button data-id="${prebuild}" data-act="down" class="swal2-confirm swal2-styled p-2 m-0 me-1">Download</button>
   <button data-id="${prebuild}" data-act="del" class="swal2-deny swal2-styled p-2 m-0">Delete</button>
-</div>`).join('<hr class="m-1">')||'<span>No prebuilds, create one!</span>'}`,
+</div>`
+    )
+    .join('<hr class="m-1">') || '<span>No prebuilds, create one!</span>'
+}`,
                     showCancelButton: true,
                     showConfirmButton: true,
                     cancelButtonText: 'Cancel',
@@ -849,10 +855,10 @@ ${prebuilds.map(prebuild=>`<div class="d-flex align-items-center">
                           let action = btn.getAttribute('data-act');
                           if (action === 'del') {
                             function arrayRemove(arr, value) {
-                              return arr.filter((ele)=>ele!=value);
+                              return arr.filter((ele) => ele != value);
                             }
                             await localforage.removeItem(id);
-                            if (prebuilds.length<1) {
+                            if (prebuilds.length < 1) {
                               await localforage.setItem('prebuilds', null);
                             } else {
                               await localforage.setItem('prebuilds', arrayRemove(prebuilds, id));
@@ -927,60 +933,59 @@ ${prebuilds.map(prebuild=>`<div class="d-flex align-items-center">
                         };
                       });
                     }
-                  })
-                    .then(evt=>{
-                      if (evt.isDismissed) return;
-                            Swal.fire({
-                              theme: 'auto',
-                              title: this.$t('prebuild.text2'),
-                              input: 'text',
-                              inputAttributes: {
-                                autocapitalize: 'off'
-                              },
-                              showCancelButton: true,
-                              confirmButtonText: this.$t('prebuild.save2'),
-                              showLoaderOnConfirm: true,
-                              preConfirm: async (file) => {
-                                let maybe = await localforage.getItem('prebuild-' + file);
-                                if (maybe === null) {
-                                  return file;
-                                } else {
-                                  Swal.showValidationMessage(this.$t('prebuild.error'));
-                                }
-                              },
-                              allowOutsideClick: () => !Swal.isLoading()
-                            }).then(async (result2) => {
-                              if (result2.isConfirmed) {
-                                let name = result2.value;
-                                const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-                                await localforage.setItem(`prebuild-${name}`, xmlContent);
-                                let tokens = await localforage.getItem('prebuilds');
-                                if (tokens === null) {
-                                  await localforage.setItem('prebuilds', [`prebuild-${name}`]);
-                                } else {
-                                  tokens.push(`prebuild-${name}`);
-                                  await localforage.setItem('prebuilds', tokens);
-                                }
-                                const Toast = Swal.mixin({
-                                  toast: true,
-                                  position: 'top-end',
-                                  showConfirmButton: false,
-                                  timer: 3000,
-                                  timerProgressBar: true,
-                                  didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer);
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer);
-                                  }
-                                });
-                                let a = this.$t('prebuild.success');
-                                Toast.fire({
-                                  theme: 'auto',
-                                  icon: 'success',
-                                  title: `${a}${name}`
-                                });
-                              }
-                            });
+                  }).then((evt) => {
+                    if (evt.isDismissed) return;
+                    Swal.fire({
+                      theme: 'auto',
+                      title: this.$t('prebuild.text2'),
+                      input: 'text',
+                      inputAttributes: {
+                        autocapitalize: 'off'
+                      },
+                      showCancelButton: true,
+                      confirmButtonText: this.$t('prebuild.save2'),
+                      showLoaderOnConfirm: true,
+                      preConfirm: async (file) => {
+                        let maybe = await localforage.getItem('prebuild-' + file);
+                        if (maybe === null) {
+                          return file;
+                        } else {
+                          Swal.showValidationMessage(this.$t('prebuild.error'));
+                        }
+                      },
+                      allowOutsideClick: () => !Swal.isLoading()
+                    }).then(async (result2) => {
+                      if (result2.isConfirmed) {
+                        let name = result2.value;
+                        const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+                        await localforage.setItem(`prebuild-${name}`, xmlContent);
+                        let tokens = await localforage.getItem('prebuilds');
+                        if (tokens === null) {
+                          await localforage.setItem('prebuilds', [`prebuild-${name}`]);
+                        } else {
+                          tokens.push(`prebuild-${name}`);
+                          await localforage.setItem('prebuilds', tokens);
+                        }
+                        const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer);
+                            toast.addEventListener('mouseleave', Swal.resumeTimer);
+                          }
+                        });
+                        let a = this.$t('prebuild.success');
+                        Toast.fire({
+                          theme: 'auto',
+                          icon: 'success',
+                          title: `${a}${name}`
+                        });
+                      }
                     });
+                  });
                   break;
                 case 'optimizations':
                   Swal.fire({
