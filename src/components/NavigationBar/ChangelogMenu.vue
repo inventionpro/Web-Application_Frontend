@@ -51,13 +51,17 @@ export default {
 <p style="font-weight:bold">Detailed logs are posted in our <a style="color: #5865F2;" href="https://discord.gg/kXyRzypp4e">Discord</a> Server</p>
 <div class="latest-change">
   <div>
-    <time datetime="25/05/2025">25/05/2025 - Inventionpro</time>
-    <h3>Updated s4d to newer technologies</h3>
+    <time datetime="01/02/2026">01/02/2026 - Inventionpro</time>
+    <h3>Open Beta of nS4D! remember to report bugs <a href="https://discord.com/channels/866689038731313193/1467450198132260905">here</a> (<a href="https://discord.gg/kXyRzypp4e">join server</a>)</h3>
   </div>
 </div>
 <details>
   <summary class="past-changesBTN">Click here to view past changes</summary>
   <div class="past-changes">
+    <div>
+      <time datetime="25/05/2025">25/05/2025 - Inventionpro</time>
+      <h3>Updated s4d to newer technologies</h3>
+    </div>
     <div>
       <time datetime="09/11/2022">09/11/2022 - JeremyGamer13</time>
       <h3>updated the shortcuts menu to look a bit nicer</h3>
