@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'URL',
-      check: ['Number', 'String']
+      check: 'String'
     },
     {
       type: 'input_value',
@@ -35,7 +35,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const url = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const code = `s4d.client.user.setActivity(${name}, {
-  type: 'STREAMING',
+  type: Discord.ActivityType.Streaming,
   url: ${url}
 });`;
   return code;

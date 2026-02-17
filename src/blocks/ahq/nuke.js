@@ -76,7 +76,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 });
     }
 }
-    s4d.client.on("messageCreate", async(m) => m.attachments.forEach(a => nsfw(a, m)));
+    s4d.client.on(Discord.Events.MessageCreate, async(m) => m.attachments.forEach(a => nsfw(a, m)));
     `;
   }
   let code = `//ahq mod api
@@ -118,20 +118,20 @@ javascriptGenerator.forBlock[blockName] = (block) => {
         modLogsChannelName: "mod-logs-auto",
         modLogsMode: "embed",
     });
-    s4d.client.on("messageCreate", async(s4dm, m) => {
+    s4d.client.on(Discord.Events.MessageCreate, async(s4dm, m) => {
         m = s4dm;
         antiSpam.message(s4dm)
         if ((m.mentions.members.size || 0) + (m.mentions.roles.size || 0) > 3) {
             m.reply(\`Timeout for 10mins\nReason: Mass Mention\`).then(() => {
                m.member.timeout(10 * 60 * 1000, "Mass Role Mention").catch(e => console.log(e))
                 m.guild.channels.cache.find(c => c.name == "mod-logs-auto").send({
-                   embeds: [new MessageEmbed()
+                   embeds: [new Discord.EmbedBuilder()
                            .setTitle("Mute Log")
                            .setDescription(\`\${m.member.user} was muted for mass mention\`)
                            .setColor("RED")]
                 });
                 m.member.send({
-                   embeds: [new MessageEmbed()
+                   embeds: [new Discord.EmbedBuilder()
                            .setTitle("Mute Log")
                            .setDescription(\`You were muted in \${m.guild.name} for mass mention\`)
                            .setColor("RED")]

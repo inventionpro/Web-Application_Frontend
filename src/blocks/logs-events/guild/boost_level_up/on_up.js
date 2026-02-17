@@ -25,6 +25,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on("guildBoostLevelUp", async (guild, oldLevel, newLevel) => {\n${statements}\n});\n`;
+  // guildBoostLevelUp is a discord-logs event
+  const code = `s4d.client.on('guildBoostLevelUp', async (guild, oldLevel, newLevel) => {
+  ${statements}
+});`;
   return code;
 };

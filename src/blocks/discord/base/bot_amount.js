@@ -10,7 +10,7 @@ const blockData = {
       type: 'field_dropdown',
       name: 'T',
       options: [
-        ['pings', 'pings'],
+        ['ping', 'pings'],
         ['%{BKY_SERVERS}s', 'servers'],
         ['%{BKY_USERS}', 'users'],
         ['%{BKY_CHANNELS}', 'channels'],

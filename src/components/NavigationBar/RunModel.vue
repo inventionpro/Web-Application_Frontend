@@ -50,7 +50,7 @@ import { AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnect
 import { Calculator, Snake, Fight } from 'weky';
 import censor from 'discord-censor';
 import canvas from 'discord-canvas';
-import { MessageEmbed, MessageButton, MessageActionRow, Intents, Permissions, MessageSelectMenu } from 'discord.js';
+import { Permissions } from 'discord.js';
 import https from 'https';
 import { GiveawaysManager } from 'discord-giveaways';
 import ytnotifier from 'youtube-notification-module';
@@ -112,7 +112,7 @@ export default {
       });
       const vm = new NodeVM({
         console: 'inherit',
-        sandbox: { censor, Calculator, Snake, Fight, discordTTS, AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, db, smartestchatbot, TempChannels, https, GiveawaysManager, canvas, ytnotifier, logs, DIG, DB, moment, Database, Discord, MessageEmbed, MessageButton, MessageActionRow, Intents, Permissions, MessageSelectMenu, Player, QueueRepeatMode }
+        sandbox: { censor, Calculator, Snake, Fight, discordTTS, AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, db, smartestchatbot, TempChannels, https, GiveawaysManager, canvas, ytnotifier, logs, DIG, DB, moment, Database, Discord, Permissions, Player, QueueRepeatMode }
       });
       let s4d = await vm.run(finalCode, 'vm.js');
       let result = await s4d();

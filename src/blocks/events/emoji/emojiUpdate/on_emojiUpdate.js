@@ -25,6 +25,6 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on('emojiUpdate', async (emoji) => {\n${statements}\n});\n`;
+  const code = `s4d.client.on(Discord.Events.GuildEmojiUpdate, async (emoji) => {\n${statements}\n});\n`;
   return code;
 };

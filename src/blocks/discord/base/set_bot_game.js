@@ -10,26 +10,26 @@ const blockData = {
     {
       type: 'input_value',
       name: 'GAME',
-      check: ['Number', 'String']
+      check: 'String'
     },
     {
       type: 'field_dropdown',
       name: 'TYPE',
       options: [
-        ['%{BKY_LISTENING}', 'LISTENING'],
-        ['%{BKY_WATCHING}', 'WATCHING'],
-        ['%{BKY_COMPETING}', 'COMPETING'],
-        ['%{BKY_PLAYING}', 'PLAYING']
+        ['%{BKY_STATUS_TYPE_PLAYING}', 'PLAYING'],
+        ['%{BKY_STATUS_TYPE_LISTENING}', 'LISTENING'],
+        ['%{BKY_STATUS_TYPE_WATCHING}', 'WATCHING'],
+        ['%{BKY_STATUS_TYPE_COMPETING}', 'COMPETING']
       ]
     },
     {
       type: 'field_dropdown',
       name: 'OIFD',
       options: [
-        ['%{BKY_ONLINE}', 'online'],
-        ['%{BKY_OFFLINE}', 'offline'],
-        ['%{BKY_IDLE}', 'idle'],
-        ['%{BKY_DND}', 'dnd']
+        ['%{BKY_STATUS_ONLINE}', 'online'],
+        ['%{BKY_STATUS_IDLE}', 'idle'],
+        ['%{BKY_STATUS_DND}', 'dnd'],
+        ['%{BKY_STATUS_OFFLINE}', 'offline']
       ]
     }
   ],
@@ -37,7 +37,7 @@ const blockData = {
   previousStatement: null,
   nextStatement: null,
   inputsInline: true,
-  tooltip: "Set your bot's game/status.",
+  tooltip: "Set your bot's status.",
   helpUrl: ''
 };
 
@@ -48,13 +48,19 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const type = block.getFieldValue('TYPE');
+  const type = block
+    .getFieldValue('TYPE')
+    .toLowerCase()
+    .replace(/^./, (match) => match.toUpperCase());
   const game = javascriptGenerator.valueToCode(block, 'GAME', javascriptGenerator.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');
   const code = `s4d.client.user.setPresence({
-  status: "${OIFD}",
-  activities:[{ name: ${game}, type: "${type}" }]
-});\n`;
+  status: '${OIFD}',
+  activities: [{
+    name: ${game},
+    type: Discord.ActivityType.${type}
+  }]
+});`;
   return code;
 };
 

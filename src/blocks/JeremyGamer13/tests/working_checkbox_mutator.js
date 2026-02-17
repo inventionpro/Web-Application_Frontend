@@ -243,7 +243,7 @@ javascriptGenerator.forBlock[blockName] = (block)=>{
         code.push(`embeds: [${Lavbel.replace("'", "").replace("'", "")}],`)
     }
     if (Style) {
-        code.push(`components: [new MessageActionRow().addComponents(${Style.replace("'", "").replace("'", "").replace("(", "").replace(")", "")})],`)
+        code.push(`components: [new Discord.ActionRowBuilder().addComponents(${Style.replace("'", "").replace("'", "").replace("(", "").replace(")", "")})],`)
     }
     code.push(`ephemeral: ${javascriptGenerator.valueToCode(block, "ephemeral", javascriptGenerator.ORDER_NONE)}\n})`)
     return code.join("\n");

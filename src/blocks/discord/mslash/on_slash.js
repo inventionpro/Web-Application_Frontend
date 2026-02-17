@@ -24,7 +24,7 @@ Blockly.Blocks[blockName] = {
 };
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on('interactionCreate', async (interaction) => {
+  const code = `s4d.client.on(Discord.Events.InteractionCreate, async (interaction) => {
         ${statements}
     });
     `;

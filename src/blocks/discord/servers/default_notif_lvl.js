@@ -29,9 +29,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
+const v13tov14 = {
+  ALL_MESSAGES: 0,
+  ONLY_MENTIONS: 1
+};
 javascriptGenerator.forBlock['default_notif_lvl'] = (block) => {
-  var dropdown = block.getFieldValue('NAME');
-  var code = dropdown;
+  let dropdown = block.getFieldValue('NAME');
+  let code = v13tov14[dropdown];
 
   return [code, javascriptGenerator.ORDER_NONE];
 };

@@ -25,6 +25,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on('guildChannelPermissionsUpdate', async (channel, oldPermissions, newPermissions) => {\n${statements}\n});\n`;
+  // guildChannelPermissionsUpdate is a discord-logs event
+  const code = `s4d.client.on('guildChannelPermissionsUpdate', async (channel, oldPermissions, newPermissions) => {
+  ${statements}
+});`;
   return code;
 };
