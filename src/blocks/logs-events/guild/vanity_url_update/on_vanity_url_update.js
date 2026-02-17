@@ -25,6 +25,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on("guildVanityURLUpdate",async (guild, oldVanityURL, newVanityURL) => {\n${statements}\n});\n`;
+  // guildVanityURLUpdate is a discord-logs event
+  const code = `s4d.client.on('guildVanityURLUpdate',async (guild, oldVanityURL, newVanityURL) => {
+  ${statements}
+});`;
   return code;
 };

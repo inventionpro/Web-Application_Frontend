@@ -30,8 +30,13 @@ Blockly.Blocks[blockName] = {
   }
 };
 
+const v13tov14 = {
+  DISABLED: 0,
+  MEMBERS_WITHOUT_ROLES: 1,
+  ALL_MEMBERS: 2
+};
 javascriptGenerator.forBlock['explicit_content_filter'] = (block) => {
-  var dropdown = block.getFieldValue('NAME');
-  var code = dropdown;
+  let dropdown = block.getFieldValue('NAME');
+  let code = v13tov14[dropdown];
   return [code, javascriptGenerator.ORDER_NONE];
 };

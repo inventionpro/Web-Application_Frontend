@@ -24,7 +24,7 @@ Blockly.Blocks[blockName] = {
 };
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_NONE);
-  const code = `s4d.client.on('voiceStateUpdate', async (oldState, newState) => {
+  const code = `s4d.client.on(Discord.Events.VoiceStateUpdate, async (oldState, newState) => {
         if (!(oldState.channel)) {
         ${statementsThen}
         }

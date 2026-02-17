@@ -25,7 +25,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on('messageUpdate', async (oldMessage, newMessage) => {
+  const code = `s4d.client.on(Discord.Events.MessageUpdate, async (oldMessage, newMessage) => {
     s4dmessage = newMessage
     ${statements}
 });

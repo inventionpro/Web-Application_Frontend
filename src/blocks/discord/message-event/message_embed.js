@@ -126,7 +126,7 @@ javascriptGenerator.forBlock['s4d_message_embed'] = (block) => {
   }
   return [
     `
-            embeds: [new MessageEmbed()${title}${color}${image}${description}${footer}${thumbnail}${field}
+            embeds: [new Discord.EmbedBuilder()${title}${color}${image}${description}${footer}${thumbnail}${field}
             ]
     `,
     javascriptGenerator.ORDER_ATOMIC

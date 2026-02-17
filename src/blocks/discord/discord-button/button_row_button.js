@@ -94,7 +94,7 @@ javascriptGenerator.forBlock['s4d_message_row_block'] = (block) => {
   let label = javascriptGenerator.valueToCode(block, 'LABEL', javascriptGenerator.ORDER_ATOMIC) || null;
   let style = javascriptGenerator.valueToCode(block, 'STYLE', javascriptGenerator.ORDER_ATOMIC) || null;
   let disabled = javascriptGenerator.valueToCode(block, 'DISABLED', javascriptGenerator.ORDER_ATOMIC) || null;
-  let code = `new MessageButton()\n`;
+  let code = `new Discord.ButtonBuilder()\n`;
   if (id !== null) code += `.setCustomId(${id})\n`;
   if (url !== null) code += `.setURL(${url})\n`;
   if (label !== null) code += `.setLabel(${label})\n`;

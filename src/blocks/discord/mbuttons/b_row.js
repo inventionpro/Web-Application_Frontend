@@ -37,6 +37,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'BUTTON_NAME', javascriptGenerator.ORDER_ATOMIC);
   let text1 = name.replace("'", '');
   let name2 = text1.replace("'", '');
-  const code = `const ${name2} = new MessageActionRow()\n${statements}\n`;
+  const code = `const ${name2} = new Discord.ActionRowBuilder()\n${statements}\n`;
   return code;
 };

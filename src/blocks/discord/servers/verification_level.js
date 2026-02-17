@@ -32,9 +32,16 @@ Blockly.Blocks[blockName] = {
   }
 };
 
+const v13tov14 = {
+  NONE: 0,
+  LOW: 1,
+  MEDIUM: 2,
+  HIGH: 3,
+  VERY_HIGH: 4
+};
 javascriptGenerator.forBlock['set_verification_level'] = (block) => {
-  var dropdown = block.getFieldValue('NAME');
-  var code = dropdown;
+  let dropdown = block.getFieldValue('NAME');
+  let code = v13tov14[dropdown];
 
   return [code, javascriptGenerator.ORDER_NONE];
 };

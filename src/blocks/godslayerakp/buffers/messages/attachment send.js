@@ -44,7 +44,7 @@ javascriptGenerator.forBlock[blockname] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
   const code = `${channel}.send({
   content: ${content},
-  files: [new Discord.MessageAttachment(${buffer}, ${name})]
+  files: [new Discord.AttachmentBuilder(${buffer}, ${name})]
 });`;
   return code;
 };

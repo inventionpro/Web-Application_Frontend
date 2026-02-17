@@ -25,14 +25,17 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'TOKEN', javascriptGenerator.ORDER_ATOMIC);
-  const code = `await s4d.client.login(${value}).catch((e)=>{
+  const code = `await s4d.client.login(${value}).catch((err) => {
   const tokenInvalid = true;
-  const tokenError = e;
-  if (e.toString().toLowerCase().includes("token")) {
-    throw new Error("An invalid bot token was provided!")
+  const tokenError = err;
+  let error = err.toString().toLowerCase();
+  if (error.includes('invalid token')) {
+    throw new Error('An invalid bot token was provided!');
+  } else if (error.includes('disallowed intents')) {
+    throw new Error('Privileged Gateway Intents are not enabled! Please go to https://discord.dev and turn on all of them.');
   } else {
-    throw new Error("Privileged Gateway Intents are not enabled! Please go to https://discord.com/developers and turn on all of them.")
+    throw err;
   }
-});\n`;
+});`;
   return code;
 };

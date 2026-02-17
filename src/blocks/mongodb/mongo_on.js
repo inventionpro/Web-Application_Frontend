@@ -25,7 +25,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `mdb.on('ready', async () => {\n${statements}\n});\n
+  const code = `mdb.on(Discord.Events.ClientReady, async () => {\n${statements}\n});\n
     `;
   return code;
 };

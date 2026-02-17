@@ -46,9 +46,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'OPTIONS');
   const disabled = javascriptGenerator.valueToCode(block, 'DISABLED', javascriptGenerator.ORDER_ATOMIC);
   var code = [
-    `new MessageActionRow()
+    `new Discord.ActionRowBuilder()
     .addComponents(
-    new MessageSelectMenu()
+    new Discord.SelectMenuBuilder()
     .setCustomId(${id})
     .setPlaceholder(${placeholder})
     .setMaxValues(1)

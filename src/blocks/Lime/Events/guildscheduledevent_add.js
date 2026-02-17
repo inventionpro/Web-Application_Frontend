@@ -29,6 +29,6 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   var statements_code = javascriptGenerator.statementToCode(block, 'code');
 
-  var code = `s4d.client.on('guildScheduledEventCreate', async (scheduledEvent) => {\n ${statements_code} \n });\n`;
+  var code = `s4d.client.on(Discord.Events.GuildScheduledEventCreate, async (scheduledEvent) => {\n ${statements_code} \n });\n`;
   return code;
 };

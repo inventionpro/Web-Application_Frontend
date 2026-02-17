@@ -56,7 +56,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const eph = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE) || false;
   const embed = javascriptGenerator.valueToCode(block, 'embed val', javascriptGenerator.ORDER_NONE);
   if (statementsThen) {
-    ahq = `components: [new MessageActionRow().addComponents(
+    ahq = `components: [new Discord.ActionRowBuilder().addComponents(
             ${statementsThen.replace("'", '').replace("'", '')}
         )],`;
   }
