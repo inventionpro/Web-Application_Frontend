@@ -88,7 +88,7 @@ export default {
     });
     this.setLanguage('en');
     let url = window.location.href;
-    window.onload = function () {
+    window.onload = () => {
       if (url.includes('#snd=')) {
         let soundlink = url
           .substring(url.indexOf('#snd=') + 5, url.lastIndexOf('#'))
@@ -96,10 +96,10 @@ export default {
           .replaceAll('\n', '');
         const audio = new Audio(soundlink);
         let audio_played = false;
-        audio.onended = function () {
+        audio.onended = () => {
           audio.play();
         };
-        window.onclick = function () {
+        window.onclick = () => {
           if (!audio_played) if (audio.play()) audio_played = true;
         };
       }

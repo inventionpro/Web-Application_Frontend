@@ -14,7 +14,7 @@ export default async function Load(backpack, workspace) {
     Save(backpack);
   });
   // Save on timer if event doesn't fire
-  setInterval(async function () {
+  setInterval(async () => {
     Save(backpack);
   }, 1000);
 }

@@ -60,7 +60,7 @@ import beautify from 'js-beautify';
 
 export default {
   name: 'Editmenu',
-  data: function () {
+  data: () => {
     return {
       botStarted: false,
       botStarting: false,
@@ -73,7 +73,7 @@ export default {
     botAvatar: function () {
       return this.botRawAvatar || 'https://cdn.discordapp.com/embed/avatars/0.png';
     },
-    electronApp: function () {
+    electronApp: () => {
       return typeof navigator === 'object' && typeof navigator.userAgent === 'string' && navigator.userAgent.indexOf('Electron') >= 0;
     }
   },

@@ -83,10 +83,10 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   window.Worker = null;
   window.SharedWorker = null;
   window.ServiceWorker = null;
-  window.BlocklyService = {};
-  window.BlocklyService.Blocks = {};
-  window.BlocklyService.JavaScript = {};
-  window.BlocklyService.JavaScript = javascriptGenerator;
+  window.BlocklyService = {
+    Blocks: {},
+    JavaScript: javascriptGenerator
+  };
   blocks.forEach((block) => {
     let works = true;
     try {

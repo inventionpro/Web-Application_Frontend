@@ -8,8 +8,9 @@
     "serve": "vite preview",
     "dev": "vite",
     "build": "vite build",
+    "pretty": "prettier . --write",
     "lint": "eslint src/**/*.{js,vue}",
-    "pretty": "prettier . --write"
+    "lint-fix": "eslint src/**/*.{js,vue} --fix"
   },
   "dependencies": {
     "@blockly/field-grid-dropdown": "^4.0.16",

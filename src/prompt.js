@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import Swal from 'sweetalert2';
 
-const isMobile = function () {
+const isMobile = () => {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 };
 

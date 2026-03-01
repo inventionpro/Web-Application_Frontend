@@ -76,8 +76,8 @@ const examples = {
 
 function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
   let previewWorkspace = false;
-  let sanitizeStr = (str)=>str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-  let sanitizeNum = (num)=>typeof(num)==='number'?num:Number(num.toString().replaceAll(/[^0-9]/g, ''));
+  let sanitizeStr = (str) => str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  let sanitizeNum = (num) => (typeof num === 'number' ? num : Number(num.toString().replaceAll(/[^0-9]/g, '')));
   Swal.fire({
     theme: 'auto',
     html: `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${sanitizeStr(json.example[0])}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"title="This example is created by a trusted/verified creator"></i>`}</h2>
@@ -492,11 +492,11 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                   function buttons() {
                     // Buttons
                     document.querySelectorAll('.sr-only-basic').forEach((element) => {
-                      element.onclick = function () {
+                      element.onclick = () => {
                         // Deselect all
                         document.querySelectorAll('div[style] > .sr-only-basic').forEach((elem) => elem.parentElement.removeAttribute('style'));
                         // Select current
-                        this.parentElement.setAttribute('style', 'border-color:#00aaff');
+                        element.parentElement.setAttribute('style', 'border-color:#00aaff');
                       };
                     });
                     // Likes & Dislikes
@@ -510,7 +510,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                         icon.setAttribute('style', 'color: #00aaff');
                         icon.innerText = ' ' + (originalCount + 1);
                       }
-                      element.onclick = function () {
+                      element.onclick = () => {
                         icon.setAttribute('class', 'fa-solid fa-ellipsis');
                         fetch(SERVER + 'api/examples/updateVotes', {
                           method: 'POST',
@@ -534,7 +534,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                             icon.setAttribute('class', baseIcon);
                             icon.removeAttribute('style');
                             icon.innerText = ' ' + originalCount;
-                            if ((json.liked && this.getAttribute('name') === 'likes') || (json.disliked && this.getAttribute('name') === 'dislikes')) {
+                            if ((json.liked && element.getAttribute('name') === 'likes') || (json.disliked && element.getAttribute('name') === 'dislikes')) {
                               icon.setAttribute('style', 'color: #00aaff');
                               icon.innerText = ' ' + (originalCount + 1);
                             }
@@ -607,7 +607,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                   // Case sensitive
                   var caseSensitiveButton = document.getElementById('swal_menu_CaseSensitiveUserExampleSearch');
                   var caseSensitive = false;
-                  caseSensitiveButton.onclick = function () {
+                  caseSensitiveButton.onclick = () => {
                     caseSensitive = !caseSensitive;
                     caseSensitive ? caseSensitiveButton.setAttribute('style', 'background-color: Transparent;border: none;color:#00aaff') : caseSensitiveButton.setAttribute('style', 'background-color: Transparent;border: none;');
                     search();
@@ -615,7 +615,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                   // Grid size
                   var gridSize3 = false;
                   var gridSizeButton = document.getElementById('swal_menu_ChangeBoxSizeUserExamples');
-                  gridSizeButton.onclick = function () {
+                  gridSizeButton.onclick = () => {
                     gridSize3 = !gridSize3;
                     let icon = gridSizeButton.getElementsByTagName('i').item(0);
                     icon.setAttribute('class', 'fa-solid fa-table-cells' + (gridSize3 ? '' : '-large'));

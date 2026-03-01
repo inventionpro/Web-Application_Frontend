@@ -106,7 +106,7 @@ export default {
   },
   async mounted() {
     const allow_toolbox_search = false;
-    const isMobile = function () {
+    const isMobile = () => {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     };
     function prepToolbox(toolbox_content, searching, searchparameter = '') {
@@ -225,7 +225,7 @@ ${CATEGORYCONTENT}`
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Search for block',
         preconditionFn: () => 'enabled',
-        callback: function () {
+        callback: () => {
           let new_toolbox_xml = prepToolbox(toolbox(val), true);
           workspace.updateToolbox(new_toolbox_xml);
         },
@@ -312,7 +312,7 @@ ${CATEGORYCONTENT}`
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn block via Internal name',
         preconditionFn: () => 'enabled',
-        callback: function () {
+        callback: () => {
           let input = prompt('Block Internal Name');
           if (!input) {
             return;
@@ -332,7 +332,7 @@ ${CATEGORYCONTENT}`
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn all toolblocks',
         preconditionFn: () => 'enabled',
-        callback: function () {
+        callback: () => {
           blocks.forEach((block) => {
             let xml = Blockly.utils.xml.textToDom(`<block type="${block}"/>`);
             block = Blockly.Xml.domToBlock(xml, workspace);
@@ -347,7 +347,7 @@ ${CATEGORYCONTENT}`
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Spawn all toolblocks (ordered)',
         preconditionFn: () => 'enabled',
-        callback: function () {
+        callback: () => {
           blocks.forEach((block) => {
             const xml = Blockly.utils.xml.textToDom(`<xml><block type="${block}"/></xml>`);
             Blockly.Xml.appendDomToWorkspace(xml, workspace);
@@ -360,7 +360,7 @@ ${CATEGORYCONTENT}`
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Recolor all blocks',
         preconditionFn: () => 'enabled',
-        callback: function () {
+        callback: () => {
           let color = prompt('New color?');
           workspace.getAllBlocks().forEach((block) => {
             try {
@@ -384,7 +384,7 @@ ${CATEGORYCONTENT}`
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Log Workspace XML',
         preconditionFn: () => 'enabled',
-        callback: function () {
+        callback: () => {
           console.log(Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace)));
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -403,7 +403,7 @@ ${CATEGORYCONTENT}`
       Blockly.ContextMenuRegistry.registry.register({
         displayText: 'Log all Toolbox blocks',
         preconditionFn: () => 'enabled',
-        callback: function () {
+        callback: () => {
           logtoolblocks(true);
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
@@ -417,7 +417,7 @@ ${CATEGORYCONTENT}`
       val = (await localforage.getItem('fav')) === null ? null : await localforage.getItem('fav');
     }, 1000);
 
-    function svgToPng_(data, width, height, callback) {
+    function svgToPng(data, width, height, callback) {
       let canvas = document.createElement('canvas');
       let context = canvas.getContext('2d');
       let img = new Image();
@@ -440,7 +440,7 @@ ${CATEGORYCONTENT}`
 
       canvas.width = newWidth;
       canvas.height = newHeight;
-      img.onload = function () {
+      img.onload = () => {
         context.drawImage(img, 0, 0, width, height, 0, 0, canvas.width, canvas.height);
         try {
           let dataUri = canvas.toDataURL('image/png');
@@ -453,7 +453,7 @@ ${CATEGORYCONTENT}`
       img.src = data;
     }
 
-    function workspaceToSvg_(workspace, callback, customCss) {
+    function workspaceToSvg(workspace, callback, customCss) {
       // Go through all text areas and set their value.
       let textAreas = document.getElementsByTagName('textarea');
       for (let i = 0; i < textAreas.length; i++) {
@@ -493,20 +493,9 @@ ${CATEGORYCONTENT}`
       svgAsXML = svgAsXML.replace(/&nbsp/g, '&#160');
       let data = 'data:image/svg+xml,' + encodeURIComponent(svgAsXML);
 
-      svgToPng_(data, width, height, callback);
+      svgToPng(data, width, height, callback);
     }
 
-    Blockly.downloadScreenshot = function (workspace) {
-      workspaceToSvg_(workspace, function (datauri) {
-        let a = document.createElement('a');
-        a.download = 'screenshot.png';
-        a.target = '_self';
-        a.href = datauri;
-        document.body.appendChild(a);
-        a.click();
-        a.parentNode.removeChild(a);
-      });
-    };
     this.setLanguage(this.$store.state.blocklyLocale);
     const options = this.$props.options || {};
     options.toolbox = this.$refs['blocklyToolbox'];
@@ -541,7 +530,7 @@ ${CATEGORYCONTENT}`
     window.blocklyGlobalRef = Blockly;
     window.blocklyJSGlobalRef = javascriptGenerator;
     window.blocklyWorkspaceGlobalRef = workspace;
-    workspace.registerButtonCallback('LAUNCHCUSTOMBLOCKBUILDER', function () {
+    workspace.registerButtonCallback('LAUNCHCUSTOMBLOCKBUILDER', () => {
       const menu = blocklyModule.menus.createMenu({
         width: 1280,
         height: 720,
@@ -655,7 +644,7 @@ ${CATEGORYCONTENT}`
       buttonDiv.append(customBlockDeletorDiv);
       inlineDiv.append(buttonDiv);
     });
-    workspace.registerButtonCallback('FFMPEG', function () {
+    workspace.registerButtonCallback('FFMPEG', () => {
       swal.fire({
         theme: 'auto',
         title: 'Hey uhh..',
@@ -667,7 +656,7 @@ ${CATEGORYCONTENT}`
       let new_toolbox_xml = prepToolbox(toolbox(val), false, null);
       workspace.updateToolbox(new_toolbox_xml);
     };
-    workspace.registerButtonCallback('SEARCH', function () {
+    workspace.registerButtonCallback('SEARCH', () => {
       if (isMobile()) {
         let res = String(prompt('Search for a block:'));
         let block = res.replaceAll(' ', '_').replaceAll('<', '_').replaceAll('>', '_').replaceAll('/', '_');
@@ -1048,8 +1037,16 @@ ${CATEGORYCONTENT}`
     Blockly.ContextMenuRegistry.registry.register({
       displayText: 'Download Workspace Image',
       preconditionFn: () => 'enabled',
-      callback: function () {
-        Blockly.downloadScreenshot(workspace);
+      callback: () => {
+        workspaceToSvg(workspace, function (datauri) {
+          let a = document.createElement('a');
+          a.download = 'screenshot.png';
+          a.target = '_self';
+          a.href = datauri;
+          document.body.appendChild(a);
+          a.click();
+          a.parentNode.removeChild(a);
+        });
       },
       scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
       id: 'image',
