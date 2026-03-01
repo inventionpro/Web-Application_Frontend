@@ -75,23 +75,23 @@ const examples = {
 };
 
 function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${json.example[0].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '')}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"title="This example is created by a trusted/verified creator"></i>`}</h2>
-<i class="fa-solid fa-user-shield"></i> <b>${json.example[6].replaceAll('\\', '').replaceAll('<', '').replaceAll('>', '').replaceAll('/', '')}</b>
+  let previewWorkspace = false;
+  let sanitizeStr = (str)=>str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  let sanitizeNum = (num)=>typeof(num)==='number'?num:Number(num.toString().replaceAll(/[^0-9]/g, ''));
+  Swal.fire({
+    theme: 'auto',
+    html: `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${sanitizeStr(json.example[0])}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"title="This example is created by a trusted/verified creator"></i>`}</h2>
+<i class="fa-solid fa-user-shield"></i> <b>${sanitizeStr(json.example[6])}</b>
 &#8226
-<i class="fa-solid fa-cube"></i> <b><em>${Number(json.example[3])}</em></b>
-<p class="text-secondary"><i class="fa-solid fa-file-lines"></i> &#8226 <i>${json.example[1].replaceAll('<', '').replaceAll('\\', '')}</i></p>
+<i class="fa-solid fa-cube"></i> <b><em>${sanitizeNum(json.example[3])}</em></b>
+<p class="text-secondary"><i class="fa-solid fa-file-lines"></i> &#8226 <i>${sanitizeStr(json.example[1])}</i></p>
 <div id="swal_popup_BlocklyUserExampleViewer"></div>
 <div class="swal_popup_BlocklyUserExampleViewer_bottom_left_div">
-  <i class="fa-solid fa-id-badge"></i> &#8226 ${selectedOption}<br>
+  <i class="fa-solid fa-id-badge"></i> &#8226 ${sanitizeNum(selectedOption)}<br>
   <div id="userExamplesButton_menu2_shareLinkToExample">
     <i class="fa-solid fa-share-from-square"></i> &#8226 Share a link to this Example
   </div>
-</div>`;
-  let previewWorkspace = false;
-  Swal.fire({
-    theme: 'auto',
-    html: wrapper,
+</div>`,
     customClass: {
       popup: 'swal-userExamples-preview-popup'
     },
@@ -118,7 +118,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
       if (result.isDismissed) return;
       if (result.isConfirmed) window.blocklyWorkspaceGlobalRef.clear();
       let exampleXml = '';
-      fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then((result) =>
+      fetch(`${SERVER}api/getExample?xml=true&id=${selectedOption}`).then((result) =>
         result.text().then((xml) => {
           exampleXml = String(xml);
           Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), window.blocklyWorkspaceGlobalRef);
@@ -146,7 +146,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
   copyToClipboardButton.onclick = () => {
     copyToClipboardButton.innerHTML = `<i class="fa-solid fa-paste"></i> &#8226 Copying...`;
     let likesPercentage = Math.round((Number(json.example[8]) / (Number(json.example[8]) + Number(json.example[9]))) * 100);
-    navigator.clipboard.writeText(`Check out this User Uploaded Example at https://scratch-for-discord.com/?exampleid=${selectedOption}
+    navigator.clipboard.writeText(`Check out this User Uploaded Example at ${location.protocol}//${location.host}/?exampleid=${selectedOption}
 > **${json.example[0].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '')}**
 > ${json.example[1].replaceAll('<', '').replaceAll('/', '').replaceAll('\\', '').replaceAll('\n', '\n> ')}
 > -----

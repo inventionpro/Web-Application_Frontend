@@ -199,8 +199,10 @@ export default {
         }
         return newString;
       }
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = `${getWorkspaceProblems(this.$store.state.workspace)}<h6>How to start your bot once downloaded?</h6>
+      Swal.fire({
+        theme: 'auto',
+        title: 'Download your bot?',
+        html: `${getWorkspaceProblems(this.$store.state.workspace)}<h6>How to start your bot once downloaded?</h6>
 <ul>
 <li style='text-align:left'>Unzip the Downloaded File.</li>
 <li style='text-align:left'>Install NPM and Node.js (Hint: Google Search).</li>
@@ -211,11 +213,7 @@ export default {
 .lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123 {
   width: 35%
 }
-</style>`;
-      Swal.fire({
-        theme: 'auto',
-        title: 'Download your bot?',
-        html: wrapper,
+</style>`,
         customClass: 'lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123',
         showCancelButton: true,
         confirmButtonText: 'Download',

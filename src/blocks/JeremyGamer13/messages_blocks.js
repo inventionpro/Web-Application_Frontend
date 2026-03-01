@@ -2680,7 +2680,7 @@ Blockly.Blocks['jg_members_member_s_nickname'] = {
 };
 javascriptGenerator.forBlock['jg_members_member_s_nickname'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
-  const code = [`${member}.nickname == null ? ${member}.user.username : ${member}.nickname`, javascriptGenerator.ORDER_NONE];
+  const code = [`${member}.nickname??${member}.user.username`, javascriptGenerator.ORDER_NONE];
   return code;
 };
 Blockly.Blocks['jg_roles_get_all_member_roles_then_for_each_do'] = {
