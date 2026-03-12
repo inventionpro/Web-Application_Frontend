@@ -44,9 +44,7 @@ export default {
         space_before_conditional: true,
         space_in_empty_paren: true
       });
-      if (Prism) {
-        code = Prism.highlight(code, Prism.languages.javascript, 'javascript');
-      }
+      if (Prism) code = Prism.highlight(code, Prism.languages.javascript, 'javascript');
       modal.innerHTML = code;
     },
     copy() {

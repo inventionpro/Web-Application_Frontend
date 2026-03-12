@@ -39,6 +39,7 @@ const NavExpanded = ref(false);
         <BButton style="border-right-color: #161719; border-radius: 0em" @click="runbot">
           <i class="bi bi-play" />
         </BButton>
+        <RunMenu style="display: none" />
         <BButton style="border-right-color: #161719; border-radius: 0em" @click="util">
           <i class="bi bi-gear" />
         </BButton>
@@ -67,6 +68,7 @@ import DataMenu from './DataMenu.vue';
 import ChangelogMenu from './ChangelogMenu.vue';
 import ShortcutsMenu from './ShortcutsMenu.vue';
 import CreditsMenu from './CreditsMenu.vue';
+import RunMenu from './RunMenu.vue';
 
 export default {
   name: 'Navbar',
@@ -80,7 +82,8 @@ export default {
     DataMenu,
     ChangelogMenu,
     ShortcutsMenu,
-    CreditsMenu
+    CreditsMenu,
+    RunMenu
   },
   mounted() {
     this.$store.commit('setLocale', {
@@ -219,7 +222,7 @@ export default {
         confirmButtonText: 'Download',
         cancelButtonText: 'Cancel'
       }).then(async (result) => {
-        let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "2.0.0",`];
+        let requires = [`"discord.js": "^14.25.1",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "2.2.1",`];
         let oldrequires = await localforage.getItem('requires');
         r(requires, oldrequires);
         var requireUsed = requires.join('\n');
@@ -243,22 +246,17 @@ export default {
           zip.file('index.js', javascriptContent);
           zip.file(
             'package.json',
-            `{\n
-  "name": "scratch-for-discord-bot",\n
-  "version": "1.0.0",\n
-  "main": "index.js",\n
-  "scripts": {\n
-    "start": "npm i && node .",\n
-    "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",\n
-    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i"\n
-  },\n
-  "dependencies": {\n
-    "moment": "latest",\n
+            `{
+  "name": "scratch-for-discord-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm i && node ."
+  },
+  "dependencies": {
+    "moment": "latest",
     ${requireUsed}
-  },\n
-  "devDependencies": {\n
-    "node": "^18"\n
-  }\n
+  }
 }`
           );
           zip

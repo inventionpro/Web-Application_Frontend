@@ -124,8 +124,7 @@ app.mixin({
       if (!workspace) return '';
       let requires = [];
       let requiresjscode = [];
-      let xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
-      req(requires, requiresjscode, javascriptGenerator.workspaceToCode(workspace), xml);
+      req(requires, requiresjscode, javascriptGenerator.workspaceToCode(workspace));
       setTimeout(async () => {
         await localforage.setItem('requires', requires);
       }, 1000);
@@ -144,7 +143,7 @@ app.mixin({
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   // Block imports
-  ${requires.join('\n    ')}
+  ${requires.join('\n  ')}
 
   // Define s4d components (pretty sure 90% of these arnt even used/required)
   let s4d = {

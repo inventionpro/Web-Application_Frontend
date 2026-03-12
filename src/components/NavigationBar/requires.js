@@ -74,9 +74,6 @@ export default async function require(array, oldarray) {
     if (js.includes('ms')) {
       array.push(`"ms":"^2.1.3",`);
     }
-    if (js.includes('discord-logs')) {
-      array.push(`"discord-logs": "2.0.1",`);
-    }
     if (js.includes('discord-badges')) {
       array.push(`"discord-badges": "0.0.0",`);
     }
