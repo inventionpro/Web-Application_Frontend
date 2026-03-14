@@ -1,8 +1,6 @@
 # Scratch For Discord (S4D)
 
-🐱 Make your Discord bot using Scratch blocks! [Scratch For Discord](https://scratch-for-discord.com) is an advanced fork of [discord-blocks](https://discordblocks.leondrolio.com/) and a continuation to the original [469](https://github.com/scratch-for-discord/Web-Application_Frontend/). Thanks to [7coil](https://github.com/7coil) for their great work!
-
-S4D New is forked from [469](https://github.com/scratch-for-discord/Web-Application_Frontend/) and [the original S4D](https://scratch-for-discord.netlify.app) made by Androz2091
+🐱 Make your Discord bot using Scratch blocks! [Scratch For Discord](https://new.scratch-for-discord.com) is an advanced fork of [discord-blocks](https://discordblocks.leondrolio.com/) and a continuation to [469](https://github.com/scratch-for-discord/Web-Application_Frontend/) and the [original S4D](https://scratch-for-discord.netlify.app) by Androz2091. Thanks to [7coil](https://github.com/7coil) for their great work!
 
 - 🖥️ No code knowledge required!
 - ⏩ Make a bot in less than 2 minutes!
@@ -24,7 +22,7 @@ Not recomended, use web version instead.
 
 To run Scratch For Discord, follow these steps:
 
-- Clone the project: `git clone https://github.com/inventionpro/Web-Application_Frontend/`
+- Clone the project: `git clone https://github.com/inventionpro/Scratch-for-Discord/`
 - Install dependencies: `yarn install`
 - Run dev server: `yarn run dev`
 - Finally type `o` and press enter, this will open in the browser.
@@ -37,7 +35,7 @@ To run Scratch For Discord, follow these steps:
 - Blockly ([RaspberryPiFoundation/blockly](https://github.com/RaspberryPiFoundation/blockly))
 - Discord.js ([discordjs/discord.js](https://github.com/discordjs/discord.js))
 - Discordblocks ([7coil/discordblocks](https://github.com/7coil/discord-blocks))
-- Base from 469 (S4D) ([scratch-for-discord/Web-Application_Frontend](https://github.com/scratch-for-discord/Web-Application_Frontend/))
+- Fork of 469 (S4D) ([scratch-for-discord/Web-Application_Frontend](https://github.com/scratch-for-discord/Web-Application_Frontend/))
 - The original S4D ([Androz2091/Scratch-For-Discord](https://github.com/Androz2091/scratch-for-discord/))
 - Pull request 454 (S4D) ([mrredo-and-josetrindade1/Scratch-For-Discord](https://github.com/mrredo-and-josetrindade1/scratch-for-discord))
 - Snowflake107 ([snowflake107](https://github.com/Snowflake107))

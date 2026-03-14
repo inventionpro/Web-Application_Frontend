@@ -106,7 +106,7 @@ javascriptGenerator.forBlock[blockName] = function () {
     13. JooJ
     14. https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
-    Official s4d4d4s4ds44ds server:- https://discord.gg/cB2g5f4Ypq
+    Official s4d4d4s4ds44ds server:- https://discord.gg/kXyRzypp4e
     s4r34 69 furry segs official server:- https://discord.gg/furry\``,
     javascriptGenerator.ORDER_LOGICAL_OR
   ];

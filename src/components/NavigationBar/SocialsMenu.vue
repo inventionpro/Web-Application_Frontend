@@ -8,7 +8,7 @@
       <i class="fa-brands fa-discord" /> <b><i>Discord Server</i></b>
     </BDropdownItem>
     <BDropdownDivider />
-    <BDropdownItem href="https://github.com/inventionpro/Web-Application_Frontend" target="_blank">
+    <BDropdownItem href="https://github.com/inventionpro/Scratch-for-Discord" target="_blank">
       <i class="fa-brands fa-github" /> <b><i>Github</i></b>
     </BDropdownItem>
     <BDropdownItem href="https://docs.scratch-for-discord.com/use" target="_blank">

@@ -30,7 +30,7 @@ javascriptGenerator.forBlock[blockName] = function () {
     7. HenPokPok
     8. AlexCdDg
 
-    Official s4d server:- https://discord.gg/cB2g5f4Ypq
+    Official s4d server:- https://discord.gg/kXyRzypp4e
     s4d 469 official server:- https://discord.gg/A7yttWszfD\``,
     javascriptGenerator.ORDER_NONE
   ];

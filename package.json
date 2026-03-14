@@ -55,12 +55,12 @@
   "main": "babel.config.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/inventionpro/Web-Application_Frontend.git"
+    "url": "git+https://github.com/inventionpro/Scratch-for-Discord.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/inventionpro/Web-Application_Frontend/issues"
+    "url": "https://github.com/inventionpro/Scratch-for-Discord/issues"
   },
-  "homepage": "https://github.com/inventionpro/Web-Application_Frontend#readme"
+  "homepage": "https://github.com/inventionpro/Scratch-for-Discord#readme"
 }
