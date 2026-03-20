@@ -307,7 +307,6 @@
   "RES_MISSING_CHANNEL_VALUE": "você deve especifica um nome ou id de um canal valido!",
   "RES_SEND_CHANNEL_CONTENT": "você deve especifica um conteudo para manda!",
   "RES_SEND_CHANNEL_CHANNEL": "Você deve especificar um canal para enviar o conteúdo!",
-  "SEND_CHANNEL": "envie %1 no canal %2",
   "HAS_ROLE": "membro %2 tem cargo %1",
   "RES_REACT_NO_MEMBER": "Você precisa especifica um membro valido!",
   "REACTION_WAIT_ADDED_REACTION": "espere para reação do membro %1 durante (minutos) %2 quando uma reação for adicionada %3",

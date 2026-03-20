@@ -5,7 +5,7 @@ import { registerRestrictions } from '../../../restrictions';
 const blockName = 's4d_send_channel';
 
 const blockData = {
-  message0: '%{BKY_SEND_CHANNEL}',
+  message0: 'send %1 in the channel %2',
   args0: [
     {
       type: 'input_value',
@@ -35,7 +35,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check_ ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check_[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
     if (contentType === 'var') {
       const code = `${channel}.send({content: String(${content})});\n`;
       return code;

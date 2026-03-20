@@ -159,14 +159,14 @@ app.mixin({
 
   // Check if d.js is v14
   if (!require('./package.json').dependencies['discord.js'].startsWith("^14.")) {
-    exec('npm i 14.25.1');
-    throw new Error('Seems you arent using v14 please re-run or run \`npm i discord.js@14.25.1\`');
+    exec('npm i discord.js@^14');
+    throw new Error('Seems you arent using v14 please re-run or run \`npm i discord.js@^14\`');
   }
 
   // check if discord-logs is v2
   if (!require('./package.json').dependencies['discord-logs'].startsWith("^2.")) {
-    exec('npm i discord-logs@2.2.1');
-    throw new Error('discord-logs needs to be 2.2.0 or higher. please re-run or if that fails run \`npm i discord-logs@2.2.1\` then re-run');
+    exec('npm i discord-logs@^2');
+    throw new Error('discord-logs needs to be 2.2.0 or higher. please re-run or if that fails run \`npm i discord-logs@^2\` then re-run');
   }
 
   // Create a new discord client

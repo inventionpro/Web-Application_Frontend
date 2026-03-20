@@ -222,7 +222,7 @@ export default {
         confirmButtonText: 'Download',
         cancelButtonText: 'Cancel'
       }).then(async (result) => {
-        let requires = [`"discord.js": "^14.25.1",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "2.2.1",`];
+        let requires = [`"discord.js": "^14.25.1",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "^2.2.1",`];
         let oldrequires = await localforage.getItem('requires');
         r(requires, oldrequires);
         var requireUsed = requires.join('\n');

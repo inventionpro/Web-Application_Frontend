@@ -47,7 +47,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const button = javascriptGenerator.valueToCode(block, 'BUTTON', javascriptGenerator.ORDER_ATOMIC);
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check_ ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check_[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
     if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
       if (contentType === 'MessageEmbed') {
         const code = `${channel}.send({${content},components:[${button}]}).then(async m=>{

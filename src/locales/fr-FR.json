@@ -392,7 +392,6 @@
   "RES_MISSING_CHANNEL_VALUE": "Vous devez préciser un nom ou un identifiant de salon valide !",
   "RES_SEND_CHANNEL_CONTENT": "Vous devez préciser un contenu à envoyer !",
   "RES_SEND_CHANNEL_CHANNEL": "Vous devez préciser un salon dans lequel envoyer le contenu !",
-  "SEND_CHANNEL": "envoyer %1 dans le salon %2",
   "TOOLBOX_LOGIC": "Logique",
   "TOOLBOX_LOOPS": "Boucles",
   "TOOLBOX_MATH": "Math",
