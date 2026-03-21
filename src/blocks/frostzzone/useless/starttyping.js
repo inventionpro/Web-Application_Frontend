@@ -36,7 +36,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const time = javascriptGenerator.valueToCode(block, 'time', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    if (contentType === 'MessageEmbed') {
       const code = `s4dmessage.channel.sendTyping();
           await delay(Number(${time}) * 1000);
 s4dmessage.channel.send({${content}});\n`;

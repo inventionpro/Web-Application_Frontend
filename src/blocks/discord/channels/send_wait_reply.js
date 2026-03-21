@@ -60,7 +60,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let code = '';
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    if (contentType === 'MessageEmbed') {
       code = `${channel}.send({${content}})`;
     } else if (contentType === 'embed') {
       code = `${channel}.send({ embeds:[${content}]})`;

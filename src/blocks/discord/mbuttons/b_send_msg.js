@@ -43,7 +43,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let button2 = text1.replace("'", '');
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'Embed' || (!contentType && typeof contentType === 'object')) {
+    if (contentType === 'Embed') {
       const code = `${channel}.send({ embeds: [${content}], components: [${button2}] });\n`;
       return code;
     } else if (contentType === 'MessageEmbed') {

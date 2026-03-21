@@ -56,7 +56,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    if (contentType === 'MessageEmbed') {
       const code = `gwebhook.send({
                 ${content},
                 allowedMentions: {

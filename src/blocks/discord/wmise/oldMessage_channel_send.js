@@ -29,7 +29,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    if (contentType === 'MessageEmbed') {
       const code = `oldMessage.channel.send({${content}});\n`;
       return code;
     } else {

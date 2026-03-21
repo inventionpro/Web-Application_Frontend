@@ -36,7 +36,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const boolean = javascriptGenerator.valueToCode(block, 'boolean', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    if (contentType === 'MessageEmbed') {
       if (contentType === 'MessageEmbed') {
         const code = `s4dmessage.reply({${content}, allowedMentions: {
         repliedUser: ${boolean}

@@ -40,7 +40,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const avatar = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    if (contentType === 'MessageEmbed') {
       const code = `webhook.send({
     username: String(${username}),
     avatarURL: String(${avatar}),

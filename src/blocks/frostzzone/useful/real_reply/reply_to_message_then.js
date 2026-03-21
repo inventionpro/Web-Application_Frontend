@@ -47,7 +47,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    if (contentType === 'MessageEmbed') {
       const code = `${msg}.reply({${content}, allowedMentions: {
         repliedUser: ${boolean}
     }}).then(async (s4dfrost_real_reply) =>{\n ${statementThen} \n});\n`;
