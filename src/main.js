@@ -6,7 +6,6 @@ import { createI18n } from 'vue-i18n';
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import VueToast from 'vue-toast-notification';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import savenload from './save-load';
 
 const app = createApp(App);
@@ -23,8 +22,6 @@ app.component('BButton', BButton);
 app.component('BDropdownItem', BDropdownItem);
 app.component('BDropdownDivider', BDropdownDivider);
 app.component('BCollapse', BCollapse);
-
-app.component('FontAwesomeIcon', FontAwesomeIcon);
 
 app.use(VueToast);
 app.use(bootstrapPlugin);
