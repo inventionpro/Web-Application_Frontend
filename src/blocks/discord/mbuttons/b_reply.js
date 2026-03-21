@@ -42,11 +42,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let text1 = button.replace("'", '');
   let button2 = text1.replace("'", '');
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === 'Embed' || (!contentType && typeof contentType === 'object')) {
       const code = `await interaction.reply({ ephemeral: ${boolean}, embeds: [${content}], components: [${button2}] });\n`;
       return code;
-    } else if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'MessageEmbed') {
       const code = `await interaction.reply({${content}});\n`;
       return code;
     } else {

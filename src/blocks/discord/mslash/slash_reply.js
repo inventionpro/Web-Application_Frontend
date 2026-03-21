@@ -50,7 +50,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   }
 
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === 'Embed') {
       const code = `await interaction.reply({ embeds: [${content}], ephemeral: ${boolean || false}, components: [${button}] });\n`;
       return code;

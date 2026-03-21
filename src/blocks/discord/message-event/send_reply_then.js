@@ -34,14 +34,14 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === 'var') {
       const code = `s4dmessage.channel.send({content: String(${content})}).then(async (s4dreply) =>{\n ${statementThen} \n});\n`;
       return code;
-    } else if (contentType === 'embed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'embed') {
       const code = `s4dmessage.channel.send({ embeds:[${content}]}).then(async (s4dreply) =>{\n ${statementThen} \n});\n`;
       return code;
-    } else if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'MessageEmbed') {
       const code = `s4dmessage.channel.send({${content}}).then(async (s4dreply) =>{\n ${statementThen} \n});\n`;
       return code;
     } else {

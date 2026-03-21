@@ -28,7 +28,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
       const code = `newMessage.channel.send({${content}});\n`;
       return code;

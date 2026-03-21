@@ -59,10 +59,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statementCatch = javascriptGenerator.statementToCode(block, 'CATCH');
   let code = '';
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
       code = `${channel}.send({${content}})`;
-    } else if (contentType === 'embed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'embed') {
       code = `${channel}.send({ embeds:[${content}]})`;
     } else {
       code = `${channel}.send(String(${content}))`;

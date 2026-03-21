@@ -35,13 +35,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   const time = javascriptGenerator.valueToCode(block, 'time', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
       const code = `s4dmessage.channel.sendTyping();
           await delay(Number(${time}) * 1000);
 s4dmessage.channel.send({${content}});\n`;
       return code;
-    } else if (contentType === 'embed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'embed') {
       const code = `s4dmessage.channel.sendTyping();
           await delay(Number(${time}) * 1000);
 s4dmessage.channel.send({ embeds:[${content}]});\n`;

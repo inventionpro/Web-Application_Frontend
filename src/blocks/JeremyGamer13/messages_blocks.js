@@ -661,7 +661,7 @@ javascriptGenerator.forBlock['jg_messages_reply_with_allowed_list_of_pings_on_us
     usableB = `roles: ${roles},`;
   }
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === null) {
       const code = `s4dmessage.channel.send({
                 content: String(${content}),
@@ -672,7 +672,7 @@ javascriptGenerator.forBlock['jg_messages_reply_with_allowed_list_of_pings_on_us
             });
             `;
       return code;
-    } else if (contentType === 'embed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'embed') {
       const code = `s4dmessage.channel.send({
                  embeds:[${content}],
                 allowedMentions: {
@@ -682,7 +682,7 @@ javascriptGenerator.forBlock['jg_messages_reply_with_allowed_list_of_pings_on_us
                 });
                 `;
       return code;
-    } else if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'MessageEmbed') {
       const code = `s4dmessage.channel.send({
                 ${content},
                 allowedMentions: {
@@ -774,7 +774,7 @@ javascriptGenerator.forBlock['jg_messages_respond_with_and_with_allowed_list_of_
     usableB = `roles: ${roles},`;
   }
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === null) {
       const code = `s4dmessage.channel.send({
                 content: String(${content}),
@@ -785,7 +785,7 @@ javascriptGenerator.forBlock['jg_messages_respond_with_and_with_allowed_list_of_
             });
             `;
       return code;
-    } else if (contentType === 'embed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'embed') {
       const code = `s4dmessage.channel.send({
                  embeds:[${content}],
                 allowedMentions: {
@@ -795,7 +795,7 @@ javascriptGenerator.forBlock['jg_messages_respond_with_and_with_allowed_list_of_
                 });
                 `;
       return code;
-    } else if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'MessageEmbed') {
       const code = `s4dmessage.channel.send({
                 ${content},
                 allowedMentions: {
@@ -893,7 +893,7 @@ javascriptGenerator.forBlock['jg_channels_send_in_channel_with_allowed_list_of_p
     usableB = `roles: ${roles},`;
   }
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === 'var') {
       const code = `${channel}.send({
                 content: String(${content}),
@@ -904,7 +904,7 @@ javascriptGenerator.forBlock['jg_channels_send_in_channel_with_allowed_list_of_p
             });
             `;
       return code;
-    } else if (contentType === 'embed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'embed') {
       const code = `${channel}.send({
                 embeds:[${content}],
                 allowedMentions: {
@@ -914,7 +914,7 @@ javascriptGenerator.forBlock['jg_channels_send_in_channel_with_allowed_list_of_p
             });
             `;
       return code;
-    } else if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'MessageEmbed') {
       const code = `${channel}.send({
                 ${content},
                 allowedMentions: {

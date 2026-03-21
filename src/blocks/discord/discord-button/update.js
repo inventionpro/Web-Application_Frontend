@@ -42,7 +42,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const button = javascriptGenerator.valueToCode(block, 'BUTTON', javascriptGenerator.ORDER_ATOMIC);
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
-    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check ? block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check[0] : null;
+    const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
     if (contentType === 'MessageEmbed' || (!contentType && typeof contentType === 'object')) {
       if (contentType === 'MessageEmbed') {
         const code = `await i.update({${content},components:[${button}]}).then(async m=>{
@@ -55,7 +55,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
             });\n`;
         return code;
       }
-    } else if (contentType === 'embed' || (!contentType && typeof contentType === 'object')) {
+    } else if (contentType === 'embed') {
       const code = `await i.update({ embeds:[${content}],components:[${button}]}).then(async m=>{
                 ${statements}
             });\n`;
