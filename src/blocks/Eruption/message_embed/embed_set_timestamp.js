@@ -63,7 +63,7 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
     var inputExists = this.getInput('DATE');
     if (divisorInput) {
       if (!inputExists) {
-        this.appendValueInput('DATE').setCheck('String');
+        this.appendValueInput('DATE').setCheck(['String','Number']);
       }
     } else if (inputExists) {
       this.removeInput('DATE');
@@ -97,5 +97,3 @@ registerRestrictions(blockName, [
     types: ['s4d_embed_create']
   }
 ]);
-
-// Eruption is cool;
