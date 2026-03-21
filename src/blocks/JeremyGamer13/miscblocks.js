@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import upgradeXml from '../../upgradexml.js';
+
 //lasercat_jg_case_default
 Blockly.Blocks['lasercat_jg_case_default'] = {
   /**
@@ -336,8 +338,7 @@ Blockly.Blocks['jg_blocklyfp_load_workspace'] = {
     this.setColour(Math.round(rainbow_color));
     if (loaded_workspace_state == 1) {
       try {
-        let xml = Blockly.utils.xml.textToDom(work);
-        Blockly.Xml.appendDomToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
+        Blockly.Xml.appendDomToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(work)), window.blocklyWorkspaceGlobalRef);
       } catch (err) {
         window.alert(err);
         console.log(err);
@@ -389,8 +390,7 @@ Blockly.Blocks['jg_blocklyfp_load_workspace_website'] = {
       try {
         fetch(work, requestOptions)
           .then((response) => {
-            let xml = Blockly.utils.xml.textToDom(response);
-            Blockly.Xml.appendDomToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
+            Blockly.Xml.appendDomToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(response)), window.blocklyWorkspaceGlobalRef);
           })
           .catch((err) => {
             window.alert(err);

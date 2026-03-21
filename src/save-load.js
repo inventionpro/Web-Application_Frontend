@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly/core';
 import localforage from 'localforage';
 import Swal from 'sweetalert2';
+import upgradeXml from './upgradexml.js';
 
 // Hardcoded backpack events since no enum in Blockly.Events
 const DISABLED_EVENTS = [Blockly.Events.BUBBLE_OPEN, Blockly.Events.BUMP_EVENTS, Blockly.Events.CLICK, Blockly.Events.BLOCK_DRAG, Blockly.Events.FINISHED_LOADING, Blockly.Events.SELECTED, Blockly.Events.THEME_CHANGE, Blockly.Events.TOOLBOX_ITEM_SELECT, Blockly.Events.TRASHCAN_OPEN, Blockly.Events.UI, Blockly.Events.VIEWPORT_CHANGE, 'backpack_open', 'backpack_change'];
@@ -82,7 +83,7 @@ export default async function register(app, t) {
               customBlocks: typeof cb === 'object' ? JSON.stringify(cb) : cb
             });
           }
-          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(xml), window.blocklyWorkspaceGlobalRef);
+          Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(xml)), window.blocklyWorkspaceGlobalRef);
 
           console.log('loaded the save!');
 

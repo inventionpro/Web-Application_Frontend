@@ -57,6 +57,7 @@ import JSZip from 'jszip';
 import localforage from 'localforage';
 import Swal from 'sweetalert2';
 import r from './requires';
+import upgradeXml from '../../upgradexml.js';
 
 import CodeModal from './CodeModal.vue';
 import FileMenu from './FileMenu.vue';
@@ -908,7 +909,7 @@ ${
                             });
                           } else if (action === 'load') {
                             const token = await localforage.getItem(id);
-                            Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(token), this.$store.state.workspace);
+                            Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(token)), this.$store.state.workspace);
                             const Toast = Swal.mixin({
                               toast: true,
                               position: 'top-end',

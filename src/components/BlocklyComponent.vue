@@ -314,9 +314,7 @@ ${CATEGORYCONTENT}`
         preconditionFn: () => 'enabled',
         callback: () => {
           let input = prompt('Block Internal Name');
-          if (!input) {
-            return;
-          }
+          if (!input) return;
           let xml = Blockly.utils.xml.textToDom('<xml><block type="' + input + '"></block></xml>');
           try {
             Blockly.Xml.appendDomToWorkspace(xml, workspace);

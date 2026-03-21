@@ -9,5 +9,4 @@ import './add_data';
 import './subtract_data';
 import './delete_all';
 
-import './old_database';
 import './dootabase';

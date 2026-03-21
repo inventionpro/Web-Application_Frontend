@@ -24,6 +24,8 @@ import localforage from 'localforage';
 import Swal from 'sweetalert2';
 import * as smm from './cbmodule.js';
 import * as blocklyModule from '../../blocks/blocklyModule.js';
+import upgradeXml from '../../upgradexml.js';
+
 function fetchCustomBlocks(dataobj, loadfunc) {
   if (!window.isInS4DDebugMode) {
     const menu = blocklyModule.menus.createMenu({
@@ -185,11 +187,10 @@ export default {
         document.title = `Scratch For Discord - ${document.getElementById('docName').textContent}`;
         const reader = new FileReader();
         reader.onload = async (e) => {
-          if (file.type == 'text/xml') {
+          if (file.type === 'text/xml') {
             const decoder = new TextDecoder('utf-8');
             const raw = decoder.decode(e.target.result);
-            const xml = Blockly.utils.xml.textToDom(raw);
-            Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
+            Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(raw)), window.blocklyWorkspaceGlobalRef);
             return;
           }
           JSZip.loadAsync(e.target.result)
@@ -206,8 +207,7 @@ export default {
             .then((dataobj) => {
               if (dataobj.xml == null) return;
               function load() {
-                const xml = Blockly.utils.xml.textToDom(dataobj.xml);
-                Blockly.Xml.domToWorkspace(xml, window.blocklyWorkspaceGlobalRef);
+                Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(dataobj.xml)), window.blocklyWorkspaceGlobalRef);
               }
               if (dataobj.customBlocks == null) {
                 load();

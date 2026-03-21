@@ -267,10 +267,6 @@ const S4D_WEBSITECREATION_EXPRESS_app = S4D_WEBSITECREATION_EXPRESS();`);
   if (js.includes('Database')) {
     array.push('const Database = require("easy-json-database");');
   }
-  if (js.includes('s4d.database')) {
-    array.push('const Database = require("easy-json-database");');
-    code.push("s4d.database = new Database('./database.json');");
-  }
   if (js.includes('OpenAIApi')) {
     array.push('const OpenAI = require("openai");');
   }

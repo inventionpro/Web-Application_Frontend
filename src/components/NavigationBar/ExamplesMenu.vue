@@ -31,6 +31,7 @@ import * as Blockly from 'blockly/core';
 import Swal from 'sweetalert2';
 import localforage from 'localforage';
 import theme from '@blockly/theme-dark';
+import upgradeXml from '../../upgradexml.js';
 
 import PingPongExample from '../../examples/ping-pong';
 import CommandParsingExample from '../../examples/command-parsing';
@@ -121,7 +122,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
       fetch(`${SERVER}api/getExample?xml=true&id=${selectedOption}`).then((result) =>
         result.text().then((xml) => {
           exampleXml = String(xml);
-          Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), window.blocklyWorkspaceGlobalRef);
+          Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(exampleXml)), window.blocklyWorkspaceGlobalRef);
           setTimeout(() => {
             toast.open({
               message: 'Loaded a custom example!',
@@ -186,7 +187,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
   fetch(SERVER + `api/getExample?xml=true&id=${selectedOption}`).then((result) =>
     result.text().then((xml) => {
       const exampleXml = String(xml);
-      Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), previewWorkspace);
+      Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(exampleXml)), previewWorkspace);
       console.log('loaded xml for workspace in', new Date().getTime() - currentMS + 'ms');
     })
   );
@@ -241,7 +242,7 @@ export default {
         if (result.isDismissed) return;
         if (result.isConfirmed) window.blocklyWorkspaceGlobalRef.clear();
         const exampleXml = examples[example];
-        Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(exampleXml), window.blocklyWorkspaceGlobalRef);
+        Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(exampleXml)), window.blocklyWorkspaceGlobalRef);
         setTimeout(() => {
           this.$toast.open({
             message: this.$t('examples.loaded', {

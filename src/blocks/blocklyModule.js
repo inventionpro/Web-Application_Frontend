@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+import upgradeXml from '../upgradexml.js';
 Math.lerp = (n1, n2, a) => {
   let lerped = n1;
   lerped = lerped + (n2 - n1) / (a / (a * a));
@@ -245,7 +246,7 @@ export function workspaceToXml(workspace) {
   return Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
 }
 export function xmlToWorkspace(xml, workspace) {
-  Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(xml), workspace);
+  Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(xml)), workspace);
 }
 export let menus = {};
 menus.createMenu = (data) => {
