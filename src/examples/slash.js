@@ -242,10 +242,9 @@ export default `<xml xmlns="https://developers.google.com/blockly/xml">
             <value name="BOOLEAN">
               <block type="logic_boolean" id="Lk]U$_DmHEC2@jg[=u;p">
                 <field name="BOOL">FALSE</field>
-                <comment pinned="false" h="128.88888549804688" w="265.55560302734375">true - only the person who t=did the comamnd can see it
+                <comment pinned="false" h="128.88888549804688" w="265.55560302734375">true - only the person who did the comamnd can see it
 
-false - everyone can see it
-                </comment>
+false - everyone can see it</comment>
               </block>
             </value>
           </block>
@@ -281,10 +280,9 @@ false - everyone can see it
                 <value name="BOOLEAN">
                   <block type="logic_boolean" id="M~UM5GM)[+,v]yCTIoP6">
                     <field name="BOOL">FALSE</field>
-                    <comment pinned="false" h="128" w="265">true - only the person who t=did the comamnd can see it
+                    <comment pinned="false" h="128" w="265">true - only the person who did the comamnd can see it
 
-false - everyone can see it
-                    </comment>
+false - everyone can see it</comment>
                   </block>
                 </value>
               </block>
@@ -337,10 +335,9 @@ false - everyone can see it
                         <value name="BOOLEAN">
                           <block type="logic_boolean" id="ZT|aw.tJKQ{1vnIQxtON">
                             <field name="BOOL">FALSE</field>
-                            <comment pinned="false" h="128" w="265">true - only the person who t=did the comamnd can see it
+                            <comment pinned="false" h="128" w="265">true - only the person who did the comamnd can see it
 
-false - everyone can see it
-                            </comment>
+false - everyone can see it        </comment>
                           </block>
                         </value>
                       </block>
@@ -378,10 +375,9 @@ false - everyone can see it
                             <value name="BOOLEAN">
                               <block type="logic_boolean" id="#~,}^,WgyeFR3V$w9(.C">
                                 <field name="BOOL">FALSE</field>
-                                <comment pinned="false" h="128" w="265">true - only the person who t=did the comamnd can see it
+                                <comment pinned="false" h="128" w="265">true - only the person who did the comamnd can see it
 
-false - everyone can see it
-                                </comment>
+false - everyone can see it            </comment>
                               </block>
                             </value>
                           </block>
@@ -461,10 +457,9 @@ false - everyone can see it
                                 <value name="BOOLEAN">
                                   <block type="logic_boolean" id="D,WximD.aWF$|VQFk^8g">
                                     <field name="BOOL">FALSE</field>
-                                    <comment pinned="false" h="128" w="265">true - only the person who t=did the comamnd can see it
+                                    <comment pinned="false" h="128" w="265">true - only the person who did the comamnd can see it
 
-false - everyone can see it
-                                    </comment>
+false - everyone can see it                </comment>
                                   </block>
                                 </value>
                               </block>
@@ -521,10 +516,9 @@ false - everyone can see it
                                 <value name="BOOLEAN">
                                   <block type="logic_boolean" id="/Z1YS8yVsaq24O5y/PZ;">
                                     <field name="BOOL">FALSE</field>
-                                    <comment pinned="false" h="128" w="265">true - only the person who t=did the comamnd can see it
+                                    <comment pinned="false" h="128" w="265">true - only the person who did the comamnd can see it
 
-false - everyone can see it
-                                    </comment>
+false - everyone can see it                </comment>
                                   </block>
                                 </value>
                               </block>
@@ -562,10 +556,9 @@ false - everyone can see it
                                     <value name="BOOLEAN">
                                       <block type="logic_boolean" id="B,oS=n1AV}@pw+B.7/))">
                                         <field name="BOOL">FALSE</field>
-                                        <comment pinned="false" h="128" w="265">true - only the person who t=did the comamnd can see it
+                                        <comment pinned="false" h="128" w="265">true - only the person who did the comamnd can see it
 
-false - everyone can see it
-                                        </comment>
+false - everyone can see it                    </comment>
                                       </block>
                                     </value>
                                   </block>
@@ -603,10 +596,9 @@ false - everyone can see it
                                         <value name="BOOLEAN">
                                           <block type="logic_boolean" id="VY7/kLhJYyX2PnpPvtld">
                                             <field name="BOOL">FALSE</field>
-                                            <comment pinned="false" h="128" w="265">true - only the person who t=did the comamnd can see it
+                                            <comment pinned="false" h="128" w="265">true - only the person who did the comamnd can see it
 
-false - everyone can see it
-                                            </comment>
+false - everyone can see it                        </comment>
                                           </block>
                                         </value>
                                       </block>
