@@ -1485,6 +1485,7 @@ export default (favorites) => {
       <block type="on_slash"/>
       <block type="interaction_name"/>
       <block type="interaction_author"/>
+      <block type="interaction_user"/>
       <block type="interaction_channel"/>
       <block type="interaction_guild"/>
       <block type="interaction_voice_channel"/>

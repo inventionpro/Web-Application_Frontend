@@ -1,10 +1,10 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
-const blockName = 'interaction_author';
+const blockName = 'interaction_user';
 
 const blockData = {
-  message0: 'Interaction Member',
+  message0: 'Interaction User',
   colour: '#187795',
   output: 'Member',
   tooltip: '',
@@ -18,6 +18,6 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['interaction.member', javascriptGenerator.ORDER_NONE];
+  const code = ['interaction.user', javascriptGenerator.ORDER_NONE];
   return code;
 };

@@ -50,7 +50,6 @@
   "B_ON": "Quand le boutton est préssé %1 %2",
   "S_EDIT": "Edit de la réponce de l'intéraction %1 Rangée %2",
   "S_CHANNEL": "Salon de l'intéraction",
-  "S_MEMBER": "Auteur de l'intéraction",
   "S_NAME": "Nom de l'intéraction",
   "S_GUILD": "serveur de l'intéraction",
   "S_ON": "Quand une commande slash est reçue %1 %2",

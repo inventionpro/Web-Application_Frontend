@@ -79,7 +79,6 @@
   "B_ON": "When button is clicked %1 %2",
   "S_EDIT": "Interaction reply Edit %1 Row %2",
   "S_CHANNEL": "Interaction Channel",
-  "S_MEMBER": "Interaction Author",
   "S_NAME": "Interaction Name",
   "S_GUILD": "Interaction Server",
   "S_ON": "When slash command is recieved %1 %2",
