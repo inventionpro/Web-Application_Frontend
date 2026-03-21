@@ -121,8 +121,8 @@ This section lists the labels we use to help us track and manage issues. Please 
 
 #### Type of Issue and Issue State
 
-| Label name      | Description                                                     | View All                                                                                                                        |
-| --------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Label name      | Description                                                     | View All                                                                                                            |
+| --------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `bug`           | Issue related to a bug report, may or may not be yet confirmed. | [View All](https://github.com/inventionpro/Scratch-for-Discord/issues?q=is%3Aopen+is%3Aissue+label%3ABug)           |
 | `Dependenties`  | link among a project's terminal elements.                       | [View All](https://github.com/inventionpro/Scratch-for-Discord/issues?q=is%3Aopen+is%3Aissue+label%3ADependencies)  |
 | `Documentation` | Documentation about this project.                               | [View All](https://github.com/inventionpro/Scratch-for-Discord/issues?q=is%3Aopen+is%3Aissue+label%3ADocumentation) |

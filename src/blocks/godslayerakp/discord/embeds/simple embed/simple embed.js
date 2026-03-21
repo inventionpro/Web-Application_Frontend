@@ -22,7 +22,7 @@ const menuTooltip = '';
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['message', 'color', 'title', 'url', 'author', 'description', 'thumbnail', 'fields', 'image', 'timestamp', 'footer'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String', ['String', 'Colour'], 'String', 'String', 'gsa_set_simple_embed_author', 'String', 'String', 'gsa_create_simple_embed_fields', 'String', ['String','Number'], 'gsa_set_simple_embed_footer'];
+const BORDER_TYPES = ['String', ['String', 'Colour'], 'String', 'String', 'gsa_set_simple_embed_author', 'String', 'String', 'gsa_create_simple_embed_fields', 'String', ['String', 'Number'], 'gsa_set_simple_embed_footer'];
 // names is the name of that input in the menu and in the final block
 const names = ['message', 'color', 'title', 'url', 'author:', 'description', 'thumbnail', 'fields:', 'image', 'timestamp', 'footer:'];
 const amountOfInputs = names.length;
