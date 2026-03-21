@@ -29,9 +29,8 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
-  const code = `fields: [
+  const code = `[
 ${statements}
-	],
-`;
+]`;
   return [code, javascriptGenerator.ORDER_ATOMIC];
 };

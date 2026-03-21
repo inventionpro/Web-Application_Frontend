@@ -43,8 +43,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 	name: ${title},
 	value: ${description},
 	inline: ${inline},
-},
-`;
+},\n`;
 };
 
 registerRestrictions(blockName, [

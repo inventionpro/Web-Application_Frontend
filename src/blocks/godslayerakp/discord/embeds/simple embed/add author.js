@@ -37,11 +37,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
   const url = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
   const icon_url = javascriptGenerator.valueToCode(block, 'icon_url', javascriptGenerator.ORDER_ATOMIC);
-  const code = `author: {
-		name: String(${name}),
-		icon_url: String(${icon_url}),
-		url: String(${url}),
-  },
-`;
+  const code = `{
+	name: String(${name}),
+	icon_url: String(${icon_url}),
+	url: String(${url})
+}`;
   return [code, javascriptGenerator.ORDER_ATOMIC];
 };

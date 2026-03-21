@@ -31,9 +31,9 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
   const icon_url = javascriptGenerator.valueToCode(block, 'icon_url', javascriptGenerator.ORDER_ATOMIC);
-  const code = `footer: {
+  const code = `{
 	text: String(${name}),
-	icon_url: String(${icon_url}),
-}, \n`;
+	icon_url: String(${icon_url})
+}`;
   return [code, javascriptGenerator.ORDER_ATOMIC];
 };

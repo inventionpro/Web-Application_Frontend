@@ -126,13 +126,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (block.inputs_[1]) color = `color: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[1], javascriptGenerator.ORDER_NONE)}),\n`;
   if (block.inputs_[2]) title = `title: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[2], javascriptGenerator.ORDER_NONE)}),\n`;
   if (block.inputs_[3]) url = `url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[3], javascriptGenerator.ORDER_NONE)}),\n`;
-  if (block.inputs_[4]) author = javascriptGenerator.valueToCode(block, BORDER_FIELDS[4], javascriptGenerator.ORDER_ATOMIC);
+  if (block.inputs_[4]) author = `author: ${javascriptGenerator.valueToCode(block, BORDER_FIELDS[4], javascriptGenerator.ORDER_ATOMIC)},\n`;
   if (block.inputs_[5]) description = `description: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[5], javascriptGenerator.ORDER_NONE)}),\n`;
   if (block.inputs_[6]) thumbnail = `thumbnail: { url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[6], javascriptGenerator.ORDER_NONE)}) },\n`;
-  if (block.inputs_[7]) fields = javascriptGenerator.valueToCode(block, BORDER_FIELDS[7], javascriptGenerator.ORDER_ATOMIC);
+  if (block.inputs_[7]) fields = `fields: ${javascriptGenerator.valueToCode(block, BORDER_FIELDS[7], javascriptGenerator.ORDER_ATOMIC)},\n`;
   if (block.inputs_[8]) image = `image: { url: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[8], javascriptGenerator.ORDER_NONE)}) },\n`;
   if (block.inputs_[9]) timestamp = `timestamp: new Date(String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[9], javascriptGenerator.ORDER_NONE)})),\n`;
-  if (block.inputs_[10]) footer = javascriptGenerator.valueToCode(block, BORDER_FIELDS[10], javascriptGenerator.ORDER_ATOMIC);
+  if (block.inputs_[10]) footer = `footer: ${javascriptGenerator.valueToCode(block, BORDER_FIELDS[10], javascriptGenerator.ORDER_ATOMIC)},\n`;
   if (block.inputs_[0]) message = `content: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[0], javascriptGenerator.ORDER_NONE)}),`;
   const code = `${message}embeds: [{
 ${color}${title}${url}${author}${description}${thumbnail}${fields}${image}${timestamp}${footer}}]`;
