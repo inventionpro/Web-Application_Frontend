@@ -17,7 +17,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: ['String','Number'],
   colour: '#a5745b',
   tooltip: '',
   helpUrl: ''

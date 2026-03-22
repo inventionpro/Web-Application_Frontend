@@ -6,7 +6,7 @@ const blockName = 'cpu';
 const blockData = {
   message0: 'Cpu Usage',
   args0: [],
-  output: 'String',
+  output: 'Number',
   colour: '#a5745b',
   tooltip: '',
   helpUrl: ''
