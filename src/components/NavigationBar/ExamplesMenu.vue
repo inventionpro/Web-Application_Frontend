@@ -2,26 +2,28 @@
   <BNavItemDropdown text="Examples" right>
     <BDropdownItem @click="userexamples()"><i class="fa-solid fa-user" /> &#8226; Online Examples</BDropdownItem>
     <BDropdownDivider />
-    <p style="text-align: center">
-      <b>Built-in:</b>
-    </p>
-    <div style="height: 8.75em; overflow: auto">
-      <BDropdownItem @click="load('ping-pong')">Ping-Pong Command</BDropdownItem>
-      <BDropdownItem @click="load('command-parsing')">Command Handler</BDropdownItem>
-      <BDropdownItem @click="load('bettercmd')">Prefix Command Handler</BDropdownItem>
-      <BDropdownItem @click="load('leveling')">Basic Leveling System</BDropdownItem>
-      <BDropdownItem @click="load('music')">Music System</BDropdownItem>
-      <BDropdownItem @click="load('image-gen')">Image Generation</BDropdownItem>
+    <div style="text-align: center">
+      <strong>Built-in:</strong>
+    </div>
+    <div style="height: 11em; overflow: auto">
+      <BDropdownItem @click="load('ping_pong')">Ping Pong</BDropdownItem>
+      <BDropdownItem @click="load('command_handler')">Command Handler</BDropdownItem>
+      <BDropdownItem @click="load('prefix_command_handler')">Prefix Command Handler</BDropdownItem>
+      <BDropdownItem @click="load('slash_command_handler')">Slash Command Handler</BDropdownItem>
+      <BDropdownItem @click="load('random')">Random Response</BDropdownItem>
+      <BDropdownItem @click="load('embeds')">Using Embeds</BDropdownItem>
+      <BDropdownItem @click="load('buttons')">Using Buttons</BDropdownItem>
+      <BDropdownItem @click="load('regex')">Using RegEx</BDropdownItem>
+      <BDropdownItem @click="load('cooldowns')">Cooldowns</BDropdownItem>
+      <BDropdownItem @click="load('leveling')">Leveling System</BDropdownItem>
       <BDropdownItem @click="load('economy')">Economy System</BDropdownItem>
-      <BDropdownItem @click="load('leaderboard')">Leaderboard from Database</BDropdownItem>
-      <BDropdownItem @click="load('backup')">Backups</BDropdownItem>
-      <BDropdownItem @click="load('random')">Random Responses</BDropdownItem>
-      <BDropdownItem @click="load('cooldown')">Cooldowns</BDropdownItem>
-      <BDropdownItem @click="load('button')">Buttons & Button rows</BDropdownItem>
-      <BDropdownItem @click="load('slash')">Slash Commands</BDropdownItem>
-      <BDropdownItem @click="load('advjsonreq')">Advanced JSON Request</BDropdownItem>
-      <BDropdownItem @click="load('regex')">RegEx: Finding specific text</BDropdownItem>
-      <BDropdownItem @click="load('embed example')">Using Embeds Category</BDropdownItem>
+      <BDropdownItem @click="load('leaderboard')">Economy Leaderboard</BDropdownItem>
+      <BDropdownItem @click="load('backup')">Backup System</BDropdownItem>
+      <BDropdownItem @click="load('ticket')">Ticket System</BDropdownItem>
+      <BDropdownItem @click="load('music')">Music System</BDropdownItem>
+      <BDropdownItem @click="load('advjsonreq')">Advanced JSON Requests</BDropdownItem>
+      <BDropdownItem @click="load('image_gen')">Image Generation</BDropdownItem>
+      <BDropdownItem @click="load('image_edit')">Image Editing</BDropdownItem>
     </div>
   </BNavItemDropdown>
 </template>
@@ -33,46 +35,44 @@ import localforage from 'localforage';
 import theme from '@blockly/theme-dark';
 import upgradeXml from '../../upgradexml.js';
 
-import PingPongExample from '../../examples/ping-pong';
-import CommandParsingExample from '../../examples/command-parsing';
-import bettercmd from '../../examples/bettercmd';
-import LevelingExample from '../../examples/leveling';
-import MusicExample from '../../examples/music';
-import ImageGen from '../../examples/image_gen';
-import Economy from '../../examples/economy';
-import backup from '../../examples/backup';
-import random from '../../examples/random';
-import aki from '../../examples/aki';
-import reddit from '../../examples/reddit';
-import ticket from '../../examples/ticket';
-import button from '../../examples/button';
-import cooldown from '../../examples/cooldown';
-import slash from '../../examples/slash';
-import advjsonreq from '../../examples/advjsonreq.js';
-import regex from '../../examples/regex.js';
-import leaderboard from '../../examples/leaderboard.js';
-import embed from '../../examples/embed example.js';
+import AdvJSONReq from '../../examples/advjsonreq.js';
+import Backup from '../../examples/backup.js';
+import Button from '../../examples/button.js';
+import CommandHandler from '../../examples/command-handler.js';
+import Cooldowns from '../../examples/cooldowns.js';
+import Economy from '../../examples/economy.js';
+import Embed from '../../examples/embed.js';
+import ImageGen from '../../examples/image-gen.js';
+import ImageEdit from '../../examples/image-edit.js';
+import Leaderboard from '../../examples/leaderboard.js';
+import Leveling from '../../examples/leveling.js';
+import Music from '../../examples/music.js';
+import PingPong from '../../examples/ping-pong.js';
+import PrefixCommandHandler from '../../examples/prefix-handler.js';
+import Random from '../../examples/random.js';
+import RegEx from '../../examples/regex.js';
+import SlashCommandHandler from '../../examples/slash-handler.js';
+import Ticket from '../../examples/ticket.js';
 
 const examples = {
-  'ping-pong': PingPongExample,
-  'command-parsing': CommandParsingExample,
-  bettercmd: bettercmd,
-  leveling: LevelingExample,
-  music: MusicExample,
-  'image-gen': ImageGen,
+  ping_pong: PingPong,
+  command_handler: CommandHandler,
+  prefix_command_handler: PrefixCommandHandler,
+  slash_command_handler: SlashCommandHandler,
+  random: Random,
+  embeds: Embed,
+  buttons: Button,
+  regex: RegEx,
+  cooldowns: Cooldowns,
+  leveling: Leveling,
   economy: Economy,
-  backup: backup,
-  random: random,
-  aki: aki,
-  reddit: reddit,
-  ticket: ticket,
-  button: button,
-  cooldown: cooldown,
-  slash: slash,
-  advjsonreq: advjsonreq,
-  regex: regex,
-  leaderboard: leaderboard,
-  'embed example': embed
+  leaderboard: Leaderboard,
+  backup: Backup,
+  ticket: Ticket,
+  music: Music,
+  advjsonreq: AdvJSONReq,
+  image_gen: ImageGen,
+  image_edit: ImageEdit
 };
 
 function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
