@@ -11,7 +11,7 @@ Blockly.dialog.setPrompt((msg, defaultValue, callback) => {
     return;
   }
   Swal.fire({
-    theme: 'auto',
+    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
     title: msg,
     input: 'text',
     inputValue: defaultValue,

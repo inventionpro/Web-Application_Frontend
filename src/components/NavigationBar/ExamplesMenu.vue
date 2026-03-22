@@ -80,7 +80,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
   let sanitizeStr = (str) => str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
   let sanitizeNum = (num) => (typeof num === 'number' ? num : Number(num.toString().replaceAll(/[^0-9]/g, '')));
   Swal.fire({
-    theme: 'auto',
+    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
     html: `<h2><i class="fa-solid fa-file-pen"></i> &#8226 <b>${sanitizeStr(json.example[0])}</b>${json.example[5] == null || json.example[5] == '' ? '' : ` &#8226 <i class="fa-solid fa-star"title="This example is created by a trusted/verified creator"></i>`}</h2>
 <i class="fa-solid fa-user-shield"></i> <b>${sanitizeStr(json.example[6])}</b>
 &#8226
@@ -105,7 +105,7 @@ function displaySwalPopupForUserExample(json, selectedOption, SERVER, toast) {
     console.log('disposed of workspace');
     if (!result.isConfirmed) return;
     Swal.fire({
-      theme: 'auto',
+      theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
       title: 'Delete current blocks?',
       text: 'Would you like to remove the current blocks before importing the example?',
       icon: 'warning',
@@ -225,7 +225,7 @@ export default {
   methods: {
     load(example) {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: this.$t('examples.confirm.title'),
         text: this.$t('examples.confirm.text'),
         icon: 'warning',
@@ -263,7 +263,7 @@ export default {
       }
       const SERVER = url;
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'User Examples',
         html: `<p>What would you like to do here?</p>
 <button id="upload-btn" class="swal2-confirm swal2-styled">Upload an Example</button>
@@ -281,7 +281,7 @@ export default {
               .replaceAll(/[^a-z 0-9]/gim, '');
             const blockCounts = window.blocklyWorkspaceGlobalRef.getAllBlocks(false).length;
             Swal.fire({
-              theme: 'auto',
+              theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
               title: 'Upload an example',
               html: `<b>The content of the example is going to be the blocks you've placed.</b>
 <br>
@@ -323,7 +323,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                     responseHTML.innerHTML = String(json.error);
                   });
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: 'An error occurred uploading the example!',
                     html: responseHTML,
                     icon: 'error'
@@ -331,7 +331,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                   return;
                 }
                 Swal.fire({
-                  theme: 'auto',
+                  theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                   title: 'Congrats!',
                   html: `The example was uploaded!`,
                   icon: 'success'
@@ -346,7 +346,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                 console.log('S4D sent a request, the response status code is', response.status);
                 if (response.status != 200) {
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: 'An unexpected error occurred!',
                     icon: 'error'
                   });
@@ -473,7 +473,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
   </form>
 </center>`;
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: 'Pick an Example',
                     html: responseHTML,
                     customClass: 'swal-wide',
@@ -626,7 +626,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
               })
               .catch((err) => {
                 Swal.fire({
-                  theme: 'auto',
+                  theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                   title: 'An unexpected error occurred!',
                   content: String(err),
                   icon: 'error'

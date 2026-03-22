@@ -10,7 +10,7 @@ export default {
   methods: {
     changelog() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         html: `<style>
   h2, h3 {
     font-weight: bold;

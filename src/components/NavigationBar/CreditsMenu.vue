@@ -10,7 +10,7 @@ export default {
   methods: {
     credit() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         icon: 'info',
         html: `<h1><span>Credits of </span><span style="color:#15a9e8">Scratch For Discord!</span></h1>
 <b><p>

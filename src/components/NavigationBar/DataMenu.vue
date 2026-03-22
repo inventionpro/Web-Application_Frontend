@@ -21,7 +21,7 @@ export default {
   methods: {
     ClearAutosave() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Clear autosave',
         text: `Are you sure?`,
         icon: 'warning',
@@ -38,7 +38,7 @@ export default {
     },
     ClearFavorites() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Clear favorites',
         text: `Are you sure?`,
         icon: 'warning',
@@ -54,7 +54,7 @@ export default {
     async TokenDB() {
       let keys = await localforage.getItem('tokens');
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Token Database',
         html: `This can be used to store your tokens so you don't need to go elsewhere to get them.
 <br>
@@ -71,7 +71,7 @@ ${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">De
               switch (btn.id.replace('tdb-', '')) {
                 case 'load':
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: this.$t('token.load2'),
                     html: `${this.$t('token.text4')}<br><br>
 <select class="custom-select" id="restore-select">
@@ -105,7 +105,7 @@ ${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">De
                   break;
                 case 'save':
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: this.$t('token.text2'),
                     input: 'text',
                     inputAttributes: {
@@ -127,7 +127,7 @@ ${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">De
                     if (result2.isConfirmed) {
                       let name = result2.value;
                       Swal.fire({
-                        theme: 'auto',
+                        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                         title: this.$t('token.text3'),
                         input: 'text',
                         inputAttributes: {
@@ -172,7 +172,7 @@ ${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">De
                   break;
                 case 'delete':
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: this.$t('token.deletee.title'),
                     html: `${this.$t('token.deletee.text')}<br><br>
 <select class="custom-select" id="restore-select">
@@ -220,7 +220,7 @@ ${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">De
     },
     ManualFavorite() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Add a block to favorites',
         html: `Make sure the block exists, you could accidentally break the site!<br><br><input type="text" id="block">`,
         showCancelButton: true,
@@ -246,7 +246,7 @@ ${keys !== null ? '<button id="tdb-delete" class="swal2-confirm swal2-styled">De
     },
     dld() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'WARNING!',
         text: 'This contains all your data including sensitive data',
         icon: 'warning',

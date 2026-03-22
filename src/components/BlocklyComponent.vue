@@ -644,7 +644,7 @@ ${CATEGORYCONTENT}`
     });
     workspace.registerButtonCallback('FFMPEG', () => {
       swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Hey uhh..',
         icon: 'info',
         text: "This isn't quite done yet..."

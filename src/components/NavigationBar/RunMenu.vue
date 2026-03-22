@@ -17,7 +17,7 @@ export default {
     async run() {
       if (!window.webcontainer) window.webcontainer = await WebContainer.boot();
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         html: `<h1>Run bot</h1>
 <div>
   <button class="btn btn-dark" id="bot-start">Start</button>

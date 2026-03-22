@@ -164,7 +164,7 @@ export default {
     },
     async load() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: this.$t('file.confirm.title'),
         text: this.$t('file.confirm.text'),
         icon: 'warning',

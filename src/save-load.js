@@ -54,7 +54,7 @@ export default async function register(app, t) {
     const xml = await localforage.getItem('save3');
     if (xml !== null && xml.length > 61) {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         icon: 'question',
         title: t('autosave.title2'),
         html: "<span>Did you not save your project before quitting Scratch For Discord?</span><br><span>No problem, you can just click 'Load' to restore your project!</span>",

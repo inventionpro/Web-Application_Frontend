@@ -55,19 +55,10 @@
   }
 }
 
-.light-them .blocklyTreeIcon {
-  filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%) !important;
-}
-
-.light-them #blocklyTreeIcon {
-  filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%) !important;
-}
-
-.light-them .blocklyTreeIconClosed {
-  filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%) !important;
-}
-
-.light-them #blocklyTreeIconClosed {
+[data-bs-theme='light'] .blocklyTreeIcon,
+[data-bs-theme='light'] #blocklyTreeIcon,
+[data-bs-theme='light'] .blocklyTreeIconClosed,
+[data-bs-theme='light'] #blocklyTreeIconClosed {
   filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%) !important;
 }
 
@@ -75,52 +66,52 @@
 .blocklyToolboxDiv,
 .blocklyTreeLabel,
 .blocklyTreeSeparator,
+.blocklyTreeIcon,
 .btgr,
 .blocklySvg,
 .blocklyFlyoutBackground,
 #navSpace,
 .customIcon2 {
-  transition:
-    background 250ms ease-in-out,
-    fill 250ms ease-in-out,
-    border 250ms ease-in-out,
-    color 250ms ease-in-out;
+  transition-property: background, border, color, fill, filter !important;
+  transition-duration: 0.5s !important;
+  transition-timing-function: ease-in-out !important;
 }
 
-.light-them .blocklyFlyoutLabelText {
+[data-bs-theme='light'] .blocklyFlyoutLabelText {
   fill: #575e75 !important;
 }
 
-.light-them .blocklyToolboxDiv {
+[data-bs-theme='light'] .blocklyToolboxDiv {
   background-color: #ddd !important;
 }
 
-.light-them .blocklyTreeLabel {
-  color: black !important;
+[data-bs-theme='light'] .customIcon2,
+[data-bs-theme='light'] .blocklyTreeLabel {
+  color: black;
 }
 
-.light-them .blocklyTreeSeparator {
+[data-bs-theme='light'] .blocklyTreeSeparator {
   border-bottom: solid #ebf0f4 1px;
   height: 0;
   margin: 5px 0;
 }
 
-.light-them .btgr {
+[data-bs-theme='light'] .btgr {
   border-bottom: solid #bbb 1px !important;
 }
 
-.light-them .blocklySvg {
+[data-bs-theme='light'] .blocklySvg {
   background-color: white !important;
 }
 
-.light-them .blocklyFlyoutBackground {
+[data-bs-theme='light'] .blocklyFlyoutBackground {
   fill: #e4e4e4 !important;
 }
 
-:not(.light-them) #navSpace {
+:not([data-bs-theme='light']) #navSpace {
   background-color: rgb(22, 23, 25) !important;
 }
 
-.light-them #navSpace {
+[data-bs-theme='light'] #navSpace {
   background-color: #666 !important;
 }

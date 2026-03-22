@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -87,8 +87,7 @@
         height: 32px;
       }
 
-      .light-them .theme-changer {
-        transition: all 0.5s ease-in-out;
+      [data-bs-theme='light'] .theme-changer {
         background-image: url('/sun.png');
       }
 
@@ -112,18 +111,8 @@
         padding: 3px;
         color: white;
       }
-
-      .light-them .customIcon2 {
-        color: black;
-      }
-
-      /* Makes our label white. */
       .blocklyTreeLabel {
         color: white;
-      }
-
-      .light-them .blocklyTreeLabel {
-        color: black;
       }
 
       /* Adds padding around the group of categories and separators. */

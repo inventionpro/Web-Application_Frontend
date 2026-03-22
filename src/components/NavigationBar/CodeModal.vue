@@ -68,6 +68,7 @@ export default {
   width: 100dvw;
   height: 100dvh;
   margin: 0;
+  border-color: transparent;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 100000;
   box-sizing: content-box;

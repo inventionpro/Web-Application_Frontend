@@ -25,7 +25,7 @@ export default {
   methods: {
     shortcuts() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         html: `<h1>Shortcuts</h1>
 <div style="text-align: left">
   <h3 style="text-align:center">Block shortcuts</h3>

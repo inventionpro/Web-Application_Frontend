@@ -130,7 +130,7 @@ export default {
     };
     if (String(window.location.pathname).replace(/\//gim, '') == 'spooky') {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Warning!',
         icon: 'warning',
         text: `Flashing Lights and "jumpscares" appear in this S4D secret. Continue if you are fine with this, and feel free to exit the page now if you aren't.`,
@@ -204,7 +204,7 @@ export default {
         return newString;
       }
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Download your bot?',
         html: `${getWorkspaceProblems(this.$store.state.workspace)}<h6>How to start your bot once downloaded?</h6>
 <ul>
@@ -238,7 +238,7 @@ export default {
           const javascriptContent = this.getWorkspaceCode();
           if (javascriptContent.includes('queue.join') && javascriptContent.includes('queue.connect')) {
             Swal.fire({
-              theme: 'auto',
+              theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
               title: 'Sorry, but Retro and Jose music blocks do not work together.',
               icon: 'error'
             });
@@ -709,7 +709,7 @@ export default {
         return;
       }
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Utilities',
         html: `<h6>Manage S4D content here.</h6>
 <button id="btn-settings" class="swal2-confirm swal2-styled">Settings</button>
@@ -729,7 +729,7 @@ export default {
                   console.log('johnathan: dude they cant hear us'); // The voices, im starting to hear them -inv
                   console.log('barry: oh right i forgot');
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: 'Which file are you downloading?',
                     html: `<h6>Explanations:</h6>
 <ul>
@@ -826,7 +826,7 @@ export default {
                 case 'prebuilds':
                   let prebuilds = (await localforage.getItem('prebuilds')) ?? [];
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: 'Prebuilds',
                     html: `<p>Prebuilds can be used to save your projects in browser to load them later.</p>
 ${
@@ -933,7 +933,7 @@ ${
                   }).then((evt) => {
                     if (evt.isDismissed) return;
                     Swal.fire({
-                      theme: 'auto',
+                      theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                       title: this.$t('prebuild.text2'),
                       input: 'text',
                       inputAttributes: {
@@ -986,7 +986,7 @@ ${
                   break;
                 case 'optimizations':
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: 'Site Optimizations',
                     html: `<span>These optimizations are minor, but can help for big projects.</span><br><b>These require a refresh to fully work.</b>`,
                     showCancelButton: true,
@@ -1010,7 +1010,7 @@ ${
                   break;
                 case 'settings':
                   Swal.fire({
-                    theme: 'auto',
+                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                     title: 'Site Settings',
                     text: 'Toggle shortcuts and change the theme!',
                     icon: 'info',
@@ -1026,7 +1026,7 @@ ${
                         localforage.setItem('utilitiesShortcuts', item == null ? false : null).then(() => {
                           localforage.getItem('utilitiesShortcuts').then((item) => {
                             Swal.fire({
-                              theme: 'auto',
+                              theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                               title: 'Updated shortcuts!',
                               text: `Shortcuts have been toggled ${item == null ? 'on' : 'off'}. Please refresh the page.`,
                               icon: 'success'
@@ -1089,7 +1089,7 @@ ${
   <b>Switching themes may require a refresh to work properly.</b>
 </center>`;
                       const { value: result } = await Swal.fire({
-                        theme: 'auto',
+                        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                         title: 'Themes',
                         html: previews,
                         input: 'select',
@@ -1111,7 +1111,7 @@ ${
                       switch (String(result)) {
                         case 'glow':
                           Swal.fire({
-                            theme: 'auto',
+                            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                             title: 'Performance Warning!',
                             text: 'This theme can be very laggy and make the site slow on low-end devices. Are you sure you want to enable it?',
                             icon: 'warning',
@@ -1126,7 +1126,7 @@ ${
                         case 'scratch-top':
                         case 'text-only':
                           Swal.fire({
-                            theme: 'auto',
+                            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                             title: 'Warning!',
                             text: 'This theme is experimental and may cause problems when trying to create your bot. Are you sure you want to enable it?',
                             icon: 'warning',
@@ -1156,7 +1156,7 @@ ${
     },
     runbot() {
       Swal.fire({
-        theme: 'auto',
+        theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Start your bot?',
         html: `<h6>You will have to manually stop your bot in Discord!</h6>You also might not get a response until the bot gets an error, or stops.`,
         icon: 'warning',
@@ -1181,7 +1181,7 @@ ${
         }
         if (javascriptContent.includes('process.env') || javascriptContent.includes('http.createServer((req, res) => {') || xmlContent.includes('block type="frost_webserver"') || xmlContent.includes('block type="frost_env"')) {
           Swal.fire({
-            theme: 'auto',
+            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
             title: 'Your bot contains a replit block. Please remove it before continuing.',
             text: 'You may have a process.env block or a webserver block placed somewhere.',
             icon: 'error'
@@ -1192,7 +1192,7 @@ ${
           return;
         } else if (xmlContent.includes('block type="blank_code"') || xmlContent.includes('block type="s4d_eval"') || xmlContent.includes('block type="s4d_eval2"') || xmlContent.includes('block type="s4d_exec"') || xmlContent.includes('block type="jg_s4d_other_run_code_inside_file"')) {
           Swal.fire({
-            theme: 'auto',
+            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
             title: 'Your bot contains blocks that run or insert code.',
             text: 'Remove any "insert code" or "run code" blocks before running.',
             icon: 'error'
@@ -1203,7 +1203,7 @@ ${
           return;
         } else if (xmlContent.includes('block type="simple_host_auth"')) {
           Swal.fire({
-            theme: 'auto',
+            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
             title: 'Your bot contains blocks for Simple Host.',
             text: 'Remove any "Simple Host Auth" blocks before running.',
             icon: 'error'
@@ -1214,7 +1214,7 @@ ${
           return;
         } else if (xmlContent.includes('block type="jg_express_start_website_then_using_port"')) {
           Swal.fire({
-            theme: 'auto',
+            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
             title: 'Your bot contains blocks for starting websites.',
             text: 'Remove any "start website" blocks before running.',
             icon: 'error'
@@ -1225,7 +1225,7 @@ ${
           return;
         } else if (HasCustomBlocks()) {
           Swal.fire({
-            theme: 'auto',
+            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
             title: 'Your bot contains custom blocks.',
             text: 'Custom blocks are currently unsupported for the run button. Please remove them before continuing.',
             icon: 'error'
@@ -1236,7 +1236,7 @@ ${
           return;
         } else if (window.isInS4DDebugMode == true) {
           Swal.fire({
-            theme: 'auto',
+            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
             title: 'S4D is currently in debug mode.',
             text: 'Please disable debug mode to run your bot.',
             icon: 'error'
@@ -1264,7 +1264,7 @@ ${
         try {
           if (api_key == null) {
             Swal.fire({
-              theme: 'auto',
+              theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
               title: 'Cool! However..',
               text: `The bot would have been sent,<br><aew3f2 style="color:#188DC8">but the server S4D is currently running on does not have an API key present.</aew3f2><br><br><p>Using Netlify? <a href="https://scratch-for-discord-469.vercel.app/">Click here to go to Vercel!</a></p><!--<br><h6 style="color:#188DC8">This menu popped up because the API key is not present.</h6>-->`,
               info: 'info'
@@ -1285,7 +1285,7 @@ ${
               console.log('johnathan: thats not good but we cant do much');
               console.log('barry: true :(');
               Swal.fire({
-                theme: 'auto',
+                theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                 title: 'Uhh..',
                 text: `Something may have gone wrong with the request. The server responded with status code ${String(response.status)}. You could check if your bot went online? You can also try to refresh.`,
                 icon: 'warning'
@@ -1298,7 +1298,7 @@ ${
               let morestuffIDK = response;
               response.text().then((repons) => {
                 Swal.fire({
-                  theme: 'auto',
+                  theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                   title: 'Whoops!',
                   text: `Something went wrong with the request. The server responded with status code <b>${String(morestuffIDK.status)}</b>. You may need to refresh the page or try again later as the server could be down.<br><br>Server Response:<br><code>${repons}</code>`,
                   icon: 'error'
@@ -1309,7 +1309,7 @@ ${
               console.log('barry: done');
               console.log('johnathan: nice, now lets get back to work');
               Swal.fire({
-                theme: 'auto',
+                theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
                 title: 'Nice!',
                 text: `Your bot should go online soon.`,
                 icon: 'success'
@@ -1318,7 +1318,7 @@ ${
           });
         } catch (err) {
           Swal.fire({
-            theme: 'auto',
+            theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
             title: 'An error occurred!',
             text: String(err),
             icon: 'error'
@@ -1338,7 +1338,7 @@ ${
       console.log('fetching RBS console...');
       const showMenu = function (content) {
         Swal.fire({
-          theme: 'auto',
+          theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
           title: 'Public Error Console (used by the Run Button)',
           html: content,
           showCancelButton: true,
@@ -1376,28 +1376,14 @@ ${
       }
     },
     changeTheme() {
-      if (localStorage.getItem('theme') === 'dark') {
-        localStorage.setItem('theme', 'light');
-        document.querySelector('html').classList.add('light-them');
-      } else {
-        localStorage.setItem('theme', 'dark');
-        document.querySelector('html').classList.remove('light-them');
-      }
+      let theme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', theme);
+      document.querySelector('html').setAttribute('data-bs-theme', theme);
     }
   }
 };
-if (localStorage.getItem('theme') == null) {
-  localStorage.setItem('theme', 'dark');
-}
-(async () => {
-  if (localStorage.getItem('theme') === 'light') {
-    document.querySelector('html').classList.add('light-them');
-  } else {
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    await delay(1 * 1000);
-    document.querySelector('html').classList.remove('light-them');
-  }
-})();
+if (localStorage.getItem('theme') == null) localStorage.setItem('theme', 'dark');
+document.querySelector('html').setAttribute('data-bs-theme', localStorage.getItem('theme'));
 </script>
 
 <style>
