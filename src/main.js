@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import { bootstrapPlugin, modalManagerPlugin } from 'bootstrap-vue-next';
 import App from './App.vue';
 import store from './store';
 import { createI18n } from 'vue-i18n';
@@ -23,8 +22,6 @@ app.component('BDropdownDivider', BDropdownDivider);
 app.component('BCollapse', BCollapse);
 
 app.use(VueToast);
-app.use(bootstrapPlugin);
-app.use(modalManagerPlugin);
 
 import req from './require';
 
