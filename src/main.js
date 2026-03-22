@@ -10,8 +10,7 @@ import savenload from './save-load';
 
 const app = createApp(App);
 
-import { BModal, BNavItem, BNavItemDropdown, BNavbar, BNavbarNav, BNavbarBrand, BNavbarToggle, BButton, BDropdownItem, BDropdownDivider, BCollapse } from 'bootstrap-vue-next';
-app.component('BModal', BModal);
+import { BNavItem, BNavItemDropdown, BNavbar, BNavbarNav, BNavbarBrand, BNavbarToggle, BButton, BDropdownItem, BDropdownDivider, BCollapse } from 'bootstrap-vue-next';
 app.component('BNavItem', BNavItem);
 app.component('BNavItemDropdown', BNavItemDropdown);
 app.component('BNavbar', BNavbar);
