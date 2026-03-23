@@ -78,7 +78,7 @@ const { Modal, TextInputComponent, showModal } = require('discord-modals');`);
     array.push(`const ticket = require('tickets-discord');`);
     array.push(`const { start, login } = require('tickets-discord');`);
   }
-  if (js.includes(`ms`)) {
+  if (js.includes('ms')) {
     array.push(`const ms = require("ms");`);
   }
   if (js.includes('antilink')) {

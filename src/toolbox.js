@@ -572,10 +572,15 @@ export default (favorites) => {
     <label text="This block can be used to bring it back to a usable collection." web-class="boldtext"/>
     <block type="jg_collections_convert_database_collection_to_collection">
       <value name="DBCOLLECT">
-        <block type="s4d_get_data">
+        <block type="s4d_get_data_new">
           <value name="KEY">
             <shadow type="text">
               <field name="TEXT">collection</field>
+            </shadow>
+          </value>
+          <value name="NAME">
+            <shadow type="text">
+              <field name="TEXT">database1</field>
             </shadow>
           </value>
         </block>
