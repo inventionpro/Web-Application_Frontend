@@ -208,7 +208,7 @@ async function getSessionID() {
 }
 
 export default {
-  name: 'Editmenu',
+  name: 'ExamplesMenu',
   computed: {},
   mounted() {
     setTimeout(() => {

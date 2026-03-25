@@ -72,7 +72,7 @@ import CreditsMenu from './CreditsMenu.vue';
 import RunMenu from './RunMenu.vue';
 
 export default {
-  name: 'Navbar',
+  name: 'NavBar',
   components: {
     CodeModal,
     FileMenu,

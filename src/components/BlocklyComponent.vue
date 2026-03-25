@@ -95,7 +95,12 @@ BlocklyB.filter((block) => {
 
 export default {
   name: 'BlocklyComponent',
-  props: ['options'],
+  props: {
+    options: {
+      type: Object,
+      default: ()=>({})
+    }
+  },
   data() {
     return {
       toastLogin: false,
