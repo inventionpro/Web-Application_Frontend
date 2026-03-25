@@ -228,7 +228,7 @@ ${blockProblems.length > 0 ? `< style="text-align:left">
         confirmButtonText: 'Download',
         cancelButtonText: 'Cancel'
       }).then(async (result) => {
-        if (result.isConfirmed) {
+        if (!result.isConfirmed) {
           console.log('barry: nvm lol');
           return;
         }
