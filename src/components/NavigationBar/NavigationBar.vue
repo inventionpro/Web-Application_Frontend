@@ -55,6 +55,7 @@ const NavExpanded = ref(false);
 import * as Blockly from 'blockly/core';
 import JSZip from 'jszip';
 import localforage from 'localforage';
+import beautify from 'js-beautify';
 import Swal from 'sweetalert2';
 import r from './requires';
 import upgradeXml from '../../upgradexml.js';
@@ -169,73 +170,83 @@ export default {
   },
   methods: {
     exportToCode() {
+      console.log('barry: hey what file do you want to download?');
+      console.log('johnathan: dude they cant hear us'); // The voices, im starting to hear them -inv
+      console.log('barry: oh right i forgot');
       function getWorkspaceProblems(workspace) {
         let problems = [];
-        let problematic = false;
         let blockProblems = [];
         let allBlocks = workspace.getAllBlocks();
-        if (!allBlocks.some((block) => block.type === 's4d_login')) {
-          problems.push(`<li style='text-align:left'>The <b>Connect to Discord</b> block is missing.</li>`);
-        }
+        if (!allBlocks.some((block) => block.type === 's4d_login')) problems.push(`<li>The <b>Connect to Discord</b> block is missing.</li>`);
         allBlocks.forEach((block) => {
-          if (block.warning) {
-            blockProblems.push(`<li style='text-align:left'>` + block.warning.getText() + `</li>`);
-            problematic = true;
-          }
+          if (block.warning) blockProblems.push(`<li>${block.warning.getText()}</li>`);
         });
-        let newString = '';
-        if (problems.length > 0 || problematic) {
-          newString = `<h2>Hold up!</h2>
-<p>Some problems on the workspace need to be solved before you can get a working download.</p>
-<ul>`;
-          newString += problems.join('');
-          if (blockProblems.length > 0) {
-            newString += `<details style='text-align:left'>
-<summary><b>Some blocks have some errors on them.</b></summary>
-<div>`;
-            newString += blockProblems.join('');
-            newString += `</div>
-</details>`;
-          }
-          newString += `</ul>
-<b style="color:darkred">If you continue with the download, the bot may not work correctly!</b>
+        if ((problems.length + blockProblems.length) < 1) return '';
+        return `<h3>Hold up!</h3>
+<p>Some problems on the workspace need to be solved to get a working download.</p>
+<ul style="text-align:left">
+  ${problems.join('')}
+</ul>
+${blockProblems.length > 0 ? `< style="text-align:left">
+  <summary><b>Some blocks have some errors on them.</b></summary>
+  <ul style="text-align:left">
+    ${blockProblems.join('')}
+  </ul>
+</details>` : ''}
+<b style="color:red">If you continue with the download, the bot may not work correctly!</b>
 <br><br>`;
-        }
-        return newString;
       }
       Swal.fire({
         theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
         title: 'Download your bot?',
-        html: `${getWorkspaceProblems(this.$store.state.workspace)}<h6>How to start your bot once downloaded?</h6>
-<ul>
-<li style='text-align:left'>Unzip the Downloaded File.</li>
-<li style='text-align:left'>Install NPM and Node.js (Hint: Google Search).</li>
-<li style='text-align:left'>Run 'npm install' and 'npm start' in a terminal</li>
-<li style='text-align:left'>Your bot is started!</li>
-</ul>
-<style>
-.lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123 {
-  width: 35%
-}
-</style>`,
-        customClass: 'lololoEPIC_EXPORT_CLASS_NAME_bruh_xd_1123123123',
+        html: `${getWorkspaceProblems(this.$store.state.workspace)}
+<input type="checkbox" id="file-index" checked>
+<label for="file1"> index.js </label>
+<input type="checkbox" id="file-json" checked>
+<label for="file2"> package.json </label>
+<input type="checkbox" id="file-blocks" checked>
+<label for="file3"> blocks.xml</label>
+<details>
+  <summary><b>What does each file do?</b></summary>
+  <ul style="text-align:left">
+    <li>"index.js" contains your bot's code.</li>
+    <li>"package.json" contains all of the packages needed for hosting on your computer.</li>
+    <li>"blocks.xml" contains all of your blocks used to create your bot.</li>
+  </ul>
+</details>
+<details>
+  <summary><b>How to start your bot once downloaded?</b></summary>
+  <ol style="text-align:left">
+    <li>Unzip the Downloaded File.</li>
+    <li>Install NPM and Node.js (Hint: Google Search).</li>
+    <li>Run 'npm install' and 'npm start' in a terminal</li>
+    <li>Your bot is started!</li>
+  </ol>
+</details>`,
         showCancelButton: true,
         confirmButtonText: 'Download',
         cancelButtonText: 'Cancel'
       }).then(async (result) => {
-        let requires = [`"discord.js": "^14.25.1",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "^2.2.1",`];
-        let oldrequires = await localforage.getItem('requires');
-        r(requires, oldrequires);
-        var requireUsed = requires.join('\n');
-        if (requireUsed.charAt(requireUsed.length - 1) == ',') {
-          requireUsed = requireUsed.substring(0, requireUsed.length - 1);
-        }
         if (result.isConfirmed) {
-          const zip = new JSZip();
-          const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-          const fileName = `${encodeURIComponent(document.getElementById('docName').textContent).replace(/%20/g, ' ')}.zip`;
-          zip.file('blocks.xml', xmlContent);
-          const javascriptContent = this.getWorkspaceCode();
+          console.log('barry: nvm lol');
+          return;
+        }
+        const zip = new JSZip();
+        let index = document.getElementById('file-index').checked;
+        let json = document.getElementById('file-json').checked;
+        let blocks = document.getElementById('file-blocks').checked;
+        if (index) {
+          console.log('barry: hey can you go grab their code');
+          console.log('johnathan: ok');
+          const javascriptContent = beautify.js(this.getWorkspaceCode(), {
+            indent_size: 2,
+            max_preserve_newlines: 2,
+            preserve_newlines: true,
+            break_chained_methods: true,
+            brace_style: 'collapse,preserve-inline',
+            space_before_conditional: true,
+            space_in_empty_paren: true
+          });
           if (javascriptContent.includes('queue.join') && javascriptContent.includes('queue.connect')) {
             Swal.fire({
               theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
@@ -245,6 +256,16 @@ export default {
             return;
           }
           zip.file('index.js', javascriptContent);
+          console.log('johnathan: done');
+        }
+        if (json) {
+          console.log('johnathan: hey can you grab the packages');
+          console.log('barry: on it');
+          let requires = [`"discord.js": "^14.25.1",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`, `"discord-logs": "^2.2.1",`];
+          let oldrequires = await localforage.getItem('requires');
+          r(requires, oldrequires);
+          let requireUsed = requires.join('\n');
+          if (requireUsed.charAt(requireUsed.length - 1) == ',') requireUsed = requireUsed.substring(0, requireUsed.length - 1);
           zip.file(
             'package.json',
             `{
@@ -260,26 +281,33 @@ export default {
   }
 }`
           );
-          zip
-            .generateAsync({
-              type: 'blob'
-            })
-            .then((blob) => {
-              const a = document.createElement('a');
-              a.style = 'display: none';
-              document.body.appendChild(a);
-              const url = window.URL.createObjectURL(blob);
-              a.href = url;
-              a.download = fileName;
-              a.click();
-              window.URL.revokeObjectURL(url);
-              document.body.removeChild(a);
-            });
-          console.log("barry: well we are done, let's get back to managing the blocks");
-          console.log('johnathan: ok');
-        } else {
-          console.log('barry: nvm lol');
+          console.log('barry: done');
         }
+        if (blocks) {
+          console.log('barry: im gonna start getting their blocks');
+          console.log('johnathan: ok');
+          const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+          zip.file('blocks.xml', xmlContent);
+          console.log('barry: finished');
+        }
+
+        zip
+          .generateAsync({
+            type: 'blob'
+          })
+          .then((blob) => {
+            const a = document.createElement('a');
+            a.style = 'display: none';
+            document.body.appendChild(a);
+            const url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = `${encodeURIComponent(document.getElementById('docName').textContent).replaceAll('%20', ' ')}.zip`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+          });
+        console.log('barry: welp guess we are done');
+        console.log('johnathan: lets get back to work, shall we?');
       });
     },
     async util() {
@@ -715,7 +743,6 @@ export default {
 <button id="btn-settings" class="swal2-confirm swal2-styled">Settings</button>
 <button id="btn-optimizations" class="swal2-confirm swal2-styled">Optimizations</button>
 <button id="btn-prebuilds" class="swal2-confirm swal2-styled">Prebuilds</button>
-<button id="btn-dfi" class="swal2-confirm swal2-styled">Download Files Indiv.</button>
 <button id="btn-cancel" class="swal2-cancel swal2-styled">Exit</button>`,
         showConfirmButton: false,
         showCancelButton: false,
@@ -724,105 +751,6 @@ export default {
           Array.from(document.querySelectorAll('.swal2-container button.swal2-confirm')).forEach((btn) => {
             btn.onclick = async () => {
               switch (btn.id.replace('btn-', '')) {
-                case 'dfi':
-                  console.log('barry: hey what file do you want to download?');
-                  console.log('johnathan: dude they cant hear us'); // The voices, im starting to hear them -inv
-                  console.log('barry: oh right i forgot');
-                  Swal.fire({
-                    theme: document.querySelector('[data-bs-theme="light"]') ? 'light' : 'dark',
-                    title: 'Which file are you downloading?',
-                    html: `<h6>Explanations:</h6>
-<ul>
-  <li style='text-align:left'>"index.js" contains your bot's code.</li>
-  <li style='text-align:left'>"package.json" contains all of the packages needed for hosting on your computer.</li>
-  <li style='text-align:left'>"blocks.xml" contains all of your blocks used to create your bot.</li>
-</ul>
-<input type="checkbox" id="file1" checked="checked">
-<label for="file1"> index.js </label>
-<input type="checkbox" id="file2">
-<label for="file2"> package.json </label>
-<input type="checkbox" id="file3">
-<label for="file3"> blocks.xml</label>`,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    cancelButtonText: 'Nevermind...',
-                    confirmButtonText: 'Download'
-                  }).then(async (result) => {
-                    if (result.isConfirmed) {
-                      var file1 = document.getElementById('file1').checked;
-                      var file2 = document.getElementById('file2').checked;
-                      var file3 = document.getElementById('file3').checked;
-                      if (file1) {
-                        console.log('barry: hey can you go grab their code');
-                        console.log('johnathan: ok');
-                        const javascriptContent = this.getWorkspaceCode();
-                        const blob = new Blob([javascriptContent]);
-                        const a = document.createElement('a');
-                        a.style = 'display: none';
-                        document.body.appendChild(a);
-                        const url = window.URL.createObjectURL(blob);
-                        a.href = url;
-                        a.download = 'index.js';
-                        a.click();
-                        window.URL.revokeObjectURL(url);
-                        document.body.removeChild(a);
-                        console.log('johnathan: done');
-                      }
-                      if (file2) {
-                        console.log('johnathan: hey can you grab the packages');
-                        console.log('barry: on it');
-                        let requires = [`"discord.js": "^13.7.0",`, `"process":"^0.11.10",`, `"easy-json-database": "^1.5.0",`];
-                        let oldrequires = await localforage.getItem('requires');
-                        r(requires, oldrequires);
-                        var requireUsed = requires.join('\n');
-                        if (requireUsed.charAt(requireUsed.length - 1) == ',') {
-                          requireUsed = requireUsed.substring(0, requireUsed.length - 1);
-                        }
-                        const javascriptContent = `{
-  "name": "scratch-for-discord-bot",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "npm i && node ."
-  },
-  "dependencies": {
-    "moment": "latest",
-    ${requireUsed}
-  }
-}`;
-                        const blob = new Blob([javascriptContent]);
-                        const a = document.createElement('a');
-                        a.style = 'display: none';
-                        document.body.appendChild(a);
-                        const url = window.URL.createObjectURL(blob);
-                        a.href = url;
-                        a.download = 'package.json';
-                        a.click();
-                        window.URL.revokeObjectURL(url);
-                        document.body.removeChild(a);
-                        console.log('barry: done');
-                      }
-                      if (file3) {
-                        console.log('barry: im gonna start getting their blocks');
-                        console.log('johnathan: ok');
-                        const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-                        const blob = new Blob([xmlContent]);
-                        const a = document.createElement('a');
-                        a.style = 'display: none';
-                        document.body.appendChild(a);
-                        const url = window.URL.createObjectURL(blob);
-                        a.href = url;
-                        a.download = 'blocks.xml';
-                        a.click();
-                        window.URL.revokeObjectURL(url);
-                        document.body.removeChild(a);
-                        console.log('barry: finished');
-                      }
-                      console.log('barry: welp guess we are done');
-                      console.log('johnathan: lets get back to work, shall we?');
-                    }
-                  });
-                  break;
                 case 'prebuilds':
                   let prebuilds = (await localforage.getItem('prebuilds')) ?? [];
                   Swal.fire({
