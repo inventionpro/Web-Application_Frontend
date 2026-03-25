@@ -201,11 +201,12 @@ ${blockProblems.length > 0 ? `< style="text-align:left">
         title: 'Download your bot?',
         html: `${getWorkspaceProblems(this.$store.state.workspace)}
 <input type="checkbox" id="file-index" checked>
-<label for="file1"> index.js </label>
+<label for="file-index">index.js</label>
 <input type="checkbox" id="file-json" checked>
-<label for="file2"> package.json </label>
+<label for="file-json">package.json</label>
 <input type="checkbox" id="file-blocks" checked>
-<label for="file3"> blocks.xml</label>
+<label for="file-blocks">blocks.xml</label>
+<br><br>
 <details>
   <summary><b>What does each file do?</b></summary>
   <ul style="text-align:left">
