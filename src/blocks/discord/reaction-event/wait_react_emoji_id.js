@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_wait_react_emoji_id';
-
 const blockData = {
   message0: '%{BKY_WAIT_REACT_EMOJI_ID}',
   colour: '#5BA58C',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };
@@ -18,9 +18,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['s4dreaction.emoji.id', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['s4dreaction.emoji.id', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

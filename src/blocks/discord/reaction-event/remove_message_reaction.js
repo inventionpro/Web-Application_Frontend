@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_remove_reactions';
-
 const blockData = {
   message0: 'remove all reactions on the message %1 with id/name %2',
   args0: [
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: 'Message'
+      check: Types.Message
     },
     {
       type: 'input_value',
       name: 'EMOJI',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#4C97FF',
@@ -33,6 +33,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   const id = javascriptGenerator.valueToCode(block, 'EMOJI', javascriptGenerator.ORDER_ATOMIC);
-  let code = `${message}.reactions.cache.get(${id}).remove()\n`;
-  return code;
+  return `${message}.reactions.cache.get(${id}).remove();`;
 };

@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_delete_role';
-
 const blockData = {
   message0: '%{BKY_DELETE_ROLE}',
   args0: [
     {
       type: 'input_value',
       name: 'ROLE',
-      check: ['String', 'Role']
+      check: Types.Role
     }
   ],
   previousStatement: null,
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const role = javascriptGenerator.valueToCode(block, 'ROLE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${role}.delete();\n`;
-  return code;
+  return `${role}.delete();`;
 };

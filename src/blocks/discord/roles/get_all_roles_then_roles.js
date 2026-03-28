@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_get_all_role_role';
-
 const blockData = {
   message0: '%{BKY_GET_ALL_ROLE_ROLE}',
   args0: [],
   colour: '#2EB66B',
-  output: 'Role',
+  output: Types.Role,
   tooltip: '',
   helpUrl: ''
 };
@@ -19,9 +19,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return [`ro`, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['ro', javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

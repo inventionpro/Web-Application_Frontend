@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_reaction_wait_added_reaction';
-
 const blockData = {
   message0: '%{BKY_REACTION_WAIT_ADDED_REACTION}',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'input_value',
       name: 'TIME',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_statement',
@@ -39,8 +39,14 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   const time = javascriptGenerator.valueToCode(block, 'TIME', javascriptGenerator.ORDER_ATOMIC) || 5;
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  let code = `s4dmessage.awaitReactions({(reation,user)=>{user.id === ${member}.id}, time: (${time}*60*1000), max: 1 }).then(async collected => {const s4dreaction = collected.first(); \n ${statementThen} \n});\n`;
-  return code;
+  return `s4dmessage.awaitReactions({
+  filter: (reation,user)=>{user.id === ${member}.id},
+  time: (${time}*60*1000),
+  max: 1
+}).then(async collected => {
+  const s4dreaction = collected.first();
+${statementThen}
+});`;
 };
 
 registerRestrictions(blockName, [

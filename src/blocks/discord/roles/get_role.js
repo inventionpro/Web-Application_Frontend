@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_get_role';
-
 const blockData = {
   message0: '%{BKY_GET_ROLE}',
   args0: [
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -23,11 +23,11 @@ const blockData = {
     {
       type: 'input_value',
       name: 'SERVER',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#2EB66B',
-  output: 'Role',
+  output: Types.Role,
   tooltip: '',
   helpUrl: ''
 };
@@ -46,13 +46,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     if (server !== null) {
       return [`${server}.roles.cache.find((role) => role.name === ${value})`, javascriptGenerator.ORDER_NONE];
     } else {
-      return [`false`, javascriptGenerator.ORDER_NONE];
+      return ['false', javascriptGenerator.ORDER_NONE];
     }
   } else {
     if (server !== null) {
       return [`${server}.roles.cache.get(${value})`, javascriptGenerator.ORDER_NONE];
     } else {
-      return [`false`, javascriptGenerator.ORDER_NONE];
+      return ['false', javascriptGenerator.ORDER_NONE];
     }
   }
 };

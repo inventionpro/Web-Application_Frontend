@@ -31,7 +31,7 @@ const blockData = {
 };
 
 Blockly.Blocks[blockName] = {
-  init: (block) => {
+  init: function (block) {
     block.jsonInit(blockData);
   }
 };

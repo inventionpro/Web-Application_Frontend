@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'set_role_icon';
-
 const blockData = {
   type: 'set_role_icon',
   message0: 'set icon %1 on role %2',
@@ -14,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'role',
-      Check: 'Role'
+      check: Types.Role
     }
   ],
   inputsInline: true,
@@ -34,6 +34,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock['set_role_icon'] = (block) => {
   var icon = javascriptGenerator.valueToCode(block, 'icon', javascriptGenerator.ORDER_ATOMIC);
   var role = javascriptGenerator.valueToCode(block, 'role', javascriptGenerator.ORDER_ATOMIC);
-  var code = `${role}.setIcon(${icon});\n`;
-  return code;
+  return `${role}.setIcon(${icon});`;
 };

@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_react_message';
-
 const blockData = {
   message0: 'reaction message',
   colour: '#5BA58C',
-  output: 'Message'
+  output: Types.Message
 };
 
 Blockly.Blocks[blockName] = {
@@ -16,9 +16,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['reaction.message', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['reaction.message', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

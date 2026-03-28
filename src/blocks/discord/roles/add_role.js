@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_add_role';
-
 const blockData = {
   message0: '%{BKY_ADD_ROLE}',
   args0: [
     {
       type: 'input_value',
       name: 'ROLE',
-      check: ['String', 'Role']
+      check: T(Types.String, Types.Role)
     },
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   previousStatement: null,
@@ -36,18 +36,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const memberr = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   let member = memberr.replace('.user', '');
   if (block.getInput('ROLE').connection.targetConnection) {
-    const roleType = block.getInput('ROLE').connection.targetConnection.getSourceBlock().outputConnection.check_ ? block.getInput('ROLE').connection.targetConnection.getSourceBlock().outputConnection.check_[0] : null;
-    if (roleType === 'String') {
-      const code = `${member}.roles.add(${member}.guild.roles.cache.find((role) => role.id === ${role} || role.name === ${role} || '@'+role.name === ${role}));\n`;
-      return code;
-    } else {
-      const code = `${member}.roles.add(${role});\n`;
-      return code;
-    }
-  } else {
-    const code = `${member}.roles.add(${role});\n`;
-    return code;
+    const roleType = block.getInput('ROLE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] ?? null;
+    if (roleType === Types.String[0]) return `${member}.roles.add(${member}.guild.roles.cache.find((role) => role.id === ${role} || role.name === ${role} || '@'+role.name === ${role}));`;
   }
+  return `${member}.roles.add(${role});`;
 };
 
 registerRestrictions(blockName, [

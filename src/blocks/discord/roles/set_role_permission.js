@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_set_role_perm';
-
 const blockData = {
   message0: '%{BKY_SET_ROLE_PERM}',
   args0: [
@@ -46,7 +46,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'ROLE',
-      check: ['String', 'Role']
+      check: Types.Role
     }
   ],
   previousStatement: null,
@@ -65,6 +65,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const PERM = block.getFieldValue('PERM');
   const role = javascriptGenerator.valueToCode(block, 'ROLE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${role}.setPermissions(['${PERM}']);\n`;
-  return code;
+  return `${role}.setPermissions(['${PERM}']);`;
 };
