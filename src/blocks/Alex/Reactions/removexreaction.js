@@ -38,5 +38,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC);
   const user = javascriptGenerator.valueToCode(block, 'user', javascriptGenerator.ORDER_ATOMIC);
   const reaction = javascriptGenerator.valueToCode(block, 'reaction', javascriptGenerator.ORDER_ATOMIC);
-  return `${message}.reactions.cache.find(reaction => reaction.emoji.name == ${reaction}).users.remove(${user}.id); \n`;
+  return `${message}.reactions.cache.find(reaction => reaction.emoji.name == ${reaction}).users.remove(${user}.id);`;
 };

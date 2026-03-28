@@ -32,5 +32,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC);
   const user = javascriptGenerator.valueToCode(block, 'user', javascriptGenerator.ORDER_ATOMIC);
-  return `${message}.reactions.cache.forEach(rr => rr.users.remove(${user}.id)); \n`;
+  return `${message}.reactions.cache.forEach(rr => rr.users.remove(${user}.id));`;
 };

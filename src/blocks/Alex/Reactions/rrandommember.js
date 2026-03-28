@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import { T, Types } from '../../types.js';
+import { Types } from '../../types.js';
 
 const blockName = 'random_reacting_member_user';
 const blockData = {
@@ -16,7 +16,7 @@ const blockData = {
   ],
   message0: 'Random reacting %1',
   colour: '#187795',
-  output: T(Types.User, Types.Member),
+  output: Types.UserResolve,
   tooltip: '',
   helpUrl: ''
 };
