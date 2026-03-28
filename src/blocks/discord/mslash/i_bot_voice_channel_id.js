@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'bot_voice_channel_id';
 const blockData = {
@@ -17,6 +18,5 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = () => {
-  const code = ['interaction.guild.me.voice.channelId', javascriptGenerator.ORDER_NONE];
-  return code;
+  return ['interaction.guild.me.voice.channelId', javascriptGenerator.ORDER_NONE];
 };
