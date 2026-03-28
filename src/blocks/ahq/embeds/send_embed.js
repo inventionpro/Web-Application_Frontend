@@ -13,7 +13,7 @@ const blockData = {
     }
   ],
   colour: '#40BF4A',
-  output: 'MessageEmbed',
+  output: Types.Embed,
   tooltip: 'Sends a named embed.',
   helpUrl: ''
 };
@@ -25,5 +25,5 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  return [`embeds: [${javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", '')}]`, javascriptGenerator.ORDER_ATOMIC];
+  return [javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", ''), javascriptGenerator.ORDER_ATOMIC];
 };

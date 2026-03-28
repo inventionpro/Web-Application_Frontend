@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
+
 const blockName = 'thmb_ahq_embed';
 const blockData = {
   message0: 'Set Thumbnail %1 Embed %2',
@@ -26,10 +28,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE) || 'embed';
   const finaln = name.replace("'", '').replace("'", '');
   const statementsThen = javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE);
-  const code = `${finaln}.setThumbnail(${statementsThen});`;
-  return code;
+  return `${finaln}.setThumbnail(${statementsThen});`;
 };
