@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_button_edit';
-
 const blockData = {
   message0: '%{BKY_BUTTON_EDIT}',
   args0: [
     {
       type: 'input_value',
       name: 'REPLY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     }
   ],
   colour: '#4C97FF',
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const reply = javascriptGenerator.valueToCode(block, 'REPLY', javascriptGenerator.ORDER_ATOMIC);
-  const code = `await i.editReply(${reply})\n`;
-  return code;
+  return `await i.editReply(${reply});`;
 };

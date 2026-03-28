@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'role_name';
-
 const blockData = {
   message0: 'Edit role name %1 New name %2',
   args0: [
     {
       type: 'input_value',
       name: 'role',
-      Check: 'Role'
+      check: Types.Role
     },
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#48a4f0',
@@ -34,8 +34,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const role = javascriptGenerator.valueToCode(block, 'role', javascriptGenerator.ORDER_ATOMIC);
   const name = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${role}.edit({
-            name: ${name}
-        });`;
-  return code;
+  return `${role}.edit({
+  name: ${name}
+});`;
 };

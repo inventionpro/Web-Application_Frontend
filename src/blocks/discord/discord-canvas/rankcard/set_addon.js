@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
+import { Types } from '../../../types.js';
 
 const blockName = 's4d_set_addon';
-
 const blockData = {
   message0: '%{BKY_SET_ADDON}',
   args0: [
@@ -20,7 +20,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'BOOLEAN',
-      check: 'Boolean'
+      check: Types.Boolean
     }
   ],
   colour: '#4C97FF',

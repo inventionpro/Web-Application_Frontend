@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_member_is_bot';
-
 const blockData = {
   message0: '%{BKY_MEMBER_IS_BOT}',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   colour: '#5B80A5',
-  output: 'Boolean',
+  output: Types.Boolean,
   tooltip: '',
   helpUrl: ''
 };

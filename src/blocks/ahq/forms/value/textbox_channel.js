@@ -1,11 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'channel_form_ahq';
+import { Types } from '../../../types.js';
 
+const blockName = 'channel_form_ahq';
 const blockData = {
   message0: 'Form Channel',
   colour: '#33cc00',
-  output: 'Channel',
+  output: Types.Channel,
   tooltip: 'The channel of the clicked form.',
   helpUrl: ''
 };
@@ -15,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['i.channel', javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['i.channel', javascriptGenerator.ORDER_NONE];
 };

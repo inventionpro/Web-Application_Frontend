@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_message_content_deleted';
-
 const blockData = {
   message0: '%{BKY_MESSAGE_CONTENT_DELETED}',
   colour: '#5BA58C',
   tooltip: '',
-  output: 'String',
+  output: Types.String,
   helpUrl: ''
 };
 
@@ -18,9 +18,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['s4dmessage.content', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['s4dmessage.content', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

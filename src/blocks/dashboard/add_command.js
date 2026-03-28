@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'add_command_dash';
-
 const blockData = {
   type: 'add_command_dash',
   message0: 'Add a new command with %1 Name %2 Description %3 Command usage %4',
@@ -39,8 +38,5 @@ javascriptGenerator.forBlock['add_command_dash'] = (block) => {
   var value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   var value_desc = javascriptGenerator.valueToCode(block, 'DESC', javascriptGenerator.ORDER_ATOMIC);
   var value_tutorial = javascriptGenerator.valueToCode(block, 'tutorial', javascriptGenerator.ORDER_ATOMIC);
-  var code = `
-    s4d.client.dashboard.registerCommand(${value_name}, ${value_desc}, ${value_tutorial});
-`;
-  return code;
+  return `s4d.client.dashboard.registerCommand(${value_name}, ${value_desc}, ${value_tutorial});`;
 };

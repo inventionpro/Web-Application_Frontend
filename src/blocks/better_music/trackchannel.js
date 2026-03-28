@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'retro_track_channel';
-
 const blockData = {
   message0: 'Track channel',
   args0: [],
-  output: 'Channel',
+  output: Types.Channel,
   colour: '#a55b80',
   tooltip: '',
   helpUrl: ''
@@ -18,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return [`queue.data.channel`, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['queue.data.channel', javascriptGenerator.ORDER_NONE];
 };

@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'invite_ur';
-
 const blockData = {
   message0: 'Invite URL',
   colour: '#502e6e',
   tooltip: 'Get the URL of an invite',
   helpUrl: '',
-  output: 'String'
+  output: Types.String
 };
 
 Blockly.Blocks[blockName] = {
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`invite.url`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['invite.url', javascriptGenerator.ORDER_NONE];
 };

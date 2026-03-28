@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'voice_event';
-
 const blockData = {
   message0: 'When a member joins a voice channel %1 %2',
   colour: '#F5AB1A',
@@ -22,12 +21,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_NONE);
-  const code = `s4d.client.on(Discord.Events.VoiceStateUpdate, async (oldState, newState) => {
-        if (!(oldState.channel)) {
-        ${statementsThen}
-        }
-    });\n`;
-  return code;
+  return `s4d.client.on(Discord.Events.VoiceStateUpdate, async (oldState, newState) => {
+  if (!(oldState.channel)) {
+  ${statementsThen}
+  }
+});`;
 };

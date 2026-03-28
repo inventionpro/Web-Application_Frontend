@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_create_embed_then_send';
-
 const blockData = {
   message0: '%{BKY_CREATE_EMBED_THEN_SEND}',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#40BF4A',
@@ -28,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${channel}.send({embeds:[embed]});\n`;
-  return code;
+  return `${channel}.send({ embeds: [embed] });`;
 };
 
 registerRestrictions(blockName, [

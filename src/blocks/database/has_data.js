@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 's4d_has_data_new';
-
 const blockData = {
   message0: '%1 exists in the database with name %2 %3',
   args0: [
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_dummy'
@@ -17,10 +17,10 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#5ba58b',
   helpUrl: ''
 };

@@ -1,19 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'color_ahq_embed';
+import { T, Types } from '../../types.js';
 
+const blockName = 'color_ahq_embed';
 const blockData = {
-  message0: 'Set Colour %1 Embed %2',
+  message0: 'Set Color %1 Embed %2',
   args0: [
     {
       type: 'input_value',
       name: 'Label',
-      check: ['String', 'Colour']
+      check: T(Types.String, Types.Color)
     },
     {
       type: 'input_value',
       name: 'button name',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#40BF4A',
@@ -27,10 +28,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE) || 'embed';
   const finaln = name.replace("'", '').replace("'", '');
   const statementsThen = javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE);
-  const code = `${finaln}.setColor(${statementsThen});`;
-  return code;
+  return `${finaln}.setColor(${statementsThen});`;
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'info_of_sticker';
-
 const blockData = {
   message0: '%1 of sticker %2',
   args0: [
@@ -17,14 +17,13 @@ const blockData = {
         ['Tags', 'tags']
       ]
     },
-
     {
       type: 'input_value',
       name: 'sticker',
-      check: 'Sticker'
+      check: Types.Sticker
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#02a836',
   tooltip: 'Gets the information from the sticker.',
   helpUrl: ''
@@ -39,7 +38,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const sticker = javascriptGenerator.valueToCode(block, 'sticker', javascriptGenerator.ORDER_ATOMIC);
   const info = block.getFieldValue('info');
-
-  const code = [`${sticker}.${info}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${sticker}.${info}`, javascriptGenerator.ORDER_NONE];
 };

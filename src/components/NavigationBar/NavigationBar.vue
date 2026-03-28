@@ -181,18 +181,22 @@ export default {
         allBlocks.forEach((block) => {
           if (block.warning) blockProblems.push(`<li>${block.warning.getText()}</li>`);
         });
-        if ((problems.length + blockProblems.length) < 1) return '';
+        if (problems.length + blockProblems.length < 1) return '';
         return `<h3>Hold up!</h3>
 <p>Some problems on the workspace need to be solved to get a working download.</p>
 <ul style="text-align:left">
   ${problems.join('')}
 </ul>
-${blockProblems.length > 0 ? `< style="text-align:left">
+${
+  blockProblems.length > 0
+    ? `< style="text-align:left">
   <summary><b>Some blocks have some errors on them.</b></summary>
   <ul style="text-align:left">
     ${blockProblems.join('')}
   </ul>
-</details>` : ''}
+</details>`
+    : ''
+}
 <b style="color:red">If you continue with the download, the bot may not work correctly!</b>
 <br><br>`;
       }

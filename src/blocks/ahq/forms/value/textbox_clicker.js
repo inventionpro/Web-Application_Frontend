@@ -1,11 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'clkr_form_ahq';
+import { Types } from '../../../types.js';
 
+const blockName = 'clkr_form_ahq';
 const blockData = {
   message0: 'Form Clicker',
   colour: '#33cc00',
-  output: 'Member',
+  output: Types.Member,
   tooltip: 'The member who clicked the form.',
   helpUrl: ''
 };
@@ -15,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['i.member.user', javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['i.member.user', javascriptGenerator.ORDER_NONE];
 };

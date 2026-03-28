@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_m_create_embed_then_set_image';
-
 const blockData = {
   message0: '%{BKY_M_CREATE_EMBED_THEN_SET_IMAGE}',
   args0: [
     {
       type: 'input_value',
       name: 'IMAGE',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#40BF4A',
@@ -28,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `embed.setImage(${image});\n`;
-  return code;
+  return `embed.setImage(${image});`;
 };
 
 registerRestrictions(blockName, [

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_on_click';
-
 const blockData = {
   message0: 'when a button is clicked by member %3 before %4 (in seconds, leave blank for default) %1 %2',
   colour: '#F5AB1A',
@@ -17,12 +17,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'input_value',
       name: 'time',
-      check: 'Number'
+      check: Types.Number
     }
   ],
   previousStatement: null,
@@ -42,14 +42,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const time = javascriptGenerator.valueToCode(block, 'time', javascriptGenerator.ORDER_ATOMIC);
   let member = memberr.replace('.user', '');
   if (String(member) == null || String(member) == '') member = 'i.user';
-  const code = `
-let collector = m.createMessageComponentCollector({
-    filter: i => i.user.id === ${member}.id,
-    time: Number(${time < 1 ? '60000' : time}) * 1000
+  return `let collector = m.createMessageComponentCollector({
+  filter: i => i.user.id === ${member}.id,
+  time: Number(${time < 1 ? '120' : time}) * 1000
 });
 collector.on('collect', async i => {
-    ${statements}
-})
-`;
-  return code;
+${statements}
+});`;
 };

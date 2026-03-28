@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_voice_channel_id';
-
 const blockData = {
   message0: '%{BKY_VOICE_CHANNEL_ID}',
   args0: [],
-  output: 'VoiceChannelId',
+  output: Types.String,
   colour: '#a55b80',
   tooltip: '',
   helpUrl: ''
@@ -18,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = () => {
   return ['s4dmessage.member.voice.channelId', javascriptGenerator.ORDER_NONE];
 };

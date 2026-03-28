@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'on_slash';
-
 const blockData = {
   message0: '%{BKY_S_ON}',
   colour: '#F5AB1A',
@@ -24,9 +24,7 @@ Blockly.Blocks[blockName] = {
 };
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on(Discord.Events.InteractionCreate, async (interaction) => {
-        ${statements}
-    });
-    `;
-  return code;
+  return `s4d.client.on(Discord.Events.InteractionCreate, async (interaction) => {
+${statements}
+});`;
 };

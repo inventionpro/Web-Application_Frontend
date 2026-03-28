@@ -1,7 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'ahq_value_snd';
+import { Types } from '../types.js';
 
+const blockName = 'ahq_value_snd';
 const blockData = {
   message0: 'find channel by %1 %2 on server %3 %4',
   args0: [
@@ -16,7 +17,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'baluech',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -29,7 +30,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'baluesr',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#3366ff',
@@ -43,11 +44,11 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const ahq = block.getFieldValue('channel');
   const server = block.getFieldValue('server');
   const valch = javascriptGenerator.valueToCode(block, 'baluech', javascriptGenerator.ORDER_NONE);
   const valsr = javascriptGenerator.valueToCode(block, 'baluesr', javascriptGenerator.ORDER_NONE);
-  const code = [`s4d.client.guilds.cache.find(server => server.${server} == ${valsr}).channels.cache.find(ch => ch.${ahq} == ${valch})`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`s4d.client.guilds.cache.find(server => server.${server} == ${valsr}).channels.cache.find(ch => ch.${ahq} == ${valch})`, javascriptGenerator.ORDER_NONE];
 };

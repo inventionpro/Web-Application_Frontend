@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_m_create_embed_then_set_title';
-
 const blockData = {
   message0: '%{BKY_M_CREATE_EMBED_THEN_SET_TITLE}',
   args0: [
     {
       type: 'input_value',
       name: 'TITLE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'URL',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#40BF4A',
@@ -34,8 +34,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const title = javascriptGenerator.valueToCode(block, 'TITLE', javascriptGenerator.ORDER_ATOMIC);
   const url = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
-  const code = `embed.setTitle(${title})\n .setURL(${url}); \n`;
-  return code;
+  return `embed.setTitle(${title}).setURL(${url});`;
 };
 
 registerRestrictions(blockName, [

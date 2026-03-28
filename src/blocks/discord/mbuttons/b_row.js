@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'b_row';
-
 const blockData = {
   message0: '%{BKY_B_ROW}',
   args0: [
@@ -16,7 +16,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'BUTTON_NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#4C97FF',
@@ -37,6 +37,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'BUTTON_NAME', javascriptGenerator.ORDER_ATOMIC);
   let text1 = name.replace("'", '');
   let name2 = text1.replace("'", '');
-  const code = `const ${name2} = new Discord.ActionRowBuilder()\n${statements}\n`;
-  return code;
+  return `const ${name2} = new Discord.ActionRowBuilder()
+${statements}`;
 };

@@ -1,19 +1,19 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'is_member_on_cooldown';
-
 const blockData = {
   message0: 'is member on cooldown %1',
   args0: [
     {
       type: 'input_value',
       name: 'USER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   colour: '#187795',
-  output: 'Boolean',
+  output: Types.Boolean,
   tooltip: '',
   helpUrl: ''
 };
@@ -26,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const user = javascriptGenerator.valueToCode(block, 'USER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`Cooldown.has(${user}.id)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`Cooldown.has(${user}.id)`, javascriptGenerator.ORDER_NONE];
 };

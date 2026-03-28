@@ -1,14 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
-const blockName = 'dash_v';
+import { T, Types } from '../../../types.js';
 
+const blockName = 'dash_v';
 const blockData = {
   message0: 'Value',
   colour: '#0EB22B',
   tooltip: 'Value',
   helpUrl: 'Server',
-  output: ['String', 'Colour', 'Boolean']
+  output: T(Types.String, Types.Boolean, Types.Color)
 };
 
 Blockly.Blocks[blockName] = {
@@ -16,9 +17,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`value`, javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['value', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

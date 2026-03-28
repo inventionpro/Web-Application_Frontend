@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'typing_channel';
-
 const blockData = {
   message0: 'Typing channel',
   colour: '#1392ed',
-  output: 'Channel',
+  output: Types.Channel,
   tooltip: 'Get a channel a member is typing in',
   helpUrl: ''
 };
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['s4dTyping.channel', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['s4dTyping.channel', javascriptGenerator.ORDER_NONE];
 };

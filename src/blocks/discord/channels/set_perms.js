@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'set_perms';
-
 const blockData = {
   message0: '%{BKY_C_SET_PERMS_A}',
   args0: [],
   colour: '#4C97FF',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };
@@ -22,43 +22,30 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const boolean = block.getFieldValue('BOOLEAN');
   const searchType = block.getFieldValue('SEARCH');
   if (searchType === 'VIEW_CHANNEL') {
-    const code = [`VIEW_CHANNEL: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`VIEW_CHANNEL: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'MANAGE_CHANNEL') {
-    const code = [`MANAGE_CHANNEL: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`MANAGE_CHANNEL: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'MANAGE_WEBHOOKS') {
-    const code = [`MANAGE_WEBHOOKS: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`MANAGE_WEBHOOKS: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'MANAGE_PERMISSIONS') {
-    const code = [`MANAGE_PERMISSIONS: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`MANAGE_PERMISSIONS: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'CREATE_INSTANT_INVITE') {
-    const code = [`CREATE_INSTANT_INVITE: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`CREATE_INSTANT_INVITE: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'SEND_MESSAGES') {
-    const code = [`SEND_MESSAGES: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`SEND_MESSAGES: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'EMBED_LINKS') {
-    const code = [`EMBED_LINKS: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`EMBED_LINKS: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'ATTACH_FILES') {
-    const code = [`ATTACH_FILES: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`ATTACH_FILES: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'READ_MESSAGE_HISTORY') {
-    const code = [`READ_MESSAGE_HISTORY: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`READ_MESSAGE_HISTORY: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'USE_EXTERNAL_EMOJIS') {
-    const code = [`USE_EXTERNAL_EMOJIS: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`USE_EXTERNAL_EMOJIS: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'VIEW_GUILD_INSIGHTS') {
-    const code = [`VIEW_GUILD_INSIGHTS: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`VIEW_GUILD_INSIGHTS: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'USE_SLASH_COMMANDS') {
-    const code = [`USE_SLASH_COMMANDS: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`USE_SLASH_COMMANDS: ${boolean},`, javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'SEND_TTS_MESSAGES') {
-    const code = [`SEND_TTS_MESSAGES: ${boolean},`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`SEND_TTS_MESSAGES: ${boolean},`, javascriptGenerator.ORDER_NONE];
   }
 };

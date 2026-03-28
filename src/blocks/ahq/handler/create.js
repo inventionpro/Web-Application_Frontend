@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'create_ahq_handler';
 const blockData = {
@@ -12,27 +13,27 @@ const blockData = {
     {
       type: 'input_value',
       name: 'TOKEN',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'ownerId',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'notowner',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'ahq',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'notperms',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#3333ff',
@@ -49,12 +50,11 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'TOKEN', javascriptGenerator.ORDER_ATOMIC);
-  const code = `const ahqhandler = {
-        "prefix": ${value},
-        "owner": ${javascriptGenerator.valueToCode(block, 'ownerId', javascriptGenerator.ORDER_ATOMIC)},
-        "not-owner": ${javascriptGenerator.valueToCode(block, 'notowner', javascriptGenerator.ORDER_ATOMIC)},
-        "nsfw": ${javascriptGenerator.valueToCode(block, 'ahq', javascriptGenerator.ORDER_ATOMIC)},
-        "not-perms": ${javascriptGenerator.valueToCode(block, 'notperms', javascriptGenerator.ORDER_ATOMIC)}
-    }`;
-  return code;
+  return `const ahqhandler = {
+  "prefix": ${value},
+  "owner": ${javascriptGenerator.valueToCode(block, 'ownerId', javascriptGenerator.ORDER_ATOMIC)},
+  "not-owner": ${javascriptGenerator.valueToCode(block, 'notowner', javascriptGenerator.ORDER_ATOMIC)},
+  "nsfw": ${javascriptGenerator.valueToCode(block, 'ahq', javascriptGenerator.ORDER_ATOMIC)},
+  "not-perms": ${javascriptGenerator.valueToCode(block, 'notperms', javascriptGenerator.ORDER_ATOMIC)}
+}`;
 };

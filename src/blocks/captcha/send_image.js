@@ -1,16 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import '@blockly/field-grid-dropdown';
+import { Types } from '../types.js';
 
 const blockName = 'send_captcha';
-
 const blockData = {
   message0: 'send in channel %1 Captcha %2',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
@@ -35,6 +34,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
-  let code = `${channel}.send({files:[${image}]});\n`;
-  return code;
+  return `${channel}.send({files:[${image}]});`;
 };

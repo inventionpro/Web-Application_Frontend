@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_edit';
-
 const blockData = {
   message0: '%{BKY_EDIT}',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'MessageEmbed', 'embed']
+      check: Types.MessageContent
     }
   ],
   colour: '#4C97FF',
@@ -30,20 +30,14 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      const code = `s4dreply.edit({${content}});\n`;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `s4dreply.edit({embeds:[${content}]});\n`;
-      return code;
-    } else {
-      const code = `s4dreply.edit({content:String(${content})});\n`;
-      return code;
-    }
-  } else {
-    const code = `s4dreply.edit({content:String(${content})});\n`;
-    return code;
+    if (contentType === Types.Embed[0])
+      return `s4dreply.edit({
+  embeds:[${content}]
+});`;
   }
+  return `s4dreply.edit({
+  content: String(${content})
+});`;
 };
 
 registerRestrictions(blockName, [

@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'edit_msg_by_id';
-
 const blockData = {
   message0: 'Get message with the id of %1 in the channel %2 and edit it to %3',
   args0: [
     {
       type: 'input_value',
       name: 'ID',
-      check: ['Number', 'String']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'EDIT',
-      check: ['String', 'Embed', 'MessageEmbed', 'embed', 'Messageembed', 'messageembed']
+      check: Types.MessageContent
     }
   ],
   colour: '#4C97FF',
@@ -40,16 +40,19 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
   let edit = javascriptGenerator.valueToCode(block, 'EDIT', javascriptGenerator.ORDER_ATOMIC);
-  if (!String(edit).includes('embeds: [')) {
-    edit = `content: String(${edit})`;
+  if (block.getInput('EDIT').connection.targetConnection) {
+    const contentType = block.getInput('EDIT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
+    if (contentType === Types.Embed[0]) {
+      edit = `embeds: [${edit}]`;
+    } else {
+      edit = `content: String(${edit})`;
+    }
   } else {
-    edit = edit.replaceAll('{', '').replaceAll('(', '').replaceAll('}', '').replaceAll(')', '');
+    edit = `content: String(${edit})`;
   }
-  const code = `${channel}.messages.fetch(${id}).then(async (msg) => {
-       msg.edit({
-                    ${edit}
-                })
-})
-`;
-  return code;
+  return `${channel}.messages.fetch(${id}).then(async (msg) => {
+  msg.edit({
+    ${edit}
+  });
+});`;
 };

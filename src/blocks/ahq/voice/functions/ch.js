@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'act_voice';
-
 const blockData = {
   message0: '%1 member %2 %3 to channel/mute status %4',
   args0: [
@@ -26,7 +26,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'r',
-      check: ['VoiceChannel', 'Boolean']
+      check: [Types.Channel, Types.Boolean]
     }
   ],
   colour: '#40BF4A',
@@ -41,7 +41,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = `newState.${block.getFieldValue('action')}(${javascriptGenerator.valueToCode(block, 'r', javascriptGenerator.ORDER_ATOMIC || null)})`;
-  return code;
+  return `newState.${block.getFieldValue('action')}(${javascriptGenerator.valueToCode(block, 'r', javascriptGenerator.ORDER_ATOMIC || null)})`;
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'initialize_dashboard';
-
 const blockData = {
   type: 'initialize_dashboard',
   message0: 'Create a new dashboard with %1 Name %2 Description %3 Support server URL %4 Bot Invite URL %5 Dashboard URL %6 Port %7 No Port In CallBack URL %8 Client Secret %9 Log Requests %10 Inject CSS %11 Icon Path %12 Theme %13 %14 %15 Permissions required to access the dashboard %16 Add fields %17 Add commands to the commands list page %18 Session %19',
@@ -13,47 +13,47 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'description',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'support_server_url',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'bot_invite_url',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'base_url',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'port',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'noPortIncallbackUrl',
-      check: 'Boolean'
+      check: Types.Boolean
     },
     {
       type: 'input_value',
       name: 'secret',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'logRequests',
-      check: 'Boolean'
+      check: Types.Boolean
     },
     {
       type: 'input_value',
@@ -62,7 +62,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'favicon_path',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -84,7 +84,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'permissions',
-      check: 'Array'
+      check: Types.Array
     },
     {
       type: 'input_statement',
@@ -133,112 +133,101 @@ javascriptGenerator.forBlock['initialize_dashboard'] = (block) => {
 
   if (dropdown_theme == 'custom') {
     if (statements_cooki == 'null' || statements_cooki == '') {
-      code = `
-    s4d.client.dashboard = new Dashboard(s4d.client, {
-        name: ${value_name},
-        description: ${value_description},
-        serverUrl: ${value_support_server_url},
-        inviteUrl: ${value_bot_invite_url},
-        baseUrl: ${value_base_url},
-        port: ${value_port},
-        noPortIncallbackUrl: ${value_noportincallbackurl},
-        secret: ${value_secret},
-        logRequests: ${value_logrequests},
-        injectCSS: ${value_injectcss},
-        faviconPath: ${value_favicon_path},
-        theme: require('${text_requiree}'),
-        permissions: ${value_permissions},
-    });
+      code = `s4d.client.dashboard = new Dashboard(s4d.client, {
+  name: ${value_name},
+  description: ${value_description},
+  serverUrl: ${value_support_server_url},
+  inviteUrl: ${value_bot_invite_url},
+  baseUrl: ${value_base_url},
+  port: ${value_port},
+  noPortIncallbackUrl: ${value_noportincallbackurl},
+  secret: ${value_secret},
+  logRequests: ${value_logrequests},
+  injectCSS: ${value_injectcss},
+  faviconPath: ${value_favicon_path},
+  theme: require('${text_requiree}'),
+  permissions: ${value_permissions},
+});
 
-        // fields
-        ${statements_fields}
+// fields
+${statements_fields}
 
-        // commands
-        ${statements_register_commands}
-`;
+// commands
+${statements_register_commands}`;
     } else {
-      code = `
-    ${statements_cooki}
+      code = `${statements_cooki}
 
-    s4d.client.dashboard = new Dashboard(s4d.client, {
-        name: ${value_name},
-        description: ${value_description},
-        serverUrl: ${value_support_server_url},
-        inviteUrl: ${value_bot_invite_url},
-        baseUrl: ${value_base_url},
-        port: ${value_port},
-        noPortIncallbackUrl: ${value_noportincallbackurl},
-        secret: ${value_secret},
-        logRequests: ${value_logrequests},
-        injectCSS: ${value_injectcss},
-        faviconPath: ${value_favicon_path},
-        theme: require('${text_requiree}'),
-        permissions: ${value_permissions},
-        session: sessionObject,
-    });
+s4d.client.dashboard = new Dashboard(s4d.client, {
+  name: ${value_name},
+  description: ${value_description},
+  serverUrl: ${value_support_server_url},
+  inviteUrl: ${value_bot_invite_url},
+  baseUrl: ${value_base_url},
+  port: ${value_port},
+  noPortIncallbackUrl: ${value_noportincallbackurl},
+  secret: ${value_secret},
+  logRequests: ${value_logrequests},
+  injectCSS: ${value_injectcss},
+  faviconPath: ${value_favicon_path},
+  theme: require('${text_requiree}'),
+  permissions: ${value_permissions},
+  session: sessionObject,
+});
 
-        // fields
-        ${statements_fields}
+// fields
+${statements_fields}
 
-        // commands
-        ${statements_register_commands}
-`;
+// commands
+${statements_register_commands}`;
     }
-  }
-
-  // -----------------------------------------------------------
-  else {
+  } else {
     if (statements_cooki == 'null' || statements_cooki == '') {
-      code = `
-    s4d.client.dashboard = new Dashboard(s4d.client, {
-        name: ${value_name},
-        description: ${value_description},
-        serverUrl: ${value_support_server_url},
-        inviteUrl: ${value_bot_invite_url},
-        baseUrl: ${value_base_url},
-        port: ${value_port},
-        noPortIncallbackUrl: ${value_noportincallbackurl},
-        secret: ${value_secret},
-        logRequests: ${value_logrequests},
-        injectCSS: ${value_injectcss},
-        faviconPath: ${value_favicon_path},
-        theme: '${dropdown_theme}',
-        permissions: ${value_permissions},
-    });
+      code = `s4d.client.dashboard = new Dashboard(s4d.client, {
+  name: ${value_name},
+  description: ${value_description},
+  serverUrl: ${value_support_server_url},
+  inviteUrl: ${value_bot_invite_url},
+  baseUrl: ${value_base_url},
+  port: ${value_port},
+  noPortIncallbackUrl: ${value_noportincallbackurl},
+  secret: ${value_secret},
+  logRequests: ${value_logrequests},
+  injectCSS: ${value_injectcss},
+  faviconPath: ${value_favicon_path},
+  theme: '${dropdown_theme}',
+  permissions: ${value_permissions},
+});
 
-        // fields
-        ${statements_fields}
+// fields
+${statements_fields}
 
-        // commands
-        ${statements_register_commands}
-`;
+// commands
+${statements_register_commands}`;
     } else {
-      code = `
-    ${statements_cooki}
+      code = `${statements_cooki}
 
-    s4d.client.dashboard = new Dashboard(s4d.client, {
-        name: ${value_name},
-        description: ${value_description},
-        serverUrl: ${value_support_server_url},
-        inviteUrl: ${value_bot_invite_url},
-        baseUrl: ${value_base_url},
-        port: ${value_port},
-        noPortIncallbackUrl: ${value_noportincallbackurl},
-        secret: ${value_secret},
-        logRequests: ${value_logrequests},
-        injectCSS: ${value_injectcss},
-        faviconPath: ${value_favicon_path},
-        theme: '${dropdown_theme}',
-        permissions: ${value_permissions},
-        session: sessionObject,
-    });
+s4d.client.dashboard = new Dashboard(s4d.client, {
+  name: ${value_name},
+  description: ${value_description},
+  serverUrl: ${value_support_server_url},
+  inviteUrl: ${value_bot_invite_url},
+  baseUrl: ${value_base_url},
+  port: ${value_port},
+  noPortIncallbackUrl: ${value_noportincallbackurl},
+  secret: ${value_secret},
+  logRequests: ${value_logrequests},
+  injectCSS: ${value_injectcss},
+  faviconPath: ${value_favicon_path},
+  theme: '${dropdown_theme}',
+  permissions: ${value_permissions},
+  session: sessionObject,
+});
 
-        // fields
-        ${statements_fields}
+// fields
+${statements_fields}
 
-        // commands
-        ${statements_register_commands}
-`;
+// commands
+${statements_register_commands}`;
     }
   }
 

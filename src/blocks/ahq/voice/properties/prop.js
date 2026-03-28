@@ -1,7 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'prop_voice';
+import { Types } from '../../../types.js';
 
+const blockName = 'prop_voice';
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit({
@@ -35,11 +36,10 @@ Blockly.Blocks[blockName] = {
       colour: '#33cc00',
       tooltip: 'Get the old or current state of something about the voice channel.',
       helpUrl: '',
-      output: ['Boolean', 'VoiceChannel', 'Server', 'Member']
+      output: [Types.Boolean, Types.Channel, Types.Server, Types.Member]
     });
   }
 };
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = [`${block.getFieldValue('a')}.${block.getFieldValue('b')}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${block.getFieldValue('a')}.${block.getFieldValue('b')}`, javascriptGenerator.ORDER_NONE];
 };

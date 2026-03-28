@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'options';
-
 Blockly.Blocks[blockName] = {
   init: function () {
     var thisBlock = this;
@@ -27,7 +27,7 @@ Blockly.Blocks[blockName] = {
     this.appendDummyInput('SEARCH').appendField('Get').appendField(dropdown, 'SEARCH');
     this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
     this.setInputsInline(true);
-    this.setOutput(true, 'String');
+    this.setOutput(true, Types.String);
     this.setColour('#4C97FF');
   },
   updateType_: function (newMode) {
@@ -41,29 +41,29 @@ Blockly.Blocks[blockName] = {
     }
     if (newMode == 'string') {
       this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
-      this.setOutput(true, 'String');
+      this.setOutput(true, Types.String);
     } else if (newMode == 'integer') {
       this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
-      this.setOutput(true, 'Number');
+      this.setOutput(true, Types.Number);
     } else if (newMode == 'boolean') {
       this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
-      this.setOutput(true, 'Boolean');
+      this.setOutput(true, Types.Boolean);
     } else if (newMode == 'user') {
       this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
-      this.setOutput(true, 'User');
+      this.setOutput(true, Types.User);
     } else if (newMode == 'member') {
       this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
-      this.setOutput(true, 'Member');
+      this.setOutput(true, Types.Member);
     } else if (newMode == 'channel') {
       this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
-      this.setOutput(true, 'Channel');
+      this.setOutput(true, Types.Channel);
     } else if (newMode == 'role') {
       this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
-      this.setOutput(true, 'Role');
+      this.setOutput(true, Types.Role);
     } else if (newMode == 'subcommand') {
-      this.setOutput(true, 'String');
+      this.setOutput(true, Types.String);
     } else if (newMode == 'subcommand group') {
-      this.setOutput(true, 'String');
+      this.setOutput(true, Types.String);
     } else if (newMode == 'attachment') {
       this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
       this.setOutput(true, 'Attachment');
@@ -83,6 +83,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH');
   const string = javascriptGenerator.valueToCode(block, 'BOOLEAN', javascriptGenerator.ORDER_ATOMIC).toLowerCase();
-  const code = [`interaction.options.get${searchType}(${string})`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`interaction.options.get${searchType}(${string})`, javascriptGenerator.ORDER_NONE];
 };

@@ -2,10 +2,11 @@ import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const BORDER_FIELDS = ['DESCRIPTION', 'LABEL2', 'EMOJI2', 'CUSTOM_ID2'];
 
-const BORDER_TYPES = ['String', 'String', 'String', 'String'];
+const BORDER_TYPES = [Types.String, Types.String, Types.String, Types.String];
 
 const s4d_message_menu_block = {
   message0: '%{BKY_MESSAGE_MENU_BLOCK}',
@@ -93,12 +94,12 @@ javascriptGenerator.forBlock['s4d_message_menu_block'] = (block) => {
   let label = javascriptGenerator.valueToCode(block, 'LABEL2', javascriptGenerator.ORDER_ATOMIC) || null;
   let description = javascriptGenerator.valueToCode(block, 'DESCRIPTION', javascriptGenerator.ORDER_ATOMIC) || null;
   let code = `{\n`;
-  if (id !== null) code += `value:${id},\n`;
-  if (label !== null) code += `label:${label},\n`;
-  if (emoji !== null) code += `emoji:${emoji},\n`;
-  if (description !== null) code += `description:${description},\n`;
-  code += `default:false,`;
-  code += '},\n';
+  if (id !== null) code += `  value: ${id},\n`;
+  if (label !== null) code += `  label: ${label},\n`;
+  if (emoji !== null) code += `  emoji: ${emoji},\n`;
+  if (description !== null) code += `  description: ${description},\n`;
+  code += `  default: false
+},`;
   return code;
 };
 

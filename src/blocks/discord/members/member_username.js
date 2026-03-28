@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_member_username';
-
 const blockData = {
   message0: '%{BKY_MEMBER_USERNAME}',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   colour: '#50a6c9',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };

@@ -1,16 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import '@blockly/field-grid-dropdown';
+import { Types } from '../../../types.js';
 
 const blockName = 's4d_set_radius';
-
 const blockData = {
   message0: '%{BKY_SET_RADIUS}',
   args0: [
     {
       type: 'input_value',
       name: 'VALUE',
-      check: ['Number', 'String']
+      check: Types.Number
     }
   ],
   colour: '#4C97FF',

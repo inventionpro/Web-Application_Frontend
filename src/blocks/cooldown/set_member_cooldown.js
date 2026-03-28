@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'set_member_cooldown';
-
 const blockData = {
   message0: 'set member on cooldown %1',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   colour: '#4C97FF',
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  const code = `Cooldown.add(${member}.id);\n`;
-  return code;
+  return `Cooldown.add(${member}.id);`;
 };

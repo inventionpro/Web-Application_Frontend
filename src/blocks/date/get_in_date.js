@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'get_in_date';
-
 const blockData = {
   message0: 'get in date %1 %2',
   args0: [
     {
       type: 'input_value',
       name: 'DATE',
-      check: 'Number'
+      check: Types.Date
     },
     {
       type: 'field_dropdown',
@@ -23,7 +23,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'Number',
+  output: Types.Number,
   colour: '#D14081',
   tooltip: 'Get a certain thing from a date.',
   helpUrl: ''
@@ -38,17 +38,16 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const date = javascriptGenerator.valueToCode(block, 'DATE', javascriptGenerator.ORDER_ATOMIC);
   const dataType = block.getFieldValue('DATA_TYPE');
-  if (dataType === 'SECOND') {
-    return [`(${date}.getSeconds())`, javascriptGenerator.ORDER_NONE];
-  } else if (dataType === 'MINUTE') {
-    return [`(${date}.getMinutes())`, javascriptGenerator.ORDER_NONE];
-  } else if (dataType === 'HOUR') {
-    return [`(${date}.getHours())`, javascriptGenerator.ORDER_NONE];
-  } else if (dataType === 'DATE') {
-    return [`(${date}.getDate())`, javascriptGenerator.ORDER_NONE];
-  } else if (dataType === 'DAY_OF_WEEK') {
-    return [`(${date}.getDay())`, javascriptGenerator.ORDER_NONE];
-  } else {
-    return [`(${date}.getSeconds())`, javascriptGenerator.ORDER_NONE];
+  switch (dataType) {
+    case 'SECOND':
+      return [`(${date}.getSeconds())`, javascriptGenerator.ORDER_NONE];
+    case 'MINUTE':
+      return [`(${date}.getMinutes())`, javascriptGenerator.ORDER_NONE];
+    case 'HOUR':
+      return [`(${date}.getHours())`, javascriptGenerator.ORDER_NONE];
+    case 'DATE':
+      return [`(${date}.getDate())`, javascriptGenerator.ORDER_NONE];
+    case 'DAY_OF_WEEK':
+      return [`(${date}.getDay())`, javascriptGenerator.ORDER_NONE];
   }
 };

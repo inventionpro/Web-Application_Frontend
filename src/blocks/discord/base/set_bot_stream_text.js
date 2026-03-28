@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_set_bot_stream_text';
-
 const blockData = {
   message0: 'Set status to STREAMING with text %2 using url %1',
   args0: [
     {
       type: 'input_value',
       name: 'URL',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#4C97FF',
@@ -34,11 +34,10 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const url = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `s4d.client.user.setActivity(${name}, {
+  return `s4d.client.user.setActivity(${name}, {
   type: Discord.ActivityType.Streaming,
   url: ${url}
 });`;
-  return code;
 };
 
 registerRestrictions(blockName, [

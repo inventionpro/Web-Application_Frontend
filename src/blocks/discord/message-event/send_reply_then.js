@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_reply_then';
-
 const blockData = {
   message0: '%{BKY_REPLY_THEN}',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'MessageEmbed', 'embed', 'var']
+      check: Types.MessageContent
     },
     {
       type: 'input_statement',
@@ -35,23 +35,18 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'var') {
-      const code = `s4dmessage.channel.send({content: String(${content})}).then(async (s4dreply) =>{\n ${statementThen} \n});\n`;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `s4dmessage.channel.send({ embeds:[${content}]}).then(async (s4dreply) =>{\n ${statementThen} \n});\n`;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `s4dmessage.channel.send({${content}}).then(async (s4dreply) =>{\n ${statementThen} \n});\n`;
-      return code;
-    } else {
-      const code = `s4dmessage.channel.send({content:String(${content})}).then(async (s4dreply) =>{\n ${statementThen} \n});\n`;
-      return code;
-    }
-  } else {
-    const code = `s4dmessage.channel.send(String(${content})).then(async (s4dreply) =>{\n ${statementThen} \n});\n`;
-    return code;
+    if (contentType === Types.Embed[0])
+      return `s4dmessage.channel.send({
+  embeds:[${content}]
+}).then(async (s4dreply) =>{
+${statementThen}
+});`;
   }
+  return `s4dmessage.channel.send({
+  content: String(${content})
+}).then(async (s4dreply) =>{
+${statementThen}
+});`;
 };
 
 registerRestrictions(blockName, [

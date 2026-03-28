@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'better_stop';
-
 const blockData = {
   message0: 'Stop the queue and disconnect',
   colour: '#4C97FF',
@@ -18,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `guildQueue.stop();`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return 'guildQueue.stop();';
 };

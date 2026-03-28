@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
+import { T, Types } from '../../../types.js';
 
 const blockName = 's4d_send_in_channel';
-
 const blockData = {
-  message0: 'send %1 in channel %2  as a %3 reply with goodbye/welcome/rankcard %4',
+  message0: 'send %1 in channel %2 as a %3 reply with goodbye/welcome/rankcard %4',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'field_grid_dropdown',
@@ -52,11 +52,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const info2 = block.getFieldValue('INTERACTION');
   let info1 = info2.replace("'", '');
   let info = info1.replace("'", '');
-  let code;
-  if (info === 'interaction') {
-    code = `interaction.reply({content:${content},files:[{attachment:${gw}.toBuffer()}]});\n`;
-  } else {
-    code = `${channel}.send({content:${content},files:[{attachment:${gw}.toBuffer()}]});\n`;
-  }
-  return code;
+  return `${info === 'interaction' ? 'interaction' : channel}.reply({
+  content: ${content},
+  files: [{ attachment: ${gw}.toBuffer() }]
+});`;
 };

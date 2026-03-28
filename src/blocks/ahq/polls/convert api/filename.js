@@ -1,13 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
-const blockName = 'convert_api_file';
+import { Types } from '../../../types.js';
 
+const blockName = 'convert_api_file';
 const blockData = {
   message0: 'Filename of converted task',
   args0: [],
   colour: '#40BF4A',
-  output: 'String',
+  output: Types.String,
   tooltip: 'The filename of the file that was converted.',
   helpUrl: ''
 };
@@ -17,9 +18,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`file.filename`, javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['file.filename', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

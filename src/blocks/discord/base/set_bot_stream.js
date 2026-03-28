@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_set_bot_stream';
-
 const blockData = {
   message0: '%{BKY_SET_BOT_STREAM}',
   args0: [
     {
       type: 'input_value',
       name: 'URL',
-      check: ['Number', 'String']
+      check: Types.String
     }
   ],
   colour: '#4C97FF',
@@ -28,8 +28,10 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const url = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
-  const code = `s4d.client.user.setActivity("with depression", { \n type: "STREAMING", \n url: ${url}});\n`;
-  return code;
+  return `s4d.client.user.setActivity("with depression", {
+  type: "STREAMING",
+  url: ${url}
+});`;
 };
 
 registerRestrictions(blockName, [

@@ -1,10 +1,8 @@
-import '@blockly/field-slider';
-
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import '@blockly/field-slider';
 
 const blockName = 's4d_set_badge';
-
 const blockData = {
   message0: '%{BKY_SET_BADGE}',
   args0: [

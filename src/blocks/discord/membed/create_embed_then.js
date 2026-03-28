@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_m_create_embed_then';
-
 const blockData = {
   message0: '%{BKY_M_CREATE_EMBED_THEN}',
   args0: [
@@ -29,6 +28,6 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = `var embed = new Discord.EmbedBuilder() \n ${statementThen}\n`;
-  return code;
+  return `var embed = new Discord.EmbedBuilder()
+${statementThen}`;
 };

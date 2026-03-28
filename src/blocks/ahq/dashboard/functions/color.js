@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'add_color_dash';
-
 const blockData = {
   type: 'block_type',
   message0: 'add colour input %1 name %2 description %3 setter %4 get %5',
@@ -14,12 +14,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'desc',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -28,7 +28,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'getter',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#0EB22B',
@@ -42,12 +42,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = `s4d.client.dashboard.addColorInput(${javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_NONE)}, ${javascriptGenerator.valueToCode(block, 'desc', javascriptGenerator.ORDER_NONE)}, async function(client, guild, value) {${javascriptGenerator.statementToCode(block, 'set')}}, async function(client, guild) {
-        await delay(200);
-        return (${javascriptGenerator.valueToCode(block, 'getter', javascriptGenerator.ORDER_NONE)})
-    });`;
-  return code;
+  return `s4d.client.dashboard.addColorInput(${javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_NONE)}, ${javascriptGenerator.valueToCode(block, 'desc', javascriptGenerator.ORDER_NONE)}, async function(client, guild, value) {${javascriptGenerator.statementToCode(block, 'set')}}, async function(client, guild) {
+  await delay(200);
+  return (${javascriptGenerator.valueToCode(block, 'getter', javascriptGenerator.ORDER_NONE)})
+});`;
 };
 
 registerRestrictions(blockName, [

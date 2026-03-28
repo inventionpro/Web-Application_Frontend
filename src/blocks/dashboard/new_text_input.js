@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'add_text_input';
-
 const blockData = {
   type: 'add_text_input',
   message0: 'Add a text input %1 Set input title to %2 Set input description to %3 Set input ID to %4 %5 Set validator %6 Set value setter %7 Set value getter %8 Default value getter value %9',
@@ -13,12 +13,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'description',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_input',
@@ -43,7 +43,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'gett_def',
-      check: 'String'
+      check: Types.String
     }
   ],
   inputsInline: false,
@@ -73,14 +73,11 @@ javascriptGenerator.forBlock['add_text_input'] = (block) => {
   var statements_setter = javascriptGenerator.statementToCode(block, 'setter');
   var value_getter = javascriptGenerator.valueToCode(block, 'getter', javascriptGenerator.ORDER_ATOMIC);
   var value_gett_def = javascriptGenerator.valueToCode(block, 'gett_def', javascriptGenerator.ORDER_ATOMIC);
-  var code = `
-    const validator_${text_name} = value => ${value_validator};
-    const setter_${text_name} = (discordClient, guild, value) => ${statements_setter}
-    const getter_${text_name} = async(discordClient, guild) => {
-        ${value_getter} || ${value_gett_def};
-    }
+  return `const validator_${text_name} = value => ${value_validator};
+const setter_${text_name} = (discordClient, guild, value) => ${statements_setter}
+const getter_${text_name} = async(discordClient, guild) => {
+  ${value_getter} || ${value_gett_def};
+}
 
-    s4d.client.dashboard.addTextInput(${value_name}, ${value_description}, validator_${text_name}, setter_${text_name}, getter_${text_name});
-`;
-  return code;
+s4d.client.dashboard.addTextInput(${value_name}, ${value_description}, validator_${text_name}, setter_${text_name}, getter_${text_name});`;
 };

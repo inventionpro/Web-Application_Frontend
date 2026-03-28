@@ -1,15 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../../restrictions';
-const blockName = 'convert_button';
+import { Types } from '../../../../types.js';
 
+const blockName = 'convert_button';
 const blockData = {
   message0: 'Button(s) %1',
   args0: [
     {
       type: 'input_value',
       name: 'buton',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#33cc00',
@@ -23,10 +24,11 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = [javascriptGenerator.valueToCode(block, 'buton', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", ''), javascriptGenerator.ORDER_NONE];
-  return code;
+  return [javascriptGenerator.valueToCode(block, 'buton', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", ''), javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions(blockName, [
   {
     message: 'RES_MISSING_AHQ_CONTENT',

@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_reply_add_reaction';
-
 const blockData = {
   message0: '%{BKY_REPLY_ADD_REACTION}',
   args0: [
     {
       type: 'input_value',
       name: 'REACTION',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -28,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const reaction = javascriptGenerator.valueToCode(block, 'REACTION', javascriptGenerator.ORDER_ATOMIC);
-  const code = `s4dreply.react(${reaction});\n`;
-  return code;
+  return `s4dreply.react(${reaction});`;
 };
 
 registerRestrictions(blockName, [

@@ -1,19 +1,19 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_channel_topic';
-
 const blockData = {
   message0: 'Topic of channel %1',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#4C97FF',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };

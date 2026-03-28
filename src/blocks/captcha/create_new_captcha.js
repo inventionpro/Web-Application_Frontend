@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'create_captcha';
-
 const blockData = {
   message0: 'Create New Captcha',
   args0: [],
@@ -19,7 +19,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `let captcha = new Captcha();\n`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `let captcha = new Captcha();`;
 };

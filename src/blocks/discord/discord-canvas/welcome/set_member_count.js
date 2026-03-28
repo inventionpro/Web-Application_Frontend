@@ -1,16 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import '@blockly/field-grid-dropdown';
+import { T, Types } from '../../../types.js';
 
 const blockName = 's4d_set_member_count';
-
 const blockData = {
   message0: '%{BKY_SET_MEMBER_COUNT}',
   args0: [
     {
       type: 'input_value',
       name: 'STRING',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     }
   ],
   colour: '#4C97FF',
@@ -29,6 +28,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'STRING', javascriptGenerator.ORDER_ATOMIC);
-  let code = `.setMemberCount(${value})`;
-  return code;
+  return `.setMemberCount(${value})`;
 };

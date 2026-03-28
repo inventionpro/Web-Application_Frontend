@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_mentioned_role';
-
 const blockData = {
   message0: '%{BKY_MENTIONED_ROLE}',
   colour: '#187795',
   tooltip: '',
-  output: 'Role',
+  output: Types.Role,
   helpUrl: ''
 };
 
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`s4dmessage.mentions.roles.first()`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return [`s4dmessage.mentions.roles.first()`, javascriptGenerator.ORDER_NONE];
 };

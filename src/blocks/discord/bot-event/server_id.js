@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_add_server_id';
-
 const blockData = {
   message0: '%{BKY_ADD_SERVER_ID}',
   colour: '#5BA58C',
   tooltip: '',
-  output: 'String',
+  output: Types.String,
   helpUrl: ''
 };
 
@@ -18,9 +18,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['s4dguild.id', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['s4dguild.id', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

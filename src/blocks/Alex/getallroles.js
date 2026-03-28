@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'get_all_roles';
-
 const blockData = {
   message0: 'Get all roles of member %1 in server %2 then %3 %4',
   args0: [
     {
       type: 'input_value',
       name: 'member',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'input_value',
       name: 'server',
-      check: 'Server'
+      check: Types.Server
     },
     {
       type: 'input_dummy'
@@ -42,8 +42,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const Then = javascriptGenerator.statementToCode(block, 'then');
   const member = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
-  const code = `memberRoles = ${member}.roles.cache
-.filter((roles) => roles.id !== ${server}.id)
-.map ((role) => role.toString()); \n ${Then}`;
-  return code;
+  return `memberRoles = ${member}.roles.cache
+  .filter((roles) => roles.id !== ${server}.id)
+  .map ((role) => role.toString());
+${Then}`;
 };

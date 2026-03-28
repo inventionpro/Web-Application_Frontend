@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
+
 const blockColor = '#a354b3';
 Blockly.Blocks['collections_create_new_collection'] = {
   init: function () {
@@ -8,7 +10,7 @@ Blockly.Blocks['collections_create_new_collection'] = {
       inputsInline: true,
       args0: [],
       colour: blockColor,
-      output: 'Collection',
+      output: Types.Collection,
       tooltip: 'Create a new empty collection.',
       helpUrl: ''
     });
@@ -18,6 +20,7 @@ Blockly.Blocks['collections_create_new_collection'] = {
 javascriptGenerator.forBlock['collections_create_new_collection'] = function () {
   return [`new Map()`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['collections_get_from_collection'] = {
   init: function () {
     this.jsonInit({
@@ -27,16 +30,16 @@ Blockly.Blocks['collections_get_from_collection'] = {
         {
           type: 'input_value',
           name: 'KEY',
-          check: ['String', 'Var', 'var', 'Env']
+          check: Types.String
         },
         {
           type: 'input_value',
           name: 'MAP',
-          check: ['Collection', 'Var', 'var']
+          check: Types.Collection
         }
       ],
       colour: blockColor,
-      output: null,
+      output: Types.Any,
       tooltip: "Get a value using it's key in the collection.",
       helpUrl: ''
     });
@@ -63,12 +66,12 @@ Blockly.Blocks['collections_set_to_key_in_collection'] = {
         {
           type: 'input_value',
           name: 'KEY',
-          check: ['String', 'Var', 'var', 'Env']
+          check: Types.String
         },
         {
           type: 'input_value',
           name: 'MAP',
-          check: ['Collection', 'Var', 'var']
+          check: Types.Collection
         }
       ],
       colour: blockColor,
@@ -84,8 +87,7 @@ javascriptGenerator.forBlock['collections_set_to_key_in_collection'] = (block) =
   const map = javascriptGenerator.valueToCode(block, 'MAP', javascriptGenerator.ORDER_ATOMIC);
   const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
-  return `${map}.set(String(${key}), ${value})
-    `;
+  return `${map}.set(String(${key}), ${value});`;
 };
 
 Blockly.Blocks['collections_size_of_collection'] = {
@@ -97,11 +99,11 @@ Blockly.Blocks['collections_size_of_collection'] = {
         {
           type: 'input_value',
           name: 'MAP',
-          check: ['Collection', 'Var', 'var']
+          check: Types.Collection
         }
       ],
       colour: blockColor,
-      output: 'Number',
+      output: Types.Number,
       tooltip: 'Get the amount of things in the collection.',
       helpUrl: ''
     });
@@ -122,12 +124,12 @@ Blockly.Blocks['collections_remove_key_in_collection'] = {
         {
           type: 'input_value',
           name: 'KEY',
-          check: ['String', 'Var', 'var', 'Env']
+          check: Types.String
         },
         {
           type: 'input_value',
           name: 'MAP',
-          check: ['Collection', 'Var', 'var']
+          check: Types.Collection
         }
       ],
       colour: blockColor,
@@ -142,9 +144,9 @@ Blockly.Blocks['collections_remove_key_in_collection'] = {
 javascriptGenerator.forBlock['collections_remove_key_in_collection'] = (block) => {
   const map = javascriptGenerator.valueToCode(block, 'MAP', javascriptGenerator.ORDER_ATOMIC);
   const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
-  return `${map}.delete(String(${key}))
-    `;
+  return `${map}.delete(String(${key}));`;
 };
+
 Blockly.Blocks['collections_clear_collection'] = {
   init: function () {
     this.jsonInit({
@@ -154,7 +156,7 @@ Blockly.Blocks['collections_clear_collection'] = {
         {
           type: 'input_value',
           name: 'MAP',
-          check: ['Collection', 'Var', 'var']
+          check: Types.Collection
         }
       ],
       colour: blockColor,
@@ -168,8 +170,7 @@ Blockly.Blocks['collections_clear_collection'] = {
 
 javascriptGenerator.forBlock['collections_clear_collection'] = (block) => {
   const map = javascriptGenerator.valueToCode(block, 'MAP', javascriptGenerator.ORDER_ATOMIC);
-  return `${map}.clear()
-    `;
+  return `${map}.clear();`;
 };
 
 Blockly.Blocks['collections_collection_has_key'] = {
@@ -181,16 +182,16 @@ Blockly.Blocks['collections_collection_has_key'] = {
         {
           type: 'input_value',
           name: 'MAP',
-          check: ['Collection', 'Var', 'var']
+          check: Types.Collection
         },
         {
           type: 'input_value',
           name: 'KEY',
-          check: ['String', 'Var', 'var', 'Env']
+          check: Types.String
         }
       ],
       colour: blockColor,
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Checks if a collection has a key.',
       helpUrl: ''
     });
@@ -221,11 +222,11 @@ Blockly.Blocks['jg_collections_convert_database_collection_to_collection'] = {
         {
           type: 'input_value',
           name: 'DBCOLLECT',
-          check: ['Object', 'Var', 'var', 'DatabaseValue']
+          check: Types.Object
         }
       ],
       colour: blockColor,
-      output: null,
+      output: Types.Any,
       tooltip: "Get a value using it's key in the collection.",
       helpUrl: ''
     });

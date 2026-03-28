@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 'button_reply';
-
 const blockData = {
   message0: 'Button Reply %1 Ephemeral %2 Row %3',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'Embed', 'MessageEmbed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'BOOLEAN',
-      check: ['Boolean']
+      check: Types.Boolean
     },
     {
       type: 'input_value',
       name: 'BUTTON',
-      check: ['String', 'ButtonRow']
+      check: T([Types.String, 'ButtonRow'])
     }
   ],
   colour: '#4C97FF',
@@ -43,18 +43,17 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let button2 = text1.replace("'", '');
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'Embed') {
-      const code = `await interaction.reply({ ephemeral: ${boolean}, embeds: [${content}], components: [${button2}] });\n`;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `await interaction.reply({${content}});\n`;
-      return code;
-    } else {
-      const code = `await interaction.reply({ ephemeral: ${boolean}, content: ${content}, components: [${button2}] });\n`;
-      return code;
+    if (contentType === Types.Embed[0]) {
+      return `await interaction.reply({
+  ephemeral: ${boolean},
+  embeds: [${content}],
+  components: [${button2}]
+});`;
     }
-  } else {
-    const code = `await interaction.reply({ ephemeral: ${boolean}, content: ${content}, components: [${button2}] });\n`;
-    return code;
   }
+  return `await interaction.reply({
+  ephemeral: ${boolean},
+  content: ${content},
+  components: [${button2}]
+});`;
 };

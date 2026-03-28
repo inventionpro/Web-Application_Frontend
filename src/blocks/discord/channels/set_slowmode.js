@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'slowmode';
-
 const blockData = {
   message0: 'set channel %1 to slowmode %2',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: ['Channel']
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'NUMBER',
-      check: 'Number'
+      check: Types.Number
     }
   ],
   colour: '#4C97FF',
@@ -33,6 +33,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const duration = javascriptGenerator.valueToCode(block, 'NUMBER', javascriptGenerator.ORDER_ATOMIC);
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${channel}.setRateLimitPerUser(${duration})\n`;
-  return code;
+  return `${channel}.setRateLimitPerUser(${duration});`;
 };

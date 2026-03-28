@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 's4d_delete_all_data_new';
-
 const blockData = {
   message0: 'delete all data from the database with name %1',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const name2 = name.substring(1, name.length - 1);
-  const code = `${name2}.clear()`;
-  return code;
+  return `${name2}.clear();`;
 };

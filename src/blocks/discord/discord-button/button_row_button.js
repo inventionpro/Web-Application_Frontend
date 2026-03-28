@@ -2,10 +2,11 @@ import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const BORDER_FIELDS = ['STYLE', 'LABEL', 'EMOJI', 'URL', 'CUSTOM_ID', 'DISABLED'];
 
-const BORDER_TYPES = ['ButtonStyle', 'String', 'String', 'String', 'String', 'Boolean'];
+const BORDER_TYPES = ['ButtonStyle', Types.String, Types.String, Types.String, Types.String, Types.Boolean];
 
 const s4d_message_row_block = {
   message0: '%{BKY_MESSAGE_ROW_BLOCK}',
@@ -100,9 +101,7 @@ javascriptGenerator.forBlock['s4d_message_row_block'] = (block) => {
   if (label !== null) code += `.setLabel(${label})\n`;
   if (emoji !== null) code += `.setEmoji(${emoji})\n`;
   if (disabled !== null) code += `.setDisabled(${disabled})\n`;
-  if (style === null) code += ".setStyle('SECONDARY')";
-  if (style !== null) code += `.setStyle(${style})`;
-  code += ',\n';
+  code += `.setStyle(${style ?? 2}),\n`;
   return code;
 };
 

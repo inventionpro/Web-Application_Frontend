@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_playing';
-
 const blockData = {
   message0: '%{BKY_PLAYING2}',
   args0: [
@@ -12,7 +12,7 @@ const blockData = {
       check: 'queue'
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#a55b80',
   tooltip: '',
   helpUrl: ''

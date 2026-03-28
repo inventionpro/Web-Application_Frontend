@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'typing_start';
-
 const blockData = {
   message0: 'When someone starts typing %1 %2',
   args0: [
@@ -26,6 +26,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const then = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = `s4d.client.on(Discord.Events.TypingStart, async (s4dTyping) => {\n${then}\n});\n`;
-  return code;
+  return `s4d.client.on(Discord.Events.TypingStart, async (s4dTyping) => {
+${then}
+});`;
 };

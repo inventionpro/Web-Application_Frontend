@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'category_channel';
-
 const blockData = {
   message0: 'Create text channel with name %1 In category with ID %2 In server %3',
   args0: [
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'id',
-      check: ['String', 'Category']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'server',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#0c97f0',
@@ -40,7 +40,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
   const cid = javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${server}.channels.create(${name}, { type: 'text', parent: ${cid} });
-`;
-  return code;
+  return `${server}.channels.create(${name}, { type: 'text', parent: ${cid} });`;
 };

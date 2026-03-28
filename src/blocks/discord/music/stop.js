@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_stop';
-
 const blockData = {
   message0: '%{BKY_STOP}',
   args0: [
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const queue = javascriptGenerator.valueToCode(block, 'QUEUE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${queue}.destroy()\n`;
-  return code;
+  return `${queue}.destroy();`;
 };

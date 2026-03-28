@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'member_channel_perms';
-
 const blockData = {
   type: 'member_channel_perms',
   message0: 'member %1 has permission %2 %3 on channel %4',
@@ -36,7 +36,7 @@ const blockData = {
     }
   ],
   inputsInline: true,
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#5B80A5',
   tooltip: '',
   helpUrl: ''
@@ -52,8 +52,5 @@ javascriptGenerator.forBlock['member_channel_perms'] = (block) => {
   var member = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC);
   var dropdown_name = block.getFieldValue('NAME');
   var channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
-
-  var code = `ShsHSjJSjSJSJSGHkkhdjdmns.includes(${channel}.permissionsFor(${member}).toArray().filter(x => x == '${dropdown_name}')[0])`;
-
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`ShsHSjJSjSJSJSGHkkhdjdmns.includes(${channel}.permissionsFor(${member}).toArray().filter(x => x == '${dropdown_name}')[0])`, javascriptGenerator.ORDER_NONE];
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 'random_reacting_member_user';
-
 const blockData = {
   args0: [
     {
@@ -16,7 +16,7 @@ const blockData = {
   ],
   message0: 'Random reacting %1',
   colour: '#187795',
-  output: 'Member',
+  output: T(Types.User, Types.Member),
   tooltip: '',
   helpUrl: ''
 };
@@ -29,11 +29,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
-  var code;
   if (type == 'member') {
-    code = ['reaction.message.guild.members.resolve(m.users.cache.random())', javascriptGenerator.ORDER_NONE];
+    return ['reaction.message.guild.members.resolve(m.users.cache.random())', javascriptGenerator.ORDER_NONE];
   } else {
-    code = ['reaction.users.cache.random()', javascriptGenerator.ORDER_NONE];
+    return ['reaction.users.cache.random()', javascriptGenerator.ORDER_NONE];
   }
-  return code;
 };

@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'not_perms_ahq_hndler';
-
 const blockData = {
   message0: 'Not MOD Perms Message',
   colour: '#33cc00',
-  output: 'String',
+  output: Types.String,
   tooltip: '???',
   helpUrl: ''
 };
@@ -16,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['(ahqhandler[`not-perms`])', javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['ahqhandler["not-perms"]', javascriptGenerator.ORDER_NONE];
 };

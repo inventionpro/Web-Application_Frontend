@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_button_row';
-
 const blockData = {
   message0: 'button row %1 %2',
   args0: [
@@ -26,6 +25,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'BUTTONS');
-  var code = [`new Discord.ActionRowBuilder()\n.addComponents(${statements})`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [
+    `new Discord.ActionRowBuilder()
+  .addComponents(${statements})`,
+    javascriptGenerator.ORDER_NONE
+  ];
 };

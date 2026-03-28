@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_create_embed_thens';
-
 const blockData = {
   message0: '%{BKY_C_PERM}',
   args0: [
@@ -16,12 +16,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: ['Member', 'Role']
+      check: T(Types.Member, Types.Role)
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_statement',
@@ -48,6 +48,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'THEN');
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${channel}.updateOverwrite(${member}, {\n${statements}\n});`;
-  return code;
+  return `${channel}.updateOverwrite(${member}, {
+${statements}
+});`;
 };

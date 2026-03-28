@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 's4d_get_all_data_new';
-
 const blockData = {
   message0: 'get all data from the database with name %2 %1',
   args0: [
@@ -12,10 +12,10 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
-  output: ['JSON', 'Array'],
+  output: T(Types.Array, Types.Object),
   colour: '#5ba58b',
   tooltip: 'Gets all data from database\nOutputs a JSON map',
   helpUrl: ''

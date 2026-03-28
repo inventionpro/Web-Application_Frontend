@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'ahqq_ahq_modal';
 
+const blockName = 'ahqq_ahq_modal';
 const blockData = {
   message0: 'Send jose/redo embeds',
   args0: [],
@@ -14,7 +14,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`embed`, javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['embed', javascriptGenerator.ORDER_NONE];
 };

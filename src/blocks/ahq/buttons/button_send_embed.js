@@ -1,7 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'embed_btn_ahq';
+import { Types } from '../../types.js';
 
+const blockName = 'embed_btn_ahq';
 const blockData = {
   message0: 'send Jose/Redo embed',
   colour: '#33cc00',
@@ -15,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['embeds: [embed]', javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['embeds: [embed]', javascriptGenerator.ORDER_NONE];
 };

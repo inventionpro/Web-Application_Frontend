@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_delete_data2';
-
 const blockData = {
   message0: 'Delete %1 from dootabase',
   args0: [
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     }
   ],
   previousStatement: null,
@@ -26,5 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
-  return `dootabase.del(String(${key}));\n`;
+  return `dootabase.del(String(${key}));`;
 };

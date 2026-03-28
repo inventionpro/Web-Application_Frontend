@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_get_msg_then';
-
 const blockData = {
   message0: '%{BKY_GET_MESSAGE_BY_ID}',
   args0: [
     {
       type: 'input_value',
       name: 'ID',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_statement',
@@ -39,6 +39,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = `${channel}.messages.fetch(${id}).then(async (s4dmessage) =>{\n ${statementThen} \n});`;
-  return code;
+  return `${channel}.messages.fetch(${id}).then(async (s4dmessage) =>{
+${statementThen}
+});`;
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_on_menu_click';
-
 const blockData = {
   message0: '%{BKY_ON_MENU_CLICK}',
   colour: '#F5AB1A',
@@ -17,7 +17,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   previousStatement: null,
@@ -34,9 +34,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   const memberr = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   let member = memberr.replace('.user', '');
-  const code = `let collector = m.createMessageComponentCollector({filter: i=>i.user.id === ${member}.id ,time:60000});
-    collector.on('collect',async i=>{
-        ${statements}
-    })\n`;
-  return code;
+  return `let collector = m.createMessageComponentCollector({
+  filter: i => i.user.id === ${member}.id,
+  time: 60000
+});
+collector.on('collect', async i=>{
+${statements}
+});`;
 };

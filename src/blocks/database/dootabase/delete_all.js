@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_delete_all_data2';
-
 const blockData = {
   message0: 'Delete current dootabase data',
   args0: [],
@@ -18,8 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = 'dootabase.clear()\n';
-
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return 'dootabase.clear();';
 };

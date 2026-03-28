@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_reg_slash_options';
-
 const blockData = {
   message0: 'Set slash cmd options name %1 set Description %2 required? %3 type %4',
   args0: [
     {
       type: 'input_value',
       name: 'Server',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'args',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'ahq',
-      checl: 'Boolean'
+      check: Types.Boolean
     },
     {
       type: 'field_dropdown',
@@ -49,16 +49,16 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const bl = javascriptGenerator.valueToCode(block, 'ahq', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'Server', javascriptGenerator.ORDER_ATOMIC);
   const des = javascriptGenerator.valueToCode(block, 'args', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('Label');
-  const code = `{
-        name: ${server},
-        description: ${des},
-        required: ${bl},
-        type: ${type.replace('"', '').replace('"', '')}
-    }`;
-  return code;
+  return `{
+  name: ${server},
+  description: ${des},
+  required: ${bl},
+  type: ${type.replace('"', '').replace('"', '')}
+}`;
 };

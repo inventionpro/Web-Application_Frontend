@@ -1,19 +1,18 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 const blockName = 'title_ahq_embed';
-
 const blockData = {
   message0: 'Set Title %1 Embed %2',
   args0: [
     {
       type: 'input_value',
       name: 'Label',
-      check: ['String']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'button name',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#40BF4A',

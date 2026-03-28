@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'create_emoji';
-
 const blockData = {
   message0: 'In server %1 Create emoji with name %2 with URL %3',
   args0: [
     {
       type: 'input_value',
       name: 'server',
-      check: 'Server'
+      check: Types.Server
     },
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'url',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#32a852',
@@ -29,6 +29,7 @@ const blockData = {
   previousStatement: null,
   nextStatement: null
 };
+
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
@@ -39,6 +40,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const url = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
   const name = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${server}.emojis.create(${url}, ${name}) \n`;
-  return code;
+  return `${server}.emojis.create(${url}, ${name});`;
 };

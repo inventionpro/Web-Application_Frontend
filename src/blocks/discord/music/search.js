@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_search';
-
 const blockData = {
   message0: '%{BKY_SEARCH}',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'input_value',
       name: 'STRING',
-      check: 'String'
+      check: Types.String
     }
   ],
   output: 'MusicSearch',

@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'tts-test';
-
 const blockData = {
   message0: 'Play TTS %1 in channel %2 in server %3',
   args0: [
     {
       type: 'input_value',
       name: 'tts',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'channel',
-      check: 'VoiceChannel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'server',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#5153c2',
@@ -40,7 +40,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const playtts = javascriptGenerator.valueToCode(block, 'tts', javascriptGenerator.ORDER_ATOMIC);
   const channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
-  const code = `const stream=discordTTS.getVoiceStream(${playtts});
+  return `const stream=discordTTS.getVoiceStream(${playtts});
 const audioResource=createAudioResource(stream, {inputType: StreamType.Arbitrary, inlineVolume:true});
 if (!voiceConnection || voiceConnection.status===VoiceConnectionStatus.Disconnected) {
   voiceConnection = joinVoiceChannel({
@@ -50,10 +50,8 @@ if (!voiceConnection || voiceConnection.status===VoiceConnectionStatus.Disconnec
   });
   voiceConnection=await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5000);
 }
-
 if (voiceConnection.status===VoiceConnectionStatus.Connected) {
   voiceConnection.subscribe(audioPlayer);
   audioPlayer.play(audioResource);
 }`;
-  return code;
 };

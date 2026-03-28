@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_create_embed_then_add_link';
-
 const blockData = {
   message0: 'Set Embed Url %1',
   args0: [
     {
       type: 'input_value',
       name: 'DESCRIPTION',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#40BF4A',
@@ -28,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const uri = javascriptGenerator.valueToCode(block, 'DESCRIPTION', javascriptGenerator.ORDER_ATOMIC);
-  const code = `embed.setURL(${uri});\n`;
-  return code;
+  return `embed.setURL(${uri});`;
 };
 
 registerRestrictions(blockName, [

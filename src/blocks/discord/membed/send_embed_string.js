@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'send_m_embed_string';
-
 const blockData = {
   message0: 'Send Embed',
   colour: '#40BF4A',
   tooltip: null,
-  output: 'Embed',
+  output: Types.Embed,
   helpUrl: ''
 };
 
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['embed\n', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['embed', javascriptGenerator.ORDER_NONE];
 };

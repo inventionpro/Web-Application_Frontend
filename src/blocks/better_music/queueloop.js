@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'better_loop_queue';
-
 const blockData = {
   message0: 'Loop the current queue',
   colour: '#4C97FF',
@@ -18,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `guildQueue.setRepeatMode(RepeatMode.QUEUE);`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return 'guildQueue.setRepeatMode(RepeatMode.QUEUE);';
 };

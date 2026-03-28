@@ -2,11 +2,10 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'dash_guild_id';
-
 const blockData = {
   type: 'dash_guild_id',
   message0: 'Guild ID',
-  output: null,
+  output: Types.Any,
   colour: 300,
   tooltip: 'Returns the guild id of the input',
   helpUrl: ''
@@ -19,16 +18,14 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock['dash_guild_id'] = function () {
-  var code = 'guild.id';
-  return [code, javascriptGenerator.ORDER_NONE];
+  return ['guild.id', javascriptGenerator.ORDER_NONE];
 };
 
 const blockName1 = 'dash_value';
-
 const blockData1 = {
   type: 'dash_value',
   message0: 'Value',
-  output: null,
+  output: Types.Any,
   colour: 300,
   tooltip: 'Returns the value of the input',
   helpUrl: ''
@@ -41,6 +38,5 @@ Blockly.Blocks[blockName1] = {
 };
 
 javascriptGenerator.forBlock['dash_value'] = function () {
-  var code = 'value';
-  return [code, javascriptGenerator.ORDER_NONE];
+  return ['value', javascriptGenerator.ORDER_NONE];
 };

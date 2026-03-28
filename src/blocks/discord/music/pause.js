@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_pause';
-
 const blockData = {
   message0: '%{BKY_PAUSE}',
   args0: [
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const queue = javascriptGenerator.valueToCode(block, 'QUEUE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${queue}.setPaused(true)\n`;
-  return code;
+  return `${queue}.setPaused(true);`;
 };

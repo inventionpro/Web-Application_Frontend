@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_m_create_embed_then_add_blankfield';
-
 const blockData = {
   message0: '%{BKY_M_CREATE_EMBED_THEN_ADD_BLANKFIELD}',
   args0: [],
@@ -20,9 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `embed.addField('‎‎‎‎‎‎‎‎', '‎‎');\n`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `embed.addField('‎‎‎‎‎‎‎‎', '‎‎');\n`;
 };
 
 registerRestrictions(blockName, [

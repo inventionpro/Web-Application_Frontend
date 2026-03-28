@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'on_real_button';
-
 const blockData = {
   message0: 'when a button is clicked %1 %2',
   colour: '#F5AB1A',
@@ -22,12 +22,12 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_NONE);
-  const code = `s4d.client.on(Discord.Events.InteractionCreate, async (i) => {
-  let member = i.guild.members.cache.get(i.member.user.id)
+  return `s4d.client.on(Discord.Events.InteractionCreate, async (i) => {
+  let member = i.guild.members.cache.get(i.member.user.id);
   let interaction = i; if (!(i.isButton())) return;
   ${statementsThen}
 });`;
-  return code;
 };

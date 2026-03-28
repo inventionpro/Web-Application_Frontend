@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_current_track';
-
 const blockData = {
   message0: '%{BKY_CURRENT_TRACK}',
   args0: [
@@ -12,7 +12,7 @@ const blockData = {
       check: 'queue'
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#a55b80',
   tooltip: '',
   helpUrl: ''

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'simple_host_auth';
-
 const blockData = {
   type: 'block_type',
   message0: 'load Simple Host auth %1 core config ID %2',
@@ -13,7 +13,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'member',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#993399',
@@ -26,31 +26,26 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const a = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC).replace('.user', '').replace('.author', '.member');
-  const code = `
-    //simple host
-    const {error} = require("../../err.js");
-    await error({
-        id: ${a},
-        error: String("Alert: Bot turned on!")
-    });
-    process.on("uncaughtException", async function(err) {
-        await error({
-            "id": ${a},
-            "error": String(err)
-        });
-    });
-    s4d.client.on(Discord.Events.ClientReady, async() => {
-    while (s4d.client && s4d.client.token) {
-        await delay(2000)
-        const {
-            stop
-        } = require("../../power.js");
-        if (await (stop(${a}))) {
-            s4d.client.destroy()
-        }
-    }
+  return `//simple host
+const { error } = require('../../err.js');
+await error({
+  id: ${a},
+  error: String('Alert: Bot turned on!')
+});
+process.on('uncaughtException', async function(err) {
+  await error({
+    id: ${a},
+    error: String(err)
+  });
+});
+s4d.client.on(Discord.Events.ClientReady, async() => {
+  while (s4d.client && s4d.client.token) {
+    await delay(2000)
+    const { stop } = require("../../power.js");
+    if (await (stop(${a}))) s4d.client.destroy()
+  }
 });`;
-  return code;
 };

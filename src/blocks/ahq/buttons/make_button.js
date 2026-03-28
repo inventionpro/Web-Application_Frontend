@@ -1,14 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'make_ahq_button';
+import { Types } from '../../types.js';
 
+const blockName = 'make_ahq_button';
 const blockData = {
   message0: 'make a button with name %1 %2 then %3',
   args0: [
     {
       type: 'input_value',
       name: 'button name',
-      check: ['String']
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -28,10 +29,10 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE);
   const finaln = name.replace("'", '').replace("'", '');
   const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
-  const code = `let ${finaln} = new Discord.ButtonBuilder()\n${statementsThen}`;
-  return code;
+  return `let ${finaln} = new Discord.ButtonBuilder()\n${statementsThen}`;
 };

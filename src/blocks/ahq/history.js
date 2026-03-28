@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 's4d_history';
-
 const blockData = {
   message0: 'History of s4d!',
   colour: '#40BF4A',
-  output: 'String',
+  output: Types.String,
   tooltip: ':troll:',
   helpUrl: ''
 };
@@ -16,23 +16,23 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [
-    `\`s4d means scratch for discord
-    s4d was created mainly by \\\`Androz\\\`
-    The Devs of the current preview \\\`469\\\` are:-
-    1. Androz (of course)
-    2. Jose (454 coder)
-    3. Redo (454 coder)
-    4. Frostzzone (pull request 469 owner)
-    5. Retro
-    6. AHQSoftwares
-    7. HenPokPok
-    8. AlexCdDg
 
-    Official s4d server:- https://discord.gg/kXyRzypp4e
-    s4d 469 official server:- https://discord.gg/A7yttWszfD\``,
+javascriptGenerator.forBlock[blockName] = () => {
+  return [
+    `s4d means scratch for discord
+s4d was created mainly by \\\`Androz\\\`
+The Devs of the current preview \\\`469\\\` are:-
+1. Androz (of course)
+2. Jose (454 coder)
+3. Redo (454 coder)
+4. Frostzzone (pull request 469 owner)
+5. Retro
+6. AHQSoftwares
+7. HenPokPok
+8. AlexCdDg
+
+Official s4d server:- https://discord.gg/kXyRzypp4e
+s4d 469 official server:- https://discord.gg/A7yttWszfD`,
     javascriptGenerator.ORDER_NONE
   ];
-  return code;
 };

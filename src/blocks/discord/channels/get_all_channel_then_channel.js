@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_get_all_channel_channel';
-
 const blockData = {
   message0: '%{BKY_GET_ALL_CHANNEL_CHANNEL}',
   args0: [],
   colour: '#a55b80',
-  output: 'Channel',
+  output: Types.Channel,
   tooltip: '',
   helpUrl: ''
 };
@@ -19,9 +19,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return [`c`, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['c', javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

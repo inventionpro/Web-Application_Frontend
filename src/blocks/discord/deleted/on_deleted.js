@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_on_deleted';
-
 const blockData = {
   message0: '%{BKY_ON_DELETED} %1 %2',
   colour: '#F5AB1A',
@@ -25,6 +24,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on(Discord.Events.MessageDelete, async (s4dmessage) => {\n${statements}\n});\n`;
-  return code;
+  return `s4d.client.on(Discord.Events.MessageDelete, async (s4dmessage) => {
+${statements}
+});`;
 };

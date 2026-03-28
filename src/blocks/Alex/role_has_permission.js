@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'role_has_permission';
-
 const blockData = {
   message0: 'Role %1 has permission %2',
   args0: [
     {
       type: 'input_value',
       name: 'role',
-      check: 'Role'
+      check: Types.Role
     },
     {
       type: 'field_dropdown',
@@ -63,7 +63,7 @@ const blockData = {
   colour: '#4C97FF',
   tooltip: 'Checks if a role has a certain permission.',
   helpUrl: '',
-  output: 'Boolean'
+  output: Types.Boolean
 };
 
 Blockly.Blocks[blockName] = {
@@ -75,7 +75,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const role = javascriptGenerator.valueToCode(block, 'role', javascriptGenerator.ORDER_ATOMIC);
   const perm = block.getFieldValue('perm');
-
-  const code = [`${role}.permissions.has('${perm}')`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${role}.permissions.has('${perm}')`, javascriptGenerator.ORDER_NONE];
 };

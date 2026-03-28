@@ -1,15 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'get_reaction_member';
-
 Blockly.Blocks[blockName] = {
   validate: function (newValue) {
     this.getSourceBlock().updateConnections(newValue);
     return newValue;
   },
   init: function () {
-    //this.jsonInit(blockData);
     var options = [
       ['first', 'first'],
       ['last', 'last'],
@@ -19,7 +18,7 @@ Blockly.Blocks[blockName] = {
 
     this.appendDummyInput().appendField(new Blockly.FieldDropdown(options, this.validate), 'type');
 
-    this.setOutput('Member');
+    this.setOutput(Types.Member);
     this.setInputsInline(true);
     this.setColour('#187795');
   },
@@ -45,7 +44,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 
   var code;
   if (type == 'first') {
-    code = `reaction.users.cache.first()`;
+    code = 'reaction.users.cache.first()';
   } else if (type == 'all') {
     code = `reaction.users.cache.map(rec => rec)`;
   } else if (type == 'last') {
@@ -53,7 +52,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   } else {
     code = `m.users.cache.map(r => r)[${cmem}]`;
   }
-  const finalcode = [code, javascriptGenerator.ORDER_NONE];
-
-  return finalcode;
+  return [code, javascriptGenerator.ORDER_NONE];
 };

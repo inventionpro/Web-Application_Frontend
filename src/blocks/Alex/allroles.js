@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'all_roles';
-
 const blockData = {
   message0: 'All roles',
   name: 'roles',
-  output: 'String',
+  output: Types.String,
   colour: '#56afdb',
   tooltip: 'All of the roles that the member has.',
   helpUrl: ''
@@ -18,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`memberRoles`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['memberRoles', javascriptGenerator.ORDER_NONE];
 };

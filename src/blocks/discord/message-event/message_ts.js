@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_message_ts';
-
 const blockData = {
   message0: 'message timestamp',
   colour: '#5BA58C',
   tooltip: '',
-  output: 'String',
+  output: Types.String,
   helpUrl: ''
 };
 
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['s4dmessage.createdTimestamp', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['s4dmessage.createdTimestamp', javascriptGenerator.ORDER_NONE];
 };

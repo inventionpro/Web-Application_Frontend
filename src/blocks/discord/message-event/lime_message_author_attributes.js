@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
+import { Types } from '../../types.js';
 
 const blockName = 'lime_msg_author_attributes';
-
 const blockData = {
   type: 'lime_msg_author_attributes',
   message0: '%1 %2',
@@ -33,7 +33,7 @@ const blockData = {
     }
   ],
   inputsInline: true,
-  output: null,
+  output: Types.Any,
   colour: '#4C97FF',
   tooltip: '',
   helpUrl: ''
@@ -49,62 +49,62 @@ Blockly.Blocks[blockName] = {
     switch (dropdown) {
       case 'AVATAR':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'BANNER':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'BOT':
         this.setFieldValue('Is message author a', 'TEXT');
-        this.setOutput(true, 'Boolean');
+        this.setOutput(true, Types.Boolean);
         break;
 
       case 'CREATED_AT':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.Date);
         break;
 
       case 'CREATED_AT_TIMESTAMP':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'Number');
+        this.setOutput(true, Types.Number);
         break;
 
       case 'DFLT_AVATAR_URL':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'DISCRIMINATOR':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'FLAGS':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'ID':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'SYSTEM':
         this.setFieldValue('Is message author a', 'TEXT');
-        this.setOutput(true, 'Boolean');
+        this.setOutput(true, Types.Boolean);
         break;
 
       case 'TAG':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'USERNAME':
         this.setFieldValue("Get message author's", 'TEXT');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
     }
   }

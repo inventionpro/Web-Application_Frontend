@@ -2,10 +2,12 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 import BaseBlockly from 'blockly';
+import { Types } from '../../types.js';
+
 const blockName = 'make_ahq_modal_text';
 const BORDER_FIELDS = ['ID_A', 'LABEL_A', 'STYLE_A', 'MINIMUM_SIZE', 'MAXIMUM_SIZE', 'PLACE_HOLDER', 'REQUIRED'];
 
-const BORDER_TYPES = ['String', 'String', 'ahq_style', 'Number', 'Number', 'String', 'Boolean'];
+const BORDER_TYPES = [Types.String, Types.String, 'ahq_style', Types.Number, Types.Number, Types.String, Types.Boolean];
 const names = ['id', 'label', 'style', 'minimum size', 'maximum size', 'place holder', 'required'];
 
 const blockData = {
@@ -88,7 +90,7 @@ const BORDER_MUTATOR_MIXIN = {
 
 Blockly.Extensions.registerMutator('s4d_ahq_mutator', BORDER_MUTATOR_MIXIN, null, ['']);
 javascriptGenerator.forBlock[blockName] = (block) => {
-  let code = ``;
+  let code = '';
   const Id = javascriptGenerator.valueToCode(block, 'ID_A', javascriptGenerator.ORDER_ATOMIC);
   const Lavbel = javascriptGenerator.valueToCode(block, 'LABEL_A', javascriptGenerator.ORDER_ATOMIC);
   const Style = javascriptGenerator.valueToCode(block, 'STYLE_A', javascriptGenerator.ORDER_ATOMIC) || "'SHORT'";
@@ -98,24 +100,25 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const re = javascriptGenerator.valueToCode(block, 'REQUIRED', javascriptGenerator.ORDER_ATOMIC);
   if (!place) {
     code = `new TextInputComponent()
-    .setCustomId(${Id})
-    .setLabel(${Lavbel})
-    .setStyle(${Style})
-    .setMinLength(${min})
-    .setMaxLength(${man})
-    .setRequired(${re}),\n`;
+  .setCustomId(${Id})
+  .setLabel(${Lavbel})
+  .setStyle(${Style})
+  .setMinLength(${min})
+  .setMaxLength(${man})
+  .setRequired(${re}),`;
   } else {
     code = `new TextInputComponent()
-    .setCustomId(${Id})
-    .setLabel(${Lavbel})
-    .setStyle(${Style})
-    .setMinLength(${min})
-    .setMaxLength(${man})
-    .setRequired(${re})
-    .setPlaceholder(${place}),\n`;
+  .setCustomId(${Id})
+  .setLabel(${Lavbel})
+  .setStyle(${Style})
+  .setMinLength(${min})
+  .setMaxLength(${man})
+  .setRequired(${re})
+  .setPlaceholder(${place}),`;
   }
   return code;
 };
+
 registerRestrictions(blockName, [
   {
     type: 'notempty',

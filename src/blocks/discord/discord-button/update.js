@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_update';
-
 const blockData = {
   message0: '%{BKY_UPDATE}',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['String', 'Number', 'MessageEmbed', 'embed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
@@ -43,33 +43,19 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      if (contentType === 'MessageEmbed') {
-        const code = `await i.update({${content},components:[${button}]}).then(async m=>{
-                ${statements}
-            });\n`;
-        return code;
-      } else {
-        const code = `await i.update({${content},components:[${button}]}).then(async m=>{
-                ${statements}
-            });\n`;
-        return code;
-      }
-    } else if (contentType === 'embed') {
-      const code = `await i.update({ embeds:[${content}],components:[${button}]}).then(async m=>{
-                ${statements}
-            });\n`;
-      return code;
-    } else {
-      const code = `await i.update({ content: String(${content}),components:[${button}]}).then(async m=>{
-                ${statements}
-            });\n`;
-      return code;
+    if (contentType === Types.Embed[0]) {
+      return `await i.update({
+  embeds: [${content}],
+  components: [${button}]
+}).then(async m => {
+${statements}
+});`;
     }
-  } else {
-    const code = `await i.update({ content: String(${content}),components:[${button}]}).then(async m=>{
-            ${statements}
-        });\n`;
-    return code;
   }
+  return `await i.update({
+  content: String(${content}),
+  components: [${button}]
+}).then(async m => {
+${statements}
+});`;
 };

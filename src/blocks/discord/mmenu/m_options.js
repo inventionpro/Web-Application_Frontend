@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 'c_options';
-
 const blockData = {
   message0: 'Get %1 option',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
     }
   ],
   colour: '#4C97FF',
-  output: ['Message', 'Member', 'User'],
+  output: T(Types.Message, Types.UserResolve),
   tooltip: '',
   helpUrl: ''
 };
@@ -30,5 +30,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH');
-  return [`${searchType}`, javascriptGenerator.ORDER_NONE];
+  return [searchType, javascriptGenerator.ORDER_NONE];
 };

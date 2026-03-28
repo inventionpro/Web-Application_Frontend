@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 'b_send_msg';
-
 const blockData = {
   message0: '%{BKY_B_SEND_MSG}',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'Embed', 'MessageEmbed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'BUTTON',
-      check: ['String', 'ButtonRow']
+      check: T([Types.String, 'ButtonRow'])
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: ['Channel']
+      check: Types.Channel
     }
   ],
   colour: '#4C97FF',
@@ -43,18 +43,14 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let button2 = text1.replace("'", '');
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'Embed') {
-      const code = `${channel}.send({ embeds: [${content}], components: [${button2}] });\n`;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `${channel}.send({${content}});\n`;
-      return code;
-    } else {
-      const code = `${channel}.send({ content: ${content}, components: [${button2}] });\n`;
-      return code;
-    }
-  } else {
-    const code = `${channel}.send({ content: ${content}, components: [${button2}] });\n`;
-    return code;
+    if (contentType === Types.Embed[0])
+      return `${channel}.send({
+  embeds: [${content}],
+  components: [${button2}]
+});`;
   }
+  return `${channel}.send({
+  content: ${content},
+  components: [${button2}]
+});`;
 };

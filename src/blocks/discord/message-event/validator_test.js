@@ -1,11 +1,11 @@
 import * as Blockly from 'blockly/core';
+import { Types } from '../../types.js';
 
 const blockName = 'validator_test';
-
 const blockData = {
   message0: 'Amongus',
   colour: '#187795',
-  output: 'Member',
+  output: Types.Member,
   tooltip: '',
   helpUrl: ''
 };

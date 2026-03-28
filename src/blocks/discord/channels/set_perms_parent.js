@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'set_perms_parent';
-
 const blockData = {
   message0: '%{BKY_C_PERM_P}',
   args0: [
@@ -47,6 +46,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH');
-  const code = `['${searchType}'],`;
-  return code;
+  return `['${searchType}'],`;
 };

@@ -2,10 +2,12 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
+
 const blockName = 'reply_ahq_modal_text';
 const BORDER_FIELDS = ['CONTENT', 'EMBED', 'BUTTON'];
 
-const BORDER_TYPES = ['String', '', 'ahq_button'];
+const BORDER_TYPES = [Types.String, '', 'ahq_button'];
 const names = ['Content', 'Embed', 'Button (AHQ Button)'];
 
 const blockData = {
@@ -14,7 +16,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'ephemeral',
-      check: 'Boolean'
+      check: Types.Boolean
     }
   ],
   colour: '#40BF4A',
@@ -99,15 +101,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const Id = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_NONE);
   const Lavbel = javascriptGenerator.valueToCode(block, 'EMBED', javascriptGenerator.ORDER_NONE);
   const Style = javascriptGenerator.valueToCode(block, 'BUTTON', javascriptGenerator.ORDER_NONE);
-  if (Id) {
-    code.push(`content: String(${Id}),`);
-  }
-  if (Lavbel) {
-    code.push(`embeds: [${Lavbel.replace("'", '').replace("'", '')}],`);
-  }
-  if (Style) {
-    code.push(`components: [new Discord.ActionRowBuilder().addComponents(${Style.replace("'", '').replace("'", '').replace('(', '').replace(')', '')})],`);
-  }
+  if (Id) code.push(`content: String(${Id}),`);
+  if (Lavbel) code.push(`embeds: [${Lavbel.replace("'", '').replace("'", '')}],`);
+  if (Style) code.push(`components: [new Discord.ActionRowBuilder().addComponents(${Style.replace("'", '').replace("'", '').replace('(', '').replace(')', '')})],`);
   code.push(`ephemeral: ${javascriptGenerator.valueToCode(block, 'ephemeral', javascriptGenerator.ORDER_NONE)}\n})`);
   return code.join('\n');
 };

@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 's4d_set_data_new';
-
 const blockData = {
   message0: 'set %1 to %2 in the database with name %3 %4',
   args0: [
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
@@ -21,7 +21,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -41,5 +41,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const name2 = name.substring(1, name.length - 1);
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
-  return `${name2}.set(String(${key}), ${value});\n`;
+  return `${name2}.set(String(${key}), ${value});`;
 };

@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'get_image';
-
 const blockData = {
   message0: 'Find image with query  %1  then %2 %3',
   args0: [
     {
       type: 'input_value',
       name: 'query',
-      Check: 'String'
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -36,6 +36,6 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const Then = javascriptGenerator.statementToCode(block, 'then');
   const query = javascriptGenerator.valueToCode(block, 'query', javascriptGenerator.ORDER_ATOMIC);
-  const code = `let query = ${query} \n ${Then}`;
-  return code;
+  return `let query = ${query};
+${Then}`;
 };

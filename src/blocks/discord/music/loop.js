@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_loop';
-
 const blockData = {
   message0: '%{BKY_LOOP}',
   args0: [
@@ -14,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'LOOPING',
-      check: 'Boolean'
+      check: Types.Boolean
     }
   ],
   previousStatement: null,
@@ -35,9 +35,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const looping = javascriptGenerator.valueToCode(block, 'LOOPING', javascriptGenerator.ORDER_ATOMIC);
   let code = '';
   if (looping === 'true') {
-    code = `${queue}.setRepeatMode(QueueRepeatMode.QUEUE)\n`;
+    code = `${queue}.setRepeatMode(QueueRepeatMode.QUEUE);`;
   } else {
-    code = `${queue}.setRepeatMode(QueueRepeatMode.OFF)\n`;
+    code = `${queue}.setRepeatMode(QueueRepeatMode.OFF);`;
   }
   return code;
 };

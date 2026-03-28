@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'load_cookie';
-
 const blockData = {
   message0: 'cookie',
   colour: '#0EB22B',
@@ -17,9 +17,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`cookies_config`, javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['cookies_config', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

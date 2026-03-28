@@ -1,25 +1,26 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
-const blockName = 'make_ahq_modal';
+import { Types } from '../../types.js';
 
+const blockName = 'make_ahq_modal';
 const blockData = {
   message0: 'Make A Form with name %1 Title %2 Id %3 Then %4',
   args0: [
     {
       type: 'input_value',
       name: 'button name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'title',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'id',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -42,12 +43,12 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE) || 'modal';
   const finaln = name.replace("'", '').replace("'", '');
   const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
-  const code = `let ${finaln} = new Modal()
-    .setCustomId(${javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_NONE)})
-    .setTitle(${javascriptGenerator.valueToCode(block, 'title', javascriptGenerator.ORDER_NONE)})
-    .addComponents(\n${statementsThen});`;
-  return code;
+  return `let ${finaln} = new Modal()
+  .setCustomId(${javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_NONE)})
+  .setTitle(${javascriptGenerator.valueToCode(block, 'title', javascriptGenerator.ORDER_NONE)})
+  .addComponents(${statementsThen});`;
 };
+
 registerRestrictions(blockName, [
   {
     type: 'notempty',

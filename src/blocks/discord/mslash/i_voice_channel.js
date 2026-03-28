@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'interaction_voice_channel';
-
 const blockData = {
   message0: 'interaction member voice channel',
   colour: '#D85E47',
-  output: 'VoiceChannel',
+  output: Types.Channel,
   tooltip: '',
   helpUrl: ''
 };
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['interaction.member.voice.channel', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['interaction.member.voice.channel', javascriptGenerator.ORDER_NONE];
 };

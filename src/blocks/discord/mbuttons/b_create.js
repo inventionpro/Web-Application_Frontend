@@ -1,10 +1,11 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const BORDER_FIELDS = ['LABEL', 'STYLE', 'EMOJI', 'URL', 'ID', 'DISABLED'];
 
-const BORDER_TYPES = ['String', 'bstyle', 'String', 'String', 'String', 'Boolean'];
+const BORDER_TYPES = [Types.String, 'bstyle', Types.String, Types.String, Types.String, Types.Boolean];
 
 const s4d_message_row_block = {
   message0: '%{BKY_B_CREATE}',
@@ -12,7 +13,7 @@ const s4d_message_row_block = {
     {
       type: 'input_value',
       name: 'B_NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   mutator: 's4d_message_2row_block_mutator',

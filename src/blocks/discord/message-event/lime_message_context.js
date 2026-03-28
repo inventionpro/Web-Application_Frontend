@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'lime_s4d_message_context';
-
 const blockData = {
   type: 'lime_s4d_message_context',
   message0: '%1',
@@ -19,7 +19,7 @@ const blockData = {
     }
   ],
   inputsInline: true,
-  output: null,
+  output: Types.Any,
   colour: '#a55b80',
   tooltip: '',
   helpUrl: ''
@@ -36,22 +36,22 @@ Blockly.Blocks[blockName] = {
     switch (dropdown) {
       case 'MESSAGE':
         this.setColour('#a55b80');
-        this.setOutput(true, 'Message');
+        this.setOutput(true, Types.Message);
         break;
 
       case 'CHANNEL':
         this.setColour('#a55b80');
-        this.setOutput(true, 'Channel');
+        this.setOutput(true, Types.Channel);
         break;
 
       case 'SERVER':
         this.setColour('#D85E47');
-        this.setOutput(true, 'Server');
+        this.setOutput(true, Types.Server);
         break;
 
       case 'CATEGORY':
         this.setColour('#a55b80');
-        this.setOutput(true, 'Category');
+        this.setOutput(true, Types.Channel);
         break;
     }
   }

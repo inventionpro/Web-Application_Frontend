@@ -1,31 +1,31 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_send_wait_reply';
-
 const blockData = {
   message0: '%{BKY_SEND_WAIT_REPLY}',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['MessageEmbed', 'String', 'Number', 'embed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'input_value',
       name: 'TIME',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_statement',
@@ -60,17 +60,29 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let code = '';
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      code = `${channel}.send({${content}})`;
-    } else if (contentType === 'embed') {
-      code = `${channel}.send({ embeds:[${content}]})`;
+    if (contentType === Types.Embed[0]) {
+      code = `${channel}.send({ embeds: [${content}] })`;
     } else {
       code = `${channel}.send(String(${content}))`;
     }
   } else {
     code = `${channel}.send(String(${content}))`;
   }
-  code += `.then(() => { ${channel}.awaitMessages({filter:(m) => m.author.id === ${member}.id,  time: (${time}*60*1000), max: 1 }).then(async (collected) => { s4d.reply = collected.first().content;\n s4d.message = collected.first();  \n ${statementThen} \n s4d.reply = null; }).catch(async (e) => { console.error(e); ${statementCatch} });\n})\n`;
+  code += `.then(() => {
+  ${channel}.awaitMessages({
+  filter: (m) => m.author.id === ${member}.id,
+  time: (${time}*60*1000),
+  max: 1
+}).then(async (collected) => {
+  s4d.reply = collected.first().content;
+  s4d.message = collected.first();
+${statementThen}
+  s4d.reply = null;
+}).catch(async (e) => {
+  console.error(e);
+${statementCatch}
+  });
+});`;
   return code;
 };
 

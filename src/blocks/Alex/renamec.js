@@ -1,18 +1,18 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'renamec';
-
 const blockData = {
   message0: 'Rename channel %1 New name %2',
   args0: [
     {
       type: 'input_value',
-      check: 'Channel',
+      check: Types.Channel,
       name: 'channel'
     },
     {
-      check: 'String',
+      check: Types.String,
       type: 'input_value',
       name: 'name'
     }
@@ -34,7 +34,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const cn = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
   const nn = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${cn}.setName(${nn})
-    `;
-  return code;
+  return `${cn}.setName(${nn});`;
 };

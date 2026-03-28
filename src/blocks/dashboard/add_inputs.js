@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'add_inputs';
-
 const blockData = {
   type: 'add_inputs',
   message0: 'Create new inputs %1 %2',
@@ -29,6 +28,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['add_inputs'] = (block) => {
   var statements_blocks = javascriptGenerator.statementToCode(block, 'blocks');
-  var code = `${statements_blocks}`;
-  return code;
+  return statements_blocks;
 };

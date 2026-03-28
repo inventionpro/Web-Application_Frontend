@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_send_channel';
-
 const blockData = {
   message0: 'send %1 in the channel %2',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['MessageEmbed', 'String', 'Number', 'embed', 'var']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#4C97FF',
@@ -36,23 +36,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'var') {
-      const code = `${channel}.send({content: String(${content})});\n`;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `${channel}.send({ embeds:[${content}]});\n`;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `${channel}.send({${content}});\n`;
-      return code;
-    } else {
-      const code = `${channel}.send({content:String(${content})});\n`;
-      return code;
-    }
-  } else {
-    const code = `${channel}.send({ content: String(${content})});\n`;
-    return code;
+    if (contentType === Types.Embed[0]) return `${channel}.send({ embeds: [${content}] });`;
   }
+  return `${channel}.send({ content: String(${content})});`;
 };
 
 registerRestrictions(blockName, [

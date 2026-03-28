@@ -1,23 +1,26 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'set_afk_channel_time';
-
 const blockData = {
   type: 'set_afk_channel_time',
   message0: 'Set afk time of %1 seconds on server %2 with reason %3',
   args0: [
     {
       type: 'input_value',
-      name: 'time'
+      name: 'time',
+      check: Types.Number
     },
     {
       type: 'input_value',
-      name: 'server'
+      name: 'server',
+      check: Types.Server
     },
     {
       type: 'input_value',
-      name: 'reason'
+      name: 'reason',
+      check: Types.String
     }
   ],
   inputsInline: true,
@@ -38,7 +41,5 @@ javascriptGenerator.forBlock['set_afk_channel_time'] = (block) => {
   var time = javascriptGenerator.valueToCode(block, 'time', javascriptGenerator.ORDER_ATOMIC);
   var server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
   var reason = javascriptGenerator.valueToCode(block, 'reason', javascriptGenerator.ORDER_ATOMIC);
-
-  var code = `${server}.setAFKTimeout(${time},${reason});\n`;
-  return code;
+  return `${server}.setAFKTimeout(${time},${reason});`;
 };

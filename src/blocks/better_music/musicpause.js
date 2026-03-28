@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'better_pause';
-
 const blockData = {
   message0: 'pause the player',
   colour: '#4C97FF',
@@ -18,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `guildQueue.setPaused(true);`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return 'guildQueue.setPaused(true);';
 };

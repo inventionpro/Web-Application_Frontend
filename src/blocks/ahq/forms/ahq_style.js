@@ -1,7 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'style_ahq_modal';
+import { Types } from '../../types.js';
 
+const blockName = 'style_ahq_modal';
 const blockData = {
   message0: 'Text Box Style %1',
   args0: [
@@ -23,8 +24,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementsThen = block.getFieldValue('Label');
-  const code = [`${statementsThen}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [statementsThen, javascriptGenerator.ORDER_NONE];
 };

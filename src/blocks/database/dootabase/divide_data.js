@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_divide_data2';
-
 const blockData = {
   message0: 'In dootabase divide %2 by %1',
   args0: [
     {
       type: 'input_value',
       name: 'COUNT',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     }
   ],
   nextStatement: null,
@@ -32,5 +32,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
   const count = javascriptGenerator.valueToCode(block, 'COUNT', javascriptGenerator.ORDER_ATOMIC);
-  return `dootabase.divide(String(${key}), parseInt(${count}));\n`;
+  return `dootabase.divide(String(${key}), parseInt(${count}));`;
 };

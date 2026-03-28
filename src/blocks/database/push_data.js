@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 's4d_push_data_new';
-
 const blockData = {
   type: 's4d_data_push_new',
   message0: 'push %1 %2 to %3 from the database with name %4',
@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_dummy'
@@ -18,12 +18,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -44,5 +44,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const name2 = name.substring(1, name.length - 1);
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
-  return `${name2}.push(String(${key}), ${value});\n`;
+  return `${name2}.push(String(${key}), ${value});`;
 };

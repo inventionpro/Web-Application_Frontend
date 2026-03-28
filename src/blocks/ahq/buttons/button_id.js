@@ -1,11 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'id_btn_ahq';
+import { Types } from '../../types.js';
 
+const blockName = 'id_btn_ahq';
 const blockData = {
   message0: 'button id',
   colour: '#33cc00',
-  output: 'String',
+  output: Types.String,
   tooltip: 'The ID of the button that was pressed.',
   helpUrl: ''
 };
@@ -15,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['(i.customId)', javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['i.customId', javascriptGenerator.ORDER_NONE];
 };

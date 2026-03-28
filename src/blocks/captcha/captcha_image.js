@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'captcha_image';
-
 const blockData = {
   message0: 'Captcha Image',
   args0: [],
@@ -18,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`new Discord.AttachmentBuilder(captcha.JPEGStream, "captcha.jpeg") `, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['new Discord.AttachmentBuilder(captcha.JPEGStream, "captcha.jpeg")', javascriptGenerator.ORDER_NONE];
 };

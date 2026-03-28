@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'dash_g';
-
 const blockData = {
   message0: 'server',
   colour: '#0EB22B',
   tooltip: 'Server',
   helpUrl: '',
-  output: 'Server'
+  output: Types.Server
 };
 
 Blockly.Blocks[blockName] = {
@@ -17,9 +17,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`guild`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['guild', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

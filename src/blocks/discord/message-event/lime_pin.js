@@ -1,11 +1,11 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'lime_s4d_pin';
-
 const blockData = {
   type: 'lime_s4d_pin',
-  message0: ' %1 message %2',
+  message0: '%1 message %2',
   args0: [
     {
       type: 'field_dropdown',
@@ -17,7 +17,8 @@ const blockData = {
     },
     {
       type: 'input_value',
-      name: 'value'
+      name: 'value',
+      check: Types.Message
     }
   ],
   inputsInline: true,
@@ -37,16 +38,6 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock['lime_s4d_pin'] = (block) => {
   var dropdown = block.getFieldValue('choise');
   var value = javascriptGenerator.valueToCode(block, 'value', javascriptGenerator.ORDER_ATOMIC);
-  var code = ``;
-
-  if (value == '') {
-    value = 's4dmessage';
-  }
-
-  if (dropdown == 'PIN') {
-    code = `${value}.pin()`;
-  } else {
-    code = `${value}.unpin()`;
-  }
-  return code;
+  if (value === '') value = 's4dmessage';
+  return `${value}.${dropdown === 'PIN' ? '' : 'un'}pin();`;
 };

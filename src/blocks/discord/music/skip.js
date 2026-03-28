@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_skip';
-
 const blockData = {
   message0: '%{BKY_SKIP}',
   args0: [
@@ -27,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const queue = javascriptGenerator.valueToCode(block, 'QUEUE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${queue}.skip()\n`;
-  return code;
+  return `${queue}.skip();`;
 };

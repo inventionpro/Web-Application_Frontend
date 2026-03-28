@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'new_invite';
-
 const blockData = {
   message0: 'Create invite for channel %1 then %2 %3',
   args0: [
     {
       type: 'input_value',
       name: 'channel',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_dummy'
@@ -36,6 +36,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const Then = javascriptGenerator.statementToCode(block, 'then');
   const channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${channel}.createInvite({ maxAge: 0, maxUses: 0 }).then(async invite => { \n ${Then} \n });`;
-  return code;
+  return `${channel}.createInvite({ maxAge: 0, maxUses: 0 }).then(async invite => {
+${Then}
+});`;
 };

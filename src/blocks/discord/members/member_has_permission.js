@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_member_has_permission';
-
 const blockData = {
   message0: '%{BKY_MEMBER_HAS_PERMISSION}',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'field_dropdown',
@@ -52,7 +52,7 @@ const blockData = {
   ],
   colour: '#5B80A5',
   tooltip: '',
-  output: 'Boolean',
+  output: Types.Boolean,
   helpUrl: ''
 };
 
@@ -67,8 +67,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let memberr = memberrr.replace('.author', '.member');
   let member = memberr.replace('.user', '');
   const permission = block.getFieldValue('PERMISSION');
-  const code = [`${member}.permissions.has(Permissions.FLAGS.${permission})`, javascriptGenerator.ORDER_FUNCTION_CALL];
-  return code;
+  return [`${member}.permissions.has(Discord.Permissions.FLAGS.${permission})`, javascriptGenerator.ORDER_FUNCTION_CALL];
 };
 
 registerRestrictions(blockName, [

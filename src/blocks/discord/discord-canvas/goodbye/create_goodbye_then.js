@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+
 const blockName = 's4d_create_goodbye_then';
 const blockData = {
   message0: '%{BKY_CREATE_GOODBYE_THEN}',
@@ -24,6 +25,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = [`await new canvas.Goodbye()${statementThen}.toAttachment()`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`await new canvas.Goodbye()${statementThen}.toAttachment()`, javascriptGenerator.ORDER_NONE];
 };

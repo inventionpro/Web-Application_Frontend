@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_reply_delete';
-
 const blockData = {
   message0: '%{BKY_REPLY_DELETE}',
   args0: [],
@@ -20,9 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  var code = `s4dreply.delete();\n`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `s4dreply.delete();`;
 };
 
 registerRestrictions(blockName, [

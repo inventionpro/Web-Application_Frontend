@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_connect';
-
 const blockData = {
   message0: '%{BKY_CONNECT}',
   args0: [
     {
       type: 'input_value',
       name: 'VOICECHANNEL',
-      check: 'VoiceChannel'
+      check: Types.Channel
     }
   ],
   previousStatement: null,
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const voice = javascriptGenerator.valueToCode(block, 'VOICECHANNEL', javascriptGenerator.ORDER_ATOMIC) || 's4dmessage.member.voice.channel';
-  const code = `await queue.connect(${voice})\n;`;
-  return code;
+  return `await queue.connect(${voice});`;
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_button_menu';
-
 const blockData = {
   message0: '%{BKY_BUTTON_MENU} %1 %2',
   args0: [
@@ -17,17 +17,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'ID',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'PLACEHOLDER',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'DISABLED',
-      check: 'Boolean'
+      check: Types.Boolean
     }
   ],
   colour: '#4C97FF',
@@ -45,17 +45,15 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const placeholder = javascriptGenerator.valueToCode(block, 'PLACEHOLDER', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'OPTIONS');
   const disabled = javascriptGenerator.valueToCode(block, 'DISABLED', javascriptGenerator.ORDER_ATOMIC);
-  var code = [
+  return [
     `new Discord.ActionRowBuilder()
-    .addComponents(
-    new Discord.SelectMenuBuilder()
+  .addComponents(new Discord.SelectMenuBuilder()
     .setCustomId(${id})
     .setPlaceholder(${placeholder})
     .setMaxValues(1)
     .setMinValues(1)
     .setDisabled(${disabled === null ? false : disabled})
-    .addOptions(${statements}))\n`,
+    .addOptions(${statements}))`,
     javascriptGenerator.ORDER_NONE
   ];
-  return code;
 };

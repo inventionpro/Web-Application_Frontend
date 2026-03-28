@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_dd_giveaway';
-
 const blockData = {
   message0: '%4 giveaway id %1 then %2 %3',
   args0: [
     {
       type: 'input_value',
       name: 'ID',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_dummy'
@@ -45,6 +45,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'THEN');
   const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  var code = `s4d.manager.${type}(${id}).then(async () => {\n${statements}\n});\n`;
-  return code;
+  return `s4d.manager.${type}(${id}).then(async () => {
+${statements}
+});`;
 };

@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_mentioned_channel';
-
 const blockData = {
   message0: '%{BKY_MENTIONED_CHANNEL}',
   colour: '#187795',
   tooltip: '',
-  output: 'Channel',
+  output: Types.Channel,
   helpUrl: ''
 };
 
@@ -18,9 +18,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`s4dmessage.mentions.channels.first()`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return [`s4dmessage.mentions.channels.first()`, javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

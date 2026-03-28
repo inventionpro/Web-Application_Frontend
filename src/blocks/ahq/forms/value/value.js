@@ -1,14 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'something_modal';
+import { Types } from '../../../types.js';
 
+const blockName = 'something_modal';
 const blockData = {
   message0: 'Send forms %1',
   args0: [
     {
       type: 'input_value',
       name: 'Label',
-      check: 'String'
+      check: Types.String
     }
   ],
   output: 'ahq_modal_names',
@@ -20,8 +21,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementsThen = javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE);
-  const code = [`${statementsThen}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [statementsThen, javascriptGenerator.ORDER_NONE];
 };

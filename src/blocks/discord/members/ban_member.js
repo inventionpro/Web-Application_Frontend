@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_ban_member';
-
 const blockData = {
   message0: '%{BKY_BAN_MEMBER}',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'input_value',
       name: 'STRING',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -36,11 +36,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let member = memberr.replace('.user', '');
   const reason = javascriptGenerator.valueToCode(block, 'STRING', javascriptGenerator.ORDER_ATOMIC);
   if (reason === null) {
-    const code = `${member}.ban();\n`;
-    return code;
+    return `${member}.ban();`;
   } else {
-    const code = `${member}.ban({ reason: ${reason} });\n`;
-    return code;
+    return `${member}.ban({ reason: ${reason} });`;
   }
 };
 

@@ -1,8 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
-const blockName = 'snd_ahq_modal';
+import { Types } from '../../types.js';
 
+const blockName = 'snd_ahq_modal';
 const blockData = {
   message0: 'Send forms on reply type %1 form %2',
   args0: [
@@ -31,16 +32,17 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const name = block.getFieldValue('Label');
   const data = javascriptGenerator.valueToCode(block, 'form', javascriptGenerator.ORDER_NONE);
   const ahq = data.replace("'", '').replace("'", '');
-  const code = `showModal(${ahq}, {
+  return `showModal(${ahq}, {
   client: s4d.client,
   interaction: ${name}
 });`;
-  return code;
 };
+
 registerRestrictions(blockName, [
   {
     type: 'notempty',

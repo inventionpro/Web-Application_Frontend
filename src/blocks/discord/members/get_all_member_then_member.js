@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_get_all_member';
-
 const blockData = {
   message0: '%{BKY_GET_ALL_MEMBER}',
   args0: [],
   colour: '#187795',
-  output: 'Member',
+  output: Types.Member,
   tooltip: '',
   helpUrl: ''
 };
@@ -19,9 +19,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return [`m`, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['m', javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

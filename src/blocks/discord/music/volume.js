@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_volume';
-
 const blockData = {
   message0: '%{BKY_VOLUME}',
   args0: [
@@ -14,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VOLUME',
-      check: ['Number', 'String']
+      check: Types.Number
     }
   ],
   previousStatement: null,
@@ -33,6 +33,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const queue = javascriptGenerator.valueToCode(block, 'QUEUE', javascriptGenerator.ORDER_ATOMIC);
   const vol = javascriptGenerator.valueToCode(block, 'VOLUME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${queue}.setVolume(${vol})\n`;
-  return code;
+  return `${queue}.setVolume(${vol});`;
 };

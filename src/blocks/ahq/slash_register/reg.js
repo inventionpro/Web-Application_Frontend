@@ -1,19 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 's4d_reg_slash';
+import { Types } from '../../types.js';
 
+const blockName = 's4d_reg_slash';
 const blockData = {
   message0: 'Register slash command name %1 set description %2 then %3',
   args0: [
     {
       type: 'input_value',
       name: 'Server',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'args',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -31,14 +32,14 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   const server = javascriptGenerator.valueToCode(block, 'Server', javascriptGenerator.ORDER_ATOMIC);
   const des = javascriptGenerator.valueToCode(block, 'args', javascriptGenerator.ORDER_ATOMIC);
-  const code = `s4d.client.application?.commands.create({
+  return `s4d.client.application?.commands.create({
   name: ${server},
   description: ${des},
   options: [${statementThen}]
 });`;
-  return code;
 };

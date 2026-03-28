@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'make_cookie';
-
 const blockData = {
   type: 'block_type',
   message0: 'make cookie %1 Mongo URL %2 ',
@@ -14,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'api',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#0EB22B',
@@ -27,8 +27,9 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = `let cookieParser = require('cookie-parser');
+  return `let cookieParser = require('cookie-parser');
 let session = require('express-session');
 let MongoStore = require('connect-mongo');
 let mongoose = require('mongoose');
@@ -46,7 +47,6 @@ const cookies_config = {
     autoRemoveInterval: 60
   })
 };`;
-  return code;
 };
 
 registerRestrictions(blockName, [

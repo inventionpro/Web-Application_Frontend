@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'add_dropdown_input';
-
 const blockData = {
   type: 'add_dropdown_input',
   message0: 'Add a selector input %1 Set input title to %2 Set input description to %3 Set input ID to %4 %5 Set value setter %6 Set value getter ID %7 Set value getter NAME %8 Get Selector Entries %9',
@@ -13,12 +13,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'description',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_input',
@@ -43,7 +43,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'selector_entries',
-      check: 'Array'
+      check: Types.Array
     }
   ],
   inputsInline: false,
@@ -69,16 +69,13 @@ javascriptGenerator.forBlock['add_dropdown_input'] = (block) => {
   var value_getter_id = javascriptGenerator.valueToCode(block, 'getter_id', javascriptGenerator.ORDER_ATOMIC);
   var value_getter_name = javascriptGenerator.valueToCode(block, 'getter_name', javascriptGenerator.ORDER_ATOMIC);
   var value_selector_entries = javascriptGenerator.valueToCode(block, 'selector_entries', javascriptGenerator.ORDER_ATOMIC);
-  var code = `
-    const ${text_name}_getSelectorEntries = (client, guild) => ${value_selector_entries};
-    const setter_${text_name} = (client, guild, value) => ${statements_setter}
-    const getter_${text_name} = async(client, guild) => {
-        const getter_${text_name}_ID = ${value_getter_id};
-        const getter_${text_name}_NAME = ${value_getter_name};
-        return [getter_${text_name}_ID, getter_${text_name}_NAME];
+  return `const ${text_name}_getSelectorEntries = (client, guild) => ${value_selector_entries};
+const setter_${text_name} = (client, guild, value) => ${statements_setter}
+const getter_${text_name} = async(client, guild) => {
+  const getter_${text_name}_ID = ${value_getter_id};
+  const getter_${text_name}_NAME = ${value_getter_name};
+  return [getter_${text_name}_ID, getter_${text_name}_NAME];
 };
 
-s4d.client.dashboard.addSelector(${value_name}, ${value_description}, ${text_name}_getSelectorEntries, setter_${text_name}, getter_${text_name});
-`;
-  return code;
+s4d.client.dashboard.addSelector(${value_name}, ${value_description}, ${text_name}_getSelectorEntries, setter_${text_name}, getter_${text_name});`;
 };

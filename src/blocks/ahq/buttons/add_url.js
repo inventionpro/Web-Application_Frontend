@@ -1,14 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'url_ahq_button';
+import { Types } from '../../types.js';
 
+const blockName = 'url_ahq_button';
 const blockData = {
   message0: 'set url/id %1 %2 to button %3',
   args0: [
     {
       type: 'input_value',
       name: 'Label',
-      check: ['String']
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -16,7 +17,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'button name',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#33cc00',
@@ -29,6 +30,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   let code = '';
   const name = javascriptGenerator.valueToCode(block, 'button name', javascriptGenerator.ORDER_NONE);

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'queue_setdata';
-
 const blockData = {
   message0: 'Set track channel',
   colour: '#4C97FF',
@@ -18,12 +17,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `
-    let queue = client.player.createQueue(message.guild.id, {\n
-        data: {\n
-            channel: s4dmessage.channel
-        }
-    });`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `let queue = client.player.createQueue(message.guild.id, {
+  data: {
+    channel: s4dmessage.channel
+  }
+});`;
 };

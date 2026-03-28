@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_send_member';
-
 const blockData = {
   message0: '%{BKY_SEND_MEMBER}',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['MessageEmbed', 'String', 'Number', 'var']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   previousStatement: null,
@@ -32,33 +32,19 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const memberr = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  let member;
-  if (!String(memberr).includes('s4d.client.users.cache.get(String(')) {
-    member = memberr.replace('.user', '');
-  } else {
-    member = memberr;
-  }
+  let member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
+  if (!String(member).includes('s4d.client.users.cache.get(String(')) member = member.replace('.user', '');
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'var') {
-      const code = `${member}.send({content: String(${content})});\n`;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `${member}.send({ embeds:[${content}]});\n`;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `${member}.send({${content}});\n`;
-      return code;
-    } else {
-      const code = `${member}.send({content:String(${content})});\n`;
-      return code;
-    }
-  } else {
-    const code = `${member}.send({content:String(${content})});\n`;
-    return code;
+    if (contentType === Types.Embed[0])
+      return `${member}.send({
+  embeds: [${content}]
+});`;
   }
+  return `${member}.send({
+  content: String(${content})
+});`;
 };
 
 registerRestrictions(blockName, [

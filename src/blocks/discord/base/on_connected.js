@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_on_connected';
-
 const blockData = {
   message0: '%{BKY_ON_CONNECTED} %1 %2',
   colour: '#F5AB1A',
@@ -26,6 +25,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on(Discord.Events.ClientReady, async () => {\n${statements}\n});\n`;
-  return code;
+  return `s4d.client.on(Discord.Events.ClientReady, async () => {
+${statements}
+});`;
 };

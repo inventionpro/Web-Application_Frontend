@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'register_c_m_g';
-
 const blockData = {
   message0: 'name %1 type %2',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['String']
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -36,6 +36,8 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH');
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `s4d.client.application?.commands.create({ \n name: ${name}, \n type: ${searchType} \n }) \n`;
-  return code;
+  return `s4d.client.application?.commands.create({
+  name: ${name},
+  type: ${searchType}
+});`;
 };

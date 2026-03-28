@@ -1,16 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import '@blockly/field-grid-dropdown';
+import { Types } from '../../../types.js';
 
 const blockName = 's4d_set_rank_name';
-
 const blockData = {
   message0: '%{BKY_SET_RANK_NAME}',
   args0: [
     {
       type: 'input_value',
       name: 'VALUE',
-      check: ['Number', 'String']
+      check: Types.String
     }
   ],
   colour: '#4C97FF',

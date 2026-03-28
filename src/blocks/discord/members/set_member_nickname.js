@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_set_member_nickname';
-
 const blockData = {
   message0: '%{BKY_SET_MEMBER_NICKNAME}',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'input_value',
       name: 'NEW_NICKNAME',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
   previousStatement: null,
@@ -35,8 +35,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const memberr = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   let member = memberr.replace('.user', '');
   const newName = javascriptGenerator.valueToCode(block, 'NEW_NICKNAME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${member}.setNickname(${newName});\n`;
-  return code;
+  return `${member}.setNickname(${newName});`;
 };
 
 registerRestrictions(blockName, [

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'register_commands';
-
 const blockData = {
   type: 'register_commands',
   message0: 'Add commands to the commands list page %1 %2',
@@ -28,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['register_commands'] = (block) => {
   var statements_commands = javascriptGenerator.statementToCode(block, 'commands');
-  var code = `${statements_commands}`;
-  return code;
+  return statements_commands;
 };

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_bot_shutdown';
-
 const blockData = {
   message0: 'Shutdown the bot',
   colour: '#4C97FF',
@@ -18,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `s4d.client.destroy();\n`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `s4d.client.destroy();`;
 };

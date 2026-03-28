@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'dash_perms';
-
 const blockData = {
   message0: 'server management permission %1',
   args0: [
@@ -58,6 +57,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const permission = block.getFieldValue('PERMISSION');
-  const code = [`[Permissions.FLAGS.${permission}]`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`[Permissions.FLAGS.${permission}]`, javascriptGenerator.ORDER_NONE];
 };

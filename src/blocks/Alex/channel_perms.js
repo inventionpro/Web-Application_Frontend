@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 'channel_perms';
-
 const blockData = {
   message0: '%1 permission %2 in channel %3 to member / role / everyone in the server %4',
   args0: [
@@ -32,12 +32,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'channel',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'to',
-      check: ['Member', 'Role', 'Everyone', 'Server']
+      check: T(Types.Member, Types.Role, Types.Server)
     }
   ],
   previousStatement: null,
@@ -59,12 +59,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let to = javascriptGenerator.valueToCode(block, 'to', javascriptGenerator.ORDER_ATOMIC);
   let contentType = null;
   try {
-    contentType = block.getInput('to').connection.targetConnection.getSourceBlock().outputConnection.check_ ? block.getInput('to').connection.targetConnection.getSourceBlock().outputConnection.check_[0] : null;
+    contentType = block.getInput('to').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] ?? null;
   } catch {
     contentType = null;
   }
-  if (String(contentType) === 'Server') to = `(${to} || {}).id`;
+  if (String(contentType) === Types.Server) to = `(${to} || {}).id`;
   const channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${channel}.permissionOverwrites.edit(${to}, { ${perm}: ${trufal} });`;
-  return code;
+  return `${channel}.permissionOverwrites.edit(${to}, { ${perm}: ${trufal} });`;
 };

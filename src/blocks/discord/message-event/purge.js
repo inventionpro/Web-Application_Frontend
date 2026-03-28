@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_purge';
-
 const blockData = {
   message0: '%{BKY_PURGE}',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'AMOUNT',
-      check: 'Number'
+      check: Types.Number
     }
   ],
   previousStatement: null,
@@ -35,8 +35,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const amount = javascriptGenerator.valueToCode(block, 'AMOUNT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${channel}.bulkDelete((${amount}|1)); \n`;
-  return code;
+  return `${channel}.bulkDelete((${amount}||1));`;
 };
 
 registerRestrictions(blockName, [

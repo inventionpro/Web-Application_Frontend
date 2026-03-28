@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_set_bot_game';
-
 const blockData = {
   message0: '%{BKY_SET_BOT_GAME}',
   args0: [
     {
       type: 'input_value',
       name: 'GAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -54,14 +54,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     .replace(/^./, (match) => match.toUpperCase());
   const game = javascriptGenerator.valueToCode(block, 'GAME', javascriptGenerator.ORDER_ATOMIC);
   const OIFD = block.getFieldValue('OIFD');
-  const code = `s4d.client.user.setPresence({
+  return `s4d.client.user.setPresence({
   status: '${OIFD}',
   activities: [{
     name: ${game},
     type: Discord.ActivityType.${type}
   }]
 });`;
-  return code;
 };
 
 registerRestrictions(blockName, [

@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
+import { Types } from '../../../types.js';
 
 const blockName = 's4d_set_color_r';
-
 const blockData = {
   message0: '%{BKY_SET_COLOR}',
   args0: [
@@ -29,7 +29,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'COLOR',
-      check: 'Colour'
+      check: Types.Color
     }
   ],
   colour: '#4C97FF',

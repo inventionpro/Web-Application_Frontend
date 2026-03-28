@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 's4d_subtract_data_new';
-
 const blockData = {
   message0: 'subtract %1 %2 from %3 from the database with name %4',
   args0: [
     {
       type: 'input_value',
       name: 'COUNT',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_dummy'
@@ -17,12 +17,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   nextStatement: null,
@@ -42,5 +42,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const count = javascriptGenerator.valueToCode(block, 'COUNT', javascriptGenerator.ORDER_ATOMIC);
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const name2 = name.substring(1, name.length - 1);
-  return `${name2}.subtract(String(${key}), parseInt(${count}));\n`;
+  return `${name2}.subtract(String(${key}), parseInt(${count}));`;
 };

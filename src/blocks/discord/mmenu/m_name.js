@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'm_name';
-
 const blockData = {
   message0: 'context name',
   colour: '#5BA58C',
   tooltip: '',
-  output: 'String',
+  output: Types.String,
   helpUrl: ''
 };
 
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['interaction.commandName', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['interaction.commandName', javascriptGenerator.ORDER_NONE];
 };

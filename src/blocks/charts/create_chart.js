@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'create_chart';
-
 const blockData = {
   type: 'create_chart',
   message0: 'Create a new chart with %1 Type %2 %3 Label %4 Labels (X axis) %5 Data %6',
@@ -29,17 +29,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'label',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'labels',
-      check: 'Array'
+      check: Types.Array
     },
     {
       type: 'input_value',
       name: 'data',
-      check: 'Array'
+      check: Types.Array
     }
   ],
   inputsInline: false,
@@ -61,7 +61,7 @@ javascriptGenerator.forBlock['create_chart'] = (block) => {
   var value_label = javascriptGenerator.valueToCode(block, 'label', javascriptGenerator.ORDER_ATOMIC);
   var value_labels = javascriptGenerator.valueToCode(block, 'labels', javascriptGenerator.ORDER_ATOMIC);
   var value_data = javascriptGenerator.valueToCode(block, 'data', javascriptGenerator.ORDER_ATOMIC);
-  var code = `const chart = ChartJSImage().chart({
+  return `const chart = ChartJSImage().chart({
   type: '${dropdown_typee}',
   data: {
     labels: ${value_labels},
@@ -71,5 +71,4 @@ javascriptGenerator.forBlock['create_chart'] = (block) => {
     }]
   }
 });`;
-  return code;
 };

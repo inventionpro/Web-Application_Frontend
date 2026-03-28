@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
+import { T, Types } from '../../../types.js';
 
 const blockName = 's4d_set_xp';
-
 const blockData = {
   message0: '%{BKY_SET_XP}',
   args0: [
@@ -18,7 +18,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VALUE',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
   colour: '#4C97FF',

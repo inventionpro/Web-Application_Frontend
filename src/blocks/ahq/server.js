@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'server_file';
 
+const blockName = 'server_file';
 const blockData = {
   type: 'block_type',
   message0: 'Load Server.js in your project!',
@@ -16,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `//let serverjs = 'true';\n`;
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return `//let serverjs = 'true';`;
 };

@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_create_embed_then_set_footer';
-
 const blockData = {
   message0: '%{BKY_CREATE_EMBED_THEN_SET_FOOTER}',
   args0: [
     {
       type: 'input_value',
       name: 'FOOTER',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'IMAGE',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#40BF4A',
@@ -34,8 +34,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const footer = javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC);
   const footerimage = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `embed.setFooter(${footer},${footerimage});\n`;
-  return code;
+  return `embed.setFooter(${footer},${footerimage});`;
 };
 
 registerRestrictions(blockName, [

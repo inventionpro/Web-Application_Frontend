@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_send_button';
-
 const blockData = {
   message0: '%{BKY_SEND_BUTTON}',
   args0: [
@@ -14,12 +14,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['String', 'Number', 'MessageEmbed', 'embed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_dummy'
@@ -48,36 +48,19 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      if (contentType === 'MessageEmbed') {
-        const code = `${channel}.send({${content},components:[${button}]}).then(async m=>{
-                ${statements}
-            });\n`;
-        return code;
-      } else {
-        const code = `${channel}.send({${content},components:[${button}]}).then(async m=>{
-                ${statements}
-            });\n`;
-        return code;
-      }
-    } else if (contentType === 'embed') {
-      const code = `${channel}.send({ embeds:[${content} ],
-components:[${button}]}).then(async m=>{
-                ${statements}
-            });\n`;
-      return code;
-    } else {
-      const code = `${channel}.send({ content: String(${content}),
-components:[${button}]}).then(async m=>{
-                ${statements}
-            });\n`;
-      return code;
+    if (contentType === Types.Embed[0]) {
+      return `${channel}.send({
+  embeds: [${content}],
+  components: [${button}]
+}).then(async m => {
+${statements}
+});`;
     }
-  } else {
-    const code = `${channel}.send({ content: String(${content}),
-components:[${button}]}).then(async m=>{
-            ${statements}
-        });\n`;
-    return code;
   }
+  return `${channel}.send({
+  content: String(${content}),
+  components: [${button}]
+}).then(async m => {
+${statements}
+});`;
 };

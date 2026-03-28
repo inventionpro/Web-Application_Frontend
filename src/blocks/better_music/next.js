@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'better_skip';
-
 const blockData = {
   message0: 'Skip to the next song',
   colour: '#4C97FF',
@@ -18,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `guildQueue.skip();`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return 'guildQueue.skip();';
 };

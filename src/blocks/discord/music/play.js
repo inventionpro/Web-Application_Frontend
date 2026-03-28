@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_play';
-
 const blockData = {
   message0: '%{BKY_PLAY}',
   args0: [
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const search = javascriptGenerator.valueToCode(block, 'SEARCH', javascriptGenerator.ORDER_ATOMIC);
-  const code = `queue.play(${search});\n`;
-  return code;
+  return `queue.play(${search});`;
 };

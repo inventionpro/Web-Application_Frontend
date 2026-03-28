@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 's4d_database_create_new';
-
 const blockData = {
   message0: 'Create a new database with name %1 & set file to %2 .json',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'FILE',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#5ba58b',
@@ -33,6 +33,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name2 = name.substring(1, name.length - 1);
   const file = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
   const file2 = file.substring(1, file.length - 1);
-  const code = `const ${name2} = new Database('./${file2}.json')`;
-  return code;
+  return `const ${name2} = new Database('./${file2}.json');`;
 };

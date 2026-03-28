@@ -1,18 +1,18 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_member_exist';
-
 const blockData = {
   message0: 'member %1 exist?',
   args0: [
     {
       type: 'input_value',
       name: 'MEMBER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#4C97FF',
   tooltip: '',
   helpUrl: ''
@@ -26,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`typeof ${member} !== undefined`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`typeof ${member} !== undefined`, javascriptGenerator.ORDER_NONE];
 };

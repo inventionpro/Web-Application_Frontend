@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'setbot';
-
 const blockData = {
   message0: 'Set bot %1 to %2',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'set',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -36,6 +36,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const wt = block.getFieldValue('wt');
   const set = javascriptGenerator.valueToCode(block, 'set', javascriptGenerator.ORDER_ATOMIC);
-  const code = `s4d.client.user.${wt}(${set})`;
-  return code;
+  return `s4d.client.user.${wt}(${set});`;
 };

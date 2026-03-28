@@ -1,8 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'convert_api_task';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
+const blockName = 'convert_api_task';
 const blockData = {
   message0: 'Make a convert task %1 File URL %2 %3 Name (with .gif, .pdf etc) %4 %5 Convert To %6 %7 then %8',
   args0: [
@@ -12,7 +13,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'link',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -20,7 +21,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -64,35 +65,31 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = `let job = await cloudConvert.jobs.create({
-        "tasks": {
-            "import-1": {
-                "operation": "import/url",
-                "url": ${javascriptGenerator.valueToCode(block, 'link', javascriptGenerator.ORDER_ATOMIC)}
-            },
-            "task-1": {
-                "operation": "convert",
-                "input": [
-                    "import-1"
-                ],
-                "output_format": "${block.getFieldValue('to')}",
-                "filename": "${javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC).replace("'", '').replace("'", '').toLowerCase}"
-            },
-            "export-1": {
-                "operation": "export/url",
-                "input": [
-                    "task-1"
-                ],
-                "inline": false,
-                "archive_multiple_files": false
-            }
-        },
-        "tag": "jobbuilder"
-    });
 
-    ${javascriptGenerator.statementToCode(block, 'statement', javascriptGenerator.ORDER_NONE)}`;
-  return code;
+javascriptGenerator.forBlock[blockName] = (block) => {
+  return `let job = await cloudConvert.jobs.create({
+  tasks: {
+    "import-1": {
+      operation: "import/url",
+      url: ${javascriptGenerator.valueToCode(block, 'link', javascriptGenerator.ORDER_ATOMIC)}
+    },
+    "task-1": {
+      operation: "convert",
+      input: [ "import-1" ],
+      output_format: "${block.getFieldValue('to')}",
+      filename: "${javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC).replace("'", '').replace("'", '').toLowerCase}"
+    },
+    "export-1": {
+      operation: "export/url",
+      input: [ "task-1" ],
+      inline: false,
+      archive_multiple_files: false
+    }
+  },
+  tag: "jobbuilder"
+});
+
+${javascriptGenerator.statementToCode(block, 'statement', javascriptGenerator.ORDER_NONE)}`;
 };
 
 registerRestrictions(blockName, [

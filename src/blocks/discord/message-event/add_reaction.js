@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_add_reaction';
-
 const blockData = {
   message0: 'add reaction %1 to the received message',
   args0: [
     {
       type: 'input_value',
       name: 'REACTION',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const reaction = javascriptGenerator.valueToCode(block, 'REACTION', javascriptGenerator.ORDER_ATOMIC);
-  const code = `s4dmessage.react(${reaction});`;
-  return code;
+  return `s4dmessage.react(${reaction});`;
 };

@@ -1,11 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'id_btn_srv';
+import { Types } from '../../types.js';
 
+const blockName = 'id_btn_srv';
 const blockData = {
   message0: 'button server',
   colour: '#33cc00',
-  output: 'Server',
+  output: Types.Server,
   tooltip: 'The server the buttons were posted in.',
   helpUrl: ''
 };
@@ -15,7 +16,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['(i.guild)', javascriptGenerator.ORDER_NONE];
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['i.guild', javascriptGenerator.ORDER_NONE];
 };

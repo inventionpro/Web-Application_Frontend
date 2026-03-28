@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'disconnect_voice';
-
 const blockData = {
   message0: 'Disconnect member %1 reason: %2 %3 from voice channel',
   args0: [
@@ -14,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'r',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -33,7 +33,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = `newState.disconnect(${javascriptGenerator.valueToCode(block, 'r', javascriptGenerator.ORDER_ATOMIC || null)})`;
-  return code;
+  return `newState.disconnect(${javascriptGenerator.valueToCode(block, 'r', javascriptGenerator.ORDER_ATOMIC || null)})`;
 };

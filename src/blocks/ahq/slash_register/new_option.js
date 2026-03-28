@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_reg_new_options';
-
 const blockData = {
   message0: 'Add option',
   args0: [],
@@ -16,7 +15,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `,\n`;
-  return code;
+
+javascriptGenerator.forBlock[blockName] = () => {
+  return `,\n`;
 };

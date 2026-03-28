@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_button_style';
-
 const blockData = {
   message0: '%{BKY_BUTTON_STYLE}',
   args0: [
@@ -34,6 +33,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const style = block.getFieldValue('STYLE');
-  const code = [`${style}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [style, javascriptGenerator.ORDER_NONE];
 };

@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 'slash_edit';
-
 const blockData = {
   message0: '%{BKY_S_EDIT}',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'Embed', 'MessageEmbed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'BUTTON',
-      check: ['String', 'ButtonRow', 'ButtonMenu']
+      check: T([Types.String, 'ButtonRow', 'ButtonMenu'])
     }
   ],
   colour: '#4C97FF',
@@ -38,18 +38,14 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'Embed') {
-      const code = `await interaction.editReply({ embeds: [${content}], components: [${button2}] });\n`;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `await interaction.editReply({${content}});\n`;
-      return code;
-    } else {
-      const code = `await interaction.editReply({ content: ${content}, components: [${button2}] });\n`;
-      return code;
-    }
-  } else {
-    const code = `await interaction.editReply({ content: ${content}, components: [${button2}] });\n`;
-    return code;
+    if (contentType === Types.Embed[0])
+      return `await interaction.editReply({
+  embeds: [${content}],
+  components: [${button2}]
+});`;
   }
+  return `await interaction.editReply({
+  content: ${content},
+  components: [${button2}]
+});`;
 };

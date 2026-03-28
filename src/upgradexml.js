@@ -2,6 +2,12 @@ const typeToImg = {
   frost_floppa: 'https://c.tenor.com/VcR3cl_TNQsAAAAM/big-floppa-mad-floppa.gif',
   s4d_fart: 'https://c.tenor.com/UVAk99QaOTsAAAAC/fart-experiment.gif'
 };
+const TypeToField = {
+  s4d_bot_ping: 'pings',
+  s4d_bot_server_count: 'servers',
+  s4d_pin: 'PIN',
+  s4d_unpin: 'UNPIN'
+};
 
 export default function upgradeXml(xml) {
   // Image embed blocks
@@ -64,5 +70,18 @@ export default function upgradeXml(xml) {
 </block>`
     );
   }
+  // Old stat blocks
+  xml.querySelectorAll('block[type="s4d_bot_server_count"],block[type="s4d_bot_ping"]').forEach((block) => {
+    let orig = block.getAttribute('type');
+    block.setAttribute('type', 's4d_bot_amount');
+    block.insertAdjacentHTML('beforeend', `<field name="T">${TypeToField[orig]}</field>`);
+  });
+  // Flexible pins
+  xml.querySelectorAll('block[type="s4d_pin"],block[type="s4d_unpin"]').forEach((block) => {
+    let orig = block.getAttribute('type');
+    block.setAttribute('type', 'lime_s4d_pin');
+    block.insertAdjacentHTML('beforeend', `<field name="choise">${TypeToField[orig]}</field>`);
+  });
+
   return xml;
 }

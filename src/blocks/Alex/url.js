@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'url_image';
-
 const blockData = {
   message0: 'Image URL',
   name: 'url',
-  output: ['String'],
+  output: Types.String,
   colour: '#05a386',
   tooltip: '',
   helpUrl: ''
@@ -18,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`await image_finder.find(query)`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return [`await image_finder.find(query)`, javascriptGenerator.ORDER_NONE];
 };

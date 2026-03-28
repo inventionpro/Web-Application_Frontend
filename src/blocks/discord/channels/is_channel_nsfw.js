@@ -1,19 +1,19 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_is_channel_nsfw';
-
 const blockData = {
   message0: '%{BKY_IS_CHANNEL_NSFW}',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#4C97FF',
-  output: 'Boolean',
+  output: Types.Boolean,
   tooltip: '',
   helpUrl: ''
 };
@@ -26,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
-  var code = `${channel}.nsfw`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`${channel}.nsfw`, javascriptGenerator.ORDER_NONE];
 };

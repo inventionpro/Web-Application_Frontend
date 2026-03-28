@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'lime_s4d_message_attributes_content_author_id_timestamp';
-
 const blockData = {
   type: 'lime_s4d_message_attributes_content_author_id_timestamp',
   message0: '%1',
@@ -23,7 +23,7 @@ const blockData = {
     }
   ],
   inputsInline: true,
-  output: null,
+  output: Types.Any,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -38,40 +38,40 @@ Blockly.Blocks[blockName] = {
     switch (dropdown) {
       case 'CONTENT':
         this.setColour('#5BA58C');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
       case 'ID':
         this.setColour('#5BA58C');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'TIME':
         this.setColour('#5BA58C');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.Number);
         break;
 
       case 'AUTHOR':
-        this.setOutput(true, 'Member');
+        this.setOutput(true, Types.User);
         this.setColour('#187795');
         break;
 
       case 'MEMBER':
-        this.setOutput(true, 'Member');
+        this.setOutput(true, Types.Member);
         this.setColour('#187795');
         break;
 
       case 'MENTION':
-        this.setOutput(true, 'Member');
+        this.setOutput(true, Types.Member);
         this.setColour('#187795');
         break;
 
       case 'CHANNEL':
-        this.setOutput(true, 'Channel');
+        this.setOutput(true, Types.Channel);
         this.setColour('#187795');
         break;
 
       case 'ROLE':
-        this.setOutput(true, 'Role');
+        this.setOutput(true, Types.Role);
         this.setColour('#187795');
         break;
     }

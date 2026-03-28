@@ -2,11 +2,13 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
+
 const blockName = 'send_ahq_converted';
 
 const BORDER_FIELDS = ['AHQ_EE', 'AHQ_E', 'AHQ_B'];
 
-const BORDER_TYPES = ['String', 'AHQEmbeds', 'AHQButton'];
+const BORDER_TYPES = [Types.String, 'AHQEmbeds', 'AHQButton'];
 const names = ['Text', 'Send ahq embed', 'Send ahq button (max 5)'];
 
 const blockData = {
@@ -18,17 +20,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'Label',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'ch',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#40BF4A',
@@ -114,20 +116,17 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const b = javascriptGenerator.valueToCode(block, 'AHQ_B', javascriptGenerator.ORDER_NONE);
   const code = [
     `${javascriptGenerator.valueToCode(block, 'ch', javascriptGenerator.ORDER_NONE)}.send({
-        files: [{
-            attachment: \`${javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`,
-            name: \`${javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`
-        }]`
+  files: [{
+    attachment: \`${javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`,
+    name: \`${javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", '').replace('file.filename', '${file.filename}')}\`
+  }]`
   ];
-  if (a) {
-    code.push(`,\nembeds: [${a.replace("'", '').replace("'", '')}]`);
-  }
-  if (b) {
-    code.push(`,\ncomponents: [new Discord.ActionRowBuilder().addComponents(${b.replace("'", '').replace("'", '')})]`);
-  }
+  if (a) code.push(`,\n  embeds: [${a.replace("'", '').replace("'", '')}]`);
+  if (b) code.push(`,\n  components: [new Discord.ActionRowBuilder().addComponents(${b.replace("'", '').replace("'", '')})]`);
   code.push(`});`);
   return code.join('\n');
 };
+
 registerRestrictions(blockName, [
   {
     message: 'RES_MISSING_AHQ_CONTENT',

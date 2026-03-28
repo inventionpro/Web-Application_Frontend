@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_bot_amount';
-
 const blockData = {
   message0: '%{BKY_BOT_AMOUNT}',
   args0: [
@@ -19,7 +19,7 @@ const blockData = {
     }
   ],
   colour: '#4C97FF',
-  output: 'String',
+  output: Types.Number,
   inputsInline: true,
   tooltip: '',
   helpUrl: ''

@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'convert_api_code';
-
 const blockData = {
   type: 'block_type',
   message0: 'Load convert api %1 api key %2 ',
@@ -14,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'api',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#0EB22B',
@@ -27,11 +27,11 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const code = `const CloudConvert = require('cloudconvert');
-    const ahqfs = require("fs");
-    const cloudConvert = new CloudConvert(${javascriptGenerator.valueToCode(block, 'api', javascriptGenerator.ORDER_ATOMIC)});`;
-  return code;
+  return `const CloudConvert = require('cloudconvert');
+const ahqfs = require("fs");
+const cloudConvert = new CloudConvert(${javascriptGenerator.valueToCode(block, 'api', javascriptGenerator.ORDER_ATOMIC)});`;
 };
 
 registerRestrictions(blockName, [

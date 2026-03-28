@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_delete_backup';
-
 const blockData = {
   message0: '%{BKY_DELETE_BACKUP}',
   args0: [
     {
       type: 'input_value',
       name: 'ID',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
   colour: '#4C97FF',
@@ -25,6 +25,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
-  var code = `backup.remove(${id});\n`;
-  return code;
+  return `backup.remove(${id});`;
 };
