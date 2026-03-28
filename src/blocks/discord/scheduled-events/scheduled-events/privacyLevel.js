@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-const blockName = 'privacylevel';
 
+const blockName = 'privacylevel';
 const blockData = {
   type: 'privacylevel',
   message0: '%1 Privacy level',

@@ -1,10 +1,11 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const BORDER_FIELDS = ['S_EVENT_NAME', 'S_EVENT_START', 'S_EVENT_END', 'S_PRIV_LVL', 'S_NTITI_TYPE', 'S_EVENT_DESC', 'S_EVENT_CHANNEL', 'S_METADATA', 'S_REASON'];
 
-const BORDER_TYPES = ['String', 'String', 'String', 'PrvtLvl', 'entity', 'String', 'String', 'String', 'String'];
+const BORDER_TYPES = [Types.String, Types.String, Types.String, 'PrvtLvl', 'entity', Types.String, Types.String, Types.String, Types.String];
 
 const event_set_options = {
   message0: 'set event',
@@ -125,6 +126,5 @@ javascriptGenerator.forBlock['event_set_options'] = (block) => {
     reason = `\nreason:${javascriptGenerator.valueToCode(block, 'S_REASON', javascriptGenerator.ORDER_ATOMIC)},`;
   }
 
-  let code = `${name}${start_date}${end_date}${description}${privateLevel}${type}${channel}${metadata}${reason}\n`;
-  return code;
+  return `${name}${start_date}${end_date}${description}${privateLevel}${type}${channel}${metadata}${reason}\n`;
 };

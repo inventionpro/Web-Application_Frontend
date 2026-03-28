@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'entitytype';
-
 const blockData = {
   type: 'entitytype',
   message0: '%1 Entity type',

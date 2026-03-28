@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'create_new_event';
-
 const blockData = {
   type: 'create_new_event',
   message0: 'Create new event in server %1 with ID %2 and %3',
@@ -10,12 +10,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'event_server',
-      check: 'Server'
+      check: Types.Server
     },
     {
       type: 'input_value',
       name: 'event_id',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -47,6 +47,5 @@ javascriptGenerator.forBlock['create_new_event'] = (block) => {
   event_id = event_id.replace("'", ''); // Deletes the quotes so it's no longer a string but a varable!
   event_id = event_id.replace("'", ''); // Same here
 
-  var code = `let ${event_id} = await ${new_event_server}.scheduledEvents.create({${statements}})\n`;
-  return code;
+  return `let ${event_id} = await ${new_event_server}.scheduledEvents.create({${statements}});`;
 };

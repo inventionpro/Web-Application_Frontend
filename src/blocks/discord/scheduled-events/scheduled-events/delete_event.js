@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'delete_sch_event';
-
 const blockData = {
   type: 'delete_sch_event',
   message0: 'Delete event with ID %1',
@@ -10,15 +10,15 @@ const blockData = {
     {
       type: 'input_value',
       name: 'amongus',
-      check: 'String'
+      check: Types.String
     }
   ],
   inputsInline: true,
   previousStatement: null,
   nextStatement: null,
   colour: '#ae81f7',
-  tooltip: 'HEHEHA GRRRRR HEHEHEA GRRR',
-  helpUrl: 'https://www.youtube.com/watch?v=xvFZjo5PgG0'
+  tooltip: '',
+  helpUrl: ''
 };
 
 Blockly.Blocks[blockName] = {
@@ -35,6 +35,5 @@ javascriptGenerator.forBlock['delete_sch_event'] = (block) => {
   amongus = amongus.toLowerCase(); // Puts to lower case Lime_Nade = lime_nade
   amongus = amongus.replace("'", '').replace("'", ''); // Deletes the quotes so it's no longer a string but a varable!
 
-  var code = `${amongus}.delete();\n`;
-  return code;
+  return `${amongus}.delete();`;
 };
