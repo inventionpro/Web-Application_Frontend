@@ -45,7 +45,7 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const type = block.getFieldValue('TYPE');
+  let type = block.getFieldValue('TYPE');
   type = type.replace('TEXT', 'GuildText').replace('VOICE', 'GuildVoice').replace('CATEGORY', 'GuildCategory');
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);

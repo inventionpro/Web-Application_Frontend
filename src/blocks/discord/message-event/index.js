@@ -21,8 +21,6 @@ import './mentioned_channel';
 import './mentioned_role';
 import './message_embed';
 import './get_message_by_id_then';
-import './pin_message';
-import './unpin_message';
 import './message_member';
 import './message';
 import './reply_message';
