@@ -10,6 +10,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+import { T, Types } from '../../../../types.js';
+
 const blockName = 'gsa_simple_embed';
 const menuName = blockName + '_checkboxMutatorMenu';
 
@@ -22,7 +24,7 @@ const menuTooltip = '';
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['message', 'color', 'title', 'url', 'author', 'description', 'thumbnail', 'fields', 'image', 'timestamp', 'footer'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String', ['String', 'Colour'], 'String', 'String', 'gsa_set_simple_embed_author', 'String', 'String', 'gsa_create_simple_embed_fields', 'String', ['String', 'Number'], 'gsa_set_simple_embed_footer'];
+const BORDER_TYPES = [Types.String, T(Types.String, Types.Color), Types.String, Types.String, 'gsa_set_simple_embed_author', Types.String, Types.String, 'gsa_create_simple_embed_fields', Types.String, T(Types.String, Types.Number), 'gsa_set_simple_embed_footer'];
 // names is the name of that input in the menu and in the final block
 const names = ['message', 'color', 'title', 'url', 'author:', 'description', 'thumbnail', 'fields:', 'image', 'timestamp', 'footer:'];
 const amountOfInputs = names.length;
@@ -39,7 +41,7 @@ const blockData = {
     }
   ],
   colour: BlockColor,
-  output: 'MessageEmbed'
+  output: Types.Embed
 };
 Blockly.Blocks[menuName] = {
   init: function () {
@@ -134,7 +136,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (block.inputs_[9]) timestamp = `timestamp: new Date(String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[9], javascriptGenerator.ORDER_NONE)})),\n`;
   if (block.inputs_[10]) footer = `footer: ${javascriptGenerator.valueToCode(block, BORDER_FIELDS[10], javascriptGenerator.ORDER_ATOMIC)},\n`;
   if (block.inputs_[0]) message = `content: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[0], javascriptGenerator.ORDER_NONE)}),`;
-  const code = `${message}embeds: [{
-${color}${title}${url}${author}${description}${thumbnail}${fields}${image}${timestamp}${footer}}]`;
-  return [code, javascriptGenerator.ORDER_ATOMIC];
+  // TODO: Support message
+  return [`{${color}${title}${url}${author}${description}${thumbnail}${fields}${image}${timestamp}${footer}}`, javascriptGenerator.ORDER_ATOMIC];
 };
