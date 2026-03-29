@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_thread_server';
-
 const blockData = {
   message0: '%{BKY_THREAD_SERVER}',
   args0: [
     {
       type: 'input_value',
       name: 'THREAD',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#2a97b8',
-  output: 'Server',
+  output: Types.Server,
   tooltip: '',
   helpUrl: ''
 };

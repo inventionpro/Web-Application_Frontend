@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_get_all_server';
-
 const blockData = {
   message0: 'get all server then for each %1 do %2',
   args0: [
@@ -29,6 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  let code = `s4d.client.guilds.cache.forEach(async (s) =>{ \n ${statementThen} \n})\n`;
-  return code;
+  return `s4d.client.guilds.cache.forEach(async (s) =>{
+${statementThen}
+});`;
 };

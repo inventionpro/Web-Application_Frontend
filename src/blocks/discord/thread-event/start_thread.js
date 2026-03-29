@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_start_thread';
-
 const blockData = {
   message0: '%{BKY_CREATE_THREAD}',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -78,13 +78,12 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const code = javascriptGenerator.statementToCode(block, 'CODE');
   const catchd = javascriptGenerator.statementToCode(block, 'NOTENOUGH');
   return `${channel}.threads.create({name: ${name}, autoArchiveDuration: ${archiveAfter}, type: '${threadType}'})
-    .then(async s4dCreatedThread => {
-        ${code}
-    })
-    .catch(async s4dThreadErr => {if (String(s4dThreadErr) === 'DiscordAPIError: Guild premium subscription level too low'){
-        ${catchd}
-    }});
-    `;
+.then(async s4dCreatedThread => {
+${code}
+})
+.catch(async s4dThreadErr => {if (String(s4dThreadErr) === 'DiscordAPIError: Guild premium subscription level too low'){
+${catchd}
+}});`;
 };
 
 registerRestrictions(blockName, [

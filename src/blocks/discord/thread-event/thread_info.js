@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_thread_info';
-
 const blockData = {
   message0: '%1 of thread %2',
   args0: [
@@ -20,11 +20,12 @@ const blockData = {
     },
     {
       type: 'input_value',
-      name: 'CHANNEL'
+      name: 'CHANNEL',
+      check: Types.Channel
     }
   ],
   colour: '#50a6c9',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };

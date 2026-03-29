@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_set_server_name';
-
 const blockData = {
   message0: '%{BKY_SET_SERVER_NAME}',
   args0: [
     {
       type: 'input_value',
       name: 'SERVER',
-      check: 'Server'
+      check: Types.Server
     },
     {
       type: 'input_value',
       name: 'NEW_NICKNAME',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
   previousStatement: null,
@@ -34,8 +34,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   const newName = javascriptGenerator.valueToCode(block, 'NEW_NICKNAME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${server}.setName(${newName});\n`;
-  return code;
+  return `${server}.setName(${newName});`;
 };
 
 registerRestrictions(blockName, [

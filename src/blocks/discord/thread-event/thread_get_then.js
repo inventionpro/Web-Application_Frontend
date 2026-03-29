@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_thread_get_then';
-
 const blockData = {
   message0: 'get the thread with id %1 in channel %2 then %3 %4',
   args0: [
     {
       type: 'input_value',
       name: 'ID',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_dummy'
@@ -44,8 +44,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const then = javascriptGenerator.statementToCode(block, 'THEN');
   const then2 = then.replace(';', '');
-  const code = `${channel}.threads.fetch(${id}).then(thread => ${then2});\n`;
-  return code;
+  return `${channel}.threads.fetch(${id}).then(thread => ${then2});`;
 };
 
 registerRestrictions(blockName, [

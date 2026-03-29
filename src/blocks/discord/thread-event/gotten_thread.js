@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_gotten_thread';
-
 const blockData = {
   message0: 'gotten thread',
   colour: '#2a97b8',
-  output: 'Channel',
+  output: Types.Channel,
   tooltip: '',
   helpUrl: ''
 };
@@ -18,9 +18,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['thread', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['thread', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

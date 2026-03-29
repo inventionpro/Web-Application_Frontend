@@ -6,7 +6,30 @@ const TypeToField = {
   s4d_bot_ping: 'pings',
   s4d_bot_server_count: 'servers',
   s4d_pin: 'PIN',
-  s4d_unpin: 'UNPIN'
+  s4d_unpin: 'UNPIN',
+  s4d_boost_level: 'BOOST_LEVEL',
+  s4d_icon_url: 'ICON_URL',
+  set_verification_level: 'NAME',
+  explicit_content_filter: 'NAME',
+  default_notif_lvl: 'NAME'
+};
+const UpgradeField = {
+  set_verification_level: {
+    NONE: 'None',
+    LOW: 'Low',
+    MEDIUM: 'Medium',
+    HIGH: 'High',
+    VERY_HIGH: 'VeryHigh'
+  },
+  explicit_content_filter: {
+    DISABLED: 'Disabled',
+    MEMBERS_WITHOUT_ROLES: 'MembersWithoutRoles',
+    ALL_MEMBERS: 'AllMembers'
+  },
+  default_notif_lvl: {
+    ALL_MESSAGES: 'AllMessages',
+    ONLY_MENTIONS: 'OnlyMentions'
+  }
 };
 
 export default function upgradeXml(xml) {
@@ -81,6 +104,17 @@ export default function upgradeXml(xml) {
     let orig = block.getAttribute('type');
     block.setAttribute('type', 'lime_s4d_pin');
     block.insertAdjacentHTML('beforeend', `<field name="choise">${TypeToField[orig]}</field>`);
+  });
+  // Compact server
+  xml.querySelectorAll('block[type="s4d_boost_level"],block[type="s4d_icon_url"]').forEach((block) => {
+    let orig = block.getAttribute('type');
+    block.setAttribute('type', 'server_attributes');
+    block.insertAdjacentHTML('beforeend', `<field name="attributes">${TypeToField[orig]}</field>`);
+  });
+  // To v14
+  xml.querySelectorAll('block[type="set_verification_level"],block[type="explicit_content_filter"],block[type="default_notif_lvl"]').forEach((block) => {
+    let field = block.querySelector(`field[name="${TypeToField[orig]}"]`);
+    field.innerHTML = UpgradeField[block.getAttribute('type')][field.innerHTML];
   });
 
   return xml;

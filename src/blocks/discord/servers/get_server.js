@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_get_server';
-
 const blockData = {
   message0: '%{BKY_GET_SERVER}',
   args0: [
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -22,7 +22,7 @@ const blockData = {
     }
   ],
   colour: '#D85E47',
-  output: 'Server',
+  output: Types.Server,
   tooltip: '',
   helpUrl: ''
 };

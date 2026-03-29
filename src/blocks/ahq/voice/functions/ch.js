@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import { Types } from '../../../types.js';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'act_voice';
 const blockData = {
@@ -26,7 +26,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'r',
-      check: [Types.Channel, Types.Boolean]
+      check: T([Types.Channel, Types.Boolean])
     }
   ],
   colour: '#40BF4A',

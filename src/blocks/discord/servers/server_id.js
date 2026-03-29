@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_server_id';
-
 const blockData = {
   message0: '%{BKY_SERVER_ID}',
   args0: [
     {
       type: 'input_value',
       name: 'SERVER',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#e07e6c',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };

@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_thread_channel';
-
 const blockData = {
   message0: '%{BKY_CHANNEL_OF_THREAD}',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#50a6c9',
-  output: 'Channel',
+  output: Types.Channel,
   tooltip: '',
   helpUrl: ''
 };

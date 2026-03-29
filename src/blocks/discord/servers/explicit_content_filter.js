@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'explicit_content_filter';
-
 const blockData = {
   type: 'explicit_content_filter',
   message0: '%1 content filter',
@@ -11,14 +11,14 @@ const blockData = {
       type: 'field_dropdown',
       name: 'NAME',
       options: [
-        ['Disabled', 'DISABLED'],
-        ['Members without roles', 'MEMBERS_WITHOUT_ROLES'],
-        ['All members', 'ALL_MEMBERS']
+        ['Disabled', 'Disabled'],
+        ['Members without roles', 'MembersWithoutRoles'],
+        ['All members', 'AllMembers']
       ]
     }
   ],
   inputsInline: true,
-  output: null,
+  output: Types.Any,
   colour: '#2AC395',
   tooltip: '',
   helpUrl: ''
@@ -30,13 +30,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-const v13tov14 = {
-  DISABLED: 0,
-  MEMBERS_WITHOUT_ROLES: 1,
-  ALL_MEMBERS: 2
-};
 javascriptGenerator.forBlock['explicit_content_filter'] = (block) => {
   let dropdown = block.getFieldValue('NAME');
-  let code = v13tov14[dropdown];
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`Discord.GuildExplicitContentFilter.${dropdown}`, javascriptGenerator.ORDER_NONE];
 };

@@ -2,6 +2,8 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
+
 const blockName = 's4d_thread_archive';
 const menuName = 's4d_thread_archive_mutator';
 
@@ -14,7 +16,7 @@ const menuTooltip = `Click the checkboxes to change add a reason.`;
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['REASON'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String'];
+const BORDER_TYPES = [Types.String];
 // names is the name of that input in the menu and in the final block
 const names = ['with reason'];
 const amountOfInputs = names.length;
@@ -36,7 +38,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'THREAD',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   previousStatement: null,
@@ -122,23 +124,23 @@ javascriptGenerator.forBlock['s4d_thread_archive'] = (block) => {
   const reason = javascriptGenerator.valueToCode(block, 'REASON', javascriptGenerator.ORDER_ATOMIC);
   if (reason.length !== 0) {
     if (type === 'true' || type === 'false') {
-      return `${thread}.setArchived(${type}, ${reason});\n`;
+      return `${thread}.setArchived(${type}, ${reason});`;
     } else if (type == 'lock') {
-      return `${thread}.setLocked(true, ${reason});\n`;
+      return `${thread}.setLocked(true, ${reason});`;
     } else if (type == 'unlock') {
-      return `${thread}.setLocked(false, ${reason});\n`;
+      return `${thread}.setLocked(false, ${reason});`;
     } else {
-      return `${thread}.delete(${reason})`;
+      return `${thread}.delete(${reason});`;
     }
   } else {
     if (type === 'true' || type === 'false') {
-      return `${thread}.setArchived(${type});\n`;
+      return `${thread}.setArchived(${type});`;
     } else if (type == 'lock') {
-      return `${thread}.setLocked(true);\n`;
+      return `${thread}.setLocked(true);`;
     } else if (type == 'unlock') {
-      return `${thread}.setLocked(false, ${reason});\n`;
+      return `${thread}.setLocked(false);`;
     } else {
-      return `${thread}.delete(${reason})`;
+      return `${thread}.delete();`;
     }
   }
 };

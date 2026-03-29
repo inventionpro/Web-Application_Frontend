@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jose_jg_create_webhook_in_channel_with_name_and_profile_picture_url_with_reason_then_do';
-
 const blockData = {
   message0: 'create webhook in channel %1 with name %2 and profile picture URL %3 with reason %6 then %4 do %5',
   inputsInline: false,
@@ -10,17 +10,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'channel',
-      check: ['Channel']
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['String']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'URL',
-      check: ['String']
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -32,7 +32,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'REASON',
-      check: ['String']
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -74,10 +74,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   }
   //, { avatar: String(${url}) }
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${channel}.createWebhook(String(${name})${exported})
-    .then(async webhook => {
-        ${statements}
-    })
-`;
-  return code;
+  return `${channel}.createWebhook(String(${name})${exported})
+.then(async webhook => {
+${statements}
+});`;
 };

@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jose_jg_s4d_as_webhook_send_with_allowed_mentions_on_lists_user_ids_role_ids';
-
 const blockData = {
   message0: 'as webhook send %1 with allowed mentions on lists %2 user IDs %3 role IDs %4',
   inputsInline: false,
@@ -11,7 +11,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['String', 'Number', 'MessageEmbed']
+      check: Types.MessageContent
     },
     {
       type: 'input_dummy'
@@ -19,12 +19,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'USERS',
-      check: ['Array', 'List']
+      check: Types.Array
     },
     {
       type: 'input_value',
       name: 'ROLES',
-      check: ['Array', 'List']
+      check: Types.Array
     }
   ],
   colour: '#135cc2',
@@ -47,48 +47,28 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const roles = javascriptGenerator.valueToCode(block, 'ROLES', javascriptGenerator.ORDER_ATOMIC);
   let usableA = '';
   let usableB = '';
-  if (!(users === null || users === '')) {
-    usableA = `users: ${users},`;
-  }
-  if (!(roles === null || roles === '')) {
-    usableB = `roles: ${roles},`;
-  }
+  if (!(users === null || users === '')) usableA = `users: ${users},`;
+  if (!(roles === null || roles === '')) usableB = `roles: ${roles},`;
 
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      const code = `gwebhook.send({
-                ${content},
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-`;
-      return code;
-    } else {
-      const code = `gwebhook.send({
-                content: String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-`;
-      return code;
-    }
-  } else {
-    const code = `gwebhook.send({
-            content: String(${content}),
-            allowedMentions: {
-                ${usableA}
-                ${usableB}
-            }
-        });
-`;
-    return code;
+    if (contentType === Types.Embed[0]) return `gwebhook.send({
+  embeds: [${content}],
+  allowedMentions: {
+    ${usableA}
+    ${usableB}
   }
+});`;
+  }
+  return `gwebhook.send({
+  content: String(${content}),
+  allowedMentions: {
+    ${usableA}
+    ${usableB}
+  }
+});`;
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

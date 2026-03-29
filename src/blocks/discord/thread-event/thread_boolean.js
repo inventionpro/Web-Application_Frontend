@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_thread_boolean';
-
 const blockData = {
   message0: 'thread %1 is %2?',
   args0: [
     {
       type: 'input_value',
       name: 'THREAD',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'field_dropdown',
@@ -21,7 +21,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#4C97FF',
   tooltip: '',
   helpUrl: ''
@@ -36,8 +36,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const thread = javascriptGenerator.valueToCode(block, 'THREAD', javascriptGenerator.ORDER_ATOMIC);
   const boolType = block.getFieldValue('BOOL_TYPE');
-  const code = [`${thread}.${boolType}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${thread}.${boolType}`, javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

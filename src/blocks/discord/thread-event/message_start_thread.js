@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_message_start_thread';
-
 const blockData = {
-  message0: 'start thread on message %7 with name%1 auto archive after%2%9 of type%10 %4then%6%3if not enough server boost level%8%5',
+  message0: 'start thread on message %7 with name %1 auto archive after %2 %9 of type %10 %4 then %6 %3 if not enough server boost level %8 %5',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -74,7 +74,16 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const threadType = block.getFieldValue('THREADTYPE');
   const code = javascriptGenerator.statementToCode(block, 'CODE');
   const catchd = javascriptGenerator.statementToCode(block, 'NOTENOUGH');
-  return `s4dmessage.startThread({name: ${name}, autoArchiveDuration: ${archiveAfter}, type: '${threadType}'})\n.then(async s4dCreatedThread => {\n${code}\n})\n.catch(async s4dThreadErr => {if (String(s4dThreadErr) === 'DiscordAPIError: Guild premium subscription level too low'){\n${catchd}\n}});\n`;
+  return `s4dmessage.startThread({
+  name: ${name},
+  autoArchiveDuration: ${archiveAfter},
+  type: '${threadType}'
+}).then(async s4dCreatedThread => {
+${code}
+}).catch(async s4dThreadErr => {
+  if (String(s4dThreadErr) === 'DiscordAPIError: Guild premium subscription level too low'){
+${catchd}
+}});`;
 };
 
 registerRestrictions(blockName, [

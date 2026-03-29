@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'default_notif_lvl';
-
 const blockData = {
   type: 'default_notif_lvl',
   message0: '%1 notification level',
@@ -11,13 +11,13 @@ const blockData = {
       type: 'field_dropdown',
       name: 'NAME',
       options: [
-        ['All messages', 'ALL_MESSAGES'],
-        ['Only mention', 'ONLY_MENTIONS']
+        ['All messages', 'AllMessages'],
+        ['Only mention', 'OnlyMentions']
       ]
     }
   ],
   inputsInline: true,
-  output: null,
+  output: Types.Any,
   colour: '#2AC395',
   tooltip: '',
   helpUrl: ''
@@ -29,13 +29,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-const v13tov14 = {
-  ALL_MESSAGES: 0,
-  ONLY_MENTIONS: 1
-};
 javascriptGenerator.forBlock['default_notif_lvl'] = (block) => {
   let dropdown = block.getFieldValue('NAME');
-  let code = v13tov14[dropdown];
-
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`Discord.GuildDefaultMessageNotifications.${dropdown}`, javascriptGenerator.ORDER_NONE];
 };

@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
+import { Types } from '../../types.js';
 
 const blockName = 'set_server_something';
-
 const blockData = {
   type: 'set_server_something',
   message0: 'Set server %1 %2 to %3 with reason %4 on server %5',
@@ -38,7 +38,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'reason',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
@@ -64,54 +64,34 @@ javascriptGenerator.forBlock['set_server_something'] = (block) => {
   var value = javascriptGenerator.valueToCode(block, 'value', javascriptGenerator.ORDER_ATOMIC);
   var reason = javascriptGenerator.valueToCode(block, 'reason', javascriptGenerator.ORDER_ATOMIC);
   var server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
-
-  var code = ``;
   switch (parameters) {
     case 'AFK_CHANNEL_TIMEOUT':
-      code = `${server}.setAFKTimeout(${value},${reason})\n`;
-      break;
-
+      return `${server}.setAFKTimeout(${value}, ${reason});`;
     case 'AFK_CHANNEL':
-      code = `${server}.setAFKChannel(${value},${reason})\n`;
-      break;
-
+      return `${server}.setAFKChannel(${value}, ${reason});`;
     case 'SET_BANNER':
-      code = `${server}.setBanner(${value},${reason})\n`;
-      break;
+      return `${server}.setBanner(${value}, ${reason});`;
     case 'DEFAULT_NOTIFICATIONS':
-      code = `${server}.setDefaultMessageNotifications(${value},${reason})\n`;
-      break;
+      return `${server}.setDefaultMessageNotifications(${value}, ${reason});`;
     case 'DISCOVERY_SPLASH':
-      code = `${server}.setDiscoverySplash(${value},${reason})\n`;
-      break;
+      return `${server}.setDiscoverySplash(${value}, ${reason});`;
     case 'EXPL_CONT_FILTER':
-      code = `${server}.setExplicitContentFilter(${value},${reason})\n`;
-      break;
+      return `${server}.setExplicitContentFilter(${value}, ${reason});`;
     case 'ICON':
-      code = `${server}.setIcon(${value},${reason})\n`;
-      break;
+      return `${server}.setIcon(${value}, ${reason});`;
     case 'NAME':
-      code = `${server}.setName(${value},${reason})\n`;
-      break;
+      return `${server}.setName(${value}, ${reason});`;
     case 'OWNER':
-      code = `${server}.setOwner(${value},${reason})\n`;
-      break;
+      return `${server}.setOwner(${value}, ${reason});`;
     case 'PUB_UPD_CHANNEL':
-      code = `${server}.setPublicUpdatesChannel(${value},${reason}) \n`;
-      break;
+      return `${server}.setPublicUpdatesChannel(${value}, ${reason}) ;`;
     case 'RULES_CHANNEL':
-      code = `${server}.setRulesChannel(${value},${reason})\n`;
-      break;
+      return `${server}.setRulesChannel(${value}, ${reason});`;
     case 'SPLASH':
-      code = `${server}.setSplash(${value},${reason})\n`;
-      break;
+      return `${server}.setSplash(${value}, ${reason});`;
     case 'SYS_CHANNEL':
-      code = `${server}.setSystemChannel(${value},${reason})\n`;
-      break;
+      return `${server}.setSystemChannel(${value}, ${reason});`;
     case 'VERIF_LVL':
-      code = `${server}.setVerificationLevel(${value},${reason})\n`;
-      break;
+      return `${server}.setVerificationLevel(${value}, ${reason});`;
   }
-  code += '\n';
-  return code;
 };

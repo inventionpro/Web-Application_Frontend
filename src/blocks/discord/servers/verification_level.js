@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'set_verification_level';
-
 const blockData = {
   type: 'set_verification_level',
   message0: '%1 verification level',
@@ -11,16 +11,16 @@ const blockData = {
       type: 'field_dropdown',
       name: 'NAME',
       options: [
-        ['No', 'NONE'],
-        ['Low', 'LOW'],
-        ['Medium', 'MEDIUM'],
-        ['High', 'HIGH'],
-        ['Very high', 'VERY_HIGH']
+        ['No', 'None'],
+        ['Low', 'Low'],
+        ['Medium', 'Medium'],
+        ['High', 'High'],
+        ['Very high', 'VeryHigh']
       ]
     }
   ],
   inputsInline: true,
-  output: null,
+  output: Types.Number,
   colour: '#2AC395',
   tooltip: '',
   helpUrl: ''
@@ -32,16 +32,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-const v13tov14 = {
-  NONE: 0,
-  LOW: 1,
-  MEDIUM: 2,
-  HIGH: 3,
-  VERY_HIGH: 4
-};
 javascriptGenerator.forBlock['set_verification_level'] = (block) => {
   let dropdown = block.getFieldValue('NAME');
-  let code = v13tov14[dropdown];
-
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`Discord.GuildVerificationLevel.${dropdown}`, javascriptGenerator.ORDER_NONE];
 };

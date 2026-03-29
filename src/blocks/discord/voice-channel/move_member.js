@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'move_member';
-
 const blockData = {
   message0: 'mute member with id %1 voice channel %2',
   args0: [
     {
       type: 'input_value',
       name: 'id',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'vc',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   previousStatement: null,
@@ -34,7 +34,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const id = javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_ATOMIC);
   const vc = javascriptGenerator.valueToCode(block, 'vc', javascriptGenerator.ORDER_ATOMIC);
-  const code = `
-s4dmessage.channel.members.forEach(member => {if(member.id === ${id}){member.voice.setChannel(${vc})}});`;
-  return code;
+  return `s4dmessage.channel.members.forEach(member => {
+  if (member.id === ${id}) member.voice.setChannel(${vc});
+});`;
 };

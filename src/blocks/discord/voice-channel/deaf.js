@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'deaf_member';
-
 const blockData = {
   message0: 'deaf member with id %1',
   args0: [
     {
       type: 'input_value',
       name: 'id',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -27,7 +27,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const id = javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_ATOMIC);
-  const code = `
-s4dmessage.channel.members.forEach(member => {if(member.id === ${id}){member.voice.setDeaf(true)}});`;
-  return code;
+  return `s4dmessage.channel.members.forEach(member => {
+  if (member.id === ${id}) member.voice.setDeaf(true);
+});`;
 };

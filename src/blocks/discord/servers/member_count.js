@@ -3,18 +3,17 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_member_count';
-
 const blockData = {
   message0: '%{BKY_MEMBER_COUNT}',
   args0: [
     {
       type: 'input_value',
       name: 'SERVER',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#e07e6c',
-  output: 'Number',
+  output: Types.Number,
   tooltip: '',
   helpUrl: ''
 };

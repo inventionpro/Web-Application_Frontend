@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_create_webhook_then';
-
 const blockData = {
   message0: '%{BKY_CREATE_WEBHOOK_THEN}',
   args0: [
     {
       type: 'input_value',
       name: 'channel',
-      check: ['Channel']
+      check: Types.Channel
     },
     {
       type: 'input_dummy'
@@ -35,6 +35,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${channel}.createWebhook('Spidey Bot','https://discord.com/assets/1f0bfc0865d324c2587920a7d80c609b.png').then(async webhook=>{\n${statements}\n})\n`;
-  return code;
+  return `${channel}.createWebhook('Spidey Bot','https://discord.com/assets/1f0bfc0865d324c2587920a7d80c609b.png').then(async webhook=>{
+${statements}
+});`;
 };

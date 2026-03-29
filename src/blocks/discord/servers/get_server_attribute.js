@@ -1,8 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
-const blockName = 'server_attributes';
+import { Types } from '../../types.js';
 
+const blockName = 'server_attributes';
 const blockData = {
   type: 'server_attributes',
   message0: 'On the server %1 get the %2',
@@ -25,6 +26,7 @@ const blockData = {
         ['discovery splash', 'DISCOVERY_SPLASH'],
         ['explicit content filter', 'EXPLICIT_CONTENT_FILTER'],
         ['icon', 'ICON'],
+        ['icon URL', 'ICON_URL'],
         ['ID', 'ID'],
         ['maximum Bitrate', 'MAX_BITRATE'],
         ['maximum members', 'MAX_MEMBERS'],
@@ -51,7 +53,7 @@ const blockData = {
   ],
   inputsInline: true,
   colour: '#e07e6c',
-  output: null,
+  output: Types.Any,
   tooltip: '',
   helpUrl: ''
 };
@@ -59,6 +61,54 @@ const blockData = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
+  },
+  onchange: function () {
+    var dropdown = this.getFieldValue('attributes');
+    switch (dropdown) {
+      case 'AFK_CHANNEL_ID':
+      case 'BANNER':
+      case 'super idol':
+      case 'DESCRIPTION':
+      case 'DISCOVERY_SPLASH':
+      case 'ID':
+      case 'ICON':
+      case 'ICON_URL':
+      case 'NAME':
+      case 'NAME_ACRONYM':
+      case 'OWNER_ID':
+      case 'PREFERED_LOCALE':
+      case 'RULES_CHANNEL_ID':
+      case 'SYS_CHANNEL_ID':
+        this.setOutput(true, Types.String);
+        break;
+      case 'AFK_TIMEOUT':
+      case 'DEFAULT_MSG_NOTIF':
+      case 'EXPLICIT_CONTENT_FILTER':
+      case 'MAX_BITRATE':
+      case 'MAX_MEMBERS':
+      case 'MAX_PRESENCES':
+      case 'MEMBER_COUNT':
+      case 'MFA_LEVEL':
+      case 'NSFW_LEVEL':
+      case 'SUBSCRIPTION_COUNT':
+      case 'BOOST_LEVEL':
+      case 'VERIF_LEVEL':
+        this.setOutput(true, Types.Number);
+        break;
+      case 'PARTNERED':
+      case 'PREMIUM_PROGRESS_BAR_ENABLED':
+      case 'VERIFIED':
+        this.setOutput(true, Types.Boolean);
+        break;
+      case 'AFK_CHANNEL':
+      case 'RULES_CHANNEL':
+      case 'SYS_CHANNEL':
+        this.setOutput(true, Types.Channel);
+        break;
+      case 'CREATED_AT':
+        this.setOutput(true, Types.Date);
+        break;
+    }
   }
 };
 
@@ -114,6 +164,10 @@ javascriptGenerator.forBlock['server_attributes'] = (block) => {
 
     case 'ICON':
       code = `${server}.icon`;
+      break;
+
+    case 'ICON_URL':
+      code = `${server}.iconURL({ dynamic: true })`;
       break;
 
     case 'MAX_BITRATE':
