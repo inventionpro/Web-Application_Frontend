@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 'gsa_http_get_buffer_then';
-
 const blockData = {
   message0: 'buffer request https %1 then %2',
   args0: [
     {
       type: 'input_value',
       name: 'HTTPS',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_statement',
@@ -33,7 +33,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const https = javascriptGenerator.valueToCode(block, 'HTTPS', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = `https.get(${https}, async resp => {
+  return `https.get(${https}, async resp => {
     let data = Buffer.alloc(0);
     resp.on("data",async chunk => {
         data = Buffer.concat([data, chunk]);
@@ -41,9 +41,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     resp.on("end",async () => {
         ${statementThen}
     });
-})
-`;
-  return code;
+});`;
 };
 
 Blockly.Blocks['gsa_get_https_response_buffer'] = {
@@ -59,5 +57,5 @@ Blockly.Blocks['gsa_get_https_response_buffer'] = {
 };
 
 javascriptGenerator.forBlock['gsa_get_https_response_buffer'] = function () {
-  return [`data`, javascriptGenerator.ORDER_ATOMIC];
+  return ['data', javascriptGenerator.ORDER_ATOMIC];
 };

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 'gsa_buffer_includes_string_or_buffer';
 const blockData = {
@@ -13,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'index',
-      check: ['buffer', 'String', 'Number']
+      check: T(['buffer', Types.String, Types.Number])
     }
   ],
   output: Types.Boolean,

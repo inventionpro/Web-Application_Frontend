@@ -23,9 +23,7 @@ Blockly.Blocks['gsa_express_website_respond_with_buffer'] = {
 };
 javascriptGenerator.forBlock['gsa_express_website_respond_with_buffer'] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'buffer', javascriptGenerator.ORDER_ATOMIC);
-  const code = `res.send(${text})
-`;
-  return code;
+  return `res.send(${text});`;
 };
 
 registerRestrictions('gsa_express_website_respond_with_buffer', [
