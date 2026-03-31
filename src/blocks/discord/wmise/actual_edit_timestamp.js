@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import { Types } from '../../types.js';
+import { T, Types } from '../../types.js';
 
 const blockName = 'redo_maybe_idk_jg_newmsg_edit_date_timestamp_of_message_edit';
 const blockData = {
