@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import { T, Types } from '../types.js';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'gsa_http_get_buffer_then';
 const blockData = {
