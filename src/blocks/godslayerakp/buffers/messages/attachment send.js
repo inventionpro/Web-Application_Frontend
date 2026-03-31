@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../../types.js';
 
 const blockname = 'gsa_send_new_attachment_in_channel';
-
 Blockly.Blocks[blockname] = {
   init: function () {
     this.jsonInit({
@@ -16,17 +16,17 @@ Blockly.Blocks[blockname] = {
         {
           type: 'input_value',
           name: 'name',
-          check: 'String'
+          check: Types.String
         },
         {
           type: 'input_value',
           name: 'content',
-          check: 'String'
+          check: Types.String
         },
         {
           type: 'input_value',
           name: 'channel',
-          check: ['Channel', 'Member']
+          check: T(Types.Channel, Types.UserResolve)
         }
       ],
       colour: '#4C97FF',
@@ -42,9 +42,8 @@ javascriptGenerator.forBlock[blockname] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
   const content = javascriptGenerator.valueToCode(block, 'content', javascriptGenerator.ORDER_ATOMIC);
   const channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${channel}.send({
+  return `${channel}.send({
   content: ${content},
   files: [new Discord.AttachmentBuilder(${buffer}, ${name})]
 });`;
-  return code;
 };

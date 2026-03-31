@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'frost_buttonline';
-
 const blockData = {
   message0: 'Make new button line %1 %2 %3',
   args0: [
@@ -33,5 +32,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const code = javascriptGenerator.statementToCode(block, 'code');
   return `),new Discord.ActionRowBuilder()
-                        .addComponents(${code}`;
+  .addComponents(${code}`;
 };

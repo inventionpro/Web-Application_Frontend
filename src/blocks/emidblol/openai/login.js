@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'login_openai';
-
 const blockData = {
   type: 'openai_login',
   message0: 'Login to openai with key:  %1',
@@ -11,22 +11,13 @@ const blockData = {
     {
       type: 'input_value',
       name: 'token',
-      check: ['String', 'Env']
+      check: Types.String
     }
   ],
   colour: 230,
   tooltip: '',
   helpUrl: ''
 };
-//if this block is not present, the user will not be able to use the OpenAI blocks
-registerRestrictions(blockName, [
-  {
-    type: 'notempty',
-    message: 'Please provide a valid OpenAI key or environment variable.',
-    types: ['token']
-  }
-]);
-
 Blockly.Blocks[blockName] = {
   init: function () {
     this.jsonInit(blockData);
@@ -35,10 +26,16 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const key = javascriptGenerator.valueToCode(block, 'token', javascriptGenerator.ORDER_ATOMIC);
-  const code = `
-        const openai = new OpenAI({
-            apiKey: ${key},
-        });
-    `;
-  return code;
+  return `const openai = new OpenAI({
+  apiKey: ${key}
+});`;
 };
+
+//if this block is not present, the user will not be able to use the OpenAI blocks
+registerRestrictions(blockName, [
+  {
+    type: 'notempty',
+    message: 'Please provide a valid OpenAI key or environment variable.',
+    types: ['token']
+  }
+]);

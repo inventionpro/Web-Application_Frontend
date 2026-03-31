@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'fz_emoji_info';
-
 const blockData = {
   message0: '%1 of emoji %2',
   args0: [
@@ -19,10 +19,10 @@ const blockData = {
     {
       type: 'input_value',
       name: 'EMOJI',
-      check: 'Emoji'
+      check: Types.Emoji
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#4C97FF',
   tooltip: '',
   helpUrl: ''
@@ -37,6 +37,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const emoji = javascriptGenerator.valueToCode(block, 'EMOJI', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${emoji}.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${emoji}.${type}`, javascriptGenerator.ORDER_NONE];
 };

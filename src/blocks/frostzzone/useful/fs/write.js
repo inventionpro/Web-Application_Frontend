@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_fs_write';
-
 const blockData = {
   message0: 'Get file %1 and set content to %3 then %2',
   args0: [
     {
       type: 'input_value',
       name: 'FILE',
-      check: ['String', 'var']
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -18,7 +18,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['String', 'var']
+      check: Types.String
     }
   ],
   colour: '#4C97FF',
@@ -39,6 +39,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
 
-  const code = `fs.writeFileSync(${file}, ${content}, async function (err) {\n ${statementThen} \n});\n`;
-  return code;
+  return `fs.writeFileSync(${file}, ${content}, async function (err) {
+${statementThen}
+});`;
 };

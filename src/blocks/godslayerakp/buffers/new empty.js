@@ -2,14 +2,13 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_empty';
-
 const blockData = {
   message0: 'create a buffer full of %2 with length %1',
   args0: [
     {
       type: 'input_value',
       name: 'number',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_value',

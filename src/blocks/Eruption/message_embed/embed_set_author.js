@@ -2,6 +2,8 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
+
 const blockName = 's4d_embed_set_author';
 const menuName = 's4d_embed_set_author_mutator';
 
@@ -14,7 +16,7 @@ const menuTooltip = `Click the checkboxes to change add a reason.`;
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['PROFILE', 'URL'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String', 'String'];
+const BORDER_TYPES = [Types.String, Types.String];
 // names is the name of that input in the menu and in the final block
 const names = ['set profile', 'set url'];
 const amountOfInputs = names.length;
@@ -108,8 +110,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const author = javascriptGenerator.valueToCode(block, 'AUTHOR', javascriptGenerator.ORDER_ATOMIC);
   const profile = javascriptGenerator.valueToCode(block, 'PROFILE', javascriptGenerator.ORDER_ATOMIC);
   const url = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
-  const code = `hnxgcjtirh.setAuthor(String(${author}), String(${profile}), String(${url})); \n`;
-  return code;
+  return `hnxgcjtirh.setAuthor(String(${author}), String(${profile}), String(${url}));`;
 };
 
 registerRestrictions(blockName, [

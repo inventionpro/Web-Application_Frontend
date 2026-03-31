@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_fs_read';
-
 const blockData = {
   message0: 'Read file %1 then %2',
   args0: [
     {
       type: 'input_value',
       name: 'FILE',
-      check: ['String', 'var']
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -33,6 +33,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const file = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
 
-  const code = `await fs.readFile(${file}, async function(err, data) {\n ${statementThen} \n});\n`;
-  return code;
+  return `await fs.readFile(${file}, async function(err, data) {
+${statementThen}
+});`;
 };

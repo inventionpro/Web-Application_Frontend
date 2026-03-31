@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_get_from_index';
-
 const blockData = {
   message0: 'in buffer %1 get # %2',
   args0: [
@@ -14,10 +13,10 @@ const blockData = {
     {
       type: 'input_value',
       name: 'index',
-      check: 'Number'
+      check: Types.Number
     }
   ],
-  output: 'Number',
+  output: Types.Number,
   colour: '#AE4FA7',
   tooltip: 'gets any byte at a specified index from a buffer',
   helpUrl: 'https://nodejs.org/api/buffer.html#bufindex'

@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
+
 const blockName = 'jg_example_output';
 const blockData = {
   message0: 'example output %1',
@@ -7,10 +9,10 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: 300,
   tooltip: 'An example of an output block.',
   helpUrl: ''
@@ -20,8 +22,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${text} + "abc"`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`${text} + "abc"`, javascriptGenerator.ORDER_NONE];
 };

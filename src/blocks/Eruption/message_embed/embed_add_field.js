@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_embed_add_field';
-
 const blockData = {
   message0: 'add embed field %1 with title %2 with description %3 field inline?  %4',
   args0: [
@@ -12,16 +12,18 @@ const blockData = {
     },
     {
       type: 'input_value',
-      name: 'TITLE'
+      name: 'TITLE',
+      check: Types.String
     },
     {
       type: 'input_value',
-      name: 'DESCRIPTION'
+      name: 'DESCRIPTION',
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'INLINE',
-      check: 'Boolean'
+      check: Types.Boolean
     }
   ],
   previousStatement: null,
@@ -41,12 +43,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const title = javascriptGenerator.valueToCode(block, 'TITLE', javascriptGenerator.ORDER_ATOMIC);
   const description = javascriptGenerator.valueToCode(block, 'DESCRIPTION', javascriptGenerator.ORDER_ATOMIC);
   const inline = javascriptGenerator.valueToCode(block, 'INLINE', javascriptGenerator.ORDER_ATOMIC);
-  if (inline.length == 0) {
-    const code = `hnxgcjtirh.addField(String(${title}), String(${description}), false); \n`;
-    return code;
-  }
-  const code = `hnxgcjtirh.addField(String(${title}), String(${description}), ${inline}); \n`;
-  return code;
+  return `hnxgcjtirh.addField(String(${title}), String(${description}), ${inline || false});`;
 };
 
 registerRestrictions(blockName, [

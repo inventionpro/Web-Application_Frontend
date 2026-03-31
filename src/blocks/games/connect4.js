@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_connect4';
-
 const blockData = {
   message0: 'Play Connect four',
   args0: [],
@@ -19,16 +18,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `
-const { ConnectFour } = require(djs-games)
-
+javascriptGenerator.forBlock[blockName] = () => {
+  return `const { ConnectFour } = require(djs-games);
 const game = new ConnectFour({
   message: message,
   player1: '🔴',
   player2: '🟡',
-})
-game.start()
-`;
-  return code;
+});
+game.start();`;
 };

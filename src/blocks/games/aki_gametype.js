@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'aki_gametype';
-
 const blockData = {
   message0: '%1',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
     }
   ],
   colour: '#D14081',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };
@@ -30,7 +30,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
-  const code = [`${type}`, javascriptGenerator.ORDER_NONE];
-
-  return code;
+  return [type, javascriptGenerator.ORDER_NONE];
 };

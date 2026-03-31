@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+import { Types } from '../../types.js';
+
 const blockName = 's4d_embed_send';
 const menuName = 's4d_embed_send_mutator';
 
@@ -13,7 +15,7 @@ const menuTooltip = `Click the checkboxes to change add a reason.`;
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['MESSAGE'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String'];
+const BORDER_TYPES = [Types.String];
 // names is the name of that input in the menu and in the final block
 const names = ['with message'];
 const amountOfInputs = names.length;
@@ -27,7 +29,7 @@ const blockData = {
       name: 'NAME'
     }
   ],
-  output: 'MessageEmbed',
+  output: Types.Embed,
   colour: '#40BF4A',
   tooltip: 'Send a perfect embed.',
   helpUrl: ''
@@ -104,16 +106,15 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const name = block.getFieldValue('NAME');
-  const name2 = name
-    .replace(/, /g, 'asgasdgasdgasegqehh')
-    .replace(/ /g, '_')
-    .replace(/asgasdgasdgasegqehh/g, ', ');
+  let name = block.getFieldValue('NAME');
+  name = name
+    .split(',')
+    .map((s) => s.trim().replaceAll(' ', '_'))
+    .join(', ');
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   if (message.length == 0) {
-    const code = [`embeds: [${name2}]`, javascriptGenerator.ORDER_ATOMIC];
-    return code;
+    return [name2, javascriptGenerator.ORDER_ATOMIC];
   }
-  const code = [`embeds: [${name2}], content: String(${message})`, javascriptGenerator.ORDER_ATOMIC];
-  return code;
+  // TODO: support message content: String(${message})
+  return [name2, javascriptGenerator.ORDER_ATOMIC];
 };

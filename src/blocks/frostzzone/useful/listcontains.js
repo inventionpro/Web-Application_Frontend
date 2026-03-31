@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'list_contains';
-
 const blockData = {
   message0: 'list %1 contains %2',
   inputsInline: true,
@@ -10,15 +10,15 @@ const blockData = {
     {
       type: 'input_value',
       name: 'LIST',
-      check: 'Array'
+      check: Types.Array
     },
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['Number', 'String']
+      check: Types.Any
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '%{BKY_LISTS_HUE}',
   inline: true,
   tooltip: '',
@@ -35,7 +35,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var value_list = javascriptGenerator.valueToCode(block, 'LIST', javascriptGenerator.ORDER_ATOMIC);
   var value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
 
-  var code = `${value_list}.includes(${value_name})`;
-
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`${value_list}.includes(${value_name})`, javascriptGenerator.ORDER_NONE];
 };

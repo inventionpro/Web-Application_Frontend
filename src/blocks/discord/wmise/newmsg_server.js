@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'new_message_server';
-
 const blockData = {
   message0: 'message server',
   colour: '#D85E47',
-  output: 'Server',
+  output: Types.Server,
   tooltip: '',
   helpUrl: ''
 };
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['newMessage.guild', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['newMessage.guild', javascriptGenerator.ORDER_NONE];
 };

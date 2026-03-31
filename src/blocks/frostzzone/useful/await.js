@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 Blockly.Blocks['frost_await'] = {
   init: function () {
@@ -11,7 +12,7 @@ Blockly.Blocks['frost_await'] = {
           name: 'input_block'
         }
       ],
-      output: null,
+      output: Types.Any,
       inputsInline: true,
       colour: '#D14081',
       tooltip: 'awaits code from block, search exclusive :O',
@@ -22,6 +23,5 @@ Blockly.Blocks['frost_await'] = {
 
 javascriptGenerator.forBlock['frost_await'] = (block) => {
   let input_block = javascriptGenerator.valueToCode(block, 'input_block', javascriptGenerator.ORDER_ATOMIC);
-  let code = `await ${input_block}`;
-  return [code, javascriptGenerator.ORDER_ATOMIC];
+  return [`await ${input_block}`, javascriptGenerator.ORDER_ATOMIC];
 };

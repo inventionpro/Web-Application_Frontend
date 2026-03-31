@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_jg_real_reply_to_message_with_mention_then';
-
 const blockData = {
   message0: 'reply to message %4 with %1 mention %2 then %3',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'MessageEmbed', 'embed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'boolean',
-      check: 'Boolean'
+      check: Types.Boolean
     },
     {
       type: 'input_statement',
@@ -24,7 +24,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: 'Message'
+      check: Types.Message
     }
   ],
   colour: '#4C97FF',
@@ -47,28 +47,23 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      const code = `${msg}.reply({${content}, allowedMentions: {
-        repliedUser: ${boolean}
-    }}).then(async (s4dfrost_real_reply) =>{\n ${statementThen} \n});\n`;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `${msg}.reply({ embeds:[${content}], allowedMentions: {
-        repliedUser: ${boolean}
-    }}).then(async (s4dfrost_real_reply) =>{\n ${statementThen} \n});\n`;
-      return code;
-    } else {
-      const code = `${msg}.reply({content:String(${content}), allowedMentions: {
-        repliedUser: ${boolean}
-    }}).then(async (s4dfrost_real_reply) =>{\n ${statementThen} \n});\n`;
-      return code;
-    }
-  } else {
-    const code = `${msg}.reply(String(${content}), allowedMentions: {
-        repliedUser: ${boolean}
-    }).then(async (s4dfrost_real_reply) =>{\n ${statementThen} \n});\n`;
-    return code;
+    if (contentType === Types.Embed[0]) return `${msg}.reply({
+  embeds: [${content}],
+  allowedMentions: {
+    repliedUser: ${boolean}
   }
+}).then(async s4dfrost_real_reply => {
+${statementThen}
+});`;
+  }
+  return `${msg}.reply({
+  content: String(${content}),
+  allowedMentions: {
+    repliedUser: ${boolean}
+  }
+}).then(async s4dfrost_real_reply => {
+${statementThen}
+});`;
 };
 
 registerRestrictions(blockName, [

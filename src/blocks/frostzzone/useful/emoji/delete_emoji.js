@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'fz_delete_emoji';
-
 const blockData = {
   message0: 'Delete emoji %1',
   args0: [
     {
       type: 'input_value',
       name: 'EMOJI',
-      check: ['Emoji']
+      check: Types.Emoji
     }
   ],
   colour: '#4C97FF',
@@ -28,6 +28,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const emoji = javascriptGenerator.valueToCode(block, 'EMOJI', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${emoji}.delete();\n`;
-  return code;
+  return `${emoji}.delete();`;
 };

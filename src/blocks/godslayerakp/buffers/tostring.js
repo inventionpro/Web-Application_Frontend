@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_string_from_buffer';
-
 const blockData = {
   message0: 'string from buffer %1 with encoding %2',
   args0: [
@@ -26,7 +25,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#AE4FA7',
   tooltip: 'converts a buffer to a string',
   helpUrl: 'https://nodejs.org/api/buffer.html#buftostringencoding-start-end'

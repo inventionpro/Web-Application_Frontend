@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'fz_get_emoji';
-
 const blockData = {
   message0: 'Get emoji with the %2 equal to %1 on server (optional) %3',
   args0: [
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -23,11 +23,11 @@ const blockData = {
     {
       type: 'input_value',
       name: 'SERVER',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#187795',
-  output: 'Emoji',
+  output: Types.Emoji,
   tooltip: 'Leave server blank to find emojis in every server the bot is in',
   helpUrl: ''
 };
@@ -42,9 +42,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
   const searchType = block.getFieldValue('SEARCH_TYPE');
   let server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
-  if ((server || null) == null) {
-    server = `(s4d.client)`;
-  }
+  if ((server || null) == null) server = `(s4d.client)`;
   if (searchType === 'USERNAME') {
     return [`${server}.emojis.cache.find(emoji => emoji.name === ${value})`, javascriptGenerator.ORDER_NONE];
   } else {

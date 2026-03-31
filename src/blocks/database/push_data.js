@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'KEY',
-      check: T(Types.String, Types.Number)
+      check: Types.Any
     },
     {
       type: 'input_dummy'
@@ -18,7 +18,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VALUE',
-      check: Types.String
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',

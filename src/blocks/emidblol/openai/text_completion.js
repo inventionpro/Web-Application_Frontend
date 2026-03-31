@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'text_completion_openai';
-
 const blockData = {
   message0: 'Complete text with prompt %1 with engine %2',
   args0: [
     {
       type: 'input_value',
       name: 'PROMPT',
-      check: ['String', 'Env']
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -23,10 +23,30 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#FF8C1A',
   tooltip: "Use OpenAI's GPT-3 to complete a text based on a prompt.",
   helpUrl: ''
+};
+Blockly.Blocks[blockName] = {
+  init: function () {
+    this.jsonInit(blockData);
+  }
+};
+
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const prompt = javascriptGenerator.valueToCode(block, 'PROMPT', javascriptGenerator.ORDER_ATOMIC);
+  return [
+    `await openai.createCompletion({
+  prompt: ${prompt},
+  model: "${block.getFieldValue('MODEL')}",
+  max_tokens: 16,
+  temperature: 1
+}).then((response) => {
+  return response.data.choices[0].text;
+})`,
+    javascriptGenerator.ORDER_NONE
+  ];
 };
 
 //if the openai_login block is not present, the user will not be able to use this block
@@ -42,22 +62,3 @@ registerRestrictions(blockName, [
     types: ['PROMPT']
   }
 ]);
-
-Blockly.Blocks[blockName] = {
-  init: function () {
-    this.jsonInit(blockData);
-  }
-};
-
-javascriptGenerator.forBlock[blockName] = (block) => {
-  const prompt = javascriptGenerator.valueToCode(block, 'PROMPT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `await openai.createCompletion({
-        prompt: ${prompt},
-        model: "${block.getFieldValue('MODEL')}",
-        max_tokens: 16,
-        temperature: 1
-    }).then((response) => {
-        return response.data.choices[0].text;
-        })`;
-  return [code, javascriptGenerator.ORDER_NONE];
-};

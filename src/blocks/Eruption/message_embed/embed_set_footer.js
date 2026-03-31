@@ -2,6 +2,8 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
+
 const blockName = 's4d_embed_set_footer';
 const menuName = 's4d_embed_set_footer_mutator';
 
@@ -14,7 +16,7 @@ const menuTooltip = `Click the checkboxes to change add a reason.`;
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['ICON'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String'];
+const BORDER_TYPES = [Types.String];
 // names is the name of that input in the menu and in the final block
 const names = ['set icon'];
 const amountOfInputs = names.length;
@@ -107,8 +109,10 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const footer = javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC);
   const icon = javascriptGenerator.valueToCode(block, 'ICON', javascriptGenerator.ORDER_ATOMIC);
-  const code = `hnxgcjtirh.setFooter({text: String(${footer}), iconURL: String(${icon})}); \n`;
-  return code;
+  return `hnxgcjtirh.setFooter({
+  text: String(${footer}),
+  iconURL: String(${icon})
+});`;
 };
 
 registerRestrictions(blockName, [

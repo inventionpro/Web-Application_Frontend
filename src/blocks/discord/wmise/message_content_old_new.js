@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'redo_maybe_idk_jg_newmsg_edit_original_new_message_content';
-
 const blockData = {
   message0: '%1 message content',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
   ],
   colour: '#5BA58C',
   tooltip: 'The content of the original message, or the new message.',
-  output: 'String'
+  output: Types.String
 };
 
 Blockly.Blocks[blockName] = {
@@ -28,6 +28,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`${type}Message.content`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${type}Message.content`, javascriptGenerator.ORDER_NONE];
 };

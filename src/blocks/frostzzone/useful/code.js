@@ -1,10 +1,10 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'blank_code';
-
 const blockData = {
-  message0: 'insert code⠀ %1 ⠀',
+  message0: 'insert code %1',
   args0: [
     {
       type: 'field_multilinetext',
@@ -27,7 +27,6 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var text = block.getFieldValue('TEXT');
-  if (text == null || text == undefined) return ``;
-  var code = `${text}\n`;
-  return code;
+  if (text == null || text == undefined) return '';
+  return text;
 };

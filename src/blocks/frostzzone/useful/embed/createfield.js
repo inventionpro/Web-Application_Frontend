@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'frost_create_field';
-
 const blockData = {
   message0: 'Create fields for embed %2 %1',
   args0: [
@@ -29,9 +28,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = `${statementThen}`;
-  return code;
+  return statementThen;
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

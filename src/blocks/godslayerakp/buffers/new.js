@@ -2,14 +2,13 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_from_string';
-
 const blockData = {
   message0: 'create buffer from %1 with encoding %2',
   args0: [
     {
       type: 'input_value',
       name: 'string',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',

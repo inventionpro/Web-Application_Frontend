@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'generate_image_openai';
-
 const blockData = {
   message0: 'Generate image with prompt %1 with key %2',
   args0: [
     {
       type: 'input_value',
       name: 'PROMPT',
-      check: ['String', 'Env']
+      check: Types.String
     },
     //dropdown with all the sizes
     {
@@ -28,6 +28,30 @@ const blockData = {
   tooltip: "Use OpenAI's GPT-3 to generate an image based on a prompt.",
   helpUrl: ''
 };
+Blockly.Blocks[blockName] = {
+  init: function () {
+    this.jsonInit(blockData);
+  }
+};
+
+javascriptGenerator.forBlock[blockName] = (block) => {
+  const prompt = javascriptGenerator.valueToCode(block, 'PROMPT', javascriptGenerator.ORDER_ATOMIC);
+  const size = block.getFieldValue('SIZE');
+  return [
+    `await openai.createImage({
+  prompt: ${prompt},
+  n: 1,
+  size: "${size}",
+  response_format: "b64_json"
+}).then((response) => {
+  const imageb64 = response.data.data[0].b64_json;
+  const image = Buffer.from(imageb64, "base64");
+  return image;
+})`,
+    javascriptGenerator.ORDER_NONE
+  ];
+};
+
 //if the openai_login block is not present, the user will not be able to use this block
 registerRestrictions(blockName, [
   {
@@ -41,26 +65,3 @@ registerRestrictions(blockName, [
     types: ['PROMPT']
   }
 ]);
-
-Blockly.Blocks[blockName] = {
-  init: function () {
-    this.jsonInit(blockData);
-  }
-};
-
-javascriptGenerator.forBlock[blockName] = (block) => {
-  const prompt = javascriptGenerator.valueToCode(block, 'PROMPT', javascriptGenerator.ORDER_ATOMIC);
-  const size = block.getFieldValue('SIZE');
-  const code = `await openai.createImage({
-        prompt: ${prompt},
-        n: 1,
-        size: "${size}",
-        response_format: "b64_json"
-      }).then((response) => {
-        const imageb64 = response.data.data[0].b64_json;
-        const image = Buffer.from(imageb64, "base64");
-        return image;
-        })
-      `;
-  return [code, javascriptGenerator.ORDER_NONE];
-};

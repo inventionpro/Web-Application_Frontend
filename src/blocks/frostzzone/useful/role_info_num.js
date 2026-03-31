@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'fz_role_info_num';
-
 const blockData = {
   message0: '%1 of role %2',
   args0: [
@@ -17,10 +17,10 @@ const blockData = {
     {
       type: 'input_value',
       name: 'ROLE',
-      check: 'Role'
+      check: Types.Role
     }
   ],
-  output: 'Number',
+  output: Types.Number,
   colour: '#4C97FF',
   tooltip: '',
   helpUrl: ''
@@ -35,6 +35,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const role = javascriptGenerator.valueToCode(block, 'ROLE', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${role}.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${role}.${type}`, javascriptGenerator.ORDER_NONE];
 };

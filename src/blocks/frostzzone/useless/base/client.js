@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_client';
-
 const blockData = {
   message0: 'Client %1',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
     }
   ],
   colour: '#4C97FF',
-  output: 'String',
+  output: Types.Number,
   inputsInline: true,
   tooltip: '',
   helpUrl: ''

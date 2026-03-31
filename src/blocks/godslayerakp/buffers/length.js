@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_get_length';
-
 const blockData = {
   message0: 'length of %1',
   args0: [
@@ -12,7 +11,7 @@ const blockData = {
       check: 'buffer'
     }
   ],
-  output: 'Number',
+  output: Types.Number,
   colour: '#AE4FA7',
   tooltip: 'gets the length of a buffer',
   helpUrl: 'https://nodejs.org/api/buffer.html#bufindex'

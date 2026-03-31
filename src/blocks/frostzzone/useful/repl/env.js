@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_env';
 const blockData = {
@@ -9,11 +10,11 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'String'
+      check: Types.String
     }
   ],
   tooltip: null,
-  output: ['String', 'Env'],
+  output: Types.String,
   helpUrl: ''
 };
 
@@ -25,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`process.env[String(${value})]`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`process.env[String(${value})]`, javascriptGenerator.ORDER_NONE];
 };

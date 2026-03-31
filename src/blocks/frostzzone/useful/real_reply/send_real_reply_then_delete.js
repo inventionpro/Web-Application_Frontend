@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'frost_real_reply_delete';
-
 const blockData = {
   message0: 'Delete reply',
   args0: [],
@@ -20,9 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  var code = `s4dfrost_real_reply.delete();\n`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `s4dfrost_real_reply.delete();`;
 };
 
 registerRestrictions(blockName, [

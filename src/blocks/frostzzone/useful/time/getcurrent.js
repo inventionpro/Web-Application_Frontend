@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_current';
-
 const blockData = {
   message0: 'Current %1',
   args0: [
@@ -33,7 +33,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'Number',
+  output: Types.Number,
   colour: '#D14081',
   tooltip: '',
   helpUrl: ''

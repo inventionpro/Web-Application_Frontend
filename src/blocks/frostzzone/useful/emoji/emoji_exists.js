@@ -1,18 +1,18 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'fz_emoji_exist';
-
 const blockData = {
   message0: 'emoji %1 exists?',
   args0: [
     {
       type: 'input_value',
       name: 'EMOJI',
-      check: 'Emoji'
+      check: Types.Emoji
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#4C97FF',
   tooltip: '',
   helpUrl: ''
@@ -26,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const emoji = javascriptGenerator.valueToCode(block, 'EMOJI', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${emoji} !== undefined`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${emoji} !== undefined`, javascriptGenerator.ORDER_NONE];
 };

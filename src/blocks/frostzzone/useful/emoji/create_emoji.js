@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'fz_create_emoji';
-
 const blockData = {
   message0: 'Create emoji %1 with image %2 on server %3 Then %4 (optional) %5',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'IMAGE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'SERVER',
-      check: 'Server'
+      check: Types.Server
     },
     {
       type: 'input_dummy'
@@ -32,7 +32,7 @@ const blockData = {
   previousStatement: null,
   nextStatement: null,
   colour: 230,
-  tooltip: 'Create emoji with name of the emoji \\n and with Image url',
+  tooltip: 'Create emoji with name of the emoji \n and with Image url',
   helpUrl: ''
 };
 
@@ -49,10 +49,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let value_image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
   let statements_then = javascriptGenerator.statementToCode(block, 'THEN');
   if ((statements_then || null) == null) {
-    code = `${value_server}.emojis.create(${value_image},${value_name});\n`;
+    code = `${value_server}.emojis.create(${value_image},${value_name});`;
   } else {
     code = `${value_server}.emojis.create(${value_image},${value_name}).then(async emoj =>{
-${statements_then}});\n`;
+${statements_then}});`;
   }
   return code;
 };

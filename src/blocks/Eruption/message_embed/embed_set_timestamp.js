@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 's4d_embed_set_timestamp';
-
 const blockData = {
   message0: 'set embed timestamp %1 to %2 date %3',
   args0: [
@@ -86,8 +85,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const date = javascriptGenerator.valueToCode(block, 'DATE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `hnxgcjtirh.setTimestamp(new Date(${date})); \n`;
-  return code;
+  return `hnxgcjtirh.setTimestamp(new Date(${date}));`;
 };
 
 registerRestrictions(blockName, [

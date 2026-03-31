@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'frost_image';
-
 const blockData = {
   message0: '%{BKY_FSEND_IMAGE}',
   args0: [
     {
       type: 'input_value',
       name: 'image',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#4C97FF',
@@ -27,11 +27,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'image', javascriptGenerator.ORDER_ATOMIC);
-  const code = `
-            let embed = new Discord.EmbedBuilder()
-        embed.setImage(${message});
-        (s4dmessage.channel).send({
-            embeds: [embed]
-        });`;
-  return code;
+  return `let embed = new Discord.EmbedBuilder();
+embed.setImage(${message});
+(s4dmessage.channel).send({
+  embeds: [embed]
+});`;
 };

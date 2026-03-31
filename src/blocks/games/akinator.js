@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'Akinator';
-
 const blockData = {
   message0: 'Start an Akinator with the gametype  %1',
   args0: [
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: ['Message', 'String']
+      check: Types.String
     }
   ],
   colour: '#D14081',
@@ -28,10 +28,9 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   return `akinator(s4dmessage, {
-        language: "en",
-        childMode: true,
-        gameType: ${message},
-        useButtons: true
-})
-`;
+  language: "en",
+  childMode: true,
+  gameType: ${message},
+  useButtons: true
+});`;
 };

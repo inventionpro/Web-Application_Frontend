@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_index_of_string_number_or_buffer';
-
 const blockData = {
   message0: 'the index of %2 in buffer %1',
   args0: [
@@ -17,7 +16,7 @@ const blockData = {
       check: ['buffer', 'String', 'Number']
     }
   ],
-  output: 'Number',
+  output: Types.Number,
   colour: '#AE4FA7',
   tooltip: 'gets where something is in a buffer',
   helpUrl: 'https://nodejs.org/api/buffer.html#bufincludesvalue-byteoffset-encoding'

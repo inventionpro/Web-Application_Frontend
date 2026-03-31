@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_slash_choices';
-
 const blockData = {
   message0: 'Add choice %1 Show as %2 Return as option %3',
   args0: [
@@ -12,12 +12,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'OPTION_NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#2e5b99',
@@ -36,9 +36,8 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const option_name = javascriptGenerator.valueToCode(block, 'OPTION_NAME', javascriptGenerator.ORDER_ATOMIC);
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `{
-    name: String(${name.toLowerCase()}),
-    value: String(${option_name})
+  return `{
+  name: String(${name.toLowerCase()}),
+  value: String(${option_name})
 },`;
-  return code;
 };

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_includes_string_or_buffer';
-
 const blockData = {
   message0: '%1 contains %2',
   args0: [
@@ -17,7 +16,7 @@ const blockData = {
       check: ['buffer', 'String', 'Number']
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#AE4FA7',
   tooltip: 'checks if a buffer includes a buffer or string',
   helpUrl: 'https://nodejs.org/api/buffer.html#bufincludesvalue-byteoffset-encoding'

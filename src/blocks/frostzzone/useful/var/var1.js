@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'import_all';
-
 const blockData = {
   type: 'block_type',
   message0: '%1 %2 = %3 %4',
@@ -20,7 +20,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VAR',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
@@ -52,7 +52,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const vab2 = vab.substring(1, vab.length - 1);
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   const colon = block.getFieldValue('COLON');
-  const code = `${type} ${vab2} = ${content}${colon}
-`;
-  return code;
+  return `${type} ${vab2} = ${content}${colon}`;
 };

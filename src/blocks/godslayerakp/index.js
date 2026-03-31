@@ -17,10 +17,10 @@ Blockly.Blocks['gsa_make_db_with_path_x'] = {
         {
           type: 'input_value',
           name: 'path',
-          check: 'String'
+          check: Types.String
         }
       ],
-      output: null,
+      output: Types.Any,
       inputsInline: true,
       colour: '#5ba58b',
       tooltip: 'creates a new database, put in a variable and then put the variable in the db blocks to use',
@@ -44,7 +44,7 @@ Blockly.Blocks['gsa_bypass_type'] = {
           name: 'path'
         }
       ],
-      output: null,
+      output: Types.Any,
       inputsInline: true,
       colour: '#D14081',
       tooltip: 'forces a block into where ever you want',
@@ -65,15 +65,15 @@ Blockly.Blocks['gsa_format_time'] = {
         {
           type: 'input_value',
           name: 'time',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_value',
           name: 'format',
-          check: 'String'
+          check: Types.String
         }
       ],
-      output: 'String',
+      output: Types.String,
       inputsInline: true,
       colour: '#D14081',
       tooltip: 'formats date as timestamp (like discords timestamps but with more configurable)',
@@ -136,12 +136,12 @@ Blockly.Blocks['gsa_create_new_jimp_image'] = {
         {
           type: 'input_value',
           name: 'sx',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_value',
           name: 'sy',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_statement',
@@ -213,7 +213,7 @@ Blockly.Blocks['gsa_typeof'] = {
           name: 'thing'
         }
       ],
-      output: 'String',
+      output: Types.String,
       inputsInline: true,
       colour: '#D14081',
       tooltip: 'gets the type of a value',

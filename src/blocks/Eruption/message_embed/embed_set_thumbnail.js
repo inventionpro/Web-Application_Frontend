@@ -1,15 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_embed_set_thumb';
-
 const blockData = {
   message0: 'set embed thumbnail %1',
   args0: [
     {
       type: 'input_value',
-      name: 'THUMB'
+      name: 'THUMB',
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -27,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const thumbnail = javascriptGenerator.valueToCode(block, 'THUMB', javascriptGenerator.ORDER_ATOMIC);
-  const code = `hnxgcjtirh.setThumbnail(String(${thumbnail})); \n`;
-  return code;
+  return `hnxgcjtirh.setThumbnail(String(${thumbnail}));`;
 };
 
 registerRestrictions(blockName, [

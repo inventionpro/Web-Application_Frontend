@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_replys';
-
 const blockData = {
   message0: 'send message in new message channel %1',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'MessageEmbed', 'embed']
+      check: Types.MessageContent
     }
   ],
   colour: '#4C97FF',
@@ -29,19 +29,12 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      const code = `newMessage.channel.send({${content}});\n`;
-      return code;
-    }
-    if (contentType === 'Embed') {
-      const code = `newMessage.channel.send({embeds:[${content}]});\n`;
-      return code;
-    } else {
-      const code = `newMessage.channel.send({content:String(${content})});\n`;
-      return code;
-    }
-  } else {
-    const code = `newMessage.channel.send({content:String(${content})});\n`;
-    return code;
+    if (contentType === Types.Embed[0])
+      return `newMessage.channel.send({
+  embeds: [${content}]
+});`;
   }
+  return `newMessage.channel.send({
+  content: String(${content})
+});`;
 };

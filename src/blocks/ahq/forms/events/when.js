@@ -25,7 +25,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_NONE);
   return `s4d.client.on(Discord.Events.InteractionCreate, async (i) => {
-	if (!i.isModalSubmit()) return;
+  if (!i.isModalSubmit()) return;
   let member = i.guild.members.cache.get(i.member.user.id);
   ${statementsThen}
 });`;

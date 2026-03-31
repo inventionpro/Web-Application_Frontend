@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_snake';
-
 const blockData = {
   message0: 'Play Snake',
   args0: [],
@@ -19,14 +18,12 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `
-            const snakeGame = new SnakeGame({
-                title: 'Snake Game',
-                color: 'GREEN',
-                timestamp: false,
-                gameOverTitle: 'Game Over'
-            });
-            snakeGame.newGame(s4dmessage);`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `const snakeGame = new SnakeGame({
+  title: 'Snake Game',
+  color: 'GREEN',
+  timestamp: false,
+  gameOverTitle: 'Game Over'
+});
+snakeGame.newGame(s4dmessage);`;
 };

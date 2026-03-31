@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_snake';
-
 const blockData = {
   message0: '(slash) Play Snake',
   args0: [],
@@ -19,9 +18,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `await interaction.reply({
-content: (
+javascriptGenerator.forBlock[blockName] = () => {
+  // TODO: wtf is this
+  return `await interaction.reply({
+  content: (
             const snakeGame = new SnakeGame({
                 title: 'Snake Game',
                 color: 'GREEN',
@@ -32,5 +32,4 @@ content: (
 ephemeral: true,
 components: []
 })`;
-  return code;
 };

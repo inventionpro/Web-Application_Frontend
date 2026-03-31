@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'frost_channel_types';
-
 const blockData = {
   message0: 'Type Of Channel %2 is %1',
   args0: [
@@ -32,11 +32,11 @@ const blockData = {
     {
       type: 'input_value',
       name: 'Channel',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#D14081',
-  output: 'Boolean',
+  output: Types.Boolean,
   tooltip: 'Check if the channel is one of these types of channels.',
   helpUrl: ''
 };

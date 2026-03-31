@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_buffer_set_from_index';
-
 const blockData = {
   message0: 'in buffer %1 set # %2 to %3',
   args0: [
@@ -14,12 +13,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'index',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'value',
-      check: 'Number'
+      check: Types.Number
     }
   ],
   previousStatement: null,

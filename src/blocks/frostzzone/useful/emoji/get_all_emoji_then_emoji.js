@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'fz_get_all_emoj';
-
 const blockData = {
   message0: 'created emoji/cached emoji',
   args0: [],
   colour: '#187795',
-  output: 'Emoji',
+  output: Types.Emoji,
   tooltip: '',
   helpUrl: ''
 };
@@ -19,9 +19,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return [`emoj`, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['emoj', javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

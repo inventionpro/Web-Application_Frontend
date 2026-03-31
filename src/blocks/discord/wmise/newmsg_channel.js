@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'newmsg_channel';
-
 const blockData = {
   message0: 'message channel',
   colour: '#a55b80',
-  output: 'Channel',
+  output: Types.Channel,
   tooltip: '',
   helpUrl: ''
 };
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['newMessage.channel', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['newMessage.channel', javascriptGenerator.ORDER_NONE];
 };

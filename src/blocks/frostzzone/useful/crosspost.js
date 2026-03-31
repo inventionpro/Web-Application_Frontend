@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'crosspost';
-
 const blockData = {
   message0: 'Crosspost recived message (only anouncment channels)',
   args0: [],
@@ -19,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return `s4dmessage.crosspost();\n`;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `s4dmessage.crosspost();`;
 };

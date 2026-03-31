@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'frost_translate';
-
 const blockData = {
   message0: 'Translate %1 to %2 and save translation to variable %3',
   args0: [
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'field_dropdown',
@@ -24,7 +24,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VAR',
-      check: 'Message'
+      check: Types.Message
     }
   ],
   previousStatement: null,
@@ -44,6 +44,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const lang = javascriptGenerator.valueToCode(block, 'LANG', javascriptGenerator.ORDER_ATOMIC);
   const vari = javascriptGenerator.valueToCode(block, 'VAR', javascriptGenerator.ORDER_ATOMIC);
 
-  const code = [`translate(${key}, {to: '${lang}'}).then(res => { ${vari}; }).catch(err => { console.error(err) })`, javascriptGenerator.ORDER_ATOMIC];
-  return code;
+  return [`translate(${key}, {to: '${lang}'}).then(res => { ${vari}; }).catch(err => { console.error(err) })`, javascriptGenerator.ORDER_ATOMIC];
 };

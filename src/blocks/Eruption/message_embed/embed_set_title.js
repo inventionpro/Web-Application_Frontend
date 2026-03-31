@@ -2,6 +2,8 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
+
 const blockName = 's4d_embed_set_title';
 const menuName = 's4d_embed_set_title_mutator';
 
@@ -14,7 +16,7 @@ const menuTooltip = `Click the checkboxes to change add a reason.`;
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['HYPERLINK'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String'];
+const BORDER_TYPES = [Types.String];
 // names is the name of that input in the menu and in the final block
 const names = ['set url'];
 const amountOfInputs = names.length;
@@ -24,7 +26,8 @@ const blockData = {
   args0: [
     {
       type: 'input_value',
-      name: 'TITLE'
+      name: 'TITLE',
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -107,8 +110,8 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const title = javascriptGenerator.valueToCode(block, 'TITLE', javascriptGenerator.ORDER_ATOMIC);
   const hyperlink = javascriptGenerator.valueToCode(block, 'HYPERLINK', javascriptGenerator.ORDER_ATOMIC);
-  const code = `hnxgcjtirh.setTitle(String(${title})) \n hnxgcjtirh.setURL(String(${hyperlink})); \n`;
-  return code;
+  return `hnxgcjtirh.setTitle(String(${title}));
+hnxgcjtirh.setURL(String(${hyperlink}));`;
 };
 
 registerRestrictions(blockName, [

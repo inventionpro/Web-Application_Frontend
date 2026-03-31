@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'fz_channel';
-
 const blockData = {
   message0: 'Create channel with name %1 In category %2 In server %5 Of the type %3 %4 then %6 %7',
   args0: [
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'id',
-      check: ['String', 'Category']
+      check: T(Types.String, Types.Channel)
     },
     {
       type: 'field_dropdown',
@@ -32,7 +32,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'server',
-      check: 'Server'
+      check: Types.Server
     },
     {
       type: 'input_dummy'
@@ -62,6 +62,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
   const server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
   const then = javascriptGenerator.statementToCode(block, 'THEN', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${server}.channels.create(${name}, { type: "${type}", parent: ${cid} }).then(async cat =>{${then}});`;
-  return code;
+  return `${server}.channels.create(${name}, {
+  type: "${type}",
+  parent: ${cid}
+}).then(async cat =>{
+${then}
+});`;
 };

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+
 const blockName = 'jg_example_event';
 const blockData = {
   message0: 'example event %1 %2',
@@ -21,10 +22,8 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
+
 javascriptGenerator.forBlock[blockName] = (block) => {
   const blocks = javascriptGenerator.statementToCode(block, 'BLOCKS');
-  const code = `
-${blocks}
-`;
-  return code;
+  return blocks;
 };

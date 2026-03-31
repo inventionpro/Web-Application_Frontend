@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_category_get';
-
 const blockData = {
   message0: 'Get category/channel with %2 equal to %1 on server %3',
   args0: [
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -23,11 +23,11 @@ const blockData = {
     {
       type: 'input_value',
       name: 'SERVER',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#a55b80',
-  output: ['Category', 'Channel'],
+  output: Types.Channel,
   tooltip: '',
   helpUrl: ''
 };

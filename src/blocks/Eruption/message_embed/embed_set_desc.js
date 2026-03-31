@@ -1,15 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_embed_set_desc';
-
 const blockData = {
   message0: 'set embed description %1',
   args0: [
     {
       type: 'input_value',
-      name: 'DESC'
+      name: 'DESC',
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -27,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const description = javascriptGenerator.valueToCode(block, 'DESC', javascriptGenerator.ORDER_ATOMIC);
-  const code = `hnxgcjtirh.setDescription(String(${description})); \n`;
-  return code;
+  return `hnxgcjtirh.setDescription(String(${description}));`;
 };
 
 registerRestrictions(blockName, [

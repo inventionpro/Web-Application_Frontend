@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'gsa_fs_write_buffer';
-
 const blockData = {
   message0: 'write buffer %2 to file %1',
   args0: [
     {
       type: 'input_value',
       name: 'FILE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
@@ -33,7 +33,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const file = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
-
-  const code = `fs.writeFileSync(${file}, ${content}, async(err)=>{ console.log(err) });`;
-  return code;
+  return `fs.writeFileSync(${file}, ${content}, async(err)=>{ console.log(err) });`;
 };

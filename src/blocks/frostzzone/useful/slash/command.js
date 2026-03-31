@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_slash_command';
-
 const blockData = {
   message0: 'Create slash command Name %1 Description %2 %3 Options %4',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'DESC',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -41,12 +41,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   var desc = javascriptGenerator.valueToCode(block, 'DESC', javascriptGenerator.ORDER_ATOMIC);
   var options = javascriptGenerator.statementToCode(block, 'OPTIONS');
-  var code = `{
-    name: ${name.toLowerCase()},
-		description: ${desc},
-		options: [
-      ${options}
-    ]
+  return `{
+  name: ${name.toLowerCase()},
+  description: ${desc},
+  options: [
+    ${options}
+  ]
 },`;
-  return code;
 };

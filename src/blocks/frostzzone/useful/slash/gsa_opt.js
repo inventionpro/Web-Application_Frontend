@@ -1,38 +1,38 @@
 /*
-SUB_COMMAND	- 1
-SUB_COMMAND_GROUP	- 2
-STRING	- 3
-INTEGER	- 4	Any integer between -2^53 and 2^53
-BOOLEAN	- 5
-USER	- 6
-CHANNEL	- 7	Includes all channel types + categories
-ROLE	- 8
-MENTIONABLE	- 9	Includes users and roles
-NUMBER	- 10	Any double between -2^53 and 2^53
-ATTACHMENT	- 11	attachment object
+SUB_COMMAND - 1
+SUB_COMMAND_GROUP - 2
+STRING - 3
+INTEGER - 4 Any integer between -2^53 and 2^53
+BOOLEAN - 5
+USER - 6
+CHANNEL - 7 Includes all channel types + categories
+ROLE - 8
+MENTIONABLE - 9 Includes users and roles
+NUMBER - 10 Any double between -2^53 and 2^53
+ATTACHMENT - 11 attachment object
 */
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'gsa_frost_slash_options';
-
 const blockData = {
   message0: 'Add %4 %6 Name %1 Description %2 Required (ignored if not an option) %3 (optional) Choices %5',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'DESC',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'REQUIRED',
-      check: 'Boolean'
+      check: Types.Boolean
     },
     {
       type: 'field_dropdown',
@@ -78,18 +78,16 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const required = javascriptGenerator.valueToCode(block, 'REQUIRED', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
   var choices = javascriptGenerator.statementToCode(block, 'CHOICES');
-  const code = `{
-    type: ${type},
-	name: ${name.toLowerCase()},
-    ${Number(type) > 2 ? `required: ${required || false},` : ''}
-	description: ${desc}, ${
+  return `{
+  type: ${type},
+  name: ${name.toLowerCase()},
+  ${Number(type) > 2 ? `required: ${required || false},` : ''}
+  description: ${desc}, ${
     Number(type) >= 5 && !type == '10'
       ? ''
-      : `
-    ${Number(type) < 3 ? 'options' : 'choices'}: [
-        ${choices}
-    ]`
+      : `${Number(type) < 3 ? 'options' : 'choices'}: [
+  ${choices}
+]`
   }
 },`;
-  return code;
 };

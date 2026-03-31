@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'blank';
-
 const blockData = {
   message0: '⠀ %1 ⠀',
   args0: [
@@ -12,7 +12,7 @@ const blockData = {
       text: ''
     }
   ],
-  output: null,
+  output: Types.Any,
   colour: '#a55b80',
   tooltip: 'Insert text'
 };
@@ -25,6 +25,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var text = block.getFieldValue('TEXT');
-  var code = `${text}`;
-  return [code, javascriptGenerator.ORDER_ATOMIC];
+  return [text, javascriptGenerator.ORDER_ATOMIC];
 };

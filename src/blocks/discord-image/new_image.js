@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
+import { Types } from '../types.js';
 
 const blockName = 'new_image';
-
 const blockData = {
   message0: 'new image URL of %1',
   args0: [
@@ -51,7 +51,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -73,6 +73,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const info2 = block.getFieldValue('INFO');
   let info1 = info2.replace("'", '');
   let info = info1.replace("'", '');
-  const code = [`await images.${info}()`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`await images.${info}()`, javascriptGenerator.ORDER_NONE];
 };

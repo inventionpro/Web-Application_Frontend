@@ -1,51 +1,50 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import '@blockly/field-grid-dropdown';
+import { T, Types } from '../types.js';
 
 const blockName = 'start_db';
-
 const blockData = {
   message0: 'start firebase, apiKey:%1 authDomain:%2 databaseURL:%3 projectId:%4 storageBucket:%5 messagingSenderId:%6 appId:%7 measurementId:%8',
   args0: [
     {
       type: 'input_value',
       name: 'apiKey',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'authDomain',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'databaseURL',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'projectId',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'storageBucket',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'messagingSenderId',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'appId',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'measurementId',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     }
   ],
   colour: '#4C97FF',
@@ -71,17 +70,16 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const appId = javascriptGenerator.valueToCode(block, 'appId', javascriptGenerator.ORDER_ATOMIC);
   const measurementId = javascriptGenerator.valueToCode(block, 'measurementId', javascriptGenerator.ORDER_ATOMIC);
 
-  let code = `let firebaseConfig = {
-    apiKey: ${apiKey},
-    authDomain: ${authDomain},
-    databaseURL: ${databaseURL},
-    projectId: ${projectId},
-    storageBucket: ${storageBucket},
-    messagingSenderId: ${messagingSenderId},
-    appId: ${appId},
-    measurementId: ${measurementId}
-  };\n
-  let app = firebase.initializeApp(firebaseConfig);\n
-  s4d.fire = firebase.getDatabase(app);\n`;
-  return code;
+  return `let firebaseConfig = {
+  apiKey: ${apiKey},
+  authDomain: ${authDomain},
+  databaseURL: ${databaseURL},
+  projectId: ${projectId},
+  storageBucket: ${storageBucket},
+  messagingSenderId: ${messagingSenderId},
+  appId: ${appId},
+  measurementId: ${measurementId}
+};
+let app = firebase.initializeApp(firebaseConfig);
+s4d.fire = firebase.getDatabase(app);`;
 };

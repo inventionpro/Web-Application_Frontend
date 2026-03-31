@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'redo_maybe_idk_jg_newmsg_edit_date_timestamp_of_message_edit';
-
 const blockData = {
   message0: '%1 of message edit',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
   ],
   colour: '#5BA58C',
   tooltip: 'The UNIX timestamp of when the message was edited, or the date.',
-  output: ['Number', 'Date', 'String']
+  output: T(Types.Number, Types.Date)
 };
 
 Blockly.Blocks[blockName] = {
@@ -28,6 +28,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`newMessage.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`newMessage.${type}`, javascriptGenerator.ORDER_NONE];
 };

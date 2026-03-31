@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_embed_set_color';
-
 const blockData = {
   message0: 'set embed color %1',
   args0: [
     {
       type: 'input_value',
       name: 'COLOUR',
-      check: 'Colour'
+      check: Types.Color
     }
   ],
   previousStatement: null,
@@ -28,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const color = javascriptGenerator.valueToCode(block, 'COLOUR', javascriptGenerator.ORDER_ATOMIC);
-  const code = `hnxgcjtirh.setColor(${color}); \n`;
-  return code;
+  return `hnxgcjtirh.setColor(${color});`;
 };
 
 registerRestrictions(blockName, [

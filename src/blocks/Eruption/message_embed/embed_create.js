@@ -2,9 +2,8 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_embed_create';
-
 const blockData = {
-  message0: 'create an embed%1with name %2 %3 then %4',
+  message0: 'create an embed %1 with name %2 %3 then %4',
   args0: [
     {
       type: 'input_dummy'
@@ -41,6 +40,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name2 = name.replace(/ /g, '_');
   const then = javascriptGenerator.statementToCode(block, 'THEN');
   const then2 = then.replace(/hnxgcjtirh\./g, name2 + '.');
-  const code = `var ${name2} = new Discord.EmbedBuilder(); \n ${then2}\n`;
-  return code;
+  return `var ${name2} = new Discord.EmbedBuilder();
+${then2}`;
 };

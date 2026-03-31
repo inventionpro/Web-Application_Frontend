@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 'github_get_then';
-
 const blockData = {
   message0: 'Get Users %1 github %2 then - %3 %4',
   args0: [
     {
       type: 'input_value',
       name: 'USER',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'field_dropdown',
@@ -39,18 +39,12 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const user = javascriptGenerator.valueToCode(block, 'USER', javascriptGenerator.ORDER_ATOMIC);
   const what = javascriptGenerator.valueToCode(block, 'what', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = `https.get('https://api.github.com/users/' + ${user} + '/' + ${what}, async resp => {
-  let data2 = "";
-    resp.on("data", async chunk => {
-    data2 += chunk;
-  });
-  resp.on("end", async () => {
-    let data = JSON.parse(data2)
-    ${statementThen}
-  });
-})
-  .on("error", async err => {
+  return `fetch('https://api.github.com/users/' + ${user} + '/' + ${what})
+  .then(res=>res.json())
+  .then(async data => {
+${statementThen}
+  })
+  .catch(async err => {
     console.log("Error: " + err.message);
   });`;
-  return code;
 };

@@ -1,26 +1,26 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_jg_real_reply_to_message_with_mention';
-
 const blockData = {
   message0: 'reply to message %1 with %2 mention %3',
   args0: [
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: 'Message'
+      check: Types.Message
     },
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'MessageEmbed', 'embed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'boolean',
-      check: 'Boolean'
+      check: Types.Boolean
     }
   ],
   colour: '#4C97FF',
@@ -42,35 +42,19 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const boolean = javascriptGenerator.valueToCode(block, 'boolean', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      if (contentType === 'MessageEmbed') {
-        const code = `${msg}.reply({${content}, allowedMentions: {
-        repliedUser: ${boolean}
-    }});\n`;
-        return code;
-      } else {
-        const code = `${msg}.reply({${content}, allowedMentions: {
-        repliedUser: ${boolean}
-    }});\n`;
-        return code;
-      }
-    } else if (contentType === 'embed') {
-      const code = `${msg}.reply({ embeds:[${content}], allowedMentions: {
-        repliedUser: ${boolean}
-    }});\n`;
-      return code;
-    } else {
-      const code = `${msg}.reply({content:String(${content}), allowedMentions: {
-        repliedUser: ${boolean}
-    }});\n`;
-      return code;
-    }
-  } else {
-    const code = `${msg}.reply({content:String(${content}), allowedMentions: {
-        repliedUser: ${boolean}
-    }});\n`;
-    return code;
+    if (contentType === Types.Embed[0]) return `${msg}.reply({
+  embeds: [${content}],
+  allowedMentions: {
+    repliedUser: ${boolean}
   }
+});`;
+  }
+  return `${msg}.reply({
+  content: String(${content}),
+  allowedMentions: {
+    repliedUser: ${boolean}
+  }
+});`;
 };
 
 registerRestrictions(blockName, [

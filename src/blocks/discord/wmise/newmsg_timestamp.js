@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'newmsg_timestamp';
-
 const blockData = {
   message0: 'date of message edit',
   colour: '#5BA58C',
   tooltip: 'The time that the message was edited at.',
-  output: 'String',
+  output: Types.Date,
   helpUrl: ''
 };
 
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['newMessage.editedAt', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['newMessage.editedAt', javascriptGenerator.ORDER_NONE];
 };

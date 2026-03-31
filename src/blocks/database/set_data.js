@@ -13,7 +13,8 @@ const blockData = {
     },
     {
       type: 'input_value',
-      name: 'VALUE'
+      name: 'VALUE',
+      check: Types.Any
     },
     {
       type: 'input_dummy'

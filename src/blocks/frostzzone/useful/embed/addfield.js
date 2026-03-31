@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_add_field';
-
 const blockData = {
   message0: 'Add field %1 Title %2 Description %3 Inline %4',
   args0: [
@@ -13,17 +13,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'TITLE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'DESCRIPTION',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'INLINE',
-      check: 'Boolean'
+      check: Types.Boolean
     }
   ],
   colour: '#40BF4A',
@@ -43,8 +43,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const fielddescription = javascriptGenerator.valueToCode(block, 'DESCRIPTION', javascriptGenerator.ORDER_ATOMIC);
   const fieldtitle = javascriptGenerator.valueToCode(block, 'TITLE', javascriptGenerator.ORDER_ATOMIC);
   const inline = javascriptGenerator.valueToCode(block, 'INLINE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `{ name: String(${fieldtitle}), value: String(${fielddescription}), inline: ${inline} },\n`;
-  return code;
+  return `{ name: String(${fieldtitle}), value: String(${fielddescription}), inline: ${inline} },`;
 };
 
 registerRestrictions(blockName, [

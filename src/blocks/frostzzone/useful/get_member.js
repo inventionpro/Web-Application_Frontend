@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_get_member2';
-
 const blockData = {
   message0: 'Get member with %2 equal to %1',
   args0: [
     {
       type: 'input_value',
       name: 'VALUE',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -22,7 +22,7 @@ const blockData = {
     }
   ],
   colour: '#187795',
-  output: 'Member',
+  output: Types.Member,
   tooltip: '',
   helpUrl: ''
 };

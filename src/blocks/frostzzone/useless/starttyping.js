@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'frost_typing';
-
 const blockData = {
   message0: 'Start typing in channel for (seconds) %1 then send %2',
   args0: [
     {
       type: 'input_value',
       name: 'time',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'MessageEmbed', 'embed']
+      check: Types.MessageContent
     }
   ],
   colour: '#4C97FF',
@@ -36,28 +36,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const time = javascriptGenerator.valueToCode(block, 'time', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessageEmbed') {
-      const code = `s4dmessage.channel.sendTyping();
-          await delay(Number(${time}) * 1000);
-s4dmessage.channel.send({${content}});\n`;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `s4dmessage.channel.sendTyping();
-          await delay(Number(${time}) * 1000);
-s4dmessage.channel.send({ embeds:[${content}]});\n`;
-      return code;
-    } else {
-      const code = `s4dmessage.channel.sendTyping();
-          await delay(Number(${time}) * 1000);
-s4dmessage.channel.send({content:String(${content})});\n`;
-      return code;
-    }
-  } else {
-    const code = `s4dmessage.channel.sendTyping();
-          await delay(Number(${time}) * 1000);
-s4dmessage.channel.send({content:String(${content})});\n`;
-    return code;
+    if (contentType === Types.Embed[0]) return `s4dmessage.channel.sendTyping();
+await delay(Number(${time}) * 1000);
+s4dmessage.channel.send({ embeds: [${content}] });`;
   }
+  return `s4dmessage.channel.sendTyping();
+await delay(Number(${time}) * 1000);
+s4dmessage.channel.send({ content: String(${content}) });`;
 };
 
 registerRestrictions(blockName, [

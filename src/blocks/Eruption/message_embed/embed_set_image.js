@@ -1,15 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_embed_set_image';
-
 const blockData = {
   message0: 'set embed image %1',
   args0: [
     {
       type: 'input_value',
-      name: 'IMAGE'
+      name: 'IMAGE',
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -27,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `hnxgcjtirh.setImage(String(${image})); \n`;
-  return code;
+  return `hnxgcjtirh.setImage(String(${image}));`;
 };
 
 registerRestrictions(blockName, [

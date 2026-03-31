@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'frost_fs_rename';
-
 const blockData = {
   message0: 'Rename file %1 to %3 then %2',
   args0: [
     {
       type: 'input_value',
       name: 'FILE',
-      check: ['String', 'var']
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -18,7 +18,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['String', 'var']
+      check: Types.String
     }
   ],
   colour: '#4C97FF',
@@ -39,6 +39,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
 
-  const code = `fs.renameFileSync(${file}, ${name}, async function (err) {\n ${statementThen} \n});\n`;
-  return code;
+  return `fs.renameFileSync(${file}, ${name}, async function (err) {
+${statementThen}
+});`;
 };

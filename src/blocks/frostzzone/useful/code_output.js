@@ -1,10 +1,10 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'blank_code_output';
-
 const blockData = {
-  message0: 'insert code⠀ %1 ⠀',
+  message0: 'insert code %1',
   args0: [
     {
       type: 'field_multilinetext',
@@ -14,7 +14,7 @@ const blockData = {
     }
   ],
   colour: '#d14081',
-  output: null,
+  output: Types.Any,
   tooltip: 'Insert code to run without eval'
 };
 
@@ -26,7 +26,6 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var text = block.getFieldValue('TEXT');
-  if (text == null || text == undefined) return ``;
-  var code = `${text}\n`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  if (text == null || text == undefined) return '';
+  return [text, javascriptGenerator.ORDER_NONE];
 };

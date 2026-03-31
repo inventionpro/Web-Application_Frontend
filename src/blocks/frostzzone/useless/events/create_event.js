@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'create_event';
-
 const blockData = {
   message0: 'when event %1 is received %2 do %3',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -31,12 +31,9 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  var code;
   let value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   let statements_then = javascriptGenerator.statementToCode(block, 'THEN');
-  code = `eventEmitter.on(${value_name}, async => {
-    ${statements_then}
-  });
-`;
-  return code;
+  return `eventEmitter.on(${value_name}, async() => {
+${statements_then}
+});`;
 };

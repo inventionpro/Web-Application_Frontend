@@ -52,7 +52,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0]) return `webhook.send({
+    if (contentType === Types.Embed[0])
+      return `webhook.send({
   embeds: [${content}],
   allowedMentions: {
     ${usableA}
@@ -60,7 +61,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   }
 });`;
   }
-    return `webhook.send({
+  return `webhook.send({
   content: String(${content}),
   allowedMentions: {
     ${usableA}
