@@ -754,7 +754,7 @@ ${window.aprilFoolsTheme?'<button id="btn-aprilend" class="swal2-deny swal2-styl
         showCancelButton: false,
         didOpen: () => {
           document.getElementById('btn-cancel').onclick = Swal.close;
-          document.getElementById('btn-aprilend')?.onclick = ()=>{
+          if (document.getElementById('btn-aprilend')) document.getElementById('btn-aprilend').onclick = ()=>{
             clearInterval(window.aprilFoolsTheme);
             window.aprilFoolsTheme = null;
             Swal.close();
