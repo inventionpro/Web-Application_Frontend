@@ -200,7 +200,7 @@ export let toolbox = `
   </category>
   <category name="Text" colour="#5ba58c">
     <block type="text"/>
-		<block type="text_multiline"/>
+    <block type="text_multiline"/>
     <block type="text_join">
       <mutation items="2"/>
     </block>
@@ -211,8 +211,8 @@ export let toolbox = `
         </shadow>
       </value>
     </block>
-		<block type="text_isEmpty"/>
-		<block type="text_reverse"/>
+    <block type="text_isEmpty"/>
+    <block type="text_reverse"/>
     <block type="s4d_newline"></block>
     <block type="text_append">
       <field name="VAR">item</field>
@@ -320,7 +320,7 @@ export let toolbox = `
         </shadow>
       </value>
     </block>
-		<block type="text_count"/>
+    <block type="text_count"/>
     <block type="jg_text_regex_create_new_regex_of"/>
     <block type="jg_lists_regex_list_of_matches_from_regex_on_text"/>
   </category>
@@ -342,7 +342,7 @@ export let toolbox = `
     <block type="lists_isEmpty"/>
     <block type="list_contains"/>
     <block type="lists_sort"/>
-		<block type="lists_reverse"/>
+    <block type="lists_reverse"/>
     <block type="lists_indexOf">
       <field name="END">FIRST</field>
       <value name="VALUE">

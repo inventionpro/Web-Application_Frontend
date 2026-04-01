@@ -798,17 +798,15 @@ ${CATEGORYCONTENT}`
             }
           }
         }
-      }
-      if (specialTag == 'text-only') {
+      } else if (specialTag == 'text-only') {
         const elem2ents = document.getElementsByClassName('blocklyPath');
         for (let i = 0; i < elem2ents.length; i++) {
           let current = elem2ents.item(i);
           current.setAttribute('d', '');
         }
-      }
-      if (specialTag == 'april-fools') {
-        document.getElementById('navSpace').style = `background-color: rgb(255, 0, 255);`;
-        document.getElementsByClassName('blocklyMainBackground').item(0).style = `fill:#00ff00;`;
+      } else if (specialTag == 'april-fools') {
+        if (!window.aprilFoolsThemeOBG) window.aprilFoolsThemeOBG = document.querySelector('.blocklyMainBackground').style.fill;
+        document.querySelector('.blocklyMainBackground').style.fill = '#0f0';
         const text = document.getElementsByTagName('text');
         for (let i = 0; i < text.length; i++) {
           let current = text.item(i);
@@ -817,7 +815,7 @@ ${CATEGORYCONTENT}`
         }
         const images4d = document.getElementById('navigationBarS4DImage');
         images4d.setAttribute('width', '10');
-        images4d.setAttribute('height', '45');
+        images4d.setAttribute('height', '35');
         const elem2ents = document.getElementsByClassName('blocklyDraggable');
         for (let i = 0; i < elem2ents.length; i++) {
           let current2 = elem2ents.item(i);
@@ -825,21 +823,18 @@ ${CATEGORYCONTENT}`
           const elements = current2.getElementsByClassName('blocklyPath');
           for (let i = 0; i < elements.length; i++) {
             let current = elements.item(i);
-            if (current == null) continue;
-            if (current.getAttribute('d') == null) continue;
-            if (current.getAttribute('d').match(outputBlockSVGRegex) != null) {
-              let width =
-                Number(
-                  current
-                    .getAttribute('d')
-                    .match(/h [0-9.]*/im)[0]
-                    .replace('h ', '')
-                ) - 55;
-              const VISOR_WIDTH = width < 0 ? 0 : width;
-              current.setAttribute('d', `m 77 0 h ${VISOR_WIDTH} a 20 20 0 0 1 20 20 v 0 a 20 20 0 0 1 -20 20 V 40 H 77 V 112 A 1 1 0 0 1 42 111 A 1 1 0 0 0 16 111 A 1 1 0 0 1 -18 111 V 74 H -29 C -35 74 -36 73 -36 67 V 5 C -36 -1 -35 -2 -29 -2 H -18 A 1 1 0 0 1 76 0`);
-            } else {
-              continue;
-            }
+            if (current === null) continue;
+            if (current.getAttribute('d') === null) continue;
+            if (current.getAttribute('d').match(outputBlockSVGRegex) === null) continue;
+            let width =
+              Number(
+                current
+                  .getAttribute('d')
+                  .match(/h [0-9.]*/im)[0]
+                  .replace('h ', '')
+              ) - 55;
+            const VISOR_WIDTH = width < 0 ? 0 : width;
+            current.setAttribute('d', `m 77 0 h ${VISOR_WIDTH} a 20 20 0 0 1 20 20 v 0 a 20 20 0 0 1 -20 20 V 40 H 77 V 112 A 1 1 0 0 1 42 111 A 1 1 0 0 0 16 111 A 1 1 0 0 1 -18 111 V 74 H -29 C -35 74 -36 73 -36 67 V 5 C -36 -1 -35 -2 -29 -2 H -18 A 1 1 0 0 1 76 0`);
           }
         }
       }
@@ -853,8 +848,7 @@ ${CATEGORYCONTENT}`
           if (current.getAttribute('fillORG') == null) current.setAttribute('fillORG', current.getAttribute('fill'));
           current.setAttribute('stroke', invertColor(String(current.getAttribute('strokeORG'))));
           current.setAttribute('fill', invertColor(String(current.getAttribute('fillORG'))));
-        }
-        if (specialTag == 'pastel') {
+        } else if (specialTag == 'pastel') {
           if (current.getAttribute('strokeORG') == null) current.setAttribute('strokeORG', current.getAttribute('stroke'));
           if (current.getAttribute('fillORG') == null) current.setAttribute('fillORG', current.getAttribute('fill'));
           let rgb = hexToRgb(current.getAttribute('fillORG').substring(1));
@@ -869,8 +863,7 @@ ${CATEGORYCONTENT}`
           b = rgb[2] + 72 > 255 ? 255 : rgb[2] + 72;
           newRgb = rgbToHex(r, g, b);
           current.setAttribute('stroke', newRgb);
-        }
-        if (specialTag == 'textless') {
+        } else if (specialTag == 'textless') {
           let elements = document.getElementsByClassName('blocklyText');
           for (let i = 0; i < elements.length; i++) {
             let current = elements.item(i);
@@ -901,15 +894,13 @@ ${CATEGORYCONTENT}`
             let current = elements.item(i);
             current.remove();
           }
-        }
-        if (specialTag == 'toon') {
+        } else if (specialTag == 'toon') {
           let celements = document.getElementsByClassName('blocklyFieldRect blocklyDropdownRect');
           for (let i = 0; i < celements.length; i++) {
             let current = celements.item(i);
             if (strokeColor != null) current.setAttribute('stroke', strokeColor);
           }
-        }
-        if (specialTag == 'neo') {
+        } else if (specialTag == 'neo') {
           current.setAttribute('stroke-width', '3');
           let celements = document.getElementsByClassName('blocklyEditableText');
           for (let i = 0; i < celements.length; i++) {
@@ -931,8 +922,7 @@ ${CATEGORYCONTENT}`
             let current = celements.item(i);
             current.setAttribute('stroke-width', '3');
           }
-        }
-        if (specialTag == 'gray') {
+        } else if (specialTag == 'gray') {
           if (current.getAttribute('strokeORG') == null) current.setAttribute('strokeORG', current.getAttribute('stroke'));
           if (current.getAttribute('fillORG') == null) current.setAttribute('fillORG', current.getAttribute('fill'));
           let rgb = hexToRgb(current.getAttribute('fillORG').substring(1));
@@ -954,8 +944,7 @@ ${CATEGORYCONTENT}`
             let current = elements.item(i);
             current.setAttribute('stroke', newRgb);
           }
-        }
-        if (specialTag == 'glow') {
+        } else if (specialTag == 'glow') {
           let celements = document.getElementsByClassName('blocklyText');
           for (let i = 0; i < celements.length; i++) {
             let current = celements.item(i);
@@ -970,8 +959,7 @@ ${CATEGORYCONTENT}`
               current.setAttribute('specializedCSS', 'darkglow');
             }
           }
-        }
-        if (specialTag == 'full-colors') {
+        } else if (specialTag == 'full-colors') {
           let rgb = hexToRgb(current.getAttribute('fill').substring(1));
           let r = rgb[0] >= 128 ? 255 : 0;
           let g = rgb[1] >= 128 ? 255 : 0;

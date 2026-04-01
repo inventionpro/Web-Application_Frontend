@@ -180,59 +180,35 @@ export default {
     NavBarComponent
   },
   data() {
-    //month starts at 0 day starts at 1
+    let extra = {};
+    // April fools month starts at 0 day starts at 1
     if (new Date().getMonth() == 3 && new Date().getDate() == 1) {
-      return {
-        options: {
-          renderer: 'zelos',
-          theme: Theme,
-          collapse: true,
-          comments: true,
-          disable: true,
-          maxBlocks: Infinity,
-          trashcan: true,
-          horizontalLayout: false,
-          rtl: true,
-          zoom: {
-            controls: true,
-            startScale: 0.9,
-            maxScale: 3,
-            minScale: 0.3,
-            scaleSpeed: 1.2
-          }
-        },
-        move: {
-          scrollbars: {
-            horizontal: true,
-            vertical: true
-          },
-          drag: true,
-          wheel: true
-        }
-      };
-    } else {
-      return {
-        options: {
-          renderer: 'zelos',
-          theme: Theme,
-          zoom: {
-            controls: true,
-            startScale: 0.9,
-            maxScale: 3,
-            minScale: 0.3,
-            scaleSpeed: 1.2
-          }
-        },
-        move: {
-          scrollbars: {
-            horizontal: true,
-            vertical: true
-          },
-          drag: true,
-          wheel: true
-        }
+      extra = {
+        rtl: true
       };
     }
+    return {
+      options: {
+        renderer: 'zelos',
+        theme: Theme,
+        zoom: {
+          controls: true,
+          startScale: 0.9,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2
+        },
+        ...extra
+      },
+      move: {
+        scrollbars: {
+          horizontal: true,
+          vertical: true
+        },
+        drag: true,
+        wheel: true
+      }
+    };
   },
   beforeCreate() {
     this.$root.$i18n.locale = this.$store.state.blocklyLocale;
