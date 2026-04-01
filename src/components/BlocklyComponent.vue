@@ -1025,7 +1025,7 @@ ${CATEGORYCONTENT}`
 
     // Month starts at 0, day starts at 1
     if (new Date().getMonth() == 3 && new Date().getDate() == 1) {
-      setInterval(() => {
+      window.aprilFoolsTheme = setInterval(() => {
         themeBlocks(null, null, 'april-fools');
       }, 50);
     }
