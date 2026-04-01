@@ -8,9 +8,9 @@ Blockly.Blocks[blockName] = {
     var thisBlock = this;
     var dropdown = new Blockly.FieldDropdown(
       [
-        Types.String,
+        ['string', 'String'],
         ['integer', 'Integer'],
-        Types.Boolean,
+        ['boolean', 'Boolean'],
         ['user', 'User'],
         ['member', 'Member'],
         ['channel', 'Channel'],

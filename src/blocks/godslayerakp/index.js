@@ -8,6 +8,7 @@ import './functions';
 /* folderless blocks */
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 Blockly.Blocks['gsa_make_db_with_path_x'] = {
   init: function () {
@@ -111,12 +112,9 @@ Blockly.Blocks['gsa_async'] = {
 
 javascriptGenerator.forBlock['gsa_async'] = (block) => {
   var statements_code = javascriptGenerator.statementToCode(block, 'code');
-  var code = `
-(async () => {
+  return `(async () => {
   ${statements_code}
-})()
-`;
-  return code;
+})();`;
 };
 
 Blockly.Blocks['gsa_create_new_jimp_image_mutator_block_hat'] = {
@@ -195,12 +193,9 @@ javascriptGenerator.forBlock['gsa_create_new_jimp_image'] = (block) => {
   var sizex = javascriptGenerator.valueToCode(block, 'sx', javascriptGenerator.ORDER_ATOMIC);
   var sizey = javascriptGenerator.valueToCode(block, 'sy', javascriptGenerator.ORDER_ATOMIC);
   var statements_code = javascriptGenerator.statementToCode(block, 'code');
-  var code = `
-new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${javascriptGenerator.valueToCode(block, 'color', javascriptGenerator.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
+  return `new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${javascriptGenerator.valueToCode(block, 'color', javascriptGenerator.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
   ${statements_code}
-})
-`;
-  return code;
+});`;
 };
 
 Blockly.Blocks['gsa_typeof'] = {
