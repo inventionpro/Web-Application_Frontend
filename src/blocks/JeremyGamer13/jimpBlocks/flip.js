@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_flip';
-
 const blockData = {
   message0: 'Flip Image %1',
   args0: [
@@ -32,7 +31,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const flipDir = block.getFieldValue('flipDir');
-  return `await image.flip( ` + flipDir + ` )\n`;
+  return `await image.flip(${flipDir});`;
 };
 
 registerRestrictions(blockName, [

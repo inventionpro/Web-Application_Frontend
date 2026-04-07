@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
+import { Types } from '../types.js';
 
 const blockName = 'jg_typingChannel';
-
 const blockData = {
   message0: 'start typing in channel %1',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: ['Channel']
+      check: Types.Channel
     }
   ],
   colour: '#4C97FF',
@@ -28,8 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const fileSendChannel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
-  return `${fileSendChannel}.sendTyping();
-    `;
+  return `${fileSendChannel}.sendTyping();`;
 };
 
 registerRestrictions(blockName, [

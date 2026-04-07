@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_tests_onchange';
-
 const blockData = {
   message0: 'On change %1',
   args0: [
@@ -33,6 +32,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const A = block.getFieldValue('A');
-  const code = `${A}`;
-  return code;
+  return A;
 };

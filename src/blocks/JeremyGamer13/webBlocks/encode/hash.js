@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_encode_hash';
-
 const blockData = {
   message0: 'hash text %1 %2 times',
   inputsInline: true,
@@ -10,16 +10,16 @@ const blockData = {
     {
       type: 'input_value',
       name: 'encode',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'rounds',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 195,
-  output: 'String',
+  output: Types.String,
   tooltip: 'Hash text with a certain amount of rounds. The more rounds, the better but also slower. Can use Strings, Variables, and Env secrets for the input, and Numbers, Variables, and Env secrets for the amount of rounds.',
   helpUrl: ''
 };

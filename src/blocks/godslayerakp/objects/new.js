@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'gsa_new_object_creator_empty_search_moment_searchMoment';
-
 const blockData = {
   message0: 'create new object with %2 %1',
   args0: [
@@ -15,7 +15,7 @@ const blockData = {
       type: 'input_dummy'
     }
   ],
-  output: 'Object',
+  output: Types.Object,
   inputsInline: false,
   colour: '#BA4A9A',
   tooltip: 'creates a new object with components',
@@ -30,8 +30,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   return [
-    `
-{
+    `{
   ${javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC)}
 }`,
     javascriptGenerator.ORDER_ATOMIC

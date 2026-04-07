@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'inv_collapse_code';
-
 const blockData = {
   message0: 'Collapse block %1 %2',
   args0: [

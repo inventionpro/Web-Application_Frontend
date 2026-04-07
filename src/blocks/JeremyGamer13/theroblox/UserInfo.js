@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_roblox_user_info';
-
 const blockData = {
   message0: 'roblox user %1',
   args0: [
@@ -24,7 +24,7 @@ const blockData = {
     }
   ],
   colour: 0,
-  output: null,
+  output: Types.Any,
   tooltip: "Get player information from a roblox account's profile.",
   helpUrl: ''
 };
@@ -37,6 +37,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`roblox_user_info.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`roblox_user_info.${type}`, javascriptGenerator.ORDER_NONE];
 };

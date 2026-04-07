@@ -1,18 +1,18 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_keywithvalue';
-
 const blockData = {
   message0: 'Key with value %1 in data file',
   args0: [
     {
       type: 'input_value',
       name: 'key',
-      check: null
+      check: Types.Any
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: 230,
   tooltip: 'Get the key with the value in a JSON file.',
   helpUrl: ''
@@ -25,8 +25,6 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  // stuff    return `fs.readFileSync(` + fileName + `, 'utf8')`;
   const key = javascriptGenerator.valueToCode(block, 'key', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`Object.keys(JSONdataS4D)[Object.values(JSONdataS4D).indexOf(${key})]`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`Object.keys(JSONdataS4D)[Object.values(JSONdataS4D).indexOf(${key})]`, javascriptGenerator.ORDER_NONE];
 };

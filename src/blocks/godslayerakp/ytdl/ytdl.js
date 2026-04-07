@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'gsa_ytdl';
-
 const blockData = {
   message0: 'download video url %1 and save as file name %2',
   args0: [
     {
       type: 'input_value',
       name: 'url',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'fs_name',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -33,8 +33,6 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const url = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
   const fs_name = javascriptGenerator.valueToCode(block, 'fs_name', javascriptGenerator.ORDER_ATOMIC);
-  return `
-ytdl(${url})
-  .pipe(fs.createWriteStream(${fs_name}));
-`;
+  return `ytdl(${url})
+  .pipe(fs.createWriteStream(${fs_name}));`;
 };

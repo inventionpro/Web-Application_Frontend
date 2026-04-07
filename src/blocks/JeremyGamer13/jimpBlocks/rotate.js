@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_rotate';
-
 const blockData = {
   message0: 'Rotate Image clockwise %1 degrees and %2',
   args0: [
     {
       type: 'input_value',
       name: 'Rotate',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'field_dropdown',
@@ -37,7 +37,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const degrees = javascriptGenerator.valueToCode(block, 'Rotate', javascriptGenerator.ORDER_ATOMIC);
   const autoResize = block.getFieldValue('autoResize');
-  return `await image.rotate( Number(` + degrees + `), ` + autoResize + ` )\n`;
+  return `await image.rotate(Number(${degrees}), ${autoResize});`;
 };
 
 registerRestrictions(blockName, [

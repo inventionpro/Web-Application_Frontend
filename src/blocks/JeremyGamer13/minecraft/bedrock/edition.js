@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_minecraft_bedrock_edition';
-
 const blockData = {
   message0: 'bedrock server world name',
   args0: [],
   colour: 190,
-  output: 'String',
+  output: Types.String,
   tooltip: 'Checks what the servers world name is.',
   helpUrl: ''
 };
@@ -18,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`result_bedrock.map`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['result_bedrock.map', javascriptGenerator.ORDER_NONE];
 };

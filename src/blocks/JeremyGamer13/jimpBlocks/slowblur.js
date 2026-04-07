@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_sblur';
-
 const blockData = {
   message0: 'True blur %1 pixels',
   args0: [
     {
       type: 'input_value',
       name: 'blur',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
@@ -28,7 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const blur = javascriptGenerator.valueToCode(block, 'blur', javascriptGenerator.ORDER_ATOMIC);
-  return `await image.gaussian( Number(` + blur + `) )\n`;
+  return `await image.gaussian(Number(${blur}));`;
 };
 
 registerRestrictions(blockName, [

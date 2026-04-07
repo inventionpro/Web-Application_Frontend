@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
+
 const blockName = 'gsa_set_embed_author';
 const blockData = {
   type: 'gsa_set_embed_author',
@@ -9,17 +11,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'icon_url',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'url',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -41,12 +43,12 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const url = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
   const icon_url = javascriptGenerator.valueToCode(block, 'icon_url', javascriptGenerator.ORDER_ATOMIC);
   return `author: {
-		name: String(${name}),
-		icon_url: String(${icon_url}),
-		url: String(${url}),
-  },
-`;
+  name: String(${name}),
+  icon_url: String(${icon_url}),
+  url: String(${url}),
+},`;
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 Blockly.Blocks['gsa_get_all_roles_on_member'] = {
   init: function () {
@@ -9,7 +10,7 @@ Blockly.Blocks['gsa_get_all_roles_on_member'] = {
         {
           type: 'input_value',
           name: 'member',
-          check: 'Member'
+          check: Types.Member
         }
       ],
       output: ['List', 'Array'],

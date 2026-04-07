@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+
 const yourName = 'jg';
 const blockName = yourName + '_' + 'other_try_catch_finally';
 const menuName = blockName + '_checkboxMutatorMenu';
@@ -127,7 +128,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     code.push(`} finally {`);
     code.push(FINALLY);
   }
-  // the last line of code here, do another code.push(``) if you need to put more code
+  // the last line of code here, do another code.push('') if you need to put more code
   code.push(`}`);
   return code.join('\n');
 };

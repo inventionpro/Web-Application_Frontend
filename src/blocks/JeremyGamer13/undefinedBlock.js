@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'jg_undefined';
-
 const blockData = {
   message0: 'undefined',
   args0: [],
-  output: 'Number',
+  output: Types.Any, // TODO: Reconsider
   colour: '#FF0000',
   tooltip: 'Returns as undefined.',
   helpUrl: ''
@@ -18,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`undefined`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['undefined', javascriptGenerator.ORDER_NONE];
 };

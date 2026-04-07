@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_roblox_user_thumbnail_info';
-
 const blockData = {
   message0: 'roblox user thumbnail %1',
   args0: [
@@ -16,7 +16,7 @@ const blockData = {
     }
   ],
   colour: 0,
-  output: 'String',
+  output: Types.String,
   tooltip: "Get thumbnail information from a roblox account's profile.",
   helpUrl: ''
 };
@@ -29,6 +29,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`roblox_user_thumbnail[0].${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`roblox_user_thumbnail[0].${type}`, javascriptGenerator.ORDER_NONE];
 };

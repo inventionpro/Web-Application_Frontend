@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_create_embed';
-
 const blockData = {
   type: 'gsa_create_embed',
   message0: 'make embed with name %1 %2 then %3',
@@ -38,6 +37,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
   return `let ${name.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')} = {
     ${statements}
-    }
-    `;
+}`;
 };

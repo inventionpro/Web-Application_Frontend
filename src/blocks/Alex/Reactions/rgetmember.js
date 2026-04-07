@@ -30,7 +30,7 @@ Blockly.Blocks[blockName] = {
     } else if (newValue == 'last') {
       this.appendDummyInput('ee').appendField('reacting member');
     } else if (newValue == 'custom') {
-      this.appendValueInput('mtype').setCheck('Number');
+      this.appendValueInput('mtype').setCheck(Types.Number);
       this.appendDummyInput('ee').appendField('reacting member');
     } else if (newValue == 'all') {
       this.appendDummyInput('ee').appendField('reacting members');

@@ -6,15 +6,14 @@ import './sendImageMSG';
 import './sendImagerow';
 import './sendImageMSGrow';
 //the return on april fools
-import './banana';
 //--no banana block or no merge :(--
 //he is back
 //nvm april eneddd and i forgor💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀
+// We killed banana
 import './beginJimpImage';
 import './nullBlock';
 import './undefinedBlock';
 import './webBlocks';
-import './sendTyping';
 import './sendTypingChannel';
 import './s4duptime';
 import './other_err';

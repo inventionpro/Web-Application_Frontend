@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_minecraft_rcon_send_command';
-
 const blockData = {
   message0: 'send command %1',
   inputsInline: true,
@@ -11,7 +11,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'COMMAND',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: 160,
@@ -29,12 +29,8 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var command = javascriptGenerator.valueToCode(block, 'COMMAND', javascriptGenerator.ORDER_ATOMIC);
-  if (command.charAt(0) == '/') {
-    command = command.substring(1);
-  }
-  const code = `await S4D_APP_MC_RCON_CLIENT.run(${command});
-  `;
-  return code;
+  if (command.charAt(0) == '/') command = command.substring(1);
+  return `await S4D_APP_MC_RCON_CLIENT.run(${command});`;
 };
 
 registerRestrictions(blockName, [

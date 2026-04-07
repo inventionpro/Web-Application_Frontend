@@ -3,7 +3,8 @@ import { javascriptGenerator } from 'blockly/javascript';
 import * as blocklyModule from '../blocklyModule.js';
 import * as JBlock from '../jblock1.js';
 import { registerRestrictions } from '../../restrictions.js';
-import '@blockly/field-grid-dropdown';
+import { T, Types } from '../types.js';
+
 const restrictToParent = function (parents, name, msg) {
   registerRestrictions(name, [
     {
@@ -13,6 +14,7 @@ const restrictToParent = function (parents, name, msg) {
     }
   ]);
 };
+
 Blockly.Blocks['jg_messages_id_of_message'] = {
   init: function () {
     this.jsonInit({
@@ -21,128 +23,22 @@ Blockly.Blocks['jg_messages_id_of_message'] = {
         {
           type: 'input_value',
           name: 'MSG',
-          check: 'Message'
+          check: Types.Message
         }
       ],
       colour: '#4C97FF',
-      output: 'String',
+      output: Types.String,
       tooltip: 'Get the message ID from the message.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_id_of_message'] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MSG', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${message}.id`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${message}.id`, javascriptGenerator.ORDER_NONE];
 };
-/*
-// next block
-Blockly.Blocks["jg_messages_message_mentions_everyone"] = {
-    init: function () {
-        this.jsonInit(
-            {
-                "message0": "message %1 mentions everyone?",
-                "args0": [
-                    {
-                        "type": "input_value",
-                        "name": "MSG",
-                        "check": "Message"
-                    }
-                ],
-                "colour": "#4C97FF",
-                "output": "Boolean",
-                "tooltip": "Check if a message contains the @everyone ping.",
-                "helpUrl": ""
-            }
-        );
-    }
-}
-javascriptGenerator.forBlock["jg_messages_message_mentions_everyone"] = (block)=>{
-    const message = javascriptGenerator.valueToCode(block, "MSG", javascriptGenerator.ORDER_ATOMIC);
-    const code = [`${message}.mentions.everyone`, javascriptGenerator.ORDER_NONE];
-    return code;
-};
-// next block
-Blockly.Blocks["jg_messages_message_is_a_system_message"] = {
-    init: function () {
-        this.jsonInit(
-            {
-                "message0": "message %1 is a system message?",
-                "args0": [
-                    {
-                        "type": "input_value",
-                        "name": "MSG",
-                        "check": "Message"
-                    }
-                ],
-                "colour": "#4C97FF",
-                "output": "Boolean",
-                "tooltip": "Check if a message is a system message.",
-                "helpUrl": ""
-            }
-        );
-    }
-}
-javascriptGenerator.forBlock["jg_messages_message_is_a_system_message"] = (block)=>{
-    const message = javascriptGenerator.valueToCode(block, "MSG", javascriptGenerator.ORDER_ATOMIC);
-    const code = [`${message}.system`, javascriptGenerator.ORDER_NONE];
-    return code;
-};
-// next block
-Blockly.Blocks["jg_messages_message_is_pinned"] = {
-    init: function () {
-        this.jsonInit(
-            {
-                "message0": "message %1 is pinned?",
-                "args0": [
-                    {
-                        "type": "input_value",
-                        "name": "MSG",
-                        "check": "Message"
-                    }
-                ],
-                "colour": "#4C97FF",
-                "output": "Boolean",
-                "tooltip": "Check if a message is pinned at all.",
-                "helpUrl": ""
-            }
-        );
-    }
-}
-javascriptGenerator.forBlock["jg_messages_message_is_pinned"] = (block)=>{
-    const message = javascriptGenerator.valueToCode(block, "MSG", javascriptGenerator.ORDER_ATOMIC);
-    const code = [`${message}.pinned`, javascriptGenerator.ORDER_NONE];
-    return code;
-};
-// next block
-Blockly.Blocks["jg_messages_message_is_text_to_speech"] = {
-    init: function () {
-        this.jsonInit(
-            {
-                "message0": "message %1 is text to speech?",
-                "args0": [
-                    {
-                        "type": "input_value",
-                        "name": "MSG",
-                        "check": "Message"
-                    }
-                ],
-                "colour": "#4C97FF",
-                "output": "Boolean",
-                "tooltip": "Check if a message is a text to speech message.",
-                "helpUrl": ""
-            }
-        );
-    }
-}
-javascriptGenerator.forBlock["jg_messages_message_is_text_to_speech"] = (block)=>{
-    const message = javascriptGenerator.valueToCode(block, "MSG", javascriptGenerator.ORDER_ATOMIC);
-    const code = [`${message}.tts`, javascriptGenerator.ORDER_NONE];
-    return code;
-};
-*/
-// next block
+
 Blockly.Blocks['jg_messages_message_is_value'] = {
   init: function () {
     this.jsonInit({
@@ -151,7 +47,7 @@ Blockly.Blocks['jg_messages_message_is_value'] = {
         {
           type: 'input_value',
           name: 'MSG',
-          check: 'Message'
+          check: Types.Message
         },
         {
           type: 'field_grid_dropdown',
@@ -180,19 +76,19 @@ Blockly.Blocks['jg_messages_message_is_value'] = {
         }
       ],
       colour: '#4C97FF',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Check if a message is a message with this property.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_message_is_value'] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MSG', javascriptGenerator.ORDER_ATOMIC);
   const property = block.getFieldValue('TYPE').replaceAll('^{MSG_INPUT}', message + '.');
-  const code = [`${message}.${property}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${message}.${property}`, javascriptGenerator.ORDER_NONE];
 };
-// next block
+
 Blockly.Blocks['jg_messages_message_webhook_id'] = {
   init: function () {
     this.jsonInit({
@@ -201,22 +97,22 @@ Blockly.Blocks['jg_messages_message_webhook_id'] = {
         {
           type: 'input_value',
           name: 'MSG',
-          check: 'Message'
+          check: Types.Message
         }
       ],
       colour: '#4C97FF',
-      output: 'String',
+      output: Types.String,
       tooltip: "Get a message's webhook ID, if it has one.",
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_message_webhook_id'] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MSG', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${message}.webhookId`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${message}.webhookId`, javascriptGenerator.ORDER_NONE];
 };
-// next block
+
 Blockly.Blocks['jg_channel_get_last_messages_in_channel_then'] = {
   init: function () {
     this.jsonInit({
@@ -225,12 +121,12 @@ Blockly.Blocks['jg_channel_get_last_messages_in_channel_then'] = {
         {
           type: 'input_value',
           name: 'AMOUNT',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_value',
           name: 'CHANNEL',
-          check: 'Channel'
+          check: Types.Channel
         },
         {
           type: 'input_dummy'
@@ -248,17 +144,16 @@ Blockly.Blocks['jg_channel_get_last_messages_in_channel_then'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_channel_get_last_messages_in_channel_then'] = (block) => {
   const amount = javascriptGenerator.valueToCode(block, 'AMOUNT', javascriptGenerator.ORDER_ATOMIC);
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${channel}.messages.fetch({ limit: ${amount} }).then(async (last_messages_in_channel) => {
-    ${statements}
-});
-`;
-  return code;
+  return `${channel}.messages.fetch({ limit: ${amount} }).then(async (last_messages_in_channel) => {
+  ${statements}
+});`;
 };
-// next block
+
 Blockly.Blocks['jg_channel_last_message_number'] = {
   init: function () {
     this.jsonInit({
@@ -267,21 +162,22 @@ Blockly.Blocks['jg_channel_last_message_number'] = {
         {
           type: 'input_value',
           name: 'INDEX',
-          check: 'Number'
+          check: Types.Number
         }
       ],
       colour: '#4C97FF',
-      output: 'Message',
+      output: Types.Message,
       tooltip: 'Get the last message at the index in the channel.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_channel_last_message_number'] = (block) => {
   const index = javascriptGenerator.valueToCode(block, 'INDEX', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`last_messages_in_channel.at(${index} - 1)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`last_messages_in_channel.at(${index} - 1)`, javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions('jg_channel_last_message_number', [
   {
     type: 'hasparent',
@@ -289,7 +185,7 @@ registerRestrictions('jg_channel_last_message_number', [
     types: ['jg_channel_get_last_messages_in_channel_then']
   }
 ]);
-// next block
+
 Blockly.Blocks['jg_message_user_replied_to_in_message'] = {
   init: function () {
     this.jsonInit({
@@ -298,11 +194,11 @@ Blockly.Blocks['jg_message_user_replied_to_in_message'] = {
         {
           type: 'input_value',
           name: 'MSG',
-          check: 'Message'
+          check: Types.Message
         }
       ],
       colour: '#4C97FF',
-      output: 'Member',
+      output: Types.Member,
       tooltip: 'Get the user that was replied to in the message.',
       helpUrl: ''
     });
@@ -310,12 +206,10 @@ Blockly.Blocks['jg_message_user_replied_to_in_message'] = {
 };
 javascriptGenerator.forBlock['jg_message_user_replied_to_in_message'] = (block) => {
   const msg = javascriptGenerator.valueToCode(block, 'MSG', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${msg}.mentions.repliedUser`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${msg}.mentions.repliedUser`, javascriptGenerator.ORDER_NONE];
 };
 
 // Attachment Blocks
-
 Blockly.Blocks['jg_attachment_amount_of_attachments_on_message'] = {
   init: function () {
     this.jsonInit({
@@ -324,21 +218,22 @@ Blockly.Blocks['jg_attachment_amount_of_attachments_on_message'] = {
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         }
       ],
       colour: '#187795',
-      output: 'Number',
+      output: Types.Number,
       tooltip: 'Get the number of attachments on a message.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_attachment_amount_of_attachments_on_message'] = (block) => {
   const msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${msg}.attachments.size`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${msg}.attachments.size`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_attachment_get_attachment_number'] = {
   init: function () {
     this.jsonInit({
@@ -348,12 +243,12 @@ Blockly.Blocks['jg_attachment_get_attachment_number'] = {
         {
           type: 'input_value',
           name: 'INDEX',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         }
       ],
       colour: '#187795',
@@ -363,12 +258,13 @@ Blockly.Blocks['jg_attachment_get_attachment_number'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_attachment_get_attachment_number'] = (block) => {
   const index = javascriptGenerator.valueToCode(block, 'INDEX', javascriptGenerator.ORDER_ATOMIC);
   const msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${msg}.attachments.at(Number(${index}) - 1)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${msg}.attachments.at(Number(${index}) - 1)`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_attachment_get_attachment_property'] = {
   init: function () {
     this.jsonInit({
@@ -397,21 +293,20 @@ Blockly.Blocks['jg_attachment_get_attachment_property'] = {
         }
       ],
       colour: '#187795',
-      output: null,
+      output: Types.Any,
       tooltip: 'Get the specific property from the attachment. You can see what MIME types apply to what file extension by Right Clicking on the block and pressing "Help". Width and Height only apply to certain types of attachment types.',
       helpUrl: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types'
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_attachment_get_attachment_property'] = (block) => {
   const property = block.getFieldValue('PROPERTY');
   const attach = javascriptGenerator.valueToCode(block, 'ATTACH', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${attach}.${property}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${attach}.${property}`, javascriptGenerator.ORDER_NONE];
 };
 
 // back to normal shit
-
 Blockly.Blocks['jg_message_mentioned_member_number_on_message'] = {
   init: function () {
     this.jsonInit({
@@ -421,12 +316,12 @@ Blockly.Blocks['jg_message_mentioned_member_number_on_message'] = {
         {
           type: 'input_value',
           name: 'INDEX',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         },
         {
           type: 'field_dropdown',
@@ -439,20 +334,20 @@ Blockly.Blocks['jg_message_mentioned_member_number_on_message'] = {
         }
       ],
       colour: '#187795',
-      output: ['Member', 'Role', 'Channel'],
+      output: T(Types.Member, Types.Role, Types.Channel),
       tooltip: 'Get a specific mentioned member, role or channel on the message.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_message_mentioned_member_number_on_message'] = (block) => {
   const index = javascriptGenerator.valueToCode(block, 'INDEX', javascriptGenerator.ORDER_ATOMIC);
   const msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${msg}.mentions.${type}.at(Number(${index}) - 1)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${msg}.mentions.${type}.at(Number(${index}) - 1)`, javascriptGenerator.ORDER_NONE];
 };
-// next blok
+
 Blockly.Blocks['jg_message_amount_of_mentioned_members_on_message'] = {
   init: function () {
     this.jsonInit({
@@ -462,7 +357,7 @@ Blockly.Blocks['jg_message_amount_of_mentioned_members_on_message'] = {
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         },
         {
           type: 'field_dropdown',
@@ -475,22 +370,21 @@ Blockly.Blocks['jg_message_amount_of_mentioned_members_on_message'] = {
         }
       ],
       colour: '#187795',
-      output: 'Number',
+      output: Types.Number,
       tooltip: 'Get the amount of members, roles, or channels mentioned in a message.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_message_amount_of_mentioned_members_on_message'] = (block) => {
   const msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${msg}.mentions.${type}.size`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${msg}.mentions.${type}.size`, javascriptGenerator.ORDER_NONE];
 };
 
 // T Y P I N G
 // B L O C K S
-
 Blockly.Blocks['jg_typing_typing_attribute'] = {
   init: function () {
     this.jsonInit({
@@ -511,28 +405,42 @@ Blockly.Blocks['jg_typing_typing_attribute'] = {
         }
       ],
       colour: '#1392ed',
-      output: ['Member', 'Channel', 'Server', 'Guild', 'Number'],
+      output: Types.Any,
       tooltip: 'Grab information about someone typing.',
       helpUrl: ''
     });
   },
   onchange: function () {
-    if (String(this.getFieldValue('ATT')) == '123') {
-      this.setOutput(true, 'Boolean');
-    } else {
-      this.setOutput(true, ['Member', 'Channel', 'Server', 'Guild', 'Number']);
+    switch (String(this.getFieldValue('ATT'))) {
+      case 'member':
+        this.setOutput(true, Types.Member);
+        break;
+      case 'user':
+        this.setOutput(true, Types.User);
+        break;
+      case 'channel':
+        this.setOutput(true, Types.Channel);
+        break;
+      case 'guild':
+        this.setOutput(true, Types.Server);
+        break;
+      case 'startedAt':
+        this.setOutput(true, Types.Number);
+        break;
+      case '123':
+        this.setOutput(true, Types.Boolean);
+        break;
     }
   }
 };
+
 javascriptGenerator.forBlock['jg_typing_typing_attribute'] = (block) => {
   const type = block.getFieldValue('ATT');
-  var code;
   if (type == 123) {
-    code = [`s4dTyping.inGuild()`, javascriptGenerator.ORDER_NONE];
+    return [`s4dTyping.inGuild()`, javascriptGenerator.ORDER_NONE];
   } else {
-    code = [`s4dTyping.${type}`, javascriptGenerator.ORDER_NONE];
+    return [`s4dTyping.${type}`, javascriptGenerator.ORDER_NONE];
   }
-  return code;
 };
 
 Blockly.Blocks['jg_status_does_member_have_a_status_for_device'] = {
@@ -544,7 +452,7 @@ Blockly.Blocks['jg_status_does_member_have_a_status_for_device'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: 'Member'
+          check: Types.Member
         },
         {
           type: 'field_dropdown',
@@ -557,24 +465,21 @@ Blockly.Blocks['jg_status_does_member_have_a_status_for_device'] = {
         }
       ],
       colour: '#187795',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: "Can be used to see what devices the member is using. If the member is not using the device, it'll be false.",
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_status_does_member_have_a_status_for_device'] = (block) => {
   var member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  if (member.endsWith('.user')) {
-    member = member.substring(0, member.length - 5);
-  }
-  if (member.endsWith('.user)')) {
-    member = member.substring(0, member.length - 6) + ')';
-  }
+  if (member.endsWith('.user')) member = member.substring(0, member.length - 5);
+  if (member.endsWith('.user)')) member = member.substring(0, member.length - 6) + ')';
   const type = block.getFieldValue('TYPE');
-  const code = [`${member}.presence.clientStatus.${type} != null`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}.presence.clientStatus.${type} != null`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_status_member_status_on_discord'] = {
   init: function () {
     this.jsonInit({
@@ -584,7 +489,7 @@ Blockly.Blocks['jg_status_member_status_on_discord'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: 'Member'
+          check: Types.Member
         },
         {
           type: 'field_dropdown',
@@ -597,24 +502,21 @@ Blockly.Blocks['jg_status_member_status_on_discord'] = {
         }
       ],
       colour: '#187795',
-      output: 'String',
+      output: Types.String,
       tooltip: 'Can be used to see what devices the member is using. This can be online, idle, or dnd.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_status_member_status_on_discord'] = (block) => {
   var member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  if (member.endsWith('.user')) {
-    member = member.substring(0, member.length - 5);
-  }
-  if (member.endsWith('.user)')) {
-    member = member.substring(0, member.length - 6) + ')';
-  }
+  if (member.endsWith('.user')) member = member.substring(0, member.length - 5);
+  if (member.endsWith('.user)')) member = member.substring(0, member.length - 6) + ')';
   const type = block.getFieldValue('TYPE');
-  const code = [`${member}.presence.clientStatus.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}.presence.clientStatus.${type}`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles'] = {
   init: function () {
     this.jsonInit({
@@ -624,7 +526,7 @@ Blockly.Blocks['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles']
         {
           type: 'input_value',
           name: 'CONTENT',
-          check: ['Number', 'String', 'MessageEmbed', 'embed', 'var']
+          check: Types.MessageContent
         },
         {
           type: 'input_dummy'
@@ -632,12 +534,12 @@ Blockly.Blocks['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles']
         {
           type: 'input_value',
           name: 'USERS',
-          check: ['Array', 'List']
+          check: Types.Array
         },
         {
           type: 'input_value',
           name: 'ROLES',
-          check: ['Array', 'List']
+          check: Types.Array
         }
       ],
       colour: '#4C97FF',
@@ -648,73 +550,36 @@ Blockly.Blocks['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles']
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles'] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   const users = javascriptGenerator.valueToCode(block, 'USERS', javascriptGenerator.ORDER_ATOMIC);
   const roles = javascriptGenerator.valueToCode(block, 'ROLES', javascriptGenerator.ORDER_ATOMIC);
   var usableA = '';
   var usableB = '';
-  if (!(users === null || users === '')) {
-    usableA = `users: ${users},`;
-  }
-  if (!(roles === null || roles === '')) {
-    usableB = `roles: ${roles},`;
-  }
+  if (!(users === null || users === '')) usableA = `users: ${users},`;
+  if (!(roles === null || roles === '')) usableB = `roles: ${roles},`;
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === null) {
-      const code = `s4dmessage.channel.send({
-                content: String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `s4dmessage.channel.send({
-                 embeds:[${content}],
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-                });
-                `;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `s4dmessage.channel.send({
-                ${content},
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    } else {
-      const code = `s4dmessage.channel.send({
-                content: String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    }
-  } else {
-    const code = `s4dmessage.channel.send({
-            content:String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-        });
-        `;
-    return code;
+    if (contentType === Types.Embed[0]) {
+      return `s4dmessage.channel.send({
+  embeds: [${content}],
+  allowedMentions: {
+    ${usableA}
+    ${usableB}
   }
+});`;
+    }
+  }
+  return `s4dmessage.channel.send({
+  content: String(${content}),
+  allowedMentions: {
+    ${usableA}
+    ${usableB}
+  }
+});`;
 };
+
 registerRestrictions('jg_messages_reply_with_allowed_list_of_pings_on_users_on_roles', [
   {
     type: 'notempty',
@@ -737,7 +602,7 @@ Blockly.Blocks['jg_messages_respond_with_and_with_allowed_list_of_pings_on_users
         {
           type: 'input_value',
           name: 'CONTENT',
-          check: ['Number', 'String', 'MessageEmbed', 'embed', 'var']
+          check: Types.MessageContent
         },
         {
           type: 'input_dummy'
@@ -745,12 +610,12 @@ Blockly.Blocks['jg_messages_respond_with_and_with_allowed_list_of_pings_on_users
         {
           type: 'input_value',
           name: 'USERS',
-          check: ['Array', 'List']
+          check: Types.Array
         },
         {
           type: 'input_value',
           name: 'ROLES',
-          check: ['Array', 'List']
+          check: Types.Array
         }
       ],
       colour: '#4C97FF',
@@ -761,73 +626,36 @@ Blockly.Blocks['jg_messages_respond_with_and_with_allowed_list_of_pings_on_users
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_respond_with_and_with_allowed_list_of_pings_on_users_on_roles'] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   const users = javascriptGenerator.valueToCode(block, 'USERS', javascriptGenerator.ORDER_ATOMIC);
   const roles = javascriptGenerator.valueToCode(block, 'ROLES', javascriptGenerator.ORDER_ATOMIC);
   var usableA = '';
   var usableB = '';
-  if (!(users === null || users === '')) {
-    usableA = `users: ${users},`;
-  }
-  if (!(roles === null || roles === '')) {
-    usableB = `roles: ${roles},`;
-  }
+  if (!(users === null || users === '')) usableA = `users: ${users},`;
+  if (!(roles === null || roles === '')) usableB = `roles: ${roles},`;
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === null) {
-      const code = `s4dmessage.channel.send({
-                content: String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `s4dmessage.channel.send({
-                 embeds:[${content}],
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-                });
-                `;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `s4dmessage.channel.send({
-                ${content},
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    } else {
-      const code = `s4dmessage.channel.send({
-                content: String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    }
-  } else {
-    const code = `s4dmessage.channel.send({
-            content:String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-        });
-        `;
-    return code;
+    if (contentType === Types.Embed[0]) {
+      return `s4dmessage.channel.send({
+  embeds: [${content}],
+  allowedMentions: {
+    ${usableA}
+    ${usableB}
   }
+});`;
+    }
+  }
+  return `s4dmessage.channel.send({
+  content: String(${content}),
+  allowedMentions: {
+    ${usableA}
+    ${usableB}
+  }
+});`;
 };
+
 registerRestrictions('jg_messages_respond_with_and_with_allowed_list_of_pings_on_users_on_roles', [
   {
     type: 'notempty',
@@ -850,12 +678,12 @@ Blockly.Blocks['jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_
         {
           type: 'input_value',
           name: 'CONTENT',
-          check: ['MessageEmbed', 'String', 'Number', 'embed', 'var']
+          check: Types.MessageContent
         },
         {
           type: 'input_value',
           name: 'CHANNEL',
-          check: 'Channel'
+          check: Types.Channel
         },
         {
           type: 'input_dummy'
@@ -863,12 +691,12 @@ Blockly.Blocks['jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_
         {
           type: 'input_value',
           name: 'USERS',
-          check: ['Array', 'List']
+          check: Types.Array
         },
         {
           type: 'input_value',
           name: 'ROLES',
-          check: ['Array', 'List']
+          check: Types.Array
         }
       ],
       colour: '#4C97FF',
@@ -879,6 +707,7 @@ Blockly.Blocks['jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_on_roles'] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
@@ -886,66 +715,27 @@ javascriptGenerator.forBlock['jg_channels_send_in_channel_with_allowed_list_of_p
   const roles = javascriptGenerator.valueToCode(block, 'ROLES', javascriptGenerator.ORDER_ATOMIC);
   var usableA = '';
   var usableB = '';
-  if (!(users === null || users === '')) {
-    usableA = `users: ${users},`;
-  }
-  if (!(roles === null || roles === '')) {
-    usableB = `roles: ${roles},`;
-  }
+  if (!(users === null || users === '')) usableA = `users: ${users},`;
+  if (!(roles === null || roles === '')) usableB = `roles: ${roles},`;
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'var') {
-      const code = `${channel}.send({
-                content: String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    } else if (contentType === 'embed') {
-      const code = `${channel}.send({
-                embeds:[${content}],
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    } else if (contentType === 'MessageEmbed') {
-      const code = `${channel}.send({
-                ${content},
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-            });
-            `;
-      return code;
-    } else {
-      const code = `${channel}.send({
-                content:String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-        });
-            `;
-      return code;
-    }
-  } else {
-    const code = `${channel}.send({
-            content: String(${content}),
-                allowedMentions: {
-                    ${usableA}
-                    ${usableB}
-                }
-        });
-        `;
-    return code;
+    if (contentType === Types.Embed[0]) {
+      return `${channel}.send({
+  embeds: [${content}],
+  allowedMentions: {
+    ${usableA}
+    ${usableB}
   }
+});`;
+    }
+  }
+  return `${channel}.send({
+  content: String(${content}),
+  allowedMentions: {
+    ${usableA}
+    ${usableB}
+  }
+});`;
 };
 
 registerRestrictions('jg_channels_send_in_channel_with_allowed_list_of_pings_on_users_on_roles', [
@@ -980,14 +770,10 @@ Blockly.Blocks['jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bo
 };
 javascriptGenerator.forBlock['jg_event_message_when_a_message_is_recieved_and_author_isnt_a_bot'] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.client.on(Discord.Events.MessageCreate, async (s4dmessage) => {
-        if (s4dmessage.author.bot) {
-            return;
-        }
-        ${statements}
-    });
-    `;
-  return code;
+  return `s4d.client.on(Discord.Events.MessageCreate, async (s4dmessage) => {
+  if (s4dmessage.author.bot) return;
+  ${statements}
+});`;
 };
 
 Blockly.Blocks['jg_unused_floating_comment'] = {
@@ -1005,9 +791,11 @@ Blockly.Blocks['jg_unused_floating_comment'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_unused_floating_comment'] = function () {
-  return ``;
+  return '';
 };
+
 Blockly.Blocks['jg_comments_floating_arrow'] = {
   init: function () {
     let imgsize = 64;
@@ -1030,7 +818,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/arrows//up.png',
+                src: '/arrows/up.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up'
@@ -1039,7 +827,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/arrows//right.png',
+                src: '/arrows/right.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'right'
@@ -1048,7 +836,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/arrows//left.png',
+                src: '/arrows/left.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'left'
@@ -1057,7 +845,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/arrows//dleft.png',
+                src: '/arrows/dleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down left'
@@ -1066,7 +854,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/arrows//dright.png',
+                src: '/arrows/dright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down right'
@@ -1075,7 +863,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/arrows//uleft.png',
+                src: '/arrows/uleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up left'
@@ -1084,7 +872,7 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
             ],
             [
               {
-                src: '/arrows//uright.png',
+                src: '/arrows/uright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up right'
@@ -1097,11 +885,11 @@ Blockly.Blocks['jg_comments_floating_arrow'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_comments_floating_arrow'] = function () {
-  const code = ``;
-  return code;
+  return '';
 };
-// #DDAA00
+
 Blockly.Blocks['jg_comments_floating_image'] = {
   init: function () {
     this.appendDummyInput().appendField('Image URL:').appendField(new Blockly.FieldTextInput('/load.png'), 'TEXT');
@@ -1118,10 +906,11 @@ Blockly.Blocks['jg_comments_floating_image'] = {
     this.setTooltip('An image comment using url ' + url + '.');
   }
 };
+
 javascriptGenerator.forBlock['jg_comments_floating_image'] = function () {
-  const code = ``;
-  return code;
+  return '';
 };
+
 Blockly.Blocks['jg_comments_connected_comment'] = {
   init: function () {
     this.jsonInit({
@@ -1139,16 +928,15 @@ Blockly.Blocks['jg_comments_connected_comment'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_comments_connected_comment'] = (block) => {
   var text = block.getFieldValue('TEXT');
   text = text.replaceAll('*/', '* /');
-  const code = `
-    /*
-    ${text}
-    */
-   `;
-  return code;
+  return `/*
+  ${text}
+*/`;
 };
+
 Blockly.Blocks['jg_comments_connected_arrow'] = {
   init: function () {
     let imgsize = 64;
@@ -1164,7 +952,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
           options: [
             [
               {
-                src: '/arrows//down.png',
+                src: '/arrows/down.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down'
@@ -1173,7 +961,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/arrows//up.png',
+                src: '/arrows/up.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up'
@@ -1182,7 +970,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/arrows//right.png',
+                src: '/arrows/right.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'right'
@@ -1191,7 +979,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/arrows//left.png',
+                src: '/arrows/left.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'left'
@@ -1200,7 +988,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/arrows//dleft.png',
+                src: '/arrows/dleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down left'
@@ -1209,7 +997,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/arrows//dright.png',
+                src: '/arrows/dright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'down right'
@@ -1218,7 +1006,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/arrows//uleft.png',
+                src: '/arrows/uleft.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up left'
@@ -1227,7 +1015,7 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
             ],
             [
               {
-                src: '/arrows//uright.png',
+                src: '/arrows/uright.png',
                 width: imgsize,
                 height: imgsize,
                 alt: 'up right'
@@ -1240,13 +1028,14 @@ Blockly.Blocks['jg_comments_connected_arrow'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_comments_connected_arrow'] = (block) => {
   let arrow = block.getFieldValue('arrow');
-  const code = `/*
-    ${arrow}
-    */`;
-  return code;
+  return `/*
+  ${arrow}
+*/`;
 };
+
 Blockly.Blocks['jg_comments_connected_image'] = {
   init: function () {
     this.appendDummyInput().appendField('Image URL:').appendField(new Blockly.FieldTextInput('/load.png'), 'TEXT');
@@ -1265,15 +1054,13 @@ Blockly.Blocks['jg_comments_connected_image'] = {
     this.setTooltip('An image comment using url ' + url + '.');
   }
 };
+
 javascriptGenerator.forBlock['jg_comments_connected_image'] = (block) => {
   let url = block.getFieldValue('TEXT');
-  const code = `
-    /*
-    Image URL:
-    ${url.replaceAll('*/', '* /')}
-    */
-    `;
-  return code;
+  return `/*
+  Image URL:
+  ${url.replaceAll('*/', '* /')}
+*/`;
 };
 
 Blockly.Blocks['jg_events_all_label'] = {
@@ -1304,9 +1091,7 @@ Blockly.Blocks['jg_events_all_label'] = {
             [
               "When a message is received & author isn't bot",
               `s4d.client.on(Discord.Events.MessageCreate, async (s4dmessage) => {
-        if (s4dmessage.author.bot) {
-            return;
-        }`
+if (s4dmessage.author.bot) return;`
             ],
             ['When a message is edited', 's4d.client.on(Discord.Events.MessageUpdate, async (oldMessage, newMessage) => {'],
             ['When a message is deleted', 's4d.client.on(Discord.Events.MessageDelete, async (s4dmessage) => {'],
@@ -1314,14 +1099,12 @@ Blockly.Blocks['jg_events_all_label'] = {
             [
               'When thread message is received',
               `s4d.client.on(Discord.Events.MessageCreate, async (s4dThread) => {
-        if(!(s4dThread.channel.type === "GUILD_PUBLIC_THREAD" || s4dThread.channel.type === "GUILD_PUBLIC_THREAD" )){
-            return
-        }`
+if (s4dThread.channel.type !== Discord.ChannelType.PublicThread) return;`
             ],
             [
               'When a slash command is received',
               `s4d.client.on(Discord.Events.InteractionCreate, async (interaction) => {
-        let member = interaction.guild.members.cache.get(interaction.member.user.id)`
+let member = interaction.guild.members.cache.get(interaction.member.user.id);`
             ],
             ['When the bot is added to a server', 's4d.client.on(Discord.Events.GuildCreate, async (s4dguild) => {'],
             ['When the bot is removed from a server', 's4d.client.on(Discord.Events.GuildDelete, async (s4dguild) => {']
@@ -1346,6 +1129,7 @@ Blockly.Blocks['jg_events_all_label'] = {
     this.setColour(color);
   }
 };
+
 javascriptGenerator.forBlock['jg_events_all_label'] = (block) => {
   const label = block.getFieldValue('LABEL');
   let event = block.getFieldValue('EVENT');
@@ -1355,14 +1139,12 @@ javascriptGenerator.forBlock['jg_events_all_label'] = (block) => {
     ending = '';
   }
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `/*
-        ${label.replaceAll('*/', '* /')}
+  return `/*
+  ${label.replaceAll('*/', '* /')}
 */
    ${event}
    ${statements}
-   ${ending}
-   `;
-  return code;
+   ${ending}`;
 };
 
 Blockly.Blocks['jg_members_list_of_known_member_ids'] = {
@@ -1372,15 +1154,15 @@ Blockly.Blocks['jg_members_list_of_known_member_ids'] = {
       inputsInline: true,
       args0: [],
       colour: '#187795',
-      output: ['Array', 'List'],
+      output: Types.Array,
       tooltip: 'Get a list of member IDs that the bot has known about.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_list_of_known_member_ids'] = function () {
-  const code = [`JSON.parse(JSON.stringify(s4d.client)).users`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`JSON.parse(JSON.stringify(s4d.client)).users`, javascriptGenerator.ORDER_NONE];
 };
 
 Blockly.Blocks['jg_members_new_list_of_known_ids'] = {
@@ -1400,16 +1182,16 @@ Blockly.Blocks['jg_members_new_list_of_known_ids'] = {
         }
       ],
       colour: '#187795',
-      output: ['Array', 'List'],
+      output: Types.Array,
       tooltip: 'Get a list of IDs that the bot has known about.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_new_list_of_known_ids'] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`JSON.parse(JSON.stringify(s4d.client)).${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`JSON.parse(JSON.stringify(s4d.client)).${type}`, javascriptGenerator.ORDER_NONE];
 };
 
 Blockly.Blocks['jg_members_get_member_by_id'] = {
@@ -1421,20 +1203,20 @@ Blockly.Blocks['jg_members_get_member_by_id'] = {
         {
           type: 'input_value',
           name: 'ID',
-          check: ['String', 'var', 'Var', 'Env', 'env', 'Number']
+          check: Types.String
         }
       ],
       colour: '#187795',
-      output: 'Member',
+      output: Types.Member,
       tooltip: 'Get a user by their ID. This probably wont let you do server actions with the user however, like giving them a role.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_get_member_by_id'] = (block) => {
   const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`s4d.client.users.cache.get(String(${id}))`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`s4d.client.users.cache.get(String(${id}))`, javascriptGenerator.ORDER_NONE];
 };
 
 Blockly.Blocks['jg_members_member_is_in_voice_channel'] = {
@@ -1446,21 +1228,22 @@ Blockly.Blocks['jg_members_member_is_in_voice_channel'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: 'Member'
+          check: Types.Member
         }
       ],
       colour: '#a55b80',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Checks if a member is in a voice channel.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_member_is_in_voice_channel'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${String(member).endsWith('.user') || String(member).endsWith('.user)') ? member.replace('.user', '') : member}.voice.channel != null`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${String(member).endsWith('.user') || String(member).endsWith('.user)') ? member.replace('.user', '') : member}.voice.channel != null`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_members_get_members_current_voice_channel'] = {
   init: function () {
     this.jsonInit({
@@ -1470,22 +1253,22 @@ Blockly.Blocks['jg_members_get_members_current_voice_channel'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: 'Member'
+          check: Types.Member
         }
       ],
       colour: '#a55b80',
-      output: 'Channel',
+      output: Types.Channel,
       tooltip: 'Get a server members current voice channel, if they are in one.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_get_members_current_voice_channel'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${String(member).endsWith('.user') || String(member).endsWith('.user)') ? member.replace('.user', '') : member}.voice.channel`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${String(member).endsWith('.user') || String(member).endsWith('.user)') ? member.replace('.user', '') : member}.voice.channel`, javascriptGenerator.ORDER_NONE];
 };
-// oopsie
+
 Blockly.Blocks['jg_messages_delete_message'] = {
   init: function () {
     this.jsonInit({
@@ -1498,7 +1281,7 @@ Blockly.Blocks['jg_messages_delete_message'] = {
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         }
       ]
     });
@@ -1506,11 +1289,8 @@ Blockly.Blocks['jg_messages_delete_message'] = {
 };
 javascriptGenerator.forBlock['jg_messages_delete_message'] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${message}.delete()
-    `;
-  return code;
+  return `${message}.delete();`;
 };
-// there we hgo
 
 Blockly.Blocks['jg_monaco_messages_delete_message'] = {
   init: function () {
@@ -1524,19 +1304,18 @@ Blockly.Blocks['jg_monaco_messages_delete_message'] = {
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_messages_delete_message'] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${message}.delete()
-    `;
-  return code;
+  return `${message}.delete();`;
 };
-// next
+
 Blockly.Blocks['jg_messages_react_to_message_with_reaction'] = {
   init: function () {
     this.jsonInit({
@@ -1550,24 +1329,24 @@ Blockly.Blocks['jg_messages_react_to_message_with_reaction'] = {
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         },
         {
           type: 'input_value',
           name: 'REACTION',
-          check: 'String'
+          check: Types.String
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_react_to_message_with_reaction'] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   const reaction = javascriptGenerator.valueToCode(block, 'REACTION', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${message}.react(${reaction})
-    `;
-  return code;
+  return `${message}.react(${reaction});`;
 };
+
 Blockly.Blocks['jg_messages_crosspost_message'] = {
   init: function () {
     this.jsonInit({
@@ -1581,18 +1360,18 @@ Blockly.Blocks['jg_messages_crosspost_message'] = {
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_crosspost_message'] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${message}.crosspost()
-    `;
-  return code;
+  return `${message}.crosspost();`;
 };
+
 Blockly.Blocks['jg_messages_edit_message_to_text'] = {
   init: function () {
     this.jsonInit({
@@ -1606,24 +1385,24 @@ Blockly.Blocks['jg_messages_edit_message_to_text'] = {
         {
           type: 'input_value',
           name: 'MESSAGE',
-          check: 'Message'
+          check: Types.Message
         },
         {
           type: 'input_value',
           name: 'TEXT',
-          check: 'String'
+          check: Types.String
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_edit_message_to_text'] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${message}.edit(String(${text}))
-    `;
-  return code;
+  return `${message}.edit(String(${text}));`;
 };
+
 Blockly.Blocks['jg_monaco_members_remove_timeout_from_member'] = {
   init: function () {
     this.jsonInit({
@@ -1637,18 +1416,18 @@ Blockly.Blocks['jg_monaco_members_remove_timeout_from_member'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: 'Member'
+          check: Types.Member
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_members_remove_timeout_from_member'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${member}.timeout(null)
-    `;
-  return code;
+  return `${member}.timeout(null);`;
 };
+
 Blockly.Blocks['jg_monaco_servers_on_server_get_audit_logs_then'] = {
   init: function () {
     this.jsonInit({
@@ -1662,7 +1441,7 @@ Blockly.Blocks['jg_monaco_servers_on_server_get_audit_logs_then'] = {
         {
           type: 'input_value',
           name: 'SERVER',
-          check: 'Server'
+          check: Types.Server
         },
         {
           type: 'input_dummy'
@@ -1675,16 +1454,16 @@ Blockly.Blocks['jg_monaco_servers_on_server_get_audit_logs_then'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_on_server_get_audit_logs_then'] = (block) => {
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${server}.fetchAuditLogs().then(async (audit_raw) => {
-        let audit = audit_raw.entries;
-        ${statements}
-    })
-    `;
-  return code;
+  return `${server}.fetchAuditLogs().then(async (audit_raw) => {
+  let audit = audit_raw.entries;
+  ${statements}
+});`;
 };
+
 Blockly.Blocks['jg_monaco_servers_audit_log_number'] = {
   init: function () {
     this.jsonInit({
@@ -1697,17 +1476,18 @@ Blockly.Blocks['jg_monaco_servers_audit_log_number'] = {
         {
           type: 'input_value',
           name: 'NUMBER',
-          check: 'Number'
+          check: Types.Number
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_audit_log_number'] = (block) => {
   const number = javascriptGenerator.valueToCode(block, 'NUMBER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`audit.at(Number(${number}) - 1)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`audit.at(Number(${number}) - 1)`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_monaco_servers_amount_of_audit_logs'] = {
   init: function () {
     this.jsonInit({
@@ -1715,15 +1495,16 @@ Blockly.Blocks['jg_monaco_servers_amount_of_audit_logs'] = {
       inputsInline: true,
       tooltip: 'Get the amount of logs in the audit logs.',
       colour: '#E3317A',
-      output: 'Number',
+      output: Types.Number,
       args0: []
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_amount_of_audit_logs'] = function () {
-  const code = [`audit.size`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return ['audit.size', javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_monaco_servers_get_property_from_log'] = {
   init: function () {
     this.jsonInit({
@@ -1731,7 +1512,7 @@ Blockly.Blocks['jg_monaco_servers_get_property_from_log'] = {
       inputsInline: true,
       tooltip: 'Get information about a certain log.',
       colour: '#E3317A',
-      output: null,
+      output: Types.Any,
       args0: [
         {
           type: 'field_dropdown',
@@ -1755,12 +1536,13 @@ Blockly.Blocks['jg_monaco_servers_get_property_from_log'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_get_property_from_log'] = (block) => {
   const log = javascriptGenerator.valueToCode(block, 'LOG', javascriptGenerator.ORDER_ATOMIC);
   const prop = block.getFieldValue('PROP');
-  const code = [`${log}.${prop}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${log}.${prop}`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_monaco_servers_log_has_reason'] = {
   init: function () {
     this.jsonInit({
@@ -1768,7 +1550,7 @@ Blockly.Blocks['jg_monaco_servers_log_has_reason'] = {
       inputsInline: true,
       tooltip: 'Checks if a log has a reason on it.',
       colour: '#E3317A',
-      output: 'Boolean',
+      output: Types.Boolean,
       args0: [
         {
           type: 'input_value',
@@ -1779,11 +1561,12 @@ Blockly.Blocks['jg_monaco_servers_log_has_reason'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_log_has_reason'] = (block) => {
   const log = javascriptGenerator.valueToCode(block, 'LOG', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${log}.reason != null`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${log}.reason != null`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_monaco_servers_amount_of_changes_in_log_changes'] = {
   init: function () {
     this.jsonInit({
@@ -1791,7 +1574,7 @@ Blockly.Blocks['jg_monaco_servers_amount_of_changes_in_log_changes'] = {
       inputsInline: true,
       tooltip: "Gets the amount of a log's changes.",
       colour: '#E3317A',
-      output: 'Number',
+      output: Types.Number,
       args0: [
         {
           type: 'input_value',
@@ -1802,11 +1585,12 @@ Blockly.Blocks['jg_monaco_servers_amount_of_changes_in_log_changes'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_amount_of_changes_in_log_changes'] = (block) => {
   const changes = javascriptGenerator.valueToCode(block, 'CHANGES', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${changes}.length`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${changes}.length`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_monaco_servers_change_number_in_changes'] = {
   init: function () {
     this.jsonInit({
@@ -1819,7 +1603,7 @@ Blockly.Blocks['jg_monaco_servers_change_number_in_changes'] = {
         {
           type: 'input_value',
           name: 'INDEX',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_value',
@@ -1830,12 +1614,13 @@ Blockly.Blocks['jg_monaco_servers_change_number_in_changes'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_change_number_in_changes'] = (block) => {
   const changes = javascriptGenerator.valueToCode(block, 'CHANGES', javascriptGenerator.ORDER_ATOMIC);
   const number = javascriptGenerator.valueToCode(block, 'INDEX', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${changes}[${number}]`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${changes}[${number}]`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_monaco_servers_get_from_change'] = {
   init: function () {
     this.jsonInit({
@@ -1843,7 +1628,7 @@ Blockly.Blocks['jg_monaco_servers_get_from_change'] = {
       inputsInline: true,
       tooltip: 'Gets information from a change.',
       colour: '#E3317A',
-      output: null,
+      output: Types.Any,
       args0: [
         {
           type: 'field_dropdown',
@@ -1863,12 +1648,13 @@ Blockly.Blocks['jg_monaco_servers_get_from_change'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_get_from_change'] = (block) => {
   const change = javascriptGenerator.valueToCode(block, 'CHANGE', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('PROP');
-  const code = [`${change}.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${change}.${type}`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_unused_scratcjwtff'] = {
   init: function () {
     this.jsonInit({
@@ -1882,16 +1668,17 @@ Blockly.Blocks['jg_unused_scratcjwtff'] = {
         {
           type: 'input_value',
           name: 'STEPS',
-          check: 'Number'
+          check: Types.Number
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_unused_scratcjwtff'] = function () {
-  const code = ``;
-  return code;
+  return '';
 };
+
 Blockly.Blocks['jg_monaco_roles_hoist_role'] = {
   init: function () {
     this.jsonInit({
@@ -1908,12 +1695,12 @@ Blockly.Blocks['jg_monaco_roles_hoist_role'] = {
         {
           type: 'input_value',
           name: 'ROLE',
-          check: 'Role'
+          check: Types.Role
         },
         {
           type: 'input_value',
           name: 'REASON',
-          check: 'String'
+          check: Types.String
         }
       ],
       inputsInline: true,
@@ -1925,17 +1712,15 @@ Blockly.Blocks['jg_monaco_roles_hoist_role'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_roles_hoist_role'] = (block) => {
   const type = block.getFieldValue('TYPE');
   const role = javascriptGenerator.valueToCode(block, 'ROLE', javascriptGenerator.ORDER_ATOMIC);
   let reason = javascriptGenerator.valueToCode(block, 'REASON', javascriptGenerator.ORDER_ATOMIC);
-  if (reason) {
-    reason = ', ' + reason;
-  }
-  const code = `${role}.setHoist(${type}${reason})
-    `;
-  return code;
+  if (reason) reason = ', ' + reason;
+  return `${role}.setHoist(${type}${reason});`;
 };
+
 Blockly.Blocks['jg_monaco_channels_get_channel_number_from_server'] = {
   init: function () {
     this.jsonInit({
@@ -1943,17 +1728,17 @@ Blockly.Blocks['jg_monaco_channels_get_channel_number_from_server'] = {
       inputsInline: false,
       tooltip: 'Gets a certain channel in the server.',
       colour: '#a55b80',
-      output: 'Channel',
+      output: Types.Channel,
       args0: [
         {
           type: 'input_value',
           name: 'INDEX',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_value',
           name: 'SERVER',
-          check: 'Server'
+          check: Types.Server
         }
       ]
     });
@@ -1962,9 +1747,9 @@ Blockly.Blocks['jg_monaco_channels_get_channel_number_from_server'] = {
 javascriptGenerator.forBlock['jg_monaco_channels_get_channel_number_from_server'] = (block) => {
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   const index = javascriptGenerator.valueToCode(block, 'INDEX', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${server}.channels.cache.at(Number(${index}) - 1)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${server}.channels.cache.at(Number(${index}) - 1)`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_monaco_servers_amount_of_channels_in_server'] = {
   init: function () {
     this.jsonInit({
@@ -1972,22 +1757,23 @@ Blockly.Blocks['jg_monaco_servers_amount_of_channels_in_server'] = {
       inputsInline: false,
       tooltip: 'Gets the amount of channels in a server.',
       colour: '#D85E47',
-      output: 'Channel',
+      output: Types.Channel,
       args0: [
         {
           type: 'input_value',
           name: 'SERVER',
-          check: 'Server'
+          check: Types.Server
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_servers_amount_of_channels_in_server'] = (block) => {
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${server}.channels.cache.size`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${server}.channels.cache.size`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_alex_channels_first_channel_in_server'] = {
   init: function () {
     this.jsonInit({
@@ -1995,7 +1781,7 @@ Blockly.Blocks['jg_alex_channels_first_channel_in_server'] = {
       inputsInline: true,
       tooltip: 'Gets a certain channel in a server depending on the option picked.',
       colour: '#a55b80',
-      output: 'Channel',
+      output: Types.Channel,
       args0: [
         {
           type: 'field_dropdown',
@@ -2009,21 +1795,20 @@ Blockly.Blocks['jg_alex_channels_first_channel_in_server'] = {
         {
           type: 'input_value',
           name: 'SERVER',
-          check: 'Server'
+          check: Types.Server
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_alex_channels_first_channel_in_server'] = (block) => {
   const type = block.getFieldValue('TYPE');
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${server}.channels.cache.${type}()`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${server}.channels.cache.${type}()`, javascriptGenerator.ORDER_NONE];
 };
 
 // webhooks
-
 Blockly.Blocks['jose_jg_webhooks_get_all_webhooks_in_channel_then'] = {
   init: function () {
     this.jsonInit({
@@ -2037,7 +1822,7 @@ Blockly.Blocks['jose_jg_webhooks_get_all_webhooks_in_channel_then'] = {
         {
           type: 'input_value',
           name: 'CHANNEL',
-          check: 'Channel'
+          check: Types.Channel
         },
         {
           type: 'input_dummy'
@@ -2050,15 +1835,15 @@ Blockly.Blocks['jose_jg_webhooks_get_all_webhooks_in_channel_then'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jose_jg_webhooks_get_all_webhooks_in_channel_then'] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${channel}.fetchWebhooks().then(async (webhooks) => {
-        ${statements}
-    })
-    `;
-  return code;
+  return `${channel}.fetchWebhooks().then(async (webhooks) => {
+  ${statements}
+});`;
 };
+
 Blockly.Blocks['jose_jg_webhooks_amount_of_webhooks'] = {
   init: function () {
     this.jsonInit({
@@ -2066,15 +1851,16 @@ Blockly.Blocks['jose_jg_webhooks_amount_of_webhooks'] = {
       inputsInline: false,
       tooltip: 'The amount of webhooks the channel has.',
       colour: '#4C97FF',
-      output: 'Number',
+      output: Types.Number,
       args0: []
     });
   }
 };
+
 javascriptGenerator.forBlock['jose_jg_webhooks_amount_of_webhooks'] = function () {
-  const code = [`webhooks.size`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return ['webhooks.size', javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions('jose_jg_webhooks_amount_of_webhooks', [
   {
     type: 'hasparent',
@@ -2082,6 +1868,7 @@ registerRestrictions('jose_jg_webhooks_amount_of_webhooks', [
     types: ['jose_jg_webhooks_get_all_webhooks_in_channel_then']
   }
 ]);
+
 Blockly.Blocks['jose_jg_webhooks_webhook_with_id_exists_in_channel'] = {
   init: function () {
     this.jsonInit({
@@ -2089,22 +1876,23 @@ Blockly.Blocks['jose_jg_webhooks_webhook_with_id_exists_in_channel'] = {
       inputsInline: true,
       tooltip: 'Check if the channel we are checking webhooks on has a certain webhook.',
       colour: '#4C97FF',
-      output: 'Boolean',
+      output: Types.Boolean,
       args0: [
         {
           type: 'input_value',
           name: 'ID',
-          check: ['String', 'Number']
+          check: T(Types.String, Types.Number)
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jose_jg_webhooks_webhook_with_id_exists_in_channel'] = (block) => {
   const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`webhooks.has(String(${id}))`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`webhooks.has(String(${id}))`, javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions('jose_jg_webhooks_webhook_with_id_exists_in_channel', [
   {
     type: 'hasparent',
@@ -2112,6 +1900,7 @@ registerRestrictions('jose_jg_webhooks_webhook_with_id_exists_in_channel', [
     types: ['jose_jg_webhooks_get_all_webhooks_in_channel_then']
   }
 ]);
+
 Blockly.Blocks['jose_jg_webhooks_get_webhook_with_id'] = {
   init: function () {
     this.jsonInit({
@@ -2124,17 +1913,18 @@ Blockly.Blocks['jose_jg_webhooks_get_webhook_with_id'] = {
         {
           type: 'input_value',
           name: 'ID',
-          check: ['String', 'Number']
+          check: T(Types.String, Types.Number)
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jose_jg_webhooks_get_webhook_with_id'] = (block) => {
   const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`webhooks.get(String(${id}))`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`webhooks.get(String(${id}))`, javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions('jose_jg_webhooks_get_webhook_with_id', [
   {
     type: 'hasparent',
@@ -2142,6 +1932,7 @@ registerRestrictions('jose_jg_webhooks_get_webhook_with_id', [
     types: ['jose_jg_webhooks_get_all_webhooks_in_channel_then']
   }
 ]);
+
 Blockly.Blocks['jose_jg_webhooks_get_webhook_information'] = {
   init: function () {
     this.jsonInit({
@@ -2149,7 +1940,7 @@ Blockly.Blocks['jose_jg_webhooks_get_webhook_information'] = {
       inputsInline: true,
       tooltip: 'Get information about a certain webhook.',
       colour: '#4C97FF',
-      output: null,
+      output: Types.Any,
       args0: [
         {
           type: 'field_dropdown',
@@ -2175,12 +1966,13 @@ Blockly.Blocks['jose_jg_webhooks_get_webhook_information'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jose_jg_webhooks_get_webhook_information'] = (block) => {
   const webhook = javascriptGenerator.valueToCode(block, 'WEBHOOK', javascriptGenerator.ORDER_ATOMIC);
   const prop = block.getFieldValue('PROP');
-  const code = [`${webhook}.${prop}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${webhook}.${prop}`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jose_jg_delete_created_webhook_with_reason'] = {
   init: function () {
     this.jsonInit({
@@ -2194,18 +1986,18 @@ Blockly.Blocks['jose_jg_delete_created_webhook_with_reason'] = {
         {
           type: 'input_value',
           name: 'REASON',
-          check: 'String'
+          check: Types.String
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jose_jg_delete_created_webhook_with_reason'] = (block) => {
   const reason = javascriptGenerator.valueToCode(block, 'REASON', javascriptGenerator.ORDER_ATOMIC);
-  const code = `webhook.delete(String(${reason}))
-`;
-  return code;
+  return `webhook.delete(String(${reason}));`;
 };
+
 registerRestrictions('jose_jg_delete_created_webhook_with_reason', [
   {
     type: 'hasparent',
@@ -2213,6 +2005,7 @@ registerRestrictions('jose_jg_delete_created_webhook_with_reason', [
     types: ['s4d_create_webhook_then', 'jose_jg_create_webhook_in_channel_with_name_and_profile_picture_url_with_reason_then_do']
   }
 ]);
+
 Blockly.Blocks['jose_jg_gained_delete_webhook_with_reason'] = {
   init: function () {
     this.jsonInit({
@@ -2226,18 +2019,18 @@ Blockly.Blocks['jose_jg_gained_delete_webhook_with_reason'] = {
         {
           type: 'input_value',
           name: 'REASON',
-          check: 'String'
+          check: Types.String
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jose_jg_gained_delete_webhook_with_reason'] = (block) => {
   const reason = javascriptGenerator.valueToCode(block, 'REASON', javascriptGenerator.ORDER_ATOMIC);
-  const code = `gwebhook.delete(String(${reason}))
-`;
-  return code;
+  return `gwebhook.delete(String(${reason}));`;
 };
+
 registerRestrictions('jose_jg_gained_delete_webhook_with_reason', [
   {
     type: 'hasparent',
@@ -2245,6 +2038,7 @@ registerRestrictions('jose_jg_gained_delete_webhook_with_reason', [
     types: ['s4d_get_webhook_then']
   }
 ]);
+
 Blockly.Blocks['jose_jg_webhooks_delete_webhook_with_reason'] = {
   init: function () {
     this.jsonInit({
@@ -2263,19 +2057,19 @@ Blockly.Blocks['jose_jg_webhooks_delete_webhook_with_reason'] = {
         {
           type: 'input_value',
           name: 'REASON',
-          check: 'String'
+          check: Types.String
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jose_jg_webhooks_delete_webhook_with_reason'] = (block) => {
   const webhook = javascriptGenerator.valueToCode(block, 'WEBHOOK', javascriptGenerator.ORDER_ATOMIC);
   const reason = javascriptGenerator.valueToCode(block, 'REASON', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${webhook}.delete(String(${reason}))
-`;
-  return code;
+  return `${webhook}.delete(String(${reason}));`;
 };
+
 Blockly.Blocks['jg_text_remake_paragraph_quotes'] = {
   init: function () {
     this.jsonInit({
@@ -2309,6 +2103,7 @@ Blockly.Blocks['jg_text_remake_paragraph_quotes'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_text_remake_paragraph_quotes'] = (block) => {
   let text = block.getFieldValue('TEXT');
   text = String(text).replaceAll('\\', '\\\\');
@@ -2319,12 +2114,10 @@ javascriptGenerator.forBlock['jg_text_remake_paragraph_quotes'] = (block) => {
   } else {
     text = String(text).replaceAll('`', '\\`');
   }
-  if (multiline == '`') {
-    text = String(text).replaceAll('${', '\\${');
-  }
-  const code = [`${multiline}${text}${multiline}`, javascriptGenerator.ORDER_ATOMIC];
-  return code;
+  if (multiline == '`') text = String(text).replaceAll('${', '\\${');
+  return [`${multiline}${text}${multiline}`, javascriptGenerator.ORDER_ATOMIC];
 };
+
 Blockly.Blocks['jg_text_remake_in_text_replace_with'] = {
   init: function () {
     this.jsonInit({
@@ -2332,12 +2125,12 @@ Blockly.Blocks['jg_text_remake_in_text_replace_with'] = {
       inputsInline: true,
       tooltip: 'Replace all occurences of some text with other text.',
       colour: '%{BKY_TEXTS_HUE}',
-      output: 'String',
+      output: Types.String,
       args0: [
         {
           type: 'input_value',
           name: 'ORIGIN',
-          check: 'String'
+          check: Types.String
         },
         {
           type: 'input_value',
@@ -2347,19 +2140,20 @@ Blockly.Blocks['jg_text_remake_in_text_replace_with'] = {
         {
           type: 'input_value',
           name: 'WITH',
-          check: 'String'
+          check: Types.String
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_text_remake_in_text_replace_with'] = (block) => {
   const origin = javascriptGenerator.valueToCode(block, 'ORIGIN', javascriptGenerator.ORDER_ATOMIC);
   const replace = javascriptGenerator.valueToCode(block, 'REPLACE', javascriptGenerator.ORDER_ATOMIC);
   const replaced = javascriptGenerator.valueToCode(block, 'WITH', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`String(${origin}).replaceAll(${replace}, String(${replaced}))`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`String(${origin}).replaceAll(${replace}, String(${replaced}))`, javascriptGenerator.ORDER_NONE];
 };
+
 // is equal to and is the same type as
 Blockly.Blocks['jg_logic_is_equal_to_and_is_the_same_type_as'] = {
   init: function () {
@@ -2368,12 +2162,12 @@ Blockly.Blocks['jg_logic_is_equal_to_and_is_the_same_type_as'] = {
       inputsInline: true,
       tooltip: 'Checks if something is equal to another value, and is also the same type of thing as that value.',
       colour: '%{BKY_LOGIC_HUE}',
-      output: 'Boolean',
+      output: Types.Boolean,
       args0: [
         {
           type: 'input_value',
           name: 'A',
-          check: null
+          check: Types.Any
         },
         {
           type: 'field_dropdown',
@@ -2386,19 +2180,20 @@ Blockly.Blocks['jg_logic_is_equal_to_and_is_the_same_type_as'] = {
         {
           type: 'input_value',
           name: 'B',
-          check: null
+          check: Types.Any
         }
       ]
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_logic_is_equal_to_and_is_the_same_type_as'] = (block) => {
   const a = javascriptGenerator.valueToCode(block, 'A', javascriptGenerator.ORDER_ATOMIC);
   const b = javascriptGenerator.valueToCode(block, 'B', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
-  const code = [`${a} ${type} ${b}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${a} ${type} ${b}`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_monaco_roles_change_role_to_be_mentionable_with_reason'] = {
   init: function () {
     this.jsonInit({
@@ -2415,12 +2210,12 @@ Blockly.Blocks['jg_monaco_roles_change_role_to_be_mentionable_with_reason'] = {
         {
           type: 'input_value',
           name: 'ROLE',
-          check: 'Role'
+          check: Types.Role
         },
         {
           type: 'input_value',
           name: 'REASON',
-          check: 'String'
+          check: Types.String
         }
       ],
       inputsInline: true,
@@ -2432,16 +2227,13 @@ Blockly.Blocks['jg_monaco_roles_change_role_to_be_mentionable_with_reason'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_roles_change_role_to_be_mentionable_with_reason'] = (block) => {
   const type = block.getFieldValue('TYPE');
   const role = javascriptGenerator.valueToCode(block, 'ROLE', javascriptGenerator.ORDER_ATOMIC);
   let reason = javascriptGenerator.valueToCode(block, 'REASON', javascriptGenerator.ORDER_ATOMIC);
-  if (reason) {
-    reason = ', ' + reason;
-  }
-  const code = `${role}.setMentionable(${type}${reason})
-`;
-  return code;
+  if (reason) reason = ', ' + reason;
+  return `${role}.setMentionable(${type}${reason});`;
 };
 
 Blockly.Blocks['jg_unused_any_color'] = {
@@ -2470,9 +2262,11 @@ Blockly.Blocks['jg_unused_any_color'] = {
   },
   isHiden: true
 };
+
 javascriptGenerator.forBlock['jg_unused_any_color'] = function () {
   return '';
 };
+
 Blockly.Blocks['jg_unused_any_color2'] = {
   init: function () {
     this.jsonInit({
@@ -2495,9 +2289,11 @@ Blockly.Blocks['jg_unused_any_color2'] = {
   },
   isHiden: true
 };
+
 javascriptGenerator.forBlock['jg_unused_any_color2'] = function () {
   return '';
 };
+
 Blockly.Blocks['jg_members_user_has_value'] = {
   init: function () {
     this.jsonInit({
@@ -2506,7 +2302,7 @@ Blockly.Blocks['jg_members_user_has_value'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: ['Member', 'User']
+          check: Types.UserResolve
         },
         {
           type: 'field_grid_dropdown',
@@ -2537,18 +2333,19 @@ Blockly.Blocks['jg_members_user_has_value'] = {
         }
       ],
       colour: '#50a6c9',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Check if the specified user has or is this property.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_user_has_value'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   const property = block.getFieldValue('TYPE');
-  const code = [`${member}${property}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}${property}`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_members_member_is_value'] = {
   init: function () {
     this.jsonInit({
@@ -2557,7 +2354,7 @@ Blockly.Blocks['jg_members_member_is_value'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: ['Member']
+          check: Types.Member
         },
         {
           type: 'field_dropdown',
@@ -2573,18 +2370,19 @@ Blockly.Blocks['jg_members_member_is_value'] = {
         }
       ],
       colour: '#50a6c9',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Check if the specified member has or is this property.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_member_is_value'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
   const property = block.getFieldValue('TYPE');
-  const code = [`${member}${property}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}${property}`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_members_user_accent_color'] = {
   init: function () {
     this.jsonInit({
@@ -2593,21 +2391,22 @@ Blockly.Blocks['jg_members_user_accent_color'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: ['Member', 'User']
+          check: Types.UserResolve
         }
       ],
       colour: '#50a6c9',
-      output: 'String',
+      output: Types.String,
       tooltip: 'The Hex color of a users accent color.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_user_accent_color'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${member}.hexAccentColor`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}.hexAccentColor`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_members_user_exactly_equals_user'] = {
   init: function () {
     this.jsonInit({
@@ -2616,27 +2415,28 @@ Blockly.Blocks['jg_members_user_exactly_equals_user'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: ['Member', 'User']
+          check: Types.UserResolve
         },
         {
           type: 'input_value',
           name: 'MEMBER2',
-          check: ['Member', 'User']
+          check: Types.UserResolve
         }
       ],
       colour: '#50a6c9',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Check if a user is the exact same as another user.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_user_exactly_equals_user'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   const member2 = javascriptGenerator.valueToCode(block, 'MEMBER2', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${member}.equals(${member2})`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}.equals(${member2})`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_members_member_has_nickname'] = {
   init: function () {
     this.jsonInit({
@@ -2645,21 +2445,22 @@ Blockly.Blocks['jg_members_member_has_nickname'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: ['Member']
+          check: Types.Member
         }
       ],
       colour: '#50a6c9',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Check if a member has a nickname.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_member_has_nickname'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
-  const code = [`${member}.nickname != null`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}.nickname != null`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_members_member_s_nickname'] = {
   init: function () {
     this.jsonInit({
@@ -2668,21 +2469,22 @@ Blockly.Blocks['jg_members_member_s_nickname'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: ['Member']
+          check: Types.Member
         }
       ],
       colour: '#50a6c9',
-      output: 'String',
+      output: Types.String,
       tooltip: "The members nickname. Is also the member's username if the nickname is not found.",
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_member_s_nickname'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
-  const code = [`${member}.nickname??${member}.user.username`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}.nickname??${member}.user.username`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_roles_get_all_member_roles_then_for_each_do'] = {
   init: function () {
     this.jsonInit({
@@ -2696,7 +2498,7 @@ Blockly.Blocks['jg_roles_get_all_member_roles_then_for_each_do'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: 'Member'
+          check: Types.Member
         },
         {
           type: 'input_dummy'
@@ -2709,32 +2511,34 @@ Blockly.Blocks['jg_roles_get_all_member_roles_then_for_each_do'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_roles_get_all_member_roles_then_for_each_do'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC).replaceAll(/member(?=\.user)\.user/gi, 'member');
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${member}.roles.cache.forEach(async (member_role) => {
-    ${statements}
-})
-`;
-  return code;
+  return `${member}.roles.cache.forEach(async (member_role) => {
+  ${statements}
+});`;
 };
+
 Blockly.Blocks['jg_roles_get_all_member_roles_then_for_each_do_role'] = {
   init: function () {
     this.jsonInit({
       message0: 'role',
       args0: [],
       colour: '#2EB66B',
-      output: 'Role',
+      output: Types.Role,
       tooltip: 'The current role in the member role loop.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_roles_get_all_member_roles_then_for_each_do_role'] = function () {
-  const code = [`member_role`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return ['member_role', javascriptGenerator.ORDER_NONE];
 };
+
 restrictToParent(['jg_roles_get_all_member_roles_then_for_each_do'], 'jg_roles_get_all_member_roles_then_for_each_do_role', 'This block must be in a "get all member roles then for each do" block!');
+
 Blockly.Blocks['jg_emoji_text_regex_list_of_custom_emojis_in_text'] = {
   init: function () {
     this.jsonInit({
@@ -2743,7 +2547,7 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_custom_emojis_in_text'] = {
         {
           type: 'input_value',
           name: 'TEXT',
-          check: 'String'
+          check: Types.String
         }
       ],
       colour: '#4C97FF',
@@ -2753,11 +2557,12 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_custom_emojis_in_text'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_emoji_text_regex_list_of_custom_emojis_in_text'] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${text}.match(/(?<!\\\\)<:(?<=<:)[a-zA-Z0-9_-]*(?=:):[0-9]*>/gim)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${text}.match(/(?<!\\\\)<:(?<=<:)[a-zA-Z0-9_-]*(?=:):[0-9]*>/gim)`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_emoji_text_regex_list_of_animated_emojis_in_text'] = {
   init: function () {
     this.jsonInit({
@@ -2766,7 +2571,7 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_animated_emojis_in_text'] = {
         {
           type: 'input_value',
           name: 'TEXT',
-          check: 'String'
+          check: Types.String
         }
       ],
       colour: '#4C97FF',
@@ -2776,11 +2581,12 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_animated_emojis_in_text'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_emoji_text_regex_list_of_animated_emojis_in_text'] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${text}.match(/(?<!\\\\)<a:(?<=<a:)[a-zA-Z0-9_-]*(?=:):[0-9]*>/gim)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${text}.match(/(?<!\\\\)<a:(?<=<a:)[a-zA-Z0-9_-]*(?=:):[0-9]*>/gim)`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_emoji_text_regex_list_of_normal_emojis_in_text'] = {
   init: function () {
     this.jsonInit({
@@ -2789,7 +2595,7 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_normal_emojis_in_text'] = {
         {
           type: 'input_value',
           name: 'TEXT',
-          check: 'String'
+          check: Types.String
         }
       ],
       colour: '#4C97FF',
@@ -2799,11 +2605,12 @@ Blockly.Blocks['jg_emoji_text_regex_list_of_normal_emojis_in_text'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_emoji_text_regex_list_of_normal_emojis_in_text'] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`String(${text}).replaceAll(" ", "").match(/((\\u00a9|\\u00ae|[\\u2000-\\u3300]|\\ud83c[\\ud000-\\udfff]|\\ud83d[\\ud000-\\udfff]|\\ud83e[\\ud000-\\udfff]\\s?)+)/gm)`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`String(${text}).replaceAll(" ", "").match(/((\\u00a9|\\u00ae|[\\u2000-\\u3300]|\\ud83c[\\ud000-\\udfff]|\\ud83d[\\ud000-\\udfff]|\\ud83e[\\ud000-\\udfff]\\s?)+)/gm)`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_text_regex_create_new_regex_of'] = {
   init: function () {
     this.jsonInit({
@@ -2821,6 +2628,7 @@ Blockly.Blocks['jg_text_regex_create_new_regex_of'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_text_regex_create_new_regex_of'] = (block) => {
   let regex = block.getFieldValue('TEXT');
   try {
@@ -2829,9 +2637,9 @@ javascriptGenerator.forBlock['jg_text_regex_create_new_regex_of'] = (block) => {
   } catch (err) {
     console.error('This RegEx check is not supported on this platform.', err);
   }
-  const code = [`${regex}`, javascriptGenerator.ORDER_ATOMIC];
-  return code;
+  return [regex, javascriptGenerator.ORDER_ATOMIC];
 };
+
 Blockly.Blocks['jg_lists_regex_list_of_matches_from_regex_on_text'] = {
   init: function () {
     this.jsonInit({
@@ -2845,7 +2653,7 @@ Blockly.Blocks['jg_lists_regex_list_of_matches_from_regex_on_text'] = {
         {
           type: 'input_value',
           name: 'TEXT',
-          check: 'String'
+          check: Types.String
         }
       ],
       inputsInline: true,
@@ -2856,12 +2664,13 @@ Blockly.Blocks['jg_lists_regex_list_of_matches_from_regex_on_text'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_lists_regex_list_of_matches_from_regex_on_text'] = (block) => {
   const regex = javascriptGenerator.valueToCode(block, 'REGEX', javascriptGenerator.ORDER_ATOMIC);
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`String(${text}).match(${regex})`, javascriptGenerator.ORDER_ATOMIC];
-  return code;
+  return [`String(${text}).match(${regex})`, javascriptGenerator.ORDER_ATOMIC];
 };
+
 Blockly.Blocks['jg_member_is_user_in_server'] = {
   init: function () {
     this.jsonInit({
@@ -2870,28 +2679,36 @@ Blockly.Blocks['jg_member_is_user_in_server'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: ['Member', 'User']
+          check: Types.UserResolve
         },
         {
           type: 'input_value',
           name: 'SERVER',
-          check: 'Server'
+          check: Types.Server
         }
       ],
       colour: '#50a6c9',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Check if the member is in the server.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_member_is_user_in_server'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   // i know this is probably not the best way of doing it but i couldnt think of anything else that wouldnt break the original way this block was used
-  const code = [`await (() => { return new Promise((resolve, reject) => { ${server}.members.fetch(${member}.id).then(() => resolve(true)).catch(() => resolve(false)) } ) })()`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [
+    `await (() => {
+  return new Promise((resolve, reject) => {
+    ${server}.members.fetch(${member}.id).then(() => resolve(true)).catch(() => resolve(false))
+  })
+})()`,
+    javascriptGenerator.ORDER_NONE
+  ];
 };
+
 Blockly.Blocks['jg_members_roles_fetch_with_id_from_server_then_do'] = {
   init: function () {
     this.jsonInit({
@@ -2913,12 +2730,12 @@ Blockly.Blocks['jg_members_roles_fetch_with_id_from_server_then_do'] = {
         {
           type: 'input_value',
           name: 'SERVER',
-          check: 'Server'
+          check: Types.Server
         },
         {
           type: 'input_value',
           name: 'ID',
-          check: 'String'
+          check: Types.String
         },
         {
           type: 'input_dummy'
@@ -2931,17 +2748,17 @@ Blockly.Blocks['jg_members_roles_fetch_with_id_from_server_then_do'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_roles_fetch_with_id_from_server_then_do'] = (block) => {
   const type = block.getFieldValue('TYPE');
   const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${server}.${type}.fetch(String(${id})).then((fetched_${type}_from_server) => {
-    ${statements}
-})
-`;
-  return code;
+  return `${server}.${type}.fetch(String(${id})).then((fetched_${type}_from_server) => {
+  ${statements}
+});`;
 };
+
 Blockly.Blocks['jg_members_roles_fetch_with_id_from_server_then_do_fetched_item'] = {
   init: function () {
     this.jsonInit({
@@ -2957,18 +2774,20 @@ Blockly.Blocks['jg_members_roles_fetch_with_id_from_server_then_do_fetched_item'
         }
       ],
       colour: '#2EB66B',
-      output: 'Member',
+      output: Types.Member,
       tooltip: 'The current role in the member role loop.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_members_roles_fetch_with_id_from_server_then_do_fetched_item'] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`fetched_${type}_from_server`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`fetched_${type}_from_server`, javascriptGenerator.ORDER_NONE];
 };
+
 restrictToParent(['jg_members_roles_fetch_with_id_from_server_then_do'], 'jg_members_roles_fetch_with_id_from_server_then_do_fetched_item', 'Missing Restriction Text');
+
 Blockly.Blocks['jg_s4d_other_run_code_inside_file'] = {
   init: function () {
     this.jsonInit({
@@ -2977,7 +2796,7 @@ Blockly.Blocks['jg_s4d_other_run_code_inside_file'] = {
         {
           type: 'input_value',
           name: 'FILE',
-          check: 'String'
+          check: Types.String
         }
       ],
       inputsInline: true,
@@ -2989,12 +2808,12 @@ Blockly.Blocks['jg_s4d_other_run_code_inside_file'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_s4d_other_run_code_inside_file'] = (block) => {
   const file = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `require((String(${file}).startsWith("./") ? String(${file}) : "./" + String(${file})))
-`;
-  return code;
+  return `require((String(${file}).startsWith("./") ? String(${file}) : "./" + String(${file})));`;
 };
+
 Blockly.Blocks['jg_roles_fetch_all_roles_in_server_then_do'] = {
   init: function () {
     this.jsonInit({
@@ -3008,7 +2827,7 @@ Blockly.Blocks['jg_roles_fetch_all_roles_in_server_then_do'] = {
         {
           type: 'input_value',
           name: 'SERVER',
-          check: 'Server'
+          check: Types.Server
         },
         {
           type: 'input_dummy'
@@ -3021,15 +2840,15 @@ Blockly.Blocks['jg_roles_fetch_all_roles_in_server_then_do'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_roles_fetch_all_roles_in_server_then_do'] = (block) => {
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${server}.roles.fetch().then(async (s4d_roles_from_server_auydewgfiyewfh) => {
-        ${statements}
-    })
-    `;
-  return code;
+  return `${server}.roles.fetch().then(async (s4d_roles_from_server_auydewgfiyewfh) => {
+  ${statements}
+});`;
 };
+
 Blockly.Blocks['jg_channels_wait_for_message_in_channel_to_meet_check_for_minutes_then_if_no_messages_pass'] = {
   init: function () {
     this.jsonInit({
@@ -3043,17 +2862,17 @@ Blockly.Blocks['jg_channels_wait_for_message_in_channel_to_meet_check_for_minute
         {
           type: 'input_value',
           name: 'CHANNEL',
-          check: 'Channel'
+          check: Types.Channel
         },
         {
           type: 'input_value',
           name: 'CHECK',
-          check: 'Boolean'
+          check: Types.Boolean
         },
         {
           type: 'input_value',
           name: 'TIME',
-          check: 'Number'
+          check: Types.Number
         },
         {
           type: 'input_dummy'
@@ -3073,13 +2892,14 @@ Blockly.Blocks['jg_channels_wait_for_message_in_channel_to_meet_check_for_minute
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_channels_wait_for_message_in_channel_to_meet_check_for_minutes_then_if_no_messages_pass'] = (block) => {
   const channel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   const filter = javascriptGenerator.valueToCode(block, 'CHECK', javascriptGenerator.ORDER_ATOMIC);
   const time = javascriptGenerator.valueToCode(block, 'TIME', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   const statement2 = javascriptGenerator.statementToCode(block, 'STATEMENT2');
-  const code = `${channel}.awaitMessages({
+  return `${channel}.awaitMessages({
   filter: (s4dmessage) => ${filter},
   time: (${time} * 60 * 1000),
   max: 1
@@ -3089,24 +2909,25 @@ javascriptGenerator.forBlock['jg_channels_wait_for_message_in_channel_to_meet_ch
 }).catch(async err => {
   ${statement2}
 });`;
-  return code;
 };
+
 Blockly.Blocks['jg_joins_subleaves_leaving_member'] = {
   init: function () {
     this.jsonInit({
       message0: 'leaving member',
       args0: [],
       colour: '#187795',
-      output: 'Member',
+      output: Types.Member,
       tooltip: 'The member that left the server.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_joins_subleaves_leaving_member'] = function () {
-  const code = [`s4d.leavingMember.user`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`s4d.leavingMember.user`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_messages_value_dropdown_content_of_message'] = {
   init: function () {
     this.jsonInit({
@@ -3132,22 +2953,23 @@ Blockly.Blocks['jg_messages_value_dropdown_content_of_message'] = {
         {
           type: 'input_value',
           name: 'MSG',
-          check: 'Message'
+          check: Types.Message
         }
       ],
       colour: '#4C97FF',
-      output: null,
+      output: Types.Any,
       tooltip: 'Get a property from a message.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_messages_value_dropdown_content_of_message'] = (block) => {
   const property = block.getFieldValue('TYPE');
   const message = javascriptGenerator.valueToCode(block, 'MSG', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${message}.${property}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${message}.${property}`, javascriptGenerator.ORDER_NONE];
 };
+
 Blockly.Blocks['jg_edited_old_new_message'] = {
   init: function () {
     this.jsonInit({
@@ -3163,18 +2985,17 @@ Blockly.Blocks['jg_edited_old_new_message'] = {
         }
       ],
       colour: '#a55b80',
-      output: 'Message',
+      output: Types.Message,
       tooltip: "The edited message in either it's original state or new state.",
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_edited_old_new_message'] = (block) => {
   const state = block.getFieldValue('TYPE');
-  const code = [`${state}Message`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${state}Message`, javascriptGenerator.ORDER_NONE];
 };
-// a
 
 Blockly.Blocks['jg_monaco_members_member_is_timed_out'] = {
   init: function () {
@@ -3184,20 +3005,20 @@ Blockly.Blocks['jg_monaco_members_member_is_timed_out'] = {
         {
           type: 'input_value',
           name: 'MEMBER',
-          check: 'Member'
+          check: Types.Member
         }
       ],
       colour: '#50a6c9',
-      output: 'Boolean',
+      output: Types.Boolean,
       tooltip: 'Checks if a Member is timed out.',
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_monaco_members_member_is_timed_out'] = (block) => {
   const member = javascriptGenerator.valueToCode(block, 'MEMBER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${member}.isCommunicationDisabled()`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${member}.isCommunicationDisabled()`, javascriptGenerator.ORDER_NONE];
 };
 
 Blockly.Blocks['jg_s4d_other_throw_custom_error'] = {
@@ -3208,7 +3029,7 @@ Blockly.Blocks['jg_s4d_other_throw_custom_error'] = {
         {
           type: 'input_value',
           name: 'ERROR',
-          check: null
+          check: Types.Any
         }
       ],
       inputsInline: true,
@@ -3220,15 +3041,13 @@ Blockly.Blocks['jg_s4d_other_throw_custom_error'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_s4d_other_throw_custom_error'] = (block) => {
   const err = javascriptGenerator.valueToCode(block, 'ERROR', javascriptGenerator.ORDER_ATOMIC);
-  const code = `throw ${err ? err : null}
-`;
-  return code;
+  return `throw ${err ? err : null}`;
 };
 
 // hosting websites YAYAYAY
-
 Blockly.Blocks['jg_express_website_on_page_on_request_type_do'] = {
   init: function () {
     this.jsonInit({
@@ -3237,16 +3056,19 @@ Blockly.Blocks['jg_express_website_on_page_on_request_type_do'] = {
         {
           type: 'input_value',
           name: 'PAGE',
-          check: 'String'
+          check: Types.String
         },
         {
           type: 'field_dropdown',
           name: 'TYPE',
           options: [
             ['GET', 'get'],
+            ['HEAD', 'head'],
             ['POST', 'post'],
             ['PUT', 'put'],
             ['DELETE', 'delete'],
+            ['OPTIONS', 'options'],
+            ['PATCH', 'patch'],
             ['All', 'all']
           ]
         },
@@ -3266,17 +3088,18 @@ Blockly.Blocks['jg_express_website_on_page_on_request_type_do'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_on_page_on_request_type_do'] = (block) => {
   const page = javascriptGenerator.valueToCode(block, 'PAGE', javascriptGenerator.ORDER_ATOMIC);
   const type = block.getFieldValue('TYPE');
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `S4D_WEBSITECREATION_EXPRESS_app.${type}(${page}, async function(req, res) {
+  return `S4D_WEBSITECREATION_EXPRESS_app.${type}(${page}, async function(req, res) {
   ${statements}
-})
-`;
-  return code;
+});`;
 };
+
 restrictToParent(['jg_express_start_website_then_using_port'], 'jg_express_website_on_page_on_request_type_do', 'This block must be in a "start website then" block!');
+
 Blockly.Blocks['jg_express_website_on_invalid_request_do'] = {
   init: function () {
     this.jsonInit({
@@ -3298,15 +3121,16 @@ Blockly.Blocks['jg_express_website_on_invalid_request_do'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_on_invalid_request_do'] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `S4D_WEBSITECREATION_EXPRESS_app.use(function(req, res) {
+  return `S4D_WEBSITECREATION_EXPRESS_app.use(function(req, res) {
   ${statements}
-})
-`;
-  return code;
+});`;
 };
+
 restrictToParent(['jg_express_start_website_then_using_port'], 'jg_express_website_on_invalid_request_do', 'This block must be in a "start website then" block!');
+
 Blockly.Blocks['jg_express_website_respond_with_text'] = {
   init: function () {
     this.jsonInit({
@@ -3315,7 +3139,7 @@ Blockly.Blocks['jg_express_website_respond_with_text'] = {
         {
           type: 'input_value',
           name: 'TEXT',
-          check: 'String'
+          check: Types.String
         }
       ],
       colour: '#4c8eff',
@@ -3326,13 +3150,14 @@ Blockly.Blocks['jg_express_website_respond_with_text'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_respond_with_text'] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `res.send(String(${text}))
-`;
-  return code;
+  return `res.send(String(${text}));`;
 };
+
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_respond_with_text', 'This block must be in a "on page on request type do" block!');
+
 Blockly.Blocks['jg_express_website_respond_with_file'] = {
   init: function () {
     this.jsonInit({
@@ -3341,7 +3166,7 @@ Blockly.Blocks['jg_express_website_respond_with_file'] = {
         {
           type: 'input_value',
           name: 'TEXT',
-          check: 'String'
+          check: Types.String
         }
       ],
       colour: '#4c8eff',
@@ -3352,13 +3177,14 @@ Blockly.Blocks['jg_express_website_respond_with_file'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_respond_with_file'] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `res.sendFile(S4D_WEBSITECREATION_path.join(__dirname, String(${text})))
-`;
-  return code;
+  return `res.sendFile(S4D_WEBSITECREATION_path.join(__dirname, String(${text})));`;
 };
+
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_respond_with_file', 'This block must be in a "on page on request type do" block!');
+
 Blockly.Blocks['jg_express_website_respond_with_object'] = {
   init: function () {
     this.jsonInit({
@@ -3378,13 +3204,14 @@ Blockly.Blocks['jg_express_website_respond_with_object'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_respond_with_object'] = (block) => {
   const object = javascriptGenerator.valueToCode(block, 'OBJECT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `res.json(${object})
-`;
-  return code;
+  return `res.json(${object});`;
 };
+
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_respond_with_object', 'This block must be in a "on page on request type do" block!');
+
 Blockly.Blocks['jg_express_website_set_response_status_code_to'] = {
   init: function () {
     this.jsonInit({
@@ -3393,7 +3220,7 @@ Blockly.Blocks['jg_express_website_set_response_status_code_to'] = {
         {
           type: 'input_value',
           name: 'STATUS',
-          check: 'Number'
+          check: Types.Number
         }
       ],
       colour: '#4c8eff',
@@ -3404,13 +3231,14 @@ Blockly.Blocks['jg_express_website_set_response_status_code_to'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_set_response_status_code_to'] = (block) => {
   const status = javascriptGenerator.valueToCode(block, 'STATUS', javascriptGenerator.ORDER_ATOMIC);
-  const code = `res.status(Number(${status}))
-`;
-  return code;
+  return `res.status(Number(${status}));`;
 };
+
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_set_response_status_code_to', 'This block must be in a "on page on request type do" block!');
+
 Blockly.Blocks['jg_express_website_set_content_type_to'] = {
   init: function () {
     this.jsonInit({
@@ -3456,13 +3284,14 @@ Blockly.Blocks['jg_express_website_set_content_type_to'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_set_content_type_to'] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = `res.header("Content-Type", '${type}')
-`;
-  return code;
+  return `res.header("Content-Type", '${type}');`;
 };
+
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_set_content_type_to', 'This block must be in a "on page on request type do" block!');
+
 Blockly.Blocks['jg_express_website_query_item_parameter'] = {
   init: function () {
     this.jsonInit({
@@ -3479,23 +3308,25 @@ Blockly.Blocks['jg_express_website_query_item_parameter'] = {
         {
           type: 'input_value',
           name: 'ITEM',
-          check: 'String'
+          check: Types.String
         }
       ],
       colour: '#4c8eff',
-      output: 'String',
+      output: Types.String,
       tooltip: "Gets a certain item from the URL's query items or parameters. (ex: ?item1=yes&item2=no) (ex: /:item)",
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_query_item_parameter'] = (block) => {
   const type = block.getFieldValue('TYPE');
   const item = javascriptGenerator.valueToCode(block, 'ITEM', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`req.${type}[String(${item})]`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`req.${type}[String(${item})]`, javascriptGenerator.ORDER_NONE];
 };
+
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_query_item_parameter', 'This block must be in a "on page on request type do" block!');
+
 Blockly.Blocks['jg_express_website_post_request_item'] = {
   init: function () {
     this.jsonInit({
@@ -3504,22 +3335,24 @@ Blockly.Blocks['jg_express_website_post_request_item'] = {
         {
           type: 'input_value',
           name: 'ITEM',
-          check: 'String'
+          check: Types.String
         }
       ],
       colour: '#4c8eff',
-      output: null,
+      output: Types.Any,
       tooltip: "Gets a certain item from a post request, like the request's body information.",
       helpUrl: ''
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_post_request_item'] = (block) => {
   const item = javascriptGenerator.valueToCode(block, 'ITEM', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`req[String(${item})]`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`req[String(${item})]`, javascriptGenerator.ORDER_NONE];
 };
+
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_post_request_item', 'This block must be in a "on page on request type do" block!');
+
 Blockly.Blocks['jg_express_website_set_header_to'] = {
   init: function () {
     this.jsonInit({
@@ -3528,12 +3361,12 @@ Blockly.Blocks['jg_express_website_set_header_to'] = {
         {
           type: 'input_value',
           name: 'HEADER',
-          check: 'String'
+          check: Types.String
         },
         {
           type: 'input_value',
           name: 'VALUE',
-          check: null
+          check: Types.Any
         }
       ],
       colour: '#4c8eff',
@@ -3545,14 +3378,15 @@ Blockly.Blocks['jg_express_website_set_header_to'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_express_website_set_header_to'] = (block) => {
   const header = javascriptGenerator.valueToCode(block, 'HEADER', javascriptGenerator.ORDER_ATOMIC);
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `res.header(${header}, ${value})
-`;
-  return code;
+  return `res.header(${header}, ${value});`;
 };
+
 restrictToParent(['jg_express_website_on_page_on_request_type_do', 'jg_express_website_on_invalid_request_do'], 'jg_express_website_set_header_to', 'This block must be in a "on page on request type do" block!');
+
 blocklyModule.createMutatorBlock(
   'checkbox',
   {
@@ -3577,10 +3411,10 @@ blocklyModule.createMutatorBlock(
   },
   function () {
     // export code function
-    const code = `abc cabbcebwf 8y432900[2]3rf2\\ew`;
-    return code;
+    return `abc cabbcebwf 8y432900[2]3rf2\\ew`;
   }
 );
+
 Blockly.Blocks['jg_testing_epic_menu_api_test_pooop_lolo_fard'] = {
   init: function () {
     this.jsonInit({
@@ -3634,6 +3468,7 @@ Blockly.Blocks['jg_testing_epic_menu_api_test_pooop_lolo_fard'] = {
   },
   isHiden: true
 };
+
 javascriptGenerator.forBlock['jg_testing_epic_menu_api_test_pooop_lolo_fard'] = function () {
   return '';
 };
@@ -3699,12 +3534,12 @@ Blockly.Blocks['jg_tests_u98ewhg87fuinweo_googogjoooj_dynamic_mutator_time_mf'] 
   },
   isHiden: true
 };
+
 javascriptGenerator.forBlock['jg_tests_u98ewhg87fuinweo_googogjoooj_dynamic_mutator_time_mf'] = function () {
   return '';
 };
 
 // jblock testing
-
 JBlock.createBlock({
   id: 'jg_tests_hfi87ewiugkjbo83q2yfoheiefop432ug_gorpjgrejgo_dietznut_jblock_api_test_mapoapoowip',
   text: 'epic radical test [input_one] and then [input_two]',
@@ -3722,7 +3557,6 @@ JBlock.createBlock({
 });
 
 // Jimp Update 2
-
 function ezBlock(name, json, jsCallback) {
   Blockly.Blocks[name] = {
     init: function () {
@@ -3766,13 +3600,11 @@ ezBlock(
     const file = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
     const main_Statements = javascriptGenerator.statementToCode(block, 'THEN');
     const errorStatements = javascriptGenerator.statementToCode(block, 'ERROR');
-    const code = `jimp.read(${file}).then(async S4D_APP_JIMP__JIMPIMAGE_CREATED_821926501243i => {
-    ${main_Statements}
+    return `jimp.read(${file}).then(async S4D_APP_JIMP__JIMPIMAGE_CREATED_821926501243i => {
+  ${main_Statements}
 }).catch(async err => {
-    ${errorStatements}
-})
-`;
-    return code;
+  ${errorStatements}
+})`;
   }
 );
 ezBlock(
@@ -3785,10 +3617,10 @@ ezBlock(
     tooltip: `Creates a new "Jimp" type image using the provided buffer, url to an image, or file containing an image. When created, the first statements will run. If the image cannot be used or another error occurs, the second statements will run.`
   },
   () => {
-    const code = `S4D_APP_JIMP__JIMPIMAGE_CREATED_821926501243i`;
-    return [code, javascriptGenerator.ORDER_NONE];
+    return [`S4D_APP_JIMP__JIMPIMAGE_CREATED_821926501243i`, javascriptGenerator.ORDER_NONE];
   }
 );
+
 restrictToParent(['jg_jimp_update2rd_createNewImage'], 'jg_jimp_update2rd_created_image', `This block can only be used in "create jimp image" blocks!`);
 
 ezBlock(
@@ -3804,7 +3636,7 @@ ezBlock(
       {
         type: 'input_value',
         name: 'FILE',
-        check: ['String']
+        check: Types.String
       }
     ],
     colour: JimpBlockColor,
@@ -3816,8 +3648,6 @@ ezBlock(
   (block) => {
     const image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
     const name = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
-    const code = `await ${image}.writeAsync(String(${name}))
-`;
-    return code;
+    return `await ${image}.writeAsync(String(${name}));`;
   }
 );

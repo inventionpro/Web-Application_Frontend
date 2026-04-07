@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_tests_doubleDropdown';
-
 const blockData = {
   message0: 'Dropdown #1 %1 Dropdown #2 %2',
   args0: [
@@ -40,6 +39,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const A = block.getFieldValue('A');
   const B = block.getFieldValue('B');
-  const code = `${A}${B}`;
-  return code;
+  return `${A}${B}`;
 };

@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_height';
-
 const blockData = {
   message0: 'Height of image',
   args0: [],
   colour: 260,
-  output: 'Number',
+  output: Types.Number,
   tooltip: 'Returns the Height of the image.',
   helpUrl: ''
 };
@@ -19,9 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`image.bitmap.height`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['image.bitmap.height', javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

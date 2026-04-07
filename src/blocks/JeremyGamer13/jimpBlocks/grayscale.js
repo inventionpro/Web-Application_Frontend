@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_grayscale';
-
 const blockData = {
   message0: 'Grayscale Effect',
   args0: [],
@@ -20,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return `await image.greyscale()\n`;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `await image.greyscale();`;
 };
 
 registerRestrictions(blockName, [

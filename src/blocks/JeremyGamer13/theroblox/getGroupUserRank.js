@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_roblox_get_user_group_rank';
-
 const blockData = {
   message0: 'get roblox group with ID %1 and check what rank name user ID %2 has then %3 %4',
   args0: [
     {
       type: 'input_value',
       name: 'GROUP',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'USER',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_dummy'
@@ -41,9 +41,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const group = javascriptGenerator.valueToCode(block, 'GROUP', javascriptGenerator.ORDER_ATOMIC);
   const user = javascriptGenerator.valueToCode(block, 'USER', javascriptGenerator.ORDER_ATOMIC);
   const then = javascriptGenerator.statementToCode(block, 'THEN');
-  const code = `S4D_APP_NOBLOX.getRankNameInGroup(${group}, ${user}).then(async (roblox_group_rank) => {
+  return `S4D_APP_NOBLOX.getRankNameInGroup(${group}, ${user}).then(async (roblox_group_rank) => {
   ${then}
-})
-    `;
-  return code;
+});`;
 };

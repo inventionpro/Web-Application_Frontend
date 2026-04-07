@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+import { Types } from '../../types.js';
+
 const blockName = 'lasercat_jg_case_plus_minus';
 const menuName = blockName + '_plusminusMutatorMenu';
 
@@ -20,7 +22,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'DEFAULTCASEITEM',
-      check: null
+      check: Types.Any
     },
     {
       type: 'input_dummy'
@@ -50,9 +52,7 @@ Blockly.Blocks[blockName] = {
   },
 
   mutationToDom: function () {
-    if (!this.inputCount) {
-      return null;
-    }
+    if (!this.inputCount) return null;
     const container = document.createElement('mutation');
     if (this.inputCount) container.setAttribute(APPEND_FIELD, this.inputCount);
     return container;
@@ -118,19 +118,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const C = javascriptGenerator.valueToCode(block, 'C', javascriptGenerator.ORDER_NONE);
   const D = javascriptGenerator.valueToCode(block, 'D', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
-  if (A) {
-    code.push(`wow: ${A}`);
-  }
-  if (B) {
-    code.push(`wow: ${B}`);
-  }
-  if (C) {
-    code.push(`wow: ${C}`);
-  }
-  if (D) {
-    code.push(`wow: ${D}`);
-  }
-  // the last line of code here, do another code.push(``) if you need to put more code
+  if (A) code.push(`wow: ${A}`);
+  if (B) code.push(`wow: ${B}`);
+  if (C) code.push(`wow: ${C}`);
+  if (D) code.push(`wow: ${D}`);
+  // the last line of code here, do another code.push('') if you need to put more code
   code.push(`*/`);
   return code.join('\n');
 };

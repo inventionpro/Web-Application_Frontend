@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_basicE';
-
 const blockData = {
   message0: 'Set %1 effect',
   args0: [
@@ -35,7 +34,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const effect = block.getFieldValue('effect');
-  return `await image.` + effect + `()\n`;
+  return `await image.${effect}();`;
 };
 
 registerRestrictions(blockName, [

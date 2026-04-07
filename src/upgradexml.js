@@ -1,8 +1,7 @@
-const typeToImg = {
-  frost_floppa: 'https://c.tenor.com/VcR3cl_TNQsAAAAM/big-floppa-mad-floppa.gif',
-  s4d_fart: 'https://c.tenor.com/UVAk99QaOTsAAAAC/fart-experiment.gif'
-};
 const TypeToField = {
+  frost_floppa: 'https://c.tenor.com/VcR3cl_TNQsAAAAM/big-floppa-mad-floppa.gif',
+  s4d_fart: 'https://c.tenor.com/UVAk99QaOTsAAAAC/fart-experiment.gif',
+  jg_banana: 'banana 🍌',
   s4d_bot_ping: 'pings',
   s4d_bot_server_count: 'servers',
   s4d_pin: 'PIN',
@@ -42,7 +41,7 @@ export default function upgradeXml(xml) {
   <block type="s4d_embed_set_image">
     <value name="IMAGE">
       <shadow type="text">
-        <field name="TEXT">${typeToImg[orig]}</field>
+        <field name="TEXT">${TypeToField[orig]}</field>
       </shadow>
     </value>
   </block>
@@ -60,6 +59,16 @@ export default function upgradeXml(xml) {
     ${block.innerHTML}
   </block>
 </next>`;
+  });
+  // Send blocks
+  xml.querySelectorAll('block[type="jg_banana"]').forEach((block) => {
+    let orig = block.getAttribute('type');
+    block.setAttribute('type', 's4d_reply');
+    block.innerHTML = `<value name="CONTENT">
+  <shadow type="text" id="Ro]KG~-!g0GQ51#Y/6z+">
+    <field name="TEXT">${TypeToField[orig]}</field>
+  </shadow>
+</value>`;
   });
   // Old json db
   let hasOldJSONDB = false;
@@ -110,6 +119,16 @@ export default function upgradeXml(xml) {
     let orig = block.getAttribute('type');
     block.setAttribute('type', 'server_attributes');
     block.insertAdjacentHTML('beforeend', `<field name="attributes">${TypeToField[orig]}</field>`);
+  });
+  // Typing
+  xml.querySelectorAll('block[type="jg_typing"]').forEach((block) => {
+    block.setAttribute('type', 'jg_typingChannel');
+    block.insertAdjacentHTML(
+      'beforeend',
+      `<value name="CHANNEL">
+  <block type="s4d_message_channel"></block>
+</value>`
+    );
   });
   // To v14
   xml.querySelectorAll('block[type="set_verification_level"],block[type="explicit_content_filter"],block[type="default_notif_lvl"]').forEach((block) => {

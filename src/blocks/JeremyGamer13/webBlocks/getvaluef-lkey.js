@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_valueofflkey';
-
 const blockData = {
   message0: 'Value of %1 key in data file',
   args0: [
@@ -15,7 +15,7 @@ const blockData = {
       ]
     }
   ],
-  output: null,
+  output: Types.Any,
   colour: 230,
   tooltip: 'Get the value of the first or last key in a JSON file.',
   helpUrl: ''
@@ -28,13 +28,11 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  // stuff    return `fs.readFileSync(` + fileName + `, 'utf8')`;
+  // stuff    return 'fs.readFileSync(' + fileName + `, 'utf8')`;
   const key = block.getFieldValue('key');
   if (Number(key) === 0) {
-    const code = [`Object.keys(JSONdataS4D)[0]`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`Object.keys(JSONdataS4D)[0]`, javascriptGenerator.ORDER_NONE];
   } else {
-    const code = [`Object.keys(JSONdataS4D)[((Object.keys(JSONdataS4D).length) - 1)]`, javascriptGenerator.ORDER_NONE];
-    return code;
+    return [`Object.keys(JSONdataS4D)[((Object.keys(JSONdataS4D).length) - 1)]`, javascriptGenerator.ORDER_NONE];
   }
 };

@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
+
 Blockly.Blocks['jg_objects_create_new'] = {
   init: function () {
     this.jsonInit({
@@ -7,14 +9,13 @@ Blockly.Blocks['jg_objects_create_new'] = {
       colour: '#BA4A9A',
       args0: [],
       tooltip: 'Create a new empty object so that it can be used.',
-      output: 'Object'
+      output: Types.Object
     });
   }
 };
 
 javascriptGenerator.forBlock['jg_objects_create_new'] = function () {
-  const code = `new Object()`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`new Object()`, javascriptGenerator.ORDER_NONE];
 };
 Blockly.Blocks['jg_objects_set_key_to_value_in_object'] = {
   init: function () {
@@ -24,17 +25,17 @@ Blockly.Blocks['jg_objects_set_key_to_value_in_object'] = {
         {
           type: 'input_value',
           name: 'KEY',
-          check: 'String'
+          check: Types.String
         },
         {
           type: 'input_value',
           name: 'VALUE',
-          check: null
+          check: Types.Any
         },
         {
           type: 'input_value',
           name: 'OBJECT',
-          check: ['Object', null]
+          check: Types.Object
         }
       ],
       inputsInline: true,
@@ -46,14 +47,14 @@ Blockly.Blocks['jg_objects_set_key_to_value_in_object'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_objects_set_key_to_value_in_object'] = (block) => {
   const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
   const object = javascriptGenerator.valueToCode(block, 'OBJECT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${object}[String(${key})] = ${value}
-    `;
-  return code;
+  return `${object}[String(${key})] = ${value}`;
 };
+
 Blockly.Blocks['jg_objects_get_objects_key_names_in_list'] = {
   init: function () {
     this.jsonInit({
@@ -63,17 +64,16 @@ Blockly.Blocks['jg_objects_get_objects_key_names_in_list'] = {
         {
           type: 'input_value',
           name: 'OBJECT',
-          check: ['Object', null]
+          check: Types.Object
         }
       ],
       tooltip: 'Put an objects key names into a list.',
-      output: ['Array', 'List']
+      output: Types.Array
     });
   }
 };
 
 javascriptGenerator.forBlock['jg_objects_get_objects_key_names_in_list'] = (block) => {
   const object = javascriptGenerator.valueToCode(block, 'OBJECT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `Object.getOwnPropertyNames(${object})`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`Object.getOwnPropertyNames(${object})`, javascriptGenerator.ORDER_NONE];
 };

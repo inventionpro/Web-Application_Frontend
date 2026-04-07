@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
 
 const blockName = 'gsa_create_fields';
-
 const blockData = {
   type: 'gsa_create_fields',
   message0: 'add fields %2 %1',
@@ -34,8 +33,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
   return `fields: [
 ${statements}
-	],
-`;
+],`;
 };
 
 registerRestrictions(blockName, [

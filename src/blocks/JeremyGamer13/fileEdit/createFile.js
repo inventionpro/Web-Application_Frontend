@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_file_create';
-
 const blockData = {
   message0: 'Create or edit file %1 using content %2 and %3',
   args0: [
     {
       type: 'input_value',
       name: 'fileName',
-      check: ['Number', 'String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'fileContent',
-      check: ['Number', 'String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'field_dropdown',

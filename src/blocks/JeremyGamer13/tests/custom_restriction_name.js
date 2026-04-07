@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_tests_customRestrictionName';
-
 const blockData = {
   message0: 'Custom Restriction Name',
   args0: [],
@@ -21,10 +20,10 @@ Blockly.Blocks[blockName] = {
   isHiden: true
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ``;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return '';
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'jg_minecraft_bedrock_server_info';
-
 const blockData = {
   message0: 'bedrock server %1',
   args0: [
@@ -16,7 +16,7 @@ const blockData = {
     }
   ],
   colour: 190,
-  output: ['String', 'Number'],
+  output: T(Types.String, Types.Number),
   tooltip: 'Get information from the server. Gamemode ID outputs as a Number, and the other ones are Strings/Text.',
   helpUrl: ''
 };
@@ -29,6 +29,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`result_bedrock.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`result_bedrock.${type}`, javascriptGenerator.ORDER_NONE];
 };

@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_base_bot';
-
 const blockData = {
   message0: 'bot',
   args0: [],
   colour: '#5b67a5',
-  output: ['Member', 'User'],
+  output: Types.User,
   tooltip: 'The bot itself, as a user.',
   helpUrl: ''
 };
@@ -18,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`s4d.client.user`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return [`s4d.client.user`, javascriptGenerator.ORDER_NONE];
 };

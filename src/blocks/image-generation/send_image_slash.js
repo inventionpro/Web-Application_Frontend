@@ -1,16 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import '@blockly/field-grid-dropdown';
+import { Types } from '../types.js';
 
 const blockName = 'jose_send_image_slash';
-
 const blockData = {
   message0: 'send in slash command as hidden %1 with image %2',
   args0: [
     {
       type: 'input_value',
       name: 'HIDDEN',
-      check: 'Boolean'
+      check: Types.Boolean
     },
     {
       type: 'input_value',
@@ -35,9 +34,8 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const hidden = javascriptGenerator.valueToCode(block, 'HIDDEN', javascriptGenerator.ORDER_ATOMIC);
   const image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
-  let code = `interaction.reply({
+  return `interaction.reply({
   files: [${image}],
   ephemeral: ${hidden}
 });`;
-  return code;
 };

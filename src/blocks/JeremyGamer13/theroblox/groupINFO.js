@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_roblox_group_info';
-
 const blockData = {
   message0: 'roblox group %1',
   args0: [
@@ -25,7 +25,7 @@ const blockData = {
     }
   ],
   colour: 0,
-  output: null,
+  output: Types.Any,
   tooltip: "Get group information from a roblox group's ID.",
   helpUrl: ''
 };
@@ -38,6 +38,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`roblox_group_info.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`roblox_group_info.${type}`, javascriptGenerator.ORDER_NONE];
 };

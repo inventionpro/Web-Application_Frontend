@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+import { T, Types } from '../../types.js';
+
 const yourName = 'jg';
 const blockName = yourName + '_' + 'messages_new_message_payload';
 const menuName = blockName + '_checkboxMutatorMenu';
@@ -14,7 +16,7 @@ const menuTooltip = '';
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['CONTENT', 'TTS', 'REPLYING_TO_MESSAGE'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String', 'Boolean', 'Message'];
+const BORDER_TYPES = [Types.String, Types.Boolean, Types.Message];
 // names is the name of that input in the menu and in the final block
 const names = ['content', 'text to speech?', 'replying to message'];
 const amountOfInputs = names.length;
@@ -25,7 +27,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'TARGET',
-      check: ['Message', 'Channel', 'User', 'Member']
+      check: T(Types.Message, Types.Channel, Types.UserResolve)
     }
   ],
   colour: BlockColor,
@@ -110,16 +112,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const TTS = javascriptGenerator.valueToCode(block, 'TTS', javascriptGenerator.ORDER_NONE);
   const REPLYINGTOMESSAGE = javascriptGenerator.valueToCode(block, 'REPLYING_TO_MESSAGE', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
-  if (CONTENT) {
-    code.push(`content: ${CONTENT},`);
-  }
-  if (TTS) {
-    code.push(`tts: ${TTS},`);
-  }
-  if (REPLYINGTOMESSAGE) {
-    code.push(`reply: {messageReference: ${REPLYINGTOMESSAGE}},`);
-  }
-  // the last line of code here, do another code.push(``) if you need to put more code
+  if (CONTENT) code.push(`content: ${CONTENT},`);
+  if (TTS) code.push(`tts: ${TTS},`);
+  if (REPLYINGTOMESSAGE) code.push(`reply: {messageReference: ${REPLYINGTOMESSAGE}},`);
+  // the last line of code here, do another code.push('') if you need to put more code
   code.push(`})`);
   return [code.join('\n'), javascriptGenerator.ORDER_ATOMIC];
 };

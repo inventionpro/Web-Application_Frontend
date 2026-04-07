@@ -1,30 +1,30 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'gsa_create_role';
-
 const blockData = {
   message0: '%{BKY_CREATE_ROLE}',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'SERVER',
-      check: ['Server']
+      check: Types.Server
     },
     {
       type: 'input_value',
       name: 'COLOR',
-      check: 'Colour'
+      check: Types.Color
     }
   ],
   colour: '#4C97FF',
-  output: 'Role',
+  output: Types.Role,
   inputsInline: false,
   tooltip: '',
   helpUrl: ''
@@ -40,9 +40,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   const color = javascriptGenerator.valueToCode(block, 'COLOR', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${server}.roles.create({ name: ${name},color:${color} })`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`${server}.roles.create({ name: ${name}, color: ${color} })`, javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions('gsa_create_role', [
   {
     type: 'hasparent',

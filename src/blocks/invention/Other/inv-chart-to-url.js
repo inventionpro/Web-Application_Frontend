@@ -1,11 +1,11 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'inv_chart_to_url';
-
 const blockData = {
   message0: 'chart url',
-  output: null,
+  output: Types.Any,
   colour: 75,
   tooltip: '',
   helpUrl: ''
@@ -19,7 +19,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['inv_chart_to_url'] = function () {
   // this is giving me pain
-  var code = `chart.toURL()`;
-
-  return [code, javascriptGenerator.ORDER_NONE];
+  return ['chart.toURL()', javascriptGenerator.ORDER_NONE];
 };

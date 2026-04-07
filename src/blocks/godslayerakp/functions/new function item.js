@@ -2,11 +2,10 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_function_item_creator_empty_search_moment_searchMoment';
-
 Blockly.Blocks[blockName + '_mutator_block_hat'] = {
   init: function () {
     this.appendDummyInput().appendField('add inputs');
-    this.appendStatementInput('value').setCheck(null);
+    this.appendStatementInput('value').setCheck(Types.Any);
     this.appendDummyInput().appendField('return').appendField(new Blockly.FieldCheckbox('FALSE'), 'return');
     this.appendDummyInput().appendField('async').appendField(new Blockly.FieldCheckbox('FALSE'), 'async');
     this.setInputsInline(false);
@@ -35,7 +34,7 @@ Blockly.Blocks[blockName + '_mutator_block_input'] = {
 Blockly.Blocks[blockName] = {
   init: function () {
     this.appendDummyInput('func').appendField(new Blockly.FieldLabelSerializable(''), 'async').appendField('function').appendField(new Blockly.FieldLabelSerializable(''), 'vars');
-    this.appendStatementInput('value').setCheck(null);
+    this.appendStatementInput('value').setCheck(Types.Any);
     this.setColour('#D14081');
     this.setTooltip('outputs a new function');
     this.setHelpUrl('');
@@ -100,7 +99,7 @@ Blockly.Blocks[blockName] = {
     this.setFieldValue(this.inputs.length > 0 ? 'with ' + this.inputs.join(', ') : '', 'vars');
 
     if (this.return && !this.getInput('return')) {
-      this.appendValueInput('return').setCheck(null).appendField('return');
+      this.appendValueInput('return').setCheck(Types.Any).appendField('return');
     } else if (!this.return && this.getInput('return')) {
       this.removeInput('return');
     }

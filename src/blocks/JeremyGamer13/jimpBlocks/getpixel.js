@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { T, Types } from '../../types.js';
 
 const blockName = 'jg_jimp_getpixel';
-
 const blockData = {
   message0: 'Get pixel:%1 X: %2 Y: %3',
   args0: [
@@ -13,16 +13,16 @@ const blockData = {
     {
       type: 'input_value',
       name: 'x',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'y',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
-  output: ['String', 'Colour'],
+  output: T(Types.String, Types.Color),
   tooltip: 'Get a certain pixel in the image and output its color. The color outputs as RGBA (ex: 0xFFFFFFFF) and the position can only use Numbers, Variables, or Env secrets.',
   helpUrl: ''
 };

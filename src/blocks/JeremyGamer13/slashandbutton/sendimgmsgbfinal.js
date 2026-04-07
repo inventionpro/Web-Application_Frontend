@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_messages_files_send_reply_with_file_and_message_with_button_row_as_hidden';
-
 const blockData = {
   message0: '%5 reply with file %1 and message %3 with button row %4 as hidden? %2',
   inputsInline: false,
@@ -11,22 +11,22 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['Number', 'String', 'var', 'Env', 'Array', 'List', 'Attachment']
+      check: ['Number', 'String', 'Array', 'Attachment']
     },
     {
       type: 'input_value',
       name: 'HIDE',
-      check: ['Boolean', 'var', 'Env']
+      check: Types.Boolean
     },
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: ['String', 'var', 'Env', 'Number', 'Embed', 'MessageEmbed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'ROW',
-      check: ['String', 'var', 'Env', 'ButtonRow']
+      check: ['String', 'ButtonRow']
     },
     {
       type: 'field_dropdown',
@@ -69,35 +69,28 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     .replaceAll("'", '');
   const type = block.getFieldValue('TYPE');
   let msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  let code;
   let rowMSG = '';
   let hidden2 = `
     ephemeral: ${hidden},`;
   if (String(type) == 'interaction.editReply') {
-    hidden2 = ``;
+    hidden2 = '';
   } else if (String(hidden) == null || String(hidden) == '') {
     hidden2 = `
     ephemeral: false,`;
   }
   let stored = `[${fileNameandLocation}]`;
-  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
-    stored = fileNameandLocation;
-  }
+  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
   if (String(msg) == '' || String(msg) == null) {
-    msg = ``;
+    msg = '';
   } else if (!msg.includes('embeds: [')) {
     msg = `content: String(${msg})`;
   }
-  if (!(String(row) == '' || String(row) == null)) {
-    rowMSG = `components: [${row}],`;
-  }
-  code = `${type}({
-    files: ${stored},${hidden2}
-    ${rowMSG}
-    ${msg}
-});
-`;
-  return code;
+  if (!(String(row) == '' || String(row) == null)) rowMSG = `components: [${row}],`;
+  return `${type}({
+  files: ${stored},${hidden2}
+  ${rowMSG}
+  ${msg}
+});`;
 };
 
 registerRestrictions(blockName, [

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_minecraft_java_motd';
-
 const blockData = {
   message0: 'get %1 MOTD java',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
     }
   ],
   colour: 120,
-  output: 'String',
+  output: Types.String,
   tooltip: 'Get the MOTD of the Java server. Raw includes text tags, Clean removes the text tags, and HTML converts the MOTD to HTML.',
   helpUrl: ''
 };
@@ -30,6 +30,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`result_java.motd.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`result_java.motd.${type}`, javascriptGenerator.ORDER_NONE];
 };

@@ -2,11 +2,10 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_function_item_runer';
-
 Blockly.Blocks[blockName + '_mutator_block_hat'] = {
   init: function () {
     this.appendDummyInput().appendField('add inputs');
-    this.appendStatementInput('value').setCheck(null);
+    this.appendStatementInput('value').setCheck(Types.Any);
     this.appendDummyInput().appendField('return?').appendField(new Blockly.FieldCheckbox('FALSE'), 'return');
     this.appendDummyInput().appendField('await?').appendField(new Blockly.FieldCheckbox('FALSE'), 'await');
     this.setInputsInline(false);

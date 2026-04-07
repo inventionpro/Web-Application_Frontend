@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'reaction_removed';
-
 const blockData = {
   message0: 'When someone remove reaction %1 %2',
   colour: '#F5AB1A',
@@ -24,6 +23,7 @@ Blockly.Blocks[blockName] = {
 };
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementsThen = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_NONE);
-  const code = `s4d.client.on(Discord.Events.MessageReactionRemove, async (reaction, user) => {${statementsThen}})`;
-  return code;
+  return `s4d.client.on(Discord.Events.MessageReactionRemove, async (reaction, user) => {
+${statementsThen}
+});`;
 };

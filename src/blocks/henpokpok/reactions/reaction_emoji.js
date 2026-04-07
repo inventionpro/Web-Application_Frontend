@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'react_emoji';
-
 const blockData = {
   message0: 'Reacting emoji',
   colour: '#79F05C',
   tooltip: 'Emoji of the reaction',
-  output: 'String'
+  output: Types.String
 };
 
 Blockly.Blocks[blockName] = {
@@ -16,7 +16,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['reaction.emoji.name', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['reaction.emoji.name', javascriptGenerator.ORDER_NONE];
 };

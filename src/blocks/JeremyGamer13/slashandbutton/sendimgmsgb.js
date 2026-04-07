@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_slash_button_sendImageMSG';
-
 const blockData = {
   message0: 'Send file %1 and message %3 with button row %4 as hidden? %2',
   inputsInline: true,
@@ -11,22 +11,22 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['Number', 'String', 'var', 'Env', 'Array', 'List', 'Attachment']
+      check: ['Number', 'String', 'Array', 'Attachment']
     },
     {
       type: 'input_value',
       name: 'HIDE',
-      check: ['Boolean', 'var', 'Env']
+      check: Types.Boolean
     },
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: ['String', 'var', 'Env', 'Number', 'Embed', 'MessageEmbed']
+      check: Types.MessageContent
     },
     {
       type: 'input_value',
       name: 'ROW',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     }
   ],
   colour: 240,
@@ -43,7 +43,6 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  //embeds: [
   const fileNameandLocation = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const hidden = javascriptGenerator.valueToCode(block, 'HIDE', javascriptGenerator.ORDER_ATOMIC);
   var buttonraw = javascriptGenerator.valueToCode(block, 'ROW', javascriptGenerator.ORDER_ATOMIC);
@@ -52,30 +51,22 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   var code, embed;
   var stored = `[${fileNameandLocation}]`;
-  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
-    stored = fileNameandLocation;
-  }
-  if (msg.includes('embeds: [')) {
-    embed = true;
-  } else {
-    embed = false;
-  }
+  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
+  embed = msg.includes('embeds: [');
   if (embed) {
     code = `interaction.reply({
-        files: ${stored},
-        ephemeral: ${hidden},
-        components: [${row}],
-        ${msg}
-     });
-   `;
+  files: ${stored},
+  ephemeral: ${hidden},
+  components: [${row}],
+  ${msg}
+});`;
   } else {
     code = `interaction.reply({
-        files: ${stored},
-        ephemeral: ${hidden},
-        components: [${row}],
-        content: String(${msg})
-     });
-   `;
+  files: ${stored},
+  ephemeral: ${hidden},
+  components: [${row}],
+  content: String(${msg})
+});`;
   }
   return code;
 };

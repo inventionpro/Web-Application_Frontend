@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'jg_encode_main';
-
 const blockData = {
   message0: '%1 text %2 to type %3',
   inputsInline: true,
@@ -10,21 +10,21 @@ const blockData = {
     {
       type: 'input_value',
       name: 'type2',
-      check: ['encodedecodedropdowntype0216980', 'String', 'var', 'Env']
+      check: T(['encodedecodedropdowntype0216980', Types.String])
     },
     {
       type: 'input_value',
       name: 'encode',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'type',
-      check: ['encodedecodedropdowntype0216980', 'String', 'var', 'Env']
+      check: T(['encodedecodedropdowntype0216980', Types.String])
     }
   ],
   colour: 195,
-  output: 'String',
+  output: Types.String,
   tooltip: 'Encode/Decode text to a certain type. Can use Strings, Variables, and Env secrets.',
   helpUrl: ''
 };

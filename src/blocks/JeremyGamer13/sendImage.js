@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
+import { Types } from '../types.js';
 
 const blockName = 'jg_sendImage';
-
 const blockData = {
   message0: 'Send file %1 to channel %2',
   inputsInline: true,
@@ -11,12 +11,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['Number', 'String', 'var', 'Env', 'Array', 'List', 'Attachment']
+      check: ['Number', 'String', 'Array', 'Attachment']
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: ['Channel']
+      check: Types.Channel
     }
   ],
   colour: 210,
@@ -39,11 +39,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
     stored = fileNameandLocation;
   }
-  const code = `await ${fileSendChannel}.send({
-      files: ${stored}
-    });
-  `;
-  return code;
+  return `await ${fileSendChannel}.send({
+  files: ${stored}
+});`;
 };
 
 registerRestrictions(blockName, [

@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
+import { Types } from '../types.js';
 
 const blockName = 'jg_button_sendImage';
-
 const blockData = {
   message0: 'Send file %1 with button row %3 to channel %2',
   inputsInline: true,
@@ -11,17 +11,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['Number', 'String', 'var', 'Env', 'Array', 'List', 'Attachment']
+      check: ['Number', 'String', 'Array', 'Attachment']
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: ['Channel']
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'ROW',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     }
   ],
   colour: 220,
@@ -44,15 +44,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var buttonraw2 = String(buttonraw).replaceAll('"', '');
   const row = String(buttonraw2).replaceAll("'", '');
   var stored = `[${fileNameandLocation}]`;
-  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
-    stored = fileNameandLocation;
-  }
-  const code = `await ${fileSendChannel}.send({
-      files: ${stored},
-      components: [${row}]
-    });
-  `;
-  return code;
+  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
+  return `await ${fileSendChannel}.send({
+  files: ${stored},
+  components: [${row}]
+});`;
 };
 
 registerRestrictions(blockName, [

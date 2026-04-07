@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_scale';
-
 const blockData = {
   message0: 'Scale Image:%1 Scale %2',
   args0: [
@@ -13,7 +13,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'Scale',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
@@ -31,7 +31,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const scale = javascriptGenerator.valueToCode(block, 'Scale', javascriptGenerator.ORDER_ATOMIC);
-  return `await image.scale( Number(` + scale + `) )\n`;
+  return `await image.scale(Number(${scale}));`;
 };
 
 registerRestrictions(blockName, [

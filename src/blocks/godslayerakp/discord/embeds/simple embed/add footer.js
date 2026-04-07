@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../../types.js';
+
 const blockName = 'gsa_set_simple_embed_footer';
 const blockData = {
   message0: 'set footer text %1 icon %2',
@@ -7,12 +9,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'name',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'icon_url',
-      check: 'String'
+      check: Types.String
     }
   ],
   output: blockName,
@@ -31,9 +33,11 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const name = javascriptGenerator.valueToCode(block, 'name', javascriptGenerator.ORDER_ATOMIC);
   const icon_url = javascriptGenerator.valueToCode(block, 'icon_url', javascriptGenerator.ORDER_ATOMIC);
-  const code = `{
-	text: String(${name}),
-	icon_url: String(${icon_url})
-}`;
-  return [code, javascriptGenerator.ORDER_ATOMIC];
+  return [
+    `{
+  text: String(${name}),
+  icon_url: String(${icon_url})
+}`,
+    javascriptGenerator.ORDER_ATOMIC
+  ];
 };

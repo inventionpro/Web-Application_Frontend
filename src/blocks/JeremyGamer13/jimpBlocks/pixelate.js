@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_pixelate';
-
 const blockData = {
   message0: 'Pixelate Image:%1 Amount: %2 X: %3 Y: %4 Width %5 Height %6',
   args0: [
@@ -14,27 +14,27 @@ const blockData = {
     {
       type: 'input_value',
       name: 'Size',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'X',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'Y',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'Width',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'Height',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
@@ -56,20 +56,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const ypos = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
   const wide = javascriptGenerator.valueToCode(block, 'Width', javascriptGenerator.ORDER_ATOMIC);
   const high = javascriptGenerator.valueToCode(block, 'Height', javascriptGenerator.ORDER_ATOMIC);
-  return (
-    `await image.pixelate( Number(` +
-    size +
-    `), Number(` +
-    xpos +
-    `), Number(` +
-    ypos +
-    `), Number(` +
-    wide +
-    `), Number(` +
-    high +
-    `))
-`
-  );
+  return `await image.pixelate(Number(${size}), Number(${xpos}), Number(${ypos}), Number(${wide}), Number(${high}));`;
 };
 
 registerRestrictions(blockName, [

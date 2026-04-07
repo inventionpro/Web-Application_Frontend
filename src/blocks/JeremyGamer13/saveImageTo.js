@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
+import { Types } from '../types.js';
 
 const blockName = 'jg_saveJimpageAs';
-
 const blockData = {
   message0: 'Save Image as %1',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'var', 'Env']
+      check: Types.String
     }
   ],
   colour: 260,
@@ -28,7 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const fileName = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
-  return `await image.writeAsync(` + fileName + `);`;
+  return `await image.writeAsync(${fileName});`;
 };
 
 registerRestrictions(blockName, [

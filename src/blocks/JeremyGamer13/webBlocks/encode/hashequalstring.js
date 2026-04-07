@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_encode_checkhash';
-
 const blockData = {
   message0: 'hash %1 equals text %2?',
   inputsInline: true,
@@ -10,16 +10,16 @@ const blockData = {
     {
       type: 'input_value',
       name: 'hash',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'test',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     }
   ],
   colour: 195,
-  output: 'Boolean',
+  output: Types.Boolean,
   tooltip: 'Checks if the hash is equal to text that is not hashed. Can use Strings, Variables, and Env secrets.',
   helpUrl: ''
 };

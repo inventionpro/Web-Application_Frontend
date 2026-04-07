@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_experiments_xml2json';
-
 const blockData = {
   message0: 'Convert XML file %1 to JSON file named %2',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'CONTENT2',
-      check: ['Number', 'String', 'var', 'Env']
+      check: Types.String
     }
   ],
   colour: 205,

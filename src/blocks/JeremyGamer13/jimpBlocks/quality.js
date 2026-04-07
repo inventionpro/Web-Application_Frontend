@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_jpgqual';
-
 const blockData = {
   message0: 'Set JPG Quality to %1',
   args0: [
     {
       type: 'input_value',
       name: 'quality',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
@@ -28,7 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const quality = javascriptGenerator.valueToCode(block, 'quality', javascriptGenerator.ORDER_ATOMIC);
-  return `await image.quality(Number(` + quality + `))\n`;
+  return `await image.quality(Number(${quality}));`;
 };
 
 registerRestrictions(blockName, [

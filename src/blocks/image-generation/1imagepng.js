@@ -2,8 +2,9 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 import '@blockly/field-slider';
-const blockName = '1imagepng';
+import { T, Types } from '../types.js';
 
+const blockName = '1imagepng';
 const blockData = {
   message0: '(image) new %1 of image %2 ',
   args0: [
@@ -42,7 +43,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'IMAGE',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
   output: 'ImageBuffPng',
@@ -84,7 +85,7 @@ Blockly.constants.IS_DIVISIBLEBY_MUTATOR_MIXIN = {
     var inputExists = this.getInput('number');
     if (divisorInput) {
       if (!inputExists) {
-        this.appendValueInput('number').setCheck('Number');
+        this.appendValueInput('number').setCheck(Types.Number);
       }
     } else if (inputExists) {
       this.removeInput('number');
@@ -111,6 +112,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const info2 = block.getFieldValue('INFO');
   let info1 = info2.replace("'", '');
   let info = info1.replace("'", '');
-  const code = [`await new DIG.${info}().getImage(${image}${num === '' ? '' : ',' + num})`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`await new DIG.${info}().getImage(${image}${num === '' ? '' : ',' + num})`, javascriptGenerator.ORDER_NONE];
 };

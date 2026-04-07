@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_file_foreachfileinput';
-
 const blockData = {
   message0: 'file name',
   args0: [],
   colour: 45,
-  output: 'String',
+  output: Types.String,
   tooltip: 'The file name found by the "For each file in folder" block.',
   helpUrl: ''
 };
@@ -19,9 +19,10 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = () => {
   return [`files4d`, javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

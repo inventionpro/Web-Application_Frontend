@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'inv_fivem_recive';
-
 const blockData = {
   message0: 'retrive %1',
   args0: [
@@ -22,7 +22,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'Array',
+  output: Types.Array,
   colour: '#CC8899',
   tooltip: 'retrives value from get',
   helpUrl: ''
@@ -36,6 +36,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var dropdown_get = block.getFieldValue('get');
-  var code = `__S4D__${dropdown_get}`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`__S4D__${dropdown_get}`, javascriptGenerator.ORDER_NONE];
 };

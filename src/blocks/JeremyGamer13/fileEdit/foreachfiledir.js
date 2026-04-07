@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_file_foreachfile';
-
 const blockData = {
   message0: 'for each file in folder %1 %2 do %3',
   args0: [
     {
       type: 'input_value',
       name: 'fileName',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -35,11 +35,9 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const fileName = javascriptGenerator.valueToCode(block, 'fileName', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  let code = `fs.readdir(${fileName}, async (err, files) => {
+  return `fs.readdir(${fileName}, async (err, files) => {
   files.forEach(async files4d => {
     ${statementThen}
   });
-});
-`;
-  return code;
+});`;
 };

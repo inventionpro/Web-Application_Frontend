@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_tests_typeChange';
-
 const blockData = {
   message0: 'Type Change',
   args0: [],
@@ -20,7 +19,6 @@ Blockly.Blocks[blockName] = {
   isHiden: true
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ``;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return '';
 };

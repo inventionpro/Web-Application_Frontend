@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+
 const yourName = 'yournamehere';
 const blockName = yourName + '_' + 'blocknamehere_plusminus';
 const menuName = blockName + '_plusminusMutatorMenu';
@@ -113,7 +114,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     code.push(`wow: ${INPUT}`);
     counting++;
   }
-  // the last line of code here, do another code.push(``) if you need to put more code
+  // the last line of code here, do another code.push('') if you need to put more code
   code.push(`*/`);
   return code.join('\n');
 };

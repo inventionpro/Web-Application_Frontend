@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_saveGraph_convert';
-
 const blockData = {
   message0: 'Convert graph to %1',
   args0: [
@@ -19,7 +19,7 @@ const blockData = {
   colour: 90,
   tooltip: 'Convert the graph to the data type selected. Note that some data types may not have blocks to turn them into an image again.',
   helpUrl: '',
-  output: 'String'
+  output: Types.String
 };
 
 Blockly.Blocks[blockName] = {
@@ -30,6 +30,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
-  const code = [`line_chart_S4D_generated_992731990318.${type}()`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`line_chart_S4D_generated_992731990318.${type}()`, javascriptGenerator.ORDER_NONE];
 };

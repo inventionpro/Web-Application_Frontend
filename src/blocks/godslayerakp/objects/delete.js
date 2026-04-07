@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'gsa_delete_object_search_moment_searchMoment';
 const blockData = {
@@ -9,12 +10,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'value',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'object',
-      check: ['Object', null]
+      check: Types.Object
     }
   ],
   previousStatement: null,
@@ -34,5 +35,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const v = javascriptGenerator.valueToCode(block, 'value', javascriptGenerator.ORDER_ATOMIC);
   const o = javascriptGenerator.valueToCode(block, 'object', javascriptGenerator.ORDER_ATOMIC);
-  return `delete ${o}[String(${v})] \n`;
+  return `delete ${o}[String(${v})]`;
 };

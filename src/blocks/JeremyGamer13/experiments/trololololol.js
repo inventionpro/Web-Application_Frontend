@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_do_not_use_this_block_you_poop_bruh_fard_lolololol_haha_poopoo';
-
 const blockData = {
   message0: 'oops, do i really want to do this? %1',
   args0: [
@@ -28,6 +27,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return ``;
+javascriptGenerator.forBlock[blockName] = () => {
+  return '';
 };

@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_composite';
-
 const blockData = {
   message0: 'Composite image %1 at point X: %2 Y: %3 using blend mode %6 and the image opacity is %4 with destination opacity of %5',
   inputsInline: false,
@@ -11,27 +11,27 @@ const blockData = {
     {
       type: 'input_value',
       name: 'Image',
-      check: ['String', 'Number', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'xpos',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'ypos',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'srcOpac',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'destOpac',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'field_dropdown',
@@ -73,12 +73,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const mode = block.getFieldValue('blendmode');
 
   return `var JimpImageC = await jimp.read(String(${img}));
-    await image.composite( JimpImageC, Number(${xpos}), Number(${ypos}), {
+await image.composite( JimpImageC, Number(${xpos}), Number(${ypos}), {
   mode: ${mode},
   opacitySource: Number(${srcO}),
   opacityDest: Number(${desO})
-});
-`;
+});`;
 };
 
 registerRestrictions(blockName, [

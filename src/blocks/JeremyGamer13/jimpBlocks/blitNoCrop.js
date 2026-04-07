@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_blit';
-
 const blockData = {
   message0: 'Blit image %1 at point X: %2 Y: %3',
   inputsInline: true,
@@ -11,17 +11,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'Image',
-      check: ['String', 'Number', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'xpos',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'ypos',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
@@ -41,16 +41,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const img = javascriptGenerator.valueToCode(block, 'Image', javascriptGenerator.ORDER_ATOMIC);
   const xpos = javascriptGenerator.valueToCode(block, 'xpos', javascriptGenerator.ORDER_ATOMIC);
   const ypos = javascriptGenerator.valueToCode(block, 'ypos', javascriptGenerator.ORDER_ATOMIC);
-  return (
-    `var JimpImage2 = await jimp.read(String(` +
-    img +
-    `));
-    await image.blit( JimpImage2, Number(` +
-    xpos +
-    `), Number(` +
-    ypos +
-    `))\n`
-  );
+  return `var JimpImage2 = await jimp.read(String(${img}));
+await image.blit(JimpImage2, Number(${xpos}), Number(${ypos}));`;
 };
 
 registerRestrictions(blockName, [

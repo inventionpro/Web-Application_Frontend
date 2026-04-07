@@ -1,16 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import '@blockly/field-grid-dropdown';
+import { T, Types } from '../types.js';
 
 const blockName = '1imagegif';
-
 const blockData = {
   message0: '(gif) new triggered of image %1',
   args0: [
     {
       type: 'input_value',
       name: 'IMAGE',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
   output: 'ImageBuffGif',
@@ -27,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const image = javascriptGenerator.valueToCode(block, 'IMAGE', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`await new DIG.Triggered().getImage(${image})`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`await new DIG.Triggered().getImage(${image})`, javascriptGenerator.ORDER_NONE];
 };

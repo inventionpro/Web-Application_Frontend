@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_imghttps';
-
 const blockData = {
   message0: 'Fetch data from link %1 and save it as %2',
   args0: [
     {
       type: 'input_value',
       name: 'url',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'file',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     }
   ],
   colour: 230,
@@ -33,8 +33,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const urlimg = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
   const filename = javascriptGenerator.valueToCode(block, 'file', javascriptGenerator.ORDER_ATOMIC);
-  const code = `await https.get(${urlimg}, async (res) => {
+  return `await https.get(${urlimg}, async (res) => {
   res.pipe(fs.createWriteStream(${filename}));
-});\n`;
-  return code;
+});`;
 };

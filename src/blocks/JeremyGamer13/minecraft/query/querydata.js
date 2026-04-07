@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_minecraft_query_data';
-
 const blockData = {
   message0: '%1 java query data',
   args0: [
@@ -16,7 +16,7 @@ const blockData = {
     }
   ],
   colour: 85,
-  output: 'JSON',
+  output: Types.Object,
   tooltip: 'All of the data the server has sent back. Can be stringified into a file and read with data blocks. Only works if the server has enabled Query.',
   helpUrl: ''
 };
@@ -27,7 +27,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `result_query_java`;
-  return [code, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['result_query_java', javascriptGenerator.ORDER_NONE];
 };

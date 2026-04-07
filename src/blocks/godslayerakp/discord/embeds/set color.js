@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'gsa_set_embed_color';
-
 const blockData = {
   type: 'gsa_set_embed_color',
   message0: 'set embed color %1',
@@ -11,7 +11,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'color',
-      check: ['String', 'Colour']
+      check: T(Types.String, Types.Color)
     }
   ],
   previousStatement: null,
@@ -29,9 +29,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const color = javascriptGenerator.valueToCode(block, 'color', javascriptGenerator.ORDER_ATOMIC);
-  return `color: String(${color}),
-`;
+  return `color: String(${color}),`;
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

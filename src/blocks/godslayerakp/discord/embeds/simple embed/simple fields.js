@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../../restrictions';
+import { Types } from '../../../../types.js';
+
 const blockName = 'gsa_simple_field';
 const blockData = {
   type: 'gsa_simple_field',
@@ -9,17 +11,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'title',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'description',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'inline',
-      check: 'Boolean'
+      check: Types.Boolean
     }
   ],
   previousStatement: 'simple_field',
@@ -40,10 +42,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const description = javascriptGenerator.valueToCode(block, 'description', javascriptGenerator.ORDER_ATOMIC);
   const inline = javascriptGenerator.valueToCode(block, 'inline', javascriptGenerator.ORDER_ATOMIC);
   return `{
-	name: ${title},
-	value: ${description},
-	inline: ${inline},
-},\n`;
+  name: ${title},
+  value: ${description},
+  inline: ${inline},
+},`;
 };
 
 registerRestrictions(blockName, [

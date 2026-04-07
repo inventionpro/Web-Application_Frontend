@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_roblox_get_user_thumbnail';
-
 const blockData = {
   message0: 'get roblox user id %1 thumbnail with type %2 then %3 %4',
   args0: [
     {
       type: 'input_value',
       name: 'USER',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'field_dropdown',
@@ -46,9 +46,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
   const then = javascriptGenerator.statementToCode(block, 'THEN');
   // 720, "png", false, "Headshot"
-  const code = `S4D_APP_NOBLOX.getPlayerThumbnail(${user}, ${type}).then(async (roblox_user_thumbnail) => {
+  return `S4D_APP_NOBLOX.getPlayerThumbnail(${user}, ${type}).then(async (roblox_user_thumbnail) => {
   ${then}
-})
-    `;
-  return code;
+});`;
 };

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_rcon_disconnect';
-
 const blockData = {
   message0: 'disconnect from RCON',
   inputsInline: true,
@@ -20,8 +19,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `await S4D_APP_MC_RCON_CLIENT.close()
-  `;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `await S4D_APP_MC_RCON_CLIENT.close();`;
 };

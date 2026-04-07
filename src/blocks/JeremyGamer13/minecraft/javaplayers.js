@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_minecraft_java_players';
-
 const blockData = {
   message0: 'java %1 players',
   args0: [
@@ -16,7 +16,7 @@ const blockData = {
     }
   ],
   colour: 120,
-  output: 'Number',
+  output: Types.Number,
   tooltip: 'Get player information from the server.',
   helpUrl: ''
 };
@@ -29,6 +29,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('TYPE');
-  const code = [`result_java.players.${type}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`result_java.players.${type}`, javascriptGenerator.ORDER_NONE];
 };

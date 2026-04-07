@@ -1,25 +1,25 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'gsa_jg_create_role_with_name_in_server_with_color_then_do';
-
 const blockData = {
   message0: 'create role with name %1 in server %2 with color %3 then %4 do %5',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'SERVER',
-      check: ['Server']
+      check: Types.Server
     },
     {
       type: 'input_value',
       name: 'COLOR',
-      check: 'Colour'
+      check: Types.Color
     },
     {
       type: 'input_dummy'
@@ -48,9 +48,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const server = javascriptGenerator.valueToCode(block, 'SERVER', javascriptGenerator.ORDER_ATOMIC);
   const color = javascriptGenerator.valueToCode(block, 'COLOR', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `${server}.roles.create({ name: ${name},color:${color} }).then(async s4d_create_role_then_role => {
-    ${statements}
-})
-`;
-  return code;
+  return `${server}.roles.create({ name: ${name}, color: ${color} }).then(async s4d_create_role_then_role => {
+${statements}
+});`;
 };

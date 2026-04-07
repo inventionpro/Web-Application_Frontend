@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_minecraft_rcon_when_command_response';
-
 const blockData = {
   message0: 'When the minecraft command gets a response %1 %2',
   colour: '#F5AB1A',
@@ -28,9 +27,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `S4D_APP_MC_RCON_CLIENT.on('message', async (response) => {
-        ${statements}
-    });
-    `;
-  return code;
+  return `S4D_APP_MC_RCON_CLIENT.on('message', async (response) => {
+${statements}
+});`;
 };

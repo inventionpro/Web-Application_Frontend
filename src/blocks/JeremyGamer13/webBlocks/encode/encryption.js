@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
+
 Blockly.Blocks['jg_encryption_encrypt_text'] = {
   init: function () {
     this.jsonInit({
@@ -9,7 +11,7 @@ Blockly.Blocks['jg_encryption_encrypt_text'] = {
         {
           type: 'input_value',
           name: 'encode',
-          check: ['String', 'var', 'Env']
+          check: Types.String
         },
         {
           type: 'field_dropdown',
@@ -22,11 +24,11 @@ Blockly.Blocks['jg_encryption_encrypt_text'] = {
         {
           type: 'input_value',
           name: 'key',
-          check: ['String', 'var', 'Env']
+          check: Types.String
         }
       ],
       colour: 205,
-      output: 'String',
+      output: Types.String,
       tooltip: 'Encrypt/Decrypt text using the current secret key. The secret key should REALLY be in a process.env block!',
       helpUrl: ''
     });
@@ -43,16 +45,7 @@ javascriptGenerator.forBlock['jg_encryption_encrypt_text'] = (block) => {
     return [`S4D_APP_CRYPTOJS.AES.decrypt(${text}, ${key}).toString(S4D_APP_CRYPTOJS.enc.Utf8)`, javascriptGenerator.ORDER_NONE];
   }
 };
-//afoieh
-//afoieh
-//afoieh
-//afoieh
-//afoieh
-//afoieh
-//afoieh
-//afoieh
-//afoieh
-//afoieh
+
 Blockly.Blocks['catsoup_encryption_sha256'] = {
   init: function () {
     this.jsonInit({
@@ -62,11 +55,11 @@ Blockly.Blocks['catsoup_encryption_sha256'] = {
         {
           type: 'input_value',
           name: 'encode',
-          check: ['String', 'var', 'Env']
+          check: Types.String
         }
       ],
       colour: 205,
-      output: 'String',
+      output: Types.String,
       tooltip: 'Encrypt some text using SHA256',
       helpUrl: ''
     });

@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_poster';
-
 const blockData = {
   message0: 'Posterize at level %1',
   args0: [
     {
       type: 'input_value',
       name: 'post',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
@@ -28,12 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const post = javascriptGenerator.valueToCode(block, 'post', javascriptGenerator.ORDER_ATOMIC);
-  return (
-    `await image.posterize( Number(` +
-    post +
-    `) )
-`
-  );
+  return `await image.posterize(Number(${post}));`;
 };
 
 registerRestrictions(blockName, [

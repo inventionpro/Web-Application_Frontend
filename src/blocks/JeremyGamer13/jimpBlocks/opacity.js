@@ -1,16 +1,16 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_opacity';
-
 const blockData = {
   message0: 'Opacity level %1',
   args0: [
     {
       type: 'input_value',
       name: 'val',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
@@ -28,12 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const val = javascriptGenerator.valueToCode(block, 'val', javascriptGenerator.ORDER_ATOMIC);
-  return (
-    `await image.opacity( Number( (` +
-    val +
-    `) / 100 ) )
-`
-  );
+  return `await image.opacity(Number(${val})/100);`;
 };
 
 registerRestrictions(blockName, [

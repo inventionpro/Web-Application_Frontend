@@ -1,26 +1,26 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_jimp_U2_drawtext';
-
 const blockData = {
   message0: 'Display %1 placed X: %2 Y: %3 using font size %4 %5 and %6 using font color %7',
   args0: [
     {
       type: 'input_value',
       name: 'text',
-      check: ['String', 'Number', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'xpos',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'ypos',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'field_dropdown',
@@ -86,16 +86,16 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const color = block.getFieldValue('color');
   return `await jimp.loadFont(jimp.FONT_SANS_${fontSize}_${color}).then(async font => {
   await image.print(
-      font,
-      Number(${xpos}),
-      Number(${ypos}),
-      {
-        text: String(${text}),
-        alignmentX: ${alignx},
-        alignmentY: ${aligny}
-      },
-      );
-});\n`;
+    font,
+    Number(${xpos}),
+    Number(${ypos}),
+    {
+      text: String(${text}),
+      alignmentX: ${alignx},
+      alignmentY: ${aligny}
+    },
+  );
+});`;
 };
 
 registerRestrictions(blockName, [

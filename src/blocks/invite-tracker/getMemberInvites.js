@@ -1,19 +1,19 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'get_member_invites';
-
 const blockData = {
   message0: 'get member invites %1',
   args0: [
     {
       type: 'input_value',
       name: 'USER',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   colour: '#187795',
-  output: 'Number',
+  output: Types.Number,
   tooltip: '',
   helpUrl: ''
 };
@@ -26,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const user = javascriptGenerator.valueToCode(block, 'USER', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`await s4d.Inviter.getInvites(${user})`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`await s4d.Inviter.getInvites(${user})`, javascriptGenerator.ORDER_NONE];
 };

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_bDI_encodedecodetype';
-
 const blockData = {
   message0: '%1',
   args0: [
@@ -33,7 +32,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('type');
-  const code = [`${type}`, javascriptGenerator.ORDER_NONE];
-
-  return code;
+  return [type, javascriptGenerator.ORDER_NONE];
 };

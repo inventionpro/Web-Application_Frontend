@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_get_jimp_image_buffer';
-
 const blockData = {
   message0: 'get jimp image buffer with file type %3 then do %2 %1',
   args0: [
@@ -39,11 +38,9 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const type = block.getFieldValue('mimeType');
   const then = javascriptGenerator.statementToCode(block, 'then');
-  const code = `image.getBuffer(jimp.${type}, async (err, buffer) => {
-    ${then}
-});
-`;
-  return code;
+  return `image.getBuffer(jimp.${type}, async (err, buffer) => {
+${then}
+});`;
 };
 
 Blockly.Blocks[blockName + '_value'] = {
@@ -59,6 +56,5 @@ Blockly.Blocks[blockName + '_value'] = {
 };
 
 javascriptGenerator.forBlock[blockName + '_value'] = function () {
-  const code = [`buffer`, javascriptGenerator.ORDER_ATOMIC];
-  return code;
+  return ['buffer', javascriptGenerator.ORDER_ATOMIC];
 };

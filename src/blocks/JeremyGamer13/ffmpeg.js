@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
+
 Blockly.Blocks['jg_files_ffmpeg_video_get_video_with_file_name_then'] = {
   init: function () {
     this.jsonInit({
@@ -12,7 +14,7 @@ Blockly.Blocks['jg_files_ffmpeg_video_get_video_with_file_name_then'] = {
         {
           type: 'input_value',
           name: 'FILE',
-          check: 'String'
+          check: Types.String
         },
         {
           type: 'input_dummy'
@@ -25,13 +27,12 @@ Blockly.Blocks['jg_files_ffmpeg_video_get_video_with_file_name_then'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_files_ffmpeg_video_get_video_with_file_name_then'] = (block) => {
   const file = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `let S4D_GEN_FFMPEG_VIDEO_1092 = new S4D_APP_FFMPEG(String(${file}));
+  return `let S4D_GEN_FFMPEG_VIDEO_1092 = new S4D_APP_FFMPEG(String(${file}));
 S4D_GEN_FFMPEG_VIDEO_1092.then(function (ffmpeg_video) {
-	${statements}
-}
-`;
-  return code;
+  ${statements}
+})`;
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_minecraft_query_software';
-
 const blockData = {
   message0: '%1 java server software',
   args0: [
@@ -16,7 +16,7 @@ const blockData = {
     }
   ],
   colour: 85,
-  output: 'String',
+  output: Types.String,
   tooltip: 'Get the software the server uses. Only works if the server has enabled Query.',
   helpUrl: ''
 };
@@ -27,7 +27,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `result_query_java.software`;
-  return [code, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['result_query_java.software', javascriptGenerator.ORDER_NONE];
 };

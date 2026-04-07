@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_testblock';
-
 const blockData = {
   message0: '%{BKY_JGPRINTTEST}',
   args0: [],
@@ -19,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return `console.log('Test block, it worked bro')\n`;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `console.log('Test block, it worked bro');`;
 };

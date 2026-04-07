@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'gsa_ytdl_info';
-
 const blockData = {
   message0: 'get info from url %1 then %2 %3',
   args0: [
@@ -36,6 +35,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const url = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS', javascriptGenerator.ORDER_ATOMIC);
   return `let S4D_APP_YTDL_JSON = await ytdl.getInfo(${url})
-${statements}
-`;
+${statements}`;
 };

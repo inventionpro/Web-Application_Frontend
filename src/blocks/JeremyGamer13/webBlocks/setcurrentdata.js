@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_currentdata';
-
 const blockData = {
   message0: 'Set current data file to %1',
   args0: [
     {
       type: 'input_value',
       name: 'datafile',
-      check: ['String', 'var', 'Env', 'Number']
+      check: Types.String
     }
   ],
   colour: 230,
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const datafile = javascriptGenerator.valueToCode(block, 'datafile', javascriptGenerator.ORDER_ATOMIC);
-  const code = `var JSONdataS4D = JSON.parse(fs.readFileSync(${datafile}));\n`;
-  return code;
+  return `var JSONdataS4D = JSON.parse(fs.readFileSync(${datafile}));`;
 };

@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_minecraft_java_version';
-
 const blockData = {
   message0: 'java server version',
   args0: [],
   colour: 120,
-  output: 'String',
+  output: Types.String,
   tooltip: "Get the game version of the server. Sometimes isn't just a version number.",
   helpUrl: ''
 };
@@ -18,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`result_java.version.name`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['result_java.version.name', javascriptGenerator.ORDER_NONE];
 };

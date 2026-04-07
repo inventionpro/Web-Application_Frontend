@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_object_getvalue';
-// "colour": "#cc59e3",
 const blockData = {
   message0: 'get value %1 from object %2',
   inputsInline: true,
@@ -11,15 +11,15 @@ const blockData = {
     {
       type: 'input_value',
       name: 'value',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'object',
-      check: ['Object', null]
+      check: Types.Object
     }
   ],
-  output: null,
+  output: Types.Any,
   tooltip: 'A value of an object.',
   helpUrl: ''
 };
@@ -33,6 +33,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'value', javascriptGenerator.ORDER_ATOMIC);
   const object = javascriptGenerator.valueToCode(block, 'object', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`${object}[String(${value})]`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${object}[String(${value})]`, javascriptGenerator.ORDER_NONE];
 };

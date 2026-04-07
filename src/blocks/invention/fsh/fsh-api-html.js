@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'lars-inv_fsh_api_html';
-
 const blockData = {
   message0: 'Get HTML from %1',
   args0: [
@@ -13,7 +13,7 @@ const blockData = {
     }
   ],
   inputsInline: true,
-  output: 'String',
+  output: Types.String,
   colour: '#1a75ba',
   tooltip: 'Gets the html code of a website (e.g. https://google.com)',
   helpUrl: ''
@@ -27,8 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var value_url = javascriptGenerator.valueToCode(block, 'url', javascriptGenerator.ORDER_ATOMIC);
-
-  var code = `await _S4D_inventionFSHapi('html?url=', ${value_url}, '', '')`;
-
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`await _S4D_inventionFSHapi('html?url=', ${value_url}, '', '')`, javascriptGenerator.ORDER_NONE];
 };

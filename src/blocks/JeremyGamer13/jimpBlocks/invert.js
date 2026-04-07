@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_invert';
-
 const blockData = {
   message0: 'Invert Effect',
   args0: [],
@@ -20,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return `await image.invert()\n`;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `await image.invert();`;
 };
 
 registerRestrictions(blockName, [

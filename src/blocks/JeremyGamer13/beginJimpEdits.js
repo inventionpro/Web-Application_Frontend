@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_beginJimp';
-
 const blockData = {
   message0: 'Begin image edits on URL, buffer or File %2 using effects %3 %1',
   args0: [
@@ -13,7 +12,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'JimpURL',
-      check: ['String', 'var', 'buffer']
+      check: ['String', 'buffer']
     },
     {
       type: 'input_dummy'
@@ -35,14 +34,9 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const JimpURL = javascriptGenerator.valueToCode(block, 'JimpURL', javascriptGenerator.ORDER_ATOMIC);
   const JimpCode = javascriptGenerator.statementToCode(block, 'beginJimp');
-  const code =
-    `var JimpImageBlock = ` +
-    JimpURL +
-    `;
+  return `var JimpImageBlock = ${JimpURL};
 await jimp.read(${JimpURL}, async (err, image) => {
-    if (err) throw err;
-    ${JimpCode}
-});
-`;
-  return code;
+  if (err) throw err;
+  ${JimpCode}
+});`;
 };

@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_slash_sendImage';
-
 const blockData = {
   message0: 'Send file %1 as hidden? %2',
   inputsInline: true,
@@ -11,12 +11,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['Number', 'String', 'var', 'Env', 'Array', 'List', 'Attachment']
+      check: ['Number', 'String', 'Array', 'Attachment']
     },
     {
       type: 'input_value',
       name: 'HIDE',
-      check: ['Boolean', 'var', 'Env']
+      check: Types.Boolean
     }
   ],
   colour: 230,
@@ -36,15 +36,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const fileNameandLocation = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const hidden = javascriptGenerator.valueToCode(block, 'HIDE', javascriptGenerator.ORDER_ATOMIC);
   var stored = `[${fileNameandLocation}]`;
-  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
-    stored = fileNameandLocation;
-  }
-  const code = `interaction.reply({
-      files: ${stored},
-      ephemeral: ${hidden}
-    });
-  `;
-  return code;
+  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
+  return `interaction.reply({
+  files: ${stored},
+  ephemeral: ${hidden}
+});`;
 };
 
 registerRestrictions(blockName, [

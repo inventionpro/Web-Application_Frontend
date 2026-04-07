@@ -47,7 +47,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0]) return `${msg}.reply({
+    if (contentType === Types.Embed[0])
+      return `${msg}.reply({
   embeds: [${content}],
   allowedMentions: {
     repliedUser: ${boolean}

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'gsa_get_user_banner_but_member_is_user_rn';
 const blockData = {
@@ -8,10 +9,10 @@ const blockData = {
     {
       type: 'input_value',
       name: 'user',
-      check: 'Member'
+      check: Types.Member
     }
   ],
-  output: 'String',
+  output: Types.String,
   inputsInline: true,
   colour: '#50A6C9',
   tooltip: 'returns the url of any users banner image',
@@ -27,10 +28,9 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const user = javascriptGenerator.valueToCode(block, 'user', javascriptGenerator.ORDER_ATOMIC);
   return [
-    `
-${user}.bannerUrl({
+    `${user}.bannerUrl({
   format: "png"
-})\n`,
+})`,
     javascriptGenerator.ORDER_ATOMIC
   ];
 };

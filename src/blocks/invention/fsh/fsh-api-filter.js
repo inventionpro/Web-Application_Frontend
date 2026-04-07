@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'inv_fsh_api_filter';
-
 const blockData = {
   message0: 'are there bad words in %1',
   args0: [
@@ -12,7 +12,7 @@ const blockData = {
     }
   ],
   inputsInline: true,
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#1a75ba',
   tooltip: 'Logic that tells you if text contains bad words',
   helpUrl: ''
@@ -26,8 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var value_url = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-
-  var code = `await _S4D_inventionFSHapi('filter?text=', ${value_url}, 'bad', false)`;
-
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`await _S4D_inventionFSHapi('filter?text=', ${value_url}, 'bad', false)`, javascriptGenerator.ORDER_NONE];
 };

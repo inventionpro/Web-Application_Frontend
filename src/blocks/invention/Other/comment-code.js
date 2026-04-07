@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'inv_comment_code';
-
 const blockData = {
   message0: 'Comment code, with comment %1 %2 %3',
   args0: [
@@ -35,11 +34,9 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   var text_name = block.getFieldValue('NAME');
   var statements_name = javascriptGenerator.statementToCode(block, 'NAME');
-  var code = `/*
+  return `/*
   ${text_name}
 
   ${statements_name}
 */`;
-
-  return code;
 };

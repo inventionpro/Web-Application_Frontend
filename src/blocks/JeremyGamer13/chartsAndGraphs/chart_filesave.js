@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_saveGraph_file';
-
 const blockData = {
   message0: 'Save graph as file named %1',
   args0: [
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: ['Number', 'String', 'var', 'Env']
+      check: Types.String
     }
   ],
   colour: 90,
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const fileName = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
-  const code = `line_chart_S4D_generated_992731990318.toFile(String(${fileName}));\n`;
-  return code;
+  return `line_chart_S4D_generated_992731990318.toFile(String(${fileName}));`;
 };

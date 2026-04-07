@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_minecraft_query_map';
-
 const blockData = {
   message0: '%1 java server map',
   args0: [
@@ -16,7 +16,7 @@ const blockData = {
     }
   ],
   colour: 85,
-  output: 'String',
+  output: Types.String,
   tooltip: 'Get the map of the server. Only works if the server has enabled Query.',
   helpUrl: ''
 };
@@ -27,7 +27,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `result_query_java.map`;
-  return [code, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['result_query_java.map', javascriptGenerator.ORDER_NONE];
 };

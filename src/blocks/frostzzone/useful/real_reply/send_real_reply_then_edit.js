@@ -30,7 +30,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0]) return `s4dfrost_real_reply.edit({
+    if (contentType === Types.Embed[0])
+      return `s4dfrost_real_reply.edit({
   embeds: [${content}]
 });`;
   }

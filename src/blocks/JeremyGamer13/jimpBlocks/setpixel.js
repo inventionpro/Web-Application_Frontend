@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { T, Types } from '../../types.js';
 
 const blockName = 'jg_jimp_setpixel';
-
 const blockData = {
   message0: 'Set pixel:%1 X: %2 Y: %3 Color: %4',
   args0: [
@@ -13,17 +13,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'x',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'y',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'color',
-      check: ['Colour', 'String', 'var', 'Env']
+      check: T(Types.String, Types.Color)
     }
   ],
   colour: 260,
@@ -43,8 +43,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const color = javascriptGenerator.valueToCode(block, 'color', javascriptGenerator.ORDER_ATOMIC);
   const xpos = javascriptGenerator.valueToCode(block, 'x', javascriptGenerator.ORDER_ATOMIC);
   const ypos = javascriptGenerator.valueToCode(block, 'y', javascriptGenerator.ORDER_ATOMIC);
-  return `await image.setPixelColor(jimp.cssColorToHex(${color}), ${xpos}, ${ypos})
-`;
+  return `await image.setPixelColor(jimp.cssColorToHex(${color}), ${xpos}, ${ypos});`;
 };
 
 registerRestrictions(blockName, [

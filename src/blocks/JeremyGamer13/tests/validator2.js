@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'jg_tests_validator2';
-
 const blockData = {
   message0: 'Validator #2',
   args0: [],
@@ -54,6 +53,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (block.getFieldValue('B')) {
     B = block.getFieldValue('B');
   }
-  const code = `${A}${B}`;
-  return code;
+  return `${A}${B}`;
 };

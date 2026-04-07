@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
+import { Types } from '../types.js';
 
 const blockName = 'jg_sendImageMSG';
-
 const blockData = {
   message0: 'Send file %1 and message %3 to channel %2',
   inputsInline: true,
@@ -11,17 +11,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'NAME',
-      check: ['Number', 'String', 'var', 'Env', 'Array', 'List', 'Attachment']
+      check: ['Number', 'String', 'Array', 'Attachment']
     },
     {
       type: 'input_value',
       name: 'CHANNEL',
-      check: ['Channel']
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: ['String', 'var', 'Env', 'Number', 'Embed', 'MessageEmbed']
+      check: Types.MessageContent
     }
   ],
   colour: 210,
@@ -38,34 +38,23 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  //embeds: [
   const fileNameandLocation = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const fileSendChannel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   var msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   var code, embed;
   var stored = `[${fileNameandLocation}]`;
-  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) {
-    stored = fileNameandLocation;
-  }
-  if (msg.includes('embeds: [')) {
-    embed = true;
-  } else {
-    embed = false;
-  }
+  if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
+  embed = msg.includes('embeds: [');
   if (embed) {
-    code = `await ${fileSendChannel}.send({
-        files: ${stored},
-        ${msg}
-     });
-   `;
-  } else {
-    code = `await ${fileSendChannel}.send({
-        files: ${stored},
-        content: String(${msg})
-     });
-   `;
+    return `await ${fileSendChannel}.send({
+  files: ${stored},
+  ${msg}
+});`;
   }
-  return code;
+  return `await ${fileSendChannel}.send({
+  files: ${stored},
+  content: String(${msg})
+});`;
 };
 
 registerRestrictions(blockName, [

@@ -1,21 +1,21 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_resizeMethods';
-
 const blockData = {
   message0: 'Resize Image using Width %1 Height %2 and method %3',
   args0: [
     {
       type: 'input_value',
       name: 'Width',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'Height',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'field_dropdown',
@@ -46,7 +46,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const wide = javascriptGenerator.valueToCode(block, 'Width', javascriptGenerator.ORDER_ATOMIC);
   const high = javascriptGenerator.valueToCode(block, 'Height', javascriptGenerator.ORDER_ATOMIC);
   const method = block.getFieldValue('method');
-  return `await image.resize( Number(` + wide + `), Number(` + high + `), ` + method + `)\n`;
+  return `await image.resize(Number(${wide}), Number(${high}), ${method});`;
 };
 
 registerRestrictions(blockName, [

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'gsa_modal_text';
-
 const blockData = {
   message0: 'name %1 id %2 label %3 type %4',
   args0: [
@@ -14,12 +14,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'id',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'title',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -50,12 +50,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const title = javascriptGenerator.valueToCode(block, 'title', javascriptGenerator.ORDER_ATOMIC);
   const type = javascriptGenerator.valueToCode(block, 'type', javascriptGenerator.ORDER_ATOMIC);
   return [
-    `
-const ${name} = new TextInputComponent()
-    .setCostomId(${id})
-    .setLable(${title})
-    .setStyle('${type}')
-`,
+    `const ${name} = new TextInputComponent()
+  .setCostomId(${id})
+  .setLable(${title})
+  .setStyle('${type}')`,
     javascriptGenerator.ORDER_NONE
   ];
 };

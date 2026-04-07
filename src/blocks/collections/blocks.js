@@ -61,7 +61,7 @@ Blockly.Blocks['collections_set_to_key_in_collection'] = {
         {
           type: 'input_value',
           name: 'VALUE',
-          check: null
+          check: Types.Any
         },
         {
           type: 'input_value',

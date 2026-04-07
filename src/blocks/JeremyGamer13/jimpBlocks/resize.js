@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_resize';
-
 const blockData = {
   message0: 'Resize Image:%1 Width %2 Height %3',
   args0: [
@@ -13,12 +13,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'Width',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'Height',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     }
   ],
   colour: 260,
@@ -37,7 +37,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const wide = javascriptGenerator.valueToCode(block, 'Width', javascriptGenerator.ORDER_ATOMIC);
   const high = javascriptGenerator.valueToCode(block, 'Height', javascriptGenerator.ORDER_ATOMIC);
-  return `await image.resize( Number(` + wide + `), Number(` + high + `))\n`;
+  return `await image.resize(Number(${wide}), Number(${high}));`;
 };
 
 registerRestrictions(blockName, [

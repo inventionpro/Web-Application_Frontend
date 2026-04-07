@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
+
 const blockName = 'gsa_set_embed_timestamp';
 const blockData = {
   type: 'gsa_set_embed_timestamp',
@@ -9,7 +11,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'date',
-      check: 'String'
+      check: Types.String
     }
   ],
   previousStatement: null,
@@ -29,13 +31,12 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const date = javascriptGenerator.valueToCode(block, 'date', javascriptGenerator.ORDER_ATOMIC);
   if (javascriptGenerator.valueToCode(block, 'date', javascriptGenerator.ORDER_ATOMIC) === null) {
-    return `timestamp: new Date(),
-    `;
+    return `timestamp: new Date(),`;
   } else {
-    return `timestamp: new Date(${date}),
-    `;
+    return `timestamp: new Date(${date}),`;
   }
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

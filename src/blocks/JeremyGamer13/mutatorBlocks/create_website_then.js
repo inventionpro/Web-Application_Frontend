@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+import { Types } from '../../types.js';
+
 const yourName = 'jg';
 const blockName = yourName + '_' + 'express_start_website_then_using_port';
 const menuName = blockName + '_checkboxMutatorMenu';
@@ -14,7 +16,7 @@ const menuTooltip = '';
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['PORT'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = [['Number', 'Env']];
+const BORDER_TYPES = [Types.Number];
 // names is the name of that input in the menu and in the final block
 const names = ['host on port'];
 const amountOfInputs = names.length;
@@ -112,19 +114,16 @@ let S4D_APP_WEBSITE_HOSTING_PORT = 8080
 
 S4D_WEBSITECREATION_EXPRESS_app.use(S4D_WEBSITECREATION_cors());
 S4D_WEBSITECREATION_EXPRESS_app.use(S4D_WEBSITECREATION_bodyParser.urlencoded({
-    extended: false
+  extended: false
 }));
 S4D_WEBSITECREATION_EXPRESS_app.use(S4D_WEBSITECREATION_bodyParser.json());
 
-${STATEMENTS}
-`
+${STATEMENTS}`
   ];
   const PORT = javascriptGenerator.valueToCode(block, 'PORT', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
-  if (PORT) {
-    code.push(`S4D_APP_WEBSITE_HOSTING_PORT = ${PORT}`);
-  }
-  // the last line of code here, do another code.push(``) if you need to put more code
+  if (PORT) code.push(`S4D_APP_WEBSITE_HOSTING_PORT = ${PORT}`);
+  // the last line of code here, do another code.push('') if you need to put more code
   code.push(`S4D_WEBSITECREATION_EXPRESS_app.listen(S4D_APP_WEBSITE_HOSTING_PORT);`);
   return code.join('\n');
 };

@@ -1,26 +1,26 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_jimp_drawtext';
-
 const blockData = {
   message0: 'Display %1 placed X: %2 Y: %3 using font size %4',
   args0: [
     {
       type: 'input_value',
       name: 'text',
-      check: ['String', 'Number', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'xpos',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'ypos',
-      check: ['Number', 'var', 'Env']
+      check: Types.Number
     },
     {
       type: 'field_dropdown',
@@ -55,19 +55,9 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const xpos = javascriptGenerator.valueToCode(block, 'xpos', javascriptGenerator.ORDER_ATOMIC);
   const ypos = javascriptGenerator.valueToCode(block, 'ypos', javascriptGenerator.ORDER_ATOMIC);
   const fontSize = block.getFieldValue('fontSize');
-  return (
-    `await jimp.loadFont(jimp.FONT_SANS_` +
-    fontSize +
-    `_BLACK).then(async font => {
-  await image.print(font, Number(` +
-    xpos +
-    `), Number(` +
-    ypos +
-    `), String(` +
-    text +
-    `));
-});\n`
-  );
+  return `await jimp.loadFont(jimp.FONT_SANS_${fontSize}_BLACK).then(async font => {
+await image.print(font, Number(${xpos}), Number(${ypos}), String(${text}));
+});`;
 };
 
 registerRestrictions(blockName, [

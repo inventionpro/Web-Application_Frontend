@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'gsa_ytdl_get_info';
-
 /*const blockData = {
   "message0": "info %1",
   "args0": [
@@ -79,19 +79,19 @@ Blockly.Blocks[blockName] = {
           function (newMode) {
             switch (newMode) {
               case 'NOOOOOOOOOL':
-                thisBlock.setOutput(true, 'Object');
+                thisBlock.setOutput(true, Types.Object);
                 break;
               case '.videoDetails.author.user_url':
               case '.videoDetails.author.name':
               case '.videoDetails.title':
               case '.videoDetails.description':
-                thisBlock.setOutput(true, 'String');
+                thisBlock.setOutput(true, Types.String);
                 break;
               case '.videoDetails.publishDate':
               case '.videoDetails.likes':
               case '.videoDetails.viewCount':
               case '.videoDetails.lengthSeconds':
-                thisBlock.setOutput(true, 'Number');
+                thisBlock.setOutput(true, Types.Number);
                 break;
             }
             return newMode;
@@ -99,7 +99,7 @@ Blockly.Blocks[blockName] = {
         ),
         'get_data'
       );
-    this.setOutput(true, 'String');
+    this.setOutput(true, Types.String);
     this.setColour(230);
     this.setTooltip('must be below a get info from url () then block');
     this.setHelpUrl('');
@@ -110,6 +110,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const get_data = block.getFieldValue('get_data');
   return [`S4D_APP_YTDL_JSON${get_data}`.replace('NOOOOOOOOOL', ''), javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions(blockName, [
   {
     type: 'hasparent',

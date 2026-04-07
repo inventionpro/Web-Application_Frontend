@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
+
 const ahqcolor = ['#40BF4A', '#40BF4A'];
 function listsGetRandomItem(list, remove) {
   var x = Math.floor(Math.random() * list.length);
@@ -74,7 +76,7 @@ Amen
 const blockData = {
   message0: 'History of the world!',
   colour: listsGetRandomItem(ahqcolor, false),
-  output: ['String'],
+  output: Types.String,
   tooltip: 'Peepee',
   helpUrl: ''
 };
@@ -84,7 +86,7 @@ Blockly.Blocks[blockName] = {
     this.jsonInit(blockData);
   }
 };
-javascriptGenerator.forBlock[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = () => {
   const code = [
     `\`s4d means scratch for discord
     earth was created 4.3 billion years ago

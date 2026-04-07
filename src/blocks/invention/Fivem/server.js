@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'inv_fivem_server';
-
 const blockData = {
   message0: 'Connect to fivem server %1',
   args0: [
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#CC8899',
@@ -25,6 +25,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var value_name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-  var code = `const __S4D__fivem_server = new __S4D__fivem.DiscordFivemApi(${value_name})`;
-  return code;
+  return `const __S4D__fivem_server = new __S4D__fivem.DiscordFivemApi(${value_name})`;
 };

@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import upgradeXml from '../../upgradexml.js';
+import { Types } from '../types.js';
 
 //lasercat_jg_case_default
 Blockly.Blocks['lasercat_jg_case_default'] = {
@@ -12,7 +13,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     this.setHelpUrl('');
     this.setInputsInline(true);
     this.setColour('#8B48A3');
-    this.appendValueInput('IF0').setCheck(null).appendField('case');
+    this.appendValueInput('IF0').setCheck(Types.Any).appendField('case');
     this.appendStatementInput('DO0');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -176,7 +177,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
     // Rebuild block.
     for (i = 1; i <= this.elseifCount_; i++) {
       this.appendValueInput('IF' + i)
-        .setCheck(null)
+        .setCheck(Types.Any)
         .appendField('case');
       if (this.mutatorMenuBlockTypes[i - 1] == 'case' || this.mutatorMenuBlockTypes[i - 1] == 'continue') {
         this.appendStatementInput('DO' + i);
@@ -226,8 +227,7 @@ javascriptGenerator.forBlock['lasercat_jg_case_default'] = (block) => {
   }
   return code + '\n';
 };
-// "previousStatement": null,
-// "nextStatement": null,
+
 Blockly.Blocks['lasercat_jg_case_default_INTERNAL_case1'] = {
   init: function () {
     this.jsonInit({

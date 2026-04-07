@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import BaseBlockly from 'blockly';
+import { Types } from '../../types.js';
+
 const yourName = 'jg';
 const blockName = yourName + '_' + 'copy_checkbox_left_mutator';
 const menuName = blockName + '_checkboxMutatorMenu';
@@ -14,7 +16,7 @@ const menuTooltip = '';
 // they HAVE to be uppercase currently or it won't work since im too lazy to change the uppercase function uses
 const BORDER_FIELDS = ['A', 'B', 'C', 'D'];
 // border types is the input type of every input in the block
-const BORDER_TYPES = ['String', 'Boolean', 'Colour', 'Number'];
+const BORDER_TYPES = [Types.String, Types.Boolean, Types.Color, Types.Number];
 // names is the name of that input in the menu and in the final block
 const names = ['Text', 'Question', 'Color', 'Number'];
 const amountOfInputs = names.length;
@@ -25,7 +27,7 @@ const blockData = {
     {
       type: 'input_value',
       name: '0',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: BlockColor,
@@ -113,19 +115,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const C = javascriptGenerator.valueToCode(block, 'C', javascriptGenerator.ORDER_NONE);
   const D = javascriptGenerator.valueToCode(block, 'D', javascriptGenerator.ORDER_NONE);
   // check if the inputs exist before adding them to the exported code
-  if (A) {
-    code.push(`wow: ${A}`);
-  }
-  if (B) {
-    code.push(`wow: ${B}`);
-  }
-  if (C) {
-    code.push(`wow: ${C}`);
-  }
-  if (D) {
-    code.push(`wow: ${D}`);
-  }
-  // the last line of code here, do another code.push(``) if you need to put more code
+  if (A) code.push(`wow: ${A}`);
+  if (B) code.push(`wow: ${B}`);
+  if (C) code.push(`wow: ${C}`);
+  if (D) code.push(`wow: ${D}`);
+  // the last line of code here, do another code.push('') if you need to put more code
   code.push(`*/`);
   return code.join('\n');
 };

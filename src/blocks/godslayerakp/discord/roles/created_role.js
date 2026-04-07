@@ -1,20 +1,23 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
+
 Blockly.Blocks['gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role'] = {
   init: function () {
     this.jsonInit({
       message0: 'created role',
       colour: '#2EB66B',
-      output: 'Role',
+      output: Types.Role,
       tooltip: 'The role that was created.'
     });
   }
 };
+
 javascriptGenerator.forBlock['gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role'] = function () {
-  const code = [`s4d_create_role_then_role`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`s4d_create_role_then_role`, javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions('gsa_jg_create_role_with_name_in_server_with_color_then_do_created_role', [
   {
     type: 'hasparent',

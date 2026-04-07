@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_unused';
-
 const blockData = {
   message0: 'UnusedBlock Effect',
   args0: [],
@@ -20,8 +19,8 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return `await image.dither565()\n`;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `await image.dither565();`;
 };
 
 registerRestrictions(blockName, [

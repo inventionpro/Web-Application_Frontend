@@ -25,7 +25,7 @@ Blockly.Blocks[blockName] = {
       }
     );
     this.appendDummyInput('SEARCH').appendField('Get').appendField(dropdown, 'SEARCH');
-    this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+    this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
     this.setInputsInline(true);
     this.setOutput(true, Types.String);
     this.setColour('#4C97FF');
@@ -40,32 +40,32 @@ Blockly.Blocks[blockName] = {
       this.removeInput('BOOLEAN');
     }
     if (newMode == 'string') {
-      this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+      this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
       this.setOutput(true, Types.String);
     } else if (newMode == 'integer') {
-      this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+      this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
       this.setOutput(true, Types.Number);
     } else if (newMode == 'boolean') {
-      this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+      this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
       this.setOutput(true, Types.Boolean);
     } else if (newMode == 'user') {
-      this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+      this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
       this.setOutput(true, Types.User);
     } else if (newMode == 'member') {
-      this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+      this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
       this.setOutput(true, Types.Member);
     } else if (newMode == 'channel') {
-      this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+      this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
       this.setOutput(true, Types.Channel);
     } else if (newMode == 'role') {
-      this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+      this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
       this.setOutput(true, Types.Role);
     } else if (newMode == 'subcommand') {
       this.setOutput(true, Types.String);
     } else if (newMode == 'subcommand group') {
       this.setOutput(true, Types.String);
     } else if (newMode == 'attachment') {
-      this.appendValueInput('BOOLEAN').setCheck('String').appendField('option name');
+      this.appendValueInput('BOOLEAN').setCheck(Types.String).appendField('option name');
       this.setOutput(true, 'Attachment');
     }
   },

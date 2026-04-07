@@ -181,7 +181,7 @@ Blockly.Blocks['gsa_create_new_jimp_image'] = {
   updateShape_: function () {
     if (this.isFilled && !this.getInput('color')) {
       this.removeInput('code');
-      this.appendValueInput('color').setCheck('Colour').appendField('with color');
+      this.appendValueInput('color').setCheck(Types.Color).appendField('with color');
       this.appendStatementInput('code').appendField('then');
     } else if (!this.isFilled && this.getInput('color')) {
       this.removeInput('color');

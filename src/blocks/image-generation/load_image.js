@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'load_image';
-
 const blockData = {
   message0: 'load image %1',
   args0: [
@@ -26,6 +25,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const toload = javascriptGenerator.valueToCode(block, 'TOLOAD', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`new Discord.AttachmentBuilder(${toload}, "image.png")`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`new Discord.AttachmentBuilder(${toload}, "image.png")`, javascriptGenerator.ORDER_NONE];
 };

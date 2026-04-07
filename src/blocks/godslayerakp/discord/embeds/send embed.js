@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
+
 const blockName = 'gsa_send_embed';
 const blockData = {
   type: 'gsa_send_embed',
@@ -12,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'message',
-      check: 'String'
+      check: Types.String
     }
   ],
   output: 'MessageEmbed',

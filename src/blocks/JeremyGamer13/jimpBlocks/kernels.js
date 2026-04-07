@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
 
 const blockName = 'jg_jimp_kernels';
-
 const blockData = {
   message0: 'Use %1 kernel',
   args0: [
@@ -14,14 +13,14 @@ const blockData = {
         [
           'emboss',
           `[-2,-1, 0],
-    [-1, 1, 1],
-    [ 0, 1, 2]`
+[-1, 1, 1],
+[ 0, 1, 2]`
         ],
         [
           'sharpen',
           `[0,-1, 0],
-    [-1, 5, -1],
-    [ 0, -1, 0]`
+[-1, 5, -1],
+[ 0, -1, 0]`
         ]
       ]
     }
@@ -43,8 +42,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const effect = block.getFieldValue('effect');
   return `await image.convolute([
 ${effect}
-])
-`;
+]);`;
 };
 
 registerRestrictions(blockName, [

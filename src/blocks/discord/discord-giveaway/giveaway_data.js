@@ -5,7 +5,7 @@ const blockName = 's4d_giveaway_data';
 const blockData = {
   message0: 'giveaway data',
   colour: '#187795',
-  output: 'Object',
+  output: Types.Object,
   tooltip: 'An object containing all of the data about the Giveaway you just created.',
   helpUrl: ''
 };
