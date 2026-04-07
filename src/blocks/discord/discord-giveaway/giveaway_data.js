@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_giveaway_data';
 const blockData = {

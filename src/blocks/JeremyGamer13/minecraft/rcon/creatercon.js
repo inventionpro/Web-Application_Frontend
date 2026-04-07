@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-import { Types } from '../../../types.js';
+import { T, Types } from '../../../types.js';
 
 const blockName = 'jg_minecraft_rcon_create_client';
 const blockData = {
