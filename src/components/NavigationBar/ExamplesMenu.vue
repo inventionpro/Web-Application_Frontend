@@ -32,6 +32,7 @@
 import * as Blockly from 'blockly/core';
 import Swal from 'sweetalert2';
 import localforage from 'localforage';
+import { useToast } from 'vue-toast-notification';
 import theme from '@blockly/theme-dark';
 import upgradeXml from '../../upgradexml.js';
 
@@ -211,12 +212,13 @@ export default {
   name: 'ExamplesMenu',
   computed: {},
   mounted() {
+    this.toast ??= useToast();
     setTimeout(() => {
       let urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('exampleid')) {
         fetch(`https://s4d-examples.fsh.plus/api/getExample?id=${urlParams.get('exampleid')}`).then(async (result) => {
           result.json().then((json) => {
-            displaySwalPopupForUserExample(json, urlParams.get('exampleid'), 'https://s4d-examples.fsh.plus/', this.$toast);
+            displaySwalPopupForUserExample(json, urlParams.get('exampleid'), 'https://s4d-examples.fsh.plus/', this.toast);
           });
         });
       }
@@ -244,7 +246,7 @@ export default {
         const exampleXml = examples[example];
         Blockly.Xml.domToWorkspace(upgradeXml(Blockly.utils.xml.textToDom(exampleXml)), window.blocklyWorkspaceGlobalRef);
         setTimeout(() => {
-          this.$toast.open({
+          this.toast.open({
             message: this.$t('examples.loaded', {
               example
             }),
@@ -486,7 +488,7 @@ ${blockCounts <= 5 ? `<p style="color: red; font-weight: bold;">Uploading near e
                     if (selectedOption == null) return;
                     fetch(SERVER + `api/getExample?id=${selectedOption}`).then(async (result) => {
                       result.json().then((json) => {
-                        displaySwalPopupForUserExample(json, selectedOption, SERVER, this.$toast);
+                        displaySwalPopupForUserExample(json, selectedOption, SERVER, this.toast);
                       });
                     });
                   });

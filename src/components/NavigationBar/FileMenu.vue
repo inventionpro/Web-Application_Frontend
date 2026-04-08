@@ -22,9 +22,12 @@ import JSZip from 'jszip';
 import beautify from 'js-beautify';
 import localforage from 'localforage';
 import Swal from 'sweetalert2';
+import { useToast } from 'vue-toast-notification';
 import * as smm from './cbmodule.js';
 import * as blocklyModule from '../../blocks/blocklyModule.js';
 import upgradeXml from '../../upgradexml.js';
+
+let toast = useToast();
 
 function fetchCustomBlocks(dataobj, loadfunc) {
   if (!window.isInS4DDebugMode) {
@@ -59,7 +62,7 @@ function fetchCustomBlocks(dataobj, loadfunc) {
   try {
     customblocks = JSON.parse(dataobj.customBlocks);
   } catch (err) {
-    this.$toast.open({
+    toast.open({
       message: 'Custom block data for this file is corrupted.',
       type: 'error',
       dismissible: true,
@@ -216,7 +219,7 @@ export default {
               fetchCustomBlocks(dataobj, load);
             })
             .catch((err) => {
-              this.$toast.open({
+              toast.open({
                 message: this.$t('load.error'),
                 type: 'error',
                 dismissible: true,

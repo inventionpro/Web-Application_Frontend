@@ -11,6 +11,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import swal from 'sweetalert2';
+import { useToast } from 'vue-toast-notification';
 import * as blocklyModule from '../blocks/blocklyModule.js';
 import * as customBlockModule from './NavigationBar/cbmodule.js';
 import { disableUnapplicable } from '../restrictions.js';
@@ -114,6 +115,7 @@ export default {
     const isMobile = () => {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     };
+    this.toast ??= useToast();
     function prepToolbox(toolbox_content, searching, searchparameter = '') {
       const default_max_length = 250;
       let CATEGORYCONTENT = `<label text="Error failed to get block(s)..." web-class="boldtext"></label>`;
@@ -1122,7 +1124,7 @@ ${CATEGORYCONTENT}`
         if (!loginBlock) {
           if (!this.toastLogin) {
             this.toastLogin = true;
-            this.$toast.open({
+            this.toast.open({
               message: this.$t('warnings.login_block'),
               type: 'warning',
               dismissible: false,
@@ -1133,7 +1135,7 @@ ${CATEGORYCONTENT}`
           if (!db2) {
             if (!this.toastDB) {
               this.toastDB = true;
-              this.$toast.open({
+              this.toast.open({
                 message: 'The "Create a new database" block in the "Database" category is required.',
                 type: 'error',
                 dismissible: false,
@@ -1142,12 +1144,12 @@ ${CATEGORYCONTENT}`
             }
           } else {
             this.toastDB = false;
-            this.$toast.clear();
+            this.toast.clear();
           }
         } else if (registerBlockCount > 1) {
           if (!this.toastRegister) {
             this.toastRegister = true;
-            this.$toast.open({
+            this.toast.open({
               message: 'You may only use one "Create Slash Commands" block.',
               type: 'error',
               dismissible: false,
@@ -1156,13 +1158,13 @@ ${CATEGORYCONTENT}`
           }
         } else if (this.toastLogin) {
           this.toastLogin = false;
-          this.$toast.clear();
+          this.toast.clear();
         } else if (this.toastRegister) {
           this.toastRegister = false;
-          this.$toast.clear();
+          this.toast.clear();
         } else {
           this.toastDB = false;
-          this.$toast.clear();
+          this.toast.clear();
         }
       }, 100);
     });
