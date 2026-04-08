@@ -749,20 +749,21 @@ ${
 <button id="btn-optimizations" class="swal2-confirm swal2-styled">Optimizations</button>
 <button id="btn-prebuilds" class="swal2-confirm swal2-styled">Prebuilds</button>
 <button id="btn-cancel" class="swal2-cancel swal2-styled">Exit</button>
-${window.aprilFoolsTheme?'<button id="btn-aprilend" class="swal2-deny swal2-styled">End Aprill Fools</button>':''}`,
+${window.aprilFoolsTheme ? '<button id="btn-aprilend" class="swal2-deny swal2-styled">End Aprill Fools</button>' : ''}`,
         showConfirmButton: false,
         showCancelButton: false,
         didOpen: () => {
           document.getElementById('btn-cancel').onclick = Swal.close;
-          if (document.getElementById('btn-aprilend')) document.getElementById('btn-aprilend').onclick = ()=>{
-            clearInterval(window.aprilFoolsTheme);
-            window.aprilFoolsTheme = null;
-            document.querySelector('.blocklyMainBackground').style.fill = window.aprilFoolsThemeOBG;
-            const images4d = document.getElementById('navigationBarS4DImage');
-            images4d.setAttribute('width', '35');
-            images4d.setAttribute('height', '35');
-            Swal.close();
-          };
+          if (document.getElementById('btn-aprilend'))
+            document.getElementById('btn-aprilend').onclick = () => {
+              clearInterval(window.aprilFoolsTheme);
+              window.aprilFoolsTheme = null;
+              document.querySelector('.blocklyMainBackground').style.fill = window.aprilFoolsThemeOBG;
+              const images4d = document.getElementById('navigationBarS4DImage');
+              images4d.setAttribute('width', '35');
+              images4d.setAttribute('height', '35');
+              Swal.close();
+            };
           Array.from(document.querySelectorAll('.swal2-container button.swal2-confirm')).forEach((btn) => {
             btn.onclick = async () => {
               switch (btn.id.replace('btn-', '')) {

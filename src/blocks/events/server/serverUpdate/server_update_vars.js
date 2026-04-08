@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'server_update_vars';
-
 const blockData = {
   message0: '%1',
   args0: [
@@ -15,7 +15,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#52fc03',
   tooltip: '',
   helpUrl: ''
@@ -30,10 +30,8 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'OLD') {
-    const code = ['oldGuild', javascriptGenerator.ORDER_NONE];
-    return code;
+    return ['oldGuild', javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'NEW') {
-    const code = ['newGuild', javascriptGenerator.ORDER_NONE];
-    return code;
+    return ['newGuild', javascriptGenerator.ORDER_NONE];
   }
 };

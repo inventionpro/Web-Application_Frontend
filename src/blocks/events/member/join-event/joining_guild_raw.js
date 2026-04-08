@@ -1,8 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
-const blockName = 's4d_joining_guild_raw';
+import { Types } from '../../../types.js';
 
+const blockName = 's4d_joining_guild_raw';
 const blockData = {
   message0: '%{BKY_JOINING_GUILD_RAW}',
   args0: [
@@ -15,7 +16,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -29,13 +30,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
-  if (searchType === 'ID') {
-    const code = ['s4d.joiningMember.guild.id', javascriptGenerator.ORDER_NONE];
-    return code;
-  } else if (searchType === 'NAME') {
-    const code = ['s4d.joiningMember.guild.name', javascriptGenerator.ORDER_NONE];
-    return code;
-  }
+  return [`s4d.joiningMember.guild.${searchType.toLowerCase()}`, javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

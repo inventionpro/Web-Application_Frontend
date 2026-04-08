@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'cu_name';
-
 const blockData = {
   message0: '%1 of %2',
   args0: [
@@ -29,7 +29,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -44,6 +44,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const channel = block.getFieldValue('CHANNEL');
   const info = block.getFieldValue('INFO');
-  const code = [`${channel}.${info}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`${channel}.${info}`, javascriptGenerator.ORDER_NONE];
 };

@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../../restrictions';
+import { Types } from '../../../types.js';
 
 const blockName = 's4d_leaving_member_raw';
-
 const blockData = {
   message0: '%{BKY_LEAVING_MEMBER_RAW}',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -31,16 +31,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
-  if (searchType === 'ID') {
-    const code = ['s4d.leavingMember.id', javascriptGenerator.ORDER_NONE];
-    return code;
-  } else if (searchType === 'USERNAME') {
-    const code = ['s4d.leavingMember.user.username', javascriptGenerator.ORDER_NONE];
-    return code;
-  } else if (searchType === 'NICKNAME') {
-    const code = ['s4d.leavingMember.nickname', javascriptGenerator.ORDER_NONE];
-    return code;
-  }
+  return [`s4d.leavingMember.${searchType.toLowerCase()}`, javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

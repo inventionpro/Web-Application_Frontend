@@ -1,4 +1,5 @@
-export function load(Blockly, javascriptGenerator, prefix, color) {
+export async function load(Blockly, javascriptGenerator, prefix, color) {
+  let { Types } = await import('../../blocks/types');
   import('../../blocks/JeremyGamer13/Objects');
   import('../../blocks/godslayerakp/objects');
   import('../../blocks/frostzzone/useful/jsontostring');
@@ -86,7 +87,7 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'setColour'] = (block) => {
     const color = javascriptGenerator.valueToCode(block, 'COLOR', javascriptGenerator.ORDER_ATOMIC);
-    return `this.setColour(${color});\n`;
+    return `this.setColour(${color});`;
   };
   Blockly.Blocks[prefix + 'setCommentText'] = {
     init: function () {
@@ -96,7 +97,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -108,7 +109,7 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'setCommentText'] = (block) => {
     const TEXT = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-    return `this.setCommentText(${TEXT});\n`;
+    return `this.setCommentText(${TEXT});`;
   };
   Blockly.Blocks[prefix + 'setHelpUrl'] = {
     init: function () {
@@ -118,7 +119,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -130,7 +131,7 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'setHelpUrl'] = (block) => {
     const TEXT = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-    return `this.setHelpUrl(${TEXT});\n`;
+    return `this.setHelpUrl(${TEXT});`;
   };
   Blockly.Blocks[prefix + 'setInputsInline'] = {
     init: function () {
@@ -155,7 +156,7 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'setInputsInline'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
-    return `this.setInputsInline(${ALIGN});\n`;
+    return `this.setInputsInline(${ALIGN});`;
   };
   Blockly.Blocks[prefix + 'blockConnections'] = {
     init: function () {
@@ -180,7 +181,7 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'blockConnections'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
-    return `this.${ALIGN}(true, null);\n`;
+    return `this.${ALIGN}(true, null);`;
   };
   Blockly.Blocks[prefix + 'blockConnectionsType'] = {
     init: function () {
@@ -198,7 +199,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TYPES',
-            check: ['Array', 'List']
+            check: Types.Array
           }
         ],
         colour: color,
@@ -211,7 +212,7 @@ _ \\END JS FUNC\\ _`;
   javascriptGenerator.forBlock[prefix + 'blockConnectionsType'] = (block) => {
     const ALIGN = block.getFieldValue('ALIGN');
     const TYPES = javascriptGenerator.valueToCode(block, 'TYPES', javascriptGenerator.ORDER_ATOMIC);
-    return `this.${ALIGN}(true, ${TYPES});\n`;
+    return `this.${ALIGN}(true, ${TYPES});`;
   };
   Blockly.Blocks[prefix + 'appendDummyInput'] = {
     init: function () {
@@ -235,7 +236,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -247,7 +248,7 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'setTooltip'] = (block) => {
     const TEXT = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-    return `this.setTooltip(${TEXT});\n`;
+    return `this.setTooltip(${TEXT});`;
   };
   Blockly.Blocks[prefix + 'setOutput'] = {
     init: function () {
@@ -257,7 +258,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'LIST',
-            check: ['Array', 'List']
+            check: Types.Array
           }
         ],
         colour: color,
@@ -269,7 +270,7 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'setOutput'] = (block) => {
     const LIST = javascriptGenerator.valueToCode(block, 'LIST', javascriptGenerator.ORDER_ATOMIC);
-    return `this.setOutput(${LIST});\n`;
+    return `this.setOutput(${LIST});`;
   };
   Blockly.Blocks[prefix + 'appendValueInput'] = {
     init: function () {
@@ -279,7 +280,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -300,7 +301,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -326,7 +327,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'CHECK',
-            check: ['Array', 'List']
+            check: Types.Array
           }
         ],
         colour: color,
@@ -339,7 +340,7 @@ _ \\END JS FUNC\\ _`;
   javascriptGenerator.forBlock[prefix + 'setInputCheck'] = (block) => {
     const input = javascriptGenerator.valueToCode(block, 'INPUT', javascriptGenerator.ORDER_ATOMIC);
     const check = javascriptGenerator.valueToCode(block, 'CHECK', javascriptGenerator.ORDER_ATOMIC);
-    return `${input}.setCheck(${check});\n`;
+    return `${input}.setCheck(${check});`;
   };
   Blockly.Blocks[prefix + 'setInputFieldAlignment'] = {
     init: function () {
@@ -371,7 +372,7 @@ _ \\END JS FUNC\\ _`;
   javascriptGenerator.forBlock[prefix + 'setInputFieldAlignment'] = (block) => {
     const input = javascriptGenerator.valueToCode(block, 'INPUT', javascriptGenerator.ORDER_ATOMIC);
     const alignment = block.getFieldValue('ALIGN');
-    return `${input}.setAlign(${alignment});\n`;
+    return `${input}.setAlign(${alignment});`;
   };
   Blockly.Blocks[prefix + 'appendField'] = {
     init: function () {
@@ -386,7 +387,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -399,7 +400,7 @@ _ \\END JS FUNC\\ _`;
   javascriptGenerator.forBlock[prefix + 'appendField'] = (block) => {
     const input = javascriptGenerator.valueToCode(block, 'INPUT', javascriptGenerator.ORDER_ATOMIC);
     const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
-    return `${input}.appendField(${text});\n`;
+    return `${input}.appendField(${text});`;
   };
   Blockly.Blocks[prefix + 'appendFieldType'] = {
     init: function () {
@@ -419,7 +420,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'ID',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -433,7 +434,7 @@ _ \\END JS FUNC\\ _`;
     const input = javascriptGenerator.valueToCode(block, 'INPUT', javascriptGenerator.ORDER_ATOMIC);
     const field = javascriptGenerator.valueToCode(block, 'FIELD', javascriptGenerator.ORDER_ATOMIC);
     const id = javascriptGenerator.valueToCode(block, 'ID', javascriptGenerator.ORDER_ATOMIC);
-    return `${input}.appendField(${field}, ${id});\n`;
+    return `${input}.appendField(${field}, ${id});`;
   };
   Blockly.Blocks[prefix + 'getInputById'] = {
     init: function () {
@@ -443,7 +444,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -464,11 +465,11 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'FIELD',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
-        output: null,
+        output: Types.Any,
         tooltip: 'Gets the input with this ID and exports the block inside of it to code.'
       });
     }
@@ -485,11 +486,11 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'FIELD',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
-        output: null,
+        output: Types.Any,
         tooltip: 'Gets the function input with this ID and exports the blocks inside of it to code.'
       });
     }
@@ -506,11 +507,11 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'FIELD',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
-        output: null,
+        output: Types.Any,
         tooltip: 'Gets the variable choice field with this ID and exports the variable to code.'
       });
     }
@@ -527,11 +528,11 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'FIELD',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
-        output: null,
+        output: Types.Any,
         tooltip: 'Gets the field with this ID and exports the value of it to code.'
       });
     }
@@ -548,7 +549,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -569,7 +570,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -590,22 +591,22 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'NUM',
-            check: 'Number'
+            check: Types.Number
           },
           {
             type: 'input_value',
             name: 'MIN',
-            check: 'Number'
+            check: Types.Number
           },
           {
             type: 'input_value',
             name: 'MAX',
-            check: 'Number'
+            check: Types.Number
           },
           {
             type: 'input_value',
             name: 'PRECISION',
-            check: 'Number'
+            check: Types.Number
           }
         ],
         colour: color,
@@ -629,7 +630,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'NUM',
-            check: 'Number'
+            check: Types.Number
           }
         ],
         colour: color,
@@ -650,7 +651,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'BOOL',
-            check: 'Boolean'
+            check: Types.Boolean
           }
         ],
         colour: color,
@@ -671,7 +672,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -692,7 +693,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'TEXT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -713,22 +714,22 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'IMAGE',
-            check: 'String'
+            check: Types.String
           },
           {
             type: 'input_value',
             name: 'WIDTH',
-            check: 'Number'
+            check: Types.Number
           },
           {
             type: 'input_value',
             name: 'HEIGHT',
-            check: 'Number'
+            check: Types.Number
           },
           {
             type: 'input_value',
             name: 'ALT',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -752,7 +753,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'CODE',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -764,7 +765,7 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'setOutputCode'] = (block) => {
     const code = javascriptGenerator.valueToCode(block, 'CODE', javascriptGenerator.ORDER_ATOMIC);
-    return `returning.value = (${code});\n`;
+    return `returning.value = (${code});`;
   };
   Blockly.Blocks[prefix + 'setOutputCode2'] = {
     init: function () {
@@ -774,7 +775,7 @@ _ \\END JS FUNC\\ _`;
           {
             type: 'input_value',
             name: 'CODE',
-            check: 'String'
+            check: Types.String
           }
         ],
         colour: color,
@@ -786,6 +787,6 @@ _ \\END JS FUNC\\ _`;
   };
   javascriptGenerator.forBlock[prefix + 'setOutputCode2'] = (block) => {
     const code = javascriptGenerator.valueToCode(block, 'CODE', javascriptGenerator.ORDER_ATOMIC);
-    return `returning.value = [(${code}), javascriptGenerator.ORDER_NONE];\n`;
+    return `returning.value = [(${code}), javascriptGenerator.ORDER_NONE];`;
   };
 }
