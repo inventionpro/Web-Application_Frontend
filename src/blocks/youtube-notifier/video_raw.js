@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'video_raw';
-
 const blockData = {
   message0: '%1 of video',
   args0: [
@@ -18,7 +18,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -34,6 +34,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   let searchType2 = searchType.replace("'", '');
   let s = searchType2.replace("'", '');
-  const code = [`video.${s}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`video.${s}`, javascriptGenerator.ORDER_NONE];
 };

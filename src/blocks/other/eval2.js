@@ -1,19 +1,19 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 's4d_eval2';
-
 const blockData = {
   message0: 'run code %1',
   args0: [
     {
       type: 'input_value',
       name: 'EVAL',
-      check: ['Number', 'String']
+      check: Types.String
     }
   ],
   colour: '#D14081',
-  output: null,
+  output: Types.Any,
   tooltip: '',
   helpUrl: ''
 };

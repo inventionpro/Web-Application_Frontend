@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'create_together';
-
 const blockData = {
   message0: 'create new together in voice channel %1 together type: %2 then %3 %4',
   args0: [
     {
       type: 'input_value',
       name: 'VoiceChannel',
-      check: 'VoiceChannel'
+      check: Types.Channel
     },
     {
       type: 'field_grid_dropdown',
@@ -59,6 +59,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const info2 = block.getFieldValue('INFO');
   let info1 = info2.replace("'", '');
   let info = info1.replace("'", '');
-  const code = `s4d.client.discordTogether.createTogetherCode(${voicechannel}, "${info}").then(async invite => {\n${statements}\n})`;
-  return code;
+  return `s4d.client.discordTogether.createTogetherCode(${voicechannel}, "${info}").then(async invite => {
+${statements}
+})`;
 };

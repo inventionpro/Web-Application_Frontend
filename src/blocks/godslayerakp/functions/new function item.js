@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'gsa_function_item_creator_empty_search_moment_searchMoment';
 Blockly.Blocks[blockName + '_mutator_block_hat'] = {

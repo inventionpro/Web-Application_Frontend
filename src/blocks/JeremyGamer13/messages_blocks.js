@@ -1,7 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import * as blocklyModule from '../blocklyModule.js';
-import * as JBlock from '../jblock1.js';
 import { registerRestrictions } from '../../restrictions.js';
 import { T, Types } from '../types.js';
 
@@ -2622,7 +2621,7 @@ Blockly.Blocks['jg_text_regex_create_new_regex_of'] = {
         }
       ],
       colour: '%{BKY_TEXTS_HUE}',
-      output: 'RegEx',
+      output: Types.RegEx,
       tooltip: 'RegEx is a regular expression that can be used to find text inside of text with a couple checks to make sure that text is exactly the way you want it. You can create RegEx on the "Help" button on the block. You\'ll need to paste in the slashes and the flags from the RegEx into the block.',
       helpUrl: 'https://regex101.com/'
     });
@@ -2648,7 +2647,7 @@ Blockly.Blocks['jg_lists_regex_list_of_matches_from_regex_on_text'] = {
         {
           type: 'input_value',
           name: 'REGEX',
-          check: 'RegEx'
+          check: Types.RegEx
         },
         {
           type: 'input_value',
@@ -3538,23 +3537,6 @@ Blockly.Blocks['jg_tests_u98ewhg87fuinweo_googogjoooj_dynamic_mutator_time_mf'] 
 javascriptGenerator.forBlock['jg_tests_u98ewhg87fuinweo_googogjoooj_dynamic_mutator_time_mf'] = function () {
   return '';
 };
-
-// jblock testing
-JBlock.createBlock({
-  id: 'jg_tests_hfi87ewiugkjbo83q2yfoheiefop432ug_gorpjgrejgo_dietznut_jblock_api_test_mapoapoowip',
-  text: 'epic radical test [input_one] and then [input_two]',
-  color: '#ac9f76',
-  tooltip: 'ttrolol',
-  output: JBlock.OutputType.TEXT,
-  hidden: true,
-  inputs: {
-    input_one: { type: 'input_value', check: JBlock.OutputType.BOOL },
-    input_two: { type: 'input_value', check: JBlock.OutputType.LIST }
-  },
-  export: (_, args) => {
-    return `trolol ${args.input_one}\namogu ${args.input_two}`;
-  }
-});
 
 // Jimp Update 2
 function ezBlock(name, json, jsCallback) {

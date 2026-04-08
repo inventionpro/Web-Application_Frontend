@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'parham_replitdb_delete';
-
 const blockData = {
   message0: 'Delete %1 from Replit DB %2 then %3',
   args0: [
     {
       type: 'input_value',
       name: 'delete',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -35,6 +35,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   var value_delete = javascriptGenerator.valueToCode(block, 'delete', javascriptGenerator.ORDER_ATOMIC);
   var statements_then = javascriptGenerator.statementToCode(block, 'then');
-  var code = `S4D_APP_Replit_DB.delete(${value_delete}).then(async () => {${statements_then}});`;
-  return code;
+  return `S4D_APP_Replit_DB.delete(${value_delete}).then(async () => {
+${statements_then}
+});`;
 };

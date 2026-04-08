@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_lasercat_switch_switch';
-
 const blockData = {
   message0: 'switch %1 %2 %3 ',
   args0: [
     {
       type: 'input_value',
       name: 'switch',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_dummy'
@@ -37,7 +37,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const blocks = javascriptGenerator.statementToCode(block, 'blocks');
 
   return `switch (${switchh}) {
-        ${blocks}
-    };
-    `;
+  ${blocks}
+};`;
 };

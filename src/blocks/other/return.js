@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_return';
-
 const blockData = {
   message0: '%{BKY_RETURN}',
   args0: [],
@@ -18,6 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return `return\n`;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `return;`;
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'jg_other_setvalue';
-
 const blockData = {
   message0: 'set %1 to %2',
   inputsInline: true,
@@ -11,12 +11,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'input',
-      check: null
+      check: Types.Any
     },
     {
       type: 'input_value',
       name: 'replace',
-      check: null
+      check: Types.Any
     }
   ],
   previousStatement: null,
@@ -34,7 +34,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const input = javascriptGenerator.valueToCode(block, 'input', javascriptGenerator.ORDER_ATOMIC);
   const replace = javascriptGenerator.valueToCode(block, 'replace', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${input} = ${replace}
-    `;
-  return code;
+  return `${input} = ${replace}`;
 };

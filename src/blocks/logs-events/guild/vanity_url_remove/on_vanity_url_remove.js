@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'on_vanity_remove';
-
 const blockData = {
   message0: 'When guild remove a vanity url %1 %2',
   colour: '#F5AB1A',
@@ -26,8 +25,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   // guildVanityURLRemove is a discord-logs event
-  const code = `s4d.client.on('guildVanityURLRemove', async (guild, vanityURL) => {
+  return `s4d.client.on('guildVanityURLRemove', async (guild, vanityURL) => {
   ${statements}
 });`;
-  return code;
 };

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_request_advanced_response';
 const blockData = {
@@ -7,7 +8,7 @@ const blockData = {
   inputsInline: true,
   colour: '#4C97FF',
   args0: [],
-  output: ['Object', 'JSON'],
+  output: Types.Object,
   tooltip: "A JSON containing the server's response. Can be saved into a file if stringified and read with Data blocks.",
   helpUrl: ''
 };
@@ -18,7 +19,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`response`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['response', javascriptGenerator.ORDER_NONE];
 };

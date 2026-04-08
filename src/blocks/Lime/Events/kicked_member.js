@@ -1,10 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'lime_kicked_member_info_attributes';
-
 const blockData = {
   type: 'lime_kicked_member_info_attributes',
   message0: "Get the kicked/leaving member's %1",
@@ -23,7 +22,7 @@ const blockData = {
     }
   ],
   colour: '#2AC395',
-  output: null,
+  output: Types.Any,
   tooltip: '',
   helpUrl: ''
 };
@@ -36,29 +35,27 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var dropdown_options = block.getFieldValue('options');
-  var code = ``;
-
+  var code = '';
   switch (dropdown_options) {
     case 'ID':
-      code = `String(kickmember.guild.id)`;
+      code = 'String(kickmember.guild.id)';
       break;
     case 'NAME':
-      code = `kickmember.guild.name`;
+      code = 'kickmember.guild.name';
       break;
     case 'USERNAME':
-      code = `kickmember.user.username`;
+      code = 'kickmember.user.username';
       break;
     case 'DISCRIMINATOR':
-      code = `kickmember.user.discriminator`;
+      code = 'kickmember.user.discriminator';
       break;
     case 'MEMBER_ID':
-      code = `String(kickmember.user.id)`;
+      code = 'String(kickmember.user.id)';
       break;
     case 'TAG':
       code = 'kickmember.user.tag';
       break;
   }
-
   return [code, javascriptGenerator.ORDER_NONE];
 };
 

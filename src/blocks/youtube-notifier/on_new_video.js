@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'on_newvideo';
-
 const blockData = {
   message0: 'When a new video is published %1 %2',
   colour: '#F5AB1A',
@@ -25,6 +24,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `s4d.notifer.on('video', async video => {\n${statements}\n});\n`;
-  return code;
+  return `s4d.notifer.on('video', async video => {
+${statements}
+});`;
 };

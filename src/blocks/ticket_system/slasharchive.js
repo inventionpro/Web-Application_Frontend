@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'slash_archieve_ticket';
-
 const blockData = {
   message0: '[Slash] Archive the ticket (message channel)',
   args0: [],
@@ -19,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `ticket.archive(interaction.channel);`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return 'ticket.archive(interaction.channel);';
 };

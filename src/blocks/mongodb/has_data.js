@@ -1,18 +1,18 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 'mongo_has_data';
-
 const blockData = {
   message0: '%{BKY_HAS_DATA}',
   args0: [
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#4fc99e',
   helpUrl: ''
 };

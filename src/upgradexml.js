@@ -32,6 +32,10 @@ const UpgradeField = {
 };
 
 export default function upgradeXml(xml) {
+  // Vanish from existance
+  xml.querySelectorAll('block[type="jg_tests_hfi87ewiugkjbo83q2yfoheiefop432ug_gorpjgrejgo_dietznut_jblock_api_test_mapoapoowip"]').forEach((block) => {
+    block.remove();
+  });
   // Image embed blocks
   xml.querySelectorAll('block[type="frost_floppa"],block[type="s4d_fart"]').forEach((block) => {
     let orig = block.getAttribute('type');

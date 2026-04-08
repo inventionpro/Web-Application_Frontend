@@ -1,10 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'banned_objects';
-
 const blockData = {
   type: 'banned_objects',
   message0: '%1 %2',
@@ -29,7 +28,7 @@ const blockData = {
     }
   ],
   colour: '#2AC395',
-  output: null,
+  output: Types.Any,
   tooltip: '',
   helpUrl: ''
 };
@@ -42,36 +41,36 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['banned_objects'] = (block) => {
   var dropdown_options = block.getFieldValue('options');
-  var code = ``;
+  var code = '';
   switch (dropdown_options) {
     case 'ID':
-      code = `String(ban.guild.id)`;
+      code = 'String(ban.guild.id)';
       break;
     case 'NAME':
-      code = `ban.guild.name`;
+      code = 'ban.guild.name';
       break;
     case 'USERNAME':
-      code = `ban.user.username`;
+      code = 'ban.user.username';
       break;
     case 'DISCRIMINATOR':
-      code = `ban.user.discriminator`;
+      code = 'ban.user.discriminator';
       break;
     case 'MEMBER_ID':
-      code = `String(ban.user.id)`;
+      code = 'String(ban.user.id)';
       break;
     case 'TAG':
       code = 'ban.user.tag';
       break;
     case 'REASON':
-      code = `ban.reason`;
+      code = 'ban.reason';
       break;
   }
-  //     if (dropdown_options == "ID"){code = `String(ban.guild.id)`}
-  //     if (dropdown_options == "NAME"){code = `String(ban.guild.name)`}
-  //     if (dropdown_options == "USERNAME"){code = `String(ban.user.username)`}
-  //     if (dropdown_options == "DISCRIMINATOR"){code = `String(ban.user.discriminator)`}
-  //     if (dropdown_options == "MEMBER_ID"){code = `String(ban.user.id)`}
-  //     if (dropdown_options == "REASON"){code = `String(ban.reason)`}
+  //     if (dropdown_options == "ID"){code = 'String(ban.guild.id)'}
+  //     if (dropdown_options == "NAME"){code = 'String(ban.guild.name)'}
+  //     if (dropdown_options == "USERNAME"){code = 'String(ban.user.username)'}
+  //     if (dropdown_options == "DISCRIMINATOR"){code = 'String(ban.user.discriminator)'}
+  //     if (dropdown_options == "MEMBER_ID"){code = 'String(ban.user.id)'}
+  //     if (dropdown_options == "REASON"){code = 'String(ban.reason)'}
 
   return [code, javascriptGenerator.ORDER_NONE];
 };

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'get_cpu_uptime';
-
 const blockData = {
   message0: 'Get CPU Usage then %1 %2',
   args0: [
@@ -27,11 +26,8 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-
-  const code = `os.cpuUsage(async function(v){
-	let obj = v * 100;
+  return `os.cpuUsage(async (v)=>{
+  let obj = v * 100;
   ${statementThen}
 });`;
-
-  return code;
 };

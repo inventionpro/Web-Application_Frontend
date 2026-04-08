@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions.js';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_request_advanced_save_downloadable_response_as';
-
 const blockData = {
   message0: 'save downloadable response as %1',
   inputsInline: false,
@@ -11,7 +11,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'FILE',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     }
   ],
   colour: '#4C97FF',
@@ -29,10 +29,9 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const FILE = javascriptGenerator.valueToCode(block, 'FILE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `response.data.pipe(fs.createWriteStream(String(${FILE})))
-`;
-  return code;
+  return `response.data.pipe(fs.createWriteStream(String(${FILE})));`;
 };
+
 registerRestrictions(blockName, [
   {
     type: 'dropdownofparent',

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_request_advanced_response_status';
 const blockData = {
@@ -7,7 +8,7 @@ const blockData = {
   inputsInline: true,
   colour: '#4C97FF',
   args0: [],
-  output: 'Number',
+  output: Types.Number,
   tooltip: "A number with the server's status code. Right-click and check the Help button for HTTP status codes.",
   helpUrl: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status'
 };
@@ -18,7 +19,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`response.status`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['response.status', javascriptGenerator.ORDER_NONE];
 };

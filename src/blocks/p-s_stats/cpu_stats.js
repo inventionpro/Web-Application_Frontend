@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'ps_cpu_stats';
-
 const blockData = {
   message0: '%1',
   args0: [
@@ -15,7 +15,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#a5745b',
   tooltip: '',
   helpUrl: ''
@@ -29,6 +29,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const info = block.getFieldValue('INFO');
-  const code = [`cpu.${info}()`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`cpu.${info}()`, javascriptGenerator.ORDER_NONE];
 };

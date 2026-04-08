@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_create_server';
-
 const blockData = {
   message0: 'create server with name %1 then %2',
   args0: [
     {
       type: 'input_value',
       name: 'create',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -32,8 +32,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock['monaco_create_server'] = (block) => {
   var value_create = javascriptGenerator.valueToCode(block, 'create', javascriptGenerator.ORDER_ATOMIC);
   var statements = javascriptGenerator.statementToCode(block, 'then');
-  var guilder = `s4d.client.guilds.create(String(${value_create})).then(async newServer => {
+  return `s4d.client.guilds.create(String(${value_create})).then(async newServer => {
   ${statements}
-})`;
-  return guilder;
+});`;
 };

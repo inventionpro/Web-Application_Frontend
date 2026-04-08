@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'lime_s4d_embed_send';
-
 const blockData = {
   type: blockName,
   message0: 'Call Embed With name %1 and text %2',
@@ -14,7 +14,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'TEXT',
-      check: 'String'
+      check: Types.String
     }
   ],
   inputsInline: true,
@@ -38,6 +38,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   name = name.join('_');
   name = name.toLowerCase();
   name = name.replace("'", '').replace("'", '');
-  let code = `s4dmessage.channel.send({content:${text}, embeds : [${name}]})`;
-  return code;
+  return `s4dmessage.channel.send({
+  content: ${text},
+  embeds: [${name}]
+});`;
 };

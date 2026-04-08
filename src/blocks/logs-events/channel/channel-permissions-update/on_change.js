@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'on_channelPermissionsChange';
-
 const blockData = {
   message0: 'When channel permissions is changed %1 %2',
   colour: '#F5AB1A',
@@ -26,8 +25,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   // guildChannelPermissionsUpdate is a discord-logs event
-  const code = `s4d.client.on('guildChannelPermissionsUpdate', async (channel, oldPermissions, newPermissions) => {
+  return `s4d.client.on('guildChannelPermissionsUpdate', async (channel, oldPermissions, newPermissions) => {
   ${statements}
 });`;
-  return code;
 };

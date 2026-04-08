@@ -1,39 +1,39 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 'filled_bar';
-
 const blockData = {
   message0: 'Create Filled Progess Bar Total %1 Current %2 Size %3 Line %4 Slider %5',
   args0: [
     {
       type: 'input_value',
       name: 'TOTAL',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'CURRENT',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'SIZE',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'LINE',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_value',
       name: 'SLIDER',
-      check: ['String', 'Number']
+      check: T(Types.String, Types.Number)
     }
   ],
   colour: '#5BA55B',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };

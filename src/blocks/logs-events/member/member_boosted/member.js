@@ -1,11 +1,11 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'member';
-
 const blockData = {
   message0: 'member',
-  output: 'Member',
+  output: Types.Member,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['member', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['member', javascriptGenerator.ORDER_NONE];
 };

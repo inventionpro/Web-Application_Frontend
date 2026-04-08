@@ -1,23 +1,23 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 's4d_starts_with';
-
 const blockData = {
   message0: '%{BKY_STARTS_WITH}',
   args0: [
     {
       type: 'input_value',
       name: 'STRING',
-      check: ['String']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'SUBSTRING',
-      check: ['String']
+      check: Types.String
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#5ba58b',
   tooltip: '',
   helpUrl: ''
@@ -32,6 +32,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const string = javascriptGenerator.valueToCode(block, 'STRING', javascriptGenerator.ORDER_ATOMIC);
   const substring = javascriptGenerator.valueToCode(block, 'SUBSTRING', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`(${string} || '').startsWith(${substring} || '')`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`(${string} || '').startsWith(${substring} || '')`, javascriptGenerator.ORDER_NONE];
 };

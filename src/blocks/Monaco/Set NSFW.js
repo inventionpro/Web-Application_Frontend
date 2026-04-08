@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_set_channel_nsfw';
-
 const blockData = {
   message0: '%1 NSFW tag on channel %2 with reason %3',
   inputsInline: true,
@@ -18,12 +18,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'channel',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'reason',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#0c97f0',
@@ -46,5 +46,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   // the dropdown options are NAMED with true or false so that you dont need to do checks on them
   if (String(reason) != null && String(reason) != '') reason = ', ' + reason;
   else reason = '';
-  return `${channel}.setNSFW(${type}${reason})\n`;
+  return `${channel}.setNSFW(${type}${reason});`;
 };

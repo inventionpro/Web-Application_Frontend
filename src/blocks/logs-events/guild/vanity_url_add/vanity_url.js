@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'vanity-url';
-
 const blockData = {
   message0: 'vanity url',
   args0: [],
-  output: 'String',
+  output: Types.String,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -18,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = ['vanityURL', javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['vanityURL', javascriptGenerator.ORDER_NONE];
 };

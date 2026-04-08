@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 's4d_wait_seconds';
-
 const blockData = {
   message0: '%{BKY_WAIT_SECONDS}',
   args0: [
     {
       type: 'input_value',
       name: 'TIME',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
   colour: '#D14081',
@@ -27,5 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const time = javascriptGenerator.valueToCode(block, 'TIME', javascriptGenerator.ORDER_ATOMIC);
-  return `await delay(Number(${time})*1000);\n`;
+  return `await delay(Number(${time})*1000);`;
 };

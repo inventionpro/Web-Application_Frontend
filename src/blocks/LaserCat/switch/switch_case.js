@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../../types.js';
 
 const blockName = 's4d_lasercat_switch_case';
-
 const blockData = {
   message0: 'case %1 %2 %3 ',
   args0: [
     {
       type: 'input_value',
       name: 'case',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     },
     {
       type: 'input_dummy'
@@ -35,9 +35,6 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const casee = javascriptGenerator.valueToCode(block, 'case', javascriptGenerator.ORDER_ATOMIC);
   const blocks = javascriptGenerator.statementToCode(block, 'blocks');
-
-  return `
-    case ${casee}:
-    ${blocks}
-    `;
+  return `case ${casee}:
+  ${blocks}`;
 };

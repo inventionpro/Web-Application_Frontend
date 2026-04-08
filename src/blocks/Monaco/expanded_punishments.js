@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_expanded_punishments';
-
 const blockData = {
   message0: '%1 member %2 from server %3 with reason %4',
   inputsInline: true,
@@ -18,17 +18,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'member',
-      check: 'Member'
+      check: Types.Member
     },
     {
       type: 'input_value',
       name: 'server',
-      check: 'Server'
+      check: Types.Server
     },
     {
       type: 'input_value',
       name: 'reason',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#0c97f0',
@@ -49,6 +49,5 @@ javascriptGenerator.forBlock['monaco_expanded_punishments'] = (block) => {
   var value_member = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC);
   var value_server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
   var value_reason = javascriptGenerator.valueToCode(block, 'reason', javascriptGenerator.ORDER_ATOMIC);
-  var code = `${value_server}.members.${dropdown_punishments}(${value_member}, { reason: String(${value_reason}) })\n`;
-  return code;
+  return `${value_server}.members.${dropdown_punishments}(${value_member}, { reason: String(${value_reason}) });`;
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'mongo_connect';
-
 const blockData = {
   type: 'block_type',
   message0: 'Connect to MongoDB %1',
@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'URL',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#F46580',
@@ -26,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
-  const code = `const mdb = new DB(${value});\n`;
-  return code;
+  return `const mdb = new DB(${value});`;
 };

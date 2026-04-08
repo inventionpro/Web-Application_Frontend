@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'slash_ticket_setup';
-
 const blockData = {
   message0: '[Slash] Set ticket channel to %1',
   args0: [
     {
       type: 'input_value',
       name: 'channel',
-      check: 'Channel'
+      check: Types.Channel
     }
   ],
   colour: '#D14081',
@@ -25,8 +25,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
+javascriptGenerator.forBlock[blockName] = () => {
   const channel = javascriptGenerator.valueToCode('channel', javascriptGenerator.ORDER_ATOMIC);
-  const code = `ticket.setup(interaction, interaction.options.getChannel(${channel}).id);`;
-  return code;
+  return `ticket.setup(interaction, interaction.options.getChannel(${channel}).id);`;
 };

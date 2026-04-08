@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 's4d_eval';
-
 const blockData = {
   message0: 'run code %1',
   args0: [
     {
       type: 'input_value',
       name: 'EVAL',
-      check: ['Number', 'String']
+      check: Types.String
     }
   ],
   colour: '#D14081',
@@ -26,6 +26,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const code = javascriptGenerator.valueToCode(block, 'EVAL', javascriptGenerator.ORDER_ATOMIC);
-  return `eval(${code});
-    `;
+  return `eval(${code});`;
 };

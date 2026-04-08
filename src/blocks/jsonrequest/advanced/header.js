@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_request_advanced_header';
-
 const blockData = {
   message0: 'header %1 with value %2',
   inputsInline: true,
@@ -10,12 +10,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'VALUE',
-      check: null
+      check: Types.Any
     }
   ],
   colour: '#4C97FF',
@@ -33,14 +33,8 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
-  if (key.charAt(0) == '(') {
-    key.replace('(', '');
-  }
-  if (key.charAt(key.length - 1) == ')') {
-    key = key.substring(0, key.length - 1);
-  }
+  if (key.charAt(0) == '(') key.replace('(', '');
+  if (key.charAt(key.length - 1) == ')') key = key.substring(0, key.length - 1);
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${key}: ${value},
-    `;
-  return code;
+  return `${key}: ${value},`;
 };

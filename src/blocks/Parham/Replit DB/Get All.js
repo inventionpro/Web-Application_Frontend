@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'parham_replitdb_getall';
-
 const blockData = {
   message0: 'Get all data from Replit DB %1 then %2',
   args0: [
@@ -29,6 +28,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var statements_then = javascriptGenerator.statementToCode(block, 'then');
-  var code = `S4D_APP_Replit_DB.list().then(async (S4D_APP_Replit_DB_Data) => {${statements_then}});;\n`;
-  return code;
+  return `S4D_APP_Replit_DB.list().then(async (S4D_APP_Replit_DB_Data) => {
+${statements_then}
+});`;
 };

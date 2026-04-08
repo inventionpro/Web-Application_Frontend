@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_invite_with_code';
-
 const blockData = {
   type: 'monaco_invite_with_code',
   message0: 'get invite with code %1 in server %2',
@@ -10,12 +10,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'invite',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'server',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#4C97FF',
@@ -34,6 +34,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock['monaco_invite_with_code'] = (block) => {
   var value_invite = javascriptGenerator.valueToCode(block, 'invite', javascriptGenerator.ORDER_ATOMIC);
   var value_server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
-  var code = `${value_server}.invites.fetch(String(${value_invite}))`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`${value_server}.invites.fetch(String(${value_invite}))`, javascriptGenerator.ORDER_NONE];
 };

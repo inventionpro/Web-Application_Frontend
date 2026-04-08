@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_invites_channels';
-
 const blockData = {
   type: 'monaco_invites_channels',
   message0: 'all invites of channel %1 in server %2',
@@ -10,12 +10,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'channel',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'server',
-      check: 'Server'
+      check: Types.Server
     }
   ],
   colour: '#4C97FF',
@@ -34,6 +34,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock['invs_channel'] = (block) => {
   var value_channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
   var value_server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
-  var code = `${value_server}.invites.fetch({ channelId: ${value_channel}.id })`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`${value_server}.invites.fetch({ channelId: ${value_channel}.id })`, javascriptGenerator.ORDER_NONE];
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_roblox_buy';
-
 const blockData = {
   message0: '%1 Buy asset with ID %2',
   inputsInline: true,
@@ -18,7 +18,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'id',
-      check: 'Number'
+      check: Types.Number
     }
   ],
   colour: 10,
@@ -36,6 +36,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['monaco_roblox_buy'] = (block) => {
   var value_id = javascriptGenerator.valueToCode(block, 'id', javascriptGenerator.ORDER_ATOMIC);
-  var code = `S4D_APP_NOBLOX.buy(Number(${value_id}))\n`;
-  return code;
+  return `S4D_APP_NOBLOX.buy(Number(${value_id}));`;
 };

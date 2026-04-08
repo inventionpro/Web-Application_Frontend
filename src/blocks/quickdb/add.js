@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'qdb_add_data';
-
 const blockData = {
   message0: 'Add %1 to %2 in the SQLite db',
   args0: [
     {
       type: 'input_value',
       name: 'COUNT',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: Types.String
     }
   ],
   nextStatement: null,

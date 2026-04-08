@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'close_ticket';
-
 const blockData = {
   message0: 'Close the ticket (message channel)',
   args0: [],
@@ -19,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `ticket.close(s4dmessage.channel);`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `ticket.close(s4dmessage.channel);`;
 };

@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'ran_red_post';
-
 const blockData = {
   message0: 'Get random reddit post from r/%1 then %2 %3',
   args0: [
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: ['Number', 'String']
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -33,9 +33,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
-  return `
-S4D_APP_REDDIT_musakui(${message}).then(async (result) => {
-   ${statementThen}
-}).catch(error => console.log(error));
-`;
+  return `S4D_APP_REDDIT_musakui(${message}).then(async (result) => {
+  ${statementThen}
+}).catch(error => console.log(error));`;
 };

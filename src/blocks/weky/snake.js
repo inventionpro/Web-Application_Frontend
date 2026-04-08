@@ -1,52 +1,50 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'snake_js';
-
-const NAME = 'Start Snake game with embed title  %1 Embed footer %2 With timestamp %3 Empty space emoji %4 Snake body emoji %5 With food emoji %6 Cancel button text %7 Embed Color %8';
-
 const blockData = {
-  message0: `${NAME}`,
+  message0: 'Start Snake game with embed title  %1 Embed footer %2 With timestamp %3 Empty space emoji %4 Snake body emoji %5 With food emoji %6 Cancel button text %7 Embed Color %8',
   args0: [
     {
       type: 'input_value',
       name: 'TITLE',
-      Check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'FOOTER',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'TIMESTAMP',
-      check: 'Boolean'
+      check: Types.Boolean
     },
     {
       type: 'input_value',
       name: 'EMPTY',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'BODY',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'FOOD',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'CANCEL',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'COLOR',
-      check: 'Colour'
+      check: Types.Color
     }
   ],
   colour: '#48a4f0',
@@ -72,27 +70,25 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const food = javascriptGenerator.valueToCode(block, 'FOOD', javascriptGenerator.ORDER_ATOMIC);
   const cancel = javascriptGenerator.valueToCode(block, 'CANCEL', javascriptGenerator.ORDER_ATOMIC);
   const color = javascriptGenerator.valueToCode(block, 'COLOR', javascriptGenerator.ORDER_ATOMIC);
-  const code = `
-    await Snake({
-        message: s4dmessage,
-        embed: {
-            title: ${title},
-            description: 'GG, you scored **{{score}}** points!',
-            color: ${color},
-            footer: ${footer},
-            timestamp: ${timestamp}
-        },
-        emojis: {
-            empty: ${empty},
-            snakeBody: ${body},
-            food: ${food},
-            up: '⬆️',
-            right: '⬅️',
-            down: '⬇️',
-            left: '➡️',
-        },
-        othersMessage: 'Only <@{{author}}> can use the buttons!',
-        buttonText: ${cancel}
-    });`;
-  return code;
+  return `await Snake({
+  message: s4dmessage,
+  embed: {
+    title: ${title},
+    description: 'GG, you scored **{{score}}** points!',
+    color: ${color},
+    footer: ${footer},
+    timestamp: ${timestamp}
+  },
+  emojis: {
+    empty: ${empty},
+    snakeBody: ${body},
+    food: ${food},
+    up: '⬆️',
+    right: '⬅️',
+    down: '⬇️',
+    left: '➡️'
+  },
+  othersMessage: 'Only <@{{author}}> can use the buttons!',
+  buttonText: ${cancel}
+});`;
 };

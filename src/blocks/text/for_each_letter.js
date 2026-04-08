@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
+import { Types } from '../types.js';
+
 Blockly.Blocks['jg_text_for_each_letter_in_text_do'] = {
   init: function () {
     this.jsonInit({
@@ -13,7 +15,7 @@ Blockly.Blocks['jg_text_for_each_letter_in_text_do'] = {
         {
           type: 'input_value',
           name: 'TEXT',
-          check: ['String', 'Var', 'var', 'Env']
+          check: Types.String
         },
         {
           type: 'input_dummy'
@@ -26,22 +28,22 @@ Blockly.Blocks['jg_text_for_each_letter_in_text_do'] = {
     });
   }
 };
+
 javascriptGenerator.forBlock['jg_text_for_each_letter_in_text_do'] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `[...String(${text})].forEach(async (letter_inText) => {
+  return `[...String(${text})].forEach(async (letter_inText) => {
   ${statements}
-});
-`;
-  return code;
+});`;
 };
+
 Blockly.Blocks['jg_text_for_each_letter_in_text_do_letter'] = {
   init: function () {
     this.jsonInit({
       message0: 'letter',
       args0: [],
       colour: '%{BKY_TEXTS_HUE}',
-      output: 'String',
+      output: Types.String,
       tooltip: 'The letter the loop is currently looking at.',
       helpUrl: ''
     });
@@ -49,8 +51,9 @@ Blockly.Blocks['jg_text_for_each_letter_in_text_do_letter'] = {
 };
 
 javascriptGenerator.forBlock['jg_text_for_each_letter_in_text_do_letter'] = function () {
-  return [`letter_inText`, javascriptGenerator.ORDER_NONE];
+  return ['letter_inText', javascriptGenerator.ORDER_NONE];
 };
+
 registerRestrictions('jg_text_for_each_letter_in_text_do_letter', [
   {
     type: 'hasparent',

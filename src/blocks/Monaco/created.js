@@ -1,13 +1,13 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_created_guild';
-
 const blockData = {
   type: 'monaco_created_guild',
   message0: 'created server',
   colour: '#4C97FF',
-  output: 'Server',
+  output: Types.Server,
   inputsInline: true,
   tooltip: 'Get the created guild.',
   helpUrl: ''
@@ -20,6 +20,5 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock['monaco_created_guild'] = function () {
-  var code = `newServer`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return ['newServer', javascriptGenerator.ORDER_NONE];
 };

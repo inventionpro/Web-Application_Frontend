@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'on_roleremove';
-
 const blockData = {
   message0: 'When roles is removed from member %1 %2',
   colour: '#F5AB1A',
@@ -26,8 +25,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   // guildMemberRoleRemove is a discord-logs event
-  const code = `s4d.client.on('guildMemberRoleRemove', async(member, role) => {
+  return `s4d.client.on('guildMemberRoleRemove', async(member, role) => {
   ${statements}
 });`;
-  return code;
 };

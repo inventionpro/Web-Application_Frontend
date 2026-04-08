@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'url-update';
-
 const blockData = {
   message0: '%1 vanity url',
   args0: [
@@ -15,7 +15,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -31,6 +31,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const info2 = block.getFieldValue('INFO');
   let info1 = info2.replace("'", '');
   let info = info1.replace("'", '');
-  const code = [`${info}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [info, javascriptGenerator.ORDER_NONE];
 };

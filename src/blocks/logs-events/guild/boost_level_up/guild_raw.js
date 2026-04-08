@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'event-guild';
-
 const blockData = {
   message0: '%1 of guild',
   args0: [
@@ -15,7 +15,7 @@ const blockData = {
       ]
     }
   ],
-  output: 'String',
+  output: Types.String,
   colour: '#5BA58C',
   tooltip: '',
   helpUrl: ''
@@ -30,10 +30,8 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const searchType = block.getFieldValue('SEARCH_TYPE');
   if (searchType === 'ID') {
-    const code = ['guild.id', javascriptGenerator.ORDER_NONE];
-    return code;
+    return ['guild.id', javascriptGenerator.ORDER_NONE];
   } else if (searchType === 'NAME') {
-    const code = ['guild.name', javascriptGenerator.ORDER_NONE];
-    return code;
+    return ['guild.name', javascriptGenerator.ORDER_NONE];
   }
 };

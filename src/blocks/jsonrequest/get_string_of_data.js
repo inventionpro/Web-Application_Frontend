@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 's4d_get_string_of_data';
-
 const blockData = {
   message0: '%{BKY_GET_STRING_OF_DATA}',
   colour: '#40BF4A',
@@ -10,11 +10,11 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VALUE',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
   tooltip: null,
-  output: 'String',
+  output: Types.String,
   helpUrl: ''
 };
 
@@ -27,6 +27,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
   const replacedValue = value.replace("'", '').replace("'", '');
-  const code = [`data.${replacedValue}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`data.${replacedValue}`, javascriptGenerator.ORDER_NONE];
 };

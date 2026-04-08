@@ -1,24 +1,24 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
+import { Types } from '../types.js';
 
 const blockName = 's4d_includes';
-
 const blockData = {
   message0: '%{BKY_INCLUDES}',
   args0: [
     {
       type: 'input_value',
       name: 'TEXT',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'INCLUDES',
-      check: 'String'
+      check: Types.String
     }
   ],
-  output: 'Boolean',
+  output: Types.Boolean,
   colour: '#5ba58b',
   tooltip: '',
   helpUrl: ''
@@ -33,9 +33,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const text = javascriptGenerator.valueToCode(block, 'TEXT', javascriptGenerator.ORDER_ATOMIC);
   const includes = javascriptGenerator.valueToCode(block, 'INCLUDES', javascriptGenerator.ORDER_ATOMIC);
-  const code = [`String(${text}).includes(String(${includes}))`, javascriptGenerator.ORDER_NONE];
-
-  return code;
+  return [`String(${text}).includes(String(${includes}))`, javascriptGenerator.ORDER_NONE];
 };
 
 registerRestrictions(blockName, [

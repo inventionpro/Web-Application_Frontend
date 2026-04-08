@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_request_advanced_response_headers';
 const blockData = {
@@ -7,7 +8,7 @@ const blockData = {
   inputsInline: true,
   colour: '#4C97FF',
   args0: [],
-  output: ['Object', 'JSON'],
+  output: Types.Object,
   tooltip: "A JSON containing the server's headers. Can be saved into a file if stringified.",
   helpUrl: ''
 };
@@ -18,7 +19,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`response.headers`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['response.headers', javascriptGenerator.ORDER_NONE];
 };

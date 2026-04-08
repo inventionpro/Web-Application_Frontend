@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_lasercat_switch_break';
-
 const blockData = {
   message0: 'end case',
   args0: [],
@@ -18,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return `break;
-    `;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `break;`;
 };

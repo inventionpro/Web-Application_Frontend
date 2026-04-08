@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'lime_kick_event';
-
 const blockData = {
   type: 'lime_kick_event',
   message0: 'When a member is kicked/leaving from the server %1 %2',
@@ -28,7 +27,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var statements_code = javascriptGenerator.statementToCode(block, 'code');
-
-  var code = `s4d.client.on(Discord.Events.GuildMemberRemove, async (kickmember) => {\n ${statements_code} \n });\n`;
-  return code;
+  return `s4d.client.on(Discord.Events.GuildMemberRemove, async (kickmember) => {
+  ${statements_code}
+});`;
 };

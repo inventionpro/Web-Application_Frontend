@@ -1,10 +1,9 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
-
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'unbanned_objects';
-
 const blockData = {
   type: 'unbanned_objects',
   message0: "Get the unbanned member's %1",
@@ -23,7 +22,7 @@ const blockData = {
     }
   ],
   colour: '#2AC395',
-  output: null,
+  output: Types.Any,
   tooltip: '',
   helpUrl: ''
 };
@@ -36,33 +35,32 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['unbanned_objects'] = (block) => {
   var dropdown_options = block.getFieldValue('options');
-  var code = ``;
-
+  var code = '';
   switch (dropdown_options) {
     case 'ID':
-      code = `String(ban.guild.id)`;
+      code = 'String(ban.guild.id)';
       break;
     case 'NAME':
-      code = `ban.guild.name`;
+      code = 'ban.guild.name';
       break;
     case 'USERNAME':
-      code = `ban.user.username`;
+      code = 'ban.user.username';
       break;
     case 'DISCRIMINATOR':
-      code = `ban.user.discriminator`;
+      code = 'ban.user.discriminator';
       break;
     case 'MEMBER_ID':
-      code = `String(ban.user.id)`;
+      code = 'String(ban.user.id)';
       break;
     case 'TAG':
       code = 'ban.user.tag';
       break;
   }
-  //    if (dropdown_options == "ID") { code = `String(unban.guild.id)` }
-  //    if (dropdown_options == "NAME") { code = `String(unban.guild.name)` }
-  //    if (dropdown_options == "USERNAME") { code = `String(unban.user.username)` }
-  //   if (dropdown_options == "DISCRIMINATOR") { code = `String(unban.user.discriminator)` }
-  //   if (dropdown_options == "MEMBER_ID") { code = `String(unban.user.id)` }
+  //    if (dropdown_options == "ID") { code = 'String(unban.guild.id)' }
+  //    if (dropdown_options == "NAME") { code = 'String(unban.guild.name)' }
+  //    if (dropdown_options == "USERNAME") { code = 'String(unban.user.username)' }
+  //   if (dropdown_options == "DISCRIMINATOR") { code = 'String(unban.user.discriminator)' }
+  //   if (dropdown_options == "MEMBER_ID") { code = 'String(unban.user.id)' }
 
   return [code, javascriptGenerator.ORDER_NONE];
 };

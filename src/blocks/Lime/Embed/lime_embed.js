@@ -1,10 +1,11 @@
 import BaseBlockly from 'blockly';
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const BORDER_FIELDS = ['TITLE_LIME', 'URL_EMBED', 'DESCRIPTION_LIME', 'AUTHORPFP', 'THUMBNAIL_LIME', 'FIELD_LIME', 'IMAGE_LIME', 'COLOR_LIME', 'TIMESTAMP', 'FOOTER_LIME', 'SETAUTHOR'];
 
-const BORDER_TYPES = ['String', 'String', 'String', 'String', 'String', 'Field', 'String', 'Colour', '', 'String', 'String'];
+const BORDER_TYPES = [Types.String, Types.String, Types.String, Types.String, Types.String, 'Field', Types.String, Types.Color, '', Types.String, Types.String];
 
 const s4d_message_embed_lime = {
   message0: 'Set Embed',
@@ -133,6 +134,5 @@ javascriptGenerator.forBlock['s4d_message_embed_lime'] = (block) => {
       author = `\n.setAuthor(String(${javascriptGenerator.valueToCode(block, 'SETAUTHOR', javascriptGenerator.ORDER_ATOMIC)}),String(${javascriptGenerator.valueToCode(block, 'AUTHORPFP', javascriptGenerator.ORDER_ATOMIC)}))`;
     }
   }
-  let code = `${title}${color}${image}${description}${footer}${thumbnail}${field}${timestamp}${author}${url}\n`;
-  return code;
+  return `${title}${color}${image}${description}${footer}${thumbnail}${field}${timestamp}${author}${url}\n`;
 };

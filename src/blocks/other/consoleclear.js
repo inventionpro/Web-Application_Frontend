@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_clearconsole';
-
 const blockData = {
   message0: 'clear console',
   args0: [],
@@ -19,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return `console.clear()
-    `;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `console.clear();`;
 };

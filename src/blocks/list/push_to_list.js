@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'push_to_list';
-
 const blockData = {
   message0: 'in list %1 push %2',
   args0: [
     {
       type: 'input_value',
       name: 'LIST',
-      check: 'Array'
+      check: Types.Array
     },
     {
       type: 'input_value',
       name: 'PUSH',
-      check: ['Number', 'String', 'Member', 'Channel', 'Array', 'Boolean', 'Role', 'Server']
+      check: Types.Any
     }
   ],
   inputsInline: true,
@@ -34,6 +34,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const list = javascriptGenerator.valueToCode(block, 'LIST', javascriptGenerator.ORDER_ATOMIC);
   const push = javascriptGenerator.valueToCode(block, 'PUSH', javascriptGenerator.ORDER_ATOMIC);
-  const code = `${list}.push(${push});\n`;
-  return code;
+  return `${list}.push(${push});`;
 };

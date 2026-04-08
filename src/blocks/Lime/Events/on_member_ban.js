@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'banned_event';
-
 const blockData = {
   type: 'banned_event',
   message0: 'When a member is banned %1 %2',
@@ -28,7 +27,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['banned_event'] = (block) => {
   var statements_code = javascriptGenerator.statementToCode(block, 'code');
-
-  var code = `s4d.client.on(Discord.Events.GuildBanAdd, async (ban) => {\n ${statements_code} \n });\n`;
-  return code;
+  return `s4d.client.on(Discord.Events.GuildBanAdd, async (ban) => {
+  ${statements_code}
+});`;
 };

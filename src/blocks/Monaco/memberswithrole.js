@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_members_with_role';
-
 const blockData = {
   type: 'monaco_members_with_role',
   message0: 'get all members with role %1',
@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'role',
-      check: 'Role'
+      check: Types.Role
     }
   ],
   colour: '#4C97FF',
@@ -28,6 +28,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['monaco_members_with_role'] = (block) => {
   var value_role = javascriptGenerator.valueToCode(block, 'role', javascriptGenerator.ORDER_ATOMIC);
-  var code = `${value_role}.members`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`${value_role}.members`, javascriptGenerator.ORDER_NONE];
 };

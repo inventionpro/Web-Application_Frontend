@@ -1,12 +1,12 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'qdb_all';
-
 const blockData = {
   message0: 'Get all data from SQLite DB',
   args0: [],
-  output: 'JSON',
+  output: Types.Object,
   colour: '#5ba58b',
   tooltip: 'Gets all data from database\nOutputs a JSON map',
   helpUrl: ''
@@ -18,6 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  return ['await qdb.all()\n', javascriptGenerator.ORDER_ATOMIC];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['await qdb.all()', javascriptGenerator.ORDER_ATOMIC];
 };

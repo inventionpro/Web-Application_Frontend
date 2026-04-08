@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'ticket_setup';
-
 const blockData = {
   message0: 'Set ticket channel (mentioned channel)',
   args0: [],
@@ -19,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = `ticket.setup(s4dmessage, s4dmessage.mentions.channels.first().id);`;
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return `ticket.setup(s4dmessage, s4dmessage.mentions.channels.first().id);`;
 };

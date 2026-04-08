@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'about_user';
-
 const blockData = {
   message0: '%1',
   args0: [
@@ -19,7 +19,7 @@ const blockData = {
     }
   ],
   colour: '#5ba58b',
-  output: 'String',
+  output: Types.String,
   tooltip: '',
   helpUrl: ''
 };
@@ -32,7 +32,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const stats = block.getFieldValue('INFO');
-  const code = [`info.data.${stats}`, javascriptGenerator.ORDER_NONE];
-
-  return code;
+  return [`info.data.${stats}`, javascriptGenerator.ORDER_NONE];
 };

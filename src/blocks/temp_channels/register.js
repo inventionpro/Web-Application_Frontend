@@ -1,33 +1,31 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 's4d_temp_register';
-
-const name = 'Register a voice channel with the id %1 Delete if empty %2 Max member count %3 Temp channel name %4';
-
 const blockData = {
   type: 'block_type',
-  message0: `${name}`,
+  message0: 'Register a voice channel with the id %1 Delete if empty %2 Max member count %3 Temp channel name %4',
   args0: [
     {
       type: 'input_value',
       name: 'CHANNELID',
-      Check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'EMPTY',
-      check: 'Boolean'
+      check: Types.Boolean
     },
     {
       type: 'input_value',
       name: 'MAX',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'NAME',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#48a4f0',
@@ -49,18 +47,15 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const empty = javascriptGenerator.valueToCode(block, 'EMPTY', javascriptGenerator.ORDER_ATOMIC);
   const max = javascriptGenerator.valueToCode(block, 'MAX', javascriptGenerator.ORDER_ATOMIC);
   const name = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-  const code = `
-    const stuffkksadicnsake = {
-      childAutoDeleteIfEmpty: ${empty},
-      childMaxUsers: ${max},
-      childBitrate: 64000,
-      childFormat: (s4dmember, count) => ${name}
-    }
-    tempChannels.registerChannel(${channel_id}, stuffkksadicnsake);
-    db.push("temp-channels", {
-      channelID: message.member.voice.channel.id,
-      options: stuffkksadicnsake
-    });
-    `;
-  return code;
+  return `const stuffkksadicnsake = {
+  childAutoDeleteIfEmpty: ${empty},
+  childMaxUsers: ${max},
+  childBitrate: 64000,
+  childFormat: (s4dmember, count) => ${name}
+};
+tempChannels.registerChannel(${channel_id}, stuffkksadicnsake);
+db.push("temp-channels", {
+  channelID: message.member.voice.channel.id,
+  options: stuffkksadicnsake
+});`;
 };

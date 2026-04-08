@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'create_qr_then';
-
 const blockData = {
   message0: 'Create a text QR code with the URL %1 then %2 %3',
   args0: [
     {
       type: 'input_value',
       name: 'URL',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -36,9 +36,8 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'THEN');
   const URL = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
-  const code = `QRCode.toString(${URL}, { type: "image" }, async (err, QR) => {
-        if(err) return console.warn('There was an error while creating the QR code')
-        ${statements}
-    })`;
-  return code;
+  return `QRCode.toString(${URL}, { type: "image" }, async (err, QR) => {
+  if (err) return console.warn('There was an error while creating the QR code')
+  ${statements}
+});`;
 };

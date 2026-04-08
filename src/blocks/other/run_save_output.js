@@ -3,7 +3,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../restrictions';
 
 const blockName = 's4d_run_save_output';
-
 const blockData = {
   message0: '%{BKY_RUN_SAVE_OUTPUT}',
   args0: [

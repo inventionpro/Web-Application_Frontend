@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_request_advanced_get_response_data';
 const blockData = {
@@ -10,10 +11,10 @@ const blockData = {
     {
       type: 'input_value',
       name: 'VALUE',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     }
   ],
-  output: null,
+  output: Types.Any,
   tooltip: 'Get a certain thing from the response data.',
   helpUrl: ''
 };
@@ -26,6 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const value = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC).replaceAll("'", '').replaceAll('"', '');
-  const code = [`response.data.${value}`, javascriptGenerator.ORDER_NONE];
-  return code;
+  return [`response.data.${value}`, javascriptGenerator.ORDER_NONE];
 };

@@ -2,9 +2,9 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import '@blockly/field-grid-dropdown';
 import { registerRestrictions } from '../../../restrictions';
+import { Types } from '../../types.js';
 
 const blockName = 'lime_scheduled_event_attributes';
-
 const blockData = {
   type: 'lime_scheduled_event_attributes',
   message0: '%1 %2',
@@ -45,7 +45,7 @@ const blockData = {
     }
   ],
   inputsInline: true,
-  output: null,
+  output: Types.Any,
   colour: '#AF88E2',
   tooltip: 'Get the scheduled event attributes with this block!',
   helpUrl: ''
@@ -61,117 +61,45 @@ Blockly.Blocks[blockName] = {
     switch (dropdown) {
       case 'CHANNEL':
         this.setColour('#a55b80');
-        this.setOutput(true, 'Channel');
+        this.setOutput(true, Types.Channel);
         break;
 
       case 'CHANNEL_ID':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
       case 'CREATED_AT':
+      case 'CREATOR_ID':
+      case 'DESCRIPTION':
+      case 'ENTITY_ID':
+      case 'METADATA':
+      case 'ENTITY_TYPE':
+      case 'GUILD_ID':
+      case 'ID':
+      case 'IMAGE':
+      case 'PRIVACY':
+      case 'END':
+      case 'START':
+      case 'STATUS':
+      case 'URL':
+      case 'NAME':
         this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.String);
         break;
 
       case 'CREATED_TIMESTAMP':
+      case 'END_TIMESTAMP':
+      case 'START_TIMESTAMP':
+      case 'USER_COUNT':
         this.setColour('#AF88E2');
-        this.setOutput(true, 'Number');
+        this.setOutput(true, Types.Number);
         break;
 
       case 'CREATOR':
         this.setColour('#a55b80');
-        this.setOutput(true, 'Member');
-        break;
-
-      case 'CREATOR_ID':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'DESCRIPTION':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'ENTITY_ID':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'METADATA':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'ENTITY_TYPE':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.Member);
         break;
 
       case 'GUILD':
         this.setColour('#AF88E2');
-        this.setOutput(true, 'Server');
-        break;
-
-      case 'GUILD_ID':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'ID':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'IMAGE':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'PRIVACY':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'END':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'END_TIMESTAMP':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'Number');
-        break;
-
-      case 'START':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'START_TIMESTAMP':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'Number');
-        break;
-
-      case 'STATUS':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'URL':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
-        break;
-
-      case 'USER_COUNT':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'Number');
-        break;
-
-      case 'NAME':
-        this.setColour('#AF88E2');
-        this.setOutput(true, 'String');
+        this.setOutput(true, Types.Server);
         break;
     }
   }
@@ -179,101 +107,78 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock['lime_scheduled_event_attributes'] = (block) => {
   var dropdown = block.getFieldValue('dropdown');
-  var code = ``;
-
+  var code = '';
   switch (dropdown) {
     case 'CHANNEL':
       code = 'scheduledEvent.channel';
       break;
-
     case 'CHANNEL_ID':
       code = 'scheduledEvent.channelID';
       break;
-
     case 'CREATED_AT':
       code = 'scheduledEvent.createdAt';
       break;
-
     case 'CREATED_TIMESTAMP':
       code = 'scheduledEvent.createdTimestamp';
       break;
-
     case 'CREATOR':
       code = 'scheduledEvent.creator';
       break;
-
     case 'CREATOR_ID':
       code = 'scheduledEvent.creatorId';
       break;
-
     case 'DESCRIPTION':
       code = 'scheduledEvent.description';
       break;
-
     case 'ENTITY_ID':
       code = 'scheduledEvent.entityId';
       break;
-
     case 'METADATA':
       code = 'scheduledEvent.entityMetadata';
       break;
-
     case 'ENTITY_TYPE':
       code = 'scheduledEvent.entityType';
       break;
-
     case 'GUILD':
       code = 'scheduledEvent.guild';
       break;
-
     case 'GUILD_ID':
       code = 'scheduledEvent.guildID';
       break;
-
     case 'ID':
       code = 'scheduledEvent.id';
       break;
-
     case 'IMAGE':
       code = 'scheduledEvent.image';
       break;
-
     case 'PRIVACY':
       code = 'scheduledEvent.privacyLevel';
       break;
-
     case 'END':
       code = 'scheduledEvent.scheduledEndAt';
       break;
-
     case 'END_TIMESTAMP':
       code = 'scheduledEvent.scheduledEndTimestamp';
       break;
-
     case 'START':
       code = 'scheduledEvent.scheduledStartAt';
       break;
-
     case 'START_TIMESTAMP':
       code = 'scheduledEvent.scheduledStartTimestamp';
       break;
-
     case 'STATUS':
       code = 'scheduledEvent.status';
       break;
-
     case 'URL':
       code = 'scheduledEvent.url';
       break;
-
     case 'USER_COUNT':
       code = 'scheduledEvent.userCount';
       break;
-
     case 'NAME':
       code = 'scheduledEvent.name';
+      break;
   }
-
   return [code, javascriptGenerator.ORDER_NONE];
 };
 

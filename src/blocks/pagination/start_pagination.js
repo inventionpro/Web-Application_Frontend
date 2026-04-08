@@ -1,35 +1,35 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 'start_pagination';
-
 const blockData = {
   message0: 'start pagination. message %1 emoji1 %2 emoji2 %3 timeout %4 embeds %5',
   args0: [
     {
       type: 'input_value',
       name: 'MESSAGE',
-      check: 'Message'
+      check: Types.Message
     },
     {
       type: 'input_value',
       name: 'EMOJI1',
-      check: ['Number', 'String']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'EMOJI2',
-      check: ['Number', 'String']
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'TIMEOUT',
-      check: ['Number', 'String']
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'EMBEDS',
-      check: ['Message_Embed', 'Embed', 'Embeds']
+      check: Types.Embed
     }
   ],
   colour: '#5BA55B',
@@ -51,5 +51,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const emoji2 = javascriptGenerator.valueToCode(block, 'EMOJI2', javascriptGenerator.ORDER_ATOMIC) || null;
   const timeout = javascriptGenerator.valueToCode(block, 'TIMEOUT', javascriptGenerator.ORDER_ATOMIC) || null;
   const embeds = javascriptGenerator.valueToCode(block, 'EMBEDS', javascriptGenerator.ORDER_ATOMIC) || null;
-  return `paginationEmbed(${message}, ${embeds}, ['${emoji1}', '${emoji2}'],${timeout});\n`;
+  return `paginationEmbed(${message}, ${embeds}, ['${emoji1}', '${emoji2}'], ${timeout});`;
 };

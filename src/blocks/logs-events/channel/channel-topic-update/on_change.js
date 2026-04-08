@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'on_channelTopicChange';
-
 const blockData = {
   message0: 'When channel topic is changed %1 %2',
   colour: '#F5AB1A',
@@ -26,8 +26,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   // guildChannelTopicUpdate is a discord-logs event
-  const code = `s4d.client.on('guildChannelTopicUpdate', async (channel, oldTopic, newTopic) => {
+  return `s4d.client.on('guildChannelTopicUpdate', async (channel, oldTopic, newTopic) => {
   ${statements}
 });`;
-  return code;
 };

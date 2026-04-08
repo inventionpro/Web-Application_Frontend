@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'mongo_on';
-
 const blockData = {
   message0: 'When connected to mongodb %1 %2',
   colour: '#F5AB1A',
@@ -25,7 +24,7 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
-  const code = `mdb.on(Discord.Events.ClientReady, async () => {\n${statements}\n});\n
-    `;
-  return code;
+  return `mdb.on('ready', async () => {
+${statements}
+});`;
 };

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'qdb_delete_all';
-
 const blockData = {
   message0: 'Delete all data from sqlite database',
   args0: [],
@@ -18,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = 'await qdb.deleteAll();\n';
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return 'await qdb.deleteAll();';
 };

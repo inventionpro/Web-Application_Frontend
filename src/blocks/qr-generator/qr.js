@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'qr';
-
 const blockData = {
   message0: 'QRCode',
   colour: '#D14081',
   args0: [],
   tooltip: 'QR code, as text and not an image',
-  output: 'String',
+  output: Types.String,
   helpUrl: ''
 };
 
@@ -18,7 +18,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  const code = [`QR`, javascriptGenerator.ORDER_NONE];
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['QR', javascriptGenerator.ORDER_NONE];
 };

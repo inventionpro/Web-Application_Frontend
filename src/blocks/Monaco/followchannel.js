@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_toggle_follow_channel';
-
 const blockData = {
   message0: 'follow channel %1 to channel %2 with reason %3',
   inputsInline: true,
@@ -10,17 +10,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'togglechannel',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'locationchannel',
-      check: 'Channel'
+      check: Types.Channel
     },
     {
       type: 'input_value',
       name: 'reason',
-      check: 'String'
+      check: Types.String
     }
   ],
   colour: '#0c97f0',
@@ -40,7 +40,5 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var value_togglechannel = javascriptGenerator.valueToCode(block, 'togglechannel', javascriptGenerator.ORDER_ATOMIC);
   var value_locationchannel = javascriptGenerator.valueToCode(block, 'locationchannel', javascriptGenerator.ORDER_ATOMIC);
   var value_reason = javascriptGenerator.valueToCode(block, 'reason', javascriptGenerator.ORDER_ATOMIC);
-  var code = ` ${value_togglechannel}.addFollower(${value_locationchannel}, String(${value_reason}))
-`;
-  return code;
+  return ` ${value_togglechannel}.addFollower(${value_locationchannel}, String(${value_reason}));`;
 };

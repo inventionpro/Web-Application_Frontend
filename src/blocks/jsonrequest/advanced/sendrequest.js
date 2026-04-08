@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'jg_web_request_advanced_send_request';
-
 const blockData = {
   message0: 'send request to URL %1 using method %2 and headers %7 %3 with body content %8 %4 then %9 %5 if error %10 %6',
   inputsInline: false,
@@ -10,19 +10,19 @@ const blockData = {
     {
       type: 'input_value',
       name: 'URL',
-      check: ['String', 'var', 'Env']
+      check: Types.String
     },
     {
       type: 'field_dropdown',
       name: 'METHOD',
       options: [
         ['GET', '"get"'],
+        ['HEAD', '"head"'],
         ['POST', '"post"'],
         ['PUT', '"put"'],
-        ['PATCH', '"patch"'],
+        ['OPTIONS', '"options"'],
         ['DELETE', '"delete"'],
-        ['HEAD', '"head"'],
-        ['OPTIONS', '"options"']
+        ['PATCH', '"patch"']
       ]
     },
     {
@@ -74,22 +74,20 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const BODY = javascriptGenerator.statementToCode(block, 'BODY');
   const THEN = javascriptGenerator.statementToCode(block, 'THEN');
   const IF_ERROR = javascriptGenerator.statementToCode(block, 'IF_ERROR');
-  const code = `S4D_APP_PKG_axios({
-        method: ${METHOD},
-        url: ${URL},
-        headers: {
-           ${HEADERS}
-        },
-        body: {
-          ${BODY}
-        },
-      })
-      .then(async function (response) {
-        ${THEN}
-      })
-      .catch(async function (err) {
-        ${IF_ERROR}
-      });
-    `;
-  return code;
+  return `S4D_APP_PKG_axios({
+  method: ${METHOD},
+  url: ${URL},
+  headers: {
+    ${HEADERS}
+  },
+  body: {
+    ${BODY}
+  }
+})
+  .then(async function (response) {
+    ${THEN}
+  })
+  .catch(async function (err) {
+    ${IF_ERROR}
+  });`;
 };

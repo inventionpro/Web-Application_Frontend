@@ -11,6 +11,7 @@ export const Types = {
   Color: ['Colour'],
   Object: ['Object'],
   Collection: ['Collection'], // Also known as Map
+  RegEx: ['Regex'],
 
   // Discord
   User: ['User'],

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'on_boost';
-
 const blockData = {
   message0: 'When member boost server %1 %2',
   colour: '#F5AB1A',
@@ -26,8 +25,7 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const statements = javascriptGenerator.statementToCode(block, 'STATEMENTS');
   // guildMemberBoost is a discord-logs event
-  const code = `s4d.client.on('guildMemberBoost',async (member) => {
+  return `s4d.client.on('guildMemberBoost',async (member) => {
   ${statements}
 });`;
-  return code;
 };

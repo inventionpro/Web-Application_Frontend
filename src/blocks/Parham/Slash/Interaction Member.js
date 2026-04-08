@@ -1,11 +1,11 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'parham_slash_interactionmember';
-
 const blockData = {
   message0: 'Interaction Member',
-  output: 'Member',
+  output: Types.Member,
   colour: '#187795',
   tooltip: 'This Block Very Like "Interaction Author" Block But You Can Do Role Actions, Ban & Other Server Actions',
   helpUrl: ''
@@ -17,7 +17,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  var code = '((interaction.guild).members.cache.get(((interaction.member.user).id)) || await (interaction.guild).members.fetch(((interaction.member.user).id))).user';
-  return [code, javascriptGenerator.ORDER_NONE];
+javascriptGenerator.forBlock[blockName] = () => {
+  return ['interaction.member', javascriptGenerator.ORDER_NONE];
 };

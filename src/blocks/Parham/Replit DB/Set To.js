@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'parham_replitdb_setto';
-
 const blockData = {
   message0: 'Set %1 to %2 in Replit DB %3 then %4',
   args0: [
     {
       type: 'input_value',
       name: 'set',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
@@ -41,6 +41,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var value_set = javascriptGenerator.valueToCode(block, 'set', javascriptGenerator.ORDER_ATOMIC);
   var value_to = javascriptGenerator.valueToCode(block, 'to', javascriptGenerator.ORDER_ATOMIC);
   var statements_then = javascriptGenerator.statementToCode(block, 'then');
-  var code = `S4D_APP_Replit_DB.set(${value_set}, ${value_to}).then(async () => {${statements_then}});\n`;
-  return code;
+  return `S4D_APP_Replit_DB.set(${value_set}, ${value_to}).then(async () => {
+${statements_then}
+});`;
 };

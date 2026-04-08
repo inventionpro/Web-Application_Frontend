@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_embed_edit';
-
 const blockData = {
   type: 's4d_embed_edit',
   message0: 'Edit message with text %1 and new embed name %2',
@@ -10,12 +10,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'message',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'embed',
-      check: 'String'
+      check: Types.String
     }
   ],
   inputsInline: true,
@@ -41,6 +41,8 @@ javascriptGenerator.forBlock['s4d_embed_edit'] = (block) => {
   new_embed = new_embed.toLowerCase(); // Puts to lower case Lime_Nade = lime_nade
   new_embed = new_embed.replace("'", ''); // Deletes the quotes so it's no longer a string but a varable!
   new_embed = new_embed.replace("'", ''); // Same here
-  var code = `s4dmessage.edit({content: ${new_message},embeds:[${new_embed}]});\n`;
-  return code;
+  return `s4dmessage.edit({
+  content: ${new_message},
+  embeds: [${new_embed}]
+});`;
 };

@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_lasercat_switch_default';
-
 const blockData = {
   message0: 'default %1 %2',
   args0: [
@@ -30,8 +29,6 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const blocks = javascriptGenerator.statementToCode(block, 'blocks');
 
-  return `
-    default:
-    ${blocks}
-    `;
+  return `default:
+  ${blocks}`;
 };

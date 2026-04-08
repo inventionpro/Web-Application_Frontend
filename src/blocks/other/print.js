@@ -1,15 +1,15 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 's4d_print';
-
 const blockData = {
   message0: '%{BKY_PRINT}',
   args0: [
     {
       type: 'input_value',
       name: 'PRINT',
-      check: null
+      check: Types.Any
     }
   ],
   colour: '#D14081',
@@ -27,5 +27,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const print = javascriptGenerator.valueToCode(block, 'PRINT', javascriptGenerator.ORDER_ATOMIC);
-  return `console.log(${print});\n`;
+  return `console.log(${print});`;
 };

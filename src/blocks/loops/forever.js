@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 's4d_forever';
-
 const blockData = {
   message0: '%{BKY_FOREVER}',
   args0: [
@@ -28,11 +27,9 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  return `
-        while(s4d.client && s4d.client.token) {
-            await delay(50);
-            ${javascriptGenerator.statementToCode(block, 'STATEMENT')}
-            console.log('ran')
-        }
-    `;
+  return `while (s4d.client && s4d.client.token) {
+  await delay(50);
+  ${javascriptGenerator.statementToCode(block, 'STATEMENT')}
+  console.log('ran')
+}`;
 };

@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'tictactoe';
-
 const blockData = {
   type: 'tictactoe',
   message0: 'Start a new tic tac toe game with %1 Opponent %2 Embed title %3 Game Over Title %4 Color %5 O Emoji %6 X Emoji %7 Blank Emoji %8 O Color %9 %10 X Color %11 %12 Wait Message %13 Turn Message %14 Ask Message %15 Cancel Message %16 Time end message %17 Draw Message %18 Win Message %19 Game End Message %20',
@@ -17,12 +17,12 @@ const blockData = {
     {
       type: 'input_value',
       name: 'emb_title',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'gover_title',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
@@ -31,17 +31,17 @@ const blockData = {
     {
       type: 'input_value',
       name: 'oEmoji',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'xEmoji',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'blankEmoji',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'field_dropdown',
@@ -72,42 +72,42 @@ const blockData = {
     {
       type: 'input_value',
       name: 'waitMessage',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'turnMessage',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'askMessage',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'cancelMessage',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'timeEndMessage',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'drawMessage',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'winMessage',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_value',
       name: 'gameEndMessage',
-      check: 'String'
+      check: Types.String
     }
   ],
   inputsInline: false,
@@ -142,30 +142,27 @@ javascriptGenerator.forBlock['tictactoe'] = (block) => {
   var value_drawmessage = javascriptGenerator.valueToCode(block, 'drawMessage', javascriptGenerator.ORDER_ATOMIC);
   var value_winmessage = javascriptGenerator.valueToCode(block, 'winMessage', javascriptGenerator.ORDER_ATOMIC);
   var value_gameendmessage = javascriptGenerator.valueToCode(block, 'gameEndMessage', javascriptGenerator.ORDER_ATOMIC);
-  var code = `
-    new TicTacToe({
-        message: s4dmessage,
-        slash_command: false,
-        opponent: ${value_opponent},
-        embed: {
-            title: ${value_emb_title},
-            overTitle: ${value_gover_title},
-            color: ${value_color},
-        },
-        oEmoji: ${value_oemoji},
-        xEmoji: ${value_xemoji},
-        blankEmoji: ${value_blankemoji},
-        oColor: '${dropdown_o_color_dropdown}',
-        xColor: '${dropdown_x_color_dropdown}',
-        waitMessage: ${value_waitmessage},
-        turnMessage: ${value_turnmessage},
-        askMessage: ${value_askmessage},
-        cancelMessage: ${value_cancelmessage},
-        timeEndMessage: ${value_timeendmessage},
-        drawMessage: ${value_drawmessage},
-        winMessage: ${value_winmessage},
-        gameEndMessage: ${value_gameendmessage},
-    }).startGame();
-    `;
-  return code;
+  return `new TicTacToe({
+  message: s4dmessage,
+  slash_command: false,
+  opponent: ${value_opponent},
+  embed: {
+    title: ${value_emb_title},
+    overTitle: ${value_gover_title},
+    color: ${value_color},
+  },
+  oEmoji: ${value_oemoji},
+  xEmoji: ${value_xemoji},
+  blankEmoji: ${value_blankemoji},
+  oColor: '${dropdown_o_color_dropdown}',
+  xColor: '${dropdown_x_color_dropdown}',
+  waitMessage: ${value_waitmessage},
+  turnMessage: ${value_turnmessage},
+  askMessage: ${value_askmessage},
+  cancelMessage: ${value_cancelmessage},
+  timeEndMessage: ${value_timeendmessage},
+  drawMessage: ${value_drawmessage},
+  winMessage: ${value_winmessage},
+  gameEndMessage: ${value_gameendmessage},
+}).startGame();`;
 };

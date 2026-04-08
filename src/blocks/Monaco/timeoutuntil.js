@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'monaco_member_timeout_until';
-
 const blockData = {
   type: 'monaco_member_timeout_until',
   message0: "Member %1's timeout end time",
@@ -10,11 +10,11 @@ const blockData = {
     {
       type: 'input_value',
       name: 'member',
-      check: 'Member'
+      check: Types.Member
     }
   ],
   colour: '#4C97FF',
-  output: 'Date',
+  output: Types.Date,
   inputsInline: true,
   tooltip: "Time at which a member's timeout will end.",
   helpUrl: ''
@@ -28,6 +28,5 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   var value_member = javascriptGenerator.valueToCode(block, 'member', javascriptGenerator.ORDER_ATOMIC);
-  var code = `${value_member}.communicationDisabledUntil`;
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [`${value_member}.communicationDisabledUntil`, javascriptGenerator.ORDER_NONE];
 };

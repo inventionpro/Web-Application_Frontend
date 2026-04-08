@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'lime_s4d_embed_create';
-
 const blockData = {
   type: 's4d_embed_create',
   message0: 'Create Embed With name %1 Then %2',
@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'name_value',
-      check: 'String'
+      check: Types.String
     },
     {
       type: 'input_statement',
@@ -39,6 +39,6 @@ javascriptGenerator.forBlock['s4d_embed_create'] = (block) => {
   name_value = name_value.toLowerCase();
   name_value = name_value.replace("'", '');
   name_value = name_value.replace("'", '');
-  let code = `let ${name_value} = new Discord.MessageEmbed() \n ${statements_then}\n`;
-  return code;
+  return `let ${name_value} = new Discord.MessageEmbed()
+  ${statements_then}`;
 };

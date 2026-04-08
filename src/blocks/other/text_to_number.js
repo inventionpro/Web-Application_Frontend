@@ -1,18 +1,18 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 's4d_string_to_number';
-
 const blockData = {
   message0: '%{BKY_STRING_TO_NUMBER}',
   args0: [
     {
       type: 'input_value',
       name: 'STRING',
-      check: ['Number', 'String']
+      check: T(Types.String, Types.Number)
     }
   ],
-  output: 'Number',
+  output: Types.Number,
   colour: '#D14081',
   tooltip: '',
   helpUrl: ''

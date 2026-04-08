@@ -2,7 +2,6 @@ import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 
 const blockName = 'parham_other_nocode';
-
 const blockData = {
   message0: 'No Code %1 : %2',
   args0: [
@@ -27,7 +26,6 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock[blockName] = function () {
-  var code = '';
-  return code;
+javascriptGenerator.forBlock[blockName] = () => {
+  return '';
 };

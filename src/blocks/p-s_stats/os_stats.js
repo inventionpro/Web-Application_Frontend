@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { T, Types } from '../types.js';
 
 const blockName = 'ps_os_stats';
-
 const blockData = {
   message0: '%1',
   args0: [
@@ -17,7 +17,7 @@ const blockData = {
       ]
     }
   ],
-  output: ['String','Number'],
+  output: T(Types.String, Types.Number),
   colour: '#a5745b',
   tooltip: '',
   helpUrl: ''
@@ -31,11 +31,6 @@ Blockly.Blocks[blockName] = {
 
 javascriptGenerator.forBlock[blockName] = (block) => {
   const info = block.getFieldValue('INFO');
-  if (info == 'sysUptime') {
-    const code = [`miliConverter.secsMinsHoursDays((os.sysUptime() * 1000), "string")`, javascriptGenerator.ORDER_NONE];
-    return code;
-  } else {
-    const code = [`os.${info}()`, javascriptGenerator.ORDER_NONE];
-    return code;
-  }
+  if (info == 'sysUptime') return [`miliConverter.secsMinsHoursDays((os.sysUptime() * 1000), "string")`, javascriptGenerator.ORDER_NONE];
+  return [`os.${info}()`, javascriptGenerator.ORDER_NONE];
 };

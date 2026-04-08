@@ -1,20 +1,20 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../types.js';
 
 const blockName = 'qdb_subtract';
-
 const blockData = {
   message0: 'Subtract %1 from %2 in the SQLite DB',
   args0: [
     {
       type: 'input_value',
       name: 'COUNT',
-      check: 'Number'
+      check: Types.Number
     },
     {
       type: 'input_value',
       name: 'KEY',
-      check: ['String', 'Number']
+      check: Types.String
     }
   ],
   nextStatement: null,
@@ -32,5 +32,5 @@ Blockly.Blocks[blockName] = {
 javascriptGenerator.forBlock[blockName] = (block) => {
   const key = javascriptGenerator.valueToCode(block, 'KEY', javascriptGenerator.ORDER_ATOMIC);
   const count = javascriptGenerator.valueToCode(block, 'COUNT', javascriptGenerator.ORDER_ATOMIC);
-  return `qdb.sub(String(${key}), Number(${count}))\n`;
+  return `qdb.sub(String(${key}), Number(${count}));`;
 };
