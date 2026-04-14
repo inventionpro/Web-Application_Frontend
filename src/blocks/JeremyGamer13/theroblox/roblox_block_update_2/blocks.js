@@ -143,7 +143,7 @@ Blockly.Blocks[blockNames[3]] = {
 
 javascriptGenerator.forBlock[blockNames[3]] = (block) => {
   const type = block.getFieldValue('TYPE');
-  return [`S4D_APP_NOBLOX.setPlayerAvatarType(${type})`, javascriptGenerator.ORDER_NONE];
+  return `S4D_APP_NOBLOX.setPlayerAvatarType(${type});`;
 };
 
 Blockly.Blocks[blockNames[4]] = {

@@ -113,8 +113,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     .join(', ');
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   if (message.length == 0) {
-    return [name2, javascriptGenerator.ORDER_ATOMIC];
+    return [name, javascriptGenerator.ORDER_ATOMIC];
   }
   // TODO: support message content: String(${message})
-  return [name2, javascriptGenerator.ORDER_ATOMIC];
+  return [name, javascriptGenerator.ORDER_ATOMIC];
 };

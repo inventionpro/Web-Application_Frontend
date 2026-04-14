@@ -193,7 +193,7 @@ javascriptGenerator.forBlock['gsa_create_new_jimp_image'] = (block) => {
   var sizex = javascriptGenerator.valueToCode(block, 'sx', javascriptGenerator.ORDER_ATOMIC);
   var sizey = javascriptGenerator.valueToCode(block, 'sy', javascriptGenerator.ORDER_ATOMIC);
   var statements_code = javascriptGenerator.statementToCode(block, 'code');
-  return `new jimp(${sizex}, ${sizey}, ${this.isFilled ? `${javascriptGenerator.valueToCode(block, 'color', javascriptGenerator.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
+  return `new jimp(${sizex}, ${sizey}, ${block.isFilled ? `${javascriptGenerator.valueToCode(block, 'color', javascriptGenerator.ORDER_ATOMIC)}, ` : ''}async (err, image) => {
   ${statements_code}
 });`;
 };

@@ -136,7 +136,7 @@ export default function upgradeXml(xml) {
   });
   // To v14
   xml.querySelectorAll('block[type="set_verification_level"],block[type="explicit_content_filter"],block[type="default_notif_lvl"]').forEach((block) => {
-    let field = block.querySelector(`field[name="${TypeToField[orig]}"]`);
+    let field = block.querySelector(`field[name="${TypeToField[block.getAttribute('type')]}"]`);
     field.innerHTML = UpgradeField[block.getAttribute('type')][field.innerHTML];
   });
 
