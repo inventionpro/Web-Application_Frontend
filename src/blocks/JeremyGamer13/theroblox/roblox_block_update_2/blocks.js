@@ -107,7 +107,7 @@ Blockly.Blocks[blockNames[2]] = {
 
 javascriptGenerator.forBlock[blockNames[2]] = (block) => {
   const list = javascriptGenerator.valueToCode(block, 'LIST', javascriptGenerator.ORDER_ATOMIC);
-  return [`S4D_APP_NOBLOX.setWearingAssets(${list})`, javascriptGenerator.ORDER_NONE];
+  return `S4D_APP_NOBLOX.setWearingAssets(${list});`;
 };
 
 Blockly.Blocks[blockNames[3]] = {
@@ -498,7 +498,7 @@ javascriptGenerator.forBlock['jg_roblox_U2_send_message_to_user_id'] = (block) =
   const user = javascriptGenerator.valueToCode(block, 'USER', javascriptGenerator.ORDER_ATOMIC);
   const subject = javascriptGenerator.valueToCode(block, 'SUBJECT', javascriptGenerator.ORDER_ATOMIC);
   const body = javascriptGenerator.valueToCode(block, 'BODY', javascriptGenerator.ORDER_ATOMIC);
-  return `S4D_APP_NOBLOX.message(Number(${user}), String(${subject}), String(${body}))`;
+  return `S4D_APP_NOBLOX.message(Number(${user}), String(${subject}), String(${body}));`;
 };
 
 Blockly.Blocks['jg_roblox_U2_send_friend_request'] = {
@@ -531,5 +531,5 @@ Blockly.Blocks['jg_roblox_U2_send_friend_request'] = {
 
 javascriptGenerator.forBlock['jg_roblox_U2_send_friend_request'] = (block) => {
   const user = javascriptGenerator.valueToCode(block, 'USER', javascriptGenerator.ORDER_ATOMIC);
-  return `S4D_APP_NOBLOX.sendFriendRequest(Number(${user}))`;
+  return `S4D_APP_NOBLOX.sendFriendRequest(Number(${user}));`;
 };

@@ -1207,15 +1207,13 @@ ${CATEGORYCONTENT}`
   font-family: sans-serif !important;
 }
 
-.blocklyTreeIcon {
-  filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
+.zelos-renderer.dark-theme .blocklyHtmlInput {
+  background-color: #fff;
 }
-#blocklyTreeIcon {
-  filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
-}
-.blocklyTreeIconClosed {
-  filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
-}
+
+.blocklyTreeIcon,
+#blocklyTreeIcon,
+.blocklyTreeIconClosed,
 #blocklyTreeIconClosed {
   filter: invert(100%) sepia(0%) saturate(2950%) hue-rotate(348deg) brightness(118%) contrast(96%) !important;
 }

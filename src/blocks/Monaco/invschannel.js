@@ -31,7 +31,7 @@ Blockly.Blocks[blockName] = {
   }
 };
 
-javascriptGenerator.forBlock['invs_channel'] = (block) => {
+javascriptGenerator.forBlock['monaco_invites_channels'] = (block) => {
   var value_channel = javascriptGenerator.valueToCode(block, 'channel', javascriptGenerator.ORDER_ATOMIC);
   var value_server = javascriptGenerator.valueToCode(block, 'server', javascriptGenerator.ORDER_ATOMIC);
   return [`${value_server}.invites.fetch({ channelId: ${value_channel}.id })`, javascriptGenerator.ORDER_NONE];
