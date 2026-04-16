@@ -830,6 +830,8 @@ export default (favorites) => {
         </shadow>
       </value>
     </block>
+    <label text="%{BKY_BASE_BLOCKS}"/>
+    <block type="s4d_on_connected"/>
     <label text="Repl"/>
     <block type="frost_webserver">
       <value name="URL">
@@ -845,8 +847,13 @@ export default (favorites) => {
         </shadow>
       </value>
     </block>
-    <label text="%{BKY_BASE_BLOCKS}"/>
-    <block type="s4d_on_connected"/>
+    <block type="inv_load_env">
+      <value name="NAME">
+        <shadow type="text">
+          <field name="TEXT">./.env</field>
+        </shadow>
+      </value>
+    </block>
     <label text="%{BKY_BOT_INFORMATIONS}"/>
     <block type="jg_base_bot"/>
     <block type="s4d_get_bot"/>
