@@ -10,7 +10,7 @@ export const Types = {
   Date: ['Date'],
   Color: ['Colour'],
   Object: ['Object'],
-  Collection: ['Collection'], // Also known as Map
+  Collection: ['Collection'], // Also known as: Map
   RegEx: ['Regex'],
 
   // Discord
@@ -20,10 +20,15 @@ export const Types = {
   Emoji: ['Emoji'],
   Sticker: ['Sticker'],
   Embed: ['Embed'],
+  //ActionRow: ['ActionRow'], // Also known as: Component type 1
+  //Button: ['Button'], // Also known as: Component type 2
   Message: ['Message'],
+  MessagePayload: ['Embed'],
   MessageContent: ['String', 'Number', 'Embed'],
+  Webhook: ['Webhook'],
   Channel: ['Channel'],
   Role: ['Role'],
+  Invite: ['Invite'],
   Server: ['Server']
 };
 

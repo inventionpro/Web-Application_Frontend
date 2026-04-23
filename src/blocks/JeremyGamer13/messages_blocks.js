@@ -560,13 +560,13 @@ javascriptGenerator.forBlock['jg_messages_reply_with_allowed_list_of_pings_on_us
   if (!(roles === null || roles === '')) usableB = `roles: ${roles},`;
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0]) {
+    if (Types.MessagePayload.includes(contentType)) {
       return `s4dmessage.channel.send({
-  embeds: [${content}],
   allowedMentions: {
     ${usableA}
     ${usableB}
-  }
+  },
+  ...${content}
 });`;
     }
   }
@@ -636,15 +636,14 @@ javascriptGenerator.forBlock['jg_messages_respond_with_and_with_allowed_list_of_
   if (!(roles === null || roles === '')) usableB = `roles: ${roles},`;
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0]) {
+    if (Types.MessagePayload.includes(contentType))
       return `s4dmessage.channel.send({
-  embeds: [${content}],
   allowedMentions: {
     ${usableA}
     ${usableB}
-  }
+  },
+  ...${content}
 });`;
-    }
   }
   return `s4dmessage.channel.send({
   content: String(${content}),
@@ -718,15 +717,14 @@ javascriptGenerator.forBlock['jg_channels_send_in_channel_with_allowed_list_of_p
   if (!(roles === null || roles === '')) usableB = `roles: ${roles},`;
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0]) {
+    if (Types.MessagePayload.includes(contentType))
       return `${channel}.send({
-  embeds: [${content}],
   allowedMentions: {
     ${usableA}
     ${usableB}
-  }
+  },
+  ...${content}
 });`;
-    }
   }
   return `${channel}.send({
   content: String(${content}),
@@ -1907,12 +1905,12 @@ Blockly.Blocks['jose_jg_webhooks_get_webhook_with_id'] = {
       inputsInline: true,
       tooltip: 'Get a webhook in the channel with a certain ID.',
       colour: '#4C97FF',
-      output: 'Webhook',
+      output: Types.Webhook,
       args0: [
         {
           type: 'input_value',
           name: 'ID',
-          check: T(Types.String, Types.Number)
+          check: Types.String
         }
       ]
     });
@@ -1959,7 +1957,7 @@ Blockly.Blocks['jose_jg_webhooks_get_webhook_information'] = {
         {
           type: 'input_value',
           name: 'WEBHOOK',
-          check: 'Webhook'
+          check: Types.Webhook
         }
       ]
     });
@@ -2051,7 +2049,7 @@ Blockly.Blocks['jose_jg_webhooks_delete_webhook_with_reason'] = {
         {
           type: 'input_value',
           name: 'WEBHOOK',
-          check: 'Webhook'
+          check: Types.Webhook
         },
         {
           type: 'input_value',
@@ -3192,7 +3190,7 @@ Blockly.Blocks['jg_express_website_respond_with_object'] = {
         {
           type: 'input_value',
           name: 'OBJECT',
-          check: 'Object'
+          check: Types.Object
         }
       ],
       colour: '#4c8eff',

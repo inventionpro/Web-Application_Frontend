@@ -37,10 +37,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0])
-      return `${member}.send({
-  embeds: [${content}]
-});`;
+    if (Types.MessagePayload.includes(contentType))
+      return `${member}.send(${content});`;
   }
   return `${member}.send({
   content: String(${content})

@@ -36,10 +36,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const time = javascriptGenerator.valueToCode(block, 'time', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0])
+    if (Types.MessagePayload.includes(contentType))
       return `s4dmessage.channel.sendTyping();
 await delay(Number(${time}) * 1000);
-s4dmessage.channel.send({ embeds: [${content}] });`;
+s4dmessage.channel.send(${content});`;
   }
   return `s4dmessage.channel.sendTyping();
 await delay(Number(${time}) * 1000);

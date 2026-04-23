@@ -12,7 +12,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'Label',
-      check: T(Types.String, Types.Number)
+      check: Types.String
     },
     {
       type: 'input_dummy'
@@ -36,7 +36,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'embed val',
-      check: ''
+      check: Types.Embed
     }
   ],
   colour: '#33cc00',
@@ -66,6 +66,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   content: String(${data}),
   ephemeral: ${eph},
   ${ahq.replace('`', '').replace('`', '')}
-  ${extra.replace('`', '').replace('`', '').replace("'", '').replace("'", '')}
+  ...${extra}
 });`;
 };

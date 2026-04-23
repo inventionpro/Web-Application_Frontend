@@ -38,10 +38,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0])
+    if (Types.MessagePayload.includes(contentType))
       return `await interaction.editReply({
-  embeds: [${content}],
-  components: [${button2}]
+  components: [${button2}],
+  ...${content}
 });`;
   }
   return `await interaction.editReply({

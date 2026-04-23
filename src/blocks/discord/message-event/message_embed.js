@@ -112,5 +112,9 @@ javascriptGenerator.forBlock['s4d_message_embed'] = (block) => {
   if ((javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC) || null) !== null) footer = `\n  .setFooter(String(${javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC)}))`;
   if ((javascriptGenerator.valueToCode(block, 'THUMBNAIL', javascriptGenerator.ORDER_ATOMIC) || null) !== null) thumbnail = `\n  .setThumbnail(String(${javascriptGenerator.valueToCode(block, 'THUMBNAIL', javascriptGenerator.ORDER_ATOMIC)}))`;
   if ((javascriptGenerator.statementToCode(block, 'FIELD', javascriptGenerator.ORDER_ATOMIC) || null) !== null) field = `\n  .addFields(${javascriptGenerator.statementToCode(block, 'FIELD')})`;
-  return [`new Discord.EmbedBuilder()${title}${color}${image}${description}${footer}${thumbnail}${field}`, javascriptGenerator.ORDER_ATOMIC];
+  return [`{
+  embeds: [
+    new Discord.EmbedBuilder()${title}${color}${image}${description}${footer}${thumbnail}${field}
+  ]
+}`, javascriptGenerator.ORDER_ATOMIC];
 };

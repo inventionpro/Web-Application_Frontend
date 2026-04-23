@@ -52,13 +52,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
 
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0])
+    if (Types.MessagePayload.includes(contentType))
       return `gwebhook.send({
-  embeds: [${content}],
   allowedMentions: {
     ${usableA}
     ${usableB}
-  }
+  },
+  ...${content}
 });`;
   }
   return `gwebhook.send({

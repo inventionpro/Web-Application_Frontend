@@ -61,7 +61,6 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  //embeds: [
   const fileNameandLocation = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const hidden = javascriptGenerator.valueToCode(block, 'HIDE', javascriptGenerator.ORDER_ATOMIC);
   const row = String(javascriptGenerator.valueToCode(block, 'ROW', javascriptGenerator.ORDER_ATOMIC))
@@ -72,24 +71,22 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let rowMSG = '';
   let hidden2 = `
     ephemeral: ${hidden},`;
-  if (String(type) == 'interaction.editReply') {
-    hidden2 = '';
-  } else if (String(hidden) == null || String(hidden) == '') {
-    hidden2 = `
-    ephemeral: false,`;
-  }
+  if (String(type) == 'interaction.editReply' || (hidden !== '' && !hidden)) hidden2 = '';
   let stored = `[${fileNameandLocation}]`;
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
-  if (String(msg) == '' || String(msg) == null) {
-    msg = '';
-  } else if (!msg.includes('embeds: [')) {
-    msg = `content: String(${msg})`;
+  if (row !== '') rowMSG = `components: [${row}],`;
+  if (block.getInput('MESSAGE').connection.targetConnection) {
+    const contentType = block.getInput('MESSAGE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
+    if (Types.MessagePayload.includes(contentType)) return `${type}({
+  files: ${stored},${hidden2}
+  ${rowMSG}
+  ...${msg}
+});`;
   }
-  if (!(String(row) == '' || String(row) == null)) rowMSG = `components: [${row}],`;
   return `${type}({
   files: ${stored},${hidden2}
   ${rowMSG}
-  ${msg}
+  content: String(${msg})
 });`;
 };
 

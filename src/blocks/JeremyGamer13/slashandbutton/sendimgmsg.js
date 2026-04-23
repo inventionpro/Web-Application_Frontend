@@ -41,24 +41,21 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const fileNameandLocation = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const hidden = javascriptGenerator.valueToCode(block, 'HIDE', javascriptGenerator.ORDER_ATOMIC);
   var msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  var code, embed;
   var stored = `[${fileNameandLocation}]`;
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
-  embed = msg.includes('embeds: [');
-  if (embed) {
-    code = `interaction.reply({
+  if (block.getInput('MESSAGE').connection.targetConnection) {
+    const contentType = block.getInput('MESSAGE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
+    if (Types.MessagePayload.includes(contentType)) return `interaction.reply({
   files: ${stored},
-  ephemeral: ${hidden}
-  ${msg}
+  ephemeral: ${hidden},
+  ...${msg}
 });`;
-  } else {
-    code = `interaction.reply({
+  }
+  return `interaction.reply({
   files: ${stored},
   ephemeral: ${hidden},
   content: String(${msg})
 });`;
-  }
-  return code;
 };
 
 registerRestrictions(blockName, [

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../../types.js';
 
 const blockName = 'jg_bDI_encodedecodetype';
 const blockData = {
@@ -19,7 +20,7 @@ const blockData = {
     }
   ],
   colour: 195,
-  output: 'encodedecodedropdowntype0216980',
+  output: Types.String,
   tooltip: 'A type to encode or decode to. You can set it using text by just inputting the lowercase version of the name, or by just putting the name the way it is now.',
   helpUrl: ''
 };

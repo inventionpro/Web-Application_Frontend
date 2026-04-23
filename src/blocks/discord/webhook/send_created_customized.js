@@ -41,11 +41,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const avatar = javascriptGenerator.valueToCode(block, 'URL', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0])
+    if (Types.MessagePayload.includes(contentType))
       return `webhook.send({
   username: String(${username}),
   avatarURL: String(${avatar}),
-  embeds: [${content}]
+  ...${content}
 });`;
   }
   return `webhook.send({

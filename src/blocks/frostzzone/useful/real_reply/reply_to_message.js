@@ -42,12 +42,12 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const boolean = javascriptGenerator.valueToCode(block, 'boolean', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0])
+    if (Types.MessagePayload.includes(contentType))
       return `${msg}.reply({
-  embeds: [${content}],
   allowedMentions: {
     repliedUser: ${boolean}
-  }
+  },
+  ...${content}
 });`;
   }
   return `${msg}.reply({

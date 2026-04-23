@@ -18,5 +18,5 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = () => {
-  return ['embed', javascriptGenerator.ORDER_NONE];
+  return ['{ embeds: [embed] }', javascriptGenerator.ORDER_NONE];
 };

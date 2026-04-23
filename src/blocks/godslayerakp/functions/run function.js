@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+import { Types } from '../../types.js';
 
 const blockName = 'gsa_function_item_runer';
 Blockly.Blocks[blockName + '_mutator_block_hat'] = {
@@ -116,4 +117,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let code = `${await_}${josh}(${ecport.join(', ')})`;
   if (block.return) code = [code, javascriptGenerator.ORDER_ATOMIC];
   return code;
+};
+
+javascriptGenerator.forBlock[blockName + '_mutator_block_hat'] = javascriptGenerator.forBlock[blockName + '_mutator_block_input'] = () => {
+  return '';
 };

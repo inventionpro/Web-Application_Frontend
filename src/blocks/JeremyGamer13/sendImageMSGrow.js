@@ -49,20 +49,19 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var buttonraw2 = String(buttonraw).replaceAll('"', '');
   const row = String(buttonraw2).replaceAll("'", '');
   var msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  var code, embed;
   var stored = `[${fileNameandLocation}]`;
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
-  embed = msg.includes('embeds: [');
-  if (embed) {
-    return `await ${fileSendChannel}.send({
+  if (block.getInput('MESSAGE').connection.targetConnection) {
+    const contentType = block.getInput('MESSAGE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
+    if (Types.MessagePayload.includes(contentType)) return `await ${fileSendChannel}.send({
   files: ${stored},
-  components: [${row}]
-  ${msg}
+  components: [${row}],
+  ...${msg}
 });`;
   }
   return `await ${fileSendChannel}.send({
   files: ${stored},
-  components: [${row}]
+  components: [${row}],
   content: String(${msg})
 });`;
 };

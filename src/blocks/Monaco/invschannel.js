@@ -19,7 +19,7 @@ const blockData = {
     }
   ],
   colour: '#4C97FF',
-  output: 'Invites',
+  output: Types.Invite,
   inputsInline: true,
   tooltip: 'Get all invites of a specific channel in a specific server.',
   helpUrl: ''

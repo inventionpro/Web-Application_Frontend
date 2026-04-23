@@ -17,7 +17,7 @@ const blockData = {
       check: Types.String
     }
   ],
-  output: 'MessageEmbed',
+  output: Types.Embed,
   inputsInline: true,
   colour: 120,
   tooltip: 'can be used to send the embed with the name',
@@ -31,11 +31,11 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  // const color = javascriptGenerator.valueToCode(block, "title", javascriptGenerator.ORDER_ATOMIC)
   let message = '';
-  if (javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC) != null) {
-    message = `content: String(${javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC)}), `;
-  }
+  if (javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC) != null) message = `content: String(${javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC)}),`;
   const color = block.getFieldValue('NAME');
-  return [`${message}embeds: [${color.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')}]`, javascriptGenerator.ORDER_ATOMIC];
+  return [`{
+  ${message}
+  embeds: [${color.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')}]
+}`, javascriptGenerator.ORDER_ATOMIC];
 };

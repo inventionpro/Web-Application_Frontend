@@ -112,9 +112,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     .map((s) => s.trim().replaceAll(' ', '_'))
     .join(', ');
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  if (message.length == 0) {
-    return [name, javascriptGenerator.ORDER_ATOMIC];
-  }
-  // TODO: support message content: String(${message})
-  return [name, javascriptGenerator.ORDER_ATOMIC];
+  return [`{
+  ${message.length === 0?'':`content: String(${message}),\n  `}embeds: [${name}]
+}`, javascriptGenerator.ORDER_ATOMIC];
 };

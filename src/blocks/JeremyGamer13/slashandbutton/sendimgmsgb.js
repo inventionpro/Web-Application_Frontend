@@ -49,26 +49,23 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var buttonraw2 = String(buttonraw).replaceAll('"', '');
   const row = String(buttonraw2).replaceAll("'", '');
   var msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  var code, embed;
   var stored = `[${fileNameandLocation}]`;
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
-  embed = msg.includes('embeds: [');
-  if (embed) {
-    code = `interaction.reply({
+  if (block.getInput('MESSAGE').connection.targetConnection) {
+    const contentType = block.getInput('MESSAGE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
+    if (Types.MessagePayload.includes(contentType)) return `interaction.reply({
   files: ${stored},
   ephemeral: ${hidden},
   components: [${row}],
-  ${msg}
+  ...${msg}
 });`;
-  } else {
-    code = `interaction.reply({
+  }
+  return `interaction.reply({
   files: ${stored},
   ephemeral: ${hidden},
   components: [${row}],
   content: String(${msg})
 });`;
-  }
-  return code;
 };
 
 registerRestrictions(blockName, [

@@ -41,14 +41,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const fileNameandLocation = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
   const fileSendChannel = javascriptGenerator.valueToCode(block, 'CHANNEL', javascriptGenerator.ORDER_ATOMIC);
   var msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  var code, embed;
   var stored = `[${fileNameandLocation}]`;
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
-  embed = msg.includes('embeds: [');
-  if (embed) {
-    return `await ${fileSendChannel}.send({
+  if (block.getInput('MESSAGE').connection.targetConnection) {
+    const contentType = block.getInput('MESSAGE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
+    if (Types.MessagePayload.includes(contentType)) return `await ${fileSendChannel}.send({
   files: ${stored},
-  ${msg}
+  ...${msg}
 });`;
   }
   return `await ${fileSendChannel}.send({

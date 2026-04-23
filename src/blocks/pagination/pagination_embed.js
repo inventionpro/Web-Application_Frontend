@@ -17,7 +17,7 @@ const blockData = {
       check: Types.Embed
     }
   ],
-  output: 'Embeds',
+  output: Types.Embed,
   colour: '#5BA58C',
   inputsInline: true,
   tooltip: '',
@@ -31,7 +31,9 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  const embed1 = javascriptGenerator.valueToCode(block, 'EMBED1', javascriptGenerator.ORDER_ATOMIC);
-  const embed2 = javascriptGenerator.valueToCode(block, 'EMBED2', javascriptGenerator.ORDER_ATOMIC);
-  return [`${embed1},${embed2}`, javascriptGenerator.ORDER_NONE];
+  let embed1 = javascriptGenerator.valueToCode(block, 'EMBED1', javascriptGenerator.ORDER_ATOMIC);
+  let embed2 = javascriptGenerator.valueToCode(block, 'EMBED2', javascriptGenerator.ORDER_ATOMIC);
+  embed1 = embed1.match(/embeds:\s*\[\s*(.+?)\s*\]/)[1];
+  embed2 = embed2.match(/embeds:\s*\[\s*(.+?)\s*\]/)[1];
+  return [`{ embeds: [${embed1}, ${embed2}] }`, javascriptGenerator.ORDER_NONE];
 };

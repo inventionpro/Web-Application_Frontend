@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { registerRestrictions } from '../../../restrictions';
-import { T, Types } from '../../types.js';
+import { Types } from '../../types.js';
 
 const blockName = 's4d_reply';
 const blockData = {
@@ -10,7 +10,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'CONTENT',
-      check: T([Types.MessageContent, 'MessagePayload'])
+      check: Types.MessageContent
     }
   ],
   colour: '#4C97FF',
@@ -30,13 +30,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === 'MessagePayload') {
+    if (Types.MessagePayload.includes(contentType))
       return `s4dmessage.channel.send(${content});`;
-    } else if (contentType === Types.Embed[0]) {
-      return `s4dmessage.channel.send({
-  embeds: [${content}]
-});`;
-    }
   }
   return `s4dmessage.channel.send({
   content: String(${content})

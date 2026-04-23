@@ -42,17 +42,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let edit = javascriptGenerator.valueToCode(block, 'EDIT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('EDIT').connection.targetConnection) {
     const contentType = block.getInput('EDIT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0]) {
-      edit = `embeds: [${edit}]`;
-    } else {
-      edit = `content: String(${edit})`;
-    }
+    if (contentType !== Types.MessagePayload[0]) edit = `{ content: String(${edit}) }`;
   } else {
-    edit = `content: String(${edit})`;
+    edit = `{ content: String(${edit}) }`;
   }
   return `${channel}.messages.fetch(${id}).then(async (msg) => {
-  msg.edit({
-    ${edit}
-  });
+  msg.edit(${edit});
 });`;
 };

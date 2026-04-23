@@ -35,10 +35,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const statementThen = javascriptGenerator.statementToCode(block, 'THEN');
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (contentType === Types.Embed[0])
-      return `s4dmessage.channel.send({
-  embeds:[${content}]
-}).then(async (s4dreply) =>{
+    if (Types.MessagePayload.includes(contentType))
+      return `s4dmessage.channel.send(${content}).then(async (s4dreply) =>{
 ${statementThen}
 });`;
   }

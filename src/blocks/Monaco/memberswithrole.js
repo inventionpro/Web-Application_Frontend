@@ -14,7 +14,7 @@ const blockData = {
     }
   ],
   colour: '#4C97FF',
-  output: 'Members',
+  output: Types.Collection,
   inputsInline: true,
   tooltip: 'Get all members with role',
   helpUrl: ''

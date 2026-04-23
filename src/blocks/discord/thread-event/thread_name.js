@@ -14,7 +14,7 @@ const blockData = {
     }
   ],
   colour: '#2a97b8',
-  output: 'Channale',
+  output: Types.Channel,
   tooltip: '',
   helpUrl: ''
 };

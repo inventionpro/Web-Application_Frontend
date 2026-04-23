@@ -25,5 +25,7 @@ Blockly.Blocks[blockName] = {
 };
 
 javascriptGenerator.forBlock[blockName] = (block) => {
-  return [javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE).replace("'", '').replace("'", ''), javascriptGenerator.ORDER_ATOMIC];
+  let label = javascriptGenerator.valueToCode(block, 'Label', javascriptGenerator.ORDER_NONE);
+  label = label.replace("'", '').replace("'", '');
+  return [`{ embeds: [${label}] }`, javascriptGenerator.ORDER_ATOMIC];
 };

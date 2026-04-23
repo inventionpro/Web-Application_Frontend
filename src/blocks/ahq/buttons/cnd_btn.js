@@ -33,7 +33,7 @@ const blockData = {
     {
       type: 'input_value',
       name: 'embed val',
-      check: ''
+      check: Types.Embed
     }
   ],
   colour: '#33cc00',
@@ -58,6 +58,6 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   return `${name}.send({
   content: String(${data}),
   components: [new Discord.ActionRowBuilder().addComponents(${ahq})],
-  ${extra.replace('`', '').replace('`', '').replace("'", '').replace("'", '')}
+  ...${extra}
 });`;
 };

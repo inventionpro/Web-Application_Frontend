@@ -19,7 +19,7 @@ const blockData = {
     }
   ],
   colour: '#4C97FF',
-  output: 'Invite',
+  output: Types.Invite,
   inputsInline: true,
   tooltip: 'Get an invite with specified code in a specified server.',
   helpUrl: ''
