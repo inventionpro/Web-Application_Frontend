@@ -30,9 +30,7 @@ Blockly.Blocks['lasercat_jg_case_default'] = {
    * @this Blockly.Block
    */
   mutationToDom: function () {
-    if (!this.elseifCount_ && !this.elseCount_) {
-      return null;
-    }
+    if (!this.elseifCount_ && !this.elseCount_) return null;
     var container = document.createElement('mutation');
     if (this.elseifCount_) {
       container.setAttribute('elseif', this.elseifCount_);

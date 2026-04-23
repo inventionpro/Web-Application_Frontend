@@ -45,9 +45,7 @@ Blockly.Blocks[blockName] = {
   },
 
   mutationToDom: function () {
-    if (!this.inputs_) {
-      return null;
-    }
+    if (!this.inputs_) return null;
     const container = document.createElement('mutation');
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) container.setAttribute(BORDER_FIELDS[i], this.inputs_[i]);
@@ -112,9 +110,12 @@ javascriptGenerator.forBlock['s4d_message_embed'] = (block) => {
   if ((javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC) || null) !== null) footer = `\n  .setFooter(String(${javascriptGenerator.valueToCode(block, 'FOOTER', javascriptGenerator.ORDER_ATOMIC)}))`;
   if ((javascriptGenerator.valueToCode(block, 'THUMBNAIL', javascriptGenerator.ORDER_ATOMIC) || null) !== null) thumbnail = `\n  .setThumbnail(String(${javascriptGenerator.valueToCode(block, 'THUMBNAIL', javascriptGenerator.ORDER_ATOMIC)}))`;
   if ((javascriptGenerator.statementToCode(block, 'FIELD', javascriptGenerator.ORDER_ATOMIC) || null) !== null) field = `\n  .addFields(${javascriptGenerator.statementToCode(block, 'FIELD')})`;
-  return [`{
+  return [
+    `{
   embeds: [
     new Discord.EmbedBuilder()${title}${color}${image}${description}${footer}${thumbnail}${field}
   ]
-}`, javascriptGenerator.ORDER_ATOMIC];
+}`,
+    javascriptGenerator.ORDER_ATOMIC
+  ];
 };

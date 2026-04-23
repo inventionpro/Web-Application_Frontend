@@ -46,9 +46,7 @@ Blockly.Blocks[blockName] = {
     this.async = false;
   },
   mutationToDom: function () {
-    if (!this.inputs) {
-      return null;
-    }
+    if (!this.inputs) return null;
     const container = document.createElement('mutation');
     container.setAttribute('inputs', this.inputs.join(', '));
     container.setAttribute('return', this.return ? 'true' : 'false');

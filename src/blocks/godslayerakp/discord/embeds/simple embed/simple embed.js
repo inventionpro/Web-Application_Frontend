@@ -136,10 +136,13 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (block.inputs_[9]) timestamp = `timestamp: new Date(String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[9], javascriptGenerator.ORDER_NONE)})),\n`;
   if (block.inputs_[10]) footer = `footer: ${javascriptGenerator.valueToCode(block, BORDER_FIELDS[10], javascriptGenerator.ORDER_ATOMIC)},\n`;
   if (block.inputs_[0]) message = `content: String(${javascriptGenerator.valueToCode(block, BORDER_FIELDS[0], javascriptGenerator.ORDER_NONE)}),`;
-  return [`{
+  return [
+    `{
   ${message}
   embeds: [
     {${color}${title}${url}${author}${description}${thumbnail}${fields}${image}${timestamp}${footer}}
   ]
-}`, javascriptGenerator.ORDER_ATOMIC];
+}`,
+    javascriptGenerator.ORDER_ATOMIC
+  ];
 };

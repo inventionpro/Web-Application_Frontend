@@ -34,8 +34,11 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   let message = '';
   if (javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC) != null) message = `content: String(${javascriptGenerator.valueToCode(block, 'message', javascriptGenerator.ORDER_ATOMIC)}),`;
   const color = block.getFieldValue('NAME');
-  return [`{
+  return [
+    `{
   ${message}
   embeds: [${color.replaceAll(' ', '_').replace(/[!@#$%^&*()-=\][|{}+`~'":;?/.<>,]/g, '_')}]
-}`, javascriptGenerator.ORDER_ATOMIC];
+}`,
+    javascriptGenerator.ORDER_ATOMIC
+  ];
 };

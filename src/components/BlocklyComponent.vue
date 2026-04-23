@@ -57,9 +57,7 @@ coolbox.forEach((line) => {
     if (line.includes('<block') && working.length > 0 && commented < 1) {
       let block = line.split('"');
       const path = "'" + working.join('>') + "'";
-      if (block == null) {
-        return;
-      }
+      if (block == null) return;
       block = block[1];
 
       if (block == 'text') {

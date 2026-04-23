@@ -86,9 +86,7 @@ export function createMutatorBlock(mutator_type, data, exportCodeCallback) {
       },
 
       mutationToDom: function () {
-        if (!this.inputs_) {
-          return null;
-        }
+        if (!this.inputs_) return null;
         const container = document.createElement('mutation');
         for (let i = 0; i < this.inputs_.length; i++) {
           if (this.inputs_[i]) container.setAttribute(BORDER_FIELDS[i], this.inputs_[i]);
@@ -182,9 +180,7 @@ export function setMutatorOnBlock(block, mutator_type, data) {
         block.inputs_.push(false);
       }
       block.mutationToDom = function () {
-        if (!this.inputs_) {
-          return null;
-        }
+        if (!this.inputs_) return null;
         const container = document.createElement('mutation');
         for (let i = 0; i < this.inputs_.length; i++) {
           if (this.inputs_[i]) container.setAttribute(BORDER_FIELDS[i], this.inputs_[i]);

@@ -29,8 +29,7 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   const content = javascriptGenerator.valueToCode(block, 'CONTENT', javascriptGenerator.ORDER_ATOMIC);
   if (block.getInput('CONTENT').connection.targetConnection) {
     const contentType = block.getInput('CONTENT').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (Types.MessagePayload.includes(contentType))
-      return `oldMessage.channel.send(${content});`;
+    if (Types.MessagePayload.includes(contentType)) return `oldMessage.channel.send(${content});`;
   }
   return `oldMessage.channel.send({
   content: String(${content})

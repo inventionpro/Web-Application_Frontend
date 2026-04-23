@@ -46,9 +46,7 @@ Blockly.Blocks[blockName] = {
   },
 
   mutationToDom: function () {
-    if (!this.inputCount) {
-      return null;
-    }
+    if (!this.inputCount) return null;
     const container = document.createElement('mutation');
     if (this.inputCount) container.setAttribute(APPEND_FIELD, this.inputCount);
     return container;

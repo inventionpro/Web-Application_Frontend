@@ -53,9 +53,7 @@ Blockly.Blocks[blockName] = {
   },
 
   mutationToDom: function () {
-    if (!this.inputs_) {
-      return null;
-    }
+    if (!this.inputs_) return null;
     const container = document.createElement('mutation');
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) container.setAttribute(BORDER_FIELDS[i], this.inputs_[i]);
@@ -112,7 +110,10 @@ javascriptGenerator.forBlock[blockName] = (block) => {
     .map((s) => s.trim().replaceAll(' ', '_'))
     .join(', ');
   const message = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
-  return [`{
-  ${message.length === 0?'':`content: String(${message}),\n  `}embeds: [${name}]
-}`, javascriptGenerator.ORDER_ATOMIC];
+  return [
+    `{
+  ${message.length === 0 ? '' : `content: String(${message}),\n  `}embeds: [${name}]
+}`,
+    javascriptGenerator.ORDER_ATOMIC
+  ];
 };

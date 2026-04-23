@@ -53,7 +53,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
   if (block.getInput('MESSAGE').connection.targetConnection) {
     const contentType = block.getInput('MESSAGE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (Types.MessagePayload.includes(contentType)) return `await ${fileSendChannel}.send({
+    if (Types.MessagePayload.includes(contentType))
+      return `await ${fileSendChannel}.send({
   files: ${stored},
   components: [${row}],
   ...${msg}

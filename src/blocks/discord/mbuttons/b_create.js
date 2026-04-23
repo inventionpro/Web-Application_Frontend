@@ -42,9 +42,7 @@ const BORDER_MUTATOR_MIXIN = {
   inputs_: [true, true, false, false, false, false],
 
   mutationToDom: function () {
-    if (!this.inputs_) {
-      return null;
-    }
+    if (!this.inputs_) return null;
     const container = document.createElement('mutation');
     for (let i = 0; i < this.inputs_.length; i++) {
       if (this.inputs_[i]) container.setAttribute(BORDER_FIELDS[i], this.inputs_[i]);

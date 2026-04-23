@@ -77,7 +77,8 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   if (row !== '') rowMSG = `components: [${row}],`;
   if (block.getInput('MESSAGE').connection.targetConnection) {
     const contentType = block.getInput('MESSAGE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (Types.MessagePayload.includes(contentType)) return `${type}({
+    if (Types.MessagePayload.includes(contentType))
+      return `${type}({
   files: ${stored},${hidden2}
   ${rowMSG}
   ...${msg}

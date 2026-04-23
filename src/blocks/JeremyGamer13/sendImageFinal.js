@@ -51,13 +51,15 @@ javascriptGenerator.forBlock[blockName] = (block) => {
   var msg = javascriptGenerator.valueToCode(block, 'MESSAGE', javascriptGenerator.ORDER_ATOMIC);
   var stored = `[${fileNameandLocation}]`;
   if (fileNameandLocation.includes("['") || fileNameandLocation.includes('["')) stored = fileNameandLocation;
-  if (String(msg) == '' || String(msg) == null) return `await ${fileSendChannel}.send({
+  if (String(msg) == '' || String(msg) == null)
+    return `await ${fileSendChannel}.send({
   files: ${stored},
   components: [${row}]
 });`;
   if (block.getInput('MESSAGE').connection.targetConnection) {
     const contentType = block.getInput('MESSAGE').connection.targetConnection.getSourceBlock().outputConnection.check?.[0] || null;
-    if (Types.MessagePayload.includes(contentType)) return `await ${fileSendChannel}.send({
+    if (Types.MessagePayload.includes(contentType))
+      return `await ${fileSendChannel}.send({
   files: ${stored},
   components: [${row}],
   ...${msg}
